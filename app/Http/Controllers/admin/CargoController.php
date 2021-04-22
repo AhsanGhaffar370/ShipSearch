@@ -16,16 +16,16 @@ class CargoController extends Controller
 
         $data = DB::table('ss_cargo')
                 ->join('ss_setup_cargo_type', 'ss_setup_cargo_type.cargo_type_id', '=', 'ss_cargo.cargo_type_id')
-                
+
                 ->leftJoin('ss_setup_region as R1', 'R1.region_id', '=', 'ss_cargo.loading_region_id')
                 // ->join('ss_setup_region R1','R1.region_id=ss_cargo.loading_region_id','left')
-                
-                ->leftJoin('ss_setup_region DR1', 'DR1.region_id', '=', 'ss_cargo.discharge_region_id')
+
+                ->leftJoin('ss_setup_region as DR1', 'DR1.region_id', '=', 'ss_cargo.discharge_region_id')
                 // ->join('ss_setup_region DR1','DR1.region_id=ss_cargo.discharge_region_id','left')
 
                 // ->join('ss_setup_cargo_type', 'ss_setup_cargo_type.cargo_type_id', '=', 'ss_cargo.cargo_type_id')
                 // ->join('ss_setup_country C1','C1.country_id=ss_cargo.loading_country_id','left')
-                
+
                 // ->join('ss_setup_cargo_type', 'ss_setup_cargo_type.cargo_type_id', '=', 'ss_cargo.cargo_type_id')
                 // ->join('ss_setup_country DC1','DC1.country_id=ss_cargo.discharge_country_id','left')
 
