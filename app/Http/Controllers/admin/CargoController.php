@@ -46,6 +46,12 @@ class CargoController extends Controller
 
                 // ->join('ss_setup_cargo_type', 'ss_setup_cargo_type.cargo_type_id', '=', 'ss_cargo.cargo_type_id')
                 // ->join('ss_setup_unit DU1','DU1.unit_id=ss_cargo.loading_discharge_unit_id')
+                // ->join('ss_setup_cargo_type', 'ss_setup_cargo_type.cargo_type_id', '=', 'ss_cargo.cargo_type_id')
+                // ->join('ss_setup_unit DU1','DU1.unit_id=ss_cargo.loading_discharge_unit_id')
+                // ->join('ss_setup_cargo_type', 'ss_setup_cargo_type.cargo_type_id', '=', 'ss_cargo.cargo_type_id')
+                // ->join('ss_setup_unit DU1','DU1.unit_id=ss_cargo.loading_discharge_unit_id')
+                // ->join('ss_setup_cargo_type', 'ss_setup_cargo_type.cargo_type_id', '=', 'ss_cargo.cargo_type_id')
+                // ->join('ss_setup_unit DU1','DU1.unit_id=ss_cargo.loading_discharge_unit_id')
 
 
                 ->select('ss_cargo.*', 
