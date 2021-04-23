@@ -5,93 +5,157 @@
 @section('container')
 
 <div class="">
-	  <div class="page-title">
-		 <div class="title_left">
-			<h1>Post</h1>
-			<h4><a href="/admin/post/add" class="btn btn-primary btn-md">Add Post</a></h4>
-		 </div>
-	  </div>
-	  <div class="clearfix"></div>
-	  <div class="row">
-	  		
-		 <div class="col-md-12 col-sm-12 ">
-			@if(session('msg')!="")
-			<div class="alert alert-{{session('alert')}} alert-dismissible fade show text-center d-block" role="alert">
-				{{session('msg')}}
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			@endif 
-			<div class="x_panel">
-			   <div class="x_content">
-				  <div class="row">
-					 <div class="col-sm-12">
-						<div class="card-box table-responsive">
-						   <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-							  <thead>
-								 <tr>
-									<th width="2%">S.No</th>
-									<th width="20%">Title</th>
-									<th width="30%">Short Desc</th>
-									<th width="15%">Image</th>
-									<th width="10%">Date</th>
-									<th width="6%">Status</th>
-									<th width="22%">Action</th>
-									<!-- <th>Action</th> -->
-								 </tr>
-							  </thead>
-							  <tbody>
-							  
-								@foreach ($data as $d)
-								<tr>
-									<td>{{$d['id']}}</td>
-									<td>{{$d['title']}}</td>
-									<td>{{$d['short_desc']}}</td>
-									<td>
-									<img src="{{asset('storage/post_images/'.$d['image'])}}" class="img-thumbnail img-fluid" alt="post img" srcset="">
-									</td>
-									<td>{{$d['post_date']}}</td>
-									<td>
-									@if($d['status'] =="1")
-										<span class="badge badge-success">Active</span>
-									@else
-										<span class="badge badge-danger">In-Active</span>
-									@endif
-									
-									</td>
-									<td>
-									
-									<div class="btn-group" style="display: -webkit-box;">
-										<a href={{'/admin/post/update-rec/'.$d['id']}} class="btn btn-info btn-sm pt-1 pb-1">Edit</a>
-										
-										<button type="button" class="btn btn-info dropdown-toggle btn-sm pt-0 border-secondary border-left" data-toggle="dropdown" aria-expanded="false" style="padding-bottom: 1px !important">
-											<span class="caret"></span>
-											<span class="sr-only">Toggle Dropdown</span>
-										</button>
-										<ul class="dropdown-menu list-group" role="menu">
-											@if($d['status'] =="1")
-												<li><a href={{'/admin/post/update-status/'.$d["id"].'/0'}} class="list-group-item">De-Activate</a></li>
-											@else
-												<li><a href={{'/admin/post/update-status/'.$d["id"].'/1'}}  class="list-group-item">Activate</a></li>
-											@endif
-										</ul>
-										<a href={{'/admin/post/delete-rec/'.$d['id']}}  class="btn btn-danger btn-sm ml-2 pt-1 pb-1 rounded">Delete</a>
-									</div>
-									
-									</td>
-									
-								</tr>
-								@endforeach
-								
-							  </tbody>
-						   </table>
-						</div>
-					 </div>
-				  </div>
-			   </div>
-			</div>
-		 </div>
-	  </div>
-   </div>
+    <div class="page-title">
+        <div class="title_left">
+            <h1>Cargo <span class="size16">Type</span></h1>
+			<a href="/admin/cargo/view" class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
+				<i class="fas fa-eye"></i><br>
+				<span class="size13">View All</span> 
+			</a>
+			<a href="/admin/cargo/add" class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
+				<i class="fas fa-plus"></i><br>
+				<span class="size13">Add New</span> 
+			</a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+
+        <div class="col-md-12 col-sm-12 ">
+            @if(session('msg')!="")
+            <div class="alert alert-{{session('alert')}} alert-dismissible fade show text-center d-block" role="alert">
+                {{session('msg')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card-box ">
+                                <table id="cargo_table" class="table table-striped table-responsive table-bordered" style="width:100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Unique Key</th>
+                                            <th>Cargo Name</th>
+                                            <th>Cargo Type</th>
+                                            <th>Loading Region</th>
+                                            <th>Loading Country</th>
+                                            <th>Loading Port#1</th>
+                                            <th>Loading Port#2</th>
+                                            <th>Discharge Region</th>
+                                            <th>Discharge Country</th>
+                                            <th>Discharge Port#1</th>
+                                            <th>Discharge Port#2</th>
+                                            <th>Laycan Date From</th>
+                                            <th>Laycan Date To</th>
+                                            <th>Quantity</th>
+                                            <th>Unit</th>
+                                            <th>Max LOA</th>
+                                            <th>Max Draft</th>
+                                            <th>Max Height</th>
+                                            <th>Commission</th>
+                                            <th>Combinable</th>
+                                            <th>Over Age</th>
+                                            <th>Hazmat</th>
+                                            <th>Loading Discharge Rates</th>
+                                            <th>Loading Discharge Unit</th>
+                                            <th>Loading Equipment Req</th>
+                                            <th>Gear Lifting Capacity</th>
+                                            <th>Loading/Discharge Equipment Req</th>
+                                            <th>Additional Info</th>
+                                            <th>Status</th>
+                                            <!-- <th>Brocker Info</th> -->
+                                            <th style="padding: 0px 30px 10px 30px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach ($data as $row)
+                                        <tr>
+                                            <td>{{$count++}}</td>
+                                            <td>{{$row->cargo_id}}</td>
+                                            <td>{{$row->cargo_name}}</td>
+                                            <td>{{$row->cargo_type_name}}</td>
+                                            <td>{{$row->R1name}}</td>
+                                            <td>{{$row->C1name}}</td>
+                                            <td>{{$row->P1name}}</td>
+                                            <td>{{$row->P2name}}</td>
+                                            <td>{{$row->DR1name}}</td>
+                                            <td>{{$row->DC1name}}</td>
+                                            <td>{{$row->DP1name}}</td>
+                                            <td>{{$row->DP2name}}</td>
+                                            <td>{{$row->laycan_date_from}}</td>
+                                            <td>{{$row->laycan_date_to}}</td>
+                                            <td>{{$row->quantity}}</td>
+                                            <td>{{$row->U1unit}}</td>
+                                            <td>{{$row->max_loa}}</td>
+                                            <td>{{$row->max_draft}}</td>
+                                            <td>{{$row->max_height}}</td>
+                                            <td>{{$row->commision}}</td>
+                                            <td>{{$row->combinable}}</td>
+                                            <td>{{$row->over_age}}</td>
+                                            <td>{{$row->hazmat}}</td>
+                                            <td>{{$row->loading_discharge_rates}}</td>
+                                            <td>{{$row->DU1unit}}</td>
+                                            <td>{{$row->loading_equipment_req}}</td>
+                                            <td>{{$row->gear_lifting_capacity}}</td>
+                                            <td>{{$row->loading_discharge_equipment_req}}</td>
+                                            <td>{{$row->additional_info}}</td>
+                                            <!-- <td>
+												<strong>N:</strong>{{-- $row->brocker_name --}}<br>
+												<strong>T:</strong>{{-- $row->brocker_phone --}}<br>
+												<strong>E:</strong>{{-- $row->brocker_email --}}
+											</td> -->
+                                            
+                                            <td>
+                                                @if($row->is_active =="1")
+                                                <span class="badge badge-success">Active</span>
+                                                @else
+                                                <span class="badge badge-danger">In-Active</span>
+                                                @endif
+                                            </td>
+
+                                            <td>
+                                                <div class="btn-group" style="display: -webkit-box;">
+                                                    <a href='/admin/post/update-rec/{{$row->cargo_id}}'
+                                                        class="btn btn-info btn-sm pt-1 pb-1">Edit</a>
+
+                                                    <button type="button"
+                                                        class="btn btn-info dropdown-toggle btn-sm pt-0 border-secondary border-left"
+                                                        data-toggle="dropdown" aria-expanded="false"
+                                                        style="padding-bottom: 1px !important">
+                                                        <span class="caret"></span>
+                                                        <span class="sr-only">Toggle Dropdown</span>
+                                                    </button>
+                                                    <ul class="dropdown-menu list-group" role="menu">
+                                                        @if($row->is_active =="1")
+                                                        <li><a href='/admin/post/update-status/{{$row->cargo_id}}/0'
+                                                                class="list-group-item">De-Activate</a></li>
+                                                        @else
+                                                        <li><a href='/admin/post/update-status/{{$row->cargo_id}}/1'
+                                                                class="list-group-item">Activate</a></li>
+                                                        @endif
+                                                    </ul>
+                                                    <!-- <a href='/admin/post/delete-rec/{{$row->cargo_id}}'
+                                                        class="btn btn-danger btn-sm ml-2 pt-1 pb-1 rounded">Delete</a> -->
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

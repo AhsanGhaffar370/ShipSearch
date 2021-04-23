@@ -9,17 +9,31 @@
 
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-      <script src="https://use.fontawesome.com/bd39c99e2f.js"></script>
+    <script src="https://kit.fontawesome.com/7516c4b4cc.js" crossorigin="anonymous"></script>
 
       <!-- custom css -->
       <link href="{{ asset('admin_asset/css/custom.min.css') }}" rel="stylesheet">
+      <link href="{{ asset('admin_asset/css/my_style.css') }}" rel="stylesheet">
+
+      <!-- datatables -->
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+      <style>
+         .dropdown-toggle:after {
+            color:white;
+         }
+         label{
+            color: black;
+            font-weight: 600;
+         }
+      </style>
    </head>
    <body class="nav-md">
       <div class="container body">
          <div class="main_container">
             <div class="col-md-3 left_col">
                <div class="left_col scroll-view">
-                  <div class="navbar nav_title" style="border: 0;">
+                  <div class="navbar nav_title bg_bl" style="border: 0;">
                      <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>ShipSearch</span></a>
                   </div>
                   <div class="clearfix"></div>
@@ -41,19 +55,20 @@
                </div>
             </div>
             <!-- top navigation -->
-            <div class="top_nav">
-               <div class="nav_menu">
+            <div class="top_nav ">
+               <div class="nav_menu bg_bd">
                   <div class="nav toggle">
-                     <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                     <a id="menu_toggle"><i class="fa fa-bars text-white"></i></a>
                   </div>
-                  <nav class="nav navbar-nav">
-                     <ul class=" navbar-right">
-                        <li class="nav-item dropdown open" style="padding-left: 15px;">
-                           <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                           Welcome <span class="font-weight-bold ml-1">{{session('user_name')}}</span>
+                  <nav class="nav navbar-nav" style="padding: 6px 10px 6px 10px;">
+                     <ul class=" navbar-right text-white">
+                        <li class="nav-item dropdown open text-white" style="padding-left: 15px;">
+                        
+                           <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false" >
+                           <span class="font-weight-bold ml-1 text-white">{{session('user_name')}}</span>
                            </a>
                            <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item"  href="/admin/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                              <a class="dropdown-item "  href="/admin/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                            </div>
                         </li>
 					</ul>
@@ -70,7 +85,7 @@
             <!-- footer content -->
             <footer>
                <div class="pull-right">
-                  Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+               Copyright © 2018 <a href="#" class="cl_bd">Ship Search</a>. All rights reserved. 
                </div>
                <div class="clearfix"></div>
             </footer>
@@ -82,9 +97,29 @@
       <script src="{{ asset('admin_asset/js/icheck.min.js') }}"></script>
       <script src="{{ asset('admin_asset/js/custom.js') }}"></script>
 
+      <!-- datatables -->
+
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
 
 <script>
+   // $(document).ready( function () {
+   //    $('#cargo_table').DataTable();
+   // } );
+
+$(document).ready(function() {
+    $('#cargo_table').DataTable({
+        // "paging": false,
+		// "pagingType":"full_numbers",
+      //   "lengthMenu":[[5,10,25],[5,10,25]],
+		"lengthMenu":[[10,25,50,100,-1],[10,25,50,100,'All']],
+		responsive:true,
+        type: 'date'
+		// stateSave: true
+	});
+});
+
+
    $(document).ready(function(){
       $('.page-state').click(function(e){
          e.preventDefault();
