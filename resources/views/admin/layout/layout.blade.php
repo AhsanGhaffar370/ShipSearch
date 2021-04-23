@@ -7,8 +7,9 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>@yield('page_title')</title>
 
+<!-- bootstrap -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      <!-- font awesome -->
     <script src="https://kit.fontawesome.com/7516c4b4cc.js" crossorigin="anonymous"></script>
 
       <!-- custom css -->
@@ -93,6 +94,7 @@
          </div>
       </div>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
       <script src="{{ asset('admin_asset/js/icheck.min.js') }}"></script>
       <script src="{{ asset('admin_asset/js/custom.js') }}"></script>
@@ -164,6 +166,28 @@ $(document).ready(function() {
          });
       });
    });
+
+
+   // function deRequireCb(elClass) {
+   //          el=document.getElementsByClassName(elClass);
+
+   //          var atLeastOneChecked=false;//at least one cb is checked
+   //          for (i=0; i<el.length; i++) {
+   //              if (el[i].checked === true) {
+   //                  atLeastOneChecked=true;
+   //              }
+   //          }
+
+   //          if (atLeastOneChecked === true) {
+   //              for (i=0; i<el.length; i++) {
+   //                  el[i].required = false;
+   //              }
+   //          } else {
+   //              for (i=0; i<el.length; i++) {
+   //                  el[i].required = true;
+   //              }
+   //          }
+   //      }
 </script>
 
    </body>

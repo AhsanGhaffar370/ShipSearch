@@ -25,7 +25,7 @@
                 <p class="p-3 bg-light cl_bd size16 mb-0">Fill the required details</p>
                 <div class="x_content p-3">
                     <br />
-                    <form method="post" action="/admin/post/add_post" class="form-horizontal form-label-left"
+                    <form method="post" action="/admin/cargo/add_req" class="form-horizontal form-label-left"
                         enctype="multipart/form-data">
                         <!-- <form method="post" action="{{url('/admin/post/add_post')}}" class="form-horizontal form-label-left"> -->
                         @csrf
@@ -48,8 +48,8 @@
                             <label for="">Loading Region</label>
                             <select name="loading_region_id" id="loading_region_id" required class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
-                                @foreach ($cargo_type as $row)
-                                <option value="{{$row->cargo_type_id}}">{{$row->cargo_type_name}}</option>
+                                @foreach ($region as $row)
+                                <option value="{{$row->region_id}}">{{$row->region_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -58,8 +58,8 @@
                             <label for="">Loading Country</label>
                             <select name="loading_country_id" id="loading_country_id" required class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
-                                @foreach ($cargo_type as $row)
-                                <option value="{{$row->cargo_type_id}}">{{$row->cargo_type_name}}</option>
+                                @foreach ($country as $row)
+                                <option value="{{$row->country_id}}">{{$row->country_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -68,8 +68,8 @@
                             <label for="">Loading Port#1</label>
                             <select name="loading_port_id_1" id="loading_port_id_1" required class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
-                                @foreach ($cargo_type as $row)
-                                <option value="{{$row->cargo_type_id}}">{{$row->cargo_type_name}}</option>
+                                @foreach ($port as $row)
+                                <option value="{{$row->port_id}}">{{$row->port_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -78,8 +78,8 @@
                             <label for="">Loading Port#2</label>
                             <select name="loading_port_id_2" id="loading_port_id_2" required class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
-                                @foreach ($cargo_type as $row)
-                                <option value="{{$row->cargo_type_id}}">{{$row->cargo_type_name}}</option>
+                                @foreach ($port as $row)
+                                <option value="{{$row->port_id}}">{{$row->port_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -88,8 +88,8 @@
                             <label for="">Discharge Region</label>
                             <select name="discharge_region_id" id="discharge_region_id" required class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
-                                @foreach ($cargo_type as $row)
-                                <option value="{{$row->cargo_type_id}}">{{$row->cargo_type_name}}</option>
+                                @foreach ($region as $row)
+                                <option value="{{$row->region_id}}">{{$row->region_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -98,8 +98,8 @@
                             <label for="">Discharge Country</label>
                             <select name="discharge_country_id" id="discharge_country_id" required class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
-                                @foreach ($cargo_type as $row)
-                                <option value="{{$row->cargo_type_id}}">{{$row->cargo_type_name}}</option>
+                                @foreach ($country as $row)
+                                <option value="{{$row->country_id}}">{{$row->country_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -108,8 +108,8 @@
                             <label for="">Discharge Port#1</label>
                             <select name="discharge_port_id_1" id="discharge_port_id_1" required class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
-                                @foreach ($cargo_type as $row)
-                                <option value="{{$row->cargo_type_id}}">{{$row->cargo_type_name}}</option>
+                                @foreach ($port as $row)
+                                <option value="{{$row->port_id}}">{{$row->port_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -118,8 +118,8 @@
                             <label for="">Discharge Port#2</label>
                             <select name="discharge_port_id_2" id="discharge_port_id_2" required class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
-                                @foreach ($cargo_type as $row)
-                                <option value="{{$row->cargo_type_id}}">{{$row->cargo_type_name}}</option>
+                                @foreach ($port as $row)
+                                <option value="{{$row->port_id}}">{{$row->port_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -132,7 +132,7 @@
                                     <i class="fa fa-calendar"></i>
                                 </div>
                                 <input type="text" class="form-control pull-right datepicker" name="laycan_date_from"
-                                    value="<?php //echo date('d-m-Y'); ?>">
+                                    value="{{date('d-m-Y')}}">
                             </div>
                         </div>
                         <!-- -->
@@ -144,7 +144,7 @@
                                     <i class="fa fa-calendar"></i>
                                 </div>
                                 <input type="text" class="form-control pull-right datepicker" name="laycan_date_to"
-                                    value="<?php //echo date('d-m-Y'); ?>">
+                                    value="{{date('d-m-Y')}}">
                             </div>
                         </div>
                         <!-- -->
@@ -158,8 +158,8 @@
                                 <label for="">Unit</label>
                                 <select name="unit_id" required class="form-control">
                                     <option value="-1" disabled selected>Choose</option>
-                                    @foreach ($cargo_type as $row)
-                                    <option value="{{$row->cargo_type_id}}">{{$row->cargo_type_name}}</option>
+                                    @foreach ($unit as $row)
+                                    <option value="{{$row->unit_id}}">{{$row->unit_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -185,28 +185,59 @@
                             <input type="text" required name="commision" class="form-control">
                         </div>
                         <!-- -->
-                        <div class="form-group col-sm-4 mt-4">
-                            <label for="">Combinable</label>
+                        <div class="form-group col-sm-4 mt-4 mb-4">
+                            <label for="" class="mb-3">Combinable</label><br>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" id="combinable1" name="combinable"
+                                    value="Yes" />
+                                <label class="form-check-label" for="combinable1"> Yes </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" id="combinable2" name="combinable"
+                                    value="No" />
+                                <label class="form-check-label" for="combinable2"> No </label>
+                            </div>
+                            <!-- <label for="">Combinable</label>
                             <select name="combinable" required class="form-control">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
-                            </select>
+                            </select> -->
                         </div>
                         <!-- -->
                         <div class="form-group col-sm-4 mt-4">
-                            <label for="">Over Age</label>
+                            <label for="" class="mb-3">Over Age</label><br>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" id="over_age1" name="over_age"
+                                    value="Yes" />
+                                <label class="form-check-label" for="over_age1"> Yes </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" id="over_age2" name="over_age"
+                                    value="No" />
+                                <label class="form-check-label" for="over_age2"> No </label>
+                            </div>
+                            <!-- <label for="">Over Age</label>
                             <select name="over_age" required class="form-control">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
-                            </select>
+                            </select> -->
                         </div>
                         <!-- -->
                         <div class="form-group col-sm-4 mt-4">
-                            <label for="">Hazmat</label>
+                            <label for="" class="mb-3">Hazmat</label><br>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" id="hazmat1" name="hazmat" value="Yes" />
+                                <label class="form-check-label " for="hazmat1"> Yes </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" id="hazmat2" name="hazmat" value="No" />
+                                <label class="form-check-label" for="hazmat2"> No </label>
+                            </div>
+                            <!-- <label for="">Hazmat</label>
                             <select name="hazmat" required class="form-control">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
-                            </select>
+                            </select> -->
                         </div>
                         <!-- -->
                         <div class="col-sm-4 mt-4">
@@ -219,8 +250,8 @@
                                 <label for="">Loading/Discharge Unit</label>
                                 <select name="loading_discharge_unit_id" required class="form-control">
                                     <option value="-1" disabled selected>Choose</option>
-                                    @foreach ($cargo_type as $row)
-                                    <option value="{{$row->cargo_type_id}}">{{$row->cargo_type_name}}</option>
+                                    @foreach ($unit as $row)
+                                    <option value="{{$row->unit_id}}">{{$row->unit_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -236,8 +267,43 @@
                             <input type="text" required name="gear_lifting_capacity" class="form-control">
                         </div>
                         <!-- -->
-                        <div class="form-group col-sm-4 mt-4">
-                            <label for="">Loading/Discharge Equipment Req</label>
+                        <div class="col-sm-4 mt-4">
+                        <label for="">Gear Lifting Capacity</label>
+                            <div class="form-row pl-4  border">
+                                <div class="form-group col-sm-6">
+                                    <div class="mt-2">
+                                        <input class="form-check-input" type="checkbox" name="loading_discharge_equipment_req[]"
+                                            value="Gears">Gears
+                                    </div>
+                                    <div class="mt-2">
+                                        <input class="form-check-input" type="checkbox" name="loading_discharge_equipment_req[]"
+                                            value="Pipes/Hoses">Pipes/Hoses
+                                    </div>
+                                    <div class="mt-2">
+                                        <input class="form-check-input" type="checkbox" name="loading_discharge_equipment_req[]"
+                                            value="Dunnage">Dunnage
+                                    </div>
+                                    <div class="mt-2">
+                                        <input class="form-check-input" type="checkbox" name="loading_discharge_equipment_req[]"
+                                            value="Other">Other
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <div class="mt-2">
+                                        <input class="form-check-input" type="checkbox" name="loading_discharge_equipment_req[]"
+                                            value="Conveyor Belt">Conveyor Belt
+                                    </div>
+                                    <div class="mt-2">
+                                        <input class="form-check-input" type="checkbox" name="loading_discharge_equipment_req[]"
+                                            value="Pallets">Pallets
+                                    </div>
+                                    <div class="mt-2">
+                                        <input class="form-check-input" type="checkbox" name="loading_discharge_equipment_req[]"
+                                            value="Pontoon Cover">Pontoon Cover
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <label for="">Loading/Discharge Equipment Req</label>
                             <select name="loading_discharge_equipment_req[]" multiple required class="form-control">
                                 <option value="Gears">Gears</option>
                                 <option value="Conveyor Belt">Conveyor Belt</option>
@@ -246,9 +312,9 @@
                                 <option value="Dunnage">Dunnage</option>
                                 <option value="Pontoon Cover">Pontoon Cover</option>
                                 <option value="Other">Other</option>
-                            </select>
+                            </select> -->
                         </div>
-                        <!-- -->
+                        <!--  -->
                         <div class="form-group col-sm-4 mt-4">
                             <label for="">Additional Info</label>
                             <input type="text" required name="additional_info" class="form-control">

@@ -10,4 +10,8 @@ class ss_setup_cargo_type extends Model
     use HasFactory;
     public $table='ss_setup_cargo_type';
     public $timestamps=false;
+    
+    public function scopeActive($query){
+        return $query->where('is_active',1);
+    }
 }

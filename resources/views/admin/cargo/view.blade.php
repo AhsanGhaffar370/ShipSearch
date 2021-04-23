@@ -121,7 +121,7 @@
 
                                             <td>
                                                 <div class="btn-group" style="display: -webkit-box;">
-                                                    <a href='/admin/post/update-rec/{{$row->cargo_id}}'
+                                                    <a href='/admin/cargo/update/{{$row->cargo_id}}'
                                                         class="btn btn-info btn-sm pt-1 pb-1">Edit</a>
 
                                                     <button type="button"
@@ -133,14 +133,14 @@
                                                     </button>
                                                     <ul class="dropdown-menu list-group" role="menu">
                                                         @if($row->is_active =="1")
-                                                        <li><a href='/admin/post/update-status/{{$row->cargo_id}}/0'
+                                                        <li><a href='/admin/cargo/update-status/{{$row->cargo_id}}/0'
                                                                 class="list-group-item">De-Activate</a></li>
                                                         @else
-                                                        <li><a href='/admin/post/update-status/{{$row->cargo_id}}/1'
+                                                        <li><a href='/admin/cargo/update-status/{{$row->cargo_id}}/1'
                                                                 class="list-group-item">Activate</a></li>
                                                         @endif
                                                     </ul>
-                                                    <!-- <a href='/admin/post/delete-rec/{{$row->cargo_id}}'
+                                                    <!-- <a href='/admin/cargo/delete-rec/{{$row->cargo_id}}'
                                                         class="btn btn-danger btn-sm ml-2 pt-1 pb-1 rounded">Delete</a> -->
                                                 </div>
                                             </td>

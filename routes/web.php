@@ -37,13 +37,13 @@ Route::group(['middleware'=>['admin_auth']],function(){
     Route::get('/admin/dashboard', [DashboardController::class, 'listing'] );
 
     // Cargo
-    Route::get('/admin/cargo/view', [CargoController::class, 'view_list'] );
+    Route::get('/admin/cargo/view', [CargoController::class, 'view'] );
 
     Route::get('/admin/cargo/add', [CargoController::class, 'view_add'] );
-    Route::post('/admin/cargo/add_cargo', [CargoController::class, 'add'] );
+    Route::post('/admin/cargo/add_req', [CargoController::class, 'add_req'] );
     
-    Route::get('/admin/cargo/update-rec/{id}',[CargoController::class, 'edit']);
-    Route::post('/admin/cargo/update12',[CargoController::class, 'update']);
+    Route::get('/admin/cargo/update/{id}',[CargoController::class, 'view_update']);
+    Route::post('/admin/cargo/update_req',[CargoController::class, 'update_req']);
 
     Route::get('/admin/cargo/delete-rec/{id}',[CargoController::class, 'delete']);
 
