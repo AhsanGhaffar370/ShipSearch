@@ -101,7 +101,7 @@ class CargoController extends Controller
         // $cargo->loading_discharge_equipment_req=$req->loading_discharge_equipment_req;
         foreach ($req->loading_discharge_equipment_req as $selectedOption)
             $cargo->loading_discharge_equipment_req .= $selectedOption.", ";
-        
+
         $cargo->loading_discharge_equipment_req=rtrim($cargo->loading_discharge_equipment_req, ", ");
 
         $cargo->additional_info=$req->additional_info;
@@ -115,11 +115,11 @@ class CargoController extends Controller
         // $cargo->title=$req->brocker_name;
         // $cargo->title=$req->broacker_contact;
         // $cargo->title=$req->broacker_email;
-        
+
 
         $cargo->save();
 
-        $req->session()->flash('msg','Cargo Inserted');
+        $req->session()->flash('msg','Cargo Added');
         $req->session()->flash('alert','success');
 
         return redirect('admin/cargo/view');
@@ -128,7 +128,8 @@ class CargoController extends Controller
 
 
     function view_update($id){
-        $res=ss_cargo::where('cargo_id',$id)->get();
+        $res=ss_cargo::find($id);
+        // $res=ss_cargo::where('cargo_id',$id)->first();
         // $res=DB::table('ss_cargo')->where('cargo_id',$id)->get();
         $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
         $ss_setup_region= ss_setup_region::active()->get();
@@ -136,14 +137,14 @@ class CargoController extends Controller
         $ss_setup_port= ss_setup_port::active()->get();
         $ss_setup_unit= ss_setup_unit::active()->get();
 
-        $eq_req=explode(",", $res[0]->loading_discharge_equipment_req);
+        // $eq_req=explode(",", $res[0]->loading_discharge_equipment_req);
 
         // echo"<pre>";
         // print_r($eq_req);
         // echo $res[0]->cargo_name;
 
-        return view('admin/cargo/update',['res'=>$res[0],
-                                        'eq_req'=>$eq_req,
+        return view('admin/cargo/update',['res'=>$res,
+                                        // 'eq_req'=>$eq_req,
                                         'cargo_type'=>$ss_setup_cargo_type,
                                         'region'=>$ss_setup_region,
                                         'country'=>$ss_setup_country,
@@ -155,28 +156,66 @@ class CargoController extends Controller
 
     function update_req(Request $req){
 
-        $req->validate([
-            'image'=>'mimes:jpg,jpeg,png,PNG'
-        ]);
+        // $cargo = DB::table('ss_cargo')
+        //       ->where('cargo_id', $req->cargo_id)
+        //       ->update(['cargo_name' => $req->cargo_name]); 
 
-        $post= ss_cargo::find($req->id);
+        // $cargo=ss_cargo::where('cargo_id', $req->cargo_id)->first();
+        $cargo=ss_cargo::find($req->cargo_id);
 
-        $post->title=$req->title;
-        // $post->title= $req->input('title');
+        $cargo->cargo_name=$req->cargo_name;
+        $cargo->cargo_type_id=$req->cargo_type_id;
+        $cargo->loading_region_id=$req->loading_region_id;
+        $cargo->loading_country_id=$req->loading_country_id;
+        $cargo->loading_port_id_1=$req->loading_port_id_1;
+        $cargo->loading_port_id_2=$req->loading_port_id_2;
+        $cargo->discharge_region_id=$req->discharge_region_id;
+        $cargo->discharge_country_id=$req->discharge_country_id;
+        $cargo->discharge_port_id_1=$req->discharge_port_id_1;
+        $cargo->discharge_port_id_2=$req->discharge_port_id_2;
+        $cargo->laycan_date_from=$req->laycan_date_from;
+        $cargo->laycan_date_to=$req->laycan_date_to;
+        $cargo->quantity=$req->quantity;
+        $cargo->unit_id=$req->unit_id;
+        $cargo->max_loa=$req->max_loa;
+        $cargo->max_draft=$req->max_draft;
+        $cargo->max_height=$req->max_height;
+        $cargo->commision=$req->commision;
+        $cargo->combinable=$req->combinable;
+        $cargo->over_age=$req->over_age;
+        $cargo->hazmat=$req->hazmat;
+        $cargo->loading_discharge_rates=$req->loading_discharge_rates;
+        $cargo->loading_discharge_unit_id=$req->loading_discharge_unit_id;
+        $cargo->loading_equipment_req=$req->loading_equipment_req;
+        $cargo->gear_lifting_capacity=$req->gear_lifting_capacity;
 
-        $post->save();
+        $cargo->loading_discharge_equipment_req="";
+        foreach ($req->loading_discharge_equipment_req as $selectedOption)
+            $cargo->loading_discharge_equipment_req .= $selectedOption.", ";
+        $cargo->loading_discharge_equipment_req=rtrim($cargo->loading_discharge_equipment_req, ", ");
 
-        $req->session()->flash('msg','cargo Updated');
+        $cargo->additional_info=$req->additional_info;
+        $cargo->is_active=$req->is_active;
+        $cargo->modified_at=date('Y-m-d H:i:s');
+        // $cargo->title=$req->brocker_name;
+        // $cargo->title=$req->broacker_contact;
+        // $cargo->title=$req->broacker_email;
+
+        $cargo->save();
+
+
+        $req->session()->flash('msg','cargo Details Updated');
         $req->session()->flash('alert','warning');
 
         return redirect('admin/cargo/view');
     }
-    
+
+
     function update_status($id, $status){
-        
-        $post= ss_cargo::find($id);
-        $post->status=$status;
-        $post->save();
+
+        $cargo= ss_cargo::find($id);
+        $cargo->is_active=$status;
+        $cargo->save();
 
         session()->flash('msg','cargo Status Updated');
         session()->flash('alert','warning');
@@ -185,14 +224,13 @@ class CargoController extends Controller
     }
 
     function delete($id){
-        $post=ss_cargo::find($id);
+        $cargo=ss_cargo::find($id);
 
-        $post->delete();
+        $cargo->delete();
 
         session()->flash('msg','cargo Deleted');
         session()->flash('alert','danger');
         return redirect('admin/cargo/view');
-
     }
 
 }

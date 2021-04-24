@@ -11,5 +11,6 @@ class ss_cargo extends Model
 
     public $table='ss_cargo';
     public $timestamps=false;
+    protected $primaryKey = 'cargo_id';
     
 }

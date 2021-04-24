@@ -16,7 +16,7 @@
             <div class="x_panel">
                 <div class="x_content">
                     <br />
-
+                    
                     <form method="post" id="cargo_form" action="/admin/cargo/update_req" class="form-horizontal form-label-left"
                         enctype="multipart/form-data">
                         <!-- <form method="post" action="{{url('/admin/post/add_post')}}" class="form-horizontal form-label-left"> -->
@@ -305,7 +305,7 @@
                         </div>
                         <!-- -->
                         <div class="col-sm-4 mt-4">
-                            <label for="">Loading/Discharge Equipment Req</label>
+                            <label for="">Gear Lifting Capacity</label>
                             <div class="form-row pl-4  border">
                                 <div class="form-group col-sm-6">
                                     <div class="mt-2">

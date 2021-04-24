@@ -7,10 +7,12 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>@yield('page_title')</title>
 
-<!-- bootstrap -->
+      <!-- bootstrap -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      
       <!-- font awesome -->
-    <script src="https://kit.fontawesome.com/7516c4b4cc.js" crossorigin="anonymous"></script>
+      <script src="https://kit.fontawesome.com/7516c4b4cc.js" crossorigin="anonymous"></script>
 
       <!-- custom css -->
       <link href="{{ asset('admin_asset/css/custom.min.css') }}" rel="stylesheet">
@@ -18,6 +20,9 @@
 
       <!-- datatables -->
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+      <!-- datepicker -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
 
       <style>
          .dropdown-toggle:after {
@@ -93,21 +98,29 @@
             <!-- /footer content -->
          </div>
       </div>
+
+      <!-- jquery -->
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+      <!-- custom js -->
       <script src="{{ asset('admin_asset/js/icheck.min.js') }}"></script>
       <script src="{{ asset('admin_asset/js/custom.js') }}"></script>
+      <script src="{{ asset('admin_asset/js/my_validation.js') }}"></script>
+
+      <!-- datepicker -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" ></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js" ></script>
+
+      <!-- bootstrap bundle -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
 
       <!-- datatables -->
-
       <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
 
 <script>
-   // $(document).ready( function () {
-   //    $('#cargo_table').DataTable();
-   // } );
 
 $(document).ready(function() {
     $('#cargo_table').DataTable({
@@ -167,27 +180,6 @@ $(document).ready(function() {
       });
    });
 
-
-   // function deRequireCb(elClass) {
-   //          el=document.getElementsByClassName(elClass);
-
-   //          var atLeastOneChecked=false;//at least one cb is checked
-   //          for (i=0; i<el.length; i++) {
-   //              if (el[i].checked === true) {
-   //                  atLeastOneChecked=true;
-   //              }
-   //          }
-
-   //          if (atLeastOneChecked === true) {
-   //              for (i=0; i<el.length; i++) {
-   //                  el[i].required = false;
-   //              }
-   //          } else {
-   //              for (i=0; i<el.length; i++) {
-   //                  el[i].required = true;
-   //              }
-   //          }
-   //      }
 </script>
 
    </body>

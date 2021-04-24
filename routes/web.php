@@ -45,7 +45,7 @@ Route::group(['middleware'=>['admin_auth']],function(){
     Route::get('/admin/cargo/update/{id}',[CargoController::class, 'view_update']);
     Route::post('/admin/cargo/update_req',[CargoController::class, 'update_req']);
 
-    Route::get('/admin/cargo/delete-rec/{id}',[CargoController::class, 'delete']);
+    Route::get('/admin/cargo/delete/{id}',[CargoController::class, 'delete']);
 
     Route::get('/admin/cargo/update-status/{id}/{status}',[CargoController::class, 'update_status']);
 });

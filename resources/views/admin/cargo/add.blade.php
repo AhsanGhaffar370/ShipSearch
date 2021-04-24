@@ -25,18 +25,18 @@
                 <p class="p-3 bg-light cl_bd size16 mb-0">Fill the required details</p>
                 <div class="x_content p-3">
                     <br />
-                    <form method="post" action="/admin/cargo/add_req" class="form-horizontal form-label-left"
+                    <form id="cargo_form" method="post" action="/admin/cargo/add_req" class="form-horizontal form-label-left "
                         enctype="multipart/form-data">
                         <!-- <form method="post" action="{{url('/admin/post/add_post')}}" class="form-horizontal form-label-left"> -->
                         @csrf
                         <div class="form-group col-sm-4">
                             <label for="">Cargo Name</label>
-                            <input type="text" required name="cargo_name" class="form-control">
+                            <input type="text" required name="cargo_name" class="form-control" >
                         </div>
                         <!-- -->
                         <div class="form-group col-sm-4">
                             <label for="">Cargo Type</label>
-                            <select name="cargo_type_id" required class="form-control">
+                            <select name="cargo_type_id" id="cargo_type_id" required class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
                                 @foreach ($cargo_type as $row)
                                 <option value="{{$row->cargo_type_id}}">{{$row->cargo_type_name}}</option>
@@ -126,13 +126,12 @@
                         <!-- -->
                         <div class="form-group col-sm-4 mt-4">
                             <label for="">Laycan Date From</label>
-                            <div class="input-group date" data-provide="datepicker" data-date-start-date="0d"
-                                data-date-format="dd-mm-yyyy">
+                            <div class="input-group date" data-provide="datepicker" data-date-start-date="0d" data-date-format="dd-mm-yyyy">
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right datepicker" name="laycan_date_from"
-                                    value="{{date('d-m-Y')}}">
+                                <input type="text" id="laycan_date_from" required class="form-control pull-right datepicker" name="laycan_date_from"
+                                    value="{{ date('d-m-Y') }}">
                             </div>
                         </div>
                         <!-- -->
@@ -143,7 +142,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right datepicker" name="laycan_date_to"
+                                <input type="text" id="laycan_date_to" required class="form-control pull-right datepicker" name="laycan_date_to"
                                     value="{{date('d-m-Y')}}">
                             </div>
                         </div>
@@ -156,7 +155,7 @@
                             <!-- -->
                             <div class="form-group col-sm-6">
                                 <label for="">Unit</label>
-                                <select name="unit_id" required class="form-control">
+                                <select name="unit_id"  id="unit_id" required class="form-control">
                                     <option value="-1" disabled selected>Choose</option>
                                     @foreach ($unit as $row)
                                     <option value="{{$row->unit_id}}">{{$row->unit_name}}</option>
@@ -188,12 +187,12 @@
                         <div class="form-group col-sm-4 mt-4 mb-4">
                             <label for="" class="mb-3">Combinable</label><br>
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" id="combinable1" name="combinable"
+                                <input class="form-check-input" type="radio" required id="combinable1" name="combinable"
                                     value="Yes" />
                                 <label class="form-check-label" for="combinable1"> Yes </label>
                             </div>
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" id="combinable2" name="combinable"
+                                <input class="form-check-input" type="radio" required id="combinable2" name="combinable"
                                     value="No" />
                                 <label class="form-check-label" for="combinable2"> No </label>
                             </div>
@@ -207,12 +206,12 @@
                         <div class="form-group col-sm-4 mt-4">
                             <label for="" class="mb-3">Over Age</label><br>
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" id="over_age1" name="over_age"
+                                <input class="form-check-input" type="radio" required id="over_age1" name="over_age"
                                     value="Yes" />
                                 <label class="form-check-label" for="over_age1"> Yes </label>
                             </div>
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" id="over_age2" name="over_age"
+                                <input class="form-check-input" type="radio" required id="over_age2" name="over_age"
                                     value="No" />
                                 <label class="form-check-label" for="over_age2"> No </label>
                             </div>
@@ -226,11 +225,11 @@
                         <div class="form-group col-sm-4 mt-4">
                             <label for="" class="mb-3">Hazmat</label><br>
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" id="hazmat1" name="hazmat" value="Yes" />
+                                <input class="form-check-input" type="radio" required id="hazmat1" name="hazmat" value="Yes" />
                                 <label class="form-check-label " for="hazmat1"> Yes </label>
                             </div>
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" id="hazmat2" name="hazmat" value="No" />
+                                <input class="form-check-input" type="radio" required id="hazmat2" name="hazmat" value="No" />
                                 <label class="form-check-label" for="hazmat2"> No </label>
                             </div>
                             <!-- <label for="">Hazmat</label>
@@ -248,7 +247,7 @@
                             <!-- -->
                             <div class="form-group col-sm-6">
                                 <label for="">Loading/Discharge Unit</label>
-                                <select name="loading_discharge_unit_id" required class="form-control">
+                                <select name="loading_discharge_unit_id" id="loading_discharge_unit_id"  required class="form-control">
                                     <option value="-1" disabled selected>Choose</option>
                                     @foreach ($unit as $row)
                                     <option value="{{$row->unit_id}}">{{$row->unit_name}}</option>
@@ -268,7 +267,7 @@
                         </div>
                         <!-- -->
                         <div class="col-sm-4 mt-4">
-                        <label for="">Gear Lifting Capacity</label>
+                        <label for="">Loading/Discharge Equipment Req</label>
                             <div class="form-row pl-4  border">
                                 <div class="form-group col-sm-6">
                                     <div class="mt-2">
