@@ -36,7 +36,7 @@
                         <!-- -->
                         <div class="form-group col-sm-4">
                             <label for="">Cargo Type</label>
-                            <select name="cargo_type_id" id="cargo_type_id" required class="form-control">
+                            <select name="cargo_type_id" id="cargo_type_id" class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
                                 @foreach ($cargo_type as $row)
                                 <option value="{{$row->cargo_type_id}}">{{$row->cargo_type_name}}</option>
@@ -46,7 +46,7 @@
                         <!-- -->
                         <div class="form-group col-sm-4">
                             <label for="">Loading Region</label>
-                            <select name="loading_region_id" id="loading_region_id" required class="form-control">
+                            <select name="loading_region_id" id="loading_region_id" class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
                                 @foreach ($region as $row)
                                 <option value="{{$row->region_id}}">{{$row->region_name}}</option>
@@ -56,7 +56,7 @@
                         <!-- -->
                         <div class="form-group col-sm-4 mt-4">
                             <label for="">Loading Country</label>
-                            <select name="loading_country_id" id="loading_country_id" required class="form-control">
+                            <select name="loading_country_id" id="loading_country_id" class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
                                 @foreach ($country as $row)
                                 <option value="{{$row->country_id}}">{{$row->country_name}}</option>
@@ -66,7 +66,7 @@
                         <!-- -->
                         <div class="form-group col-sm-4 mt-4">
                             <label for="">Loading Port#1</label>
-                            <select name="loading_port_id_1" id="loading_port_id_1" required class="form-control">
+                            <select name="loading_port_id_1" id="loading_port_id_1" class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
                                 @foreach ($port as $row)
                                 <option value="{{$row->port_id}}">{{$row->port_name}}</option>
@@ -76,7 +76,7 @@
                         <!-- -->
                         <div class="form-group col-sm-4 mt-4">
                             <label for="">Loading Port#2</label>
-                            <select name="loading_port_id_2" id="loading_port_id_2" required class="form-control">
+                            <select name="loading_port_id_2" id="loading_port_id_2" class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
                                 @foreach ($port as $row)
                                 <option value="{{$row->port_id}}">{{$row->port_name}}</option>
@@ -86,7 +86,7 @@
                         <!-- -->
                         <div class="form-group col-sm-4 mt-4">
                             <label for="">Discharge Region</label>
-                            <select name="discharge_region_id" id="discharge_region_id" required class="form-control">
+                            <select name="discharge_region_id" id="discharge_region_id" class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
                                 @foreach ($region as $row)
                                 <option value="{{$row->region_id}}">{{$row->region_name}}</option>
@@ -96,7 +96,7 @@
                         <!-- -->
                         <div class="form-group col-sm-4 mt-4">
                             <label for="">Discharge Country</label>
-                            <select name="discharge_country_id" id="discharge_country_id" required class="form-control">
+                            <select name="discharge_country_id" id="discharge_country_id" class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
                                 @foreach ($country as $row)
                                 <option value="{{$row->country_id}}">{{$row->country_name}}</option>
@@ -106,7 +106,7 @@
                         <!-- -->
                         <div class="form-group col-sm-4 mt-4">
                             <label for="">Discharge Port#1</label>
-                            <select name="discharge_port_id_1" id="discharge_port_id_1" required class="form-control">
+                            <select name="discharge_port_id_1" id="discharge_port_id_1" class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
                                 @foreach ($port as $row)
                                 <option value="{{$row->port_id}}">{{$row->port_name}}</option>
@@ -116,7 +116,7 @@
                         <!-- -->
                         <div class="form-group col-sm-4 mt-4">
                             <label for="">Discharge Port#2</label>
-                            <select name="discharge_port_id_2" id="discharge_port_id_2" required class="form-control">
+                            <select name="discharge_port_id_2" id="discharge_port_id_2" class="form-control">
                                 <option value="-1" disabled selected>Choose</option>
                                 @foreach ($port as $row)
                                 <option value="{{$row->port_id}}">{{$row->port_name}}</option>
@@ -155,7 +155,7 @@
                             <!-- -->
                             <div class="form-group col-sm-6">
                                 <label for="">Unit</label>
-                                <select name="unit_id"  id="unit_id" required class="form-control">
+                                <select name="unit_id"  id="unit_id" class="form-control">
                                     <option value="-1" disabled selected>Choose</option>
                                     @foreach ($unit as $row)
                                     <option value="{{$row->unit_id}}">{{$row->unit_name}}</option>
@@ -247,7 +247,7 @@
                             <!-- -->
                             <div class="form-group col-sm-6">
                                 <label for="">Loading/Discharge Unit</label>
-                                <select name="loading_discharge_unit_id" id="loading_discharge_unit_id"  required class="form-control">
+                                <select name="loading_discharge_unit_id" id="loading_discharge_unit_id" class="form-control">
                                     <option value="-1" disabled selected>Choose</option>
                                     @foreach ($unit as $row)
                                     <option value="{{$row->unit_id}}">{{$row->unit_name}}</option>
@@ -268,7 +268,7 @@
                         <!-- -->
                         <div class="col-sm-4 mt-4">
                         <label for="">Loading/Discharge Equipment Req</label>
-                            <div class="form-row pl-4  border">
+                            <div id="check_bor" class="form-row pl-4  border">
                                 <div class="form-group col-sm-6">
                                     <div class="mt-2">
                                         <input class="form-check-input" type="checkbox" name="loading_discharge_equipment_req[]"

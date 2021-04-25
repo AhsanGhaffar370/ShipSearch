@@ -16,40 +16,60 @@ class CargoController extends Controller
 {
     function view(){
 
-        // $data=ss_cargo::where('cargo_id','1')->orderBy('cargo_id','desc')->get();
-        // $data= DB::table('ss_cargo')->where('cargo_id',1)->get();
+        $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lunit','Dunit','Lport1','Lport2','Dport1','Dport2'])->get();
 
-        $data = DB::table('ss_cargo')
-                ->join('ss_setup_cargo_type', 'ss_setup_cargo_type.cargo_type_id', '=', 'ss_cargo.cargo_type_id')
-                ->leftJoin('ss_setup_region as R1', 'R1.region_id', '=', 'ss_cargo.loading_region_id')
-                ->leftJoin('ss_setup_region as DR1', 'DR1.region_id', '=', 'ss_cargo.discharge_region_id')
-                ->leftJoin('ss_setup_country as C1', 'C1.country_id', '=', 'ss_cargo.loading_country_id')
-                ->leftJoin('ss_setup_country as DC1', 'DC1.country_id', '=', 'ss_cargo.discharge_country_id')
-                ->leftJoin('ss_setup_port as P1', 'P1.port_id', '=', 'ss_cargo.loading_port_id_1')
-                ->leftJoin('ss_setup_port as DP1', 'DP1.port_id', '=', 'ss_cargo.discharge_port_id_1')
-                ->leftJoin('ss_setup_port as P2', 'P2.port_id', '=', 'ss_cargo.loading_port_id_2')
-                ->leftJoin('ss_setup_port as DP2', 'DP2.port_id', '=', 'ss_cargo.discharge_port_id_2')
-                ->join('ss_setup_unit as U1', 'U1.unit_id', '=', 'ss_cargo.unit_id')
-                ->join('ss_setup_unit as DU1', 'DU1.unit_id', '=', 'ss_cargo.loading_discharge_unit_id')
-                ->select('ss_cargo.*', 
-                        'ss_setup_cargo_type.cargo_type_name',
-                        'R1.region_name as R1name',
-                        'DR1.region_name as DR1name',
-                        'C1.country_name as C1name',
-                        'DC1.country_name as DC1name',
-                        'P1.port_name as P1name',
-                        'DP1.port_name as DP1name',
-                        'P2.port_name as P2name',
-                        'DP2.port_name as DP2name',
-                        'U1.unit_name as U1unit',
-                        'DU1.unit_name as DU1unit'
-                        )
-                ->orderBy('cargo_id','desc')
-                ->get();
+        // $da = ss_cargo::with(['port1','port2'])->get();
+        // foreach ($da as $da){
+        //     echo "<pre>";
+        //     var_dump($da->cargotype->cargo_type_name);
+        // }
+        // dd($data[0]->Lregion->region_name);
+
+
+
+
+
+        // $data=ss_setup_cargo_type::with('cargo')->get();
+        // // dd($data);
+        // foreach ($data as $d){
+        //     // echo "v<pre>";
+        //     var_dump($d->cargo);
+        // }
+        // dd($data[0]->cargo[0]->cargo_name);
+
+        // $data = DB::table('ss_cargo') 
+        //         ->join('ss_setup_cargo_type', 'ss_setup_cargo_type.cargo_type_id', '=', 'ss_cargo.cargo_type_id') 
+        //         ->leftJoin('ss_setup_region as R1', 'R1.region_id', '=', 'ss_cargo.loading_region_id') 
+        //         ->leftJoin('ss_setup_region as DR1', 'DR1.region_id', '=', 'ss_cargo.discharge_region_id') 
+        //         ->leftJoin('ss_setup_country as C1', 'C1.country_id', '=', 'ss_cargo.loading_country_id') 
+        //         ->leftJoin('ss_setup_country as DC1', 'DC1.country_id', '=', 'ss_cargo.discharge_country_id') 
+        //         ->leftJoin('ss_setup_port as P1', 'P1.port_id', '=', 'ss_cargo.loading_port_id_1') 
+        //         ->leftJoin('ss_setup_port as DP1', 'DP1.port_id', '=', 'ss_cargo.discharge_port_id_1') 
+        //         ->leftJoin('ss_setup_port as P2', 'P2.port_id', '=', 'ss_cargo.loading_port_id_2') 
+        //         ->leftJoin('ss_setup_port as DP2', 'DP2.port_id', '=', 'ss_cargo.discharge_port_id_2') 
+        //         ->join('ss_setup_unit as U1', 'U1.unit_id', '=', 'ss_cargo.unit_id') 
+        //         ->join('ss_setup_unit as DU1', 'DU1.unit_id', '=', 'ss_cargo.loading_discharge_unit_id') 
+        //         ->select('ss_cargo.*', 
+        //                 'ss_setup_cargo_type.cargo_type_name', 
+        //                 'R1.region_name as R1name', 
+        //                 'DR1.region_name as DR1name', 
+        //                 'C1.country_name as C1name', 
+        //                 'DC1.country_name as DC1name', 
+        //                 'P1.port_name as P1name', 
+        //                 'DP1.port_name as DP1name', 
+        //                 'P2.port_name as P2name', 
+        //                 'DP2.port_name as DP2name', 
+        //                 'U1.unit_name as U1unit', 
+        //                 'DU1.unit_name as DU1unit' 
+        //                 )   
+        //         ->orderBy('cargo_id','desc')    
+        //         ->get();    
 
         // echo "<pre>";
         // print_r($data);
+
         $count=1;
+  
         return view('admin/cargo/view',['data'=>$data,'count'=>1]);
     }
 

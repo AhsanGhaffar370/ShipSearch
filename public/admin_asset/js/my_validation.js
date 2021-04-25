@@ -6,17 +6,18 @@ $(document).ready(function() {
         var ids = ["cargo_type_id", "loading_region_id", "loading_country_id", "loading_port_id_1", "loading_port_id_2", "discharge_region_id", "discharge_country_id", "discharge_port_id_1", "discharge_port_id_2", "unit_id", "loading_discharge_unit_id"];
 
         for (var i = 0; i < ids.length; i++) {
-            check_cargo_type(ids[i]);
+            check_dropdowns(ids[i]);
         }
+        check_eqp_req();
 
         for (var i = 0; i < ids.length; i++) {
-            if (check_cargo_type(ids[i]) == false) {
+            if (check_dropdowns(ids[i]) == false) {
                 flag = false;
                 break;
             }
         }
 
-        if (flag == true) {
+        if (flag === true && check_eqp_req() === true) {
             return;
         } else {
             e.preventDefault();
@@ -30,7 +31,7 @@ $(document).ready(function() {
 });
 
 
-function check_cargo_type(id) {
+function check_dropdowns(id) {
     var cargo_type = $("#" + id);
     var cargo_type_val = cargo_type.val();
 
@@ -44,54 +45,17 @@ function check_cargo_type(id) {
     }
 } //end of function
 
-function check_eqp_req_old() {
-    var flag = false;
-    $("input[name='loading_discharge_equipment_req[]']").each(function(index) {
-        if ($(this).is(':checked')) {
-            alert("checked element value : " + +$(this).val());
-            flag = true;
-            break;
-        }
-    });
-    if (flag == true) {
-        alert('true');
-        return true;
-    } else {
-        alert('false');
-        return false;
-    }
-}
 
 function check_eqp_req() {
-    // var flag = true;
-
-    // var length = $("input[name='loading_discharge_equipment_req[]']:checked");
-    // var length1 = $("input[name='loading_discharge_equipment_req[]']:checked").map(function() { return $(this); }).get();
     var eqp_req = $("input[name='loading_discharge_equipment_req[]']:checked").map(function() { return $(this).val(); }).get();
 
-    // for (var i = 0; i < eqp_req.length; i++) {
-    //     ser_price = eqp_req[i].split("£");
-    //     total_price += parseFloat(ser_price[1]);
-    // }
-
-    // for (var i = 0; i < length_arr.length; i++) {
-    //     if (length_arr[i].length == 0) {
-    //         // alert("weight is empty", i);
-    //         length1[i].css({ "border": "2px solid red" });
-    //         // length1[i].focus();
-    //         flag = false;
-    //     } else {
-    //         length1[i].css({ "border": "none" });
-    //     }
-    // }
     if (eqp_req.length != 0) {
-        alert('success');
+        $("#check_bor").removeClass("border-danger");
         return true;
     } else {
-        alert('fail');
+        $("#check_bor").addClass("border-danger");
         return false;
     }
-
 }
 
 

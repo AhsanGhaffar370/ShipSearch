@@ -79,19 +79,19 @@
                                             <td>{{$count++}}</td>
                                             <td>{{$row->cargo_id}}</td>
                                             <td>{{$row->cargo_name}}</td>
-                                            <td>{{$row->cargotype->cargo_type_name}}</td>
-                                            <td>{{$row->Lregion->region_name}}</td>
-                                            <td>{{$row->Lcountry->country_name}}</td>
-                                            <td>{{$row->Lport1->port_name}}</td>
-                                            <td>{{optional($row->Lport2)->port_name}}</td>
-                                            <td>{{$row->Dregion->region_name}}</td>
-                                            <td>{{optional($row->Dcountry)->country_name}}</td>
-                                            <td>{{optional($row->Dport1)->port_name}}</td>
-                                            <td>{{optional($row->Dport2)->port_name}}</td>
+                                            <td>{{$row->cargo_type_name}}</td>
+                                            <td>{{$row->R1name}}</td>
+                                            <td>{{$row->C1name}}</td>
+                                            <td>{{$row->P1name}}</td>
+                                            <td>{{$row->P2name}}</td>
+                                            <td>{{$row->DR1name}}</td>
+                                            <td>{{$row->DC1name}}</td>
+                                            <td>{{$row->DP1name}}</td>
+                                            <td>{{$row->DP2name}}</td>
                                             <td>{{$row->laycan_date_from}}</td>
                                             <td>{{$row->laycan_date_to}}</td>
                                             <td>{{$row->quantity}}</td>
-                                            <td>{{$row->Lunit->unit_name}}</td>
+                                            <td>{{$row->U1unit}}</td>
                                             <td>{{$row->max_loa}}</td>
                                             <td>{{$row->max_draft}}</td>
                                             <td>{{$row->max_height}}</td>
@@ -100,7 +100,7 @@
                                             <td>{{$row->over_age}}</td>
                                             <td>{{$row->hazmat}}</td>
                                             <td>{{$row->loading_discharge_rates}}</td>
-                                            <td>{{optional($row->Dunit)->unit_name}}</td>
+                                            <td>{{$row->DU1unit}}</td>
                                             <td>{{$row->loading_equipment_req}}</td>
                                             <td>{{$row->gear_lifting_capacity}}</td>
                                             <td>{{$row->loading_discharge_equipment_req}}</td>

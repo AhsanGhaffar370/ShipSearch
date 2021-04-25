@@ -46,13 +46,13 @@
                   <br />
                   <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                      <div class="menu_section mb-3">
-                        <h3 class="pt-3 pb-3 bg-secondary">Dashboard</h3>
+                        <h3 class="pt-2 pb-2 text-light bg_bl">Dashboard</h3>
                         <ul class="nav side-menu">
                            <li><a href="/admin/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
                         </ul>
                      </div>
                      <div class="menu_section">
-                        <h3 class="pt-3 pb-3 bg-secondary">Modules</h3>
+                        <h3 class="pt-2 pb-2 text-light bg_bl">Modules</h3>
                         <ul class="nav side-menu">
                            <li><a href="/admin/cargo/view"><i class="fa fa-home"></i> Cargo </a></li>
                         </ul>
@@ -102,18 +102,19 @@
       <!-- jquery -->
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-      <!-- custom js -->
-      <script src="{{ asset('admin_asset/js/icheck.min.js') }}"></script>
-      <script src="{{ asset('admin_asset/js/custom.js') }}"></script>
-      <script src="{{ asset('admin_asset/js/my_validation.js') }}"></script>
-
-      <!-- datepicker -->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" ></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js" ></script>
-
       <!-- bootstrap bundle -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 
+      <!-- custom js -->
+      
+      <script src="{{ asset('admin_asset/js/my_validation.js') }}"></script>
+      <script src="{{ asset('admin_asset/js/icheck.min.js') }}"></script>
+      <script src="{{ asset('admin_asset/js/custom.js') }}"></script>
+
+      
+      <!-- datepicker -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" ></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js" ></script>
 
 
       <!-- datatables -->
