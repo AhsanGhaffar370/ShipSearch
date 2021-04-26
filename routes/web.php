@@ -2,24 +2,37 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Admin Controllers
 use App\Http\Controllers\Admin_auth;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CargoController;
 
+// Front Controllers
+use App\Http\Controllers\front\FrontCargoController;
+use App\Http\Controllers\front\HomeController;
+
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Front Section
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+Route::get('/', [HomeController::class, 'view'] );
+
+Route::get('/cargo/view', [FrontCargoController::class, 'view'] );
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Section
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/admin/login', function () {
     if((session()->has('user_id'))){

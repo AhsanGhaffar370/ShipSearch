@@ -79,19 +79,19 @@
                                             <td>{{$count++}}</td>
                                             <td>{{$row->cargo_id}}</td>
                                             <td>{{$row->cargo_name}}</td>
-                                            <td>{{$row->cargotype->cargo_type_name}}</td>
-                                            <td>{{$row->Lregion->region_name}}</td>
-                                            <td>{{$row->Lcountry->country_name}}</td>
-                                            <td>{{$row->Lport1->port_name}}</td>
+                                            <td>{{optional($row->cargotype)->cargo_type_name}}</td>
+                                            <td>{{optional($row->Lregion)->region_name}}</td>
+                                            <td>{{optional($row->Lcountry)->country_name}}</td>
+                                            <td>{{optional($row->Lport1)->port_name}}</td>
                                             <td>{{optional($row->Lport2)->port_name}}</td>
-                                            <td>{{$row->Dregion->region_name}}</td>
+                                            <td>{{optional($row->Dregion)->region_name}}</td>
                                             <td>{{optional($row->Dcountry)->country_name}}</td>
                                             <td>{{optional($row->Dport1)->port_name}}</td>
                                             <td>{{optional($row->Dport2)->port_name}}</td>
                                             <td>{{$row->laycan_date_from}}</td>
                                             <td>{{$row->laycan_date_to}}</td>
                                             <td>{{$row->quantity}}</td>
-                                            <td>{{$row->Lunit->unit_name}}</td>
+                                            <td>{{optional($row->Lunit)->unit_name}}</td>
                                             <td>{{$row->max_loa}}</td>
                                             <td>{{$row->max_draft}}</td>
                                             <td>{{$row->max_height}}</td>

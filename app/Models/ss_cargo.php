@@ -34,9 +34,6 @@ class ss_cargo extends Model
         return $this->belongsTo(ss_setup_region::class,'discharge_region_id');
     }
 
-
-    
-
     public function Lunit(){
         return $this->belongsTo(ss_setup_unit::class,'unit_id');
     }

@@ -18,23 +18,11 @@ class CargoController extends Controller
 
         $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lunit','Dunit','Lport1','Lport2','Dport1','Dport2'])->get();
 
-        // $da = ss_cargo::with(['port1','port2'])->get();
-        // foreach ($da as $da){
-        //     echo "<pre>";
-        //     var_dump($da->cargotype->cargo_type_name);
-        // }
         // dd($data[0]->Lregion->region_name);
 
-
-
-
-
         // $data=ss_setup_cargo_type::with('cargo')->get();
-        // // dd($data);
-        // foreach ($data as $d){
-        //     // echo "v<pre>";
+        // foreach ($data as $d)
         //     var_dump($d->cargo);
-        // }
         // dd($data[0]->cargo[0]->cargo_name);
 
         // $data = DB::table('ss_cargo') 
@@ -50,26 +38,18 @@ class CargoController extends Controller
         //         ->join('ss_setup_unit as U1', 'U1.unit_id', '=', 'ss_cargo.unit_id') 
         //         ->join('ss_setup_unit as DU1', 'DU1.unit_id', '=', 'ss_cargo.loading_discharge_unit_id') 
         //         ->select('ss_cargo.*', 
-        //                 'ss_setup_cargo_type.cargo_type_name', 
-        //                 'R1.region_name as R1name', 
-        //                 'DR1.region_name as DR1name', 
-        //                 'C1.country_name as C1name', 
-        //                 'DC1.country_name as DC1name', 
-        //                 'P1.port_name as P1name', 
-        //                 'DP1.port_name as DP1name', 
-        //                 'P2.port_name as P2name', 
-        //                 'DP2.port_name as DP2name', 
-        //                 'U1.unit_name as U1unit', 
+        //                 'ss_setup_cargo_type.cargo_type_name', 'R1.region_name as R1name', 
+        //                 'DR1.region_name as DR1name', 'C1.country_name as C1name', 
+        //                 'DC1.country_name as DC1name', 'P1.port_name as P1name', 
+        //                 'DP1.port_name as DP1name', 'P2.port_name as P2name', 
+        //                 'DP2.port_name as DP2name', 'U1.unit_name as U1unit', 
         //                 'DU1.unit_name as DU1unit' 
         //                 )   
         //         ->orderBy('cargo_id','desc')    
         //         ->get();    
 
-        // echo "<pre>";
-        // print_r($data);
-
         $count=1;
-  
+
         return view('admin/cargo/view',['data'=>$data,'count'=>1]);
     }
 
@@ -148,9 +128,10 @@ class CargoController extends Controller
 
 
     function view_update($id){
-        $res=ss_cargo::find($id);
         // $res=ss_cargo::where('cargo_id',$id)->first();
         // $res=DB::table('ss_cargo')->where('cargo_id',$id)->get();
+
+        $res=ss_cargo::find($id);
         $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
         $ss_setup_region= ss_setup_region::active()->get();
         $ss_setup_country= ss_setup_country::active()->get();
@@ -158,9 +139,6 @@ class CargoController extends Controller
         $ss_setup_unit= ss_setup_unit::active()->get();
 
         // $eq_req=explode(",", $res[0]->loading_discharge_equipment_req);
-
-        // echo"<pre>";
-        // print_r($eq_req);
         // echo $res[0]->cargo_name;
 
         return view('admin/cargo/update',['res'=>$res,
