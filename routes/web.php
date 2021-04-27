@@ -26,8 +26,16 @@ Route::get('/', [HomeController::class, 'view'] );
 
 Route::get('/cargo/view', [FrontCargoController::class, 'view'] );
 
+Route::get('/cargo/add', [FrontCargoController::class, 'view_add'] );
+Route::post('/cargo/add_req', [FrontCargoController::class, 'add_req'] );
 
-
+Route::get('/login', function () {
+    if((session()->has('front_uid'))){
+        return redirect('/');
+    }else{
+        return view('front/login');
+    }
+});
 /*
 |--------------------------------------------------------------------------
 | Admin Section

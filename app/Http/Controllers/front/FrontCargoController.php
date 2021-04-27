@@ -90,7 +90,7 @@ class FrontCargoController extends Controller
         $req->session()->flash('msg','Cargo Added');
         $req->session()->flash('alert','success');
 
-        return redirect('front/cargo/view');
+        return redirect('/cargo/view');
     }
 
 }

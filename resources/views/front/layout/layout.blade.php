@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,9 +71,11 @@
     <!-- Navigation -->
     <header>
         <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav"> -->
-        <a class="navbar-brand d-block text-center pt-2 pb-2" href="#">
-            <img src="http://businesscardsprinting.co.uk/includes/frontend_source/ss_v2/images/logo.png" alt="" />
-        </a>
+        <div class="d-block text-center">
+            <a class="navbar-brand pt-2 pb-2" href="/">
+                <img src="http://businesscardsprinting.co.uk/includes/frontend_source/ss_v2/images/logo.png" alt="" />
+            </a>
+        </div>
         <nav class="navbar navbar-expand-lg cl_bd bg-light pt-0 pb-0" id="mainNav">
 
             <div class="container-fluid">
@@ -88,7 +89,7 @@
                 <div class="collapse navbar-collapse pl-lg-5 m-auto" id="navbarResponsive">
                     <ul class="navbar-nav m-auto pl-lg-5 text-center">
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/">Cargos</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/cargo/view">Cargos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/">Vessel Charter</a>
@@ -112,7 +113,7 @@
                             <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/">Cotact</a>
                         </li>
                     </ul>
-                    <a class="btn btn-info rounded-0" href="/">Login/Register</a>
+                    <a class="btn btn-info rounded-0" href="/login">Login/Register</a>
                 </div>
             </div>
         </nav>
@@ -128,13 +129,13 @@
 
     <!-- Footer -->
     <hr class="ft_border">
-    <footer class="page-footer font-small bg_sec pt-5">
+    <footer class="page-footer font-small bg_sec">
 
         <!-- Footer Links -->
-        <div class="container-fluid text-center text-md-left pt-5 pb-5 mb-5">
+        <div class="container-fluid text-center text-md-left pt-5 pb-2">
 
             <!-- Grid row -->
-            <div class="row">
+            <div class="row pt-4 pb-4">
 
                 <!-- Grid column -->
                 <div class="col-md-6 mt-md-0 mt-3 pl-lg-5">
@@ -273,6 +274,16 @@
 
 
     <script>
+    $(document).ready(function() {
+
+        // $('.show_details').hide();
+        $('.show_details_btn').click(function(e) {
+            e.preventDefault();
+            let id = $(this).attr('href');
+            $('.show_details_' + id).toggle("slow");
+        });
+
+    });
     $(document).ready(function() {
         $('#cargo_table').DataTable({
             // "paging": false,
