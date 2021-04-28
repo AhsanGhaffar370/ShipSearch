@@ -7,7 +7,7 @@
 
 <div class="container mt-5 mb-5">
     <div class="row ">
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-5 ">
             <div class="animate form login_form bg-white shadow-sm rounded-lg border mt-4">
                 <p class="bg_bd text-white size36 text-center b7 m-0 p-3">
                     Login
@@ -40,26 +40,22 @@
                         <input type="submit" class="btn btn-info bg_bd rounded-0 submit m-0" value="Sign In"
                             name="submit">
                     </div>
-
-                    <div class="clearfix"></div>
-
-
                 </form>
             </div>
 
         </div>
 
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-5 offset-lg-2">
             <div class="animate form login_form bg-white shadow-sm rounded-lg border mt-4">
                 <p class="bg_bd text-white size36 text-center b7 m-0 p-3">
-                    Sign Up
+                    Register
                 </p>
                 <form method="post" action="login_req" class="text-center p-4">
                     @csrf
 
-                    @if(session('err')!="")
+                    @if(session('reg_err')!="")
                     <div class="alert alert-danger">
-                        {{session('err')}}
+                        {{session('reg_err')}}
                     </div>
                     @endif
                     <div class="col-auto p-0">
@@ -79,13 +75,9 @@
                         </div>
                     </div>
                     <div class="text-center d-flex justify-content-center mt-4">
-                        <input type="submit" class="btn btn-info bg_bd rounded-0 submit m-0" value="Sign In"
+                        <input type="submit" class="btn btn-info bg_bd rounded-0 submit m-0" value="Register"
                             name="submit">
                     </div>
-
-                    <div class="clearfix"></div>
-
-
                 </form>
             </div>
 

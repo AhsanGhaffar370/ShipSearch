@@ -45,7 +45,7 @@ table {
                 Search</a>
         </div>
         <div class="col-12 col-lg-2 col-md-3 pt-2">
-            <a class="btn btn-info btn-block pt-3 pb-3 rounded-0" href="/cargo/add"><i class="fas fa-plus"></i> Add New</a>
+            <a href="/cargo/add" id="{{session('front_uname')}}" class="btn btn-info btn-block pt-3 pb-3 rounded-0 add_cargo_btn" ><i class="fas fa-plus"></i> Add New</a>
         </div>
     </div>
 
@@ -62,7 +62,10 @@ table {
                 <th width="10%">Unit</th>
                 <th width="12%">Loading Discharge Rates</th>
                 <th width="10%">Posted on</th>
+                
+                @if(session('front_uid')!="")
                 <th >Details</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -78,9 +81,13 @@ table {
                 <td>{{optional($row->Lunit)->unit_name}}</td>
                 <td>{{$row->loading_discharge_rates}}</td>
                 <td>{{$row->created_at}}</td>
+
+                @if(session('front_uid')!="")
                 <td class="text-center">
                     <a href='{{$row->cargo_id}}' class="show_details_btn"><i class="fas fa-eye"></i></a>
                 </td>
+                @endif
+                
             </tr>
             <tr class="show_details show_details_{{$row->cargo_id}} bg-light" style="display: none;">
                 <td>

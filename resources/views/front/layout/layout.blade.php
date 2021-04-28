@@ -38,7 +38,7 @@
 
     a.nav-link:hover {
 
-        background-color: #f1f2f3;
+        background-color: #e1f1ff;
     }
 
     .ft_link {
@@ -69,14 +69,14 @@
 <body class="bg-white">
 
     <!-- Navigation -->
-    <header>
+    <header class="" style="background-color: #e3eff6!important;">
         <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav"> -->
         <div class="d-block text-center">
             <a class="navbar-brand pt-2 pb-2" href="/">
                 <img src="http://businesscardsprinting.co.uk/includes/frontend_source/ss_v2/images/logo.png" alt="" />
             </a>
         </div>
-        <nav class="navbar navbar-expand-lg cl_bd bg-light pt-0 pb-0" id="mainNav">
+        <nav class="navbar navbar-expand-lg cl_bd pt-0 pb-0" id="mainNav">
 
             <div class="container-fluid">
 
@@ -113,7 +113,11 @@
                             <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/">Cotact</a>
                         </li>
                     </ul>
+                    @if(session('front_uid')!="")
+                    <a class="btn btn-info rounded-0" href="/logout">({{session('front_uname')}}) Logout</a>
+                    @else
                     <a class="btn btn-info rounded-0" href="/login">Login/Register</a>
+                    @endif
                 </div>
             </div>
         </nav>
@@ -241,8 +245,8 @@
         <!-- Footer Links -->
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center bg-light py-3 pt-4 pb-4 size14">© 2019
-            <a href="https://mdbootstrap.com/" class="size14 b6 ft_link">
+        <div class="footer-copyright text-white b6 text-center py-3 pt-4 pb-4 size14" style="background-color: #1e3440;">© 2019
+            <a href="https://mdbootstrap.com/" class="size14 ft_link">
                 Shipsearch.com
             </a>
         </div>
@@ -275,6 +279,16 @@
 
     <script>
     $(document).ready(function() {
+
+        $('.add_cargo_btn').click(function(e){
+            
+            if($(this).attr('id')==""){
+                e.preventDefault();
+                alert("blank")
+            }else{
+                alert('filled')
+            }
+        });
 
         // $('.show_details').hide();
         $('.show_details_btn').click(function(e) {

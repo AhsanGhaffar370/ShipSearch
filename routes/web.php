@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CargoController;
 
 // Front Controllers
+use App\Http\Controllers\Front_auth;
 use App\Http\Controllers\front\FrontCargoController;
 use App\Http\Controllers\front\HomeController;
 
@@ -26,8 +27,6 @@ Route::get('/', [HomeController::class, 'view'] );
 
 Route::get('/cargo/view', [FrontCargoController::class, 'view'] );
 
-Route::get('/cargo/add', [FrontCargoController::class, 'view_add'] );
-Route::post('/cargo/add_req', [FrontCargoController::class, 'add_req'] );
 
 Route::get('/login', function () {
     if((session()->has('front_uid'))){
@@ -36,6 +35,25 @@ Route::get('/login', function () {
         return view('front/login');
     }
 });
+Route::post('login_req',[Front_auth::class,'login_req']);
+
+
+Route::group(['middleware'=>['front_auth']],function(){
+
+    // Cargo
+    Route::get('/cargo/add', [FrontCargoController::class, 'view_add'] );
+    Route::post('/cargo/add_req', [FrontCargoController::class, 'add_req'] );
+});
+
+Route::get('/logout',function(){
+    session()->forget('front_uid');
+    session()->forget('front_uname');
+    return redirect('/login');
+});
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Admin Section
@@ -73,5 +91,6 @@ Route::group(['middleware'=>['admin_auth']],function(){
 
 Route::get('admin/logout',function(){
     session()->forget('user_id');
+    session()->forget('user_name');
     return redirect('/admin/login');
 });
