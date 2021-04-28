@@ -294,7 +294,7 @@
         $('.show_details_btn').click(function(e) {
             e.preventDefault();
             let id = $(this).attr('href');
-            $('.show_details_' + id).toggle("slow");
+            $('.show_details_' + id).fadeToggle("slow");
         });
 
     });
