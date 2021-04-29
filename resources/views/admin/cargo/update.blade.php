@@ -17,7 +17,7 @@
                 <div class="x_content">
                     <br />
 
-                    <form method="post" id="cargo_form" action="/admin/cargo/update_req" class="form-horizontal form-label-left"
+                    <form method="post" id="cargo_form" action={{route('admin.cargo.update_req')}} class="form-horizontal form-label-left"
                         enctype="multipart/form-data">
                         <!-- <form method="post" action="{{url('/admin/post/add_post')}}" class="form-horizontal form-label-left"> -->
                         @csrf

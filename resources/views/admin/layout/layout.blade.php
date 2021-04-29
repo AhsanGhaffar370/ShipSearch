@@ -15,8 +15,8 @@
       <script src="https://kit.fontawesome.com/7516c4b4cc.js" crossorigin="anonymous"></script>
 
       <!-- custom css -->
-      <link href="{{ asset('admin_asset/css/custom.min.css') }}" rel="stylesheet">
-      <link href="{{ asset('admin_asset/css/my_style.css') }}" rel="stylesheet">
+      <link href="{{ asset('public/admin_asset/css/custom.min.css') }}" rel="stylesheet">
+      <link href="{{ asset('public/admin_asset/css/my_style.css') }}" rel="stylesheet">
 
       <!-- datatables -->
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
@@ -40,7 +40,7 @@
             <div class="col-md-3 left_col">
                <div class="left_col scroll-view">
                   <div class="navbar nav_title bg_bl" style="border: 0;">
-                     <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>ShipSearch</span></a>
+                     <a href={{route('admin.dashboard')}} class="site_title"><i class="fa fa-paw"></i> <span>ShipSearch</span></a>
                   </div>
                   <div class="clearfix"></div>
                   <br />
@@ -48,13 +48,13 @@
                      <div class="menu_section mb-3">
                         <h3 class="pt-2 pb-2 text-light bg_bl">Dashboard</h3>
                         <ul class="nav side-menu">
-                           <li><a href="/admin/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
+                           <li><a href={{route('admin.dashboard')}}><i class="fa fa-home"></i> Dashboard</a></li>
                         </ul>
                      </div>
                      <div class="menu_section">
                         <h3 class="pt-2 pb-2 text-light bg_bl">Modules</h3>
                         <ul class="nav side-menu">
-                           <li><a href="/admin/cargo/view"><i class="fa fa-home"></i> Cargo </a></li>
+                           <li><a href={{route('admin.cargo.view')}}><i class="fa fa-home"></i> Cargo </a></li>
                         </ul>
                      </div>
                   </div>
@@ -74,7 +74,7 @@
                            <span class="font-weight-bold ml-1 text-white">{{session('user_name')}}</span>
                            </a>
                            <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item "  href="/admin/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                              <a class="dropdown-item "  href={{route('admin.logout')}}><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                            </div>
                         </li>
 					</ul>
@@ -91,7 +91,7 @@
             <!-- footer content -->
             <footer>
                <div class="pull-right">
-               Copyright © 2018 <a href="#" class="cl_bd">Ship Search</a>. All rights reserved. 
+               Copyright © 2018 <a href={{route('admin.dashboard')}} class="cl_bd">Ship Search</a>. All rights reserved. 
                </div>
                <div class="clearfix"></div>
             </footer>
@@ -107,9 +107,9 @@
 
       <!-- custom js -->
       
-      <script src="{{ asset('admin_asset/js/my_validation.js') }}"></script>
-      <script src="{{ asset('admin_asset/js/icheck.min.js') }}"></script>
-      <script src="{{ asset('admin_asset/js/custom.js') }}"></script>
+      <script src="{{ asset('public/admin_asset/js/my_validation.js') }}"></script>
+      <script src="{{ asset('public/admin_asset/js/icheck.min.js') }}"></script>
+      <script src="{{ asset('public/admin_asset/js/custom.js') }}"></script>
 
       
       <!-- datepicker -->

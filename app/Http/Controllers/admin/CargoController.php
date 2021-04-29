@@ -122,7 +122,7 @@ class CargoController extends Controller
         $req->session()->flash('msg','Cargo Added');
         $req->session()->flash('alert','success');
 
-        return redirect('admin/cargo/view');
+        return redirect()->route('admin.cargo.view');
     }
 
 
@@ -205,7 +205,7 @@ class CargoController extends Controller
         $req->session()->flash('msg','cargo Details Updated');
         $req->session()->flash('alert','warning');
 
-        return redirect('admin/cargo/view');
+        return redirect()->route('admin.cargo.view');
     }
 
 
@@ -218,7 +218,7 @@ class CargoController extends Controller
         session()->flash('msg','cargo Status Updated');
         session()->flash('alert','warning');
 
-        return redirect('admin/cargo/view');
+        return redirect()->route('admin.cargo.view');
     }
 
     function delete($id){
@@ -228,7 +228,7 @@ class CargoController extends Controller
 
         session()->flash('msg','cargo Deleted');
         session()->flash('alert','danger');
-        return redirect('admin/cargo/view');
+        return redirect()->route('admin.cargo.view');
     }
 
 }

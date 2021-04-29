@@ -12,7 +12,7 @@
                 <p class="bg_bd text-white size36 text-center b7 m-0 p-3">
                     Login
                 </p>
-                <form method="post" action="login_req" class="text-center p-4">
+                <form method="post" action={{route('login_req')}} class="text-center p-4">
                     @csrf
 
                     @if(session('err')!="")
@@ -37,8 +37,8 @@
                         </div>
                     </div>
                     <div class="text-center d-flex justify-content-center mt-4">
-                        <input type="submit" class="btn btn-info bg_bd rounded-0 submit m-0" value="Sign In"
-                            name="submit">
+                        <input type="submit" class="btn btn-info bg_bd rounded-0 submit m-0" value="Login"
+                            name="login">
                     </div>
                 </form>
             </div>
@@ -50,14 +50,22 @@
                 <p class="bg_bd text-white size36 text-center b7 m-0 p-3">
                     Register
                 </p>
-                <form method="post" action="login_req" class="text-center p-4">
+                <form method="post" action={{route('reg_req')}} class="text-center p-4">
                     @csrf
 
-                    @if(session('reg_err')!="")
-                    <div class="alert alert-danger">
-                        {{session('reg_err')}}
+                    @if(session('reg_msg')!="")
+                    <div class="alert alert-success">
+                        {{session('reg_msg')}}
                     </div>
                     @endif
+                    <div class="col-auto p-0">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend rounded-0">
+                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                            </div>
+                            <input type="text" class="form-control" name="name" placeholder="Name" required />
+                        </div>
+                    </div>
                     <div class="col-auto p-0">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend rounded-0">
@@ -74,9 +82,17 @@
                             <input type="password" class="form-control" name="pass" placeholder="Password" required />
                         </div>
                     </div>
+                    <div class="col-auto p-0">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                            </div>
+                            <input type="password" class="form-control" name="c_pass" placeholder="Confirm Password" required />
+                        </div>
+                    </div>
                     <div class="text-center d-flex justify-content-center mt-4">
                         <input type="submit" class="btn btn-info bg_bd rounded-0 submit m-0" value="Register"
-                            name="submit">
+                            name="register">
                     </div>
                 </form>
             </div>

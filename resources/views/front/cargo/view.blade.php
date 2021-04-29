@@ -21,9 +21,9 @@ table {
 }
 
 .table td {
-    background-color: #09cec708;
+    /* background-color: #09cec708; */
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
     font-size: 12px;
     /* padding: .75rem; */
     padding: 3px 8px 3px 5px;
@@ -41,18 +41,19 @@ table {
             <h1 class="size28 text-white b7 pt-2 pb-3 pl-3 bg_sec ">Cargo</h1>
         </div>
         <div class="col-12 col-lg-2 col-md-3 pt-2">
-            <a class="btn btn-info btn-block pt-3 pb-3 rounded-0" href="/"><i class="fas fa-search"></i> Advanced
+            <a class="btn btn-info btn-block pt-3 pb-3 rounded-0" href={{route('cargo.view')}}><i class="fas fa-search"></i> Advanced
                 Search</a>
         </div>
         <div class="col-12 col-lg-2 col-md-3 pt-2">
-            <a href="/cargo/add" id="{{session('front_uname')}}" class="btn btn-info btn-block pt-3 pb-3 rounded-0 add_cargo_btn" ><i class="fas fa-plus"></i> Add New</a>
+            <a href={{route('cargo.add')}} id="{{session('front_uname')}}"
+                class="btn btn-info btn-block pt-3 pb-3 rounded-0 add_cargo_btn"><i class="fas fa-plus"></i> Add New</a>
         </div>
     </div>
 
-    <table id="cargo_table21" class="table table-condensed table-hover table-responsive-md table-bordered">
-        <thead class="bg-info text-white">
+<div class="border">
+    <table id="cargo_table21" class="table table-condensed table-hover table-responsive-md m-0 ">
+        <thead class="" style="background-color: #EAEAEA;">
             <tr>
-                <th width="8%">Ref.No</th>
                 <th width="10%">Cargo Name</th>
                 <th width="10%">Cargo Type</th>
                 <th width="10%">Loading Region</th>
@@ -62,16 +63,15 @@ table {
                 <th width="10%">Unit</th>
                 <th width="12%">Loading Discharge Rates</th>
                 <th width="10%">Posted on</th>
-                
+
                 @if(session('front_uid')!="")
-                <th >Details</th>
+                <th width="2%">Details</th>
                 @endif
             </tr>
         </thead>
         <tbody>
             @foreach ($data as $row)
             <tr class="">
-                <td>{{$row->cargo_id}}</td>
                 <td>{{$row->cargo_name}}</td>
                 <td>{{optional($row->cargotype)->cargo_type_name}}</td>
                 <td>{{optional($row->Lregion)->region_name}}</td>
@@ -87,9 +87,9 @@ table {
                     <a href='{{$row->cargo_id}}' class="show_details_btn"><i class="fas fa-eye"></i></a>
                 </td>
                 @endif
-                
+
             </tr>
-            <tr class="show_details show_details_{{$row->cargo_id}} bg-light" style="display: none;">
+            <tr class="show_details show_details_{{$row->cargo_id}} " style="display: none; background-color: #F1F1F1;">
                 <td>
                     <p class="b7 mb-0">Loading Country:</p>
                     <p class="">{{optional($row->Lcountry)->country_name}}</p>
@@ -148,11 +148,25 @@ table {
                     <p class="b7 mb-0">Combinable:</p>
                     <p class="">{{$row->combinable}}</p>
                 </td>
-                <td></td>
             </tr>
             @endforeach
 
         </tbody>
     </table>
+    </div>
+
+
+    <div id="dialog" class="text-right rounded p-1" style="display: none;">
+        <p class="size20 text-left text-white bg-danger p-2 rounded">Access Denied</p>
+
+        <p class="text-left">
+            Please <a href={{route('login')}} class="btn btn-info text=white btn-sm">Login</a> to do this action.
+        </p>
+
+        <br>
+        <hr>
+        <button id="close_dialog" class="btn btn-danger">Close</button>
+
+    </div>
 </div>
 @endsection

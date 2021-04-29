@@ -8,11 +8,11 @@
     <div class="page-title">
         <div class="title_left">
             <h1>Cargo <span class="size16">Type</span></h1>
-			<a href="/admin/cargo/view" class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
+			<a href={{route('admin.cargo.view')}} class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
 				<i class="fas fa-eye"></i><br>
 				<span class="size13">View All</span> 
 			</a>
-			<a href="/admin/cargo/add" class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
+			<a href={{route('admin.cargo.add')}} class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
 				<i class="fas fa-plus"></i><br>
 				<span class="size13">Add New</span> 
 			</a>
@@ -121,7 +121,7 @@
 
                                             <td>
                                                 <div class="btn-group" style="display: -webkit-box;">
-                                                    <a href='/admin/cargo/update/{{$row->cargo_id}}'
+                                                    <a href={{route('admin.cargo.update.id', ['id' => $row->cargo_id])}}
                                                         class="btn btn-info btn-sm pt-1 pb-1"><i class="fas fa-pen"></i></a>
 
                                                     @if($row->is_active =="1")
@@ -134,14 +134,14 @@
                                                     </button>
                                                     <ul class="dropdown-menu list-group" role="menu">
                                                         @if($row->is_active =="1")
-                                                        <li><a href='/admin/cargo/update-status/{{$row->cargo_id}}/0'
+                                                        <li><a href={{route('admin.cargo.update_status.id.status', ['id' => $row->cargo_id,'status'=>'0'])}}
                                                                 class="list-group-item text-white bg-danger rounded-0 border-0">De-Activate</a></li>
                                                         @else
-                                                        <li><a href='/admin/cargo/update-status/{{$row->cargo_id}}/1'
+                                                        <li><a href={{route('admin.cargo.update_status.id.status', ['id' => $row->cargo_id,'status'=>'1'])}}
                                                                 class="list-group-item text-white bg-success rounded-0 border-0">Activate</a></li>
                                                         @endif
                                                     </ul>
-                                                    <a href='/admin/cargo/delete/{{$row->cargo_id}}'
+                                                    <a href={{route('admin.cargo.delete.id', ['id' => $row->cargo_id])}}
                                                         class="btn btn-danger btn-sm ml-2 pt-1 pb-1 rounded"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
                                             </td>

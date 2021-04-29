@@ -17,7 +17,7 @@ class FrontAuth
     public function handle(Request $request, Closure $next)
     {
         if(!$request->session()->has('front_uid')){
-            return redirect('/login');
+            return redirect()->route('login');
         }
         return $next($request);
     }

@@ -15,8 +15,8 @@
     <script src="https://use.fontawesome.com/bd39c99e2f.js"></script>
 
     <!-- Custom Theme Style -->
-    <link href="{{ asset('admin_asset/css/custom.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin_asset/css/my_style.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/admin_asset/css/custom.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/admin_asset/css/my_style.css') }}" rel="stylesheet">
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/7516c4b4cc.js" crossorigin="anonymous"></script>
@@ -29,9 +29,9 @@
 
         <div class="login_wrapper">
             <div class="animate form login_form bg-white shadow-sm rounded-lg">
-                <p class="bg_bd size36 text-center b3 m-0 p-3"><a href="#" class="text-white"><span
+                <p class="bg_bd size36 text-center b3 m-0 p-3"><a href={{route('home')}} class="text-white"><span
                             class="b7">Ship</span>Search</a></p>
-                <form method="post" action="login_req" class="text-center p-4">
+                <form method="post" action="{{route('admin.login_req')}}" class="text-center p-4">
                     @csrf
                     <p class="size17 mb-2">Provide Administrator Credentials</p>
                     <p class="size13 ">Sign in to start your session</p>

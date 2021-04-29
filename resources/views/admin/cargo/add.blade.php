@@ -8,11 +8,11 @@
     <div class="page-title">
         <div class="title_left">
             <h1>Cargo <span class="size16">Type</span></h1>
-            <a href="/admin/cargo/view" class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
+            <a href={{route('admin.cargo.view')}} class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
                 <i class="fas fa-eye"></i><br>
                 <span class="size13">View All</span>
             </a>
-            <a href="/admin/cargo/add" class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
+            <a href={{route('admin.cargo.add')}} class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
                 <i class="fas fa-plus"></i><br>
                 <span class="size13">Add New</span>
             </a>
@@ -25,7 +25,7 @@
                 <p class="p-3 bg-light cl_bd size16 mb-0">Fill the required details</p>
                 <div class="x_content p-3">
                     <br />
-                    <form id="cargo_form" method="post" action="/admin/cargo/add_req" class="form-horizontal form-label-left "
+                    <form id="cargo_form" method="post" action={{route('admin.cargo.add_req')}} class="form-horizontal form-label-left "
                         enctype="multipart/form-data">
                         <!-- <form method="post" action="{{url('/admin/post/add_post')}}" class="form-horizontal form-label-left"> -->
                         @csrf

@@ -12,13 +12,13 @@
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/7516c4b4cc.js" crossorigin="anonymous"></script>
 
     <!-- custom css -->
-    <link href="{{ asset('front_asset/css/my_style.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/front_asset/css/my_style.css') }}" rel="stylesheet">
 
     <!-- datatables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
@@ -38,7 +38,7 @@
 
     a.nav-link:hover {
 
-        background-color: #e1f1ff;
+        background-color: #c1e1fe;
     }
 
     .ft_link {
@@ -72,7 +72,7 @@
     <header class="" style="background-color: #e3eff6!important;">
         <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav"> -->
         <div class="d-block text-center">
-            <a class="navbar-brand pt-2 pb-2" href="/">
+            <a class="navbar-brand pt-2 pb-2" href={{route('home')}}>
                 <img src="http://businesscardsprinting.co.uk/includes/frontend_source/ss_v2/images/logo.png" alt="" />
             </a>
         </div>
@@ -89,34 +89,34 @@
                 <div class="collapse navbar-collapse pl-lg-5 m-auto" id="navbarResponsive">
                     <ul class="navbar-nav m-auto pl-lg-5 text-center">
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/cargo/view">Cargos</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('cargo.view')}}">Cargos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/">Vessel Charter</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Vessel Charter</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/">Sale & Purchase</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Sale & Purchase</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/">Voyage Estimator</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Voyage Estimator</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/">Profile</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/">Services</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/">Events</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Events</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="/">Cotact</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Cotact</a>
                         </li>
                     </ul>
                     @if(session('front_uid')!="")
-                    <a class="btn btn-info rounded-0" href="/logout">({{session('front_uname')}}) Logout</a>
+                    <a class="btn btn-info rounded-0" href="{{route('logout')}}">({{session('front_uname')}}) Logout</a>
                     @else
-                    <a class="btn btn-info rounded-0" href="/login">Login/Register</a>
+                    <a class="btn btn-info rounded-0" href="{{route('login')}}">Login/Register</a>
                     @endif
                 </div>
             </div>
@@ -245,8 +245,9 @@
         <!-- Footer Links -->
 
         <!-- Copyright -->
-        <div class="footer-copyright text-white b6 text-center py-3 pt-4 pb-4 size14" style="background-color: #1e3440;">© 2019
-            <a href="https://mdbootstrap.com/" class="size14 ft_link">
+        <div class="footer-copyright text-white b6 text-center py-3 pt-4 pb-4 size14"
+            style="background-color: #1e3440;">© 2019
+            <a href="{{route('home')}}" class="size14 ft_link">
                 Shipsearch.com
             </a>
         </div>
@@ -258,14 +259,21 @@
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jquery UI	 -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <!-- bootstrap bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 
+
+
+
     <!-- custom js -->
-    <script src="{{ asset('front_asset/js/my_validation.js') }}"></script>
-    <!-- <script src="{{ asset('front_asset/js/icheck.min.js') }}"></script>
-      <script src="{{ asset('front_asset/js/custom.js') }}"></script> -->
+    <script src="{{ asset('public/front_asset/js/my_validation.js') }}"></script>
+    <!-- <script src="{{ asset('public/front_asset/js/icheck.min.js') }}"></script>
+      <script src="{{ asset('public/front_asset/js/custom.js') }}"></script> -->
 
     <!-- datepicker -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -279,85 +287,95 @@
 
     <script>
     $(document).ready(function() {
+        
+        $("#close_dialog").click(function() {
+            $("#dialog").dialog("close");
+        });
 
-        $('.add_cargo_btn').click(function(e){
+        $('.add_cargo_btn').click(function(e) {
             
-            if($(this).attr('id')==""){
+            if ($(this).attr('id') == "") {
                 e.preventDefault();
-                alert("blank")
-            }else{
-                alert('filled')
+                $("#dialog").dialog({
+                    draggable: false,
+                    resizable: false,
+                    closeOnEscape: false,
+                    width: '30%',
+                    modal: true
+                });
+
+                $(".ui-dialog-titlebar").hide();
+                $("#dialog").dialog();
             }
         });
 
-        // $('.show_details').hide();
         $('.show_details_btn').click(function(e) {
             e.preventDefault();
             let id = $(this).attr('href');
             $('.show_details_' + id).fadeToggle("slow");
         });
-
-    });
-    $(document).ready(function() {
-        $('#cargo_table').DataTable({
-            // "paging": false,
-            // "pagingType":"full_numbers",
-            //   "lengthMenu":[[5,10,25],[5,10,25]],
-            "lengthMenu": [
-                [10, 25, 50, 100, -1],
-                [10, 25, 50, 100, 'All']
-            ],
-            responsive: true,
-            type: 'date'
-            // stateSave: true
-        });
     });
 
+    // $(document).ready(function() {
+    //     $('#cargo_table').DataTable({
+    //         // "paging": false,
+    //         // "pagingType":"full_numbers",
+    //         //   "lengthMenu":[[5,10,25],[5,10,25]],
+    //         "lengthMenu": [
+    //             [10, 25, 50, 100, -1],
+    //             [10, 25, 50, 100, 'All']
+    //         ],
+    //         responsive: true,
+    //         type: 'date'
+    //         // stateSave: true
+    //     });
+    // });
 
-    $(document).ready(function() {
-        $('.page-state').click(function(e) {
-            e.preventDefault();
 
-            let status_val;
-            let status = $(this).html();
+    // $(document).ready(function() {
+    //     $('.page-state').click(function(e) {
+    //         e.preventDefault();
 
-            let href = $(this).attr('href');
-            let id = href.split('/');
+    //         let status_val;
+    //         let status = $(this).html();
 
-            let id_val = id[id.length - 1]
+    //         let href = $(this).attr('href');
+    //         let id = href.split('/');
 
-            // alert(id[id.length - 1]);
-            if (status == "De-Activate") {
-                status_val = "0";
-            } else {
-                status_val = "1";
-            }
+    //         let id_val = id[id.length - 1]
 
-            $.ajax({
-                url: href,
-                data: "id=" + id_val + "&status=" + status_val,
-                type: "get",
-                success: function(res) {
-                    if (res == 0) {
-                        $('.page-status-' + id_val).html("Activate");
-                        $('.page-status-' + id_val).attr("id", "1");
-                        $(".badge-" + id_val).html("In-Active");
-                        // $(".badge-"+id_val).attr("class","badge badge-danger");
-                        $(".badge-" + id_val).removeClass("badge-success");
-                        $(".badge-" + id_val).addClass("badge-danger");
-                    }
-                    if (res == 1) {
-                        $('.page-status-' + id_val).html("De-Activate");
-                        $('.page-status-' + id_val).attr("id", "0");
-                        $(".badge-" + id_val).html("Active");
-                        // $(".badge-"+id_val).attr("class","badge badge-success");
-                        $(".badge-" + id_val).removeClass("badge-danger");
-                        $(".badge-" + id_val).addClass("badge-success");
-                    }
-                }
-            });
-        });
-    });
+    //         // alert(id[id.length - 1]);
+    //         if (status == "De-Activate") {
+    //             status_val = "0";
+    //         } else {
+    //             status_val = "1";
+    //         }
+
+    //         $.ajax({
+    //             url: href,
+    //             data: "id=" + id_val + "&status=" + status_val,
+    //             type: "get",
+    //             success: function(res) {
+    //                 if (res == 0) {
+    //                     $('.page-status-' + id_val).html("Activate");
+    //                     $('.page-status-' + id_val).attr("id", "1");
+    //                     $(".badge-" + id_val).html("In-Active");
+    //                     // $(".badge-"+id_val).attr("class","badge badge-danger");
+    //                     $(".badge-" + id_val).removeClass("badge-success");
+    //                     $(".badge-" + id_val).addClass("badge-danger");
+    //                 }
+    //                 if (res == 1) {
+    //                     $('.page-status-' + id_val).html("De-Activate");
+    //                     $('.page-status-' + id_val).attr("id", "0");
+    //                     $(".badge-" + id_val).html("Active");
+    //                     // $(".badge-"+id_val).attr("class","badge badge-success");
+    //                     $(".badge-" + id_val).removeClass("badge-danger");
+    //                     $(".badge-" + id_val).addClass("badge-success");
+    //                 }
+    //             }
+    //         });
+    //     });
+    // });
     </script>
 
 
