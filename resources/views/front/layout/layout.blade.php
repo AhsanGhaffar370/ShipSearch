@@ -18,7 +18,7 @@
     <script src="https://kit.fontawesome.com/7516c4b4cc.js" crossorigin="anonymous"></script>
 
     <!-- custom css -->
-    <link href="{{ asset('public/front_asset/css/my_style.css') }}" rel="stylesheet">
+    <link href="{{ asset('front_asset/css/my_style.css') }}" rel="stylesheet">
 
     <!-- datatables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
@@ -26,6 +26,8 @@
     <!-- datepicker -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
 
+    
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <style>
     .dropdown-toggle:after {
         color: white;
@@ -271,9 +273,9 @@
 
 
     <!-- custom js -->
-    <script src="{{ asset('public/front_asset/js/my_validation.js') }}"></script>
-    <!-- <script src="{{ asset('public/front_asset/js/icheck.min.js') }}"></script>
-      <script src="{{ asset('public/front_asset/js/custom.js') }}"></script> -->
+    <script src="{{ asset('front_asset/js/my_validation.js') }}"></script>
+    <!-- <script src="{{ asset('front_asset/js/icheck.min.js') }}"></script>
+      <script src="{{ asset('front_asset/js/custom.js') }}"></script> -->
 
     <!-- datepicker -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
