@@ -16,6 +16,10 @@ class ss_setup_port extends Model
         return $query->where('is_active',1);
     }
 
+    public function scopeDesc($query){
+        return $query->orderBy('port_id',"DESC");
+    }
+
     
     // public function Lcargo1(){
     //     return $this->hasMany('App\Models\ss_cargo',"loading_port_id_1");

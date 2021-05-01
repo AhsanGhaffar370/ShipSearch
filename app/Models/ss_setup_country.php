@@ -16,6 +16,10 @@ class ss_setup_country extends Model
         return $query->where('is_active',1);
     }
 
+    public function scopeDesc($query){
+        return $query->orderBy('country_id',"DESC");
+    }
+
     // public function Lcargo(){
     //     return $this->hasMany('App\Models\ss_cargo',"loading_country_id");
     // }

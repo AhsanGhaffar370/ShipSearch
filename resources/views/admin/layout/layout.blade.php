@@ -32,6 +32,9 @@
             color: black;
             font-weight: 600;
          }
+         .page_height{
+            min-height: 1000px !important;
+         }
       </style>
    </head>
    <body class="nav-md">
@@ -51,10 +54,20 @@
                            <li><a href={{route('admin.dashboard')}}><i class="fa fa-home"></i> Dashboard</a></li>
                         </ul>
                      </div>
-                     <div class="menu_section">
+                     <div class="menu_section mb-3">
                         <h3 class="pt-2 pb-2 text-light bg_bl">Modules</h3>
                         <ul class="nav side-menu">
                            <li><a href={{route('admin.cargo.view')}}><i class="fa fa-home"></i> Cargo </a></li>
+                        </ul>
+                     </div>
+                     <div class="menu_section mb-3">
+                        <h3 class="pt-2 pb-2 text-light bg_bl">Setups</h3>
+                        <ul class="nav side-menu">
+                           <li><a href={{route('admin.region.view')}}><i class="fa fa-home"></i> Region </a></li>
+                           <li><a href={{route('admin.port.view')}}><i class="fa fa-home"></i> Port </a></li>
+                           <li><a href={{route('admin.port.view')}}><i class="fa fa-home"></i> Country </a></li>
+                           <li><a href={{route('admin.port.view')}}><i class="fa fa-home"></i> Cargo Type </a></li>
+                           <li><a href={{route('admin.port.view')}}><i class="fa fa-home"></i> Unit </a></li>
                         </ul>
                      </div>
                   </div>
@@ -83,7 +96,7 @@
             </div>
             <!-- /top navigation -->
             <!-- page content -->
-            <div class="right_col" role="main">
+            <div class="right_col page_height" role="main" style="min-height: 1000px;">
                @section('container')
 			   @show
             </div>

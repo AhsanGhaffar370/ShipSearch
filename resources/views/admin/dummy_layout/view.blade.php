@@ -43,32 +43,8 @@
                                             <th>Cargo Name</th>
                                             <th>Cargo Type</th>
                                             <th>Loading Region</th>
-                                            <th>Loading Country</th>
-                                            <th>Loading Port#1</th>
-                                            <th>Loading Port#2</th>
-                                            <th>Discharge Region</th>
-                                            <th>Discharge Country</th>
-                                            <th>Discharge Port#1</th>
-                                            <th>Discharge Port#2</th>
-                                            <th>Laycan Date From</th>
-                                            <th>Laycan Date To</th>
-                                            <th>Quantity</th>
-                                            <th>Unit</th>
-                                            <th>Max LOA</th>
-                                            <th>Max Draft</th>
-                                            <th>Max Height</th>
-                                            <th>Commission</th>
                                             <th>Combinable</th>
-                                            <th>Over Age</th>
-                                            <th>Hazmat</th>
-                                            <th>Loading Discharge Rates</th>
-                                            <th>Loading Discharge Unit</th>
-                                            <th>Loading Equipment Req</th>
-                                            <th>Gear Lifting Capacity</th>
-                                            <th>Loading/Discharge Equipment Req</th>
-                                            <th>Additional Info</th>
                                             <th>Status</th>
-                                            <!-- <th>Brocker Info</th> -->
                                             <th style="padding: 0px 40px 10px 40px;">Action</th>
                                         </tr>
                                     </thead>
@@ -81,36 +57,7 @@
                                             <td>{{$row->cargo_name}}</td>
                                             <td>{{optional($row->cargotype)->cargo_type_name}}</td>
                                             <td>{{optional($row->Lregion)->region_name}}</td>
-                                            <td>{{optional($row->Lcountry)->country_name}}</td>
-                                            <td>{{optional($row->Lport1)->port_name}}</td>
-                                            <td>{{optional($row->Lport2)->port_name}}</td>
-                                            <td>{{optional($row->Dregion)->region_name}}</td>
-                                            <td>{{optional($row->Dcountry)->country_name}}</td>
-                                            <td>{{optional($row->Dport1)->port_name}}</td>
-                                            <td>{{optional($row->Dport2)->port_name}}</td>
-                                            <td>{{$row->laycan_date_from}}</td>
-                                            <td>{{$row->laycan_date_to}}</td>
-                                            <td>{{$row->quantity}}</td>
-                                            <td>{{optional($row->Lunit)->unit_name}}</td>
-                                            <td>{{$row->max_loa}}</td>
-                                            <td>{{$row->max_draft}}</td>
-                                            <td>{{$row->max_height}}</td>
-                                            <td>{{$row->commision}}</td>
                                             <td>{{$row->combinable}}</td>
-                                            <td>{{$row->over_age}}</td>
-                                            <td>{{$row->hazmat}}</td>
-                                            <td>{{$row->loading_discharge_rates}}</td>
-                                            <td>{{optional($row->Dunit)->unit_name}}</td>
-                                            <td>{{$row->loading_equipment_req}}</td>
-                                            <td>{{$row->gear_lifting_capacity}}</td>
-                                            <td>{{$row->loading_discharge_equipment_req}}</td>
-                                            <td>{{$row->additional_info}}</td>
-                                            <!-- <td>
-												<strong>N:</strong>{{-- $row->brocker_name --}}<br>
-												<strong>T:</strong>{{-- $row->brocker_phone --}}<br>
-												<strong>E:</strong>{{-- $row->brocker_email --}}
-											</td> -->
-                                            
                                             <td>
                                                 @if($row->is_active =="1")
                                                 <span class="badge badge-success">Active</span>

@@ -13,6 +13,11 @@ class ss_cargo extends Model
     public $timestamps=false;
     protected $primaryKey = 'cargo_id';
 
+
+    public function scopeDesc($query){
+        return $query->orderBy('cargo_id',"DESC");
+    }
+
     public function cargotype(){
         // return $this->belongsTo('App\Models\ss_setup_cargo_type','cargo_type_id');
         return $this->belongsTo(ss_setup_cargo_type::class,'cargo_type_id');

@@ -1,6 +1,6 @@
 @extends('admin/layout/layout')
 
-@section('page_title','Update Post')
+@section('page_title','Update Cargo')
 
 @section('container')
 

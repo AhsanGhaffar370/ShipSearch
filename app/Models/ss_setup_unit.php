@@ -15,6 +15,10 @@ class ss_setup_unit extends Model
     public function scopeActive($query){
         return $query->where('is_active',1);
     }
+
+    public function scopeDesc($query){
+        return $query->orderBy('unit_id',"DESC");
+    }
     
     
     // public function Lcargo(){

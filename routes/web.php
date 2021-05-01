@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin_auth;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CargoController;
+use App\Http\Controllers\admin\RegionController;
+use App\Http\Controllers\admin\PortController;
 
 // Front Controllers
 use App\Http\Controllers\Front_auth;
@@ -89,6 +91,23 @@ Route::group(['middleware'=>['admin_auth']],function(){
     Route::get('/admin/cargo/delete/{id}',[CargoController::class, 'delete'])->name('admin.cargo.delete.id');
 
     Route::get('/admin/cargo/update-status/{id}/{status}',[CargoController::class, 'update_status'])->name('admin.cargo.update_status.id.status');
+
+    // Region
+    Route::get('/admin/region/view', [RegionController::class, 'view'] )->name('admin.region.view');
+    Route::get('/admin/region/add', [RegionController::class, 'view_add'] )->name('admin.region.add');
+    Route::post('/admin/region/add_req', [RegionController::class, 'add_req'] )->name('admin.region.add_req');
+    Route::get('/admin/region/update/{id}',[RegionController::class, 'view_update'])->name('admin.region.update.id');
+    Route::post('/admin/region/update_req',[RegionController::class, 'update_req'])->name('admin.region.update_req');
+    Route::get('/admin/region/update-status/{id}/{status}',[RegionController::class, 'update_status'])->name('admin.region.update_status.id.status');
+
+    // Region
+    Route::get('/admin/port/view', [PortController::class, 'view'] )->name('admin.port.view');
+    Route::get('/admin/port/add', [PortController::class, 'view_add'] )->name('admin.port.add');
+    Route::post('/admin/port/add_req', [PortController::class, 'add_req'] )->name('admin.port.add_req');
+    Route::get('/admin/port/update/{id}',[PortController::class, 'view_update'])->name('admin.port.update.id');
+    Route::post('/admin/port/update_req',[PortController::class, 'update_req'])->name('admin.port.update_req');
+    Route::get('/admin/port/update-status/{id}/{status}',[PortController::class, 'update_status'])->name('admin.port.update_status.id.status');
+
 });
 
 Route::get('admin/logout',function(){
