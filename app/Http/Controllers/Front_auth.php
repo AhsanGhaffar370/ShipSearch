@@ -26,13 +26,12 @@ class Front_auth extends Controller
                 return redirect()->route('home');
             }
             else{
-                $req->session()->flash('err','Please verify your email by clicking the verification link which send to your email at the time of registration.');
-                $req->session()->flash('err1',' Register again to get a new verification code.');
+                $req->session()->flash('err','verification error');
                 
                 return redirect()->route('login');
             }
         }else{
-            $req->session()->flash('err','email or password is incorrect');
+            $req->session()->flash('err1','login error');
             return redirect()->route('login');
         }
     }
@@ -52,7 +51,6 @@ class Front_auth extends Controller
         $user->is_active=0;
 
         
-
         $user->last_name=" ";
         $user->date_of_birth=date('Y-m-d');
         $user->company_id=2;
@@ -81,7 +79,7 @@ class Front_auth extends Controller
 
         $user21['to']=$req->email;
         $data=['code'=>$code];
-        
+
         Mail::send('front/mail_format',$data, function($messages) use ($user21){
             $messages->from('ahsanrao237@gmail.com', 'ShipSearch Support');
             $messages->to($user21['to']);

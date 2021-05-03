@@ -105,7 +105,7 @@ Route::group(['middleware'=>['admin_auth']],function(){
     Route::post('/admin/region/update_req',[RegionController::class, 'update_req'])->name('admin.region.update_req');
     Route::get('/admin/region/update-status/{id}/{status}',[RegionController::class, 'update_status'])->name('admin.region.update_status.id.status');
 
-    // Region
+    // Port
     Route::get('/admin/port/view', [PortController::class, 'view'] )->name('admin.port.view');
     Route::get('/admin/port/add', [PortController::class, 'view_add'] )->name('admin.port.add');
     Route::post('/admin/port/add_req', [PortController::class, 'add_req'] )->name('admin.port.add_req');

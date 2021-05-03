@@ -16,14 +16,17 @@
                     @csrf
 
                     @if(session('err')!="")
-                    <div class="size11 alert alert-danger">
-                        {{session('err')}}
-                    </div> 
+                    <div class="alert alert-info size11">
+                        <p class="size11 text-left m-0">Please verify your email by clicking the verification link send to your email at the time of registration</p> 
+                    </div>
+                    <div class="alert alert-info size11">
+                        <p class="size11 text-left m-0"><i class="fa fa-info-circle fa-1x"></i>&nbsp;&nbsp;Register again for new verification code</p> 
+                    </div>
                     @endif
                     @if(session('err1')!="")
-                    <div class="size11 text-left alert alert-info">
-                        <i class="fa fa-info-circle fa-1x"></i>&nbsp;
-                        {{session('err1')}}
+                    <div class="size11 text-left alert alert-danger">
+                        
+                        <p class="size11 text-left m-0"><i class="fa fa-info-circle fa-1x"></i>&nbsp;&nbsp;Invalid email or password</p> 
                     </div>
                     @endif
 

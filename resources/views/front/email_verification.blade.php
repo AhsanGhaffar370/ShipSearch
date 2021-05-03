@@ -35,7 +35,7 @@
                 <p class="size24 text-dark">Your email address has been verified</p>
                 <input type="button" name="submitbtn" class="btn btn-primary rounded-0 b6 pr-4 pl-4 pt-2 pb-2" onclick="window.location.href='{{route('login')}}'" value="Continue to Login">
             </div>
-            <p class="size11 text-center pb-2" style="color: black;">Powered by <a href="{{route('home')}}" class="b6 size13 text-primary">Bloggers.com</a></p>
+            <p class="size11 text-center pb-2" style="color: black;">Powered by <a href="{{route('home')}}" class="b6 size13 text-primary">ShipSearch.com</a></p>
         </div>
     </section>
     
@@ -52,7 +52,7 @@
                 
                 <input type="button" name="submitbtn" class="btn btn-primary rounded-0 b6 pr-4 pl-4 pt-2 pb-2" onclick="window.location.href='{{route('login')}}'" value="Continue to Login">
             </div>
-            <p class="size11 text-center pb-2" style="color: black;">Powered by <a href="{{route('home')}}" class="b6 size13 text-primary">Bloggers.com</a></p>
+            <p class="size11 text-center pb-2" style="color: black;">Powered by <a href="{{route('home')}}" class="b6 size13 text-primary">ShipSearch.com</a></p>
         </div>
     </section>
 
@@ -70,7 +70,7 @@
                 <input type="button" name="submitbtn" class="btn btn-primary rounded-0 b6 pr-4 pl-4 pt-2 pb-2" onclick="window.location.href='{{route('login')}}'" value="Sign up">
                 
             </div>
-            <p class="size11 text-center pb-2" style="color: black;">Powered by <a href="{{route('home')}}" class="b6 size13 text-primary">Bloggers.com</a></p>
+            <p class="size11 text-center pb-2" style="color: black;">Powered by <a href="{{route('home')}}" class="b6 size13 text-primary">ShipSearch.com</a></p>
         </div>
     </section>
     @endif

@@ -2,6 +2,7 @@
 
 <head>
     <style>
+
         .sec_bg {
             padding: 50px;
             background-color: white;
@@ -61,7 +62,7 @@
             <p class="h1">Let's confirm your email address. </p>
             <p class="p1">By clicking on the following link, you are confirming your email address.</p>
             <a href="{{ route('email_verification.code', ['code' => $code]) }}" class="btn1">Confirm Email Address</a>
-            <p class="p2">Powered by<a href="{{route('home')}}">Bloggers.com</a></p>
+            <p class="p2">Powered by<a href="{{route('home')}}">&nbsp;ShipSearch.com</a></p>
             
             {{-- <img src="{{$message->embed($pathToFile)}}" class="img1" height="50px" width="220px"  alt="logo"> --}}
         </div>
