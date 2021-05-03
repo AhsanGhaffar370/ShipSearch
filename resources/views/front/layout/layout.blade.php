@@ -75,7 +75,7 @@
         <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav"> -->
         <div class="d-block text-center">
             <a class="navbar-brand pt-2 pb-2" href={{route('home')}}>
-                <img src="http://businesscardsprinting.co.uk/includes/frontend_source/ss_v2/images/logo.png" alt="" />
+                <img src="{{asset('front_asset/images/logo.png')}}" alt=""  />
             </a>
         </div>
         <nav class="navbar navbar-expand-lg cl_bd pt-0 pb-0" id="mainNav">
@@ -145,7 +145,7 @@
 
                 <!-- Grid column -->
                 <div class="col-md-6 mt-md-0 mt-3 pl-lg-5">
-                    <img src="http://businesscardsprinting.co.uk/includes/frontend_source/images/logo-footer.png"
+                    <img src="{{asset('front_asset/images/logo-footer.png')}}"
                         class="logo footer_logo">
                     <div class="p-2">
                         <i class="fa fa-phone" style="color:#09cec7;"></i> &nbsp;&nbsp;&nbsp;
@@ -316,7 +316,66 @@
             let id = $(this).attr('href');
             $('.show_details_' + id).fadeToggle("slow");
         });
+
+
+        // AJAX Using jQuery 
+        $("#email31").keyup(function() {
+            let ser = $('#email31').val();
+
+            $.ajax({
+                url: 'checkmail',
+                type: 'get',
+                data: 'email=' + ser,
+                success: function(response) {
+                    if (response == "exist") {
+                        $("#msg21").html(
+                            '<div class="size13 alert alert-warning"><i class="fas fa-info-circle"></i> Email Already Exist</div>'
+                        );
+                        $('#sign12').attr('disabled', 'disabled');
+                    } else if (response == "not exist") {
+                        $("#msg21").html('');
+                        $('#sign12').removeAttr('disabled');
+                    } else {
+                        // console.log("else : ",response);
+                    }
+                }
+            });
+        });
+
+        $('#reg_form21').submit(function(e) {
+            check_cfrmPass();
+
+            if (check_cfrmPass() === true) {
+                return;
+            } else {
+                e.preventDefault();
+            }
+        });
+
+        // validate confirm password function
+        function check_cfrmPass() {
+            var cfrm_border=$('#cfrm_border');
+            var pass1 = $("#org_pass");
+            var pass2 = $("#cfrm_pass");
+            var pass1_val = pass1.val();
+            var pass2_val = pass2.val();
+
+            if (pass2_val != pass1_val) {
+                $("#pass_msg").html(
+                    '<div class="size13 alert alert-warning"><i class="fas fa-info-circle"></i> Password & Confirm Password should be same</div>'
+                );
+                cfrm_border.css({ "border": "1px solid red" , "border-radius": "5px"});
+                return false;
+            } 
+            else {
+                $("#pass_msg").html('');
+                cfrm_border.css({ "border": "none" });
+                return true;
+            }
+        }
     });
+
+    
 
     // $(document).ready(function() {
     //     $('#cargo_table').DataTable({

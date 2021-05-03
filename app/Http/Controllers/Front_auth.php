@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ss_user;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail as FacadesMail;
+use Mail;
 
 class Front_auth extends Controller
 {
@@ -12,20 +14,23 @@ class Front_auth extends Controller
         $email= $req->email;
         $password= md5($req->pass);
 
-        $res=ss_user::where('email',$email)->where('password',$password)->get();
+        $res=ss_user::email($email)->pass($password)->get();
 
         if(isset($res[0])){
-            if($res[0]->is_active==1){
+            
+            $res=ss_user::email($email)->pass($password)->isActive("1")->get();
+            if(isset($res[0])){
                 $req->session()->put('front_uid',$res[0]->user_id);
                 $fullname=$res[0]->first_name;
                 $req->session()->put('front_uname',$fullname);
                 return redirect()->route('home');
             }
             else{
-                $req->session()->flash('err','email or password is incorrect');
+                $req->session()->flash('err','Please verify your email by clicking the verification link which send to your email at the time of registration.');
+                $req->session()->flash('err1',' Register again to get a new verification code.');
+                
                 return redirect()->route('login');
             }
-
         }else{
             $req->session()->flash('err','email or password is incorrect');
             return redirect()->route('login');
@@ -34,11 +39,19 @@ class Front_auth extends Controller
 
     function reg_req(Request $req){
 
+        ss_user::email($req->email)->isActive("0")->delete();
+
+
         $user=new ss_user;
 
         $user->first_name=$req->name;
         $user->email=$req->email;
         $user->password=md5($req->pass);
+        $code=md5($req->email.time());
+        $user->activationcode=$code;
+        $user->is_active=0;
+
+        
 
         $user->last_name=" ";
         $user->date_of_birth=date('Y-m-d');
@@ -66,8 +79,52 @@ class Front_auth extends Controller
 
         $user->save();
 
-        $req->session()->flash('reg_msg','Registered Successfully ! Login with your credentials.');
+        $user21['to']=$req->email;
+        $data=['code'=>$code];
+        
+        Mail::send('front/mail_format',$data, function($messages) use ($user21){
+            $messages->from('ahsanrao237@gmail.com', 'ShipSearch Support');
+            $messages->to($user21['to']);
+            $messages->subject("Email Verification | shipsearch.com");
+            // $message->attach($pathToFile, array('as' => $display, 'mime' => $mime));
+        });
+
+        $req->session()->flash('reg_msg',$req->email);
 
         return redirect()->route('login');
+    }
+
+    function email_ver_req($code){
+
+        $status="invalid code";
+        $res= ss_user::code($code)->exists();
+
+        if($res){
+            // echo 'exist';
+            $user=ss_user::code($code)->isActive('0')->first();
+            if($user==null){
+                $status="already verified";
+            }else{
+                $user->is_active=1;
+                $user->save();
+
+                $status="email verified";
+            }
+
+        }else{
+            $status="invalid code";
+        }
+        
+        return view('front/email_verification',['status'=>$status]);
+    }
+
+    function checkmail_ajax(Request $req){
+        $user= ss_user::email($req->email)->isActive("1")->first();
+
+        if($user==null){
+            echo "not exist";
+        }else{
+            echo "exist";
+        }
     }
 }

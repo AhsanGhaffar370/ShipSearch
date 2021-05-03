@@ -11,4 +11,21 @@ class ss_user extends Model
     public $table='ss_user';
     public $timestamps=false;
     protected $primaryKey = 'user_id';
+
+ 
+    public function scopeIsActive($query, $isactive){
+        return $query->where('is_active',$isactive);
+    }
+
+    public function scopeEmail($query, $email){
+        return $query->where('email',$email);
+    }
+
+    public function scopePass($query, $pass){
+        return $query->where('password',$pass);
+    }
+
+    public function scopeCode($query, $code){
+        return $query->where('activationcode',$code);
+    }
 }

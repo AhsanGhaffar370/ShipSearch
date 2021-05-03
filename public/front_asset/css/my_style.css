@@ -1299,6 +1299,10 @@ p {
     font-size: 13px;
 }
 
+.size11 {
+    font-size: 11px;
+}
+
 
 /* 
 END OF TYPOGRAPHY 
@@ -1329,6 +1333,14 @@ END OF TYPOGRAPHY
     /* it center the item vertically */
     justify-content: center;
     /* it center the item horizontally */
+}
+
+.centre_sec21 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12%;
 }
 
 .tl2c {

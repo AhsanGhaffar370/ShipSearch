@@ -25,6 +25,7 @@ use App\Http\Controllers\front\HomeController;
 // });
 
 
+
 Route::get('/', [HomeController::class, 'view'] )->name('home');
 
 Route::get('/cargo/view', [FrontCargoController::class, 'view'] )->name('cargo.view');
@@ -40,6 +41,10 @@ Route::get('/login', function () {
 Route::post('login_req',[Front_auth::class,'login_req'])->name('login_req');
 
 Route::post('reg_req',[Front_auth::class,'reg_req'])->name('reg_req');
+
+Route::get('email_verification/{code}', [Front_auth::class, 'email_ver_req'] )->name('email_verification.code');
+
+Route::get('checkmail',[Front_auth::class, 'checkmail_ajax'])->name('checkmail');
 
 Route::group(['middleware'=>['front_auth']],function(){
 

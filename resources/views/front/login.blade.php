@@ -16,8 +16,21 @@
                     @csrf
 
                     @if(session('err')!="")
-                    <div class="alert alert-danger">
+                    <div class="size11 alert alert-danger">
                         {{session('err')}}
+                    </div> 
+                    @endif
+                    @if(session('err1')!="")
+                    <div class="size11 text-left alert alert-info">
+                        <i class="fa fa-info-circle fa-1x"></i>&nbsp;
+                        {{session('err1')}}
+                    </div>
+                    @endif
+
+                    @if(session('reg_msg')!="")
+                    <div class="size11 alert alert-success">
+                        <p class="size13 text-left m-0">We have just sent an email to <b>{{session('reg_msg')}}</b> Please verify your email to login.</p>
+                        
                     </div>
                     @endif
                     <div class="col-auto p-0">
@@ -50,14 +63,11 @@
                 <p class="bg_bd text-white size36 text-center b7 m-0 p-3">
                     Register
                 </p>
-                <form method="post" action={{route('reg_req')}} class="text-center p-4">
+                <form method="post" action={{route('reg_req')}} id="reg_form21" class="text-center p-4">
                     @csrf
 
-                    @if(session('reg_msg')!="")
-                    <div class="alert alert-success">
-                        {{session('reg_msg')}}
-                    </div>
-                    @endif
+                    <span id="msg21" class=""></span>
+                    <span id="pass_msg" class=""></span>
                     <div class="col-auto p-0">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend rounded-0">
@@ -71,7 +81,7 @@
                             <div class="input-group-prepend rounded-0">
                                 <div class="input-group-text"><i class="fas fa-envelope"></i></div>
                             </div>
-                            <input type="email" class="form-control" name="email" placeholder="Email" required />
+                            <input type="email" class="form-control" id="email31" name="email" placeholder="Email" required />
                         </div>
                     </div>
                     <div class="col-auto p-0">
@@ -79,19 +89,19 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
                             </div>
-                            <input type="password" class="form-control" name="pass" placeholder="Password" required />
+                            <input type="password" id="org_pass" class="form-control" name="pass" placeholder="Password" required />
                         </div>
                     </div>
                     <div class="col-auto p-0">
-                        <div class="input-group mb-2">
+                        <div class="input-group mb-2" id='cfrm_border'>
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
                             </div>
-                            <input type="password" class="form-control" name="c_pass" placeholder="Confirm Password" required />
+                            <input type="password" id="cfrm_pass" class="form-control" name="c_pass" placeholder="Confirm Password" required />
                         </div>
                     </div>
                     <div class="text-center d-flex justify-content-center mt-4">
-                        <input type="submit" class="btn btn-info bg_bd rounded-0 submit m-0" value="Register"
+                        <input type="submit" id="sign12" class="btn btn-info bg_bd rounded-0 submit m-0" value="Register"
                             name="register">
                     </div>
                 </form>
