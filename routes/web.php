@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\CargoController;
 use App\Http\Controllers\admin\RegionController;
 use App\Http\Controllers\admin\PortController;
 use App\Http\Controllers\admin\CountryController;
+use App\Http\Controllers\admin\CargoTypeController;
 
 // Front Controllers
 use App\Http\Controllers\Front_auth;
