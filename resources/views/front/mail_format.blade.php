@@ -19,6 +19,10 @@
             border: none;
             text-decoration: none;
         }
+        .a1{
+            font-weight: 600;
+            text-decoration: none;
+        }
 
         .btn1:hover {
             background-color: #0567d8;
@@ -56,13 +60,13 @@
 <body>
     <section class="section ">
         <div><a href="{{route('home')}}">
-                <img src="http://businesscardsprinting.co.uk/includes/frontend_source/ss_v2/images/logo.png" class="img1" height="50px" width="220px"  alt="logo">
+                <img src="http://www.eqan.net/shipsearch/public/front_asset/images/logo.png" class="img1" height="50px" width="220px"  alt="logo">
             </a></div>
         <div class="sec_bg">
             <p class="h1">Let's confirm your email address. </p>
             <p class="p1">By clicking on the following link, you are confirming your email address.</p>
             <a href="{{ route('email_verification.code', ['code' => $code]) }}" class="btn1">Confirm Email Address</a>
-            <p class="p2">Powered by<a href="{{route('home')}}">&nbsp;ShipSearch.com</a></p>
+            <p class="p2">Powered by&nbsp;<a href="{{route('home')}}" class="a1">ShipSearch.com</a></p>
             
             {{-- <img src="{{$message->embed($pathToFile)}}" class="img1" height="50px" width="220px"  alt="logo"> --}}
         </div>

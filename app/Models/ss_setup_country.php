@@ -12,6 +12,9 @@ class ss_setup_country extends Model
     public $timestamps=false;
     protected $primaryKey = 'country_id';
 
+    protected $guarded = [];  
+    // protected $fillable = ['country_id','country_name','sortname','phonecode','is_active','create_at','created_by','modified_at','modified_by'];  
+
     public function scopeActive($query){
         return $query->where('is_active',1);
     }

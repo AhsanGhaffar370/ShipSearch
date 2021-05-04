@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CargoController;
 use App\Http\Controllers\admin\RegionController;
 use App\Http\Controllers\admin\PortController;
+use App\Http\Controllers\admin\CountryController;
 
 // Front Controllers
 use App\Http\Controllers\Front_auth;
@@ -112,6 +113,14 @@ Route::group(['middleware'=>['admin_auth']],function(){
     Route::get('/admin/port/update/{id}',[PortController::class, 'view_update'])->name('admin.port.update.id');
     Route::post('/admin/port/update_req',[PortController::class, 'update_req'])->name('admin.port.update_req');
     Route::get('/admin/port/update-status/{id}/{status}',[PortController::class, 'update_status'])->name('admin.port.update_status.id.status');
+    
+    // Country
+    Route::get('/admin/country/view', [CountryController::class, 'view'] )->name('admin.country.view');
+    Route::get('/admin/country/add', [CountryController::class, 'view_add'] )->name('admin.country.add');
+    Route::post('/admin/country/add_req', [CountryController::class, 'add_req'] )->name('admin.country.add_req');
+    Route::get('/admin/country/update/{id}',[CountryController::class, 'view_update'])->name('admin.country.update.id');
+    Route::post('/admin/country/update_req',[CountryController::class, 'update_req'])->name('admin.country.update_req');
+    Route::get('/admin/country/update-status/{id}/{status}',[CountryController::class, 'update_status'])->name('admin.country.update_status.id.status');
 
 });
 
