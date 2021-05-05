@@ -99,6 +99,7 @@ Route::group(['middleware'=>['admin_auth']],function(){
 
     Route::get('/admin/cargo/update-status/{id}/{status}',[CargoController::class, 'update_status'])->name('admin.cargo.update_status.id.status');
 
+    
     // Region
     Route::get('/admin/region/view', [RegionController::class, 'view'] )->name('admin.region.view');
     Route::get('/admin/region/add', [RegionController::class, 'view_add'] )->name('admin.region.add');
