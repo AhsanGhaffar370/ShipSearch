@@ -66,7 +66,7 @@
                            <li><a href={{route('admin.region.view')}}><i class="fa fa-home"></i> Region </a></li>
                            <li><a href={{route('admin.port.view')}}><i class="fa fa-home"></i> Port </a></li>
                            <li><a href={{route('admin.country.view')}}><i class="fa fa-home"></i> Country </a></li>
-                           <li><a href={{route('admin.port.view')}}><i class="fa fa-home"></i> Cargo Type </a></li>
+                           <li><a href={{route('admin.cargo_type.view')}}><i class="fa fa-home"></i> Cargo Type </a></li>
                            <li><a href={{route('admin.port.view')}}><i class="fa fa-home"></i> Unit </a></li>
                         </ul>
                      </div>

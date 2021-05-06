@@ -1,13 +1,13 @@
 @extends('admin/layout/layout')
 
-@section('page_title','Update Cargo')
+@section('page_title','Update Cargo Type')
 
 @section('container')
 
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>Update Post</h3>
+            <h3>Update Cargo Type</h3>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -17,16 +17,16 @@
                 <div class="x_content">
                     <br />
 
-                    <form method="post" id="region_form" action={{route('admin.region.update_req')}} class="form-horizontal form-label-left"
+                    <form method="post" id="cargo_type_form" action={{route('admin.cargo_type.update_req')}} class="form-horizontal form-label-left"
                         enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="region_id" value="{{$res->region_id}}" />
+                        <input type="hidden" name="cargo_type_id" value="{{$res->cargo_type_id}}" />
                         <!--  -->
                         <input type="hidden" name="is_active" value="{{$res->is_active}}" />
                         <!--  -->
                         <div class="form-group col-sm-4">
-                            <label for="">Region Name</label>
-                            <input type="text" value="{{$res->region_name}}" required name="region_name"
+                            <label for="">Cargo Type Name</label>
+                            <input type="text" value="{{$res->cargo_type_name}}" required name="cargo_type_name"
                                 class="form-control">
                         </div>
                         <!-- -->

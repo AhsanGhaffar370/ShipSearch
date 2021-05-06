@@ -124,6 +124,13 @@ Route::group(['middleware'=>['admin_auth']],function(){
     Route::post('/admin/country/update_req',[CountryController::class, 'update_req'])->name('admin.country.update_req');
     Route::get('/admin/country/update-status/{id}/{status}',[CountryController::class, 'update_status'])->name('admin.country.update_status.id.status');
 
+    // cargo_type
+    Route::get('/admin/cargo_type/view', [CargoTypeController::class, 'view'] )->name('admin.cargo_type.view');
+    Route::get('/admin/cargo_type/add', [CargoTypeController::class, 'view_add'] )->name('admin.cargo_type.add');
+    Route::post('/admin/cargo_type/add_req', [CargoTypeController::class, 'add_req'] )->name('admin.cargo_type.add_req');
+    Route::get('/admin/cargo_type/update/{id}',[CargoTypeController::class, 'view_update'])->name('admin.cargo_type.update.id');
+    Route::post('/admin/cargo_type/update_req',[CargoTypeController::class, 'update_req'])->name('admin.cargo_type.update_req');
+    Route::get('/admin/cargo_type/update-status/{id}/{status}',[CargoTypeController::class, 'update_status'])->name('admin.cargo_type.update_status.id.status');
 });
 
 Route::get('admin/logout',function(){
