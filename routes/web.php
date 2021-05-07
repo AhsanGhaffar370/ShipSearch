@@ -20,6 +20,15 @@ use App\Http\Controllers\front\HomeController;
 |--------------------------------------------------------------------------
 | Front Section
 |--------------------------------------------------------------------------
+
+
+Show Id in cargo id in front cargo
+data entry in cargo and vessel section 
+
+
+
+
+
 */
 
 // Route::get('/', function () {
@@ -32,6 +41,7 @@ Route::get('/', [HomeController::class, 'view'] )->name('home');
 
 Route::get('/cargo/view', [FrontCargoController::class, 'view'] )->name('cargo.view');
 
+Route::post('/cargo/view', [FrontCargoController::class, 'search_req'] )->name('cargo.search_req');
 
 Route::get('/login', function () {
     if((session()->has('front_uid'))){

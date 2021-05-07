@@ -17,8 +17,38 @@ class FrontCargoController extends Controller
 
         $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lunit','Dunit','Lport1','Lport2','Dport1','Dport2'])->get();
 
-        return view('front/cargo/view',['data'=>$data]);
+        $ss_setup_region= ss_setup_region::active()->get();
+        $ss_setup_country= ss_setup_country::active()->get();
+        $ss_setup_port= ss_setup_port::active()->get();
+
+        return view('front/cargo/view',['data'=>$data,
+                                        'region'=>$ss_setup_region,
+                                        'country'=>$ss_setup_country,
+                                        'port'=>$ss_setup_port]);
         // return view('front/cargo/view');
+    }
+
+    function search_req(Request $req){
+
+        $from_date=date("d-m-Y", strtotime($req->from_date));
+        $to_date=date("d-m-Y", strtotime($req->to_date));
+        $from_date="01-05-2021";
+        $to_date="30-05-2021";
+
+        // echo $from_date;        
+
+        // $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lunit','Dunit','Lport1','Lport2','Dport1','Dport2'])->where('loading_region_id', $req->loading_region_id)->whereBetween('laycan_date_from', [$from_date, $to_date])->get();
+        $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lunit','Dunit','Lport1','Lport2','Dport1','Dport2'])->where('laycan_date_from', '>', $from_date)->where('laycan_date_from', '<', $to_date)->get();
+
+        $ss_setup_region= ss_setup_region::active()->get();
+        $ss_setup_country= ss_setup_country::active()->get();
+        $ss_setup_port= ss_setup_port::active()->get();
+
+        return view('front/cargo/view',['data'=>$data,
+                                        'region'=>$ss_setup_region,
+                                        'country'=>$ss_setup_country,
+                                        'port'=>$ss_setup_port]);
+        // return view('front/cargo/search_req');
     }
 
     function view_add(){
