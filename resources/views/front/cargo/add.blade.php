@@ -245,8 +245,16 @@
             </div>
             <!-- -->
             <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
-                <label for="">Loading Equipment Req</label>
-                <input type="text" required name="loading_equipment_req" class="form-control">
+                <label for="" class="mb-3">Loading Equipment Req</label><br>
+                {{-- <input type="text" required name="loading_equipment_req" class="form-control"> --}}
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" required id="loading_equipment_req1" name="loading_equipment_req" value="Yes" />
+                    <label class="form-check-label " for="loading_equipment_req1"> Yes </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" required id="loading_equipment_req2" name="loading_equipment_req" value="No" />
+                    <label class="form-check-label" for="loading_equipment_req2"> No </label>
+                </div>
             </div>
             <!-- -->
             <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
@@ -300,6 +308,18 @@
                                 <option value="Pontoon Cover">Pontoon Cover</option>
                                 <option value="Other">Other</option>
                             </select> -->
+            </div>
+            <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                <label for="" class="mb-3">Discharge Equipment Req</label><br>
+                {{-- <input type="text" required name="discharge_equipment_req" class="form-control"> --}}
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" required id="discharge_equipment_req1" name="discharge_equipment_req" value="Yes" />
+                    <label class="form-check-label " for="discharge_equipment_req1"> Yes </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" required id="discharge_equipment_req2" name="discharge_equipment_req" value="No" />
+                    <label class="form-check-label" for="discharge_equipment_req2"> No </label>
+                </div>
             </div>
             <!--  -->
             <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">

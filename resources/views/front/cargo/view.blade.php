@@ -175,10 +175,11 @@ table {
                     <th width="10%">Cargo Type</th>
                     <th width="10%">Loading Region</th>
                     <th width="10%">Discharge Region</th>
-                    <th width="10%">Laycan Date</th>
+                    <th width="10%">Laycan Date From</th>
+                    <th width="10%">Laycan Date To</th>
                     <th width="10%">Quantity</th>
                     <th width="10%">Unit</th>
-                    <th width="12%">Loading Discharge Rates</th>
+                    <th width="10%">Loading Discharge Rates</th>
                     <th width="10%">Posted on</th>
 
                     @if(session('front_uid')!="")
@@ -193,7 +194,8 @@ table {
                     <td>{{optional($row->cargotype)->cargo_type_name}}</td>
                     <td>{{optional($row->Lregion)->region_name}}</td>
                     <td>{{optional($row->Dregion)->region_name}}</td>
-                    <td>{{$row->laycan_date_from}}</td>
+                    <td>{{date("d-M-Y", strtotime($row->laycan_date_from))}}</td>
+                    <td>{{date("d-M-Y", strtotime($row->laycan_date_to))}}</td>
                     <td>{{$row->quantity}}</td>
                     <td>{{optional($row->Lunit)->unit_name}}</td>
                     <td>{{$row->loading_discharge_rates}}</td>

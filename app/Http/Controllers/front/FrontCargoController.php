@@ -30,15 +30,28 @@ class FrontCargoController extends Controller
 
     function search_req(Request $req){
 
-        $from_date=date("d-m-Y", strtotime($req->from_date));
-        $to_date=date("d-m-Y", strtotime($req->to_date));
-        $from_date="01-05-2021";
-        $to_date="30-05-2021";
+        $laycan_col="";
+        if($req->laycan_date=="laycan_date_from"){
+            $laycan_col="laycan_date_from";
+        }
+        if($req->laycan_date=="laycan_date_to"){
+            $laycan_col="laycan_date_to";
+        }
 
-        // echo $from_date;        
+        $from_date=date("Y-m-d", strtotime($req->from_date));
+        $to_date=date("Y-m-d", strtotime($req->to_date));      
 
-        // $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lunit','Dunit','Lport1','Lport2','Dport1','Dport2'])->where('loading_region_id', $req->loading_region_id)->whereBetween('laycan_date_from', [$from_date, $to_date])->get();
-        $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lunit','Dunit','Lport1','Lport2','Dport1','Dport2'])->where('laycan_date_from', '>', $from_date)->where('laycan_date_from', '<', $to_date)->get();
+        $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lunit','Dunit','Lport1','Lport2','Dport1','Dport2'])
+                        ->where('loading_region_id', $req->loading_region_id)
+                        ->where('loading_country_id', $req->loading_country_id)
+                        ->where('loading_port_id_1', $req->loading_port_id_1)
+                        ->where('loading_port_id_2', $req->loading_port_id_2)
+                        ->where('discharge_region_id', $req->discharge_region_id)
+                        ->where('discharge_country_id', $req->discharge_country_id)
+                        ->where('discharge_port_id_1', $req->discharge_port_id_1)
+                        ->where('discharge_port_id_2', $req->discharge_port_id_2)
+                        ->whereBetween($laycan_col, [$from_date, $to_date])->get();
+        // $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lunit','Dunit','Lport1','Lport2','Dport1','Dport2'])->where('loading_region_id', $req->loading_region_id)->where('laycan_date_from', '>=', $from_date)->where('laycan_date_from', '<=', $to_date)->get();
 
         $ss_setup_region= ss_setup_region::active()->get();
         $ss_setup_country= ss_setup_country::active()->get();
@@ -49,6 +62,7 @@ class FrontCargoController extends Controller
                                         'country'=>$ss_setup_country,
                                         'port'=>$ss_setup_port]);
         // return view('front/cargo/search_req');
+
     }
 
     function view_add(){
