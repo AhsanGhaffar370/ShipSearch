@@ -5,6 +5,20 @@
 
 @section('container')
 
+<style>
+
+.left_round{
+    border-top-right-radius: 0px!important;
+    border-bottom-right-radius: 0px!important;
+}
+.right_round{
+    border-top-left-radius: 0px!important;
+    border-bottom-left-radius: 0px!important;
+    background-color: #dfe3e3!important;
+}
+
+</style>
+
 <div class="container-fluid p-lg-5 p-md-2 mt-3 mb-5">
 <h1 class="size28 text-white b7 p-2 mb-3 bg_sec ">Cargo</h1>
 <div class="bg-light  p-4 border rounded">
@@ -142,7 +156,7 @@
                     <div class="form-group col-lg-6 col-md-6 col-sm-12">
                         <label for="">Unit</label>
                         <select name="unit_id" id="unit_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                            <!-- <option value="-1" disabled selected>Choose</option> -->
                             @foreach ($unit as $row)
                             <option value="{{$row->unit_id}}">{{$row->unit_name}}</option>
                             @endforeach
@@ -151,19 +165,55 @@
                 </div>
             </div>
             <!-- -->
-            <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
-                <label for="">Max LOA</label>
-                <input type="text" required name="max_loa" class="form-control">
+            <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                <div class="row">
+                    <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                        <label for="">Max LOA</label>
+                        <input type="text" required name="max_loa" class="left_round form-control ">
+                    </div>
+                    <!-- -->
+                    <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                        <!-- <label for="" class="mt-1"></label> -->
+                        <select name="max_loa_unit" id="max_loa_unit" class="right_round form-control mt-4 bg-light">
+                            <option value="Meters">Meters</option>
+                            <option value="Feet">Feet</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <!-- -->
-            <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
-                <label for="">Max Draft</label>
-                <input type="text" required name="max_draft" class="form-control">
+            <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                <div class="row">
+                    <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                        <label for="">Max Draft</label>
+                        <input type="text" required name="max_draft" class="left_round form-control ">
+                    </div>
+                    <!-- -->
+                    <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                        <!-- <label for="" class="mt-1"></label> -->
+                        <select name="max_draft_unit" id="max_draft_unit" class="right_round form-control mt-4 bg-light">
+                            <option value="Meters">Meters</option>
+                            <option value="Feet">Feet</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <!-- -->
-            <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
-                <label for="">Max Height</label>
-                <input type="text" required name="max_height" class="form-control">
+            <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                <div class="row">
+                    <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                        <label for="">Max Height</label>
+                        <input type="text" required name="max_height" class="left_round form-control ">
+                    </div>
+                    <!-- -->
+                    <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                        <!-- <label for="" class="mt-1"></label> -->
+                        <select name="max_height_unit" id="max_height_unit" class="right_round form-control mt-4 bg-light">
+                            <option value="Meters">Meters</option>
+                            <option value="Feet">Feet</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <!-- -->
             <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
@@ -235,7 +285,7 @@
                     <div class="form-group col-12 col-lg-6 col-md-6 col-sm-12">
                         <label for="">Loading/Discharge Unit</label>
                         <select name="loading_discharge_unit_id" id="loading_discharge_unit_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                            <!-- <option value="-1" disabled selected>Choose</option> -->
                             @foreach ($unit as $row)
                             <option value="{{$row->unit_id}}">{{$row->unit_name}}</option>
                             @endforeach
@@ -262,7 +312,7 @@
                 <input type="text" required name="gear_lifting_capacity" class="form-control">
             </div>
             <!-- -->
-            <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+            <!-- <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                 <label for="">Loading/Discharge Equipment Req</label>
                 <div id="check_bor" class="form-row pl-4  border">
                     <div class="form-group col-12 col-lg-6 col-md-6 col-sm-12">
@@ -297,7 +347,7 @@
                                 value="Pontoon Cover">Pontoon Cover
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- <label for="">Loading/Discharge Equipment Req</label>
                             <select name="loading_discharge_equipment_req[]" multiple required class="form-control">
                                 <option value="Gears">Gears</option>
@@ -308,7 +358,7 @@
                                 <option value="Pontoon Cover">Pontoon Cover</option>
                                 <option value="Other">Other</option>
                             </select> -->
-            </div>
+            <!-- </div> -->
             <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                 <label for="" class="mb-3">Discharge Equipment Req</label><br>
                 {{-- <input type="text" required name="discharge_equipment_req" class="form-control"> --}}

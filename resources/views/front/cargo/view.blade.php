@@ -52,7 +52,7 @@ table {
     </div>
 
     <div class="container pb-5">
-        <form id="cargo_form21" method="post" action="{{route('cargo.search_req')}}" class="form-horizontal form-label-left "
+        <form id="search_cargo21" method="post" action="{{route('cargo.search_req')}}" class="form-horizontal form-label-left "
             enctype="multipart/form-data">
             @csrf
             <div class="row">
@@ -67,13 +67,13 @@ table {
                 <!-- -->
                 <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                     <label for="">From Date</label>
-                    <input type="date" class="form-control from_date" id="from_date" name="from_date"
+                    <input type="date" required class="form-control from_date" id="from_date" name="from_date"
                                     placeholder="From Date"  />
                 </div>
                 <!-- -->
                 <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                     <label for="">To Date</label>
-                    <input type="date" class="form-control to_date" id="to_date" name="to_date"
+                    <input type="date" required class="form-control to_date" id="to_date" name="to_date"
                                     placeholder="To Date"  />
                 </div>
                 <!-- -->
@@ -159,7 +159,7 @@ table {
                 <!-- -->
                 <div class="col-12 col-12 text-right">
                     <div class="">
-                        <button type="submit" name="search_cargo" class="btn btn-info">Search</button>
+                        <button type="submit" class="btn btn-info">Search</button>
                     </div>
                 </div>
 
@@ -167,6 +167,48 @@ table {
         </form>
     </div>
 
+    @if(session('front_uid')!="")
+    <p class="b7 mb-0">Search History:</p>
+    <div class="border">
+        <table id="cargo_table22" class="table table-condensed table-hover table-responsive-md m-0 ">
+            <thead class="" style="background-color: #EAEAEA;">
+                <tr>
+                    <th width="8%">Laycan Date</th>
+                    <th width="6%">From Date</th>
+                    <th width="6%">To Date</th>
+                    <th width="10%">Loading Region</th>
+                    <th width="10%">Loading Country</th>
+                    <th width="10%">Loading Port#1</th>
+                    <th width="10%">Loading Port#2</th>
+                    <th width="10%">Discharge Region</th>
+                    <th width="10%">Discharge Country</th>
+                    <th width="10%">Discharge Port#1</th>
+                    <th width="10%">Discharge Port#2</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($ser_data as $row)
+                <tr class="">
+                    <td>{{$row->laycan_date}}</td>
+                    <td>{{date("d-M-Y", strtotime($row->from_date))}}</td>
+                    <td>{{date("d-M-Y", strtotime($row->to_date))}}</td>
+                    <td>{{optional($row->Lregion)->region_name}}</td>
+                    <td>{{optional($row->Dregion)->region_name}}</td>
+                    <td>{{optional($row->Lcountry)->country_name}}</td>
+                    <td>{{optional($row->Dcountry)->country_name}}</td>
+                    <td>{{optional($row->Lport1)->port_name}}</td>
+                    <td>{{optional($row->Dport1)->port_name}}</td>
+                    <td>{{optional($row->Lport2)->port_name}}</td>
+                    <td>{{optional($row->Dport2)->port_name}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    @endif
+
+    
+    <p class="b7 mb-0 mt-3">Search Resilt:</p>
     <div class="border">
         <table id="cargo_table21" class="table table-condensed table-hover table-responsive-md m-0 ">
             <thead class="" style="background-color: #EAEAEA;">

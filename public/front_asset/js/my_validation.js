@@ -24,6 +24,31 @@ $(document).ready(function() {
         }
     });
 
+
+    $('#search_cargo').submit(function(e) {
+
+        var flag = true;
+        var ids = ["laycan_date", "loading_region_id", "loading_country_id", "loading_port_id_1", "loading_port_id_2", "discharge_region_id", "discharge_country_id", "discharge_port_id_1", "discharge_port_id_2"];
+
+        for (var i = 0; i < ids.length; i++) {
+            check_dropdowns(ids[i]);
+        }
+
+        for (var i = 0; i < ids.length; i++) {
+            if (check_dropdowns(ids[i]) == false) {
+                flag = false;
+                break;
+            }
+        }
+
+        if (flag === true && check_eqp_req() === true) {
+            return;
+        } else {
+            e.preventDefault();
+        }
+    });
+
+
     $('.datepicker').datepicker({
         autoclose: true,
     });

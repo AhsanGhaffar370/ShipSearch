@@ -270,8 +270,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
-
-
     <!-- custom js -->
     <script src="{{ asset('front_asset/js/my_validation.js') }}"></script>
     <!-- <script src="{{ asset('front_asset/js/icheck.min.js') }}"></script>
@@ -289,13 +287,13 @@
 
     <script>
     $(document).ready(function() {
-        
+
         $("#close_dialog").click(function() {
             $("#dialog").dialog("close");
         });
 
         $('.add_cargo_btn').click(function(e) {
-            
+ 
             if ($(this).attr('id') == "") {
                 e.preventDefault();
                 $("#dialog").dialog({
@@ -316,7 +314,6 @@
             let id = $(this).attr('href');
             $('.show_details_' + id).fadeToggle("slow");
         });
-
 
         // AJAX Using jQuery 
         $("#email31").keyup(function() {
@@ -375,7 +372,6 @@
         }
     });
 
-    
 
     // $(document).ready(function() {
     //     $('#cargo_table').DataTable({
