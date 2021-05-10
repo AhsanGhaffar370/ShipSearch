@@ -43,6 +43,8 @@ Route::get('/cargo/view', [FrontCargoController::class, 'view'] )->name('cargo.v
 
 Route::post('/cargo/view', [FrontCargoController::class, 'search_req'] )->name('cargo.search_req');
 
+Route::get('/cargo/ser_hist_rec', [FrontCargoController::class, 'search_req_ajax'] )->name('cargo.ser_hist_rec');
+
 Route::get('/login', function () {
     if((session()->has('front_uid'))){
         return redirect()->route('home');

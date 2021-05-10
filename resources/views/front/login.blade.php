@@ -7,6 +7,7 @@
 
 <div class="container mt-5 mb-5">
     <div class="row ">
+
         <div class="col-12 col-lg-5 ">
             <div class="animate form login_form bg-white shadow-sm rounded-lg border mt-4">
                 <p class="bg_bd text-white size36 text-center b7 m-0 p-3">

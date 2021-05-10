@@ -26,8 +26,9 @@
     <!-- datepicker -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
 
-    
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <style>
     .dropdown-toggle:after {
         color: white;
@@ -75,7 +76,7 @@
         <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav"> -->
         <div class="d-block text-center">
             <a class="navbar-brand pt-2 pb-2" href={{route('home')}}>
-                <img src="{{asset('front_asset/images/logo.png')}}" alt=""  />
+                <img src="{{asset('front_asset/images/logo.png')}}" alt="" />
             </a>
         </div>
         <nav class="navbar navbar-expand-lg cl_bd pt-0 pb-0" id="mainNav">
@@ -91,22 +92,27 @@
                 <div class="collapse navbar-collapse pl-lg-5 m-auto" id="navbarResponsive">
                     <ul class="navbar-nav m-auto pl-lg-5 text-center">
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('cargo.view')}}">Cargos</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3"
+                                href="{{route('cargo.view')}}">Cargos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Vessel Charter</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Vessel
+                                Charter</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Sale & Purchase</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Sale &
+                                Purchase</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Voyage Estimator</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Voyage
+                                Estimator</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Services</a>
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3"
+                                href="{{route('home')}}">Services</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{route('home')}}">Events</a>
@@ -145,8 +151,7 @@
 
                 <!-- Grid column -->
                 <div class="col-md-6 mt-md-0 mt-3 pl-lg-5">
-                    <img src="{{asset('front_asset/images/logo-footer.png')}}"
-                        class="logo footer_logo">
+                    <img src="{{asset('front_asset/images/logo-footer.png')}}" class="logo footer_logo">
                     <div class="p-2">
                         <i class="fa fa-phone" style="color:#09cec7;"></i> &nbsp;&nbsp;&nbsp;
                         <a href="tel:+012345678901" class="ft_link">+01 234 5678 901</a>
@@ -288,12 +293,52 @@
     <script>
     $(document).ready(function() {
 
+
+        $('.ser_hist_req').click(function() {
+
+
+            let id2=$(this).attr('id');
+            let id1 = id2.split('-');
+            let id = id1[id1.length - 1];
+
+            let laycan_date=$("#laycan-"+id).html();
+            let from_date=$("#from-"+id).html();
+            let to_date=$("#to-"+id).html();
+            let lregion=$("#lregion-"+id).html();
+            let dregion=$("#dregion-"+id).html();
+            let lcountry=$("#lcountry-"+id).html();
+            let dcountry=$("#dcountry-"+id).html();
+            let lport1=$("#lport1-"+id).html();
+            let dport1=$("#dport1-"+id).html();
+            let lport2=$("#lport2-"+id).html();
+            let dport2=$("#dport2-"+id).html();
+
+            $.ajax({
+                url: '{{route("cargo.ser_hist_rec")}}',
+                data:"id=" + id + "&laycan_date=" + laycan_date + "&from_date=" + from_date + "&to_date=" + to_date + 
+                    "&lregion=" + lregion + "&dregion=" + dregion + "&lcountry=" + lcountry + "&dcountry=" + dcountry + 
+                    "&lport1=" + lport1 + "&dport1=" + dport1 + "&lport2=" + lport2 + "&dport2=" + dport2,
+                type: "get",
+                success: function(response) {
+
+                    // let json_data = $.parseJSON(response);
+                    // var len = json_data.length;
+                    // var post_str="";
+                    
+                    console.log(response);
+                }
+            });
+        });
+        // $('#ser_hist_rec').delegate('tr','click',function() {
+        //     alert( 'i was clicked' );
+        // });
+
         $("#close_dialog").click(function() {
             $("#dialog").dialog("close");
         });
 
         $('.add_cargo_btn').click(function(e) {
- 
+
             if ($(this).attr('id') == "") {
                 e.preventDefault();
                 $("#dialog").dialog({
@@ -351,7 +396,7 @@
 
         // validate confirm password function
         function check_cfrmPass() {
-            var cfrm_border=$('#cfrm_border');
+            var cfrm_border = $('#cfrm_border');
             var pass1 = $("#org_pass");
             var pass2 = $("#cfrm_pass");
             var pass1_val = pass1.val();
@@ -361,12 +406,16 @@
                 $("#pass_msg").html(
                     '<div class="size13 alert alert-warning"><i class="fas fa-info-circle"></i> Password & Confirm Password should be same</div>'
                 );
-                cfrm_border.css({ "border": "1px solid red" , "border-radius": "5px"});
+                cfrm_border.css({
+                    "border": "1px solid red",
+                    "border-radius": "5px"
+                });
                 return false;
-            } 
-            else {
+            } else {
                 $("#pass_msg").html('');
-                cfrm_border.css({ "border": "none" });
+                cfrm_border.css({
+                    "border": "none"
+                });
                 return true;
             }
         }

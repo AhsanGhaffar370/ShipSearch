@@ -32,6 +32,8 @@ table {
     border-top: 1px solid #dee2e6;
     font-weight: 600;
 }
+
+.ser_hist_req { cursor: pointer; }
 </style>
 
 <div class="container-fluid mt-5 mb-5">
@@ -188,40 +190,42 @@ table {
             </thead>
             <tbody>
                 @foreach ($ser_data as $row)
-                <tr class="">
-                    <td>{{$row->laycan_date}}</td>
-                    <td>{{date("d-M-Y", strtotime($row->from_date))}}</td>
-                    <td>{{date("d-M-Y", strtotime($row->to_date))}}</td>
-                    <td>{{optional($row->Lregion)->region_name}}</td>
-                    <td>{{optional($row->Dregion)->region_name}}</td>
-                    <td>{{optional($row->Lcountry)->country_name}}</td>
-                    <td>{{optional($row->Dcountry)->country_name}}</td>
-                    <td>{{optional($row->Lport1)->port_name}}</td>
-                    <td>{{optional($row->Dport1)->port_name}}</td>
-                    <td>{{optional($row->Lport2)->port_name}}</td>
-                    <td>{{optional($row->Dport2)->port_name}}</td>
+                <tr id="rec-{{$row->id}}" class="ser_hist_req ">
+                    <td id="laycan-{{$row->id}}">{{$row->laycan_date}}</td>
+                    <td id="from-{{$row->id}}">{{date("d-M-Y", strtotime($row->from_date))}}</td>
+                    <td id="to-{{$row->id}}">{{date("d-M-Y", strtotime($row->to_date))}}</td>
+                    <td id="lregion-{{$row->id}}">{{optional($row->Lregion)->region_name}}</td>
+                    <td id="dregion-{{$row->id}}">{{optional($row->Dregion)->region_name}}</td>
+                    <td id="lcountry-{{$row->id}}">{{optional($row->Lcountry)->country_name}}</td>
+                    <td id="dcountry-{{$row->id}}">{{optional($row->Dcountry)->country_name}}</td>
+                    <td id="lport1-{{$row->id}}">{{optional($row->Lport1)->port_name}}</td>
+                    <td id="dport1-{{$row->id}}">{{optional($row->Dport1)->port_name}}</td>
+                    <td id="lport2-{{$row->id}}">{{optional($row->Lport2)->port_name}}</td>
+                    <td id="dport2-{{$row->id}}">{{optional($row->Dport2)->port_name}}</td>
                 </tr>
+                
                 @endforeach
             </tbody>
         </table>
     </div>
-    @endif
 
-    
+
     <p class="b7 mb-0 mt-3">Search Resilt:</p>
+    @endif
     <div class="border">
         <table id="cargo_table21" class="table table-condensed table-hover table-responsive-md m-0 ">
             <thead class="" style="background-color: #EAEAEA;">
                 <tr>
+                    <th width="2%">ID</th>
                     <th width="10%">Cargo Name</th>
                     <th width="10%">Cargo Type</th>
                     <th width="10%">Loading Region</th>
                     <th width="10%">Discharge Region</th>
                     <th width="10%">Laycan Date From</th>
                     <th width="10%">Laycan Date To</th>
-                    <th width="10%">Quantity</th>
-                    <th width="10%">Unit</th>
-                    <th width="10%">Loading Discharge Rates</th>
+                    <th width="5%">Quantity</th>
+                    <th width="8%">Unit</th>
+                    <th width="15%">Loading Discharge Rates</th>
                     <th width="10%">Posted on</th>
 
                     @if(session('front_uid')!="")
@@ -232,6 +236,7 @@ table {
             <tbody>
                 @foreach ($data as $row)
                 <tr class="">
+                    <td>{{$row->cargo_id}}</td>
                     <td>{{$row->cargo_name}}</td>
                     <td>{{optional($row->cargotype)->cargo_type_name}}</td>
                     <td>{{optional($row->Lregion)->region_name}}</td>
@@ -252,6 +257,7 @@ table {
                 </tr>
                 <tr class="show_details show_details_{{$row->cargo_id}} "
                     style="display: none; background-color: #F1F1F1;">
+                    <td></td>
                     <td>
                         <p class="b7 mb-0">Loading Country:</p>
                         <p class="">{{optional($row->Lcountry)->country_name}}</p>
@@ -310,6 +316,7 @@ table {
                         <p class="b7 mb-0">Combinable:</p>
                         <p class="">{{$row->combinable}}</p>
                     </td>
+                    <td></td>
                 </tr>
                 @endforeach
 
