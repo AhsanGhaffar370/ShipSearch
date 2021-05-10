@@ -194,14 +194,14 @@ table {
                     <td id="laycan-{{$row->id}}">{{$row->laycan_date}}</td>
                     <td id="from-{{$row->id}}">{{date("d-M-Y", strtotime($row->from_date))}}</td>
                     <td id="to-{{$row->id}}">{{date("d-M-Y", strtotime($row->to_date))}}</td>
-                    <td id="lregion-{{$row->id}}">{{optional($row->Lregion)->region_name}}</td>
-                    <td id="dregion-{{$row->id}}">{{optional($row->Dregion)->region_name}}</td>
-                    <td id="lcountry-{{$row->id}}">{{optional($row->Lcountry)->country_name}}</td>
-                    <td id="dcountry-{{$row->id}}">{{optional($row->Dcountry)->country_name}}</td>
-                    <td id="lport1-{{$row->id}}">{{optional($row->Lport1)->port_name}}</td>
-                    <td id="dport1-{{$row->id}}">{{optional($row->Dport1)->port_name}}</td>
-                    <td id="lport2-{{$row->id}}">{{optional($row->Lport2)->port_name}}</td>
-                    <td id="dport2-{{$row->id}}">{{optional($row->Dport2)->port_name}}</td>
+                    <td class="{{$row->loading_region_id}}" id="lregion-{{$row->id}}">{{optional($row->Lregion)->region_name}}</td>
+                    <td class="{{$row->discharge_region_id}}" id="dregion-{{$row->id}}">{{optional($row->Dregion)->region_name}}</td>
+                    <td class="{{$row->loading_country_id}}" id="lcountry-{{$row->id}}">{{optional($row->Lcountry)->country_name}}</td>
+                    <td class="{{$row->discharge_country_id}}" id="dcountry-{{$row->id}}">{{optional($row->Dcountry)->country_name}}</td>
+                    <td class="{{$row->loading_port_id_1}}" id="lport1-{{$row->id}}">{{optional($row->Lport1)->port_name}}</td>
+                    <td class="{{$row->discharge_port_id_1}}" id="dport1-{{$row->id}}">{{optional($row->Dport1)->port_name}}</td>
+                    <td class="{{$row->loading_port_id_2}}" id="lport2-{{$row->id}}">{{optional($row->Lport2)->port_name}}</td>
+                    <td class="{{$row->discharge_port_id_2}}" id="dport2-{{$row->id}}">{{optional($row->Dport2)->port_name}}</td>
                 </tr>
                 
                 @endforeach

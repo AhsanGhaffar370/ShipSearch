@@ -304,14 +304,14 @@
             let laycan_date=$("#laycan-"+id).html();
             let from_date=$("#from-"+id).html();
             let to_date=$("#to-"+id).html();
-            let lregion=$("#lregion-"+id).html();
-            let dregion=$("#dregion-"+id).html();
-            let lcountry=$("#lcountry-"+id).html();
-            let dcountry=$("#dcountry-"+id).html();
-            let lport1=$("#lport1-"+id).html();
-            let dport1=$("#dport1-"+id).html();
-            let lport2=$("#lport2-"+id).html();
-            let dport2=$("#dport2-"+id).html();
+            let lregion=$("#lregion-"+id).attr('class');
+            let dregion=$("#dregion-"+id).attr('class');
+            let lcountry=$("#lcountry-"+id).attr('class');
+            let dcountry=$("#dcountry-"+id).attr('class');
+            let lport1=$("#lport1-"+id).attr('class');
+            let dport1=$("#dport1-"+id).attr('class');
+            let lport2=$("#lport2-"+id).attr('class');
+            let dport2=$("#dport2-"+id).attr('class');
 
             $.ajax({
                 url: '{{route("cargo.ser_hist_rec")}}',
