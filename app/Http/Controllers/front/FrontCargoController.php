@@ -166,9 +166,12 @@ class FrontCargoController extends Controller
                         ->where('discharge_country_id', $req->dcountry)
                         ->where('discharge_port_id_1', $req->dport1)
                         ->where('discharge_port_id_2', $req->dport2)
-                        ->whereBetween($req->laycan_date, [$from_date, $to_date])->get();
+                        ->whereBetween($req->laycan_date, [$from_date, $to_date])
+                        ->get();
 
+        // echo "<pre>";
         echo json_encode(array('data'=>$data));
+        // echo $req->lregion;
 
         // return view('front/cargo/view',['data'=>$data]);
     }

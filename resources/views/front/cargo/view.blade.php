@@ -203,7 +203,6 @@ table {
                     <td class="{{$row->loading_port_id_2}}" id="lport2-{{$row->id}}">{{optional($row->Lport2)->port_name}}</td>
                     <td class="{{$row->discharge_port_id_2}}" id="dport2-{{$row->id}}">{{optional($row->Dport2)->port_name}}</td>
                 </tr>
-                
                 @endforeach
             </tbody>
         </table>
@@ -233,7 +232,7 @@ table {
                     @endif
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="all_cargo">
                 @foreach ($data as $row)
                 <tr class="">
                     <td>{{$row->cargo_id}}</td>

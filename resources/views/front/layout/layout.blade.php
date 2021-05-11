@@ -291,6 +291,15 @@
 
 
     <script>
+
+function GetFormattedDate(date12) {
+    // var dateAr = '2014-01-06'.split('-');
+    var dateAr = date12.split('-');
+    var mon21=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec',];
+    var newDate = dateAr[2] + '-' + mon21[parseInt(dateAr[1])-1] + '-' + dateAr[0];
+    return newDate;
+}
+
     $(document).ready(function() {
 
 
@@ -313,6 +322,8 @@
             let lport2=$("#lport2-"+id).attr('class');
             let dport2=$("#dport2-"+id).attr('class');
 
+            // alert(lregion);
+
             $.ajax({
                 url: '{{route("cargo.ser_hist_rec")}}',
                 data:"id=" + id + "&laycan_date=" + laycan_date + "&from_date=" + from_date + "&to_date=" + to_date + 
@@ -321,11 +332,51 @@
                 type: "get",
                 success: function(response) {
 
-                    // let json_data = $.parseJSON(response);
-                    // var len = json_data.length;
-                    // var post_str="";
+                    let json_data = $.parseJSON(response);
+                    var len = json_data.length;
+                    var post_str="";
+                    // console.log(json_data['data'][0]['cargo_name'])
                     
-                    console.log(response);
+                    
+                    
+                    $.each(json_data, function(i, obj) {
+                        $.each(obj, function(i, obj1) {
+                            // console.log(obj1);
+                            post_str+='<tr class="">';
+                            post_str+='<td>'+obj1.cargo_id+'</td>';
+                            post_str+='<td>'+obj1.cargo_name+'</td>';
+                            post_str+='<td>'+obj1.cargotype.cargo_type_name+'</td>';
+                            post_str+='<td>'+obj1.lregion.region_name+'</td>';
+                            post_str+='<td>'+obj1.dregion.region_name+'</td>';
+                            post_str+='<td>'+GetFormattedDate(obj1.laycan_date_from)+'</td>';
+                            post_str+='<td>'+GetFormattedDate(obj1.laycan_date_to)+'</td>';
+                            post_str+='<td>'+obj1.quantity+'</td>';
+                            post_str+='<td>'+obj1.lunit.unit_name+'</td>';
+                            post_str+='<td>'+obj1.loading_discharge_rates+'</td>';
+                            post_str+='<td>'+obj1.created_at+'</td>';
+                            post_str+='/<tr>';
+                            
+                        });
+                    });
+                    $("#all_cargo").html(post_str);
+
+
+
+                        // <tr class="">
+                        //     <td>{{$row->cargo_id}}</td>
+                        //     <td>{{$row->cargo_name}}</td>
+                        //     <td>{{optional($row->cargotype)->cargo_type_name}}</td>
+                        //     <td>{{optional($row->Lregion)->region_name}}</td>
+                        //     <td>{{optional($row->Dregion)->region_name}}</td>
+                        //     <td>{{date("d-M-Y", strtotime($row->laycan_date_from))}}</td>
+                        //     <td>{{date("d-M-Y", strtotime($row->laycan_date_to))}}</td>
+                        //     <td>{{$row->quantity}}</td>
+                        //     <td>{{optional($row->Lunit)->unit_name}}</td>
+                        //     <td>{{$row->loading_discharge_rates}}</td>
+                        //     <td>{{$row->created_at}}</td>
+                        // </tr>
+                    // }      
+                    // $("#all_cargo").html(post_str);
                 }
             });
         });
