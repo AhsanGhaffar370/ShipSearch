@@ -108,11 +108,20 @@ class FrontCargoController extends Controller
 
     function search_req(Request $req){
 
-        if(session('front_uid')!=""){
-            $ser_data=$req->all();
-            $ser_data['user_id']=session('front_uid');
-            cargo_search_history::create($ser_data);    
-        }
+        // if(session('front_uid')!=""){
+
+        //     $ser_data=$req->all();
+        //     $ser_data['user_id']=session('front_uid');
+        //     cargo_search_history::create($ser_data);   
+
+        //     $total_rec=cargo_search_history::where("user_id",session('front_uid'))->count();
+
+        //     if($total_rec>4)
+        //     {
+        //         // session()->flash('msg2121','cargo Deleted');
+        //         cargo_search_history::where('user_id',session('front_uid'))->first()->delete();
+        //     }
+        // }
         
         $laycan_col="";
         if($req->laycan_date=="laycan_date_from"){

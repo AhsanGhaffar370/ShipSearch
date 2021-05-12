@@ -292,94 +292,150 @@
 
     <script>
 
-function GetFormattedDate(date12) {
-    // var dateAr = '2014-01-06'.split('-');
-    var dateAr = date12.split('-');
-    var mon21=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec',];
-    var newDate = dateAr[2] + '-' + mon21[parseInt(dateAr[1])-1] + '-' + dateAr[0];
-    return newDate;
-}
+    function GetFormattedDate(date12) {
+        // var dateAr = '2014-01-06'.split('-');
+        var dateAr = date12.split('-');
+        var mon21=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec',];
+        var newDate = dateAr[2] + '-' + mon21[parseInt(dateAr[1])-1] + '-' + dateAr[0];
+        return newDate;
+    }
+
+    $(document).on("click", '.show_details_btn', function(e) { 
+        e.preventDefault();
+        let id = $(this).attr('href');
+        $('.show_details_' + id).fadeToggle("slow");
+    });
+
+    
+
+    $(document).on("click", '.ser_hist_req', function(e) { 
+
+        let id2=$(this).attr('id');
+        let id1 = id2.split('-');
+        let id = id1[id1.length - 1];
+
+        let laycan_date=$("#laycan-"+id).html();
+        let from_date=$("#from-"+id).html();
+        let to_date=$("#to-"+id).html();
+        let lregion=$("#lregion-"+id).attr('class');
+        let dregion=$("#dregion-"+id).attr('class');
+        let lcountry=$("#lcountry-"+id).attr('class');
+        let dcountry=$("#dcountry-"+id).attr('class');
+        let lport1=$("#lport1-"+id).attr('class');
+        let dport1=$("#dport1-"+id).attr('class');
+        let lport2=$("#lport2-"+id).attr('class');
+        let dport2=$("#dport2-"+id).attr('class');
+
+        // alert(lregion);
+
+        $.ajax({
+            url: '{{route("cargo.ser_hist_rec")}}',
+            data:"id=" + id + "&laycan_date=" + laycan_date + "&from_date=" + from_date + "&to_date=" + to_date + 
+                "&lregion=" + lregion + "&dregion=" + dregion + "&lcountry=" + lcountry + "&dcountry=" + dcountry + 
+                "&lport1=" + lport1 + "&dport1=" + dport1 + "&lport2=" + lport2 + "&dport2=" + dport2,
+            type: "get",
+            success: function(response) {
+
+                let json_data = $.parseJSON(response);
+                var len = json_data.length;
+                var post_str="";
+                // console.log(json_data['data'][0]['cargo_name'])
+                
+                
+                
+                $.each(json_data, function(i, obj) {
+                    $.each(obj, function(i, obj1) {
+                        // console.log(obj1);
+                        post_str+=`<tr class="">
+                        <td>`+obj1.cargo_id+`</td>
+                        <td>`+obj1.cargo_name+`</td>
+                        <td>`+obj1.cargotype.cargo_type_name+`</td>
+                        <td>`+obj1.lregion.region_name+`</td>
+                        <td>`+obj1.dregion.region_name+`</td>
+                        <td>`+GetFormattedDate(obj1.laycan_date_from)+`</td>
+                        <td>`+GetFormattedDate(obj1.laycan_date_to)+`</td>
+                        <td>`+obj1.quantity+`</td>
+                        <td>`+obj1.lunit.unit_name+`</td>
+                        <td>`+obj1.loading_discharge_rates+`</td>
+                        <td>`+obj1.created_at+`</td>
+                        <td class="text-center">
+                            <a href="`+obj1.cargo_id+`" class="show_details_btn"><i class="fas fa-eye"></i></a>
+                        </td>
+                        </tr>
+                        
+                        <tr class="show_details show_details_`+obj1.cargo_id+`" style="display: none; background-color: #F1F1F1;">
+                        <td></td>
+                        <td>
+                            <p class="b7 mb-0">Loading Country:</p>
+                            <p class="">`+obj1.lcountry.country_name+`</p>
+                            <p class="b7 mb-0">Max LOA:</p>
+                            <p class="">`+obj1.max_loa+`</p>
+                        </td>
+                        <td>
+                            <p class="b7 mb-0">Loading Port#1:</p>
+                            <p class="">`+obj1.lport1.port_name+`</p>
+                            <p class="b7 mb-0">Over Age:</p>
+                            <p class="">`+obj1.over_age+`</p>
+                        </td>
+                        <td>
+                            <p class="b7 mb-0">Loading Port#2:</p>
+                            <p class="">`+obj1.lport2.port_name+`</p>
+                            <p class="b7 mb-0">Hazmat:</p>
+                            <p class="">`+obj1.hazmat+`</p>
+                        </td>
+                        <td>
+                            <p class="b7 mb-0">Discharge Country:</p>
+                            <p class="">`+obj1.dcountry.country_name+`</p>
+                            <p class="b7 mb-0">Loading Discharge Unit:</p>
+                            <p class="">`+obj1.dunit.unit_name+`</p>
+                        </td>
+                        <td>
+                            <p class="b7 mb-0">Discharge Port#1:</p>
+                            <p class="">`+obj1.dport1.port_name+`</p>
+                            <p class="b7 mb-0">Loading Equipment Req:</p>
+                            <p class="">`+obj1.loading_equipment_req+`</p>
+                        </td>
+                        <td>
+                            <p class="b7 mb-0">Discharge Port#2:</p>
+                            <p class="">`+obj1.dport2.port_name+`</p>
+                            <p class="b7 mb-0">Gear Lifting Capacity:</p>
+                            <p class="">`+obj1.gear_lifting_capacity+`</p>
+                        </td>
+                        <td>
+                            <p class="b7 mb-0">Max Draft:</p>
+                            <p class="">`+obj1.max_draft+`</p>
+                            <p class="b7 mb-0">Loading/Discharge Equipment Req:</p>
+                            <p class="">`+obj1.loading_discharge_equipment_req+`</p>
+                        </td>
+                        <td>
+                            <p class="b7 mb-0">Max Height:</p>
+                            <p class="">`+obj1.max_height+`</p>
+                            <p class="b7 mb-0">Additional Info:</p>
+                            <p class="">`+obj1.additional_info+`</p>
+                        </td>
+                        <td>
+                            <p class="b7 mb-0">Commission:</p>
+                            <p class="">`+obj1.commision+`</p>
+                            <p class="b7 mb-0">Units:</p>
+                            <p class="">`+obj1.dunit.unit_name+`</p>
+                        </td>
+                        <td>
+                            <p class="b7 mb-0">Combinable:</p>
+                            <p class="">`+obj1.combinable+`</p>
+                        </td>
+                        <td></td>
+                        </tr>
+                        `;
+                        
+                    });
+                });
+                $("#all_cargo").html(post_str);
+
+            }
+        });
+    });
 
     $(document).ready(function() {
-
-
-        $('.ser_hist_req').click(function() {
-
-
-            let id2=$(this).attr('id');
-            let id1 = id2.split('-');
-            let id = id1[id1.length - 1];
-
-            let laycan_date=$("#laycan-"+id).html();
-            let from_date=$("#from-"+id).html();
-            let to_date=$("#to-"+id).html();
-            let lregion=$("#lregion-"+id).attr('class');
-            let dregion=$("#dregion-"+id).attr('class');
-            let lcountry=$("#lcountry-"+id).attr('class');
-            let dcountry=$("#dcountry-"+id).attr('class');
-            let lport1=$("#lport1-"+id).attr('class');
-            let dport1=$("#dport1-"+id).attr('class');
-            let lport2=$("#lport2-"+id).attr('class');
-            let dport2=$("#dport2-"+id).attr('class');
-
-            // alert(lregion);
-
-            $.ajax({
-                url: '{{route("cargo.ser_hist_rec")}}',
-                data:"id=" + id + "&laycan_date=" + laycan_date + "&from_date=" + from_date + "&to_date=" + to_date + 
-                    "&lregion=" + lregion + "&dregion=" + dregion + "&lcountry=" + lcountry + "&dcountry=" + dcountry + 
-                    "&lport1=" + lport1 + "&dport1=" + dport1 + "&lport2=" + lport2 + "&dport2=" + dport2,
-                type: "get",
-                success: function(response) {
-
-                    let json_data = $.parseJSON(response);
-                    var len = json_data.length;
-                    var post_str="";
-                    // console.log(json_data['data'][0]['cargo_name'])
-                    
-                    
-                    
-                    $.each(json_data, function(i, obj) {
-                        $.each(obj, function(i, obj1) {
-                            // console.log(obj1);
-                            post_str+='<tr class="">';
-                            post_str+='<td>'+obj1.cargo_id+'</td>';
-                            post_str+='<td>'+obj1.cargo_name+'</td>';
-                            post_str+='<td>'+obj1.cargotype.cargo_type_name+'</td>';
-                            post_str+='<td>'+obj1.lregion.region_name+'</td>';
-                            post_str+='<td>'+obj1.dregion.region_name+'</td>';
-                            post_str+='<td>'+GetFormattedDate(obj1.laycan_date_from)+'</td>';
-                            post_str+='<td>'+GetFormattedDate(obj1.laycan_date_to)+'</td>';
-                            post_str+='<td>'+obj1.quantity+'</td>';
-                            post_str+='<td>'+obj1.lunit.unit_name+'</td>';
-                            post_str+='<td>'+obj1.loading_discharge_rates+'</td>';
-                            post_str+='<td>'+obj1.created_at+'</td>';
-                            post_str+='/<tr>';
-                            
-                        });
-                    });
-                    $("#all_cargo").html(post_str);
-
-
-
-                        // <tr class="">
-                        //     <td>{{$row->cargo_id}}</td>
-                        //     <td>{{$row->cargo_name}}</td>
-                        //     <td>{{optional($row->cargotype)->cargo_type_name}}</td>
-                        //     <td>{{optional($row->Lregion)->region_name}}</td>
-                        //     <td>{{optional($row->Dregion)->region_name}}</td>
-                        //     <td>{{date("d-M-Y", strtotime($row->laycan_date_from))}}</td>
-                        //     <td>{{date("d-M-Y", strtotime($row->laycan_date_to))}}</td>
-                        //     <td>{{$row->quantity}}</td>
-                        //     <td>{{optional($row->Lunit)->unit_name}}</td>
-                        //     <td>{{$row->loading_discharge_rates}}</td>
-                        //     <td>{{$row->created_at}}</td>
-                        // </tr>
-                    // }      
-                    // $("#all_cargo").html(post_str);
-                }
-            });
-        });
         // $('#ser_hist_rec').delegate('tr','click',function() {
         //     alert( 'i was clicked' );
         // });
@@ -405,11 +461,12 @@ function GetFormattedDate(date12) {
             }
         });
 
-        $('.show_details_btn').click(function(e) {
-            e.preventDefault();
-            let id = $(this).attr('href');
-            $('.show_details_' + id).fadeToggle("slow");
-        });
+        
+        // $('.show_details_btn').click(function(e) {
+        //     e.preventDefault();
+        //     let id = $(this).attr('href');
+        //     $('.show_details_' + id).fadeToggle("slow");
+        // });
 
         // AJAX Using jQuery 
         $("#email31").keyup(function() {

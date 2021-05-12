@@ -41,7 +41,7 @@ $(document).ready(function() {
             }
         }
 
-        if (flag === true && check_eqp_req() === true) {
+        if (flag === true) {
             return;
         } else {
             e.preventDefault();
