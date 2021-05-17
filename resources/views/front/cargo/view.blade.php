@@ -206,10 +206,9 @@ th {
     </div>
 
     @if(session('front_uid')!="")
-    <p class="b7 mb-0">Search History:</p>
+    <p class="b7 mb-0">Search History</p>
     
-    <div class="table-wrapper-scroll-y my-custom-scrollbar" style="height: 150px;">
-    <div class="border">
+    <div class="border table-wrapper-scroll-y my-custom-scrollbar" style="height: 150px;">
         <table id="cargo_table22" class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
             <thead class="" style="background-color: #EAEAEA;">
                 <tr>
@@ -255,10 +254,9 @@ th {
             </tbody>
         </table>
     </div>
-    </div>
 
 
-    <p class="b7 mb-0 mt-3">Search Result:</p>
+    <p class="b7 mb-0 mt-5"></p>
     @endif
     
     <div class="table-wrapper-scroll-y my-custom-scrollbar">

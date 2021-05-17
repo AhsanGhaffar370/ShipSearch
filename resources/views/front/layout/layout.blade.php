@@ -338,7 +338,9 @@
         let lport2=$("#lport2-"+id).attr('class');
         let dport2=$("#dport2-"+id).attr('class');
 
-        // alert(lregion);
+        
+        $(".ser_hist_req").css({'background-color':"white","color":"black"});
+        $(this).css({'background-color':"#555555","color":"white"});
 
         $.ajax({
             url: '{{route("cargo.ser_hist_rec")}}',
