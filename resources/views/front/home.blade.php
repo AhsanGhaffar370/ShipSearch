@@ -13,7 +13,7 @@
 
 .blog_bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("{{asset('front_asset/images/banner-img.jpg')}}");
+    url("{{asset('public/front_asset/images/banner-img.jpg')}}");
     background-attachment: fixed;
     width: 100%;
     height: auto;
@@ -25,7 +25,7 @@
 
 <div class="jumbotron jumbotron-fluid bg1 blog_bg border-0">
     <div class="container paddings text-left">
-        <p class="size54 text-white text-left b6 m-0" style="line-height: 1.3;"><span class="cl_bd b6">MANAGE LOADS <br>
+        <p class="size54 text-white text-left b6 m-0" style="line-height: 1.3;"><span class="cl_bd b6">MANAGE LOADS 21<br>
             </span>DRIVE PROFITS</p>
         <a href={{route('login')}} class="btn btn-primary text-white b8  pl-5 pr-5 pt-4 pb-4 mt-5 btn-lg text-center"
             style="border-radius: 38px;">Sign Up Now

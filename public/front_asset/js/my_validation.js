@@ -53,6 +53,12 @@ $(document).ready(function() {
         autoclose: true,
     });
 
+    // $("#adv_ser21").hide();
+    $('#adv_ser11').click(function(e) {
+        e.preventDefault();
+        $("#adv_ser21").slideToggle(500);
+    });
+
 });
 
 

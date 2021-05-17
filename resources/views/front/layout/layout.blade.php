@@ -292,6 +292,18 @@
 
     <script>
 
+    $(document).ready(function() {
+        $('#cargo_table2').DataTable({
+            // "paging": false,
+            // "pagingType":"full_numbers",
+        //   "lengthMenu":[[5,10,25],[5,10,25]],
+            "lengthMenu":[[10,25,50,100,-1],[10,25,50,100,'All']],
+            responsive:true,
+            type: 'date'
+            // stateSave: true
+        });
+    });
+
     function GetFormattedDate(date12) {
         // var dateAr = '2014-01-06'.split('-');
         var dateAr = date12.split('-');
