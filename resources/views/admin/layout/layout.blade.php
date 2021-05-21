@@ -43,7 +43,12 @@
             <div class="col-md-3 left_col">
                <div class="left_col scroll-view">
                   <div class="navbar nav_title bg_bl" style="border: 0;">
-                     <a href={{route('admin.dashboard')}} class="site_title"><i class="fa fa-paw"></i> <span>ShipSearch</span></a>
+                     <a href={{route('admin.dashboard')}} class="site_title text-center pl-2 pr-2">
+                     <!-- <i class="fa fa-paw"></i> <span>ShipSearch</span> -->
+                     <img src="{{asset('front_asset/images/logo-footer-short.png')}}" height="35" width="30" class="logo footer_logo" 
+                     style="margin-top: -9px;">
+                     <p class="d_in admin-logo">ShipSearch</p>
+                     </a>
                   </div>
                   <div class="clearfix"></div>
                   <br />
@@ -51,23 +56,23 @@
                      <div class="menu_section mb-3">
                         <h3 class="pt-2 pb-2 text-light bg_bl">Dashboard</h3>
                         <ul class="nav side-menu">
-                           <li><a href={{route('admin.dashboard')}}><i class="fa fa-home"></i> Dashboard</a></li>
+                           <li><a href={{route('admin.dashboard')}}><i class="fas fa-link"></i> &nbsp; Dashboard</a></li>
                         </ul>
                      </div>
                      <div class="menu_section mb-3">
                         <h3 class="pt-2 pb-2 text-light bg_bl">Modules</h3>
                         <ul class="nav side-menu">
-                           <li><a href={{route('admin.cargo.view')}}><i class="fa fa-home"></i> Cargo </a></li>
+                           <li><a href={{route('admin.cargo.view')}}><i class="fas fa-link"></i> &nbsp; Cargo </a></li>
                         </ul>
                      </div>
                      <div class="menu_section mb-3">
                         <h3 class="pt-2 pb-2 text-light bg_bl">Setups</h3>
                         <ul class="nav side-menu">
-                           <li><a href={{route('admin.region.view')}}><i class="fa fa-home"></i> Region </a></li>
-                           <li><a href={{route('admin.port.view')}}><i class="fa fa-home"></i> Port </a></li>
-                           <li><a href={{route('admin.country.view')}}><i class="fa fa-home"></i> Country </a></li>
-                           <li><a href={{route('admin.cargo_type.view')}}><i class="fa fa-home"></i> Cargo Type </a></li>
-                           <li><a href={{route('admin.port.view')}}><i class="fa fa-home"></i> Unit </a></li>
+                           <li><a href={{route('admin.region.view')}}><i class="fas fa-link"></i> &nbsp; Region </a></li>
+                           <li><a href={{route('admin.port.view')}}><i class="fas fa-link"></i> &nbsp; Port </a></li>
+                           <li><a href={{route('admin.country.view')}}><i class="fas fa-link"></i> &nbsp; Country </a></li>
+                           <li><a href={{route('admin.cargo_type.view')}}><i class="fas fa-link"></i> &nbsp; Cargo Type </a></li>
+                           <li><a href={{route('admin.port.view')}}><i class="fas fa-link"></i> &nbsp; Unit </a></li>
                         </ul>
                      </div>
                   </div>
