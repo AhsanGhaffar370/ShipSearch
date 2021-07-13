@@ -51,7 +51,7 @@ table {
 }
 .tableFixHead { 
     overflow: auto; 
-    height: 100px; 
+    /* height: 100px;  */
 }
 .tableFixHead thead th { 
     position: sticky; 
