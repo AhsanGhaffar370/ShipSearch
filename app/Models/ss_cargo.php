@@ -39,32 +39,32 @@ class ss_cargo extends Model
         return $this->belongsTo(ss_setup_region::class,'discharge_region_id');
     }
 
-    public function Lunit(){
-        return $this->belongsTo(ss_setup_unit::class,'unit_id');
-    }
+    // public function Lunit(){
+    //     return $this->belongsTo(ss_setup_unit::class,'unit_id');
+    // }
 
-    public function Dunit(){
-        return $this->belongsTo(ss_setup_unit::class,'loading_discharge_unit_id');
-    }
+    // public function Dunit(){
+    //     return $this->belongsTo(ss_setup_unit::class,'loading_discharge_unit_id');
+    // }
 
-    public function Lport1(){
-        return $this->belongsTo(ss_setup_port::class,'loading_port_id_1');
+    public function Lport(){
+        return $this->belongsTo(ss_setup_port::class,'loading_port_id');
         // return $this->belongsTo(ss_setup_port::class,'loading_port_id_1');
     }
 
-    public function Lport2(){
-        return $this->belongsTo(ss_setup_port::class,'loading_port_id_2');
-        // return $this->belongsTo(ss_setup_port::class,'loading_port_id_2');
-    }
+    // public function Lport2(){
+    //     return $this->belongsTo(ss_setup_port::class,'loading_port_id_2');
+    //     // return $this->belongsTo(ss_setup_port::class,'loading_port_id_2');
+    // }
 
-    public function Dport1(){
-        return $this->belongsTo(ss_setup_port::class,'discharge_port_id_1');
+    public function Dport(){
+        return $this->belongsTo(ss_setup_port::class,'discharge_port_id');
         // return $this->belongsTo(ss_setup_port::class,'discharge_port_id_1');
     }
     
-    public function Dport2(){
-        return $this->belongsTo(ss_setup_port::class,'discharge_port_id_2');
-        // return $this->belongsTo(ss_setup_port::class,'discharge_port_id_2');
-    }
+    // public function Dport2(){
+    //     return $this->belongsTo(ss_setup_port::class,'discharge_port_id_2');
+    //     // return $this->belongsTo(ss_setup_port::class,'discharge_port_id_2');
+    // }
     
 }

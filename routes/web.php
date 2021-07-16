@@ -13,8 +13,9 @@ use App\Http\Controllers\admin\CargoTypeController;
 
 // Front Controllers
 use App\Http\Controllers\Front_auth;
-use App\Http\Controllers\front\FrontCargoController;
 use App\Http\Controllers\front\HomeController;
+use App\Http\Controllers\front\FrontCargoController;
+use App\Http\Controllers\front\FrontVesselController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,23 +28,16 @@ data entry in cargo and vessel section
 
 
 
-
-
 */
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-
-
 Route::get('/', [HomeController::class, 'view'] )->name('home');
 
-Route::get('/cargo/view', [FrontCargoController::class, 'view'] )->name('cargo.view');
 
-Route::post('/cargo/view', [FrontCargoController::class, 'search_req'] )->name('cargo.search_req');
 
-Route::get('/cargo/ser_hist_rec', [FrontCargoController::class, 'search_req_ajax'] )->name('cargo.ser_hist_rec');
 
 Route::get('/login', function () {
     if((session()->has('front_uid'))){
@@ -60,18 +54,44 @@ Route::get('email_verification/{code}', [Front_auth::class, 'email_ver_req'] )->
 
 Route::get('checkmail',[Front_auth::class, 'checkmail_ajax'])->name('checkmail');
 
-Route::group(['middleware'=>['front_auth']],function(){
 
-    // Cargo
-    Route::get('/cargo/add', [FrontCargoController::class, 'view_add'] )->name('cargo.add');
-    Route::post('/cargo/add_req', [FrontCargoController::class, 'add_req'] )->name('cargo.add_req');
-});
 
 Route::get('/logout',function(){
     session()->forget('front_uid');
     session()->forget('front_uname');
     return redirect()->route('login');
 })->name('logout');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Front Section
+|--------------------------------------------------------------------------
+*/
+// Cargo
+Route::get('/cargo/view', [FrontCargoController::class, 'view'] )->name('cargo.view');
+
+Route::post('/cargo/view', [FrontCargoController::class, 'search_req'] )->name('cargo.search_req');
+
+Route::get('/cargo/ser_hist_rec', [FrontCargoController::class, 'search_req_ajax'] )->name('cargo.ser_hist_rec');
+
+
+// Vessel Charter
+Route::get('/vessel/view', [FrontVesselController::class, 'view'] )->name('vessel.view');
+
+
+
+
+Route::group(['middleware'=>['front_auth']],function(){
+
+    // Cargo
+    Route::get('/cargo/add', [FrontCargoController::class, 'view_add'] )->name('cargo.add');
+    Route::post('/cargo/add_req', [FrontCargoController::class, 'add_req'] )->name('cargo.add_req');
+
+    // Vessel
+    Route::get('/vessel/view/{id}',[FrontVesselController::class, 'view_detail'])->name('vessel.detail.id');
+});
 
 
 

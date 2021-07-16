@@ -31,20 +31,20 @@ class cargo_search_history extends Model
         return $this->belongsTo(ss_setup_region::class,'discharge_region_id');
     }
 
-    public function Lport1(){
-        return $this->belongsTo(ss_setup_port::class,'loading_port_id_1');
+    public function Lport(){
+        return $this->belongsTo(ss_setup_port::class,'loading_port_id');
     }
 
-    public function Lport2(){
-        return $this->belongsTo(ss_setup_port::class,'loading_port_id_2');
-    }
+    // public function Lport2(){
+    //     return $this->belongsTo(ss_setup_port::class,'loading_port_id_2');
+    // }
 
-    public function Dport1(){
-        return $this->belongsTo(ss_setup_port::class,'discharge_port_id_1');
+    public function Dport(){
+        return $this->belongsTo(ss_setup_port::class,'discharge_port_id');
     }
     
-    public function Dport2(){
-        return $this->belongsTo(ss_setup_port::class,'discharge_port_id_2');
-    }
+    // public function Dport2(){
+    //     return $this->belongsTo(ss_setup_port::class,'discharge_port_id_2');
+    // }
     
 }

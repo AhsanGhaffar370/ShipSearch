@@ -136,18 +136,8 @@ th {
                 </div>
                 <!-- -->
                 <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 ">
-                    <label for="">Loading Port#1</label>
-                    <select name="loading_port_id_1" id="loading_port_id_1" class="form-control">
-                        <option value="-1" disabled selected>Choose</option>
-                        @foreach ($port as $row)
-                        <option value="{{$row->port_id}}">{{$row->port_name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <!-- -->
-                <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 ">
-                    <label for="">Loading Port#2</label>
-                    <select name="loading_port_id_2" id="loading_port_id_2" class="form-control">
+                    <label for="">Loading Port</label>
+                    <select name="loading_port_id" id="loading_port_id" class="form-control">
                         <option value="-1" disabled selected>Choose</option>
                         @foreach ($port as $row)
                         <option value="{{$row->port_id}}">{{$row->port_name}}</option>
@@ -176,18 +166,8 @@ th {
                 </div>
                 <!-- -->
                 <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                    <label for="">Discharge Port#1</label>
-                    <select name="discharge_port_id_1" id="discharge_port_id_1" class="form-control">
-                        <option value="-1" disabled selected>Choose</option>
-                        @foreach ($port as $row)
-                        <option value="{{$row->port_id}}">{{$row->port_name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <!-- -->
-                <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 ">
-                    <label for="">Discharge Port#2</label>
-                    <select name="discharge_port_id_2" id="discharge_port_id_2" class="form-control">
+                    <label for="">Discharge Port</label>
+                    <select name="discharge_port_id" id="discharge_port_id" class="form-control">
                         <option value="-1" disabled selected>Choose</option>
                         @foreach ($port as $row)
                         <option value="{{$row->port_id}}">{{$row->port_name}}</option>
@@ -213,17 +193,15 @@ th {
             <thead class="" style="background-color: #EAEAEA;">
                 <tr>
                     <th width="1%">#</th>
-                    <th width="8%">Laycan Date</th>
-                    <th width="6%">From Date</th>
-                    <th width="6%">To Date</th>
-                    <th width="10%">Loading Region</th>
-                    <th width="10%">Discharge Region</th>
-                    <th width="10%">Loading Country</th>
-                    <th width="10%">Discharge Country</th>
-                    <th width="10%">Loading Port#1</th>
-                    <th width="10%">Discharge Port#1</th>
-                    <th width="10%">Loading Port#2</th>
-                    <th width="9%">Discharge Port#2</th>
+                    <th width="11%">Laycan Date</th>
+                    <th width="11%">From Date</th>
+                    <th width="11%">To Date</th>
+                    <th width="11%">Loading Region</th>
+                    <th width="11%">Discharge Region</th>
+                    <th width="11%">Loading Country</th>
+                    <th width="11%">Discharge Country</th>
+                    <th width="11%">Loading Port</th>
+                    <th width="11%">Discharge Port</th>
                 </tr>
             </thead>
             <tbody>
@@ -241,14 +219,10 @@ th {
                         {{optional($row->Lcountry)->country_name}}</td>
                     <td class="{{$row->discharge_country_id}}" id="dcountry-{{$row->id}}">
                         {{optional($row->Dcountry)->country_name}}</td>
-                    <td class="{{$row->loading_port_id_1}}" id="lport1-{{$row->id}}">
-                        {{optional($row->Lport1)->port_name}}</td>
-                    <td class="{{$row->discharge_port_id_1}}" id="dport1-{{$row->id}}">
-                        {{optional($row->Dport1)->port_name}}</td>
-                    <td class="{{$row->loading_port_id_2}}" id="lport2-{{$row->id}}">
-                        {{optional($row->Lport2)->port_name}}</td>
-                    <td class="{{$row->discharge_port_id_2}}" id="dport2-{{$row->id}}">
-                        {{optional($row->Dport2)->port_name}}</td>
+                    <td class="{{$row->loading_port_id}}" id="lport-{{$row->id}}">
+                        {{optional($row->Lport)->port_name}}</td>
+                    <td class="{{$row->discharge_port_id}}" id="dport-{{$row->id}}">
+                        {{optional($row->Dport)->port_name}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -256,24 +230,25 @@ th {
     </div>
 
 
+
     <p class="b7 mb-0 mt-5"></p>
     @endif
-    
+
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
         <div class="border">
             <table id="cargo_table21" class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
                 <thead class="" style="background-color: #EAEAEA;">
                     <tr>
                         <th width="2%">ID</th>
-                        <th width="10%">Cargo Name</th>
+                        <th width="12%">Cargo Name</th>
                         <th width="10%">Cargo Type</th>
-                        <th width="10%">Loading Region</th>
-                        <th width="10%">Discharge Region</th>
+                        <th width="12%">Loading Region</th>
+                        <th width="12%">Discharge Region</th>
                         <th width="10%">Laycan Date From</th>
                         <th width="10%">Laycan Date To</th>
-                        <th width="5%">Quantity</th>
-                        <th width="8%">Unit</th>
-                        <th width="15%">Loading Discharge Rates</th>
+                        <th width="8%">Quantity</th>
+                        {{-- <th width="8%">Unit</th> --}}
+                        <th width="13%">Loading Discharge Rates</th>
                         <th width="10%">Posted on</th>
 
                         @if(session('front_uid')!="")
@@ -293,13 +268,14 @@ th {
                         <td >{{date("d-M-Y", strtotime($row->laycan_date_from))}}</td>
                         <td >{{date("d-M-Y", strtotime($row->laycan_date_to))}}</td>
                         <td >{{$row->quantity}}</td>
-                        <td >{{optional($row->Lunit)->unit_name}}</td>
+                        {{-- <td >{{optional($row->Lunit)->unit_name}}</td> --}}
                         <td >{{$row->loading_discharge_rates}}</td>
                         <td >{{$row->created_at}}</td>
 
                         @if(session('front_uid')!="")
                         <td class="text-center" >
-                            <a href='{{$row->cargo_id}}' class="show_details_btn"><i class="fas fa-eye"></i></a>
+                            <a href='{{$row->cargo_id}}' class="cargo_show_detail1 cargo_show_detail1_{{$row->cargo_id}} show_details_btn"><i class="fas fa-eye fa-2x"></i></a>
+                            <a href='{{$row->cargo_id}}' class="cargo_show_detail2 cargo_show_detail2_{{$row->cargo_id}} show_details_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
                         </td>
                         @endif
 
@@ -314,56 +290,44 @@ th {
                             <p class="">{{$row->max_loa}}</p>
                         </td>
                         <td>
-                            <p class="b7 mb-0">Loading Port#1</p>
-                            <p class="">{{optional($row->Lport1)->port_name}}</p>
-                            <p class="b7 mb-0">Over Age:</p>
-                            <p class="">{{$row->over_age}}</p>
-                        </td>
-                        <td>
-                            <p class="b7 mb-0">Loading Port#2</p>
-                            <p class="">{{optional($row->Lport2)->port_name}}</p>
-                            <p class="b7 mb-0">Hazmat:</p>
-                            <p class="">{{$row->hazmat}}</p>
+                            <p class="b7 mb-0">Loading Port</p>
+                            <p class="">{{optional($row->Lport)->port_name}}</p>
+                            <p class="b7 mb-0">Max Draft:</p>
+                            <p class="">{{$row->max_draft}}</p>
                         </td>
                         <td>
                             <p class="b7 mb-0">Discharge Country</p>
                             <p class="">{{optional($row->Dcountry)->country_name}}</p>
-                            <p class="b7 mb-0">Loading Discharge Unit:</p>
-                            <p class="">{{optional($row->Dunit)->unit_name}}</p>
+                            <p class="b7 mb-0">Max Height:</p>
+                            <p class="">{{$row->max_height}}</p>
                         </td>
                         <td>
-                            <p class="b7 mb-0">Discharge Port#1</p>
-                            <p class="">{{optional($row->Dport1)->port_name}}</p>
+                            <p class="b7 mb-0">Discharge Port</p>
+                            <p class="">{{optional($row->Dport)->port_name}}</p>
                             <p class="b7 mb-0">Loading Equipment Req:</p>
                             <p class="">{{$row->loading_equipment_req}}</p>
                         </td>
                         <td>
-                            <p class="b7 mb-0">Discharge Port#2</p>
-                            <p class="">{{optional($row->Dport2)->port_name}}</p>
-                            <p class="b7 mb-0">Gear Lifting Capacity:</p>
-                            <p class="">{{$row->gear_lifting_capacity}}</p>
+                            <p class="b7 mb-0">Over Age:</p>
+                            <p class="">{{$row->over_age}}</p>
+                            <p class="b7 mb-0">Discharge Equipment Req:</p>
+                            <p class="">{{$row->discharge_equipment_req}}</p>
                         </td>
                         <td>
-                            <p class="b7 mb-0">Max Draft:</p>
-                            <p class="">{{$row->max_draft}}</p>
-                            <p class="b7 mb-0">Loading/Discharge Equipment Req:</p>
-                            <p class="">{{$row->loading_discharge_equipment_req}}</p>
-                        </td>
-                        <td>
-                            <p class="b7 mb-0">Max Height:</p>
-                            <p class="">{{$row->max_height}}</p>
-                            <p class="b7 mb-0">Additional Info:</p>
-                            <p class="">{{$row->additional_info}}</p>
+                            <p class="b7 mb-0">Hazmat:</p>
+                            <p class="">{{$row->hazmat}}</p>
+                            <p class="b7 mb-0">Combinable:</p>
+                            <p class="">{{$row->combinable}}</p>
                         </td>
                         <td>
                             <p class="b7 mb-0">Commission:</p>
                             <p class="">{{$row->commision}}</p>
-                            <p class="b7 mb-0">Units:</p>
-                            <p class="">{{optional($row->Dunit)->unit_name}}</p>
+                            <p class="b7 mb-0">Gear Lifting Capacity:</p>
+                            <p class="">{{$row->gear_lifting_capacity}}</p>
                         </td>
-                        <td>
-                            <p class="b7 mb-0">Combinable:</p>
-                            <p class="">{{$row->combinable}}</p>
+                        <td colspan="2">
+                            <p class="b7 mb-0">Additional Info:</p>
+                            <p class="">{{$row->additional_info}}</p>
                         </td>
                         <td></td>
                     </tr>

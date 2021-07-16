@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-    $('#cargo_form').submit(function(e) {
+    //will work on form validation at the end
+    $('#cargo_form_removed').submit(function(e) {
 
         var flag = true;
         var ids = ["cargo_type_id", "loading_region_id", "loading_country_id", "loading_port_id_1", "loading_port_id_2", "discharge_region_id", "discharge_country_id", "discharge_port_id_1", "discharge_port_id_2", "unit_id", "loading_discharge_unit_id"];
@@ -25,7 +26,8 @@ $(document).ready(function() {
     });
 
 
-    $('#search_cargo').submit(function(e) {
+    //will work on form validation at the end
+    $('#search_cargo_removed').submit(function(e) {
 
         var flag = true;
         var ids = ["laycan_date", "loading_region_id", "loading_country_id", "loading_port_id_1", "loading_port_id_2", "discharge_region_id", "discharge_country_id", "discharge_port_id_1", "discharge_port_id_2"];
