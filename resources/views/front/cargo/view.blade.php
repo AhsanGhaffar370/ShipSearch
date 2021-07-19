@@ -102,82 +102,105 @@
                 @csrf
                 <div class="row">
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Select Search Field</label>
-                        <select name="laycan_date" id="laycan_date" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
-                            <option value="laycan_date_from">laycan date from</option>
-                            <option value="laycan_date_to">laycan date to</option>
+                        <label for="">Cargo Type</label>
+                        <select name="cargo_type_id[]" id="cargo_type_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" 
+                            {{-- data-live-search="true"  --}}
+                            {{-- data-max-options="5"   --}} 
+                            {{-- data-actions-box="true"  --}}
+                            >
+                            @foreach ($cargo_type as $row)
+                                <option value="{{ $row->cargo_type_name }}">{{ $row->cargo_type_name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">From Date</label>
-                        <input type="date" required class="form-control from_date" id="from_date" name="from_date"
-                            placeholder="From Date" />
+                        <label for="">Laycan Date From</label>
+                        <input type="date" required class="form-control from_date" id="laycan_date_from" name="laycan_date_from"
+                            placeholder="Laycan Date From" />
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">To Date</label>
-                        <input type="date" required class="form-control to_date" id="to_date" name="to_date"
-                            placeholder="To Date" />
+                        <label for="">Laycan Date To</label>
+                        <input type="date" required class="form-control to_date" id="laycan_date_to" name="laycan_date_to"
+                            placeholder="Laycan Date To" />
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Loading Region</label>
-                        <select name="loading_region_id" id="loading_region_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="loading_region_id[]" id="loading_region_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" 
+                            {{-- data-live-search="true"  --}}
+                            {{-- data-max-options="5"   --}} 
+                            {{-- data-actions-box="true"  --}}
+                            >
                             @foreach ($region as $row)
-                                <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
+                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 ">
                         <label for="">Loading Country</label>
-                        <select name="loading_country_id" id="loading_country_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="loading_country_id[]" id="loading_country_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" >
                             @foreach ($country as $row)
-                                <option value="{{ $row->country_id }}">{{ $row->country_name }}</option>
+                                <option value="{{ $row->country_name }}">{{ $row->country_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 ">
                         <label for="">Loading Port</label>
-                        <select name="loading_port_id" id="loading_port_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="loading_port_id[]" id="loading_port_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" >
                             @foreach ($port as $row)
-                                <option value="{{ $row->port_id }}">{{ $row->port_name }}</option>
+                                <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 ">
                         <label for="">Discharge Region</label>
-                        <select name="discharge_region_id" id="discharge_region_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="discharge_region_id[]" id="discharge_region_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" >
                             @foreach ($region as $row)
-                                <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
+                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 ">
                         <label for="">Discharge Country</label>
-                        <select name="discharge_country_id" id="discharge_country_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="discharge_country_id[]" id="discharge_country_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" >
                             @foreach ($country as $row)
-                                <option value="{{ $row->country_id }}">{{ $row->country_name }}</option>
+                                <option value="{{ $row->country_name }}">{{ $row->country_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Discharge Port</label>
-                        <select name="discharge_port_id" id="discharge_port_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="discharge_port_id[]" id="discharge_port_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" >
                             @foreach ($port as $row)
-                                <option value="{{ $row->port_id }}">{{ $row->port_name }}</option>
+                                <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -200,9 +223,9 @@
                     <thead class="" style="background-color: #EAEAEA;">
                         <tr>
                             <th width="1%">#</th>
-                            <th width="11%">Laycan Date</th>
-                            <th width="11%">From Date</th>
-                            <th width="11%">To Date</th>
+                            <th width="7%">Cargo Type</th>
+                            <th width="11%">Laycan Date From</th>
+                            <th width="11%">Laycan Date To</th>
                             <th width="11%">Loading Region</th>
                             <th width="11%">Discharge Region</th>
                             <th width="11%">Loading Country</th>
@@ -215,9 +238,9 @@
                         @foreach ($ser_data as $row)
                             <tr id="rec-{{ $row->id }}" class="ser_hist_req ">
                                 <td id="id-{{ $row->id }}">{{ $row->id }}</td>
-                                <td id="laycan-{{ $row->id }}">{{ $row->laycan_date }}</td>
-                                <td id="from-{{ $row->id }}">{{ date('d-M-Y', strtotime($row->from_date)) }}</td>
-                                <td id="to-{{ $row->id }}">{{ date('d-M-Y', strtotime($row->to_date)) }}</td>
+                                <td id="cargotype-{{ $row->id }}">{{ $row->cargo_type_id }}</td>
+                                <td id="laycan_from-{{ $row->id }}">{{ date('d-M-Y', strtotime($row->laycan_date_from)) }}</td>
+                                <td id="laycan_to-{{ $row->id }}">{{ date('d-M-Y', strtotime($row->laycan_date_to)) }}</td>
                                 <td class="{{ $row->loading_region_id }}" id="lregion-{{ $row->id }}">
                                     {{ $row->loading_region_id }}</td>
                                 <td class="{{ $row->discharge_region_id }}" id="dregion-{{ $row->id }}">
@@ -272,7 +295,7 @@
                         @else
                             @foreach ($data as $row)
                                 <tr class="">
-                                    <td>{{ $row->cargo_id }}</td>
+                                    <td>{{ $row->ref_no }}</td>
                                     <td>{{ $row->cargo_name }}</td>
                                     <td>{{ $row->cargo_type_id }}</td>
                                     <td>{{ $row->loading_region_id }}</td>

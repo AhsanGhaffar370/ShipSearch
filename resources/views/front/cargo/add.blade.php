@@ -16,13 +16,8 @@
             border-bottom-left-radius: 0px !important;
             background-color: #dfe3e3 !important;
         }
-
-        button.btn.dropdown-toggle.btn-light {
-            background-color: white;
-            border: 1px solid #cecece;
-        }
-        .dropdown-toggle::after{
-            color:black;
+        .form-group > label{
+            font-size: 14px !important;
         }
     </style>
 
@@ -35,11 +30,17 @@
                 @csrf
                 <div class="row">
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
+                        <label for="">Cargo ID</label>
+                        <input type="text" required name="ref_no" class="form-control" value="{{$cargo_ref_no}}" readonly>
+                    </div>
+                    <!-- -->
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Cargo Name</label>
                         <input type="text" required name="cargo_name" class="form-control">
                     </div>
                     <!-- -->
-                    
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
+                    <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Cargo Type</label>
                         <select name="cargo_type_id[]" id="cargo_type_id" class="form-control" multiple
@@ -68,7 +69,7 @@
                         </select>
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Loading Country</label>
                         <select name="loading_country_id[]" id="loading_country_id" class="form-control" multiple
                             title="Choose"
@@ -104,6 +105,8 @@
                         </select>
                     </div>
                     <!-- -->
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
+                    <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Discharge Country</label>
                         <select name="discharge_country_id[]" id="discharge_country_id" class="form-control" multiple
@@ -127,6 +130,8 @@
                             @endforeach
                         </select>
                     </div>
+                    <!-- -->
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Laycan Date From</label>
@@ -152,19 +157,19 @@
                         </div>
                     </div>
                     <!-- -->
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
+                    <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
-                                <label for="">Quantity</label>
-                                <input type="number" required name="quantity" class="left_round form-control ">
+                                <label for="">Max Height</label>
+                                <input type="number" required name="max_height" class="left_round form-control ">
                             </div>
                             <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
-                                <select name="quantity_unit" id="quantity_unit"
+                                <select name="max_height_unit" id="max_height_unit"
                                     class="right_round form-control mt-4 bg-light">
-                                    <option value="MT">MT</option>
-                                    <option value="Gallons">Gallons</option>
-                                    <option value="CBM">CBM</option>
-                                    <option value="Lanes">Lanes</option>
+                                    <option value="Meters">Meters</option>
+                                    <option value="Feet">Feet</option>
                                 </select>
                             </div>
                         </div>
@@ -205,62 +210,29 @@
                     <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
-                                <label for="">Max Height</label>
-                                <input type="number" required name="max_height" class="left_round form-control ">
+                                <label for="">Quantity</label>
+                                <input type="number" required name="quantity" class="left_round form-control ">
                             </div>
                             <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
-                                <select name="max_height_unit" id="max_height_unit"
+                                <select name="quantity_unit" id="quantity_unit"
                                     class="right_round form-control mt-4 bg-light">
-                                    <option value="Meters">Meters</option>
-                                    <option value="Feet">Feet</option>
+                                    <option value="MT">MT</option>
+                                    <option value="Gallons">Gallons</option>
+                                    <option value="CBM">CBM</option>
+                                    <option value="Lanes">Lanes</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                    <div class="col-12 col-lg-2 col-md-4 col-sm-12 mt-4">
                         <label for="">Commission</label>
                         <input type="number" required name="commision" class="form-control">
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
-                        <label for="" class="mb-3">Combinable</label><br>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" required id="combinable1" name="combinable"
-                                value="Yes" />
-                            <label class="form-check-label" for="combinable1"> Yes </label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" required id="combinable2" name="combinable"
-                                value="No" />
-                            <label class="form-check-label" for="combinable2"> No </label>
-                        </div>
-                    </div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
-                        <label for="" class="mb-3">Over Age</label><br>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" required id="over_age1" name="over_age"
-                                value="Yes" />
-                            <label class="form-check-label" for="over_age1"> Yes </label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" required id="over_age2" name="over_age"
-                                value="No" />
-                            <label class="form-check-label" for="over_age2"> No </label>
-                        </div>
-                    </div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4 mb-4">
-                        <label for="" class="mb-3">Hazmat</label><br>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" required id="hazmat1" name="hazmat" value="Yes" />
-                            <label class="form-check-label " for="hazmat1"> Yes </label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" required id="hazmat2" name="hazmat" value="No" />
-                            <label class="form-check-label" for="hazmat2"> No </label>
-                        </div>
+                    <div class="col-12 col-lg-2 col-md-4 col-sm-12 mt-4">
+                        <label for="">Gear Lifting Capacity</label>
+                        <input type="number" required name="gear_lifting_capacity" class="form-control">
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
@@ -270,7 +242,6 @@
                                 <input type="number" required name="loading_discharge_rates"
                                     class="left_round form-control ">
                             </div>
-                            <!-- -->
                             <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
                                 <select name="loading_discharge_rates_unit" id="loading_discharge_rates_unit"
                                     class="right_round form-control mt-4 bg-light">
@@ -295,7 +266,21 @@
                             </div> --}}
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                    <div class="form-group col-12 col-lg-2 col-md-4 col-sm-12 mt-4">
+                        <label for="" class="mb-3">Over Age</label><br>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" required id="over_age1" name="over_age"
+                                value="Yes" />
+                            <label class="form-check-label" for="over_age1"> Yes </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" required id="over_age2" name="over_age"
+                                value="No" />
+                            <label class="form-check-label" for="over_age2"> No </label>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="form-group col-12 col-lg-2 col-md-4 col-sm-12 mt-4">
                         <label for="" class="mb-3">Loading Equipment Req</label><br>
                         {{-- <input type="text" required name="loading_equipment_req" class="form-control"> --}}
                         <div class="form-check-inline">
@@ -310,22 +295,19 @@
                         </div>
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
-                        <div class="row">
-                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
-                                <label for="">Gear Lifting Capacity</label>
-                                <input type="number" required name="gear_lifting_capacity" class="left_round form-control ">
-                            </div>
-                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
-                                <select name="gear_lifting_capacity_unit" id="gear_lifting_capacity_unit"
-                                    class="right_round form-control mt-4 bg-light">
-                                    <option value="MT">MT</option>
-                                </select>
-                            </div>
+                    <div class="form-group col-12 col-lg-2 col-md-4 col-sm-12 mt-4 mb-4">
+                        <label for="" class="mb-3">Hazmat</label><br>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" required id="hazmat1" name="hazmat" value="Yes" />
+                            <label class="form-check-label " for="hazmat1"> Yes </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" required id="hazmat2" name="hazmat" value="No" />
+                            <label class="form-check-label" for="hazmat2"> No </label>
                         </div>
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                    <div class="form-group col-12 col-lg-2 col-md-4 col-sm-12 mt-4">
                         <label for="" class="mb-3">Discharge Equipment Req</label><br>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="radio" required id="discharge_equipment_req1"
@@ -339,16 +321,31 @@
                         </div>
                     </div>
                     <!-- -->
+                    <div class="col-12 col-lg-2 col-md-4 col-sm-12 mt-4">
+                        <label for="" class="mb-3">Combinable</label><br>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" required id="combinable1" name="combinable"
+                                value="Yes" />
+                            <label class="form-check-label" for="combinable1"> Yes </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" required id="combinable2" name="combinable"
+                                value="No" />
+                            <label class="form-check-label" for="combinable2"> No </label>
+                        </div>
+                    </div>
+                    
+                    <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Additional Info</label>
                         <textarea name="additional_info" id="additional_info" class="form-control" cols="30"
                             rows="5"></textarea>
                     </div>
                     <!-- -->
-                    <div class="col-12 col-12">
+                    <div class="col-12">
                         <hr>
-                        <div class="">
-                            <button type="submit" class="btn btn-info">Save</button>
+                        <div class="d-flex flex-row justify-content-center">
+                            <button type="submit" class="btn btn-info pl-5 pr-5 pt-2 pb-2">Save</button>
                         </div>
                     </div>
                     <!-- -->

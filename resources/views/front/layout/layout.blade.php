@@ -67,6 +67,14 @@
             border: 0;
             border-top: 6px solid #00c1ca;
         }
+
+        button.btn.dropdown-toggle.btn-light {
+            background-color: white;
+            border: 1px solid #cecece;
+        }
+        .dropdown-toggle::after{
+            color:black;
+        }
     </style>
 
 
@@ -292,9 +300,7 @@
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> --}}
 
     <!-- custom js -->
-    <script src="{{ asset('front_asset/js/my_validation.js') }}"></script>
-    <!-- <script src="{{ asset('front_asset/js/icheck.min.js') }}"></script>
-      <script src="{{ asset('front_asset/js/custom.js') }}"></script> -->
+    <script type="text/javascript"  src="{{ asset('front_asset/js/my_validation.js') }}"></script>
 
     <!-- datepicker -->
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> --}}
@@ -314,7 +320,7 @@
 
         $(document).ready(function() {
 
-            
+            //add cargo
             $('#cargo_type_id').selectpicker();
             $('#loading_region_id').selectpicker();
             $('#loading_country_id').selectpicker();
@@ -388,9 +394,9 @@
             let id1 = id2.split('-');
             let id = id1[id1.length - 1];
 
-            let laycan_date = $("#laycan-" + id).html();
-            let from_date = $("#from-" + id).html();
-            let to_date = $("#to-" + id).html();
+            let cargotype = $("#cargotype-" + id).html();
+            let laycan_from = $("#laycan_from-" + id).html();
+            let laycan_to = $("#laycan_to-" + id).html();
             let lregion = $("#lregion-" + id).attr('class');
             let dregion = $("#dregion-" + id).attr('class');
             let lcountry = $("#lcountry-" + id).attr('class');
@@ -408,16 +414,17 @@
                 "color": "white"
             });
 
+
             $.ajax({
                 url: '{{ route('cargo.ser_hist_rec') }}',
-                data: "id=" + id + "&laycan_date=" + laycan_date + "&from_date=" + from_date + "&to_date=" +
-                    to_date +
+                data: "id=" + id + "&cargotype=" + cargotype + "&laycan_from=" + laycan_from + "&laycan_to=" +
+                    laycan_to +
                     "&lregion=" + lregion + "&dregion=" + dregion + "&lcountry=" + lcountry + "&dcountry=" +
                     dcountry +
                     "&lport=" + lport + "&dport=" + dport,
                 type: "get",
                 success: function(response) {
-
+            
                     let json_data = $.parseJSON(response);
                     var len = json_data.length;
                     var post_str = "";
@@ -429,12 +436,13 @@
                         $.each(json_data, function(i, obj) {
                             $.each(obj, function(i, obj1) {
                                 // console.log(obj1);
+                                // console.log(i+"  "+obj1);
                                 post_str += `<tr class="">
-                                            <td>` + obj1.cargo_id + `</td>
+                                            <td>` + obj1.ref_no + `</td>
                                             <td>` + obj1.cargo_name + `</td>
-                                            <td>` + obj1.cargotype.cargo_type_name + `</td>
-                                            <td>` + obj1.lregion.region_name + `</td>
-                                            <td>` + obj1.dregion.region_name + `</td>
+                                            <td>` + obj1.cargo_type_id + `</td>
+                                            <td>` + obj1.loading_region_id + `</td>
+                                            <td>` + obj1.discharge_region_id + `</td>
                                             <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
                                             <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
                                             <td>` + obj1.quantity + `</td>
@@ -450,25 +458,25 @@
                                             <td></td>
                                             <td>
                                                 <p class="b7 mb-0">Loading Country:</p>
-                                                <p class="">` + obj1.lcountry.country_name + `</p>
+                                                <p class="">` + obj1.loading_country_id + `</p>
                                                 <p class="b7 mb-0">Max LOA:</p>
                                                 <p class="">` + obj1.max_loa + `</p>
                                             </td>
                                             <td>
                                                 <p class="b7 mb-0">Loading Port:</p>
-                                                <p class="">` + obj1.lport.port_name + `</p>
+                                                <p class="">` + obj1.loading_port_id + `</p>
                                                 <p class="b7 mb-0">Max Draft:</p>
                                                 <p class="">` + obj1.max_draft + `</p>
                                             </td>
                                             <td>
                                                 <p class="b7 mb-0">Discharge Country:</p>
-                                                <p class="">` + obj1.dcountry.country_name + `</p>
+                                                <p class="">` + obj1.discharge_country_id + `</p>
                                                 <p class="b7 mb-0">Max Height:</p>
                                                 <p class="">` + obj1.max_height + `</p>
                                             </td>
                                             <td>
                                                 <p class="b7 mb-0">Discharge Port:</p>
-                                                <p class="">` + obj1.dport.port_name + `</p>
+                                                <p class="">` + obj1.discharge_port_id + `</p>
                                                 <p class="b7 mb-0">Loading Equipment Req:</p>
                                                 <p class="">` + obj1.loading_equipment_req + `</p>
                                             </td>
@@ -499,6 +507,8 @@
                                             `;
                             });
                         });
+                        
+                    
                     }//end else
                     $("#all_cargo").html(post_str);
 

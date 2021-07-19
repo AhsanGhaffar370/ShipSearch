@@ -25,12 +25,14 @@ class FrontCargoController extends Controller
 
         $ser_data= cargo_search_history::where('user_id',session('front_uid'))->get();
 
+        $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
         $ss_setup_region= ss_setup_region::active()->get();
         $ss_setup_country= ss_setup_country::active()->get();
         $ss_setup_port= ss_setup_port::active()->get();
 
         return view('front/cargo/view',['data'=>$data,
                                         'ser_data'=>$ser_data,
+                                        'cargo_type'=>$ss_setup_cargo_type,
                                         'region'=>$ss_setup_region,
                                         'country'=>$ss_setup_country,
                                         'port'=>$ss_setup_port]);
@@ -45,7 +47,14 @@ class FrontCargoController extends Controller
         $ss_setup_port= ss_setup_port::active()->get();
         $ss_setup_unit= ss_setup_unit::active()->get();
 
-        return view('front/cargo/add',['cargo_type'=>$ss_setup_cargo_type,
+        $data = ss_cargo::latest()->first();
+        // $data = ss_cargo::latest()->take(1)->get();
+        // $data = ss_cargo::orderBy('cargo_id', 'DESC')->first();
+        $ref_no=$data->cargo_id+1;
+        $ref_no="CA".$ref_no;
+
+        return view('front/cargo/add',['cargo_ref_no'=>$ref_no,
+                                        'cargo_type'=>$ss_setup_cargo_type,
                                         'region'=>$ss_setup_region,
                                         'country'=>$ss_setup_country,
                                         'port'=>$ss_setup_port,
@@ -54,12 +63,14 @@ class FrontCargoController extends Controller
     }
 
     function add_req(Request $req){
-        
+
+        // dd($req->ref_no);        
         $cargo=new ss_cargo;
 
         
         $cargo->cargo_name=$req->cargo_name;
-        
+        $cargo->ref_no=$req->ref_no;
+
         foreach ($req->cargo_type_id as $selectedOption)
             $cargo->cargo_type_id .= $selectedOption.",";
         $cargo->cargo_type_id=rtrim($cargo->cargo_type_id, ",");
@@ -101,7 +112,8 @@ class FrontCargoController extends Controller
         $cargo->loading_discharge_rates=$req->loading_discharge_rates." ".$req->loading_discharge_rates_unit;
         // $cargo->loading_discharge_unit_id=$req->loading_discharge_unit_id;
         $cargo->loading_equipment_req=$req->loading_equipment_req;
-        $cargo->gear_lifting_capacity=$req->gear_lifting_capacity." ".$req->gear_lifting_capacity_unit;
+        // $cargo->gear_lifting_capacity=$req->gear_lifting_capacity." ".$req->gear_lifting_capacity_unit;
+        $cargo->gear_lifting_capacity=$req->gear_lifting_capacity;
         $cargo->discharge_equipment_req=$req->discharge_equipment_req;
 
         // $cargo->loading_discharge_equipment_req=$req->loading_discharge_equipment_req;
@@ -135,47 +147,89 @@ class FrontCargoController extends Controller
 
         if(session('front_uid')!=""){
 
-            $ser_data=$req->all();
-            $ser_data['user_id']=session('front_uid');
-            cargo_search_history::create($ser_data);   
+            // $ser_data=$req->all();
+            // $ser_data['user_id']=session('front_uid');
+            // cargo_search_history::create($ser_data);
+
+            $ser_data=new cargo_search_history;
+            
+            $ser_data->user_id=session('front_uid');
+
+            $ser_data->laycan_date_from=date("Y-m-d", strtotime($req->laycan_date_from));
+            $ser_data->laycan_date_to=date("Y-m-d", strtotime($req->laycan_date_to));
+
+            foreach ($req->cargo_type_id as $selectedOption)
+                $ser_data->cargo_type_id .= $selectedOption.",";
+            $ser_data->cargo_type_id=rtrim($ser_data->cargo_type_id, ",");
+            $ser_cargo_type=$ser_data->cargo_type_id;
+
+            foreach ($req->loading_region_id as $selectedOption)
+                $ser_data->loading_region_id .= $selectedOption.",";
+            $ser_data->loading_region_id=rtrim($ser_data->loading_region_id, ",");
+            $ser_loading_region=$ser_data->loading_region_id;
+
+            foreach ($req->loading_country_id as $selectedOption)
+                $ser_data->loading_country_id .= $selectedOption.",";
+            $ser_data->loading_country_id=rtrim($ser_data->loading_country_id, ",");
+            $ser_loading_country=$ser_data->loading_country_id;
+
+            foreach ($req->loading_port_id as $selectedOption)
+                $ser_data->loading_port_id .= $selectedOption.",";
+            $ser_data->loading_port_id=rtrim($ser_data->loading_port_id, ",");
+            $ser_loading_port=$ser_data->loading_port_id;
+
+            foreach ($req->discharge_region_id as $selectedOption)
+                $ser_data->discharge_region_id .= $selectedOption.",";
+            $ser_data->discharge_region_id=rtrim($ser_data->discharge_region_id, ",");
+            $ser_discharge_region=$ser_data->discharge_region_id;
+
+            foreach ($req->discharge_country_id as $selectedOption)
+                $ser_data->discharge_country_id .= $selectedOption.",";
+            $ser_data->discharge_country_id=rtrim($ser_data->discharge_country_id, ",");
+            $ser_discharge_country=$ser_data->discharge_country_id;
+
+            foreach ($req->discharge_port_id as $selectedOption)
+                $ser_data->discharge_port_id .= $selectedOption.",";
+            $ser_data->discharge_port_id=rtrim($ser_data->discharge_port_id, ",");
+            $ser_discharge_port=$ser_data->discharge_port_id;
+
+            
+            $ser_data->save();
+               
 
             $total_rec=cargo_search_history::where("user_id",session('front_uid'))->count();
 
-            if($total_rec>8)
-            {
+            if($total_rec>8){
                 // session()->flash('msg2121','cargo Deleted');
                 cargo_search_history::where('user_id',session('front_uid'))->first()->delete();
             }
         }
 
-        $laycan_col="";
-        if($req->laycan_date=="laycan_date_from"){
-            $laycan_col="laycan_date_from";
-        }
-        if($req->laycan_date=="laycan_date_to"){
-            $laycan_col="laycan_date_to";
-        }
+        $laycan_from=date("Y-m-d", strtotime($req->laycan_date_from));
+        $laycan_to=date("Y-m-d", strtotime($req->laycan_date_to));  
 
-        $from_date=date("Y-m-d", strtotime($req->from_date));
-        $to_date=date("Y-m-d", strtotime($req->to_date));      
+        $data = ss_cargo::where('laycan_date_from', $laycan_from)
+                        ->where('laycan_date_to', $laycan_to)
+                        ->where('cargo_type_id', $ser_cargo_type)
+                        ->where('loading_region_id', $ser_loading_region)
+                        ->where('loading_country_id', $ser_loading_country)
+                        ->where('loading_port_id', $ser_loading_port)
+                        ->where('discharge_region_id', $ser_discharge_region)
+                        ->where('discharge_country_id', $ser_discharge_country)
+                        ->where('discharge_port_id', $ser_discharge_port)->get();
+                        // ->whereBetween($laycan_col, [$from_date, $to_date])->get();
 
-        $data = ss_cargo::where('loading_region_id', $req->loading_region_id)
-                        ->where('loading_country_id', $req->loading_country_id)
-                        ->where('loading_port_id', $req->loading_port_id)
-                        ->where('discharge_region_id', $req->discharge_region_id)
-                        ->where('discharge_country_id', $req->discharge_country_id)
-                        ->where('discharge_port_id', $req->discharge_port_id)
-                        ->whereBetween($laycan_col, [$from_date, $to_date])->get();
-
-        $ser_data= cargo_search_history::where('user_id',session('front_uid'))->get();
+        $ser_history= cargo_search_history::where('user_id',session('front_uid'))->get();
 
 
+        $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
         $ss_setup_region= ss_setup_region::active()->get();
         $ss_setup_country= ss_setup_country::active()->get();
         $ss_setup_port= ss_setup_port::active()->get();
 
         return view('front/cargo/view',['data'=>$data,
-                                        'ser_data'=>$ser_data,
+                                        'ser_data'=>$ser_history,
+                                        'cargo_type'=>$ss_setup_cargo_type,
                                         'region'=>$ss_setup_region,
                                         'country'=>$ss_setup_country,
                                         'port'=>$ss_setup_port]);
@@ -184,16 +238,19 @@ class FrontCargoController extends Controller
     function search_req_ajax(Request $req){
         // echo $req->laycan_date;
 
-        $from_date=date("Y-m-d", strtotime($req->from_date));
-        $to_date=date("Y-m-d", strtotime($req->to_date));      
+        $laycan_from=date("Y-m-d", strtotime($req->laycan_from));
+        $laycan_to=date("Y-m-d", strtotime($req->laycan_to));      
 
-        $data = ss_cargo::where('loading_region_id', $req->lregion) // yha id jaegi 
+        $data = ss_cargo::where('cargo_type_id', $req->cargotype) // yha id jaegi 
+                        ->where('laycan_date_from', $laycan_from)
+                        ->where('laycan_date_to', $laycan_to)
+                        ->where('loading_region_id', $req->lregion)
                         ->where('loading_country_id', $req->lcountry)
                         ->where('loading_port_id', $req->lport)
                         ->where('discharge_region_id', $req->dregion)
                         ->where('discharge_country_id', $req->dcountry)
                         ->where('discharge_port_id', $req->dport)
-                        ->whereBetween($req->laycan_date, [$from_date, $to_date])
+                        // ->whereBetween($req->laycan_date, [$from_date, $to_date])
                         ->get();
 
         // echo "<pre>";
