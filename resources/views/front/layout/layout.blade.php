@@ -11,8 +11,10 @@
     <title>@yield('page_title')</title>
 
     <!-- bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> --}}
+     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">  --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css"> --}}
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/7516c4b4cc.js" crossorigin="anonymous"></script>
@@ -65,8 +67,14 @@
             border: 0;
             border-top: 6px solid #00c1ca;
         }
-
     </style>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+
+
 
 </head>
 
@@ -271,10 +279,17 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <!-- bootstrap bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script> --}}
 
+     {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>  --}}
+
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> --}}
 
     <!-- custom js -->
     <script src="{{ asset('front_asset/js/my_validation.js') }}"></script>
@@ -282,7 +297,7 @@
       <script src="{{ asset('front_asset/js/custom.js') }}"></script> -->
 
     <!-- datepicker -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
     <!-- datatables -->
@@ -290,9 +305,25 @@
     </script>
 
 
-
     <script>
+        
+       
+
+
+
+
         $(document).ready(function() {
+
+            
+            $('#cargo_type_id').selectpicker();
+            $('#loading_region_id').selectpicker();
+            $('#loading_country_id').selectpicker();
+            $('#loading_port_id').selectpicker();
+            $('#discharge_region_id').selectpicker();
+            $('#discharge_country_id').selectpicker();
+            $('#discharge_port_id').selectpicker();
+
+
             $('#cargo_table2').DataTable({
                 // "paging": false,
                 // "pagingType":"full_numbers",

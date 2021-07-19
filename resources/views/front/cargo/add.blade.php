@@ -17,6 +17,13 @@
             background-color: #dfe3e3 !important;
         }
 
+        button.btn.dropdown-toggle.btn-light {
+            background-color: white;
+            border: 1px solid #cecece;
+        }
+        .dropdown-toggle::after{
+            color:black;
+        }
     </style>
 
     <div class="container-fluid p-lg-5 p-md-2 mt-3 mb-5">
@@ -32,72 +39,91 @@
                         <input type="text" required name="cargo_name" class="form-control">
                     </div>
                     <!-- -->
+                    
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Cargo Type</label>
-                        <select name="cargo_type_id" id="cargo_type_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="cargo_type_id[]" id="cargo_type_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" 
+                            {{-- data-live-search="true"  --}}
+                            {{-- data-max-options="5"   --}} 
+                            {{-- data-actions-box="true"  --}}
+                            >
                             @foreach ($cargo_type as $row)
-                                <option value="{{ $row->cargo_type_id }}">{{ $row->cargo_type_name }}</option>
+                                <option value="{{ $row->cargo_type_name }}">{{ $row->cargo_type_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Loading Region</label>
-                        <select name="loading_region_id" id="loading_region_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="loading_region_id[]" id="loading_region_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" >
                             @foreach ($region as $row)
-                                <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
+                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Loading Country</label>
-                        <select name="loading_country_id" id="loading_country_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="loading_country_id[]" id="loading_country_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" >
                             @foreach ($country as $row)
-                                <option value="{{ $row->country_id }}">{{ $row->country_name }}</option>
+                                <option value="{{ $row->country_name }}">{{ $row->country_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Loading Port</label>
-                        <select name="loading_port_id" id="loading_port_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="loading_port_id[]" id="loading_port_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" >
                             @foreach ($port as $row)
-                                <option value="{{ $row->port_id }}">{{ $row->port_name }}</option>
+                                <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Discharge Region</label>
-                        <select name="discharge_region_id" id="discharge_region_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="discharge_region_id[]" id="discharge_region_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" >
                             @foreach ($region as $row)
-                                <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
+                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Discharge Country</label>
-                        <select name="discharge_country_id" id="discharge_country_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="discharge_country_id[]" id="discharge_country_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" >
                             @foreach ($country as $row)
-                                <option value="{{ $row->country_id }}">{{ $row->country_name }}</option>
+                                <option value="{{ $row->country_name }}">{{ $row->country_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Discharge Port</label>
-                        <select name="discharge_port_id" id="discharge_port_id" class="form-control">
-                            <option value="-1" disabled selected>Choose</option>
+                        <select name="discharge_port_id[]" id="discharge_port_id" class="form-control" multiple
+                            title="Choose"
+                            data-size="5"
+                            data-selected-text-format="count > 2" >
                             @foreach ($port as $row)
-                                <option value="{{ $row->port_id }}">{{ $row->port_name }}</option>
+                                <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
                             @endforeach
                         </select>
                     </div>

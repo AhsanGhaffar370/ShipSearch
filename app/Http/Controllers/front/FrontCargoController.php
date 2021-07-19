@@ -16,9 +16,14 @@ class FrontCargoController extends Controller
 {
     function view(){
 
-        $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])->get();
+        // $data = ss_cargo::get();
+        // $carg12=explode(",",$data[12]->cargo_type_id);
+        // print($carg12[2]);
 
-        $ser_data= cargo_search_history::with(['Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])->where('user_id',session('front_uid'))->get();
+        // $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])->get();
+        $data = ss_cargo::all();
+
+        $ser_data= cargo_search_history::where('user_id',session('front_uid'))->get();
 
         $ss_setup_region= ss_setup_region::active()->get();
         $ss_setup_country= ss_setup_country::active()->get();
@@ -49,23 +54,43 @@ class FrontCargoController extends Controller
     }
 
     function add_req(Request $req){
-
+        
         $cargo=new ss_cargo;
 
+        
         $cargo->cargo_name=$req->cargo_name;
-        $cargo->cargo_type_id=$req->cargo_type_id;
-        $cargo->loading_region_id=$req->loading_region_id;
-        $cargo->loading_country_id=$req->loading_country_id;
-        $cargo->loading_port_id=$req->loading_port_id;
-        // $cargo->loading_port_id_2=$req->loading_port_id_2;
-        $cargo->discharge_region_id=$req->discharge_region_id;
-        $cargo->discharge_country_id=$req->discharge_country_id;
-        $cargo->discharge_port_id=$req->discharge_port_id;
-        // $cargo->discharge_port_id_2=$req->discharge_port_id_2;
+        
+        foreach ($req->cargo_type_id as $selectedOption)
+            $cargo->cargo_type_id .= $selectedOption.",";
+        $cargo->cargo_type_id=rtrim($cargo->cargo_type_id, ",");
+
+        foreach ($req->loading_region_id as $selectedOption)
+            $cargo->loading_region_id .= $selectedOption.",";
+        $cargo->loading_region_id=rtrim($cargo->loading_region_id, ",");
+
+        foreach ($req->loading_country_id as $selectedOption)
+            $cargo->loading_country_id .= $selectedOption.",";
+        $cargo->loading_country_id=rtrim($cargo->loading_country_id, ",");
+
+        foreach ($req->loading_port_id as $selectedOption)
+            $cargo->loading_port_id .= $selectedOption.",";
+        $cargo->loading_port_id=rtrim($cargo->loading_port_id, ",");
+
+        foreach ($req->discharge_region_id as $selectedOption)
+            $cargo->discharge_region_id .= $selectedOption.",";
+        $cargo->discharge_region_id=rtrim($cargo->discharge_region_id, ",");
+
+        foreach ($req->discharge_country_id as $selectedOption)
+            $cargo->discharge_country_id .= $selectedOption.",";
+        $cargo->discharge_country_id=rtrim($cargo->discharge_country_id, ",");
+
+        foreach ($req->discharge_port_id as $selectedOption)
+            $cargo->discharge_port_id .= $selectedOption.",";
+        $cargo->discharge_port_id=rtrim($cargo->discharge_port_id, ",");
+        
         $cargo->laycan_date_from=$req->laycan_date_from;
         $cargo->laycan_date_to=$req->laycan_date_to;
         $cargo->quantity=$req->quantity." ".$req->quantity_unit;
-        // $cargo->unit_id=$req->unit_id;
         $cargo->max_loa=$req->max_loa." ".$req->max_loa_unit;
         $cargo->max_draft=$req->max_draft." ".$req->max_draft_unit;
         $cargo->max_height=$req->max_height." ".$req->max_height_unit;
@@ -134,8 +159,7 @@ class FrontCargoController extends Controller
         $from_date=date("Y-m-d", strtotime($req->from_date));
         $to_date=date("Y-m-d", strtotime($req->to_date));      
 
-        $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])
-                        ->where('loading_region_id', $req->loading_region_id)
+        $data = ss_cargo::where('loading_region_id', $req->loading_region_id)
                         ->where('loading_country_id', $req->loading_country_id)
                         ->where('loading_port_id', $req->loading_port_id)
                         ->where('discharge_region_id', $req->discharge_region_id)
@@ -143,7 +167,7 @@ class FrontCargoController extends Controller
                         ->where('discharge_port_id', $req->discharge_port_id)
                         ->whereBetween($laycan_col, [$from_date, $to_date])->get();
 
-        $ser_data= cargo_search_history::with(['Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])->where('user_id',session('front_uid'))->get();
+        $ser_data= cargo_search_history::where('user_id',session('front_uid'))->get();
 
 
         $ss_setup_region= ss_setup_region::active()->get();
@@ -163,8 +187,7 @@ class FrontCargoController extends Controller
         $from_date=date("Y-m-d", strtotime($req->from_date));
         $to_date=date("Y-m-d", strtotime($req->to_date));      
 
-        $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])
-                        ->where('loading_region_id', $req->lregion) // yha id jaegi 
+        $data = ss_cargo::where('loading_region_id', $req->lregion) // yha id jaegi 
                         ->where('loading_country_id', $req->lcountry)
                         ->where('loading_port_id', $req->lport)
                         ->where('discharge_region_id', $req->dregion)
