@@ -76,6 +76,10 @@ Route::post('/cargo/view', [FrontCargoController::class, 'search_req'] )->name('
 
 Route::get('/cargo/ser_hist_rec', [FrontCargoController::class, 'search_req_ajax'] )->name('cargo.ser_hist_rec');
 
+Route::get('/cargo/del_ser_hist_rec', [FrontCargoController::class, 'del_ser_his_req_ajax'] )->name('cargo.del_ser_hist_rec');
+
+Route::get('/cargo/update_search_hist', [FrontCargoController::class, 'update_search_hist'] )->name('cargo.update_search_hist');
+
 
 // Vessel Charter
 Route::get('/vessel/view', [FrontVesselController::class, 'view'] )->name('vessel.view');

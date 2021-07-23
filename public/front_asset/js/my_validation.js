@@ -55,11 +55,25 @@ $(document).ready(function() {
         autoclose: true,
     });
 
-    // $("#adv_ser21").hide();
+    // $("#advance_ser").hide();
     $('#adv_ser11').click(function(e) {
         e.preventDefault();
-        $("#adv_ser21").slideToggle(500);
+        $("#advance_ser").show();
+        $("#cargo_type_id").focus();
+        $(".edit_del_btns").hide();
+        $(".ser_hist_req").css({
+            'background-color': "white",
+            "color": "black"
+        });
+        // $("#advance_ser").slideToggle(500);
     });
+    $('#close_ser').click(function(e) {
+        e.preventDefault();
+        $("#advance_ser").hide();
+        // $("#advance_ser").slideToggle(500);
+    });
+
+
 
 });
 

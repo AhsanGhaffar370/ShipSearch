@@ -13,11 +13,18 @@
     <!-- bootstrap -->
 
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> --}}
-     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">  --}}
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> --}}
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css"> --}}
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/7516c4b4cc.js" crossorigin="anonymous"></script>
+
+    {{-- Google fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
 
     <!-- custom css -->
     <link href="{{ asset('front_asset/css/my_style.css') }}" rel="stylesheet">
@@ -72,14 +79,17 @@
             background-color: white;
             border: 1px solid #cecece;
         }
-        .dropdown-toggle::after{
-            color:black;
+
+        .dropdown-toggle::after {
+            color: black;
         }
+
     </style>
 
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
 
 
 
@@ -113,7 +123,8 @@
                                 href="{{ route('cargo.view') }}">Cargos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3" href="{{ route('vessel.view') }}">Vessel
+                            <a class="nav-link cl_bd size13 b7 pt-4 pb-4 pl-3 pr-3"
+                                href="{{ route('vessel.view') }}">Vessel
                                 Charter</a>
                         </li>
                         <li class="nav-item">
@@ -138,7 +149,8 @@
                         </li>
                     </ul>
                     @if (session('front_uid') != '')
-                        <a class="btn btn-info rounded-0" href="{{ route('logout') }}">({{ session('front_uname') }})
+                        <a class="btn btn-info rounded-0"
+                            href="{{ route('logout') }}">({{ session('front_uname') }})
                             Logout</a>
                     @else
                         <a class="btn btn-info rounded-0" href="{{ route('login') }}">Login/Register</a>
@@ -157,7 +169,7 @@
 
 
     <!-- Footer -->
-    <hr class="ft_border">
+    {{-- <hr class="ft_border"> --}}
     <footer class="page-footer font-small bg_sec">
 
         <!-- Footer Links -->
@@ -288,19 +300,19 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- bootstrap bundle -->
-    
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script> --}}
 
-     {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>  --}}
+    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> --}}
 
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> --}}
 
     <!-- custom js -->
-    <script type="text/javascript"  src="{{ asset('front_asset/js/my_validation.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('front_asset/js/my_validation.js') }}"></script>
 
     <!-- datepicker -->
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> --}}
@@ -312,22 +324,16 @@
 
 
     <script>
-        
-       
-
-
-
-
         $(document).ready(function() {
 
             //add cargo
-            $('#cargo_type_id').selectpicker();
-            $('#loading_region_id').selectpicker();
-            $('#loading_country_id').selectpicker();
-            $('#loading_port_id').selectpicker();
-            $('#discharge_region_id').selectpicker();
-            $('#discharge_country_id').selectpicker();
-            $('#discharge_port_id').selectpicker();
+            $('.cargo_type_id').selectpicker();
+            $('.loading_region_id').selectpicker();
+            $('.loading_country_id').selectpicker();
+            $('.loading_port_id').selectpicker();
+            $('.discharge_region_id').selectpicker();
+            $('.discharge_country_id').selectpicker();
+            $('.discharge_port_id').selectpicker();
 
 
             $('#cargo_table2').DataTable({
@@ -359,6 +365,9 @@
             $('.show_details_' + id).fadeToggle("slow");
             $('.cargo_show_detail1_' + id).hide();
             $('.cargo_show_detail2_' + id).show();
+
+
+            $(this).parent().parent().css({"background-color":"#F1F1F1"});
         });
 
         $(document).on("click", '.cargo_show_detail2', function(e) {
@@ -367,6 +376,8 @@
             $('.show_details_' + id).fadeToggle("slow");
             $('.cargo_show_detail1_' + id).show();
             $('.cargo_show_detail2_' + id).hide();
+
+            $(this).parent().parent().css({"background-color":""});
         });
 
         //show details of cargo,vessel
@@ -394,15 +405,20 @@
             let id1 = id2.split('-');
             let id = id1[id1.length - 1];
 
-            let cargotype = $("#cargotype-" + id).html();
-            let laycan_from = $("#laycan_from-" + id).html();
-            let laycan_to = $("#laycan_to-" + id).html();
-            let lregion = $("#lregion-" + id).attr('class');
-            let dregion = $("#dregion-" + id).attr('class');
-            let lcountry = $("#lcountry-" + id).attr('class');
-            let dcountry = $("#dcountry-" + id).attr('class');
-            let lport = $("#lport-" + id).attr('class');
-            let dport = $("#dport-" + id).attr('class');
+            // let cargotype = $("#cargotype-" + id).html();
+            // let laycan_from = $("#laycan_from-" + id).html();
+            // let laycan_to = $("#laycan_to-" + id).html();
+            // let lregion = $("#lregion-" + id).attr('class');
+            // let dregion = $("#dregion-" + id).attr('class');
+            // let lcountry = $("#lcountry-" + id).attr('class');
+            // let dcountry = $("#dcountry-" + id).attr('class');
+            // let lport = $("#lport-" + id).attr('class');
+            // let dport = $("#dport-" + id).attr('class');
+
+            $(".edit_del_btns").hide();
+            $(".edit_del_btn_" + id).show();
+            
+            // $("#adv_ser21").hide();
 
 
             $(".ser_hist_req").css({
@@ -417,21 +433,18 @@
 
             $.ajax({
                 url: '{{ route('cargo.ser_hist_rec') }}',
-                data: "id=" + id + "&cargotype=" + cargotype + "&laycan_from=" + laycan_from + "&laycan_to=" +
-                    laycan_to +
-                    "&lregion=" + lregion + "&dregion=" + dregion + "&lcountry=" + lcountry + "&dcountry=" +
-                    dcountry +
-                    "&lport=" + lport + "&dport=" + dport,
+                // data: "id=" + id + "&cargotype=" + cargotype + "&laycan_from=" + laycan_from + "&laycan_to=" + laycan_to + "&lregion=" + lregion + "&dregion=" + dregion + "&lcountry=" + lcountry + "&dcountry=" + dcountry + "&lport=" + lport + "&dport=" + dport,
+                data: "id="+id,
                 type: "get",
                 success: function(response) {
-            
+
                     let json_data = $.parseJSON(response);
                     var len = json_data.length;
                     var post_str = "";
                     // console.log(json_data['data'][0]['cargo_name'])
 
                     if (json_data['data']['length'] == 0) {
-                        post_str += '<tr class=""><td colspan="3"><i>No Record Found</i></td></tr>';
+                        post_str += '<tr class=""><td colspan="3"><i>No exact results. Try expanding your filters</i></td></tr>';
                     } else {
                         $.each(json_data, function(i, obj) {
                             $.each(obj, function(i, obj1) {
@@ -449,8 +462,10 @@
                                             <td>` + obj1.loading_discharge_rates + `</td>
                                             <td>` + obj1.created_at + `</td>
                                             <td class="text-center">
-                                                <a href="` + obj1.cargo_id + `" class="cargo_show_detail1_` + obj1.cargo_id + ` cargo_show_detail1 show_details_btn"><i class="fas fa-eye fa-2x"></i></a>
-                                                <a href="` + obj1.cargo_id + `" class="cargo_show_detail2_` + obj1.cargo_id + ` cargo_show_detail2 show_details_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
+                                                <a href="` + obj1.cargo_id + `" class="cargo_show_detail1_` + obj1
+                                    .cargo_id + ` cargo_show_detail1 show_details_btn"><i class="fas fa-eye fa-2x"></i></a>
+                                                <a href="` + obj1.cargo_id + `" class="cargo_show_detail2_` + obj1
+                                    .cargo_id + ` cargo_show_detail2 show_details_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
                                             </td>
                                             </tr>
                                             
@@ -507,10 +522,12 @@
                                             `;
                             });
                         });
-                        
-                    
-                    }//end else
+
+
+                    } //end else
                     $("#all_cargo").html(post_str);
+
+                    $("#records_found21").html(json_data['data']['length']+" EXACT MATCHES");
 
                     $('.cargo_show_detail2').hide();
 
@@ -518,7 +535,76 @@
             });
         });
 
+
         $(document).ready(function() {
+            $(document).on('click', '.close_each', function(e) {
+                e.preventDefault();
+
+                let el = e.target;
+                // let table_row = $(el).parent().parent().parent();
+                let uid = e.target.getAttribute('href');
+
+
+
+                $("#advance_ser_"+uid).hide();
+                $("#rec-"+uid).show();
+
+                $(".edit_del_btns").hide();
+                $(".ser_hist_req").css({
+                    'background-color': "white",
+                    "color": "black"
+                });
+            });
+
+            $(document).on('click', '#update21', function(e) {
+                e.preventDefault();
+                let el = e.target;
+                // let table_row = $(el).parent().parent().parent();
+                let uid = e.target.getAttribute('href');
+
+                $(".ser_hist_req").show();
+                $("#rec-"+uid).hide();
+
+                $(".advance_ser").hide();
+                $("#advance_ser_"+uid).show();
+            });
+
+            //delete a record of search history 
+            $(document).on('click', '#delete21', function(e) {
+                // $(".delete21").click(function(e){
+                e.preventDefault();
+                let el = e.target;
+                let table_row = $(el).parent().parent().parent();
+                let deleteid = e.target.getAttribute('href');
+
+                // alert(deleteid);
+
+                let confirmalert = confirm("Are you sure?");
+                if (confirmalert == true) {
+                    // AJAX Request
+                    $.ajax({
+                        url: '{{ route('cargo.del_ser_hist_rec') }}',
+                        data: "id=" + deleteid,
+                        type: "get",
+                        success: function(response) {
+                            // alert(response);
+                            if(response == "1"){
+                            // Remove row from HTML Table
+                            table_row.css('background', 'tomato');
+                            table_row.fadeOut(800, function() {
+                                table_row.remove();
+                            });
+                            }else{
+                            alert('Invalid ID.');
+                            }
+
+                        }
+                    });
+                }
+            });
+
+
+
             // $('#ser_hist_rec').delegate('tr','click',function() {
             //     alert( 'i was clicked' );
             // });
