@@ -448,8 +448,8 @@
                     } else {
                         $.each(json_data, function(i, obj) {
                             $.each(obj, function(i, obj1) {
-                                // console.log(obj1);
-                                // console.log(i+"  "+obj1);
+                                console.log(obj1);
+                                console.log(i+"  "+obj1);
                                 post_str += `<tr class="">
                                             <td>` + obj1.ref_no + `</td>
                                             <td>` + obj1.cargo_name + `</td>
@@ -567,6 +567,11 @@
 
                 $(".advance_ser").hide();
                 $("#advance_ser_"+uid).show();
+
+
+                // var make = "fiat";
+
+                // $("#cars option[value='" + make + "']").attr("selected","selected");
             });
 
             //delete a record of search history 
