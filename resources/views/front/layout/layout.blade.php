@@ -367,7 +367,9 @@
             $('.cargo_show_detail2_' + id).show();
 
 
-            $(this).parent().parent().css({"background-color":"#F1F1F1"});
+            $(this).parent().parent().css({
+                "background-color": "#F1F1F1"
+            });
         });
 
         $(document).on("click", '.cargo_show_detail2', function(e) {
@@ -377,7 +379,9 @@
             $('.cargo_show_detail1_' + id).show();
             $('.cargo_show_detail2_' + id).hide();
 
-            $(this).parent().parent().css({"background-color":""});
+            $(this).parent().parent().css({
+                "background-color": ""
+            });
         });
 
         //show details of cargo,vessel
@@ -417,7 +421,7 @@
 
             $(".edit_del_btns").hide();
             $(".edit_del_btn_" + id).show();
-            
+
             // $("#adv_ser21").hide();
 
 
@@ -434,7 +438,7 @@
             $.ajax({
                 url: '{{ route('cargo.ser_hist_rec') }}',
                 // data: "id=" + id + "&cargotype=" + cargotype + "&laycan_from=" + laycan_from + "&laycan_to=" + laycan_to + "&lregion=" + lregion + "&dregion=" + dregion + "&lcountry=" + lcountry + "&dcountry=" + dcountry + "&lport=" + lport + "&dport=" + dport,
-                data: "id="+id,
+                data: "id=" + id,
                 type: "get",
                 success: function(response) {
 
@@ -444,12 +448,13 @@
                     // console.log(json_data['data'][0]['cargo_name'])
 
                     if (json_data['data']['length'] == 0) {
-                        post_str += '<tr class=""><td colspan="3"><i>No exact results. Try expanding your filters</i></td></tr>';
+                        post_str +=
+                            '<tr class=""><td colspan="3"><i>No exact results. Try expanding your filters</i></td></tr>';
                     } else {
                         $.each(json_data, function(i, obj) {
                             $.each(obj, function(i, obj1) {
-                                console.log(obj1);
-                                console.log(i+"  "+obj1);
+                                // console.log(obj1);
+                                // console.log(i + "  " + obj1);
                                 post_str += `<tr class="">
                                             <td>` + obj1.ref_no + `</td>
                                             <td>` + obj1.cargo_name + `</td>
@@ -527,7 +532,7 @@
                     } //end else
                     $("#all_cargo").html(post_str);
 
-                    $("#records_found21").html(json_data['data']['length']+" EXACT MATCHES");
+                    $("#records_found21").html(json_data['data']['length'] + " EXACT MATCHES");
 
                     $('.cargo_show_detail2').hide();
 
@@ -546,8 +551,8 @@
 
 
 
-                $("#advance_ser_"+uid).hide();
-                $("#rec-"+uid).show();
+                $("#advance_ser_" + uid).hide();
+                $("#rec-" + uid).show();
 
                 $(".edit_del_btns").hide();
                 $(".ser_hist_req").css({
@@ -559,19 +564,98 @@
             $(document).on('click', '#update21', function(e) {
                 e.preventDefault();
                 let el = e.target;
-                // let table_row = $(el).parent().parent().parent();
-                let uid = e.target.getAttribute('href');
+                let uid = el.getAttribute('href');
 
                 $(".ser_hist_req").show();
-                $("#rec-"+uid).hide();
+                $("#rec-" + uid).hide();
 
                 $(".advance_ser").hide();
-                $("#advance_ser_"+uid).show();
+                $("#advance_ser_" + uid).show();
+
+                $.ajax({
+                    url: '{{ route('cargo.get_update_hist_date') }}',
+                    data: "id=" + uid,
+                    type: "get",
+                    success: function(response) {
+
+                        let json_data = $.parseJSON(response);
+                        var len = json_data.length;
+
+                        $("#laycan_date_from_"+uid).val(json_data['data']['laycan_date_from']);
+                        $("#laycan_date_to_"+uid).val(json_data['data']['laycan_date_to']);
+
+                        let arr=["cargo_type_id","loading_region_id","loading_country_id","loading_port_id",
+                        "discharge_region_id","discharge_country_id","discharge_port_id"];
+
+                        $.each(arr, function(i, obj1){
+                        
+                            let dd_id="#"+obj1+"_"+uid;
+                            let dd_data=json_data['data'][obj1];
+                            let dd_data_arr=dd_data.split(",");
+
+                            $.each(dd_data_arr, function(i, obj2){
+                                $(dd_id+" option[value='" + obj2 + "']").attr("selected","selected");
+                            });
+
+                            $(dd_id).siblings(".btn").attr("class","btn dropdown-toggle btn-light");
+
+                            if(dd_data_arr.length>2){
+                                $(dd_id).siblings(".btn").attr("title",dd_data_arr.length+" items selected");
+                                $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length+" items selected");
+                            }else{
+                                $(dd_id).siblings(".btn").attr("title",dd_data);
+                                $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
+                            }
+                        });
+
+                    }
+                });
+            });
+
+            $(document).on('click','.update_search_cargo_each',function(e){
+                e.preventDefault();
+                let el = e.target;
+                let uid = el.getAttribute('id').split("_")[1];
+
+                // $(".ser_hist_req").show();
+                // $(".advance_ser").hide();
+                let date_from = $("#laycan_date_from_"+uid).val();
+                let date_to = $("#laycan_date_to_"+uid).val();
 
 
-                // var make = "fiat";
+                let arr=["cargo_type_id","loading_region_id","loading_country_id","loading_port_id",
+                        "discharge_region_id","discharge_country_id","discharge_port_id"];
+                let dd_str = new Array(7);
+                let count=0;
 
-                // $("#cars option[value='" + make + "']").attr("selected","selected");
+                $.each(arr, function(i, obj1){
+                    let dd_id="#"+obj1+"_"+uid;
+                    var dd_data= $(dd_id).map(function(){return $(this).val();}).get();
+                    dd_str[count]="";
+                    $.each(dd_data, function(i, obj1){
+                        dd_str[count]+=obj1+",";
+                    });
+                    dd_str[count]= dd_str[count].replace(/,+$/,'');
+                    count++;
+                });
+                console.log("cargo ",dd_str[1]);
+
+
+                if (date_from == "") {
+                    alert("Please fill out all fields");
+                } else {
+                    $.ajax({
+                        url: '{{ route('cargo.update_hist_data') }}',
+                        data: "id=" + uid + "&cargo_type_id=" + dd_str[0] + "&laycan_date_from=" + date_from + 
+                        "&laycan_date_to=" + date_to + "&loading_region_id=" + dd_str[1] + "&loading_country_id=" + dd_str[2] + 
+                        "&loading_port_id=" + dd_str[3] + "&discharge_region_id=" + dd_str[4] + 
+                        "&discharge_country_id=" + dd_str[5] + "&discharge_port_id=" + dd_str[6],
+                        type: "get",
+                        success: function(response) {
+                            
+                        }
+                    })
+                }
             });
 
             //delete a record of search history 
@@ -582,8 +666,6 @@
                 let table_row = $(el).parent().parent().parent();
                 let deleteid = e.target.getAttribute('href');
 
-                // alert(deleteid);
-
                 let confirmalert = confirm("Are you sure?");
                 if (confirmalert == true) {
                     // AJAX Request
@@ -593,14 +675,14 @@
                         type: "get",
                         success: function(response) {
                             // alert(response);
-                            if(response == "1"){
-                            // Remove row from HTML Table
-                            table_row.css('background', 'tomato');
-                            table_row.fadeOut(800, function() {
-                                table_row.remove();
-                            });
-                            }else{
-                            alert('Invalid ID.');
+                            if (response == "1") {
+                                // Remove row from HTML Table
+                                table_row.css('background', 'tomato');
+                                table_row.fadeOut(800, function() {
+                                    table_row.remove();
+                                });
+                            } else {
+                                alert('Invalid ID.');
                             }
 
                         }

@@ -105,7 +105,8 @@
 
 
         .ser_inp_fields {
-            width: 215px !important;
+            width: 100% !important;
+            /* widows: 215px !important; */
         }
 
         #advance_ser td {
@@ -131,7 +132,7 @@
         }
 
         #cargo_table22 td>input {
-            margin: 10px 0px 10px 0px !important;
+            margin: 10px 4px 10px 0px !important;
         }
 
         .dropdown-menu li a span {
@@ -154,16 +155,25 @@
             padding: 0px 0px 0px 22px !important;
         }
 
-        .ser_inp_fields>div {
+        .ser_inp_fields>div.dropdown-menu.show {
+            /* width: 169px !important;
+            min-width: 50px !important;
+            position: fixed !important;
+            top: 182px !important;
+            left: 782px !important; */
+
             padding-top: 0px !important;
-            width: 210.6px !important;
-            min-width: 201px !important;
+            padding-bottom: 0px !important;
+            width: 97% !important;
+            min-width: 90% !important;
+            /* width: 210.6px !important;
+            min-width: 201px !important; */
             border-radius: 0px !important;
             margin-top: 0px !important;
         }
 
         .ser_inp_fields .inner {
-            overflow-x: clip !important;
+            /* overflow-x: clip !important; */
         }
 
         .dropdown-item span.text::before {
@@ -334,7 +344,7 @@
                                         <div class="text-right">
                                             <button type="submit" class="btn bg_bl text-white pt-1 pb-1 mr-3"
                                                 style="font-size: 15px;"><i class="fas fa-search"></i> Search</button>
-                                            <a href="#" id="close_ser" class="btn bg_grey text-dark pt-1 pb-1 mr-2"
+                                            <a href="#" id="close_ser" class="btn bg_grey text-dark pt-1 pb-1 mr-1"
                                                 style="font-size: 15px;"><i class="fas fa-times"></i></a>
                                         </div>
                                     </td>
@@ -390,8 +400,7 @@
 
                                 {{-- advance search for each record --}}
                                 <tr id='advance_ser_{{ $row->id }}' class="advance_ser" style="display: none; background-color: #555555; height: 175px">
-                                    <form id="search_cargo_{{ $row->id }}" method="post" action="{{ route('cargo.update_search_hist') }}"
-                                        class="form-horizontal form-label-left " enctype="multipart/form-data">
+                                    <form id="search_cargo_{{ $row->id }}" class="form-horizontal form-label-left ">
                                         @csrf
                                         <td></td>
                                         <td class="">
@@ -481,9 +490,9 @@
                                                 @endforeach
                                             </select>
                                             <div class="text-right">
-                                                <button type="submit" class="btn bg_bl text-white pt-1 pb-1 mr-3"
+                                                <button type="button" id="form_{{$row->id}}" class="update_search_cargo_each btn bg_bl text-white pt-1 pb-1 mr-3"
                                                     style="font-size: 15px;"><i class="fas fa-search"></i> Search</button>
-                                                <a href="{{ $row->id }}" id="close_each_{{ $row->id }}" class="btn bg_grey text-dark pt-1 pb-1 mr-2 close_each"
+                                                <a href="{{ $row->id }}" id="close_each_{{ $row->id }}" class="btn bg_grey text-dark pt-1 pb-1 mr-1 close_each"
                                                     style="font-size: 15px;"><i href="{{ $row->id }}" class="fas fa-times"></i></a>
                                             </div>
                                         </td>

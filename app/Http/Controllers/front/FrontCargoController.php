@@ -39,7 +39,7 @@ class FrontCargoController extends Controller
         // return view('front/cargo/view');
     }
 
-    
+
     function view_add(){
         $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
         $ss_setup_region= ss_setup_region::active()->get();
@@ -270,9 +270,16 @@ class FrontCargoController extends Controller
         }
     }
 
-    function update_search_hist(Request $req){
+    function update_hist_data(Request $req){
+
+        $ser_data= cargo_search_history::where('id',$req->id)->first(); 
+
+        echo json_encode(array('data'=>$ser_data));
 
     }
+    // function update_search_hist(Request $req){
+
+    // }
 
 
 
