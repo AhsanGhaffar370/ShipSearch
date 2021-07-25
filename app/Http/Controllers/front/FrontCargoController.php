@@ -270,16 +270,50 @@ class FrontCargoController extends Controller
         }
     }
 
-    function update_hist_data(Request $req){
+    function get_update_hist_data(Request $req){
 
         $ser_data= cargo_search_history::where('id',$req->id)->first(); 
 
         echo json_encode(array('data'=>$ser_data));
 
     }
-    // function update_search_hist(Request $req){
 
-    // }
+    function update_hist_data(Request $req){
+        $data= cargo_search_history::find($req->id);
+
+        $data->laycan_date_from=date("Y-m-d", strtotime($req->laycan_date_from));
+        $data->laycan_date_to=date("Y-m-d", strtotime($req->laycan_date_to));
+        $data->cargo_type_id= $req->cargo_type_id;
+        $data->loading_region_id= $req->loading_region_id;
+        $data->loading_country_id= $req->loading_country_id;
+        $data->loading_port_id= $req->loading_port_id;
+        $data->discharge_region_id= $req->discharge_region_id;
+        $data->discharge_country_id= $req->discharge_country_id;
+        $data->discharge_port_id= $req->discharge_port_id;
+        $data->modified_at=date('Y-m-d H:i:s');
+
+        $data->save();
+
+        if($data->wasChanged('modified_at')){
+            
+            $ser_data = ss_cargo::where('cargo_type_id', $data->cargo_type_id)
+            ->where('laycan_date_from', $data->laycan_date_from)
+            ->where('laycan_date_to', $data->laycan_date_to)
+            ->where('loading_region_id', $data->loading_region_id)
+            ->where('loading_country_id', $data->loading_country_id)
+            ->where('loading_port_id', $data->loading_port_id)
+            ->where('discharge_region_id', $data->discharge_region_id)
+            ->where('discharge_country_id', $data->discharge_country_id)
+            ->where('discharge_port_id', $data->discharge_port_id)
+            ->get();
+
+            echo json_encode(array('data'=>$ser_data));
+        }
+        else{
+            echo false;
+        }
+       
+    }
 
 
 

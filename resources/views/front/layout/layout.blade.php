@@ -336,18 +336,18 @@
             $('.discharge_port_id').selectpicker();
 
 
-            $('#cargo_table2').DataTable({
-                // "paging": false,
-                // "pagingType":"full_numbers",
-                //   "lengthMenu":[[5,10,25],[5,10,25]],
-                "lengthMenu": [
-                    [10, 25, 50, 100, -1],
-                    [10, 25, 50, 100, 'All']
-                ],
-                responsive: true,
-                type: 'date'
-                // stateSave: true
-            });
+            // $('#cargo_table2').DataTable({
+            //     // "paging": false,
+            //     // "pagingType":"full_numbers",
+            //     //   "lengthMenu":[[5,10,25],[5,10,25]],
+            //     "lengthMenu": [
+            //         [10, 25, 50, 100, -1],
+            //         [10, 25, 50, 100, 'All']
+            //     ],
+            //     responsive: true,
+            //     type: 'date'
+            //     // stateSave: true
+            // });
         });
 
         function GetFormattedDate(date12) {
@@ -385,21 +385,21 @@
         });
 
         //show details of cargo,vessel
-        $('.show_detail2').hide();
-        $(document).on("click", '.show_detail1', function(e) {
-            e.preventDefault();
-            let id = $(this).attr('href');
-            $('.show_details_' + id).fadeToggle("slow");
-            $('.show_detail1_' + id).hide();
-            $('.show_detail2_' + id).show();
-        });
-        $(document).on("click", '.show_detail2', function(e) {
-            e.preventDefault();
-            let id = $(this).attr('href');
-            $('.show_details_' + id).fadeToggle("slow");
-            $('.show_detail1_' + id).show();
-            $('.show_detail2_' + id).hide();
-        });
+        // $('.show_detail2').hide();
+        // $(document).on("click", '.show_detail1', function(e) {
+        //     e.preventDefault();
+        //     let id = $(this).attr('href');
+        //     $('.show_details_' + id).fadeToggle("slow");
+        //     $('.show_detail1_' + id).hide();
+        //     $('.show_detail2_' + id).show();
+        // });
+        // $(document).on("click", '.show_detail2', function(e) {
+        //     e.preventDefault();
+        //     let id = $(this).attr('href');
+        //     $('.show_details_' + id).fadeToggle("slow");
+        //     $('.show_detail1_' + id).show();
+        //     $('.show_detail2_' + id).hide();
+        // });
 
 
 
@@ -458,9 +458,9 @@
                                 post_str += `<tr class="">
                                             <td>` + obj1.ref_no + `</td>
                                             <td>` + obj1.cargo_name + `</td>
-                                            <td>` + obj1.cargo_type_id + `</td>
-                                            <td>` + obj1.loading_region_id + `</td>
-                                            <td>` + obj1.discharge_region_id + `</td>
+                                            <td>` + obj1.cargo_type_id.replace(/,/g,',<br>') + `</td>
+                                            <td>` + obj1.loading_region_id.replace(/,/g,',<br>') + `</td>
+                                            <td>` + obj1.discharge_region_id.replace(/,/g,',<br>') + `</td>
                                             <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
                                             <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
                                             <td>` + obj1.quantity + `</td>
@@ -478,25 +478,25 @@
                                             <td></td>
                                             <td>
                                                 <p class="b7 mb-0">Loading Country:</p>
-                                                <p class="">` + obj1.loading_country_id + `</p>
+                                                <p class="">` + obj1.loading_country_id.replace(/,/g,',<br>') + `</p>
                                                 <p class="b7 mb-0">Max LOA:</p>
                                                 <p class="">` + obj1.max_loa + `</p>
                                             </td>
                                             <td>
                                                 <p class="b7 mb-0">Loading Port:</p>
-                                                <p class="">` + obj1.loading_port_id + `</p>
+                                                <p class="">` + obj1.loading_port_id.replace(/,/g,',<br>') + `</p>
                                                 <p class="b7 mb-0">Max Draft:</p>
                                                 <p class="">` + obj1.max_draft + `</p>
                                             </td>
                                             <td>
                                                 <p class="b7 mb-0">Discharge Country:</p>
-                                                <p class="">` + obj1.discharge_country_id + `</p>
+                                                <p class="">` + obj1.discharge_country_id.replace(/,/g,',<br>') + `</p>
                                                 <p class="b7 mb-0">Max Height:</p>
                                                 <p class="">` + obj1.max_height + `</p>
                                             </td>
                                             <td>
                                                 <p class="b7 mb-0">Discharge Port:</p>
-                                                <p class="">` + obj1.discharge_port_id + `</p>
+                                                <p class="">` + obj1.discharge_port_id.replace(/,/g,',<br>') + `</p>
                                                 <p class="b7 mb-0">Loading Equipment Req:</p>
                                                 <p class="">` + obj1.loading_equipment_req + `</p>
                                             </td>
@@ -573,7 +573,7 @@
                 $("#advance_ser_" + uid).show();
 
                 $.ajax({
-                    url: '{{ route('cargo.get_update_hist_date') }}',
+                    url: '{{ route('cargo.get_update_hist_data') }}',
                     data: "id=" + uid,
                     type: "get",
                     success: function(response) {
@@ -617,8 +617,9 @@
                 let el = e.target;
                 let uid = el.getAttribute('id').split("_")[1];
 
-                // $(".ser_hist_req").show();
-                // $(".advance_ser").hide();
+                $(".ser_hist_req").show();
+                $(".advance_ser").hide();
+
                 let date_from = $("#laycan_date_from_"+uid).val();
                 let date_to = $("#laycan_date_to_"+uid).val();
 
@@ -652,9 +653,118 @@
                         "&discharge_country_id=" + dd_str[5] + "&discharge_port_id=" + dd_str[6],
                         type: "get",
                         success: function(response) {
-                            
+                            if(response==false){
+                                alert("something went wrong. Please try again");
+                            }else{
+                                $("#cargotype-" + uid).html(dd_str[0].replace(/,/g,',<br>'));
+                                $("#laycan_from-" + uid).html(date_from);
+                                $("#laycan_to-" + uid).html(date_to);
+                                $("#lregion-" + uid).html(dd_str[1].replace(/,/g,',<br>'));
+                                $("#lcountry-" + uid).html(dd_str[2].replace(/,/g,',<br>'));
+                                $("#lport-" + uid).html(dd_str[3].replace(/,/g,',<br>'));
+                                $("#dregion-" + uid).html(dd_str[4].replace(/,/g,',<br>'));
+                                $("#dcountry-" + uid).html(dd_str[5].replace(/,/g,',<br>'));
+                                $("#dport-" + uid).html(dd_str[6].replace(/,/g,',<br>'));
+
+                                let json_data = $.parseJSON(response);
+                                var len = json_data.length;
+                                var post_str = "";
+                                // console.log(json_data['data'][0]['cargo_name'])
+
+                                if (json_data['data']['length'] == 0) {
+                                    post_str +=
+                                        '<tr class=""><td colspan="3"><i>No exact results. Try expanding your filters</i></td></tr>';
+                                } else {
+                                    $.each(json_data, function(i, obj) {
+                                        $.each(obj, function(i, obj1) {
+                                            // console.log(obj1);
+                                            // console.log(i + "  " + obj1);
+                                            post_str += `<tr class="">
+                                                        <td>` + obj1.ref_no + `</td>
+                                                        <td>` + obj1.cargo_name + `</td>
+                                                        <td>` + obj1.cargo_type_id.replace(/,/g,',<br>') + `</td>
+                                                        <td>` + obj1.loading_region_id.replace(/,/g,',<br>') + `</td>
+                                                        <td>` + obj1.discharge_region_id.replace(/,/g,',<br>') + `</td>
+                                                        <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
+                                                        <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
+                                                        <td>` + obj1.quantity + `</td>
+                                                        <td>` + obj1.loading_discharge_rates + `</td>
+                                                        <td>` + obj1.created_at + `</td>
+                                                        <td class="text-center">
+                                                            <a href="` + obj1.cargo_id + `" class="cargo_show_detail1_` + obj1
+                                                .cargo_id + ` cargo_show_detail1 show_details_btn"><i class="fas fa-eye fa-2x"></i></a>
+                                                            <a href="` + obj1.cargo_id + `" class="cargo_show_detail2_` + obj1
+                                                .cargo_id + ` cargo_show_detail2 show_details_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
+                                                        </td>
+                                                        </tr>
+                                                        
+                                                        <tr class="show_details show_details_` + obj1.cargo_id + `" style="display: none; background-color: #F1F1F1;">
+                                                        <td></td>
+                                                        <td>
+                                                            <p class="b7 mb-0">Loading Country:</p>
+                                                            <p class="">` + obj1.loading_country_id.replace(/,/g,',<br>') + `</p>
+                                                            <p class="b7 mb-0">Max LOA:</p>
+                                                            <p class="">` + obj1.max_loa + `</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="b7 mb-0">Loading Port:</p>
+                                                            <p class="">` + obj1.loading_port_id.replace(/,/g,',<br>') + `</p>
+                                                            <p class="b7 mb-0">Max Draft:</p>
+                                                            <p class="">` + obj1.max_draft + `</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="b7 mb-0">Discharge Country:</p>
+                                                            <p class="">` + obj1.discharge_country_id.replace(/,/g,',<br>') + `</p>
+                                                            <p class="b7 mb-0">Max Height:</p>
+                                                            <p class="">` + obj1.max_height + `</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="b7 mb-0">Discharge Port:</p>
+                                                            <p class="">` + obj1.discharge_port_id.replace(/,/g,',<br>') + `</p>
+                                                            <p class="b7 mb-0">Loading Equipment Req:</p>
+                                                            <p class="">` + obj1.loading_equipment_req + `</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="b7 mb-0">Over Age:</p>
+                                                            <p class="">` + obj1.over_age + `</p>
+                                                            <p class="b7 mb-0">Discharge Equipment Req:</p>
+                                                            <p class="">` + obj1.discharge_equipment_req + `</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="b7 mb-0">Hazmat:</p>
+                                                            <p class="">` + obj1.hazmat + `</p>
+                                                            <p class="b7 mb-0">Combinable:</p>
+                                                            <p class="">` + obj1.combinable + `</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="b7 mb-0">Commission:</p>
+                                                            <p class="">` + obj1.commision + `</p>
+                                                            <p class="b7 mb-0">Gear Lifting Capacity:</p>
+                                                            <p class="">` + obj1.gear_lifting_capacity + `</p>
+                                                        </td>
+                                                        <td colspan="2">
+                                                            <p class="b7 mb-0">Additional Info:</p>
+                                                            <p class="">` + obj1.additional_info + `</p>
+                                                        </td>
+                                                        <td></td>
+                                                        </tr>
+                                                        `;
+                                        });
+                                    });
+
+
+                                } //end else
+                                $("#all_cargo").html(post_str);
+
+                                $("#records_found21").html(json_data['data']['length'] + " EXACT MATCHES");
+
+                                $('.cargo_show_detail2').hide();
+
+
+
+                            }
                         }
-                    })
+                    });
                 }
             });
 

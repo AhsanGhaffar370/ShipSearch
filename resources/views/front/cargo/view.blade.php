@@ -383,9 +383,10 @@
                                     <td class="{{ $row->discharge_country_id }}" id="dcountry-{{ $row->id }}">
                                         <?php echo str_replace(',', ',<br>', $row->discharge_country_id); ?>
                                     </td>
-                                    <td class="{{ $row->discharge_port_id }}" id="dport-{{ $row->id }}">
-                                        <?php echo str_replace(',', ',<br>', $row->discharge_port_id); ?>
-
+                                    <td>
+                                        <span class="{{ $row->discharge_port_id }}" id="dport-{{ $row->id }}">
+                                            <?php echo str_replace(',', ',<br>', $row->discharge_port_id); ?>
+                                        </span>
                                         <div class="text-right edit_del_btns edit_del_btn_{{ $row->id }}"
                                             style="display: none">
                                             <a href="{{ $row->id }}" id="update21"
