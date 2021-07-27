@@ -449,7 +449,7 @@
 
                     if (json_data['data']['length'] == 0) {
                         post_str +=
-                            '<tr class=""><td colspan="3"><i>No exact results. Try expanding your filters</i></td></tr>';
+                            '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                     } else {
                         $.each(json_data, function(i, obj) {
                             $.each(obj, function(i, obj1) {
@@ -673,7 +673,7 @@
 
                                 if (json_data['data']['length'] == 0) {
                                     post_str +=
-                                        '<tr class=""><td colspan="3"><i>No exact results. Try expanding your filters</i></td></tr>';
+                                        '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                                 } else {
                                     $.each(json_data, function(i, obj) {
                                         $.each(obj, function(i, obj1) {

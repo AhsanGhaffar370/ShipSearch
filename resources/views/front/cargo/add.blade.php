@@ -43,7 +43,7 @@
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Cargo Type</label>
-                        <select name="cargo_type_id[]" id="cargo_type_id" class="form-control" multiple
+                        <select name="cargo_type_id[]" id="cargo_type_id" class="form-control cargo_type_id" multiple
                             title="Choose"
                             data-size="5"
                             data-selected-text-format="count > 2" 
@@ -59,7 +59,7 @@
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Loading Region</label>
-                        <select name="loading_region_id[]" id="loading_region_id" class="form-control" multiple
+                        <select name="loading_region_id[]" id="loading_region_id" class="form-control loading_region_id" multiple
                             title="Choose"
                             data-size="5"
                             data-selected-text-format="count > 2" >
@@ -71,7 +71,7 @@
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Loading Country</label>
-                        <select name="loading_country_id[]" id="loading_country_id" class="form-control" multiple
+                        <select name="loading_country_id[]" id="loading_country_id" class="form-control loading_country_id" multiple
                             title="Choose"
                             data-size="5"
                             data-selected-text-format="count > 2" >
@@ -83,7 +83,7 @@
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Loading Port</label>
-                        <select name="loading_port_id[]" id="loading_port_id" class="form-control" multiple
+                        <select name="loading_port_id[]" id="loading_port_id" class="form-control loading_port_id" multiple
                             title="Choose"
                             data-size="5"
                             data-selected-text-format="count > 2" >
@@ -95,7 +95,7 @@
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Discharge Region</label>
-                        <select name="discharge_region_id[]" id="discharge_region_id" class="form-control" multiple
+                        <select name="discharge_region_id[]" id="discharge_region_id" class="form-control discharge_region_id " multiple
                             title="Choose"
                             data-size="5"
                             data-selected-text-format="count > 2" >
@@ -109,7 +109,7 @@
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Discharge Country</label>
-                        <select name="discharge_country_id[]" id="discharge_country_id" class="form-control" multiple
+                        <select name="discharge_country_id[]" id="discharge_country_id" class="form-control discharge_country_id" multiple
                             title="Choose"
                             data-size="5"
                             data-selected-text-format="count > 2" >
@@ -121,7 +121,7 @@
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Discharge Port</label>
-                        <select name="discharge_port_id[]" id="discharge_port_id" class="form-control" multiple
+                        <select name="discharge_port_id[]" id="discharge_port_id" class="form-control discharge_port_id" multiple
                             title="Choose"
                             data-size="5"
                             data-selected-text-format="count > 2" >

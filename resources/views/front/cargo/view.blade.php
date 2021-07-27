@@ -537,7 +537,7 @@
                         <tbody id="all_cargo">
                             @if (sizeof($data) < 1)
                                 <tr class="">
-                                    <td colspan="3"><i>No exact results. Try expanding your filters</i></td>
+                                    <td colspan="11"><i>No exact results. Try expanding your filters</i></td>
                                 </tr>
                             @else
                                 @foreach ($data as $row)

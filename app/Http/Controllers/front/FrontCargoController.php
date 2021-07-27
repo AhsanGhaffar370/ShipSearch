@@ -50,8 +50,14 @@ class FrontCargoController extends Controller
         $data = ss_cargo::latest()->first();
         // $data = ss_cargo::latest()->take(1)->get();
         // $data = ss_cargo::orderBy('cargo_id', 'DESC')->first();
-        $ref_no=$data->cargo_id+1;
-        $ref_no="CA".$ref_no;
+
+        if($data==null){
+            $ref_no=25000+1;
+            $ref_no="CA".$ref_no;
+        }else{
+            $ref_no=$data->cargo_id+1;
+            $ref_no="CA".$ref_no;
+        }
 
         return view('front/cargo/add',['cargo_ref_no'=>$ref_no,
                                         'cargo_type'=>$ss_setup_cargo_type,
@@ -194,6 +200,8 @@ class FrontCargoController extends Controller
             $ser_data->discharge_port_id=rtrim($ser_data->discharge_port_id, ",");
             $ser_discharge_port=$ser_data->discharge_port_id;
 
+            $ser_data->created_at=date('Y-m-d H:i:s');
+            $ser_data->modified_at=date('Y-m-d H:i:s');
             
             $ser_data->save();
                
