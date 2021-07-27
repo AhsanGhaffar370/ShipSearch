@@ -40,7 +40,8 @@
 
         .my-custom-scrollbar {
             position: relative;
-            height: 300px;
+            min-height: 250px;
+            max-height: 350px;
             overflow: auto;
         }
 
@@ -105,6 +106,7 @@
 
 
         .ser_inp_fields {
+            position: unset !important;
             width: 100% !important;
             /* widows: 215px !important; */
         }
@@ -164,16 +166,24 @@
 
             padding-top: 0px !important;
             padding-bottom: 0px !important;
-            width: 97% !important;
-            min-width: 90% !important;
+
+            /* width: 12% !important;
+            min-width: 8% !important; */
+
+            width: 230px !important;
+            min-width: 100px !important;
+
             /* width: 210.6px !important;
             min-width: 201px !important; */
-            border-radius: 0px !important;
+            border-radius: 0px 0px 7px 7px !important;
             margin-top: 0px !important;
+            box-shadow: 0px 3px 7px #cccccc;
+
+            /* left: 1px !important;  */
         }
 
         .ser_inp_fields .inner {
-            /* overflow-x: clip !important; */
+            overflow-x: clip !important;
         }
 
         .dropdown-item span.text::before {
@@ -232,7 +242,7 @@
 
 
                 {{-- Search History Start --}}
-                <div class="border table-wrapper-scroll-y my-custom-scrollbar" style="height: 250px;">
+                <div class="border table-wrapper-scroll-y my-custom-scrollbar">
                     <table id="cargo_table22"
                         class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
                         <thead class="" style="background-color: #EDEDED; position: relative; z-index: 999">
@@ -253,14 +263,14 @@
 
 
                             {{-- Advance Search Form --}}
-                            <tr id='advance_ser' style="display: none; background-color: #555555; height: 175px">
+                            <tr id='advance_ser' style="display: none; background-color: #555555; height: 175px; position: relative !important;">
                                 <form id="search_cargo" method="post" action="{{ route('cargo.search_req') }}"
                                     class="form-horizontal form-label-left " enctype="multipart/form-data">
                                     @csrf
                                     <td></td>
                                     <td class="">
                                         <select name="cargo_type_id[]" id="cargo_type_id" form="search_cargo"
-                                            class="cargo_type_id ser_inp_fields" multiple title="Choose" data-size="4"
+                                            class="cargo_type_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true"
                                             {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
                                             @foreach ($cargo_type as $row)
@@ -282,7 +292,7 @@
                                     <!-- -->
                                     <td class="">
                                         <select name="loading_region_id[]" id="loading_region_id" form="search_cargo"
-                                            class="loading_region_id ser_inp_fields" multiple title="Choose" data-size="4"
+                                            class="loading_region_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($region as $row)
                                                 <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
@@ -292,7 +302,7 @@
                                     <!-- -->
                                     <td class=" ">
                                         <select name="loading_country_id[]" id="loading_country_id" form="search_cargo"
-                                            class="loading_country_id ser_inp_fields" multiple title="Choose" data-size="4"
+                                            class="loading_country_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($country as $row)
                                                 <option value="{{ $row->country_name }}">{{ $row->country_name }}
@@ -303,7 +313,7 @@
                                     <!-- -->
                                     <td class=" ">
                                         <select name="loading_port_id[]" id="loading_port_id" form="search_cargo"
-                                            class="loading_port_id ser_inp_fields" multiple title="Choose" data-size="4"
+                                            class="loading_port_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($port as $row)
                                                 <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
@@ -313,7 +323,7 @@
                                     <!-- -->
                                     <td class=" ">
                                         <select name="discharge_region_id[]" id="discharge_region_id" form="search_cargo"
-                                            class="discharge_region_id ser_inp_fields" multiple title="Choose" data-size="4"
+                                            class="discharge_region_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($region as $row)
                                                 <option value="{{ $row->region_name }}">{{ $row->region_name }}
@@ -324,7 +334,7 @@
                                     <!-- -->
                                     <td class=" ">
                                         <select name="discharge_country_id[]" id="discharge_country_id" form="search_cargo"
-                                            class="discharge_country_id ser_inp_fields" multiple title="Choose" data-size="4"
+                                            class="discharge_country_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($country as $row)
                                                 <option value="{{ $row->country_name }}">{{ $row->country_name }}
@@ -335,7 +345,7 @@
                                     <!-- -->
                                     <td class="">
                                         <select name="discharge_port_id[]" id="discharge_port_id" form="search_cargo"
-                                            class="discharge_port_id ser_inp_fields" multiple title="Choose" data-size="4"
+                                            class="discharge_port_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($port as $row)
                                                 <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
@@ -400,13 +410,13 @@
                                 </tr>
 
                                 {{-- advance search for each record --}}
-                                <tr id='advance_ser_{{ $row->id }}' class="advance_ser" style="display: none; background-color: #555555; height: 175px">
+                                <tr id='advance_ser_{{ $row->id }}' class="advance_ser" style="display: none; background-color: #555555; height: 175px; position: relative !important;">
                                     <form id="search_cargo_{{ $row->id }}" class="form-horizontal form-label-left ">
                                         @csrf
                                         <td></td>
                                         <td class="">
                                             <select name="cargo_type_id[]" id="cargo_type_id_{{ $row->id }}" form="search_cargo_{{ $row->id }}"
-                                                class="cargo_type_id ser_inp_fields" multiple title="Choose" data-size="4"
+                                                class="cargo_type_id ser_inp_fields" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($cargo_type as $row1)
                                                     <option value="{{ $row1->cargo_type_name }}">
@@ -428,7 +438,7 @@
                                         <!-- -->
                                         <td class="">
                                             <select name="loading_region_id[]" id="loading_region_id_{{ $row->id }}" form="search_cargo_{{ $row->id }}"
-                                                class="loading_region_id ser_inp_fields" multiple title="Choose" data-size="4"
+                                                class="loading_region_id ser_inp_fields" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($region as $row1)
                                                     <option value="{{ $row1->region_name }}">{{ $row1->region_name }}
@@ -439,7 +449,7 @@
                                         <!-- -->
                                         <td class=" ">
                                             <select name="loading_country_id[]" id="loading_country_id_{{ $row->id }}" form="search_cargo_{{ $row->id }}"
-                                                class="loading_country_id ser_inp_fields" multiple title="Choose" data-size="4"
+                                                class="loading_country_id ser_inp_fields" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($country as $row1)
                                                     <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
@@ -450,7 +460,7 @@
                                         <!-- -->
                                         <td class=" ">
                                             <select name="loading_port_id[]" id="loading_port_id_{{ $row->id }}" form="search_cargo_{{ $row->id }}"
-                                                class="loading_port_id ser_inp_fields" multiple title="Choose" data-size="4"
+                                                class="loading_port_id ser_inp_fields" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($port as $row1)
                                                     <option value="{{ $row1->port_name }}">{{ $row1->port_name }}
@@ -462,7 +472,7 @@
                                         <td class=" ">
                                             <select name="discharge_region_id[]" id="discharge_region_id_{{ $row->id }}"
                                                 form="search_cargo_{{ $row->id }}" class="discharge_region_id ser_inp_fields" multiple title="Choose"
-                                                data-size="4" data-selected-text-format="count > 2" data-live-search="true">
+                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($region as $row1)
                                                     <option value="{{ $row1->region_name }}">{{ $row1->region_name }}
                                                     </option>
@@ -473,7 +483,7 @@
                                         <td class=" ">
                                             <select name="discharge_country_id[]" id="discharge_country_id_{{ $row->id }}"
                                                 form="search_cargo_{{ $row->id }}" class="discharge_country_id ser_inp_fields" multiple title="Choose"
-                                                data-size="4" data-selected-text-format="count > 2" data-live-search="true">
+                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($country as $row1)
                                                     <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
                                                     </option>
@@ -483,7 +493,7 @@
                                         <!-- -->
                                         <td class="">
                                             <select name="discharge_port_id[]" id="discharge_port_id_{{ $row->id }}" form="search_cargo_{{ $row->id }}"
-                                                class="discharge_port_id ser_inp_fields" multiple title="Choose" data-size="4"
+                                                class="discharge_port_id ser_inp_fields" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($port as $row1)
                                                     <option value="{{ $row1->port_name }}">{{ $row1->port_name }}
@@ -508,9 +518,12 @@
         @endif
 
         {{-- Cargo Table Records --}}
-        <div class="bg-white mt-2">
-            <p id="records_found21" class="font-weight-bold pt-2 pl-2"> {{ sizeof($data) }} TOTAL RESULTS</p>
-            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <div class="bg-white mt-2 pt-2">
+            <span id="records_found21" class="font-weight-bold pt-3 pl-2"> {{ sizeof($data) }} TOTAL RESULTS</span>
+            
+            <a href={{ route('cargo.view') }} class="btn btn_style bg_bl ml-3 add_cargo_btn pl-2 pr-2"><i class="fas fa-sync-alt"></i></a>
+
+            <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
                 <div class="border">
                     <table id="cargo_table21"
                         class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
