@@ -538,7 +538,7 @@
                                 <th width="8%">Laycan Date To</th>
                                 <th width="5%">Quantity</th>
                                 {{-- <th width="8%">Unit</th> --}}
-                                <th width="8%">Loading Discharge Rates</th>
+                                <th width="10%">Loading Discharge Rates</th>
                                 <th width="8%">Posted on</th>
 
                                 @if (session('front_uid') != '')
