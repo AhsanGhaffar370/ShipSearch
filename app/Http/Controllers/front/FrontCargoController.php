@@ -12,6 +12,7 @@ use App\Models\ss_setup_port;
 use App\Models\ss_setup_unit;
 use App\Models\cargo_search_history;
 
+
 class FrontCargoController extends Controller
 {
     function view(){
@@ -21,7 +22,7 @@ class FrontCargoController extends Controller
         // print($carg12[2]);
 
         // $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])->get();
-        $data = ss_cargo::all();
+        $data = ss_cargo::orderBy('cargo_id', 'DESC')->get();
 
         $ser_data= cargo_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
 
@@ -208,7 +209,7 @@ class FrontCargoController extends Controller
 
             $total_rec=cargo_search_history::where("user_id",session('front_uid'))->count();
 
-            if($total_rec>8){
+            if($total_rec>14){
                 // session()->flash('msg2121','cargo Deleted');
                 cargo_search_history::where('user_id',session('front_uid'))->first()->delete();
             }
@@ -225,7 +226,9 @@ class FrontCargoController extends Controller
                         ->where('loading_port_id', $ser_loading_port)
                         ->where('discharge_region_id', $ser_discharge_region)
                         ->where('discharge_country_id', $ser_discharge_country)
-                        ->where('discharge_port_id', $ser_discharge_port)->get();
+                        ->where('discharge_port_id', $ser_discharge_port)
+                        ->orderBy('cargo_id', 'DESC')
+                        ->get();
                         // ->whereBetween($laycan_col, [$from_date, $to_date])->get();
 
         $ser_history= cargo_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
@@ -258,6 +261,7 @@ class FrontCargoController extends Controller
                         ->where('discharge_country_id', $ser_data->discharge_country_id)
                         ->where('discharge_port_id', $ser_data->discharge_port_id)
                         // ->whereBetween($req->laycan_date, [$from_date, $to_date])
+                        ->orderBy('cargo_id', 'DESC')
                         ->get();
 
         // echo "<pre>";
@@ -313,6 +317,7 @@ class FrontCargoController extends Controller
             ->where('discharge_region_id', $data->discharge_region_id)
             ->where('discharge_country_id', $data->discharge_country_id)
             ->where('discharge_port_id', $data->discharge_port_id)
+            ->orderBy('cargo_id', 'DESC')
             ->get();
 
             echo json_encode(array('data'=>$ser_data));

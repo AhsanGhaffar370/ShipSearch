@@ -5,220 +5,6 @@
 
 @section('container')
 
-    <style>
-        table {
-            background-color: white !important;
-            border-collapse: collapse;
-            width: 100%;
-            padding: 0px;
-        }
-
-        .table th {
-            font-size: 12px;
-            padding: 0px 0px 0px 5px !important;
-            margin: 0px;
-            vertical-align: top;
-            border-top: 1px solid #dee2e6;
-            font-weight: 600;
-            background-color: #EDEDED;
-        }
-
-        .table td {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-size: 12px;
-            padding: 0px 20px 0px 5px !important;
-            margin: 0px;
-            vertical-align: top;
-            border-top: 1px solid #dee2e6;
-            font-weight: 400;
-        }
-
-        .ser_hist_req {
-            cursor: pointer;
-        }
-
-        .my-custom-scrollbar {
-            position: relative;
-            min-height: 250px;
-            max-height: 350px;
-            overflow: auto;
-        }
-
-        .table-wrapper-scroll-y {
-            display: block;
-        }
-
-        .tableFixHead {
-            overflow: auto;
-        }
-
-        .tableFixHead thead th {
-            position: sticky;
-            top: -1px;
-            z-index: 1;
-        }
-
-
-
-
-
-
-        .bg-color {
-            background-color: #D9D9D9;
-        }
-
-        .btn_style {
-            color: white;
-            text-transform: uppercase;
-            font-family: 'Lato', sans-serif;
-            font-size: .75em;
-            padding: 2px 20px;
-        }
-
-        .btn_style:hover {
-            color: #FFFFFF;
-        }
-
-        .bg_gr {
-            background-color: #88CC21;
-        }
-
-        .bg_gr:hover {
-            background-color: #a0df42;
-        }
-
-        .bg_bl {
-            background-color: #28BBEE;
-        }
-
-        .bg_bl:hover {
-            background-color: #22d0ff;
-        }
-
-        .bg_grey {
-            background-color: #C4C4C4;
-        }
-
-        .bg_grey:hover {
-            background-color: #DEDEDE;
-        }
-
-
-        .ser_inp_fields {
-            position: unset !important;
-            width: 100% !important;
-            /* widows: 215px !important; */
-        }
-
-        #advance_ser td {
-
-            padding: 0px !important;
-        }
-
-        .advance_ser td {
-
-            padding: 0px !important;
-        }
-
-        /* dropdown styling */
-        .ser_inp_fields button {
-            padding: 1px 5px 1px 5px;
-            border-radius: 2px;
-            font-size: 13px;
-            font-family: 'Lato', sans-serif;
-        }
-
-        #cargo_table22 td>div {
-            padding: 10px 5px 10px 0px !important;
-        }
-
-        #cargo_table22 td>input {
-            margin: 10px 4px 10px 0px !important;
-        }
-
-        .dropdown-menu li a span {
-            font-family: 'Lato', sans-serif;
-            font-size: 12px !important;
-        }
-
-        .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
-            position: inherit;
-            display: inline-block;
-            margin-left: -15px;
-            padding: 0px 5.5px 3px 4px;
-            border-radius: 3px;
-            margin-bottom: -2px;
-            margin-right: 2px;
-            font-size: 8px !important;
-        }
-
-        .dropdown-item {
-            padding: 0px 0px 0px 22px !important;
-        }
-
-        .ser_inp_fields>div.dropdown-menu.show {
-            /* width: 169px !important;
-            min-width: 50px !important;
-            position: fixed !important;
-            top: 182px !important;
-            left: 782px !important; */
-
-            padding-top: 0px !important;
-            padding-bottom: 0px !important;
-
-            /* width: 12% !important;
-            min-width: 8% !important; */
-
-            width: 230px !important;
-            min-width: 100px !important;
-
-            /* width: 210.6px !important;
-            min-width: 201px !important; */
-            border-radius: 0px 0px 7px 7px !important;
-            margin-top: 0px !important;
-            box-shadow: 0px 3px 7px #cccccc;
-
-            /* left: 1px !important;  */
-        }
-
-        .ser_inp_fields .inner {
-            overflow-x: clip !important;
-        }
-
-        .dropdown-item span.text::before {
-            border: 1px solid #cacaca;
-            content: "";
-            padding: 0px 7px 0px 7px;
-            border-radius: 3px;
-            margin: 0px 5px 0px -18px;
-        }
-
-        .bs-searchbox .form-control {
-            padding: 1px 4px;
-            font-size: 12px;
-        }
-
-        .form-control:focus {
-            color: #495057;
-            background-color: #fff;
-            border-color: #80bdff;
-            outline: 0;
-            box-shadow: none;
-        }
-
-        .btn-light.focus,
-        .btn-light:focus {
-            box-shadow: none !important;
-        }
-
-        .bootstrap-select .dropdown-toggle:focus {
-            outline: none !important;
-        }
-
-        /* dropdown styling  ends*/
-
-    </style>
 
     <div class="container-fluid bg-color pt-5 pb-5">
 
@@ -226,18 +12,11 @@
         @if (session('front_uid') != '')
             <div class="bg-white">
                 <div class="pt-2 pb-2 pl-3">
-                    <a id="adv_ser11" class="btn btn_style bg_gr" href={{ route('cargo.view') }}><i
+                    <a id="new_ser_req" class="btn btn_style bg_gr" href={{ route('cargo.view') }}><i
                             class="fas fa-search"></i> New Load Search</a>
                     <a href={{ route('cargo.add') }} id="{{ session('front_uname') }}"
-                        class="btn btn_style bg_bl ml-3 add_cargo_btn"><i class="fas fa-plus"></i> Add New</a>
+                        class="btn btn_style bg_bl ml-3 add_rec_validation"><i class="fas fa-plus"></i> Add New Cargo</a>
                 </div>
-
-
-
-
-
-
-
 
 
 
@@ -262,8 +41,14 @@
                         <tbody>
 
 
+
+
+
+
+
+
                             {{-- Advance Search Form --}}
-                            <tr id='advance_ser' style="display: none; background-color: #555555; height: 175px; position: relative !important;">
+                            <tr id='adv_ser_form' style="display: none; background-color: #555555; height: 175px; position: relative !important;">
                                 <form id="search_cargo" method="post" action="{{ route('cargo.search_req') }}"
                                     class="form-horizontal form-label-left " enctype="multipart/form-data">
                                     @csrf
@@ -301,8 +86,30 @@
                                     </td>
                                     <!-- -->
                                     <td class=" ">
+                                        <select name="discharge_region_id[]" id="discharge_region_id" form="search_cargo"
+                                            class="discharge_region_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($region as $row)
+                                                <option value="{{ $row->region_name }}">{{ $row->region_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <!-- -->
+                                    <td class=" ">
                                         <select name="loading_country_id[]" id="loading_country_id" form="search_cargo"
                                             class="loading_country_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($country as $row)
+                                                <option value="{{ $row->country_name }}">{{ $row->country_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <!-- -->
+                                    <td class=" ">
+                                        <select name="discharge_country_id[]" id="discharge_country_id" form="search_cargo"
+                                            class="discharge_country_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($country as $row)
                                                 <option value="{{ $row->country_name }}">{{ $row->country_name }}
@@ -317,28 +124,6 @@
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($port as $row)
                                                 <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <!-- -->
-                                    <td class=" ">
-                                        <select name="discharge_region_id[]" id="discharge_region_id" form="search_cargo"
-                                            class="discharge_region_id ser_inp_fields" multiple title="Choose" data-size="5"
-                                            data-selected-text-format="count > 2" data-live-search="true">
-                                            @foreach ($region as $row)
-                                                <option value="{{ $row->region_name }}">{{ $row->region_name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <!-- -->
-                                    <td class=" ">
-                                        <select name="discharge_country_id[]" id="discharge_country_id" form="search_cargo"
-                                            class="discharge_country_id ser_inp_fields" multiple title="Choose" data-size="5"
-                                            data-selected-text-format="count > 2" data-live-search="true">
-                                            @foreach ($country as $row)
-                                                <option value="{{ $row->country_name }}">{{ $row->country_name }}
-                                                </option>
                                             @endforeach
                                         </select>
                                     </td>
@@ -363,9 +148,19 @@
                             </tr>
 
 
+
+
+
+
+
+
+
+
+
+
                             {{-- Search History data --}}
                             @foreach ($ser_data as $row)
-                                <tr id="rec-{{ $row->id }}" class="ser_hist_req ">
+                                <tr id="ser_hist_rec_{{ $row->id }}" class="ser_hist_rec_each ser_hist_rec_req_each ">
                                     <td id="id-{{ $row->id }}">
                                         {{ $row->id }}
                                     </td>
@@ -381,17 +176,17 @@
                                     <td class="{{ $row->loading_region_id }}" id="lregion-{{ $row->id }}">
                                         <?php echo str_replace(',', ',<br>', $row->loading_region_id); ?>
                                     </td>
-                                    <td class="{{ $row->loading_country_id }}" id="lcountry-{{ $row->id }}">
-                                        <?php echo str_replace(',', ',<br>', $row->loading_country_id); ?>
-                                    </td>
-                                    <td class="{{ $row->loading_port_id }}" id="lport-{{ $row->id }}">
-                                        <?php echo str_replace(',', ',<br>', $row->loading_port_id); ?>
-                                    </td>
                                     <td class="{{ $row->discharge_region_id }}" id="dregion-{{ $row->id }}">
                                         <?php echo str_replace(',', ',<br>', $row->discharge_region_id); ?>
                                     </td>
+                                    <td class="{{ $row->loading_country_id }}" id="lcountry-{{ $row->id }}">
+                                        <?php echo str_replace(',', ',<br>', $row->loading_country_id); ?>
+                                    </td>
                                     <td class="{{ $row->discharge_country_id }}" id="dcountry-{{ $row->id }}">
                                         <?php echo str_replace(',', ',<br>', $row->discharge_country_id); ?>
+                                    </td>
+                                    <td class="{{ $row->loading_port_id }}" id="lport-{{ $row->id }}">
+                                        <?php echo str_replace(',', ',<br>', $row->loading_port_id); ?>
                                     </td>
                                     <td>
                                         <span class="{{ $row->discharge_port_id }}" id="dport-{{ $row->id }}">
@@ -399,18 +194,29 @@
                                         </span>
                                         <div class="text-right edit_del_btns edit_del_btn_{{ $row->id }}"
                                             style="display: none">
-                                            <a href="{{ $row->id }}" id="update21"
+                                            <a href="{{ $row->id }}" id="show_update_ser_hist_form_each"
                                                 class="btn bg_bl btn-sm text-white pt-0 pb-0 mr-3"
                                                 style="font-size: 14px;"><i href="{{ $row->id }}" class="fas fa-edit"></i> EDIT</a>
-                                            <a href="{{ $row->id }}" id="delete21"
+                                            <a href="{{ $row->id }}" id="delete_rec"
                                                 class="btn btn-danger btn-sm text-white pt-0 pb-0"
                                                 style="font-size: 14px;"><i href="{{ $row->id }}" class="fas fa-trash-alt"></i> DELETE</a>
                                         </div>
                                     </td>
                                 </tr>
 
+
+
+
+
+
+
+
+
+
+
+
                                 {{-- advance search for each record --}}
-                                <tr id='advance_ser_{{ $row->id }}' class="advance_ser" style="display: none; background-color: #555555; height: 175px; position: relative !important;">
+                                <tr id='adv_ser_form_each_{{ $row->id }}' class="adv_ser_form_each" style="display: none; background-color: #555555; height: 175px; position: relative !important;">
                                     <form id="search_cargo_{{ $row->id }}" class="form-horizontal form-label-left ">
                                         @csrf
                                         <td></td>
@@ -448,9 +254,31 @@
                                         </td>
                                         <!-- -->
                                         <td class=" ">
+                                            <select name="discharge_region_id[]" id="discharge_region_id_{{ $row->id }}"
+                                                form="search_cargo_{{ $row->id }}" class="discharge_region_id ser_inp_fields" multiple title="Choose"
+                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($region as $row1)
+                                                    <option value="{{ $row1->region_name }}">{{ $row1->region_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <!-- -->
+                                        <td class=" ">
                                             <select name="loading_country_id[]" id="loading_country_id_{{ $row->id }}" form="search_cargo_{{ $row->id }}"
                                                 class="loading_country_id ser_inp_fields" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($country as $row1)
+                                                    <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <!-- -->
+                                        <td class=" ">
+                                            <select name="discharge_country_id[]" id="discharge_country_id_{{ $row->id }}"
+                                                form="search_cargo_{{ $row->id }}" class="discharge_country_id ser_inp_fields" multiple title="Choose"
+                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($country as $row1)
                                                     <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
                                                     </option>
@@ -469,28 +297,6 @@
                                             </select>
                                         </td>
                                         <!-- -->
-                                        <td class=" ">
-                                            <select name="discharge_region_id[]" id="discharge_region_id_{{ $row->id }}"
-                                                form="search_cargo_{{ $row->id }}" class="discharge_region_id ser_inp_fields" multiple title="Choose"
-                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                                @foreach ($region as $row1)
-                                                    <option value="{{ $row1->region_name }}">{{ $row1->region_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </td>
-                                        <!-- -->
-                                        <td class=" ">
-                                            <select name="discharge_country_id[]" id="discharge_country_id_{{ $row->id }}"
-                                                form="search_cargo_{{ $row->id }}" class="discharge_country_id ser_inp_fields" multiple title="Choose"
-                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                                @foreach ($country as $row1)
-                                                    <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </td>
-                                        <!-- -->
                                         <td class="">
                                             <select name="discharge_port_id[]" id="discharge_port_id_{{ $row->id }}" form="search_cargo_{{ $row->id }}"
                                                 class="discharge_port_id ser_inp_fields" multiple title="Choose" data-size="5"
@@ -501,9 +307,9 @@
                                                 @endforeach
                                             </select>
                                             <div class="text-right">
-                                                <button type="button" id="form_{{$row->id}}" class="update_search_cargo_each btn bg_bl text-white pt-1 pb-1 mr-3"
+                                                <button type="button" id="form_{{$row->id}}" class="req_update_ser_hist_each btn bg_bl text-white pt-1 pb-1 mr-3"
                                                     style="font-size: 15px;"><i class="fas fa-search"></i> Search</button>
-                                                <a href="{{ $row->id }}" id="close_each_{{ $row->id }}" class="btn bg_grey text-dark pt-1 pb-1 mr-1 close_each"
+                                                <a href="{{ $row->id }}" id="close_ser_each_{{ $row->id }}" class="btn bg_grey text-dark pt-1 pb-1 mr-1 close_ser_each"
                                                     style="font-size: 15px;"><i href="{{ $row->id }}" class="fas fa-times"></i></a>
                                             </div>
                                         </td>
@@ -517,11 +323,21 @@
             </div>
         @endif
 
+
+
+
+
+
+
+
+
+
+
         {{-- Cargo Table Records --}}
         <div class="bg-white mt-2 pt-2">
-            <span id="records_found21" class="font-weight-bold pt-3 pl-2"> {{ sizeof($data) }} TOTAL RESULTS</span>
+            <span id="total_rec_found" class="font-weight-bold pt-3 pl-2"> {{ sizeof($data) }} TOTAL RESULTS</span>
             
-            <a href={{ route('cargo.view') }} class="btn btn_style bg_bl ml-3 add_cargo_btn pl-2 pr-2"><i class="fas fa-sync-alt"></i></a>
+            <a href={{ route('cargo.view') }} class="btn btn_style bg_bl ml-3 pl-2 pr-2"><i class="fas fa-sync-alt"></i></a>
 
             <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
                 <div class="border">
@@ -547,7 +363,7 @@
                             </tr>
                         </thead>
 
-                        <tbody id="all_cargo">
+                        <tbody id="all_records">
                             @if (sizeof($data) < 1)
                                 <tr class="">
                                     <td colspan="11"><i>No exact results. Try expanding your filters</i></td>
@@ -570,10 +386,10 @@
                                         @if (session('front_uid') != '')
                                             <td class="text-center">
                                                 <a href='{{ $row->cargo_id }}'
-                                                    class="cargo_show_detail1 cargo_show_detail1_{{ $row->cargo_id }} show_details_btn"><i
+                                                    class="show_detail_btn show_detail_btn_{{ $row->cargo_id }}"><i
                                                         class="fas fa-eye fa-2x"></i></a>
                                                 <a href='{{ $row->cargo_id }}'
-                                                    class="cargo_show_detail2 cargo_show_detail2_{{ $row->cargo_id }} show_details_btn"><i
+                                                    class="hide_detail_btn hide_detail_btn_{{ $row->cargo_id }}"><i
                                                         class="fas fa-eye-slash fa-2x"></i></a>
                                             </td>
                                         @endif
@@ -645,17 +461,13 @@
 
 
     {{-- Access Denied message --}}
-    <div id="dialog" class="text-right rounded p-1" style="display: none;">
+    {{-- <div id="dialog" class="text-right rounded p-1" style="display: none;">
         <p class="size20 text-left text-white bg-danger p-2 rounded">Access Denied</p>
-
         <p class="text-left">
             Please <a href={{ route('login') }} class="btn btn-info text=white btn-sm">Login</a> to do this action.
         </p>
-
         <br>
         <hr>
         <button id="close_dialog" class="btn btn-danger">Close</button>
-
-    </div>
-    </div>
+    </div> --}}
 @endsection

@@ -85,7 +85,7 @@ th {
         </div>
         <div class="col-12 col-lg-2 col-md-3 pt-2">
             <a href={{route('vessel.view')}} id="{{session('front_uname')}}"
-                class="btn btn-info btn-block pt-3 pb-3 rounded-0 add_btn disabled" ><i class="fas fa-plus"></i> Add New</a>
+                class="btn btn-info btn-block pt-3 pb-3 rounded-0 add_rec_validation disabled" ><i class="fas fa-plus"></i> Add New</a>
         </div>
     </div>
 

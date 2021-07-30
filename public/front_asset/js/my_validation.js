@@ -1,5 +1,84 @@
 $(document).ready(function() {
 
+
+
+
+    //////////////////////////////////////
+    // AJAX Request for checking email is already exist or not on signup page
+    //////////////////////////////////////
+    $("#email31").keyup(function() {
+        let ser = $('#email31').val();
+
+        $.ajax({
+            url: 'checkmail',
+            type: 'get',
+            data: 'email=' + ser,
+            success: function(response) {
+                if (response == "exist") {
+                    $("#msg21").html(
+                        '<div class="size13 alert alert-warning"><i class="fas fa-info-circle"></i> Email Already Exist</div>'
+                    );
+                    $('#sign12').attr('disabled', 'disabled');
+                } else if (response == "not exist") {
+                    $("#msg21").html('');
+                    $('#sign12').removeAttr('disabled');
+                } else {
+                    // console.log("else : ",response);
+                }
+            }
+        });
+    });
+
+
+
+    //////////////////////////////////////
+    // Confirm password validation on signup page
+    //////////////////////////////////////
+    $('#reg_form21').submit(function(e) {
+        check_cfrmPass();
+
+        if (check_cfrmPass() === true) {
+            return;
+        } else {
+            e.preventDefault();
+        }
+    });
+    // validate confirm password function
+    function check_cfrmPass() {
+        var cfrm_border = $('#cfrm_border');
+        var pass1 = $("#org_pass");
+        var pass2 = $("#cfrm_pass");
+        var pass1_val = pass1.val();
+        var pass2_val = pass2.val();
+
+        if (pass2_val != pass1_val) {
+            $("#pass_msg").html(
+                '<div class="size13 alert alert-warning"><i class="fas fa-info-circle"></i> Password & Confirm Password should be same</div>'
+            );
+            cfrm_border.css({
+                "border": "1px solid red",
+                "border-radius": "5px"
+            });
+            return false;
+        } else {
+            $("#pass_msg").html('');
+            cfrm_border.css({
+                "border": "none"
+            });
+            return true;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
     //will work on form validation at the end
     $('#cargo_form_removed').submit(function(e) {
 
@@ -55,23 +134,7 @@ $(document).ready(function() {
         autoclose: true,
     });
 
-    // $("#advance_ser").hide();
-    $('#adv_ser11').click(function(e) {
-        e.preventDefault();
-        $("#advance_ser").show();
-        $("#cargo_type_id").focus();
-        $(".edit_del_btns").hide();
-        $(".ser_hist_req").css({
-            'background-color': "white",
-            "color": "black"
-        });
-        // $("#advance_ser").slideToggle(500);
-    });
-    $('#close_ser').click(function(e) {
-        e.preventDefault();
-        $("#advance_ser").hide();
-        // $("#advance_ser").slideToggle(500);
-    });
+
 
 
 
