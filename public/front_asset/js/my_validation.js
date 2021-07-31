@@ -79,7 +79,9 @@ $(document).ready(function() {
 
 
 
+    //////////////////////////////////////
     //will work on form validation at the end
+    //////////////////////////////////////
     $('#cargo_form_removed').submit(function(e) {
 
         var flag = true;
@@ -105,7 +107,9 @@ $(document).ready(function() {
     });
 
 
+    //////////////////////////////////////
     //will work on form validation at the end
+    //////////////////////////////////////
     $('#search_cargo_removed').submit(function(e) {
 
         var flag = true;

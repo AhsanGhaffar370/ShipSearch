@@ -1202,105 +1202,105 @@ p {
 
 .size54 {
     font-size: 54px !important;
-    font-weight: 600;
+    font-weight: 600 !important;
 }
 
 .size48 {
-    font-size: 48px;
-    font-weight: 600;
+    font-size: 48px !important;
+    font-weight: 600 !important;
 }
 
 .size46 {
-    font-size: 46px;
-    font-weight: 600;
+    font-size: 46px !important;
+    font-weight: 600 !important;
 }
 
 .size42 {
-    font-size: 42px;
-    font-weight: 600;
+    font-size: 42px !important;
+    font-weight: 600 !important;
 }
 
 .size38 {
-    font-size: 38px;
-    font-weight: 600;
+    font-size: 38px !important;
+    font-weight: 600 !important;
 }
 
 .size36 {
-    font-size: 36px;
-    font-weight: 600;
+    font-size: 36px !important;
+    font-weight: 600 !important;
 }
 
 .size34 {
-    font-size: 34px;
-    font-weight: 600;
+    font-size: 34px !important;
+    font-weight: 600 !important;
 }
 
 .size32 {
-    font-size: 32px;
-    font-weight: 600;
+    font-size: 32px !important;
+    font-weight: 600 !important;
 }
 
 .size30 {
-    font-size: 30px;
-    font-weight: 600;
+    font-size: 30px !important;
+    font-weight: 600 !important;
 }
 
 .size28 {
-    font-size: 28px;
-    font-weight: 600;
+    font-size: 28px !important;
+    font-weight: 600 !important;
 }
 
 .size26 {
-    font-size: 26px;
-    font-weight: 600;
+    font-size: 26px !important;
+    font-weight: 600 !important;
 }
 
 .size25 {
-    font-size: 25px;
-    font-weight: 600;
+    font-size: 25px !important;
+    font-weight: 600 !important;
 }
 
 .size24 {
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 24px !important;
+    font-weight: 600 !important;
 }
 
 .size22 {
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 22px !important;
+    font-weight: 600 !important;
 }
 
 .size20 {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 20px !important;
+    font-weight: 600 !important;
 }
 
 .size18 {
-    font-size: 18px;
+    font-size: 18px !important;
 }
 
 .size17 {
-    font-size: 17px;
+    font-size: 17px !important;
 }
 
 .size16 {
-    font-size: 16px;
+    font-size: 16px !important;
 }
 
 .size15 {
-    font-size: 15px;
+    font-size: 15px !important;
 }
 
 .size14 {
-    font-size: 14px;
+    font-size: 14px !important;
 }
 
 .size13 {
-    font-size: 13px;
+    font-size: 13px !important;
 }
 
 .size11 {
-    font-size: 11px;
+    font-size: 11px !important;
 }
 
 
@@ -1500,28 +1500,28 @@ Spread of shadow:   Positive value will cause shadow to expand in all directions
 */
 
 .pos_abs {
-    position: absolute;
+    position: absolute !important;
 }
 
 .pos_rel {
-    position: relative;
+    position: relative !important;
 }
 
 .pos_fix {
-    position: fixed;
+    position: fixed !important;
 }
 
 .pos_stky {
-    position: sticky;
+    position: sticky !important;
 }
 
 .pos_stat {
-    position: static;
+    position: static !important;
     /* by default*/
 }
 
 .pos_inh {
-    position: inherit;
+    position: inherit !important;
 }
 
 
@@ -1568,6 +1568,10 @@ We cann put anything in parameter such as; 10, 20 , 100, 43 etc
 
 .z_ind3 {
     z-index: 3;
+}
+
+.z_ind999 {
+    z-index: 999;
 }
 
 

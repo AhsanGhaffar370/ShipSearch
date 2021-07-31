@@ -6,24 +6,35 @@ table {
 }
 
 .table th {
+    font-family: 'Lato', sans-serif;
     font-size: 12px;
     padding: 0px 0px 0px 5px !important;
     margin: 0px;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
     font-weight: 600;
-    background-color: #EDEDED;
+    background-color: #EAEAEA;
 }
 
 .table td {
+    font-family: 'Lato', sans-serif;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 12px;
+    font-size: 11px;
     padding: 0px 20px 0px 5px !important;
     margin: 0px;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
     font-weight: 400;
+}
+
+.tr_bg_cl {
+    background-color: #F1F1F1;
+}
+
+.adv_forms_tr {
+    background-color: #555555 !important;
+    height: 175px !important;
 }
 
 .ser_hist_rec_each {
@@ -109,23 +120,23 @@ table {
 /* dropdown styling */
 
 .ser_inp_fields button {
-    padding: 1px 5px 1px 5px;
+    padding: 2px 5px 2px 5px;
     border-radius: 2px;
-    font-size: 13px;
+    font-size: 11px;
     font-family: 'Lato', sans-serif;
 }
 
-#cargo_table22 td>div {
+#ser_his_table22 td>div {
     padding: 10px 5px 10px 0px !important;
 }
 
-#cargo_table22 td>input {
+#ser_his_table22 td>input {
     margin: 10px 4px 10px 0px !important;
 }
 
 .dropdown-menu li a span {
     font-family: 'Lato', sans-serif;
-    font-size: 12px !important;
+    font-size: 11px !important;
 }
 
 .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {

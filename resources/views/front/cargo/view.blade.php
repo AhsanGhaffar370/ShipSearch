@@ -12,19 +12,20 @@
         @if (session('front_uid') != '')
             <div class="bg-white">
                 <div class="pt-2 pb-2 pl-3">
-                    <a id="new_ser_req" class="btn btn_style bg_gr" href={{ route('cargo.view') }}><i
-                            class="fas fa-search"></i> New Load Search</a>
-                    <a href={{ route('cargo.add') }} id="{{ session('front_uname') }}"
-                        class="btn btn_style bg_bl ml-3 add_rec_validation"><i class="fas fa-plus"></i> Add New Cargo</a>
+                    <a id="new_ser_req" class="btn btn_style bg_gr" href="#"><i class="fas fa-search"></i> New Load Search</a>
+                    <a href={{ route('cargo.add') }} id="{{ session('front_uname') }}" class="btn btn_style bg_bl ml-3 add_rec_validation"> 
+                        <i class="fas fa-plus"></i> Add New Cargo
+                    </a>
                 </div>
 
 
-
+                {{-- /////////////////////// --}}
                 {{-- Search History Start --}}
+                {{-- /////////////////////// --}}
                 <div class="border table-wrapper-scroll-y my-custom-scrollbar">
-                    <table id="cargo_table22"
+                    <table id="ser_his_table22"
                         class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
-                        <thead class="" style="background-color: #EDEDED; position: relative; z-index: 999">
+                        <thead class="pos_rel z_ind999">
                             <tr>
                                 <th width="5%">#</th>
                                 <th width="10%">Cargo Type</th>
@@ -46,9 +47,10 @@
 
 
 
-
+                            {{-- /////////////////////// --}}
                             {{-- Advance Search Form --}}
-                            <tr id='adv_ser_form' style="display: none; background-color: #555555; height: 175px; position: relative !important;">
+                            {{-- /////////////////////// --}}
+                            <tr id='adv_ser_form' class="pos_rel d_n adv_forms_tr">
                                 <form id="search_cargo" method="post" action="{{ route('cargo.search_req') }}"
                                     class="form-horizontal form-label-left " enctype="multipart/form-data">
                                     @csrf
@@ -137,10 +139,12 @@
                                             @endforeach
                                         </select>
                                         <div class="text-right">
-                                            <button type="submit" class="btn bg_bl text-white pt-1 pb-1 mr-3"
-                                                style="font-size: 15px;"><i class="fas fa-search"></i> Search</button>
-                                            <a href="#" id="close_ser" class="btn bg_grey text-dark pt-1 pb-1 mr-1"
-                                                style="font-size: 15px;"><i class="fas fa-times"></i></a>
+                                            <button type="submit" class="btn bg_bl text-white size15 pt-1 pb-1 mr-3"> 
+                                                <i class="fas fa-search"></i> Search
+                                            </button>
+                                            <a href="#" id="close_ser" class="btn bg_grey text-dark size15 pt-1 pb-1 mr-1"> 
+                                                <i class="fas fa-times"></i>
+                                            </a>
                                         </div>
                                     </td>
                                     <!-- -->
@@ -158,7 +162,9 @@
 
 
 
+                            {{-- /////////////////////// --}}
                             {{-- Search History data --}}
+                            {{-- /////////////////////// --}}
                             @foreach ($ser_data as $row)
                                 <tr id="ser_hist_rec_{{ $row->id }}" class="ser_hist_rec_each ser_hist_rec_req_each ">
                                     <td id="id-{{ $row->id }}">
@@ -192,14 +198,15 @@
                                         <span class="{{ $row->discharge_port_id }}" id="dport-{{ $row->id }}">
                                             <?php echo str_replace(',', ',<br>', $row->discharge_port_id); ?>
                                         </span>
-                                        <div class="text-right edit_del_btns edit_del_btn_{{ $row->id }}"
-                                            style="display: none">
-                                            <a href="{{ $row->id }}" id="show_update_ser_hist_form_each"
-                                                class="btn bg_bl btn-sm text-white pt-0 pb-0 mr-3"
-                                                style="font-size: 14px;"><i href="{{ $row->id }}" class="fas fa-edit"></i> EDIT</a>
-                                            <a href="{{ $row->id }}" id="delete_rec"
-                                                class="btn btn-danger btn-sm text-white pt-0 pb-0"
-                                                style="font-size: 14px;"><i href="{{ $row->id }}" class="fas fa-trash-alt"></i> DELETE</a>
+                                        <!-- edit delete buttons -->
+                                        <div class="text-right edit_del_btns edit_del_btn_{{ $row->id }} d_n">
+                                            <a href="{{ $row->id }}" id="show_update_ser_hist_form_each" 
+                                            class="btn bg_bl btn-sm size13 text-white pt-0 pb-0 mr-3"> 
+                                                <i href="{{ $row->id }}" class="fas fa-edit"></i> EDIT
+                                            </a>
+                                            <a href="{{ $row->id }}" id="delete_rec" class="btn btn-danger btn-sm size13 text-white pt-0 pb-0"> 
+                                                <i href="{{ $row->id }}" class="fas fa-trash-alt"></i> DELETE
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
@@ -211,12 +218,11 @@
 
 
 
-
-
-
-
+                                
+                                {{-- /////////////////////// --}}
                                 {{-- advance search for each record --}}
-                                <tr id='adv_ser_form_each_{{ $row->id }}' class="adv_ser_form_each" style="display: none; background-color: #555555; height: 175px; position: relative !important;">
+                                {{-- /////////////////////// --}}
+                                <tr id='adv_ser_form_each_{{ $row->id }}' class="adv_ser_form_each pos_rel d_n adv_forms_tr">
                                     <form id="search_cargo_{{ $row->id }}" class="form-horizontal form-label-left ">
                                         @csrf
                                         <td></td>
@@ -307,10 +313,14 @@
                                                 @endforeach
                                             </select>
                                             <div class="text-right">
-                                                <button type="button" id="form_{{$row->id}}" class="req_update_ser_hist_each btn bg_bl text-white pt-1 pb-1 mr-3"
-                                                    style="font-size: 15px;"><i class="fas fa-search"></i> Search</button>
-                                                <a href="{{ $row->id }}" id="close_ser_each_{{ $row->id }}" class="btn bg_grey text-dark pt-1 pb-1 mr-1 close_ser_each"
-                                                    style="font-size: 15px;"><i href="{{ $row->id }}" class="fas fa-times"></i></a>
+                                                <button type="button" id="form_{{$row->id}}" 
+                                                class="req_update_ser_hist_each btn bg_bl text-white size15 pt-1 pb-1 mr-3"> 
+                                                    <i class="fas fa-search"></i> Search
+                                                </button>
+                                                <a href="{{ $row->id }}" id="close_ser_each_{{ $row->id }}"
+                                                class="btn bg_grey text-dark size15 pt-1 pb-1 mr-1 close_ser_each"> 
+                                                    <i href="{{ $row->id }}" class="fas fa-times"></i>
+                                                </a>
                                             </div>
                                         </td>
                                         <!-- -->
@@ -332,8 +342,10 @@
 
 
 
-
+            
+        {{-- /////////////////////// --}}
         {{-- Cargo Table Records --}}
+        {{-- /////////////////////// --}}
         <div class="bg-white mt-2 pt-2">
             <span id="total_rec_found" class="font-weight-bold pt-3 pl-2"> {{ sizeof($data) }} TOTAL RESULTS</span>
             
@@ -341,9 +353,9 @@
 
             <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
                 <div class="border">
-                    <table id="cargo_table21"
+                    <table
                         class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
-                        <thead class="" style="background-color: #EAEAEA;">
+                        <thead>
                             <tr>
                                 <th width="5%">ID</th>
                                 <th width="10%">Cargo Name</th>
@@ -395,8 +407,7 @@
                                         @endif
 
                                     </tr>
-                                    <tr class="show_details show_details_{{ $row->cargo_id }} "
-                                        style="display: none; background-color: #F1F1F1;">
+                                    <tr class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
                                         <td></td>
                                         <td>
                                             <p class="b7 mb-0">Loading Country:</p>
@@ -461,7 +472,7 @@
 
 
     {{-- Access Denied message --}}
-    {{-- <div id="dialog" class="text-right rounded p-1" style="display: none;">
+    {{-- <div id="dialog" class="text-right rounded p-1 d_n">
         <p class="size20 text-left text-white bg-danger p-2 rounded">Access Denied</p>
         <p class="text-left">
             Please <a href={{ route('login') }} class="btn btn-info text=white btn-sm">Login</a> to do this action.

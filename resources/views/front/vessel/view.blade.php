@@ -5,155 +5,432 @@
 
 @section('container')
 
-<style>
-table {
-    padding: 0px;
-}
-
-.table th {
-    font-size: 12px;
-    /* padding: .75rem; */
-    padding: 5px 8px 5px 5px;
-    margin: 0px;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-    font-weight: 600;
-    background-color: #c4c4c4;
-}
-
-.table td {
-    /* background-color: #09cec708; */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 12px;
-    /* padding: .75rem; */
-    padding: 3px 8px 3px 5px;
-    margin: 0px;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-    font-weight: 600;
-}
-
-.ser_hist_req {
-    cursor: pointer;
-}
 
 
 
+<div class="container-fluid bg-color pt-5 pb-5">
 
-.my-custom-scrollbar {
-    position: relative;
-    height: 300px;
-    overflow: auto;
-}
-.table-wrapper-scroll-y {
-    display: block;
-}
-.tableFixHead { 
-    overflow: auto; 
-    /* height: 100px;  */
-}
-.tableFixHead thead th { 
-    position: sticky; 
-    top: 0; 
-    z-index: 1; 
-}
-/* Just common table stuff. Really. */
-table  { 
-    border-collapse: collapse; 
-    width: 100%; 
-}
-th, td { 
-    padding: 8px 16px; 
-}
-th { 
-    background:#eee; 
-}
 
-</style>
+    @if (session('front_uid') != '')
+        <div class="bg-white">
+            <div class="pt-2 pb-2 pl-3">
+                <a id="new_ser_req" class="btn btn_style bg_gr" href="#"><i class="fas fa-search"></i> New Load Search</a>
+                <a href={{ route('vessel.add') }} id="{{ session('front_uname') }}" class="btn btn_style bg_bl ml-3 add_rec_validation"> 
+                    <i class="fas fa-plus"></i> Add New Vessel
+                </a>
+            </div>
 
-<div class="container-fluid mt-5 mb-5">
 
-    <div class="row mb-3">
-        <div class="col-12 col-lg-8 col-md-6 pt-2">
-            <h1 class="size28 text-white b7 pt-2 pb-3 pl-3 bg_sec ">Vessel</h1>
+            {{-- /////////////////////// --}}
+            {{-- Search History Start --}}
+            {{-- /////////////////////// --}}
+            <div class="border table-wrapper-scroll-y my-custom-scrollbar">
+                <table id="ser_his_table22"
+                    class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
+                    <thead class="pos_rel z_ind999">
+                        <tr>
+                            <th width="2%">#</th>
+                            <th width="15%">Vessel Type</th>
+                            <th width="15%">Charter Type</th>
+                            <th width="10%">Laycan Date From</th>
+                            <th width="10%">Laycan Date To</th>
+                            <th width="15%">Region</th>
+                            <th width="15%">Country</th>
+                            <th width="20%">Port</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+
+
+
+
+
+
+                        {{-- /////////////////////// --}}
+                        {{-- Advance Search Form --}}
+                        {{-- /////////////////////// --}}
+                        <tr id='adv_ser_form' class="pos_rel d_n adv_forms_tr">
+                            <form id="search_vessel" method="post" action="{{ route('vessel.search_req') }}"
+                                class="form-horizontal form-label-left " enctype="multipart/form-data">
+                                @csrf
+                                <td></td>
+                                <td class="">
+                                    <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel"
+                                        class="vessel_type_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                        data-selected-text-format="count > 2" data-live-search="true"
+                                        {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
+                                        @foreach ($vessel_type as $row)
+                                            <option value="{{ $row->vessel_type_name }}">{{ $row->vessel_type_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <!-- -->
+                                <td class="">
+                                    <select name="charter_type_id[]" id="charter_type_id" form="search_vessel"
+                                        class="charter_type_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                        data-selected-text-format="count > 2" data-live-search="true"
+                                        {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
+                                        @foreach ($charter_type as $row)
+                                            <option value="{{ $row->charter_type_name }}">{{ $row->charter_type_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <!-- -->
+                                <td class="">
+                                    <input type="date" required form="search_vessel" class=" from_date"
+                                        id="laycan_date_from" name="laycan_date_from" placeholder="Laycan Date From" />
+                                </td>
+                                <!-- -->
+                                <td class="">
+                                    <input type="date" required form="search_vessel" class=" to_date" id="laycan_date_to"
+                                        name="laycan_date_to" placeholder="Laycan Date To" />
+                                </td>
+                                <!-- -->
+                                <td class="">
+                                    <select name="region_id[]" id="region_id" form="search_vessel"
+                                        class="region_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                        data-selected-text-format="count > 2" data-live-search="true">
+                                        @foreach ($region as $row)
+                                            <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <!-- -->
+                                <td class=" ">
+                                    <select name="country_id[]" id="country_id" form="search_vessel"
+                                        class="country_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                        data-selected-text-format="count > 2" data-live-search="true">
+                                        @foreach ($country as $row)
+                                            <option value="{{ $row->country_name }}">{{ $row->country_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <!-- -->
+                                <td class="">
+                                    <select name="port_id[]" id="port_id" form="search_vessel"
+                                        class="port_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                        data-selected-text-format="count > 2" data-live-search="true">
+                                        @foreach ($port as $row)
+                                            <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!-- Submit buttons -->
+                                    <div class="text-right">
+                                        <button type="submit" class="btn bg_bl text-white size15 pt-1 pb-1 mr-3"> 
+                                            <i class="fas fa-search"></i> Search
+                                        </button>
+                                        <a href="#" id="close_ser" class="btn bg_grey text-dark size15 pt-1 pb-1 mr-1"> 
+                                            <i class="fas fa-times"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                                <!-- -->
+                            </form>
+                        </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+                        {{-- /////////////////////// --}}
+                        {{-- Search History data --}}
+                        {{-- /////////////////////// --}}
+                        @foreach ($ser_data as $row)
+                            <tr id="ser_hist_rec_{{ $row->id }}" class="ser_hist_rec_each ser_hist_rec_req_each ">
+                                <td id="id-{{ $row->id }}">
+                                    {{ $row->id }}
+                                </td>
+                                <td id="vesseltype-{{ $row->id }}">
+                                    <?php echo str_replace(',', ',<br>', $row->vessel_type_id); ?>
+                                </td>
+                                <td id="chartertype-{{ $row->id }}">
+                                    <?php echo str_replace(',', ',<br>', $row->charter_type_id); ?>
+                                </td>
+                                <td id="laycan_from-{{ $row->id }}">
+                                    {{ date('d-M-Y', strtotime($row->laycan_date_from)) }}
+                                </td>
+                                <td id="laycan_to-{{ $row->id }}">
+                                    {{ date('d-M-Y', strtotime($row->laycan_date_to)) }}
+                                </td>
+                                <td class="{{ $row->region_id }}" id="region-{{ $row->id }}">
+                                    <?php echo str_replace(',', ',<br>', $row->region_id); ?>
+                                </td>
+                                <td class="{{ $row->country_id }}" id="country-{{ $row->id }}">
+                                    <?php echo str_replace(',', ',<br>', $row->country_id); ?>
+                                </td>
+                                <td>
+                                    <span class="{{ $row->port_id }}" id="port-{{ $row->id }}">
+                                        <?php echo str_replace(',', ',<br>', $row->port_id); ?>
+                                    </span>
+                                    <div class="text-right edit_del_btns edit_del_btn_{{ $row->id }} d_n">
+                                        <a href="{{ $row->id }}" id="show_update_ser_hist_form_each" 
+                                        class="btn bg_bl btn-sm size13 text-white pt-0 pb-0 mr-3"> 
+                                            <i href="{{ $row->id }}" class="fas fa-edit"></i> EDIT
+                                        </a>
+                                        <a href="{{ $row->id }}" id="delete_rec" class="btn btn-danger btn-sm size13 text-white pt-0 pb-0"> 
+                                            <i href="{{ $row->id }}" class="fas fa-trash-alt"></i> DELETE
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
+
+
+
+
+
+                            
+                            {{-- /////////////////////// --}}
+                            {{-- advance search for each record --}}
+                            {{-- /////////////////////// --}}
+                            <tr id='adv_ser_form_each_{{ $row->id }}' class="adv_ser_form_each pos_rel d_n adv_forms_tr">
+                                <form id="search_vessel_{{ $row->id }}" class="form-horizontal form-label-left ">
+                                    @csrf
+                                    <td></td>
+                                    <td class="">
+                                        <select name="vessel_type_id[]" id="vessel_type_id_{{ $row->id }}" form="search_vessel_{{ $row->id }}"
+                                            class="vessel_type_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($vessel_type as $row1)
+                                                <option value="{{ $row1->vessel_type_name }}">
+                                                    {{ $row1->vessel_type_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <!-- -->
+                                    <td class="">
+                                        <select name="charter_type_id[]" id="charter_type_id_{{ $row->id }}" form="search_vessel_{{ $row->id }}"
+                                            class="charter_type_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($charter_type as $row1)
+                                                <option value="{{ $row1->charter_type_name }}">
+                                                    {{ $row1->charter_type_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <!-- -->
+                                    <td class="">
+                                        <input type="date" required form="search_vessel_{{ $row->id }}" class=" from_date"
+                                            id="laycan_date_from_{{ $row->id }}" name="laycan_date_from"
+                                            placeholder="Laycan Date From" />
+                                    </td>
+                                    <!-- -->
+                                    <td class="">
+                                        <input type="date" required form="search_vessel_{{ $row->id }}" class=" to_date"
+                                            id="laycan_date_to_{{ $row->id }}" name="laycan_date_to" placeholder="Laycan Date To" />
+                                    </td>
+                                    <!-- -->
+                                    <td class=" ">
+                                        <select name="region_id[]" id="region_id_{{ $row->id }}"
+                                            form="search_vessel_{{ $row->id }}" class="region_id ser_inp_fields" multiple title="Choose"
+                                            data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($region as $row1)
+                                                <option value="{{ $row1->region_name }}">{{ $row1->region_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <!-- -->
+                                    <td class=" ">
+                                        <select name="country_id[]" id="country_id_{{ $row->id }}"
+                                            form="search_vessel_{{ $row->id }}" class="country_id ser_inp_fields" multiple title="Choose"
+                                            data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($country as $row1)
+                                                <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <!-- -->
+                                    <td class="">
+                                        <select name="port_id[]" id="port_id_{{ $row->id }}" form="search_vessel_{{ $row->id }}"
+                                            class="port_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($port as $row1)
+                                                <option value="{{ $row1->port_name }}">{{ $row1->port_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <div class="text-right">
+                                            <button type="button" id="form_{{$row->id}}" 
+                                            class="req_update_ser_hist_each btn bg_bl text-white size15 pt-1 pb-1 mr-3"> 
+                                                <i class="fas fa-search"></i> Search
+                                            </button>
+                                            <a href="{{ $row->id }}" id="close_ser_each_{{ $row->id }}"
+                                            class="btn bg_grey text-dark size15 pt-1 pb-1 mr-1 close_ser_each"> 
+                                                <i href="{{ $row->id }}" class="fas fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <!-- -->
+                                </form>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-12 col-lg-2 col-md-3 pt-2">
-            <a id="adv_ser11" class="btn btn-info btn-block pt-3 pb-3 rounded-0 disabled" href={{route('vessel.view')}}><i
-                    class="fas fa-search"></i> Advanced
-                Search</a>
-        </div>
-        <div class="col-12 col-lg-2 col-md-3 pt-2">
-            <a href={{route('vessel.view')}} id="{{session('front_uname')}}"
-                class="btn btn-info btn-block pt-3 pb-3 rounded-0 add_rec_validation disabled" ><i class="fas fa-plus"></i> Add New</a>
-        </div>
-    </div>
+    @endif
 
 
-    <div class="table-wrapper-scroll-y my-custom-scrollbar">
-        <div class="border">
-            <table id="cargo_table21" class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
-                <thead class="" style="background-color: #EAEAEA;">
-                    <tr>
-                        <th width="2%">ID</th>
-                        <th width="8%">Vessel Name</th>
-                        <th width="10%">Laycan Date From</th>
-                        <th width="10%">Laycan Date To</th>
-                        <th width="15%">Region</th>
-                        <th width="15%">Port</th>
-                        <th width="10%">Vessel Type</th>
-                        <th width="8%">Built year</th>
-                        <th width="8%">Dead Weight</th>
-                        <th width="10%">Posted on</th>
 
-                        @if(session('front_uid')!="")
-                        <th width="2%">Details</th>
+
+
+
+
+
+
+
+        
+    {{-- /////////////////////// --}}
+    {{-- Vessel Table Records --}}
+    {{-- /////////////////////// --}}
+    <div class="bg-white mt-2 pt-2">
+        <span id="total_rec_found" class="font-weight-bold pt-3 pl-2"> {{ sizeof($data) }} TOTAL RESULTS</span>
+        
+        <a href={{ route('vessel.view') }} class="btn btn_style bg_bl ml-3 pl-2 pr-2"><i class="fas fa-sync-alt"></i></a>
+
+        <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
+            <div class="border">
+                <table
+                    class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
+                    <thead>
+                        <tr>
+                            <th width="2%">ID</th>
+                            <th width="8%">Vessel Name</th>
+                            <th width="10%">Laycan Date From</th>
+                            <th width="10%">Laycan Date To</th>
+                            <th width="15%">Region</th>
+                            <th width="15%">Port</th>
+                            <th width="10%">Vessel Type</th>
+                            <th width="8%">Built year</th>
+                            <th width="8%">Dead Weight</th>
+                            <th width="10%">Posted on</th>
+
+                            @if(session('front_uid')!="")
+                                    <th width="2%">Details</th>
+                            @endif
+                        </tr>
+                    </thead>
+
+                    <tbody id="all_records">
+                        @if (sizeof($data) < 1)
+                            <tr class="">
+                                <td colspan="11"><i>No exact results. Try expanding your filters</i></td>
+                            </tr>
+                        @else
+                            @foreach ($data as $row)
+                                <tr class="">
+                                    <td >{{$row->vessel_id}}</td>
+                                    <td >{{$row->vessel_name}}</td>
+                                    <td >{{date("d-M-Y", strtotime($row->laycan_date_from))}}</td>
+                                    <td >{{date("d-M-Y", strtotime($row->laycan_date_to))}}</td>
+                                    <td >{{optional($row->region)->region_name}}</td>
+                                    <td >{{optional($row->port)->port_name}}</td>
+                                    <td >{{optional($row->vesseltype)->vessel_type_name}}</td>
+                                    <td >{{$row->built_year}}</td>
+                                    <td >{{$row->deadweight}}</td>
+                                    <td >{{$row->created_at}}</td>
+
+                                    @if (session('front_uid') != '')
+                                        <td class="text-center">
+                                            <a href='{{ $row->vessel_id }}'
+                                                class="show_detail_btn show_detail_btn_{{ $row->vessel_id }}"><i
+                                                    class="fas fa-eye fa-2x"></i></a>
+                                            <a href='{{ $row->vessel_id }}'
+                                                class="hide_detail_btn hide_detail_btn_{{ $row->vessel_id }}"><i
+                                                    class="fas fa-eye-slash fa-2x"></i></a>
+                                        </td>
+                                    @endif
+
+                                </tr>
+                                <tr class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
+                                    <td></td>
+                                    {{-- <td>
+                                        <p class="b7 mb-0">Loading Country:</p>
+                                        <p class=""><?php //echo str_replace(',', ',<br>', $row->loading_country_id); ?>
+                                        </p>
+                                        <p class="b7 mb-0">Max LOA:</p>
+                                        <p class="">{{ $row->max_loa }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Loading Port</p>
+                                        <p class=""><?php //echo str_replace(',', ',<br>', $row->loading_port_id); ?></p>
+                                        <p class="b7 mb-0">Max Draft:</p>
+                                        <p class="">{{ $row->max_draft }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Discharge Country</p>
+                                        <p class=""><?php //echo str_replace(',', ',<br>', $row->discharge_country_id); ?>
+                                        </p>
+                                        <p class="b7 mb-0">Max Height:</p>
+                                        <p class="">{{ $row->max_height }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Discharge Port</p>
+                                        <p class=""><?php //echo str_replace(',', ',<br>', $row->discharge_port_id); ?>
+                                        </p>
+                                        <p class="b7 mb-0">Loading Equipment Req:</p>
+                                        <p class="">{{ $row->loading_equipment_req }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Over Age:</p>
+                                        <p class="">{{ $row->over_age }}</p>
+                                        <p class="b7 mb-0">Discharge Equipment Req:</p>
+                                        <p class="">{{ $row->discharge_equipment_req }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Hazmat:</p>
+                                        <p class="">{{ $row->hazmat }}</p>
+                                        <p class="b7 mb-0">Combinable:</p>
+                                        <p class="">{{ $row->combinable }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Commission:</p>
+                                        <p class="">{{ $row->commision }}</p>
+                                        <p class="b7 mb-0">Gear Lifting Capacity:</p>
+                                        <p class="">{{ $row->gear_lifting_capacity }}</p>
+                                    </td>
+                                    <td colspan="2">
+                                        <p class="b7 mb-0">Additional Info:</p>
+                                        <p class="">{{ $row->additional_info }}</p>
+                                    </td> --}}
+                                    <td></td>
+                                </tr>
+                            @endforeach
                         @endif
-                    </tr>
-                </thead>
 
-                <tbody id="all_cargo" >
-                    @foreach ($data as $row)
-                    <tr class="">
-                        <td >{{$row->vessel_id}}</td>
-                        <td >{{$row->vessel_name}}</td>
-                        <td >{{date("d-M-Y", strtotime($row->laycan_date_from))}}</td>
-                        <td >{{date("d-M-Y", strtotime($row->laycan_date_to))}}</td>
-                        <td >{{optional($row->region)->region_name}}</td>
-                        <td >{{optional($row->port)->port_name}}</td>
-                        <td >{{optional($row->vesseltype)->vessel_type_name}}</td>
-                        <td >{{$row->built_year}}</td>
-                        <td >{{$row->deadweight}}</td>
-                        <td >{{$row->created_at}}</td>
-
-                        @if(session('front_uid')!="")
-                        <td class="text-center" >
-                            <a href={{route('vessel.detail.id', ['id' => $row->vessel_id])}} target="_blank" class="show_details_btn"><i class="fas fa-eye fa-2x"></i></a>
-                        </td>
-                        @endif
-
-                    </tr>
-                    
-                    @endforeach
-
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        </div>
-    </div>
-
-
-    <div id="dialog" class="text-right rounded p-1" style="display: none;">
-        <p class="size20 text-left text-white bg-danger p-2 rounded">Access Denied</p>
-
-        <p class="text-left">
-            Please <a href={{route('login')}} class="btn btn-info text=white btn-sm">Login</a> to do this action.
-        </p>
-
-        <br>
-        <hr>
-        <button id="close_dialog" class="btn btn-danger">Close</button>
-
     </div>
 </div>
+
+
+{{-- Access Denied message --}}
+{{-- <div id="dialog" class="text-right rounded p-1 d_n">
+    <p class="size20 text-left text-white bg-danger p-2 rounded">Access Denied</p>
+    <p class="text-left">
+        Please <a href={{ route('login') }} class="btn btn-info text=white btn-sm">Login</a> to do this action.
+    </p>
+    <br>
+    <hr>
+    <button id="close_dialog" class="btn btn-danger">Close</button>
+</div> --}}
+
 @endsection

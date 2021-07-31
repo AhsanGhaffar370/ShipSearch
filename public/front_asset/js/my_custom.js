@@ -10,14 +10,20 @@ $(document).ready(function() {
     $('.discharge_port_id').selectpicker();
 
 
+    //vessel
+    $('.vessel_type_id').selectpicker();
+    $('.charter_type_id').selectpicker();
+    $('.region_id').selectpicker();
+    $('.country_id').selectpicker();
+    $('.port_id').selectpicker();
 
 
 
-    function GetFormattedDate(date12) {
+    function GetFormattedDate(date) {
         // var dateAr = '2014-01-06'.split('-');
-        var dateAr = date12.split('-');
-        var mon21 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ];
-        var newDate = dateAr[2] + '-' + mon21[parseInt(dateAr[1]) - 1] + '-' + dateAr[0];
+        var dateAr = date.split('-');
+        var mon = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ];
+        var newDate = dateAr[2] + '-' + mon[parseInt(dateAr[1]) - 1] + '-' + dateAr[0];
         return newDate;
     }
 
