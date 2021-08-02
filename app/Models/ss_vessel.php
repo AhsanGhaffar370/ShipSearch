@@ -13,6 +13,13 @@ class ss_vessel extends Model
     public $timestamps=false;
     protected $primaryKey = 'vessel_id';
 
+    
+    protected $guarded = [];  
+    // protected $fillable = ['country_id','country_name','sortname','phonecode','is_active','create_at','created_by','modified_at','modified_by'];  
+
+    public function scopeActive($query){
+        return $query->where('is_active',1);
+    }
 
     public function scopeDesc($query){
         return $query->orderBy('vessel_id',"DESC");
@@ -24,7 +31,6 @@ class ss_vessel extends Model
     }
 
     public function chartertype(){
-        // return $this->belongsTo('App\Models\ss_setup_charter_type','charter_type_id');
         return $this->belongsTo(ss_setup_charter_type::class,'charter_type_id');
     }
 
@@ -32,13 +38,11 @@ class ss_vessel extends Model
         return $this->belongsTo(ss_setup_country::class,'country_id');
     }
 
-
     public function region(){
         return $this->belongsTo(ss_setup_region::class,'region_id');
     }
 
     public function port(){
         return $this->belongsTo(ss_setup_port::class,'port_id');
-        // return $this->belongsTo(ss_setup_port::class,'port_id');
     }
 }

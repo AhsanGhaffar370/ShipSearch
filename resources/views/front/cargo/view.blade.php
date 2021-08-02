@@ -166,7 +166,7 @@
                             {{-- Search History data --}}
                             {{-- /////////////////////// --}}
                             @foreach ($ser_data as $row)
-                                <tr id="ser_hist_rec_{{ $row->id }}" class="ser_hist_rec_each ser_hist_rec_req_each ">
+                                <tr id="ser_hist_rec_{{ $row->id }}" class="ser_hist_rec_each car_ser_hist_rec_req_each ">
                                     <td id="id-{{ $row->id }}">
                                         {{ $row->id }}
                                     </td>
@@ -200,11 +200,11 @@
                                         </span>
                                         <!-- edit delete buttons -->
                                         <div class="text-right edit_del_btns edit_del_btn_{{ $row->id }} d_n">
-                                            <a href="{{ $row->id }}" id="show_update_ser_hist_form_each" 
+                                            <a href="{{ $row->id }}" id="car_show_update_ser_hist_form_each" 
                                             class="btn bg_bl btn-sm size13 text-white pt-0 pb-0 mr-3"> 
                                                 <i href="{{ $row->id }}" class="fas fa-edit"></i> EDIT
                                             </a>
-                                            <a href="{{ $row->id }}" id="delete_rec" class="btn btn-danger btn-sm size13 text-white pt-0 pb-0"> 
+                                            <a href="{{ $row->id }}" id="car_delete_rec" class="btn btn-danger btn-sm size13 text-white pt-0 pb-0"> 
                                                 <i href="{{ $row->id }}" class="fas fa-trash-alt"></i> DELETE
                                             </a>
                                         </div>
@@ -314,7 +314,7 @@
                                             </select>
                                             <div class="text-right">
                                                 <button type="button" id="form_{{$row->id}}" 
-                                                class="req_update_ser_hist_each btn bg_bl text-white size15 pt-1 pb-1 mr-3"> 
+                                                class="car_req_update_ser_hist_each btn bg_bl text-white size15 pt-1 pb-1 mr-3"> 
                                                     <i class="fas fa-search"></i> Search
                                                 </button>
                                                 <a href="{{ $row->id }}" id="close_ser_each_{{ $row->id }}"
