@@ -64,7 +64,7 @@
                             data-size="5"
                             data-selected-text-format="count > 2" >
                             @foreach ($region as $row)
-                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
+                                <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
                             @endforeach
                         </select>
                     </div>

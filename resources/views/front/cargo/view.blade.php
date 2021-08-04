@@ -32,10 +32,10 @@
                                 <th width="10%">Laycan Date From</th>
                                 <th width="10%">Laycan Date To</th>
                                 <th width="10%">Loading Region</th>
-                                <th width="10%">Discharge Region</th>
                                 <th width="10%">Loading Country</th>
-                                <th width="10%">Discharge Country</th>
                                 <th width="10%">Loading Port</th>
+                                <th width="10%">Discharge Region</th>
+                                <th width="10%">Discharge Country</th>
                                 <th width="15%">Discharge Port</th>
                             </tr>
                         </thead>
@@ -88,30 +88,8 @@
                                     </td>
                                     <!-- -->
                                     <td class=" ">
-                                        <select name="discharge_region_id[]" id="discharge_region_id" form="search_cargo"
-                                            class="discharge_region_id ser_inp_fields" multiple title="Choose" data-size="5"
-                                            data-selected-text-format="count > 2" data-live-search="true">
-                                            @foreach ($region as $row)
-                                                <option value="{{ $row->region_name }}">{{ $row->region_name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <!-- -->
-                                    <td class=" ">
                                         <select name="loading_country_id[]" id="loading_country_id" form="search_cargo"
                                             class="loading_country_id ser_inp_fields" multiple title="Choose" data-size="5"
-                                            data-selected-text-format="count > 2" data-live-search="true">
-                                            @foreach ($country as $row)
-                                                <option value="{{ $row->country_name }}">{{ $row->country_name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <!-- -->
-                                    <td class=" ">
-                                        <select name="discharge_country_id[]" id="discharge_country_id" form="search_cargo"
-                                            class="discharge_country_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($country as $row)
                                                 <option value="{{ $row->country_name }}">{{ $row->country_name }}
@@ -126,6 +104,28 @@
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($port as $row)
                                                 <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <!-- -->
+                                    <td class=" ">
+                                        <select name="discharge_region_id[]" id="discharge_region_id" form="search_cargo"
+                                            class="discharge_region_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($region as $row)
+                                                <option value="{{ $row->region_name }}">{{ $row->region_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <!-- -->
+                                    <td class=" ">
+                                        <select name="discharge_country_id[]" id="discharge_country_id" form="search_cargo"
+                                            class="discharge_country_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($country as $row)
+                                                <option value="{{ $row->country_name }}">{{ $row->country_name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </td>
@@ -182,17 +182,17 @@
                                     <td class="{{ $row->loading_region_id }}" id="lregion-{{ $row->id }}">
                                         <?php echo str_replace(',', ',<br>', $row->loading_region_id); ?>
                                     </td>
-                                    <td class="{{ $row->discharge_region_id }}" id="dregion-{{ $row->id }}">
-                                        <?php echo str_replace(',', ',<br>', $row->discharge_region_id); ?>
-                                    </td>
                                     <td class="{{ $row->loading_country_id }}" id="lcountry-{{ $row->id }}">
                                         <?php echo str_replace(',', ',<br>', $row->loading_country_id); ?>
                                     </td>
-                                    <td class="{{ $row->discharge_country_id }}" id="dcountry-{{ $row->id }}">
-                                        <?php echo str_replace(',', ',<br>', $row->discharge_country_id); ?>
-                                    </td>
                                     <td class="{{ $row->loading_port_id }}" id="lport-{{ $row->id }}">
                                         <?php echo str_replace(',', ',<br>', $row->loading_port_id); ?>
+                                    </td>
+                                    <td class="{{ $row->discharge_region_id }}" id="dregion-{{ $row->id }}">
+                                        <?php echo str_replace(',', ',<br>', $row->discharge_region_id); ?>
+                                    </td>
+                                    <td class="{{ $row->discharge_country_id }}" id="dcountry-{{ $row->id }}">
+                                        <?php echo str_replace(',', ',<br>', $row->discharge_country_id); ?>
                                     </td>
                                     <td>
                                         <span class="{{ $row->discharge_port_id }}" id="dport-{{ $row->id }}">
@@ -260,31 +260,9 @@
                                         </td>
                                         <!-- -->
                                         <td class=" ">
-                                            <select name="discharge_region_id[]" id="discharge_region_id_{{ $row->id }}"
-                                                form="search_cargo_{{ $row->id }}" class="discharge_region_id ser_inp_fields" multiple title="Choose"
-                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                                @foreach ($region as $row1)
-                                                    <option value="{{ $row1->region_name }}">{{ $row1->region_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </td>
-                                        <!-- -->
-                                        <td class=" ">
                                             <select name="loading_country_id[]" id="loading_country_id_{{ $row->id }}" form="search_cargo_{{ $row->id }}"
                                                 class="loading_country_id ser_inp_fields" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
-                                                @foreach ($country as $row1)
-                                                    <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </td>
-                                        <!-- -->
-                                        <td class=" ">
-                                            <select name="discharge_country_id[]" id="discharge_country_id_{{ $row->id }}"
-                                                form="search_cargo_{{ $row->id }}" class="discharge_country_id ser_inp_fields" multiple title="Choose"
-                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($country as $row1)
                                                     <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
                                                     </option>
@@ -298,6 +276,28 @@
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($port as $row1)
                                                     <option value="{{ $row1->port_name }}">{{ $row1->port_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <!-- -->
+                                        <td class=" ">
+                                            <select name="discharge_region_id[]" id="discharge_region_id_{{ $row->id }}"
+                                                form="search_cargo_{{ $row->id }}" class="discharge_region_id ser_inp_fields" multiple title="Choose"
+                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($region as $row1)
+                                                    <option value="{{ $row1->region_name }}">{{ $row1->region_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <!-- -->
+                                        <td class=" ">
+                                            <select name="discharge_country_id[]" id="discharge_country_id_{{ $row->id }}"
+                                                form="search_cargo_{{ $row->id }}" class="discharge_country_id ser_inp_fields" multiple title="Choose"
+                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($country as $row1)
+                                                    <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
                                                     </option>
                                                 @endforeach
                                             </select>

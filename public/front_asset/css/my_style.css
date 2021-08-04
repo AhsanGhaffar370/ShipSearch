@@ -30,10 +30,12 @@ body {
 }
 
 
-/* ////////////// */
+/* 
+                                                    ======================== 
+                                                              ShipSearch  
+                                                    ========================
 
-
-/* ShipSearch */
+*/
 
 .chead {
     font-weight: 600;
@@ -62,12 +64,6 @@ body {
 a {
     text-decoration: none !important;
 }
-
-
-/* ShipSearch */
-
-
-/* ////////////// */
 
 
 /* section { */
@@ -370,67 +366,6 @@ Hosting Plan Cards using flexbox
 
 
 /* 
-                                                                ========================
-                                                                      Transform 2D
-                                                                ========================
-
-========================
-      Rotate
-======================== 
-transform: rotate(10deg); --> clockwise rotation
-transform: rotate(-10deg); --> anticlockwise rotation
-
-In Transform 3D:
-transform: rotateX(20deg);
-transform: rotateY(20deg);
-transform: rotateZ(20deg);
-*/
-
-.trf_rot {
-    transition: transform 0.3s 0s ease-out;
-}
-
-.trf_rot:hover {
-    transform: rotate(360deg);
-}
-
-
-/* 
-========================
-      Scale
-======================== 
-The scale() method increases or decreases the size of an element
-
-transform: scale(x-axis, y-axis);
-transform: scaleX(x-axis); -->increases or decreases the width of an element.
-transform: scaleY(y-axis); -->increases or decreases the height of an element.
-
-transform: scale(2, 3); --> increase size
-transform: scale(0.5, 0.5); --> decrease size
-*/
-
-.trf_scale:hover {
-    transform: scale(1.05, 1.1);
-}
-
-
-/* 
-========================
-      Translate
-========================    
-transform: translate(x-axis, y-axis);
-transform: translateX(x-axis);
-transform: translateY(y-axis);
-
-Note: we can also give -ve values */
-
-.trf_trans:hover {
-    background-color: #f2efe3ff;
-    transform: translate(20px, 0px);
-}
-
-
-/* 
                                                             ========================
                                                                     Transition
                                                             ========================
@@ -504,98 +439,64 @@ To create a transition effect, you must specify three things:
 
 
 /* 
-                                                          ========================
-                                                                  Animation 
-                                                          ========================
-animation-name: We have to create our animation "example" etc.
-animation-duration:         4s;
-animation-delay:            1s;
-animation-iteration-count:  4;
-animation-direction:        normal/reverse/alternate/alternate-reverse;
-animation-timing-function:  ease/ease-in/ease-out/ease-in-out;
-animation-fill-mode:        forwards/backward;
+                                                                ========================
+                                                                      Transform 2D
+                                                                ========================
+
+========================
+      Rotate
+======================== 
+transform: rotate(10deg); --> clockwise rotation
+transform: rotate(-10deg); --> anticlockwise rotation
+
+In Transform 3D:
+transform: rotateX(20deg);
+transform: rotateY(20deg);
+transform: rotateZ(20deg);
 */
 
-@keyframes example {
-    from {
-        color: #a8dadcff;
-    }
-    to {
-        color: #e63946ff;
-    }
+.trf_rot {
+    transition: transform 0.3s 0s ease-out;
 }
 
-.animation {
-    animation-name: "example";
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-    /* animation-direction: reverse; */
+.trf_rot:hover {
+    transform: rotate(360deg);
 }
 
 
 /* 
-                                                    ==========================================
-                                                        Animation Using Animate.css Library
-                                                    ==========================================
-                  
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+========================
+      Scale
+======================== 
+The scale() method increases or decreases the size of an element
 
-We can use these styling to apply animate.css using css:
-  animation: bounce;            
-  animation-duration: 2s;       
-  animation-iteration-count:    
-  animation-delay: 1s;
+transform: scale(x-axis, y-axis);
+transform: scaleX(x-axis); -->increases or decreases the width of an element.
+transform: scaleY(y-axis); -->increases or decreases the height of an element.
 
-Utility classes: (Animate.css comes packed with a few utility classes to simplify its use)
-
-Always use "animate__animated" keyword to activate animation. Then we can use below classes to start animation.
-
-  animate__fadeIn               animate__slow 	  2s          animate__repeat-1 	1         animate__delay-2s     
-  animate__fadeInDown           animate__slower 	3s          animate__repeat-2 	2         animate__delay-3s
-  animate__fadeInLeft           animate__fast 	  800ms       animate__repeat-3 	3         animate__delay-4s
-  animate__fadeInRight          animate__faster 	500ms
-  animate__fadeInUp
+transform: scale(2, 3); --> increase size
+transform: scale(0.5, 0.5); --> decrease size
 */
 
-.animate_css {
-    display: inline-block;
-    /*animation is not worked with inline elements so why we apply inline-block*/
-    animation: pulse;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-}
-
-.ani_infinite {
-    animation-iteration-count: infinite;
+.trf_scale:hover {
+    transform: scale(1.05, 1.1);
 }
 
 
 /* 
-                                                    ==========================================
-                                                                Animation On Scroll
-                                                    ==========================================
-https://michalsnik.github.io/aos/ 
+========================
+      Translate
+========================    
+transform: translate(x-axis, y-axis);
+transform: translateX(x-axis);
+transform: translateY(y-axis);
 
-Include all these in your project:
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+Note: we can also give -ve values */
 
-  <script type="text/javascript">
-    AOS.init({
-      duration: 600,
-    });
-  </script>
-
-Add these properties in elements where we want animation on scroll
-  data-aos="fade-up"              --> compulsory
-  data-aos-offset="200"           -->  optional    
-  data-aos-delay="50"             -->  optional  
-  data-aos-duration="1000"        -->  optional  
-  data-aos-easing="ease-in-out"   -->  optional  
-  data-aos-mirror="true"          -->  optional  
-  data-aos-once="false"           -->  optional  
-*/
+.trf_trans:hover {
+    background-color: #f2efe3ff;
+    transform: translate(20px, 0px);
+}
 
 
 /* 
@@ -1667,17 +1568,6 @@ We cann put anything in parameter such as; 10, 20 , 100, 43 etc
 
 .mr_2 {
     margin-right: 2rem !important;
-}
-
-
-/*
-========================
-Padding between sections and hr color
-========================
-*/
-
-.padd {
-    padding: 100px 0px !important;
 }
 
 

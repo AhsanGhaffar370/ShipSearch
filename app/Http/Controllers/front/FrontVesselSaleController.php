@@ -12,7 +12,7 @@ use App\Models\ss_setup_country;
 use App\Models\ss_setup_port;
 use App\Models\vessel_search_history;
 
-class FrontVesselController extends Controller
+class FrontVesselSaleController extends Controller
 {
     function view(){
 
@@ -271,5 +271,6 @@ class FrontVesselController extends Controller
         }
        
     }
+
 
 }

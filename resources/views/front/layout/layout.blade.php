@@ -49,10 +49,6 @@
             font-weight: 600;
         }
 
-        a.nav-link:hover {
-
-            background-color: #c1e1fe;
-        }
 
         .ft_link {
             color: #748d91;
@@ -85,6 +81,31 @@
             color: black;
         }
 
+        .navbar{
+            align-items: flex-end !important;
+            padding: 15px 30px 15px 70px !important;
+            border-bottom: 10px solid #4D9A8E;
+        }
+
+        #navbarSupportedContent{
+            padding-left: 80px !important;
+        }
+
+        .nav-link{
+            color: #87A094 !important;
+            font-style: italic;
+            font-weight: 600;
+            font-family: 'Open Sans';
+            padding: 5px 20px !important;
+            margin-bottom: -18px;
+        }
+
+        .btn-style{
+            font-style: italic;
+            font-weight: 600;
+            font-family: 'Open Sans';
+        }
+
     </style>
 
 
@@ -99,9 +120,35 @@
 
 <body class="bg-white">
 
+    <nav class="navbar navbar-expand-lg navbar-white bg-white">
+        <a class="navbar-brand" href="#">
+            <img width="200" src="{{ asset('front_asset/images/logo1.PNG') }}" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('cargo.view') }}">Cargo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('cargo.view') }}">Vessel Charter</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('cargo.view') }}">Sale & Purchase</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('cargo.view') }}">Voyage Estimator</a>
+              </li>
+          </ul>
+            <button class="btn btn-success btn-style my-2 my-sm-0" type="button">LOGIN / REGISTER</button>
+        </div>
+      </nav>
+
     <!-- Navigation -->
-    <header class="" style="background-color: #e3eff6!important;">
-        <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav"> -->
+    {{-- <header class="" style="background-color: #e3eff6!important;">
         <div class="d-block text-center">
             <a class="navbar-brand pt-2 pb-2" href={{ route('home') }}>
                 <img src="{{ asset('front_asset/images/logo.png') }}" alt="" />
@@ -159,9 +206,11 @@
                 </div>
             </div>
         </nav>
-    </header>
+    </header> --}}
     <!-- Navigation End -->
 
+
+    {{-- <img src="{{ asset('front_asset/images/home.png') }}" class="logo footer_logo"> --}}
 
     <!-- Main Content -->
     @section('container')

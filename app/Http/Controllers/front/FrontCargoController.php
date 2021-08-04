@@ -22,7 +22,7 @@ class FrontCargoController extends Controller
         // print($carg12[2]);
 
         // $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])->get();
-        $data = ss_cargo::orderBy('cargo_id', 'DESC')->get();
+        $data = ss_cargo::active()->orderBy('cargo_id', 'DESC')->get();
 
         $ser_data= cargo_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
 
@@ -227,6 +227,7 @@ class FrontCargoController extends Controller
                         ->where('discharge_region_id', $ser_discharge_region)
                         ->where('discharge_country_id', $ser_discharge_country)
                         ->where('discharge_port_id', $ser_discharge_port)
+                        ->active()
                         ->orderBy('cargo_id', 'DESC')
                         ->get();
                         // ->whereBetween($laycan_col, [$from_date, $to_date])->get();
@@ -261,6 +262,7 @@ class FrontCargoController extends Controller
                         ->where('discharge_country_id', $ser_data->discharge_country_id)
                         ->where('discharge_port_id', $ser_data->discharge_port_id)
                         // ->whereBetween($req->laycan_date, [$from_date, $to_date])
+                        ->active()
                         ->orderBy('cargo_id', 'DESC')
                         ->get();
 
@@ -317,6 +319,7 @@ class FrontCargoController extends Controller
             ->where('discharge_region_id', $data->discharge_region_id)
             ->where('discharge_country_id', $data->discharge_country_id)
             ->where('discharge_port_id', $data->discharge_port_id)
+            ->active()
             ->orderBy('cargo_id', 'DESC')
             ->get();
 

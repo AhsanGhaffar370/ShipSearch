@@ -16,6 +16,7 @@ use App\Http\Controllers\Front_auth;
 use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\front\FrontCargoController;
 use App\Http\Controllers\front\FrontVesselController;
+use App\Http\Controllers\front\FrontVesselSaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,15 @@ Route::get('/vessel/ser_hist_rec', [FrontVesselController::class, 'search_req_aj
 Route::get('/vessel/del_ser_hist_rec', [FrontVesselController::class, 'del_ser_his_req_ajax'] )->name('vessel.del_ser_hist_rec');
 Route::get('/vessel/get_update_hist_data', [FrontVesselController::class, 'get_update_hist_data'] )->name('vessel.get_update_hist_data');
 Route::get('/vessel/update_hist_data', [FrontVesselController::class, 'update_hist_data'] )->name('vessel.update_hist_data');
+
+
+// Vessel_sale Charter
+Route::get('/vessel_sale/view', [FrontVesselSaleController::class, 'view'] )->name('vessel_sale.view');
+Route::post('/vessel_sale/view', [FrontVesselSaleController::class, 'search_req'] )->name('vessel_sale.search_req');
+Route::get('/vessel_sale/ser_hist_rec', [FrontVesselSaleController::class, 'search_req_ajax'] )->name('vessel_sale.ser_hist_rec');
+Route::get('/vessel_sale/del_ser_hist_rec', [FrontVesselSaleController::class, 'del_ser_his_req_ajax'] )->name('vessel_sale.del_ser_hist_rec');
+Route::get('/vessel_sale/get_update_hist_data', [FrontVesselSaleController::class, 'get_update_hist_data'] )->name('vessel_sale.get_update_hist_data');
+Route::get('/vessel_sale/update_hist_data', [FrontVesselSaleController::class, 'update_hist_data'] )->name('vessel_sale.update_hist_data');
 
 
 
