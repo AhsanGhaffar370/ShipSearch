@@ -82,7 +82,7 @@
                                             class="loading_region_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($region as $row)
-                                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
+                                                <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
@@ -182,6 +182,11 @@
                                     <td class="{{ $row->loading_region_id }}" id="lregion-{{ $row->id }}">
                                         <?php echo str_replace(',', ',<br>', $row->loading_region_id); ?>
                                     </td>
+                                    {{-- <td class="{{ $row->loading_region_id }}" id="lregion-{{ $row->id }}">
+                                        @foreach ($row->Lregion as $ser_row12)
+                                            {{ optional($ser_row12->SCAregion)->region_name }},<br>
+                                        @endforeach
+                                    </td> --}}
                                     <td class="{{ $row->loading_country_id }}" id="lcountry-{{ $row->id }}">
                                         <?php echo str_replace(',', ',<br>', $row->loading_country_id); ?>
                                     </td>

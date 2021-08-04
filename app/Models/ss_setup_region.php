@@ -24,6 +24,10 @@ class ss_setup_region extends Model
         return $this->hasMany('App\Models\relation_cargo_loadingregion',"region_id");
     }
 
+    public function SCAregion(){
+        return $this->hasMany('App\Models\rel_sercargo_lregion',"region_id");
+    }
+
     // public function Lcargo(){
     //     return $this->hasMany('App\Models\ss_cargo',"loading_region_id");
     // }

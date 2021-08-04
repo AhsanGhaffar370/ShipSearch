@@ -12,7 +12,7 @@ use App\Models\ss_setup_port;
 use App\Models\ss_setup_unit;
 use App\Models\cargo_search_history;
 use App\Models\relation_cargo_loadingregion;
-
+use App\Models\rel_sercargo_lregion;
 
 class FrontCargoController extends Controller
 {
@@ -37,7 +37,7 @@ class FrontCargoController extends Controller
 
         
 
-        $ser_data= cargo_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
+        $ser_data= cargo_search_history::with(['Lregion'])->where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
 
         $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
         $ss_setup_region= ss_setup_region::active()->get();
@@ -229,6 +229,14 @@ class FrontCargoController extends Controller
             $ser_data->modified_at=date('Y-m-d H:i:s');
             
             $ser_data->save();
+
+             
+            foreach ($req->loading_region_id as $selectedOption){
+                $ser_data_Lregion=new rel_sercargo_lregion;
+                $ser_data_Lregion->sercargo_id = cargo_search_history::latest()->first()->id;
+                $ser_data_Lregion->lregion_id = $selectedOption;
+                $ser_data_Lregion->save();
+            }
                
 
             $total_rec=cargo_search_history::where("user_id",session('front_uid'))->count();
