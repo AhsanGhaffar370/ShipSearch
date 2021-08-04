@@ -11,18 +11,31 @@ use App\Models\ss_setup_country;
 use App\Models\ss_setup_port;
 use App\Models\ss_setup_unit;
 use App\Models\cargo_search_history;
+use App\Models\relation_cargo_loadingregion;
 
 
 class FrontCargoController extends Controller
 {
     function view(){
 
+        // $data = ss_cargo::with(['Lregion'])->active()->get();
+        // dd($data[0]->Lregion->id);
+        // dd($data[0]->Loadregion[0]->region_id->region_name);
+        // dd($data[0]->Lregion[0]->CAregion->region_name);
+        // $data1 = ss_cargo::all();
+        // dd($data1->Loadregion->id);
+
+
+
         // $data = ss_cargo::get();
         // $carg12=explode(",",$data[12]->cargo_type_id);
         // print($carg12[2]);
 
         // $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])->get();
-        $data = ss_cargo::active()->orderBy('cargo_id', 'DESC')->get();
+
+        $data = ss_cargo::with(['Lregion'])->active()->orderBy('cargo_id', 'DESC')->get();//present
+
+        
 
         $ser_data= cargo_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
 
@@ -72,76 +85,87 @@ class FrontCargoController extends Controller
     function add_req(Request $req){
 
         // dd($req->ref_no);        
-        $cargo=new ss_cargo;
+        $data=new ss_cargo;
 
         
-        $cargo->cargo_name=$req->cargo_name;
-        $cargo->ref_no=$req->ref_no;
+        $data->cargo_name=$req->cargo_name;
+        $data->ref_no=$req->ref_no;
 
         foreach ($req->cargo_type_id as $selectedOption)
-            $cargo->cargo_type_id .= $selectedOption.",";
-        $cargo->cargo_type_id=rtrim($cargo->cargo_type_id, ",");
+            $data->cargo_type_id .= $selectedOption.",";
+        $data->cargo_type_id=rtrim($data->cargo_type_id, ",");
 
         foreach ($req->loading_region_id as $selectedOption)
-            $cargo->loading_region_id .= $selectedOption.",";
-        $cargo->loading_region_id=rtrim($cargo->loading_region_id, ",");
+            $data->loading_region_id .= $selectedOption.",";
+        $data->loading_region_id=rtrim($data->loading_region_id, ",");
 
         foreach ($req->loading_country_id as $selectedOption)
-            $cargo->loading_country_id .= $selectedOption.",";
-        $cargo->loading_country_id=rtrim($cargo->loading_country_id, ",");
+            $data->loading_country_id .= $selectedOption.",";
+        $data->loading_country_id=rtrim($data->loading_country_id, ",");
 
         foreach ($req->loading_port_id as $selectedOption)
-            $cargo->loading_port_id .= $selectedOption.",";
-        $cargo->loading_port_id=rtrim($cargo->loading_port_id, ",");
+            $data->loading_port_id .= $selectedOption.",";
+        $data->loading_port_id=rtrim($data->loading_port_id, ",");
 
         foreach ($req->discharge_region_id as $selectedOption)
-            $cargo->discharge_region_id .= $selectedOption.",";
-        $cargo->discharge_region_id=rtrim($cargo->discharge_region_id, ",");
+            $data->discharge_region_id .= $selectedOption.",";
+        $data->discharge_region_id=rtrim($data->discharge_region_id, ",");
 
         foreach ($req->discharge_country_id as $selectedOption)
-            $cargo->discharge_country_id .= $selectedOption.",";
-        $cargo->discharge_country_id=rtrim($cargo->discharge_country_id, ",");
+            $data->discharge_country_id .= $selectedOption.",";
+        $data->discharge_country_id=rtrim($data->discharge_country_id, ",");
 
         foreach ($req->discharge_port_id as $selectedOption)
-            $cargo->discharge_port_id .= $selectedOption.",";
-        $cargo->discharge_port_id=rtrim($cargo->discharge_port_id, ",");
+            $data->discharge_port_id .= $selectedOption.",";
+        $data->discharge_port_id=rtrim($data->discharge_port_id, ",");
         
-        $cargo->laycan_date_from=$req->laycan_date_from;
-        $cargo->laycan_date_to=$req->laycan_date_to;
-        $cargo->quantity=$req->quantity." ".$req->quantity_unit;
-        $cargo->max_loa=$req->max_loa." ".$req->max_loa_unit;
-        $cargo->max_draft=$req->max_draft." ".$req->max_draft_unit;
-        $cargo->max_height=$req->max_height." ".$req->max_height_unit;
-        $cargo->commision=$req->commision;
-        $cargo->combinable=$req->combinable;
-        $cargo->over_age=$req->over_age;
-        $cargo->hazmat=$req->hazmat;
-        $cargo->loading_discharge_rates=$req->loading_discharge_rates." ".$req->loading_discharge_rates_unit;
-        // $cargo->loading_discharge_unit_id=$req->loading_discharge_unit_id;
-        $cargo->loading_equipment_req=$req->loading_equipment_req;
-        // $cargo->gear_lifting_capacity=$req->gear_lifting_capacity." ".$req->gear_lifting_capacity_unit;
-        $cargo->gear_lifting_capacity=$req->gear_lifting_capacity;
-        $cargo->discharge_equipment_req=$req->discharge_equipment_req;
+        $data->laycan_date_from=$req->laycan_date_from;
+        $data->laycan_date_to=$req->laycan_date_to;
+        $data->quantity=$req->quantity." ".$req->quantity_unit;
+        $data->max_loa=$req->max_loa." ".$req->max_loa_unit;
+        $data->max_draft=$req->max_draft." ".$req->max_draft_unit;
+        $data->max_height=$req->max_height." ".$req->max_height_unit;
+        $data->commision=$req->commision;
+        $data->combinable=$req->combinable;
+        $data->over_age=$req->over_age;
+        $data->hazmat=$req->hazmat;
+        $data->loading_discharge_rates=$req->loading_discharge_rates." ".$req->loading_discharge_rates_unit;
+        // $data->loading_discharge_unit_id=$req->loading_discharge_unit_id;
+        $data->loading_equipment_req=$req->loading_equipment_req;
+        // $data->gear_lifting_capacity=$req->gear_lifting_capacity." ".$req->gear_lifting_capacity_unit;
+        $data->gear_lifting_capacity=$req->gear_lifting_capacity;
+        $data->discharge_equipment_req=$req->discharge_equipment_req;
 
-        // $cargo->loading_discharge_equipment_req=$req->loading_discharge_equipment_req;
+        // $data->loading_discharge_equipment_req=$req->loading_discharge_equipment_req;
         // foreach ($req->loading_discharge_equipment_req as $selectedOption)
-        //     $cargo->loading_discharge_equipment_req .= $selectedOption.", ";
-        // $cargo->loading_discharge_equipment_req=rtrim($cargo->loading_discharge_equipment_req, ", ");
+        //     $data->loading_discharge_equipment_req .= $selectedOption.", ";
+        // $data->loading_discharge_equipment_req=rtrim($data->loading_discharge_equipment_req, ", ");
 
-        $cargo->additional_info=$req->additional_info;
-        $cargo->is_active="1";
-        $cargo->created_at=date('Y-m-d H:i:s');
-        $cargo->created_by=session('front_uid');
-        $cargo->modified_at=date('Y-m-d H:i:s');
-        $cargo->modified_by=session('front_uid');
-        // $cargo->created_at=date('Y-m-d H:i:sa');
+        $data->additional_info=$req->additional_info;
+        $data->is_active="1";
+        $data->created_at=date('Y-m-d H:i:s');
+        $data->created_by=session('front_uid');
+        $data->modified_at=date('Y-m-d H:i:s');
+        $data->modified_by=session('front_uid');
+        // $data->created_at=date('Y-m-d H:i:sa');
 
-        // $cargo->title=$req->brocker_name;
-        // $cargo->title=$req->broacker_contact;
-        // $cargo->title=$req->broacker_email;
+        // $data->title=$req->brocker_name;
+        // $data->title=$req->broacker_contact;
+        // $data->title=$req->broacker_email;
 
 
-        $cargo->save();
+        $data->save();
+
+             
+        
+
+        
+        foreach ($req->loading_region_id as $selectedOption){
+            $data_Lregion=new relation_cargo_loadingregion;
+            $data_Lregion->cargo_id = ss_cargo::latest()->first()->cargo_id;
+            $data_Lregion->region_id = $selectedOption;
+            $data_Lregion->save();
+        }
 
         $req->session()->flash('msg','Cargo Added');
         $req->session()->flash('alert','success');

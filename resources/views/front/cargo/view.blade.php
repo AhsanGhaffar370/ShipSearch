@@ -386,7 +386,12 @@
                                         <td>{{ $row->ref_no }}</td>
                                         <td>{{ $row->cargo_name }}</td>
                                         <td><?php echo str_replace(',', ',<br>', $row->cargo_type_id); ?></td>
-                                        <td><?php echo str_replace(',', ',<br>', $row->loading_region_id); ?></td>
+                                        <td>
+                                            @foreach ($row->Lregion as $row12)
+                                                {{ optional($row12->CAregion)->region_name }},<br>
+                                            @endforeach
+                                        </td>
+                                        {{-- <td><?php //echo str_replace(',', ',<br>', $row->loading_region_id); ?></td> --}}
                                         <td><?php echo str_replace(',', ',<br>', $row->discharge_region_id); ?></td>
                                         <td>{{ date('d-M-Y', strtotime($row->laycan_date_from)) }}</td>
                                         <td>{{ date('d-M-Y', strtotime($row->laycan_date_to)) }}</td>

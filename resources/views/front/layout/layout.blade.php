@@ -143,7 +143,7 @@
                 <a class="nav-link" href="{{ route('cargo.view') }}">Voyage Estimator</a>
               </li>
           </ul>
-            <button class="btn btn-success btn-style my-2 my-sm-0" type="button">LOGIN / REGISTER</button>
+            <button class="btn btn-success btn-style my-2 my-sm-0" type="button" onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button>
         </div>
       </nav>
 

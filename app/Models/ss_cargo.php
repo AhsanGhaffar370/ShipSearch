@@ -22,26 +22,47 @@ class ss_cargo extends Model
         return $query->where('is_active',1);
     }
 
-    public function cargotype(){
-        // return $this->belongsTo('App\Models\ss_setup_cargo_type','cargo_type_id');
-        return $this->belongsTo(ss_setup_cargo_type::class,'cargo_type_id');
-    }
 
-    public function Lcountry(){
-        return $this->belongsTo(ss_setup_country::class,'loading_country_id');
-    }
-
-    public function Dcountry(){
-        return $this->belongsTo(ss_setup_country::class,'discharge_country_id');
-    }
 
     public function Lregion(){
-        return $this->belongsTo(ss_setup_region::class,'loading_region_id');
+        return $this->hasMany('App\Models\relation_cargo_loadingregion',"cargo_id");
     }
 
-    public function Dregion(){
-        return $this->belongsTo(ss_setup_region::class,'discharge_region_id');
-    }
+
+
+
+
+
+
+
+// OLD Work Start
+
+
+
+
+
+
+
+    // public function cargotype(){
+    //     // return $this->belongsTo('App\Models\ss_setup_cargo_type','cargo_type_id');
+    //     return $this->belongsTo(ss_setup_cargo_type::class,'cargo_type_id');
+    // }
+
+    // public function Lcountry(){
+    //     return $this->belongsTo(ss_setup_country::class,'loading_country_id');
+    // }
+
+    // public function Dcountry(){
+    //     return $this->belongsTo(ss_setup_country::class,'discharge_country_id');
+    // }
+
+    // public function Lregion(){
+    //     return $this->belongsTo(ss_setup_region::class,'loading_region_id');
+    // }
+
+    // public function Dregion(){
+    //     return $this->belongsTo(ss_setup_region::class,'discharge_region_id');
+    // }
 
     // public function Lunit(){
     //     return $this->belongsTo(ss_setup_unit::class,'unit_id');
@@ -51,20 +72,20 @@ class ss_cargo extends Model
     //     return $this->belongsTo(ss_setup_unit::class,'loading_discharge_unit_id');
     // }
 
-    public function Lport(){
-        return $this->belongsTo(ss_setup_port::class,'loading_port_id');
-        // return $this->belongsTo(ss_setup_port::class,'loading_port_id_1');
-    }
+    // public function Lport(){
+    //     return $this->belongsTo(ss_setup_port::class,'loading_port_id');
+    //     // return $this->belongsTo(ss_setup_port::class,'loading_port_id_1');
+    // }
 
     // public function Lport2(){
     //     return $this->belongsTo(ss_setup_port::class,'loading_port_id_2');
     //     // return $this->belongsTo(ss_setup_port::class,'loading_port_id_2');
     // }
 
-    public function Dport(){
-        return $this->belongsTo(ss_setup_port::class,'discharge_port_id');
-        // return $this->belongsTo(ss_setup_port::class,'discharge_port_id_1');
-    }
+    // public function Dport(){
+    //     return $this->belongsTo(ss_setup_port::class,'discharge_port_id');
+    //     // return $this->belongsTo(ss_setup_port::class,'discharge_port_id_1');
+    // }
     
     // public function Dport2(){
     //     return $this->belongsTo(ss_setup_port::class,'discharge_port_id_2');
