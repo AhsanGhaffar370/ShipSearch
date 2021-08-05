@@ -8,11 +8,6 @@
     <style>
 
 
-        .ser_inp_fields {
-            position: unset !important;
-            width: 100% !important;
-            /* widows: 215px !important; */
-        }
 
         .ser_inp_fields button {
             padding: 3px 5px 3px 5px !important;
@@ -28,42 +23,15 @@
         }
 
         .ser_inp_fields>div.dropdown-menu.show {
+            /* transform: translate3d(0px, 29px, 0px) !important; */
             padding-top: 0px !important;
             padding-bottom: 0px !important;
-            width: 100% !important;
-            min-width: 100% !important;
+            width: 90% !important;
+            min-width: auto !important;
             border-radius: 0px 0px 7px 7px !important;
             margin-top: 0px !important;
             box-shadow: none !important;
-            /* transform: none !important; */
         }
-
-        .dropdown-item span.text::before {
-            border: 1px solid #cacaca;
-            content: "";
-            padding: 0px 7px 0px 7px;
-            border-radius: 3px;
-            margin: 0px 5px 0px -18px;
-        }
-
-        .bs-searchbox .form-control {
-            padding: 1px 4px;
-            font-size: 12px;
-        }
-
-        .form-control:focus {
-            color: #495057;
-            background-color: #fff;
-            border-color: #80bdff;
-            outline: 0;
-            box-shadow: none !important;
-        }
-
-        .ser_inp_fields button:focus {
-            box-shadow: none !important;
-            outline-offset: -18px !important;
-        }
-
 
 
 
@@ -98,7 +66,7 @@
             background-color: #ffffff26 !important;
             color: white;
             font-size: 15px !important;
-            margin: 0px 2px 0px 2px;
+            margin: 0px 4px 0px 4px;
             border-radius: 0px 0px 5px 5px;
             border: 1px solid white;
             padding: 5px 25px;
@@ -109,6 +77,21 @@
 
         }
 
+        label {
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 5px !important;
+        }
+
+        #laycan_date_to,#laycan_date_from{
+            font-size: 13px;
+            padding: 5px 10px;
+            width: 100%;
+            border-radius: none;
+            border: none;
+            border-radius: 2px;
+        }
     </style>
 
     <div class="jumbotron jumbotron-fluid bg1 blog_bg border-0">
@@ -134,25 +117,27 @@
                     <button class="btn btn_style" type="button">Sale & <br>Purchase</button>
                     <button class="btn btn_style" type="button">Directory</button>
 
-                    <div>
+                    <div class="p-4">
 
                         <form id="search_cargo" method="post" action="{{ route('cargo.search_req') }}"
                             class="form-horizontal form-label-left " enctype="multipart/form-data">
                             @csrf
-                            <label for="cargo_type_id">Select Cargo:</label>
+                            <label for="cargo_type_id text-white">Select Cargo:</label>
                             <select name="cargo_type_id[]" id="cargo_type_id" form="search_cargo"
-                                class="cargo_type_id ser_inp_fields" multiple title="Any" data-size="5"
+                                class="cargo_type_id ser_inp_fields mb-2" multiple title="Any" data-size="5"
                                 data-selected-text-format="count > 2" data-live-search="true">
                                 @foreach ($cargo_type as $row)
                                     <option value="{{ $row->cargo_type_name }}">{{ $row->cargo_type_name }}
                                     </option>
                                 @endforeach
                             </select>
-                            <div class="row">
+                            <div class="row m-0 ">
                                 <div class="col-12 col-lg-6 col-md-6">
                                     <div class="text-white">
+                                        
+                                        <label class="mb-4">Origin:</label>
                                         <select name="loading_region_id[]" id="loading_region_id" form="search_cargo"
-                                            class="loading_region_id ser_inp_fields" multiple title="Region" data-size="5"
+                                            class="loading_region_id ser_inp_fields mb-2" multiple title="Region" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($region as $row)
                                                 <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
@@ -160,7 +145,7 @@
                                         </select>
                                         <!-- -->
                                         <select name="loading_country_id[]" id="loading_country_id" form="search_cargo"
-                                            class="loading_country_id ser_inp_fields" multiple title="Country" data-size="5"
+                                            class="loading_country_id ser_inp_fields mb-2" multiple title="Country" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($country as $row)
                                                 <option value="{{ $row->country_name }}">{{ $row->country_name }}
@@ -169,22 +154,24 @@
                                         </select>
                                         <!-- -->
                                         <select name="loading_port_id[]" id="loading_port_id" form="search_cargo"
-                                            class="loading_port_id ser_inp_fields" multiple title="Port" data-size="5"
+                                            class="loading_port_id ser_inp_fields mb-2" multiple title="Port" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($port as $row)
                                                 <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
                                             @endforeach
                                         </select>
                                         <!-- -->
-                                        <label for="laycan_date_from">Laycan Date From:</label>
-                                        <input type="date" required form="search_cargo" class=" from_date"
+                                        <label for="laycan_date_from" class="mt-4">Laycan Date From:</label>
+                                        <input type="date" required form="search_cargo" class=" from_date mb-2"
                                             id="laycan_date_from" name="laycan_date_from" placeholder="Laycan Date From" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6 col-md-6">
                                     <div class="text-white">
+                                        
+                                        <label class="mb-4">Destination:</label>
                                         <select name="discharge_region_id[]" id="discharge_region_id" form="search_cargo"
-                                            class="discharge_region_id ser_inp_fields" multiple title="Region" data-size="5"
+                                            class="discharge_region_id ser_inp_fields mb-2" multiple title="Region" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($region as $row)
                                                 <option value="{{ $row->region_name }}">{{ $row->region_name }}
@@ -193,7 +180,7 @@
                                         </select>
                                         <!-- -->
                                         <select name="discharge_country_id[]" id="discharge_country_id" form="search_cargo"
-                                            class="discharge_country_id ser_inp_fields" multiple title="Country"
+                                            class="discharge_country_id ser_inp_fields mb-2" multiple title="Country"
                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($country as $row)
                                                 <option value="{{ $row->country_name }}">{{ $row->country_name }}
@@ -202,15 +189,15 @@
                                         </select>
                                         <!-- -->
                                         <select name="discharge_port_id[]" id="discharge_port_id" form="search_cargo"
-                                            class="discharge_port_id ser_inp_fields" multiple title="Port" data-size="5"
+                                            class="discharge_port_id ser_inp_fields mb-2" multiple title="Port" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($port as $row)
                                                 <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
                                             @endforeach
                                         </select>
                                         <!-- -->
-                                        <label for="laycan_date_to">Laycan Date To:</label>
-                                        <input type="date" required form="search_cargo" class=" to_date" id="laycan_date_to"
+                                        <label for="laycan_date_to" class="mt-4">Laycan Date To:</label>
+                                        <input type="date" required form="search_cargo" class=" to_date mb-2" id="laycan_date_to"
                                             name="laycan_date_to" placeholder="Laycan Date To" />
                                     </div>
                                 </div>
