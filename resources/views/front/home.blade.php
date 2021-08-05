@@ -131,8 +131,8 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <div class="row m-0 ">
-                                <div class="col-12 col-lg-6 col-md-6">
+                            <div class="row m-0">
+                                <div class="col-12 col-lg-6 col-md-6 p-0">
                                     <div class="text-white">
                                         
                                         <label class="mb-4">Origin:</label>
@@ -166,7 +166,7 @@
                                             id="laycan_date_from" name="laycan_date_from" placeholder="Laycan Date From" />
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6 col-md-6">
+                                <div class="col-12 col-lg-6 col-md-6 p-0">
                                     <div class="text-white">
                                         
                                         <label class="mb-4">Destination:</label>
