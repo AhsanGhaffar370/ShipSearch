@@ -71,7 +71,7 @@
             padding: 0px;
         }
 
-        .btn_style {
+        /* .btn_style {
             background-color: #ffffff26 !important;
             color: white;
             font-size: 17px !important;
@@ -86,7 +86,7 @@
         .btn_style:hover {
             background-color: #ffffff78 !important;
 
-        }
+        } */
 
         label {
             color: white;
@@ -128,14 +128,14 @@
             text-transform: uppercase !important;
         }
 
-        .sub_btn {
+        /* .sub_btn {
             color: #374B40;
             background-color: #ACD6C2;
             padding: 6px 39px;
             font-size: 19px;
             border: 1px solid white;
             border-radius: 7px;
-        }
+        } */
 
         .main_hd {
             color: #A5CEBC;
@@ -165,12 +165,44 @@
             margin-bottom: 0px !important;
         }
 
+        .ser_hover:hover{
+            background-color: #8bc5aa !important;
+        }
+
+        .main_sec{
+            border-right: 10px solid #4D998D; 
+            border-left: 10px solid #4D998D; 
+            border-bottom: 15px solid #4D998D; 
+        }
+
+        .top_links_grid{
+            display: grid;
+            grid-template-columns: repeat(4, minmax(50px, 130px));
+            justify-content: space-around;
+        }
+
+        .top_links{
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            font-weight: 400 !important;
+            background-color: #276F6C;
+            /* display: block; */
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            padding: 13px 0px;
+            border: 1px solid #4d998d;
+        }
+        .top_links:hover{
+            color: white;
+            background-color: #226b68;
+        }
     </style>
 
     <div class="jumbotron jumbotron-fluid bg1 blog_bg border-0">
         <div class="widee">
             <div class="row m-0">
-                <div class="col-12 col-lg-5 col-md-6">
+                <div class="col-12 col-lg-5 col-md-6 p-0">
                     <div class="container paddings text-left">
                         <p class="main_hd text-left m-0 fjala">
                             MANAGE LOADS.<br>
@@ -185,14 +217,13 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-5 offset-lg-2 col-md-6">
-                    <div class="row " style="background-color: #297573;">
-
-                        <div class="ml-auto mr-auto">
-                            <button class="btn btn_style" type="button">CARGO</button>
-                            <button class="btn btn_style" type="button">Vessel <br> Charter</button>
-                            <button class="btn btn_style" type="button">Sale & <br>Purchase</button>
-                            <button class="btn btn_style" type="button">Directory</button>
+                <div class="col-12 col-lg-5 offset-lg-2 col-md-6 p-0">
+                    <div class="row bg_gdd main_sec m-0">
+                        <div class="top_links_grid">
+                            <a href="#" class="top_links centre">CARGO</a>
+                            <a href="#" class="top_links centre">Vessel <br> Charter</a>
+                            <a href="#" class="top_links centre">Sale & <br>Purchase</a>
+                            <a href="#" class="top_links centre">Directory</a>
                         </div>
                         <div class="p-4">
 
@@ -292,7 +323,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center mt-4 mb-5">
-                                    <button type="submit" class="btn sub_btn">
+                                    <button type="submit" class="btn_style ser_hover bg_gl cl_gd btn_xxs">
                                         Search
                                     </button>
                                 </div>
@@ -307,11 +338,11 @@
 
 
     <div class="widee text-center">
-        <div class="col-12 col-lg-8 verCen pt-4 pb-5">
+        <div class="col-12 col-lg-10 verCen pt-4 pb-5">
             <h2 class="size48 playfair cl_gd">
                 Manage loads. Drive profits.
             </h2>
-            <p class="size18 cl_bd b6 pt-3">
+            <p class="size18 cl_bl b6 pt-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis augue non ex accumsan lobortis.
                 Morbi a
                 tortor aliquet, sollicitudin urna nec, fringilla lorem. Aliquam erat volutpat. Ut rutrum risus tellus. Proin
@@ -322,17 +353,17 @@
         </div>
     </div>
 
-    <div class="bg_bl" style="height: 150px">
+    <div class="bg_gll" style="height: 150px">
     </div>
 
     <section class="widee ">
-        <div class="col-12 col-lg-10 verCen">
-            <div class="card-deck text-center mb-5" style="margin-top: -60px">
-                <div class="card sh_card rad20">
+        <div class="col-12 col-lg-11 verCen">
+            <div class="card-deck text-center mb-5 " style="margin-top: -60px">
+                <div class="card mr-4 ml-4 sh_card rad20">
                     <img class="card-img-top card_mar" src="{{ asset('front_asset/images/2.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="card-title cl_gd size24 pt-4">Latest Cargos</h5>
-                        <p class="card-text size14 b6 bg_gl p-3 mb-4">
+                        <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
                             Cargo Name: xyz <br>
                             Cargo Type: xyz <br>
                             Destination: xyz <br>
@@ -341,11 +372,11 @@
                         </p>
                     </div>
                 </div>
-                <div class="card sh_card rad20">
+                <div class="card mr-4 ml-4 sh_card rad20">
                     <img class="card-img-top card_mar" src="{{ asset('front_asset/images/3.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="card-title cl_gd size24 pt-4">Latest Vessels for Charter</h5>
-                        <p class="card-text size14 b6 bg_gl p-3 mb-4">
+                        <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
                             Cargo Name: xyz <br>
                             Cargo Type: xyz <br>
                             Destination: xyz <br>
@@ -354,11 +385,11 @@
                         </p>
                     </div>
                 </div>
-                <div class="card sh_card rad20">
+                <div class="card mr-4 ml-4 sh_card rad20">
                     <img class="card-img-top card_mar" src="{{ asset('front_asset/images/1.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="card-title cl_gd size24 pt-4">Latest Vessels for Sale</h5>
-                        <p class="card-text size14 b6 bg_gl p-3 mb-4">
+                        <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
                             Cargo Name: xyz <br>
                             Cargo Type: xyz <br>
                             Destination: xyz <br>
@@ -377,7 +408,7 @@
     
     <section class="bg_gd pt-5 pb-5">
         <div class="widee ">
-        <div class="col-12 col-lg-10 verCen">
+        <div class="col-12 col-lg-12 verCen">
             <div class="card-deck text-center">
                 <div class="card bg_gd m-0 pl-2 pr-2">
                     <img class="card-img-top" src="{{ asset('front_asset/images/4.png') }}" alt="Card image cap">
@@ -427,7 +458,7 @@
                     tortor aliquet, sollicitudin urna nec, fringilla lorem. Aliquam erat volutpat. Ut rutrum risus tellus. Proin
                     gravida volutpat accumsan. Praesent ultricies finibus sodales. Mauris sed ex a neque tristique aliquam.
                 </p>
-                <button type="submit" class="btn sub_btn text-white bg_gd pt-2 pb-2 pl-3 pr-3 ">
+                <button type="submit" class="btn_style btn_xxs">
                     Read More
                 </button>
             </div>

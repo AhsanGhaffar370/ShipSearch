@@ -86,24 +86,24 @@
             color: black;
         }
 
-        .navbar {
-            /* align-items: flex-end !important; */
-            /* padding: 15px 30px 15px 70px !important;
+        /* .navbar { */
+        /* align-items: flex-end !important; */
+        /* padding: 15px 30px 15px 70px !important;
             border-bottom: 10px solid #4D9A8E; */
-            padding: 0px !important;
-        }
+        /* padding: 0px !important; */
+        /* } */
 
-        .navbar-nav {
+        /* .navbar-nav {
             align-items: center;
             margin-right: 29% !important;
             margin-bottom: 20px !important;
         }
 
         #navbarSupportedContent {
-            /* padding-left: 80px !important; */
-        }
+            padding-left: 80px !important;
+        } */
 
-        .nav-link {
+        /* .nav-link {
             color: #2A7473 !important;
             font-style: italic;
             font-weight: 600;
@@ -116,7 +116,7 @@
             font-style: italic;
             font-weight: 600;
             font-family: 'Open Sans';
-        }
+        } */
 
         .icon_style {
             border: none;
@@ -129,17 +129,41 @@
         .head_pad {
 
             padding: 20px 0px 10px 0px;
-            border-bottom: 10px solid #4D9A8E;
+            border-bottom: 20px solid #4D9A8E;
         }
 
-        .ft_list{
-            list-style-image: url("{{ asset('front_asset/images/dot.PNG') }}") !important; 
+        .ft_list {
+            list-style-image: url("{{ asset('front_asset/images/dot.PNG') }}") !important;
             margin-left: 20px;
-            
+
         }
-        .ft_list li{
+
+        .ft_list li {
             padding-bottom: 10px;
         }
+
+
+
+
+
+
+        .navbar {
+            align-items: flex-end !important;
+        }
+
+        #navbarSupportedContent {
+            padding-left: 80px !important;
+        }
+
+        .nav-link {
+            color: #4D998D !important;
+            font-style: italic;
+            font-weight: 600;
+            font-family: 'Open Sans';
+            padding: 5px 20px !important;
+            margin-bottom: -18px;
+        }
+
 
     </style>
 
@@ -157,6 +181,63 @@
     {{-- navbar-expand-lg --}}
     <div class="head_pad">
         <div class="widee">
+            <div class="ml-auto d-flex flex-column  align-items-end">
+            <div class="row m-0">
+                <div class="mt-auto mb-auto mr-4">
+                    <i class="fas fa-phone-alt text-black-50"></i> &nbsp;
+                    <a href="tel:+012345678901" class=" text-black-50 font-weight-bold">+01 234 5678 901</a>
+                </div>
+
+                <div class="mt-auto mb-auto mr-2">
+                    <i class="fa fa-envelope text-black-50"></i>&nbsp;
+                    <a href="mailto:info@shipsearch.com"
+                        class=" text-black-50 font-weight-bold">info@shipsearch.com</a>
+                </div>
+            </div>
+        </div>
+            <nav class="navbar navbar-expand-lg navbar-white bg-white p-0">
+                <a class="navbar-brand p-0" href="{{ route('home') }}">
+                    <img width="200" src="{{ asset('front_asset/images/logo.png') }}" alt="" />
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                        <i class="fas fa-bars" style="color:#36716B; font-size:28px; display:inline;"></i>
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item pb-4 pb-lg-0">
+                            <a class="nav-link" href="{{ route('cargo.view') }}">Cargo</a>
+                        </li>
+                        <li class="nav-item pb-4 pb-lg-0">
+                            <a class="nav-link" href="{{ route('vessel.view') }}">Vessel Charter</a>
+                        </li>
+                        <li class="nav-item pb-4 pb-lg-0">
+                            <a class="nav-link" href="{{ route('vessel_sale.view') }}">Sale & Purchase</a>
+                        </li>
+                        <li class="nav-item pb-4 pb-lg-0">
+                            <a class="nav-link" href="{{ route('home') }}">Voyage Estimator</a>
+                        </li>
+                    </ul>
+                    @if (session('front_uid') != '')
+                        {{-- <a class="btn btn-info rounded-0"
+                            href="{{ route('logout') }}">({{ session('front_uname') }})
+                            Logout</a> --}}
+                        <button class="btn_style btn_xxs t_italic" type="button" onclick="location.href='{{ route('logout') }}'">Logout</button>
+                    
+                    @else
+                    <button class="btn_style btn_xxs t_italic" type="button" onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button>
+                    @endif
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    {{-- <div class="head_pad">
+        <div class="widee">
             <div class="row m-0">
                 <div class="col-12 col-lg-3">
                     <a class="navbar-brand" href="#">
@@ -170,7 +251,7 @@
                             <img src="{{ asset('front_asset/images/Login-Button.png') }}" alt="" />
                         </a>
                         {{-- <button class="btn btn-success btn-style mr-5" type="button"
-                onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button> --}}
+                onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button> 
                         <div class="mt-auto mb-auto mr-4">
                             <i class="fas fa-phone-alt icon_style"></i> &nbsp;
                             <a href="tel:+012345678901" class="text-dark font-weight-bold">+01 234 5678 901</a>
@@ -189,11 +270,11 @@
                         <button class="navbar-toggler ml-auto p-0" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
-                            {{-- <span class="navbar-toggler-icon"> --}}
+                            {{-- <span class="navbar-toggler-icon"> 
 
-                            {{-- <i class="fas fa-bars" style="color:#36716B; font-size:28px; display:inline;"></i> --}}
+                            {{-- <i class="fas fa-bars" style="color:#36716B; font-size:28px; display:inline;"></i> 
                             <img src="{{ asset('front_asset/images/menu_icon.PNG') }}" alt="">
-                            {{-- </span> --}}
+                            {{-- </span> 
                         </button>
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -217,7 +298,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Navigation -->
     {{-- <header class="" style="background-color: #e3eff6!important;">
@@ -292,7 +373,7 @@
 
     <!-- Footer -->
     {{-- <hr class="ft_border"> --}}
-    <footer class="page-footer font-small bg_w mt-3" style="border-top: 10px solid #2A7473 !important;">
+    <footer class="page-footer font-small bg_w  " style="border-top: 10px solid #2A7473 !important;">
 
         <div class="widee">
             <!-- Footer Links -->
@@ -302,37 +383,13 @@
                 <div class="row">
 
                     <!-- Grid column -->
-                    <div class="col-md-4 mt-md-0 mt-3 centre" style="align-items: baseline">
+                    <div class="col-md-3 mt-md-0 mt-3 centre" style="align-items: baseline">
                         <img src="{{ asset('front_asset/images/logo.png') }}" width="250" class="logo footer_logo">
                     </div>
-                    <!-- Grid column -->
 
-                    <hr class="clearfix w-100 d-md-none pb-3">
 
                     <!-- Grid column -->
-                    <div class="col-md-4 mb-md-0 mb-3">
-
-                        <h5 class="size42 cl_bl ">Quick Links:</h5>
-
-                        <ul class="mr-5 ft_list">
-                            <li class="">
-                                <a href="#!" class="size14 b7 ft_link">Cargo</a>
-                            </li>
-                            <li class="">
-                                <a href="#!" class="size14 b7 ft_link">Vessel Charter</a>
-                            </li>
-                            <li class="">
-                                <a href="#!" class="size14 b7 ft_link">Sale & Purchase</a>
-                            </li>
-                            <li class="">
-                                <a href="#!" class="size14 b7 ft_link">Voyage Estimator</a>
-                            </li>
-                        </ul>
-
-                    </div>
-
-                    <!-- Grid column -->
-                    <div class="col-md-4 mb-md-0 mb-3">
+                    <div class="col-md-4 offset-md-5 mb-md-0 mb-3">
 
                         <h5 class="size42 cl_bl ">Contact Details:</h5>
 
@@ -346,8 +403,6 @@
                             <a href="mailto:info@shipsearch.com"
                                 class="ft_link text-dark font-weight-bold">info@shipsearch.com</a>
                         </div>
-
-
                         <div class="p-2">
                             <a class="" href="#">
                                 <i class="fa fa-facebook ft_social"></i>
@@ -371,11 +426,8 @@
         <!-- Footer Links -->
 
         <!-- Copyright -->
-        <div class="footer-copyright text-white b6 text-center py-3 pt-4 pb-4 size14"
-            style="background-color: #1e3440;">© 2019
-            <a href="{{ route('home') }}" class="size14 ft_link">
-                Shipsearch.com
-            </a>
+        <div class="text-white b4 text-center py-3 pt-4 pb-4 size18" style="background-color: #24292C;">
+            Copyright 2021 Ship Search | Created by Webist Ltd (UK)
         </div>
         <!-- Copyright -->
 

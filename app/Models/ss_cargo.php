@@ -23,10 +23,10 @@ class ss_cargo extends Model
     }
 
 
-
-    public function Lregion(){
-        return $this->hasMany('App\Models\relation_cargo_loadingregion',"cargo_id");
-    }
+    // working
+    // public function Lregion(){
+    //     return $this->hasMany('App\Models\rel_cargo_lregion',"cargo_id");
+    // }
 
 
 

@@ -1,6 +1,6 @@
 @extends('front/layout/layout')
 
-@section('page_title', 'Vessel')
+@section('page_title', 'Vessel Sale/Purchase')
 
 
 @section('container')
@@ -22,16 +22,16 @@
     </style>
 
     <div class="container-fluid p-lg-5 p-md-2 mt-3 mb-5">
-        <h1 class="size28 text-white b7 p-2 mb-3 bg_sec ">Vessel</h1>
+        <h1 class="size28 text-white b7 p-2 mb-3 bg_sec ">Vessel Sale/Purchase</h1>
         <div class="bg-light  p-4 border rounded">
-            <form id="vessel_form" method="post" action="{{ route('vessel.add_req') }}"
+            <form id="vessel_sale_form" method="post" action="{{ route('vessel_sale.add_req') }}"
                 class="form-horizontal form-label-left " enctype="multipart/form-data">
                 <!-- <form method="post" action="{{ url('/admin/post/add_post') }}" class="form-horizontal form-label-left"> -->
                 @csrf
                 <div class="row">
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Vessel ID</label>
-                        <input type="text" required name="ref_no" class="form-control" value="{{$vessel_ref_no}}" readonly>
+                        <input type="text" required name="ref_no" class="form-control" value="{{$vessel_sale_ref_no}}" readonly>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>

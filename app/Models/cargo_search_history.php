@@ -19,7 +19,7 @@ class cargo_search_history extends Model
 
 
     public function Lregion(){
-        return $this->hasMany('App\Models\rel_sercargo_lregion',"id");
+        return $this->hasMany('App\Models\rel_ser_cargo_lregion',"id");
     }
 
 

@@ -12,8 +12,8 @@
         @if (session('front_uid') != '')
             <div class="bg-white">
                 <div class="pt-2 pb-2 pl-3">
-                    <a id="new_ser_req" class="btn btn_style bg_gr" href="#"><i class="fas fa-search"></i> New Load Search</a>
-                    <a href={{ route('cargo.add') }} id="{{ session('front_uname') }}" class="btn btn_style bg_bl ml-3 add_rec_validation"> 
+                    <a id="new_ser_req" class="btn_style size13 btn_xxxs" href="#"><i class="fas fa-search"></i> New Load Search</a>
+                    <a href={{ route('cargo.add') }} id="{{ session('front_uname') }}" class="btn_style size13 btn_xxxs ml-3 add_rec_validation"> 
                         <i class="fas fa-plus"></i> Add New Cargo
                     </a>
                 </div>
@@ -82,7 +82,7 @@
                                             class="loading_region_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($region as $row)
-                                                <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
+                                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
@@ -139,7 +139,7 @@
                                             @endforeach
                                         </select>
                                         <div class="text-right">
-                                            <button type="submit" class="btn bg_bl text-white size15 pt-1 pb-1 mr-3"> 
+                                            <button type="submit" class=" btn bg_gd btn-sm size15 text-white pt-1 pb-1 mr-3"> 
                                                 <i class="fas fa-search"></i> Search
                                             </button>
                                             <a href="#" id="close_ser" class="btn bg_grey text-dark size15 pt-1 pb-1 mr-1"> 
@@ -182,6 +182,7 @@
                                     <td class="{{ $row->loading_region_id }}" id="lregion-{{ $row->id }}">
                                         <?php echo str_replace(',', ',<br>', $row->loading_region_id); ?>
                                     </td>
+                                    {{-- working --}}
                                     {{-- <td class="{{ $row->loading_region_id }}" id="lregion-{{ $row->id }}">
                                         @foreach ($row->Lregion as $ser_row12)
                                             {{ optional($ser_row12->SCAregion)->region_name }},<br>
@@ -206,10 +207,10 @@
                                         <!-- edit delete buttons -->
                                         <div class="text-right edit_del_btns edit_del_btn_{{ $row->id }} d_n">
                                             <a href="{{ $row->id }}" id="car_show_update_ser_hist_form_each" 
-                                            class="btn bg_bl btn-sm size13 text-white pt-0 pb-0 mr-3"> 
+                                            class="btn btn-info btn-sm size13 text-white pt-1 pb-1 mr-3"> 
                                                 <i href="{{ $row->id }}" class="fas fa-edit"></i> EDIT
                                             </a>
-                                            <a href="{{ $row->id }}" id="car_delete_rec" class="btn btn-danger btn-sm size13 text-white pt-0 pb-0"> 
+                                            <a href="{{ $row->id }}" id="car_delete_rec" class="btn btn-danger btn-sm size13 text-white pt-1 pb-1"> 
                                                 <i href="{{ $row->id }}" class="fas fa-trash-alt"></i> DELETE
                                             </a>
                                         </div>
@@ -319,7 +320,7 @@
                                             </select>
                                             <div class="text-right">
                                                 <button type="button" id="form_{{$row->id}}" 
-                                                class="car_req_update_ser_hist_each btn bg_bl text-white size15 pt-1 pb-1 mr-3"> 
+                                                class="car_req_update_ser_hist_each btn bg_gd btn-sm size15 text-white pt-1 pb-1 mr-3"> 
                                                     <i class="fas fa-search"></i> Search
                                                 </button>
                                                 <a href="{{ $row->id }}" id="close_ser_each_{{ $row->id }}"
@@ -354,7 +355,7 @@
         <div class="bg-white mt-2 pt-2">
             <span id="total_rec_found" class="font-weight-bold pt-3 pl-2"> {{ sizeof($data) }} TOTAL RESULTS</span>
             
-            <a href={{ route('cargo.view') }} class="btn btn_style bg_bl ml-3 pl-2 pr-2"><i class="fas fa-sync-alt"></i></a>
+            <a href={{ route('cargo.view') }} class="btn btn_style bg_gd ml-3 pl-2 pr-2"><i class="fas fa-sync-alt"></i></a>
 
             <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
                 <div class="border">
@@ -391,12 +392,13 @@
                                         <td>{{ $row->ref_no }}</td>
                                         <td>{{ $row->cargo_name }}</td>
                                         <td><?php echo str_replace(',', ',<br>', $row->cargo_type_id); ?></td>
-                                        <td>
+                                        {{-- Working --}}
+                                        {{-- <td>
                                             @foreach ($row->Lregion as $row12)
                                                 {{ optional($row12->CAregion)->region_name }},<br>
                                             @endforeach
-                                        </td>
-                                        {{-- <td><?php //echo str_replace(',', ',<br>', $row->loading_region_id); ?></td> --}}
+                                        </td> --}}
+                                        <td><?php echo str_replace(',', ',<br>', $row->loading_region_id); ?></td>
                                         <td><?php echo str_replace(',', ',<br>', $row->discharge_region_id); ?></td>
                                         <td>{{ date('d-M-Y', strtotime($row->laycan_date_from)) }}</td>
                                         <td>{{ date('d-M-Y', strtotime($row->laycan_date_to)) }}</td>

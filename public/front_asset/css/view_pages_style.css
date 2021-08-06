@@ -66,7 +66,8 @@ table {
     background-color: #D9D9D9;
 }
 
-.btn_style {
+
+/* .btn_style {
     color: white;
     text-transform: uppercase;
     font-family: 'Lato', sans-serif;
@@ -76,7 +77,7 @@ table {
 
 .btn_style:hover {
     color: #FFFFFF;
-}
+} */
 
 .bg_gr {
     background-color: #88CC21;
