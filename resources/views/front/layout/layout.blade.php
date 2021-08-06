@@ -26,6 +26,10 @@
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+
     <!-- custom css -->
     <link href="{{ asset('front_asset/css/my_style.css') }}" rel="stylesheet">
     <link href="{{ asset('front_asset/css/view_pages_style.css') }}" rel="stylesheet">
@@ -51,17 +55,18 @@
 
 
         .ft_link {
-            color: #748d91;
+            color: #333333;
+            font-size: 14px !important;
         }
 
         .ft_link:hover {
-            color: #546a6e;
+            color: #292929;
         }
 
         .ft_social {
-            color: #2e4652;
-            background: #09cec7;
-            border-radius: 100px;
+            color: white;
+            background: #2A7473;
+            border-radius: 6px;
             padding: 6px 8px;
             margin-right: 10px;
         }
@@ -81,29 +86,59 @@
             color: black;
         }
 
-        .navbar{
-            align-items: flex-end !important;
-            padding: 15px 30px 15px 70px !important;
-            border-bottom: 10px solid #4D9A8E;
+        .navbar {
+            /* align-items: flex-end !important; */
+            /* padding: 15px 30px 15px 70px !important;
+            border-bottom: 10px solid #4D9A8E; */
+            padding: 0px !important;
         }
 
-        #navbarSupportedContent{
-            padding-left: 80px !important;
+        .navbar-nav {
+            align-items: center;
+            margin-right: 29% !important;
+            margin-bottom: 20px !important;
         }
 
-        .nav-link{
-            color: #87A094 !important;
+        #navbarSupportedContent {
+            /* padding-left: 80px !important; */
+        }
+
+        .nav-link {
+            color: #2A7473 !important;
             font-style: italic;
             font-weight: 600;
             font-family: 'Open Sans';
-            padding: 5px 20px !important;
+            padding: 15px 20px !important;
             margin-bottom: -18px;
         }
 
-        .btn-style{
+        .btn-style {
             font-style: italic;
             font-weight: 600;
             font-family: 'Open Sans';
+        }
+
+        .icon_style {
+            border: none;
+            color: white;
+            background-color: #297477;
+            padding: 8px;
+            font-size: 20px;
+        }
+
+        .head_pad {
+
+            padding: 20px 0px 10px 0px;
+            border-bottom: 10px solid #4D9A8E;
+        }
+
+        .ft_list{
+            list-style-image: url("{{ asset('front_asset/images/dot.PNG') }}") !important; 
+            margin-left: 20px;
+            
+        }
+        .ft_list li{
+            padding-bottom: 10px;
         }
 
     </style>
@@ -119,33 +154,70 @@
 </head>
 
 <body class="bg-white">
+    {{-- navbar-expand-lg --}}
+    <div class="head_pad">
+        <div class="widee">
+            <div class="row m-0">
+                <div class="col-12 col-lg-3">
+                    <a class="navbar-brand" href="#">
+                        <img width="300" src="{{ asset('front_asset/images/logo.png') }}" alt="" />
+                    </a>
+                </div>
 
-    <nav class="navbar navbar-expand-lg navbar-white bg-white">
-        <a class="navbar-brand" href="#">
-            <img width="200" src="{{ asset('front_asset/images/logo1.PNG') }}" alt="" />
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('cargo.view') }}">Cargo</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('cargo.view') }}">Vessel Charter</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('cargo.view') }}">Sale & Purchase</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('cargo.view') }}">Voyage Estimator</a>
-              </li>
-          </ul>
-            <button class="btn btn-success btn-style my-2 my-sm-0" type="button" onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button>
+                <div class="col-12 col-lg-9 p-0">
+                    <div class="row m-0 justify-content-end">
+                        <a href="{{ route('login') }}" class=" mr-5">
+                            <img src="{{ asset('front_asset/images/Login-Button.png') }}" alt="" />
+                        </a>
+                        {{-- <button class="btn btn-success btn-style mr-5" type="button"
+                onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button> --}}
+                        <div class="mt-auto mb-auto mr-4">
+                            <i class="fas fa-phone-alt icon_style"></i> &nbsp;
+                            <a href="tel:+012345678901" class="text-dark font-weight-bold">+01 234 5678 901</a>
+                        </div>
+
+                        <div class="mt-auto mb-auto mr-2">
+                            <i class="fa fa-envelope icon_style"></i>&nbsp;
+                            <a href="mailto:info@shipsearch.com"
+                                class="text-dark font-weight-bold">info@shipsearch.com</a>
+                        </div>
+                    </div>
+
+
+                    <nav class="navbar navbar-white bg-white">
+
+                        <button class="navbar-toggler ml-auto p-0" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            {{-- <span class="navbar-toggler-icon"> --}}
+
+                            {{-- <i class="fas fa-bars" style="color:#36716B; font-size:28px; display:inline;"></i> --}}
+                            <img src="{{ asset('front_asset/images/menu_icon.PNG') }}" alt="">
+                            {{-- </span> --}}
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('cargo.view') }}">Cargo</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('cargo.view') }}">Vessel Charter</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('cargo.view') }}">Sale & Purchase</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('cargo.view') }}">Voyage Estimator</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
         </div>
-      </nav>
+    </div>
 
     <!-- Navigation -->
     {{-- <header class="" style="background-color: #e3eff6!important;">
@@ -220,113 +292,81 @@
 
     <!-- Footer -->
     {{-- <hr class="ft_border"> --}}
-    <footer class="page-footer font-small bg_sec">
+    <footer class="page-footer font-small bg_w mt-3" style="border-top: 10px solid #2A7473 !important;">
 
-        <!-- Footer Links -->
-        <div class="container-fluid text-center text-md-left pt-5 pb-2">
+        <div class="widee">
+            <!-- Footer Links -->
+            <div class="container-fluid text-center text-md-left pt-4 pb-4">
 
-            <!-- Grid row -->
-            <div class="row pt-4 pb-4">
+                <!-- Grid row -->
+                <div class="row">
 
-                <!-- Grid column -->
-                <div class="col-md-6 mt-md-0 mt-3 pl-lg-5">
-                    <img src="{{ asset('front_asset/images/logo-footer.png') }}" class="logo footer_logo">
-                    <div class="p-2">
-                        <i class="fa fa-phone" style="color:#09cec7;"></i> &nbsp;&nbsp;&nbsp;
-                        <a href="tel:+012345678901" class="ft_link">+01 234 5678 901</a>
+                    <!-- Grid column -->
+                    <div class="col-md-4 mt-md-0 mt-3 centre" style="align-items: baseline">
+                        <img src="{{ asset('front_asset/images/logo.png') }}" width="250" class="logo footer_logo">
+                    </div>
+                    <!-- Grid column -->
+
+                    <hr class="clearfix w-100 d-md-none pb-3">
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 mb-md-0 mb-3">
+
+                        <h5 class="size42 cl_bl ">Quick Links:</h5>
+
+                        <ul class="mr-5 ft_list">
+                            <li class="">
+                                <a href="#!" class="size14 b7 ft_link">Cargo</a>
+                            </li>
+                            <li class="">
+                                <a href="#!" class="size14 b7 ft_link">Vessel Charter</a>
+                            </li>
+                            <li class="">
+                                <a href="#!" class="size14 b7 ft_link">Sale & Purchase</a>
+                            </li>
+                            <li class="">
+                                <a href="#!" class="size14 b7 ft_link">Voyage Estimator</a>
+                            </li>
+                        </ul>
+
                     </div>
 
-                    <div class="p-2">
-                        <i class="fa fa-envelope" style="color:#09cec7;"></i>&nbsp;&nbsp;&nbsp;
-                        <a href="mailto:info@shipsearch.com" class="ft_link">info@shipsearch.com</a>
+                    <!-- Grid column -->
+                    <div class="col-md-4 mb-md-0 mb-3">
+
+                        <h5 class="size42 cl_bl ">Contact Details:</h5>
+
+                        <div class="p-2">
+                            <i class="fas fa-phone-alt icon_style"></i> &nbsp;
+                            <a href="tel:+012345678901" class="ft_link text-dark font-weight-bold">+01 234 5678 901</a>
+                        </div>
+
+                        <div class="p-2">
+                            <i class="fa fa-envelope icon_style"></i>&nbsp;
+                            <a href="mailto:info@shipsearch.com"
+                                class="ft_link text-dark font-weight-bold">info@shipsearch.com</a>
+                        </div>
+
+
+                        <div class="p-2">
+                            <a class="" href="#">
+                                <i class="fa fa-facebook ft_social"></i>
+                            </a>
+                            <a class="" href="#">
+                                <i class="fa fa-twitter ft_social"></i>
+                            </a>
+                            <a class="" href="#">
+                                <i class="fa fa-linkedin ft_social"></i>
+                            </a>
+                        </div>
+
                     </div>
-
-                    <div class="p-2">
-                        <a class="" href="#">
-                            <i class="fa fa-facebook ft_social"></i>
-                        </a>
-                        <a class="" href="#">
-                            <i class="fa fa-twitter ft_social"></i>
-                        </a>
-                        <a class="" href="#">
-                            <i class="fa fa-linkedin ft_social"></i>
-                        </a>
-                    </div>
+                    <!-- Grid column -->
 
                 </div>
-                <!-- Grid column -->
-
-                <hr class="clearfix w-100 d-md-none pb-3">
-
-                <!-- Grid column -->
-                <div class="col-md-2 mb-md-0 mb-3">
-
-
-                    <ul class="list-unstyled">
-                        <li class="pb-2">
-                            <a href="#!" class="size14 b7 ft_link">Home</a>
-                        </li>
-                        <li class="pb-3">
-                            <a href="#!" class="size14 b7 ft_link">Event</a>
-                        </li>
-                        <li class="pb-3">
-                            <a href="#!" class="size14 b7 ft_link">About Us</a>
-                        </li>
-                        <li class="pb-3">
-                            <a href="#!" class="size14 b7 ft_link">Classified Ad</a>
-                        </li>
-                        <li class="pb-3">
-                            <a href="#!" class="size14 b7 ft_link">Contact</a>
-                        </li>
-                    </ul>
-
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-md-2 mb-md-0 mb-3">
-
-
-                    <ul class="list-unstyled">
-                        <li class="pb-3">
-                            <a href="#!" class="size14 b7 ft_link">Products</a>
-                        </li>
-                        <li class="pb-3">
-                            <a href="#!" class="size14 b7 ft_link">Sale & Purchase</a>
-                        </li>
-                        <li class="pb-3">
-                            <a href="#!" class="size14 b7 ft_link">Vessel</a>
-                        </li>
-                        <li class="pb-3">
-                            <a href="#!" class="size14 b7 ft_link">Cargo</a>
-                        </li>
-                    </ul>
-
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-md-2 mb-md-0 mb-3">
-
-
-                    <ul class="list-unstyled">
-                        <li class="pb-3">
-                            <a href="#!" class="size14 b7 ft_link">Terms & Conditions</a>
-                        </li>
-                        <li class="pb-3">
-                            <a href="#!" class="size14 b7 ft_link">Privacy Policy</a>
-                        </li>
-                        <li class="pb-3">
-                            <a href="#!" class="size14 b7 ft_link">Advertising Info</a>
-                        </li>
-                    </ul>
-
-                </div>
-                <!-- Grid column -->
+                <!-- Grid row -->
 
             </div>
-            <!-- Grid row -->
-
         </div>
         <!-- Footer Links -->
 
@@ -363,7 +403,7 @@
 
     <!-- custom js -->
     <script type="text/javascript" src="{{ asset('front_asset/js/my_validation.js') }}"></script>
-    
+
     <!-- custom js of view cargo/vessel charter/ sale and purchase page -->
     <script type="text/javascript" src="{{ asset('front_asset/js/my_custom.js') }}"></script>
 

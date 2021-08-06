@@ -14,19 +14,34 @@ Defaults
 */
 
 * {
+    font-family: 'Myriad Pro Regular';
+    /* letter-spacing: 1.4px !important; */
     scroll-behavior: smooth;
     box-sizing: border-box;
     /* all things inside a box such as; margins,paddding are always be inside box */
-    /* margin: 0;
-    padding: 0; */
+    margin: 0;
+    padding: 0;
     /* border: 4px solid rgba(221, 16, 43, 0.2) !important; */
 }
 
 body {
-    font-family: "Open Sans", sans-serif !important;
+    margin: auto;
     /* text-align: justify !important;
     letter-spacing: 0.9px !important;
     line-height: 1.8 !important; */
+}
+
+.playfair {
+    font-family: 'Playfair Display', serif !important;
+}
+
+.fjala {
+    font-family: 'Fjalla One', sans-serif !important;
+}
+
+.widee {
+    width: 1296px;
+    margin: auto !important;
 }
 
 
@@ -990,32 +1005,20 @@ font-weight: ( 700 == bold )
 FOREGROUND
 */
 
+.cl_gd {
+    color: #2A7473 !important;
+}
+
+.cl_gl {
+    color: #AAD4BE !important;
+}
+
 .cl_bd {
-    color: #3c8dbc !important;
+    color: #000000 !important;
 }
 
 .cl_bl {
-    color: #457b9dff !important;
-}
-
-.cl_bp {
-    color: #a8dadcff !important;
-}
-
-.cl_r {
-    color: #e63946ff !important;
-}
-
-.cl_c {
-    color: #f2efe3ff !important;
-}
-
-.cl_g {
-    color: #6c757d !important;
-}
-
-.cl_b {
-    color: black !important;
+    color: #464847 !important;
 }
 
 .cl_w {
@@ -1027,40 +1030,24 @@ FOREGROUND
 BACKGROUND
 */
 
-.bg_sec {
-    background-color: #2e4652;
+.bg_gd {
+    background-color: #2A7473 !important;
+}
+
+.bg_gl {
+    background-color: #AAD4BE !important;
 }
 
 .bg_bd {
-    background-color: #3c8dbc;
+    background-color: #000000 !important;
 }
 
 .bg_bl {
-    background-color: #457b9dff;
-}
-
-.bg_bp {
-    background-color: #a8dadcff;
-}
-
-.bg_r {
-    background-color: #e63946ff;
-}
-
-.bg_c {
-    background-color: #f2efe3ff;
-}
-
-.bg_g {
-    background-color: #6c757d;
-}
-
-.bg_b {
-    background-color: black;
+    background-color: #252B2B !important;
 }
 
 .bg_w {
-    background-color: white;
+    background-color: white !important;
 }
 
 
@@ -1382,15 +1369,19 @@ Spread of shadow:   Positive value will cause shadow to expand in all directions
 */
 
 .rad5 {
-    border-radius: 5px;
+    border-radius: 5px !important;
 }
 
 .rad10 {
-    border-radius: 10px;
+    border-radius: 10px !important;
+}
+
+.rad20 {
+    border-radius: 20px !important;
 }
 
 .rad50 {
-    border-radius: 50px;
+    border-radius: 50px !important;
 }
 
 
