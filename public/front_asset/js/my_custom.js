@@ -964,6 +964,461 @@ $(document).ready(function() {
 
 
 
+
+
+
+
+
+
+
+
+    //////////////////////////////////////
+    // Vessel Sale Section
+    //////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////
+    // AJAX Request for Searching records when user click on any record inside search history table.
+    //////////////////////////////////////
+    $(document).on("click", '.vsale_ser_hist_rec_req_each', function(e) {
+
+        let id2 = $(this).attr('id');
+        let id1 = id2.split('_');
+        let id = id1[id1.length - 1];
+
+        $(".edit_del_btns").hide();
+        $(".edit_del_btn_" + id).show();
+
+        $(".ser_hist_rec_each").css({
+            'background-color': "white",
+            "color": "black"
+        });
+        $(this).css({
+            'background-color': "#555555",
+            "color": "white"
+        });
+
+        $.ajax({
+            url: route('vessel_sale.ser_hist_rec'),
+            // data: "id=" + id + "&cargotype=" + cargotype + "&date_available=" + date_available + "&operations_date=" + operations_date + "&lregion=" + lregion + "&dregion=" + dregion + "&lcountry=" + lcountry + "&dcountry=" + dcountry + "&lport=" + lport + "&dport=" + dport,
+            data: "id=" + id,
+            type: "get",
+            success: function(response) {
+
+                let json_data = $.parseJSON(response);
+                var len = json_data.length;
+                var post_str = "";
+                // console.log(json_data['data'][0]['cargo_name'])
+
+                if (json_data['data']['length'] == 0) {
+                    post_str +=
+                        '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
+                } else {
+                    $.each(json_data, function(i, obj) {
+                        $.each(obj, function(i, obj1) {
+                            // console.log(obj1);
+                            // console.log(i + "  " + obj1);
+                            post_str += `<tr class="">
+                                    <td>` + obj1.ref_no + `</td>
+                                    <td>` + obj1.vessel_type_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>` + GetFormattedDate(obj1.date_available) + `</td>
+                                    <td>` + GetFormattedDate(obj1.operations_date) + `</td>
+                                    <td>` + obj1.region_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>` + obj1.country_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>` + obj1.port_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>` + obj1.built_year + `</td>
+                                    <td>` + obj1.created_at + `</td>
+                                    <td class="text-center">
+                                        <a href="` + obj1.vessel_sale_id + `" class="show_detail_btn_` + obj1
+                                .vessel_sale_id + ` show_detail_btn"><i class="fas fa-eye fa-2x"></i></a>
+                                        <a href="` + obj1.vessel_sale_id + `" class="hide_detail_btn_` + obj1
+                                .vessel_sale_id + ` hide_detail_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
+                                    </td>
+                                    </tr>
+                                    
+                                    <tr class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
+                                    <td></td>
+                                    <td>
+                                        <p class="b7 mb-0">Last Dry Docked:</p>
+                                        <p class="">` + obj1.last_dry_docked + `</p>
+                                        <p class="b7 mb-0">Last SS:</p>
+                                        <p class="">` + obj1.last_ss + `</p>
+                                        <p class="b7 mb-0">Classification:</p>
+                                        <p class="">` + obj1.classification + `</p>
+                                        <p class="b7 mb-0">GRT:</p>
+                                        <p class="">` + obj1.GRT + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">NRT:</p>
+                                        <p class="">` + obj1.NRT + `</p>
+                                        <p class="b7 mb-0">DWT:</p>
+                                        <p class="">` + obj1.dwt + `</p>
+                                        <p class="b7 mb-0">Light Weight:</p>
+                                        <p class="">` + obj1.lightweight + `</p>
+                                        <p class="b7 mb-0">Speed:</p>
+                                        <p class="">` + obj1.speed + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Consumption:</p>
+                                        <p class="">` + obj1.consumption + `</p>
+                                        <p class="b7 mb-0">LOA:</p>
+                                        <p class="">` + obj1.loa + `</p>
+                                        <p class="b7 mb-0">Breadth:</p>
+                                        <p class="">` + obj1.breadth + `</p>
+                                        <p class="b7 mb-0">Summer Draft:</p>
+                                        <p class="">` + obj1.summer_draft + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">FW Draft:</p>
+                                        <p class="">` + obj1.fw_draft + `</p>
+                                        <p class="b7 mb-0">Main Engine:</p>
+                                        <p class="">` + obj1.main_engine + `</p>
+                                        <p class="b7 mb-0">AUX Engines:</p>
+                                        <p class="">` + obj1.aux_engines + `</p>
+                                        <p class="b7 mb-0">Bow Thruster:</p>
+                                        <p class="">` + obj1.bow_thruster + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Gears:</p>
+                                        <p class="">` + obj1.gears + `</p>
+                                        <p class="b7 mb-0">Brief Description:</p>
+                                        <p class="">` + obj1.brief_description + `</p>
+                                        <p class="b7 mb-0">Propellers:</p>
+                                        <p class="">` + obj1.propellers + `</p>
+                                        <p class="b7 mb-0">Bunker Capacity:</p>
+                                        <p class="">` + obj1.bunker_capacity + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">In Service:</p>
+                                        <p class="">` + obj1.in_service + `</p>
+                                        <p class="b7 mb-0">Date Available:</p>
+                                        <p class="">` + obj1.date_available + `</p>
+                                        <p class="b7 mb-0">Price:</p>
+                                        <p class="">` + obj1.price + `</p>
+                                        <p class="b7 mb-0">Operation Date:</p>
+                                        <p class="">` + obj1.operations_date + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Cargo Capacity:</p>
+                                        <p class="">` + obj1.cargo_capacity + `</p>
+                                        <p class="b7 mb-0">Holds Hatch:</p>
+                                        <p class="">` + obj1.holds_hatch + `</p>
+                                        <p class="b7 mb-0">Cover Type:</p>
+                                        <p class="">` + obj1.cover_type + `</p>
+                                        <p class="b7 mb-0">Additional Description:</p>
+                                        <p class="">` + obj1.additional_description + `</p>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    </tr>
+                                    `;
+                        });
+                    });
+
+
+                } //end else
+                $("#all_records").html(post_str);
+
+                $("#total_rec_found").html(json_data['data']['length'] + " EXACT MATCHES");
+
+                $('.hide_detail_btn').hide();
+
+            }
+        });
+    });
+
+
+
+
+
+
+    //////////////////////////////////////
+    // AJAX Request for delete a record of search history 
+    //////////////////////////////////////
+    $(document).on('click', '#vsale_delete_rec', function(e) {
+        // $(".delete_rec").click(function(e){
+        e.preventDefault();
+        let el = e.target;
+        let table_row = $(el).parent().parent().parent();
+        let deleteid = e.target.getAttribute('href');
+
+        let confirmalert = confirm("Are you sure?");
+        if (confirmalert == true) {
+            // AJAX Request
+            $.ajax({
+                url: route('vessel_sale.del_ser_hist_rec'),
+                data: "id=" + deleteid,
+                type: "get",
+                success: function(response) {
+                    // alert(response);
+                    if (response == "1") {
+                        // Remove row from HTML Table
+                        table_row.css('background', 'red');
+                        table_row.fadeOut(800, function() {
+                            table_row.remove();
+                        });
+                    } else {
+                        alert('Invalid ID.');
+                    }
+
+                }
+            });
+        }
+    });
+
+
+
+
+
+
+
+
+    //////////////////////////////////////
+    // Show Update search history form when user click on Edit
+    //////////////////////////////////////
+    $(document).on('click', '#vsale_show_update_ser_hist_form_each', function(e) {
+        e.preventDefault();
+        let el = e.target;
+        let uid = el.getAttribute('href');
+
+        $("#adv_ser_form").hide();
+
+        $(".ser_hist_rec_each").show();
+        $("#ser_hist_rec_" + uid).hide();
+
+        $(".adv_ser_form_each").hide();
+        $("#adv_ser_form_each_" + uid).show();
+
+        $.ajax({
+            url: route('vessel_sale.get_update_hist_data'),
+            data: "id=" + uid,
+            type: "get",
+            success: function(response) {
+
+                let json_data = $.parseJSON(response);
+                var len = json_data.length;
+
+                $("#date_available_" + uid).val(json_data['data']['date_available']);
+                $("#operations_date_" + uid).val(json_data['data']['operations_date']);
+
+                let arr = ["vessel_type_id", "region_id", "country_id", "port_id"];
+
+                $.each(arr, function(i, obj1) {
+
+                    let dd_id = "#" + obj1 + "_" + uid;
+                    let dd_data = json_data['data'][obj1];
+                    let dd_data_arr = dd_data.split(",");
+
+                    $.each(dd_data_arr, function(i, obj2) {
+                        $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
+                    });
+
+                    $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
+
+                    if (dd_data_arr.length > 2) {
+                        $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
+                    } else {
+                        $(dd_id).siblings(".btn").attr("title", dd_data);
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
+                    }
+                });
+
+            }
+        });
+    });
+
+
+
+    //////////////////////////////////////
+    // AJAX Request for updating search history recod
+    //////////////////////////////////////
+    $(document).on('click', '.vsale_req_update_ser_hist_each', function(e) {
+        e.preventDefault();
+        let el = e.target;
+        let uid = el.getAttribute('id').split("_")[1];
+
+        $(".ser_hist_rec_each").show();
+        $(".adv_ser_form_each").hide();
+
+        let date_from = $("#date_available_" + uid).val();
+        let date_to = $("#operations_date_" + uid).val();
+
+
+
+        let arr = ["vessel_type_id", "region_id", "country_id", "port_id"];
+
+        let dd_str = new Array(4);
+        let count = 0;
+
+        $.each(arr, function(i, obj1) {
+            let dd_id = "#" + obj1 + "_" + uid;
+            var dd_data = $(dd_id).map(function() { return $(this).val(); }).get();
+            dd_str[count] = "";
+            $.each(dd_data, function(i, obj1) {
+                dd_str[count] += obj1 + ",";
+            });
+            dd_str[count] = dd_str[count].replace(/,+$/, '');
+            count++;
+        });
+        console.log("cargo ", dd_str[1]);
+
+
+        if (date_from == "") {
+            alert("Please fill out all fields");
+        } else {
+            $.ajax({
+                url: route('vessel_sale.update_hist_data'),
+                data: "id=" + uid + "&vessel_type_id=" + dd_str[0] + "&date_available=" + date_from +
+                    "&operations_date=" + date_to + "&region_id=" + dd_str[1] + "&country_id=" + dd_str[2] +
+                    "&port_id=" + dd_str[3],
+                type: "get",
+                success: function(response) {
+                    if (response == false) {
+                        alert("something went wrong. Please try again");
+                    } else {
+                        $("#vesseltype-" + uid).html(dd_str[0].replace(/,/g, ',<br>'));
+                        $("#date_available-" + uid).html(date_from);
+                        $("#operations_date-" + uid).html(date_to);
+                        $("#region-" + uid).html(dd_str[1].replace(/,/g, ',<br>'));
+                        $("#country-" + uid).html(dd_str[2].replace(/,/g, ',<br>'));
+                        $("#port-" + uid).html(dd_str[3].replace(/,/g, ',<br>'));
+
+                        let json_data = $.parseJSON(response);
+                        var len = json_data.length;
+                        var post_str = "";
+                        // console.log(json_data['data'][0]['cargo_name'])
+
+                        if (json_data['data']['length'] == 0) {
+                            post_str +=
+                                '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
+                        } else {
+                            $.each(json_data, function(i, obj) {
+                                $.each(obj, function(i, obj1) {
+                                    // console.log(obj1);
+                                    // console.log(i + "  " + obj1);
+                                    post_str += `<tr class="">
+                                    <td>` + obj1.ref_no + `</td>
+                                    <td>` + obj1.vessel_type_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>` + GetFormattedDate(obj1.date_available) + `</td>
+                                    <td>` + GetFormattedDate(obj1.operations_date) + `</td>
+                                    <td>` + obj1.region_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>` + obj1.country_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>` + obj1.port_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>` + obj1.built_year + `</td>
+                                    <td>` + obj1.created_at + `</td>
+                                    <td class="text-center">
+                                        <a href="` + obj1.vessel_sale_id + `" class="show_detail_btn_` + obj1
+                                        .vessel_sale_id + ` show_detail_btn"><i class="fas fa-eye fa-2x"></i></a>
+                                        <a href="` + obj1.vessel_sale_id + `" class="hide_detail_btn_` + obj1
+                                        .vessel_sale_id + ` hide_detail_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
+                                    </td>
+                                    </tr>
+                                    
+                                    <tr class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
+                                    <td></td>
+                                    <td>
+                                        <p class="b7 mb-0">Last Dry Docked:</p>
+                                        <p class="">` + obj1.last_dry_docked + `</p>
+                                        <p class="b7 mb-0">Last SS:</p>
+                                        <p class="">` + obj1.last_ss + `</p>
+                                        <p class="b7 mb-0">Classification:</p>
+                                        <p class="">` + obj1.classification + `</p>
+                                        <p class="b7 mb-0">GRT:</p>
+                                        <p class="">` + obj1.GRT + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">NRT:</p>
+                                        <p class="">` + obj1.NRT + `</p>
+                                        <p class="b7 mb-0">DWT:</p>
+                                        <p class="">` + obj1.dwt + `</p>
+                                        <p class="b7 mb-0">Light Weight:</p>
+                                        <p class="">` + obj1.lightweight + `</p>
+                                        <p class="b7 mb-0">Speed:</p>
+                                        <p class="">` + obj1.speed + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Consumption:</p>
+                                        <p class="">` + obj1.consumption + `</p>
+                                        <p class="b7 mb-0">LOA:</p>
+                                        <p class="">` + obj1.loa + `</p>
+                                        <p class="b7 mb-0">Breadth:</p>
+                                        <p class="">` + obj1.breadth + `</p>
+                                        <p class="b7 mb-0">Summer Draft:</p>
+                                        <p class="">` + obj1.summer_draft + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">FW Draft:</p>
+                                        <p class="">` + obj1.fw_draft + `</p>
+                                        <p class="b7 mb-0">Main Engine:</p>
+                                        <p class="">` + obj1.main_engine + `</p>
+                                        <p class="b7 mb-0">AUX Engines:</p>
+                                        <p class="">` + obj1.aux_engines + `</p>
+                                        <p class="b7 mb-0">Bow Thruster:</p>
+                                        <p class="">` + obj1.bow_thruster + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Gears:</p>
+                                        <p class="">` + obj1.gears + `</p>
+                                        <p class="b7 mb-0">Brief Description:</p>
+                                        <p class="">` + obj1.brief_description + `</p>
+                                        <p class="b7 mb-0">Propellers:</p>
+                                        <p class="">` + obj1.propellers + `</p>
+                                        <p class="b7 mb-0">Bunker Capacity:</p>
+                                        <p class="">` + obj1.bunker_capacity + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">In Service:</p>
+                                        <p class="">` + obj1.in_service + `</p>
+                                        <p class="b7 mb-0">Date Available:</p>
+                                        <p class="">` + obj1.date_available + `</p>
+                                        <p class="b7 mb-0">Price:</p>
+                                        <p class="">` + obj1.price + `</p>
+                                        <p class="b7 mb-0">Operation Date:</p>
+                                        <p class="">` + obj1.operations_date + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Cargo Capacity:</p>
+                                        <p class="">` + obj1.cargo_capacity + `</p>
+                                        <p class="b7 mb-0">Holds Hatch:</p>
+                                        <p class="">` + obj1.holds_hatch + `</p>
+                                        <p class="b7 mb-0">Cover Type:</p>
+                                        <p class="">` + obj1.cover_type + `</p>
+                                        <p class="b7 mb-0">Additional Description:</p>
+                                        <p class="">` + obj1.additional_description + `</p>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    </tr>
+                                    `;
+                                });
+                            });
+                        } //end else
+                        $("#all_records").html(post_str);
+
+                        $("#total_rec_found").html(json_data['data']['length'] + " EXACT MATCHES");
+
+                        $('.hide_detail_btn').hide();
+                    }
+                }
+            });
+        }
+    });
+
+
+
+
+
+
     //////////////////////////////////////
     // Close Dialog Box by default
     //////////////////////////////////////

@@ -26,9 +26,10 @@
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
     <!-- custom css -->
     <link href="{{ asset('front_asset/css/my_style.css') }}" rel="stylesheet">
@@ -159,7 +160,7 @@
             color: #4D998D !important;
             font-style: italic;
             font-weight: 600;
-            font-family: 'Open Sans';
+            font-family: 'Exo', sans-serif !important;
             padding: 5px 20px !important;
             margin-bottom: -18px;
         }
@@ -229,7 +230,7 @@
                         <button class="btn_style btn_xxs t_italic" type="button" onclick="location.href='{{ route('logout') }}'">Logout</button>
                     
                     @else
-                    <button class="btn_style btn_xxs t_italic" type="button" onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button>
+                    <button class="btn_style btn_xxs t_italic exo" type="button" onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button>
                     @endif
                 </div>
             </nav>

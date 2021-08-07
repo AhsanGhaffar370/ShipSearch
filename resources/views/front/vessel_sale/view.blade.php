@@ -31,8 +31,8 @@
                         <tr>
                             <th width="2%">#</th>
                             <th width="15%">Vessel Type</th>
-                            <th width="10%">Laycan Date From</th>
-                            <th width="10%">Laycan Date To</th>
+                            <th width="10%">Date Available</th>
+                            <th width="10%">Operations Date</th>
                             <th width="15%">Region</th>
                             <th width="15%">Country</th>
                             <th width="20%">Port</th>
@@ -68,13 +68,13 @@
                                 </td>
                                 <!-- -->
                                 <td class="">
-                                    <input type="date" required form="search_vessel_sale" class=" from_date"
-                                        id="laycan_date_from" name="laycan_date_from" placeholder="Laycan Date From" />
+                                    <input type="date" required form="search_vessel_sale" class=" date_available"
+                                        id="date_available" name="date_available" placeholder="" />
                                 </td>
                                 <!-- -->
                                 <td class="">
-                                    <input type="date" required form="search_vessel_sale" class=" to_date" id="laycan_date_to"
-                                        name="laycan_date_to" placeholder="Laycan Date To" />
+                                    <input type="date" required form="search_vessel_sale" class=" operations_date" id="operations_date"
+                                        name="operations_date" placeholder="" />
                                 </td>
                                 <!-- -->
                                 <td class="">
@@ -135,18 +135,18 @@
                         {{-- Search History data --}}
                         {{-- /////////////////////// --}}
                         @foreach ($ser_data as $row)
-                            <tr id="ser_hist_rec_{{ $row->id }}" class="ser_hist_rec_each ves_ser_hist_rec_req_each ">
+                            <tr id="ser_hist_rec_{{ $row->id }}" class="ser_hist_rec_each vsale_ser_hist_rec_req_each ">
                                 <td id="id-{{ $row->id }}">
                                     {{ $row->id }}
                                 </td>
                                 <td id="vesseltype-{{ $row->id }}">
                                     <?php echo str_replace(',', ',<br>', $row->vessel_type_id); ?>
                                 </td>
-                                <td id="laycan_from-{{ $row->id }}">
-                                    {{ date('d-M-Y', strtotime($row->laycan_date_from)) }}
+                                <td id="date_available-{{ $row->id }}">
+                                    {{ date('d-M-Y', strtotime($row->date_available)) }}
                                 </td>
-                                <td id="laycan_to-{{ $row->id }}">
-                                    {{ date('d-M-Y', strtotime($row->laycan_date_to)) }}
+                                <td id="operations_date-{{ $row->id }}">
+                                    {{ date('d-M-Y', strtotime($row->operations_date)) }}
                                 </td>
                                 <td class="{{ $row->region_id }}" id="region-{{ $row->id }}">
                                     <?php echo str_replace(',', ',<br>', $row->region_id); ?>
@@ -159,11 +159,11 @@
                                         <?php echo str_replace(',', ',<br>', $row->port_id); ?>
                                     </span>
                                     <div class="text-right edit_del_btns edit_del_btn_{{ $row->id }} d_n">
-                                        <a href="{{ $row->id }}" id="ves_show_update_ser_hist_form_each" 
+                                        <a href="{{ $row->id }}" id="vsale_show_update_ser_hist_form_each" 
                                         class="btn btn-info btn-sm size13 text-white pt-1 pb-1 mr-3"> 
                                             <i href="{{ $row->id }}" class="fas fa-edit"></i> EDIT
                                         </a>
-                                        <a href="{{ $row->id }}" id="ves_delete_rec" class="btn btn-danger btn-sm size13 text-white pt-1 pb-1"> 
+                                        <a href="{{ $row->id }}" id="vsale_delete_rec" class="btn btn-danger btn-sm size13 text-white pt-1 pb-1"> 
                                             <i href="{{ $row->id }}" class="fas fa-trash-alt"></i> DELETE
                                         </a>
                                     </div>
@@ -197,14 +197,14 @@
                                     </td>
                                     <!-- -->
                                     <td class="">
-                                        <input type="date" required form="search_vessel_sale_{{ $row->id }}" class=" from_date"
-                                            id="laycan_date_from_{{ $row->id }}" name="laycan_date_from"
-                                            placeholder="Laycan Date From" />
+                                        <input type="date" required form="search_vessel_sale_{{ $row->id }}" class=" date_available"
+                                            id="date_available_{{ $row->id }}" name="date_available"
+                                            placeholder="" />
                                     </td>
                                     <!-- -->
                                     <td class="">
-                                        <input type="date" required form="search_vessel_sale_{{ $row->id }}" class=" to_date"
-                                            id="laycan_date_to_{{ $row->id }}" name="laycan_date_to" placeholder="Laycan Date To" />
+                                        <input type="date" required form="search_vessel_sale_{{ $row->id }}" class=" operations_date"
+                                            id="operations_date_{{ $row->id }}" name="operations_date" placeholder="" />
                                     </td>
                                     <!-- -->
                                     <td class=" ">
@@ -240,7 +240,7 @@
                                         </select>
                                         <div class="text-right">
                                             <button type="button" id="form_{{$row->id}}" 
-                                            class="ves_req_update_ser_hist_each btn bg_gd btn-sm size15 text-white pt-1 pb-1 mr-3"> 
+                                            class="vsale_req_update_ser_hist_each btn bg_gd btn-sm size15 text-white pt-1 pb-1 mr-3"> 
                                                 <i class="fas fa-search"></i> Search
                                             </button>
                                             <a href="{{ $row->id }}" id="close_ser_each_{{ $row->id }}"
@@ -285,8 +285,8 @@
                         <tr>
                             <th width="2%">ID</th>
                             <th width="7%">Vessel Type</th>
-                            <th width="8%">Laycan Date From</th>
-                            <th width="8%">Laycan Date To</th>
+                            <th width="8%">Date Available</th>
+                            <th width="8%">Operations Date</th>
                             <th width="10%">Region</th>
                             <th width="10%">Country</th>
                             <th width="10%">Port</th>
@@ -309,8 +309,8 @@
                                 <tr class="">
                                     <td >{{$row->ref_no}}</td>
                                     <td ><p class=""><?php echo str_replace(',', ',<br>', $row->vessel_type_id); ?></p></td>
-                                    <td >{{date("d-M-Y", strtotime($row->laycan_date_from))}}</td>
-                                    <td >{{date("d-M-Y", strtotime($row->laycan_date_to))}}</td>
+                                    <td >{{date("d-M-Y", strtotime($row->date_available))}}</td>
+                                    <td >{{date("d-M-Y", strtotime($row->operations_date))}}</td>
                                     <td ><p class=""><?php echo str_replace(',', ',<br>', $row->region_id); ?></p></td>
                                     <td ><p class=""><?php echo str_replace(',', ',<br>', $row->country_id); ?></p></td>
                                     <td ><p class=""><?php echo str_replace(',', ',<br>', $row->port_id); ?></p></td>
@@ -332,75 +332,77 @@
                                 <tr class="show_details show_details_{{ $row->vessel_sale_id }} tr_bg_cl d_n">
                                     <td></td>
                                     <td>
-                                        <p class="b7 mb-0">Built Year:</p>
-                                        <p class="">{{ $row->built_year }}</p>
-                                        <p class="b7 mb-0">Dead Weight:</p>
-                                        <p class="">{{ $row->deadweight }}</p>
-                                        <p class="b7 mb-0">IMO Number:</p>
-                                        <p class="">{{ $row->imo_number }}</p>
+                                        <p class="b7 mb-0">Last Dry Docked:</p>
+                                        <p class="">{{ $row->last_dry_docked }}</p>
+                                        <p class="b7 mb-0">Last SS:</p>
+                                        <p class="">{{ $row->last_ss }}</p>
+                                        <p class="b7 mb-0">Classification:</p>
+                                        <p class="">{{ $row->classification }}</p>
+                                        <p class="b7 mb-0">GRT:</p>
+                                        <p class="">{{ $row->GRT }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">DWCC</p>
-                                        <p class="">{{ $row->dwcc }}</p>
-                                        <p class="b7 mb-0">Call Sign</p>
-                                        <p class="">{{ $row->call_sign }}</p>
-                                        <p class="b7 mb-0">Speed Blast:</p>
-                                        <p class="">{{ $row->speed_ballast }}</p>
+                                        <p class="b7 mb-0">NRT:</p>
+                                        <p class="">{{ $row->NRT }}</p>
+                                        <p class="b7 mb-0">DWT:</p>
+                                        <p class="">{{ $row->dwt }}</p>
+                                        <p class="b7 mb-0">Light Weight:</p>
+                                        <p class="">{{ $row->lightweight }}</p>
+                                        <p class="b7 mb-0">Speed:</p>
+                                        <p class="">{{ $row->speed }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Laden</p>
-                                        <p class="">{{ $row->laden }}</p>
-                                        <p class="b7 mb-0">Gross:</p>
-                                        <p class="">{{ $row->gross }}</p>
-                                        <p class="b7 mb-0">Net Tonnage:</p>
-                                        <p class="">{{ $row->net_tonnage }}</p>
-                                    </td>
-                                    <td>
+                                        <p class="b7 mb-0">Consumption:</p>
+                                        <p class="">{{ $row->consumption }}</p>
                                         <p class="b7 mb-0">LOA:</p>
                                         <p class="">{{ $row->loa }}</p>
-                                        <p class="b7 mb-0">Beam:</p>
-                                        <p class="">{{ $row->beam }}</p>
-                                        <p class="b7 mb-0">draft:</p>
-                                        <p class="">{{ $row->draft }}</p>
+                                        <p class="b7 mb-0">Breadth:</p>
+                                        <p class="">{{ $row->breadth }}</p>
+                                        <p class="b7 mb-0">Summer Draft:</p>
+                                        <p class="">{{ $row->summer_draft }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Depth:</p>
-                                        <p class="">{{ $row->depth }}</p>
-                                        <p class="b7 mb-0">Grain:</p>
-                                        <p class="">{{ $row->grain }}</p>
-                                        <p class="b7 mb-0">Bale Capacity:</p>
-                                        <p class="">{{ $row->bale_capacity }}</p>
+                                        <p class="b7 mb-0">FW Draft:</p>
+                                        <p class="">{{ $row->fw_draft }}</p>
+                                        <p class="b7 mb-0">Main Engine:</p>
+                                        <p class="">{{ $row->main_engine }}</p>
+                                        <p class="b7 mb-0">Aux Engines:</p>
+                                        <p class="">{{ $row->aux_engines }}</p>
+                                        <p class="b7 mb-0">Bow Thruster:</p>
+                                        <p class="">{{ $row->bow_thruster }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Lane Meters:</p>
-                                        <p class="">{{ $row->lane_meters }}</p>
-                                        <p class="b7 mb-0">Container Capacity:</p>
-                                        <p class="">{{ $row->container_capacity }}</p>
-                                        <p class="b7 mb-0">Passenger Capacity:</p>
-                                        <p class="">{{ $row->passenger_capacity }}</p>
+                                        <p class="b7 mb-0">Gears:</p>
+                                        <p class="">{{ $row->gears }}</p>
+                                        <p class="b7 mb-0">Brief Description:</p>
+                                        <p class="">{{ $row->brief_description }}</p>
+                                        <p class="b7 mb-0">Propellers:</p>
+                                        <p class="">{{ $row->propellers }}</p>
+                                        <p class="b7 mb-0">Bunker Capacity:</p>
+                                        <p class="">{{ $row->bunker_capacity }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">IFO:</p>
-                                        <p class="">{{ $row->ifo }}</p>
-                                        <p class="b7 mb-0">IFO Laden:</p>
-                                        <p class="">{{ $row->ifo_laden }}</p>
-                                        <p class="b7 mb-0">IFO Port :</p>
-                                        <p class="">{{ $row->ifo_port }}</p>
+                                        <p class="b7 mb-0">In Service:</p>
+                                        <p class="">{{ $row->in_service }}</p>
+                                        <p class="b7 mb-0">Date Available:</p>
+                                        <p class="">{{ $row->date_available }}</p>
+                                        <p class="b7 mb-0">Price:</p>
+                                        <p class="">{{ $row->price }}</p>
+                                        <p class="b7 mb-0">Operations Date:</p>
+                                        <p class="">{{ $row->operations_date }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">MGO:</p>
-                                        <p class="">{{ $row->mgo }}</p>
-                                        <p class="b7 mb-0">MGO Laden:</p>
-                                        <p class="">{{ $row->mgo_laden }}</p>
-                                        <p class="b7 mb-0">MGO Port:</p>
-                                        <p class="">{{ $row->mgo_port }}</p>
+                                        <p class="b7 mb-0">Cargo Capacity:</p>
+                                        <p class="">{{ $row->cargo_capacity }}</p>
+                                        <p class="b7 mb-0">Holds Hatch:</p>
+                                        <p class="">{{ $row->holds_hatch }}</p>
+                                        <p class="b7 mb-0">Cover Type:</p>
+                                        <p class="">{{ $row->cover_type }}</p>
+                                        <p class="b7 mb-0">Additional Description:</p>
+                                        <p class="">{{ $row->additional_description }}</p>
                                     </td>
-                                    <td>
-                                        <p class="b7 mb-0">P I Club:</p>
-                                        <p class="">{{ $row->p_i_club }}</p>
-                                        <p class="b7 mb-0">Classed By:</p>
-                                        <p class="">{{ $row->classed_by }}</p>
-                                    </td>
+                                   
+                                    <td></td>
                                     <td></td>
                                 </tr>
                             @endforeach

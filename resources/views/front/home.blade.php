@@ -106,15 +106,15 @@
         }
 
         .sec_left {
-            border-top: 1px solid white;
-            border-right: 1px solid white;
+            /* border-top: 1px solid white;
+            border-right: 1px solid white; */
             padding-right: 10px;
             margin-right: 5px;
         }
 
         .sec_right {
-            border-top: 1px solid white;
-            border-right: 1px solid white;
+            /* border-top: 1px solid white;
+            border-right: 1px solid white; */
             padding-right: 10px;
             margin-left: 5px;
         }
@@ -232,8 +232,8 @@
                                 @csrf
 
 
-                                <div class="pos_rel mb-5">
-                                    <label for="cargo_type_id text-white">Select Cargo:</label>
+                                <div class="pos_rel mb-3">
+                                    <label for="cargo_type_id" class="cl_gll">Select Cargo:</label>
                                     <select name="cargo_type_id[]" id="cargo_type_id" form="search_cargo"
                                         class="cargo_type_id ser_inp_fields mb-2" multiple title="Any" data-size="5"
                                         data-selected-text-format="count > 2" data-live-search="true">
@@ -247,8 +247,9 @@
                                     <div class="col-12 col-lg-6 col-md-6 p-0">
                                         <div class="text-white sec_left">
 
-                                            <label class="top_labels">Origin</label>
-                                            <label class="mt-4">Select Origin:</label>
+                                            {{-- <label class="top_labels">Origin</label> --}}
+                                            <p class="">Origin:</p>
+                                            <label class="cl_gll">Select Origin:</label>
                                             <select name="loading_region_id[]" id="loading_region_id" form="search_cargo"
                                                 class="loading_region_id ser_inp_fields mb-3" multiple title="Region"
                                                 data-size="5" data-selected-text-format="count > 2" data-live-search="true">
@@ -276,7 +277,7 @@
                                                 @endforeach
                                             </select>
                                             <!-- -->
-                                            <label for="laycan_date_from" class="mt-4">Laycan Date From:</label>
+                                            <label for="laycan_date_from" class="mt-4 cl_gll">Laycan Date From:</label>
                                             <input type="date" required form="search_cargo" class=" from_date"
                                                 id="laycan_date_from" name="laycan_date_from"
                                                 placeholder="Laycan Date From" />
@@ -285,8 +286,9 @@
                                     <div class="col-12 col-lg-6 col-md-6 p-0">
                                         <div class="text-white sec_right">
 
-                                            <label class="top_labels">Destination</label>
-                                            <label class="mt-4">Select Destination:</label>
+                                            {{-- <label class="top_labels">Destination</label> --}}
+                                            <p class="">Destination:</p>
+                                            <label class="cl_gll">Select Destination:</label>
                                             <select name="discharge_region_id[]" id="discharge_region_id"
                                                 form="search_cargo" class="discharge_region_id ser_inp_fields mb-3" multiple
                                                 title="Region" data-size="5" data-selected-text-format="count > 2"
@@ -316,13 +318,13 @@
                                                 @endforeach
                                             </select>
                                             <!-- -->
-                                            <label for="laycan_date_to" class="mt-4">Laycan Date To:</label>
+                                            <label for="laycan_date_to" class="mt-4 cl_gll">Laycan Date To:</label>
                                             <input type="date" required form="search_cargo" class=" to_date"
                                                 id="laycan_date_to" name="laycan_date_to" placeholder="Laycan Date To" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="text-center mt-4 mb-5">
+                                <div class="text-center mt-4">
                                     <button type="submit" class="btn_style ser_hover bg_gl cl_gd btn_xxs">
                                         Search
                                     </button>
@@ -339,7 +341,7 @@
 
     <div class="widee text-center">
         <div class="col-12 col-lg-10 verCen pt-4 pb-5">
-            <h2 class="size48 playfair cl_gd">
+            <h2 class="size48 exo cl_gd">
                 Manage loads. Drive profits.
             </h2>
             <p class="size18 cl_bl b6 pt-3">
@@ -360,7 +362,7 @@
         <div class="col-12 col-lg-11 verCen">
             <div class="card-deck text-center mb-5 " style="margin-top: -60px">
                 <div class="card mr-4 ml-4 sh_card rad20">
-                    <img class="card-img-top card_mar" src="{{ asset('front_asset/images/2.png') }}" alt="Card image cap">
+                    <img class="card-img-top card_mar" src="{{ asset('front_asset/images/1.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="card-title cl_gd size24 pt-4">Latest Cargos</h5>
                         <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
@@ -373,7 +375,7 @@
                     </div>
                 </div>
                 <div class="card mr-4 ml-4 sh_card rad20">
-                    <img class="card-img-top card_mar" src="{{ asset('front_asset/images/3.png') }}" alt="Card image cap">
+                    <img class="card-img-top card_mar" src="{{ asset('front_asset/images/2.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="card-title cl_gd size24 pt-4">Latest Vessels for Charter</h5>
                         <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
@@ -386,7 +388,7 @@
                     </div>
                 </div>
                 <div class="card mr-4 ml-4 sh_card rad20">
-                    <img class="card-img-top card_mar" src="{{ asset('front_asset/images/1.png') }}" alt="Card image cap">
+                    <img class="card-img-top card_mar" src="{{ asset('front_asset/images/3.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="card-title cl_gd size24 pt-4">Latest Vessels for Sale</h5>
                         <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
@@ -452,7 +454,7 @@
                 <h2 class="size40 b6 cl_gl">
                     ABOUT US
                 </h2>
-                <p class="size14 cl_w b4 pt-3">
+                <p class="size14 cl_bl b4 pt-3">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis augue non ex accumsan lobortis.
                     Morbi a <br>
                     tortor aliquet, sollicitudin urna nec, fringilla lorem. Aliquam erat volutpat. Ut rutrum risus tellus. Proin

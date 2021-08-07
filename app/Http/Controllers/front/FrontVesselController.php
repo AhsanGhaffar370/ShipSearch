@@ -110,6 +110,34 @@ class FrontVesselController extends Controller
 
     function search_req(Request $req){
 
+        $laycan_from=date("Y-m-d", strtotime($req->laycan_date_from));
+        $laycan_to=date("Y-m-d", strtotime($req->laycan_date_to));  
+
+        $ser_vessel_type="";
+        foreach ($req->vessel_type_id as $selectedOption)
+            $ser_vessel_type .= $selectedOption.",";
+        $ser_vessel_type=rtrim($ser_vessel_type, ",");
+        
+        $ser_charter_type="";
+        foreach ($req->charter_type_id as $selectedOption)
+            $ser_charter_type .= $selectedOption.",";
+        $ser_charter_type=rtrim($ser_charter_type, ",");
+        
+        $ser_region="";
+        foreach ($req->region_id as $selectedOption)
+            $ser_region .= $selectedOption.",";
+        $ser_region=rtrim($ser_region, ",");
+        
+        $ser_country="";
+        foreach ($req->country_id as $selectedOption)
+            $ser_country .= $selectedOption.",";
+        $ser_country=rtrim($ser_country, ",");
+        
+        $ser_port="";
+        foreach ($req->port_id as $selectedOption)
+            $ser_port .= $selectedOption.",";
+        $ser_port=rtrim($ser_port, ",");
+
         if(session('front_uid')!=""){
 
             // $ser_data=$req->all();
@@ -119,41 +147,19 @@ class FrontVesselController extends Controller
             $ser_data=new vessel_search_history;
             
             $ser_data->user_id=session('front_uid');
-
-            $ser_data->laycan_date_from=date("Y-m-d", strtotime($req->laycan_date_from));
-            $ser_data->laycan_date_to=date("Y-m-d", strtotime($req->laycan_date_to));
-
             
-            foreach ($req->vessel_type_id as $selectedOption)
-                $ser_data->vessel_type_id .= $selectedOption.",";
-            $ser_data->vessel_type_id=rtrim($ser_data->vessel_type_id, ",");
-            $ser_vessel_type=$ser_data->vessel_type_id;
+            $ser_data->laycan_date_from=$laycan_from;
+            $ser_data->laycan_date_to=$laycan_to;
+            $ser_data->vessel_type_id=$ser_vessel_type;
+            $ser_data->charter_type_id=$ser_charter_type;        
+            $ser_data->region_id=$ser_region;        
+            $ser_data->country_id=$ser_country;        
+            $ser_data->port_id=$ser_port;
             
-            foreach ($req->charter_type_id as $selectedOption)
-                $ser_data->charter_type_id .= $selectedOption.",";
-            $ser_data->charter_type_id=rtrim($ser_data->charter_type_id, ",");
-            $ser_charter_type=$ser_data->charter_type_id;
-
-            foreach ($req->region_id as $selectedOption)
-                $ser_data->region_id .= $selectedOption.",";
-            $ser_data->region_id=rtrim($ser_data->region_id, ",");
-            $ser_region=$ser_data->region_id;
-
-            foreach ($req->country_id as $selectedOption)
-                $ser_data->country_id .= $selectedOption.",";
-            $ser_data->country_id=rtrim($ser_data->country_id, ",");
-            $ser_country=$ser_data->country_id;
-
-            foreach ($req->port_id as $selectedOption)
-                $ser_data->port_id .= $selectedOption.",";
-            $ser_data->port_id=rtrim($ser_data->port_id, ",");
-            $ser_port=$ser_data->port_id;
-
             $ser_data->created_at=date('Y-m-d H:i:s');
             $ser_data->modified_at=date('Y-m-d H:i:s');
             
             $ser_data->save();
-
 
             $total_rec=vessel_search_history::where("user_id",session('front_uid'))->count();
 
@@ -162,9 +168,6 @@ class FrontVesselController extends Controller
                 vessel_search_history::where('user_id',session('front_uid'))->first()->delete();
             }
         }
-
-        $laycan_from=date("Y-m-d", strtotime($req->laycan_date_from));
-        $laycan_to=date("Y-m-d", strtotime($req->laycan_date_to));  
 
         $data = ss_vessel::where('laycan_date_from', $laycan_from)
                         ->where('laycan_date_to', $laycan_to)

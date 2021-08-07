@@ -110,6 +110,10 @@ Route::group(['middleware'=>['front_auth']],function(){
     // Route::get('/vessel/view/{id}',[FrontVesselController::class, 'view_detail'])->name('vessel.detail.id');
     Route::get('/vessel/add', [FrontVesselController::class, 'view_add'] )->name('vessel.add');
     Route::post('/vessel/add_req', [FrontVesselController::class, 'add_req'] )->name('vessel.add_req');
+
+    // Vessel Sale
+    Route::get('/vessel_sale/add', [FrontVesselSaleController::class, 'view_add'] )->name('vessel_sale.add');
+    Route::post('/vessel_sale/add_req', [FrontVesselSaleController::class, 'add_req'] )->name('vessel_sale.add_req');
 });
 
 

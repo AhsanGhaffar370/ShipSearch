@@ -19,6 +19,7 @@ Defaults
     /* letter-spacing: 1.4px !important; */
     scroll-behavior: smooth;
     box-sizing: border-box;
+    /* color: #4d998d; */
     /* all things inside a box such as; margins,paddding are always be inside box */
     margin: 0;
     padding: 0;
@@ -32,8 +33,8 @@ body {
     line-height: 1.8 !important; */
 }
 
-.playfair {
-    font-family: 'Playfair Display', serif !important;
+.exo {
+    font-family: 'Exo', sans-serif !important;
 }
 
 .fjala {
@@ -597,23 +598,23 @@ a:hover {
 }
 
 .btn_xs {
-    padding: 15px 20px !important;
+    padding: 10px 20px !important;
 }
 
 .btn_sm {
-    padding: 17px 40px !important;
+    padding: 11px 40px !important;
 }
 
 .btn_md {
-    padding: 20px 50px !important;
+    padding: 12px 50px !important;
 }
 
 .btn_lg {
-    padding: 23px 60px !important;
+    padding: 12px 60px !important;
 }
 
 .btn_xl {
-    padding: 23px 80px !important;
+    padding: 13px 80px !important;
 }
 
 .btn_block {
@@ -1045,12 +1046,19 @@ font-weight: ( 700 == bold )
 FOREGROUND
 */
 
+
+/* Primary color */
+
 .cl_gd {
     color: #4D998D !important;
 }
 
 .cl_gl {
     color: #A8D5C0 !important;
+}
+
+.cl_gll {
+    color: #B4C8C6 !important;
 }
 
 .cl_bd {
@@ -1073,6 +1081,9 @@ BACKGROUND
 .bg_gdd {
     background-color: #2A7473 !important;
 }
+
+
+/* Primary color */
 
 .bg_gd {
     background-color: #4D998D !important;

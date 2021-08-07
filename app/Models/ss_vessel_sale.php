@@ -22,7 +22,7 @@ class ss_vessel_sale extends Model
     }
 
     public function scopeDesc($query){
-        return $query->orderBy('vessel_id',"DESC");
+        return $query->orderBy('vessel_sale_id',"DESC");
     }
 
     public function vesseltype(){

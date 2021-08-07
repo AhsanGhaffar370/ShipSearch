@@ -179,55 +179,62 @@ class FrontCargoController extends Controller
 
     function search_req(Request $req){
 
+        $laycan_from=date("Y-m-d", strtotime($req->laycan_date_from));
+        $laycan_to=date("Y-m-d", strtotime($req->laycan_date_to)); 
+
+        $ser_cargo_type="";
+        foreach ($req->cargo_type_id as $selectedOption)
+            $ser_cargo_type .= $selectedOption.",";
+        $ser_cargo_type=rtrim($ser_cargo_type, ",");
+
+        $ser_loading_region="";
+        foreach ($req->loading_region_id as $selectedOption)
+            $ser_loading_region .= $selectedOption.",";
+        $ser_loading_region=rtrim($ser_loading_region, ",");
+        
+        $ser_loading_country="";
+        foreach ($req->loading_country_id as $selectedOption)
+            $ser_loading_country .= $selectedOption.",";
+        $ser_loading_country=rtrim($ser_loading_country, ",");
+        
+        $ser_loading_port="";
+        foreach ($req->loading_port_id as $selectedOption)
+            $ser_loading_port .= $selectedOption.",";
+        $ser_loading_port=rtrim($ser_loading_port, ",");
+        
+        $ser_discharge_region="";
+        foreach ($req->discharge_region_id as $selectedOption)
+            $ser_discharge_region .= $selectedOption.",";
+        $ser_discharge_region=rtrim($ser_discharge_region, ",");
+        
+        $ser_discharge_country="";
+        foreach ($req->discharge_country_id as $selectedOption)
+            $ser_discharge_country .= $selectedOption.",";
+        $ser_discharge_country=rtrim($ser_discharge_country, ",");
+        
+        $ser_discharge_port="";
+        foreach ($req->discharge_port_id as $selectedOption)
+            $ser_discharge_port .= $selectedOption.",";
+        $ser_discharge_port=rtrim($ser_discharge_port, ",");
+        
+        
         if(session('front_uid')!=""){
 
             // $ser_data=$req->all();
             // $ser_data['user_id']=session('front_uid');
             // cargo_search_history::create($ser_data);
-
             $ser_data=new cargo_search_history;
-            
+
             $ser_data->user_id=session('front_uid');
-
-            $ser_data->laycan_date_from=date("Y-m-d", strtotime($req->laycan_date_from));
-            $ser_data->laycan_date_to=date("Y-m-d", strtotime($req->laycan_date_to));
-
-            
-            foreach ($req->cargo_type_id as $selectedOption)
-                $ser_data->cargo_type_id .= $selectedOption.",";
-            $ser_data->cargo_type_id=rtrim($ser_data->cargo_type_id, ",");
-            $ser_cargo_type=$ser_data->cargo_type_id;
-
-            foreach ($req->loading_region_id as $selectedOption)
-                $ser_data->loading_region_id .= $selectedOption.",";
-            $ser_data->loading_region_id=rtrim($ser_data->loading_region_id, ",");
-            $ser_loading_region=$ser_data->loading_region_id;
-
-            foreach ($req->loading_country_id as $selectedOption)
-                $ser_data->loading_country_id .= $selectedOption.",";
-            $ser_data->loading_country_id=rtrim($ser_data->loading_country_id, ",");
-            $ser_loading_country=$ser_data->loading_country_id;
-
-            foreach ($req->loading_port_id as $selectedOption)
-                $ser_data->loading_port_id .= $selectedOption.",";
-            $ser_data->loading_port_id=rtrim($ser_data->loading_port_id, ",");
-            $ser_loading_port=$ser_data->loading_port_id;
-
-            foreach ($req->discharge_region_id as $selectedOption)
-                $ser_data->discharge_region_id .= $selectedOption.",";
-            $ser_data->discharge_region_id=rtrim($ser_data->discharge_region_id, ",");
-            $ser_discharge_region=$ser_data->discharge_region_id;
-
-            foreach ($req->discharge_country_id as $selectedOption)
-                $ser_data->discharge_country_id .= $selectedOption.",";
-            $ser_data->discharge_country_id=rtrim($ser_data->discharge_country_id, ",");
-            $ser_discharge_country=$ser_data->discharge_country_id;
-
-            foreach ($req->discharge_port_id as $selectedOption)
-                $ser_data->discharge_port_id .= $selectedOption.",";
-            $ser_data->discharge_port_id=rtrim($ser_data->discharge_port_id, ",");
-            $ser_discharge_port=$ser_data->discharge_port_id;
-
+            $ser_data->laycan_date_from=$laycan_from;
+            $ser_data->laycan_date_to=$laycan_to;
+            $ser_data->cargo_type_id=$ser_cargo_type;
+            $ser_data->loading_region_id=$ser_loading_region;
+            $ser_data->loading_country_id=$ser_loading_country;
+            $ser_data->loading_port_id=$ser_loading_port;
+            $ser_data->discharge_region_id=$ser_discharge_region;
+            $ser_data->discharge_country_id=$ser_discharge_country;
+            $ser_data->discharge_port_id=$ser_discharge_port;
             $ser_data->created_at=date('Y-m-d H:i:s');
             $ser_data->modified_at=date('Y-m-d H:i:s');
             
@@ -240,7 +247,6 @@ class FrontCargoController extends Controller
             //     $ser_data_Lregion->lregion_id = $selectedOption;
             //     $ser_data_Lregion->save();
             // }
-               
 
             $total_rec=cargo_search_history::where("user_id",session('front_uid'))->count();
 
@@ -249,9 +255,6 @@ class FrontCargoController extends Controller
                 cargo_search_history::where('user_id',session('front_uid'))->first()->delete();
             }
         }
-
-        $laycan_from=date("Y-m-d", strtotime($req->laycan_date_from));
-        $laycan_to=date("Y-m-d", strtotime($req->laycan_date_to));  
 
         $data = ss_cargo::where('laycan_date_from', $laycan_from)
                         ->where('laycan_date_to', $laycan_to)

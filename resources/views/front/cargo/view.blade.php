@@ -405,7 +405,7 @@
                                         <td>{{ $row->quantity }}</td>
                                         {{-- <td >{{optional($row->Lunit)->unit_name}}</td> --}}
                                         <td>{{ $row->loading_discharge_rates }}</td>
-                                        <td>{{ $row->created_at }}</td>
+                                        <td>{{ explode(" ",$row->created_at)[0] }}</td>
 
                                         @if (session('front_uid') != '')
                                             <td class="text-center">
