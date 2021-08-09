@@ -32,8 +32,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
     <!-- custom css -->
-    <link href="{{ asset('public/front_asset/css/my_style.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/front_asset/css/view_pages_style.css') }}" rel="stylesheet">
+    <link href="{{ asset('front_asset/css/my_style.css') }}" rel="stylesheet">
+    <link href="{{ asset('front_asset/css/view_pages_style.css') }}" rel="stylesheet">
 
     <!-- datatables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
@@ -134,7 +134,7 @@
         }
 
         .ft_list {
-            list-style-image: url("{{ asset('public/front_asset/images/dot.PNG') }}") !important;
+            list-style-image: url("{{ asset('front_asset/images/dot.PNG') }}") !important;
             margin-left: 20px;
 
         }
@@ -198,7 +198,7 @@
         </div>
             <nav class="navbar navbar-expand-lg navbar-white bg-white p-0">
                 <a class="navbar-brand p-0" href="{{ route('home') }}">
-                    <img width="200" src="{{ asset('public/front_asset/images/logo.png') }}" alt="" />
+                    <img width="200" src="{{ asset('front_asset/images/logo.png') }}" alt="" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -242,14 +242,14 @@
             <div class="row m-0">
                 <div class="col-12 col-lg-3">
                     <a class="navbar-brand" href="#">
-                        <img width="300" src="{{ asset('public/front_asset/images/logo.png') }}" alt="" />
+                        <img width="300" src="{{ asset('front_asset/images/logo.png') }}" alt="" />
                     </a>
                 </div>
 
                 <div class="col-12 col-lg-9 p-0">
                     <div class="row m-0 justify-content-end">
                         <a href="{{ route('login') }}" class=" mr-5">
-                            <img src="{{ asset('public/front_asset/images/Login-Button.png') }}" alt="" />
+                            <img src="{{ asset('front_asset/images/Login-Button.png') }}" alt="" />
                         </a>
                         {{-- <button class="btn btn-success btn-style mr-5" type="button"
                 onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button> 
@@ -274,7 +274,7 @@
                             {{-- <span class="navbar-toggler-icon"> 
 
                             {{-- <i class="fas fa-bars" style="color:#36716B; font-size:28px; display:inline;"></i> 
-                            <img src="{{ asset('public/front_asset/images/menu_icon.PNG') }}" alt="">
+                            <img src="{{ asset('front_asset/images/menu_icon.PNG') }}" alt="">
                             {{-- </span> 
                         </button>
 
@@ -305,7 +305,7 @@
     {{-- <header class="" style="background-color: #e3eff6!important;">
         <div class="d-block text-center">
             <a class="navbar-brand pt-2 pb-2" href={{ route('home') }}>
-                <img src="{{ asset('public/front_asset/images/logo.png') }}" alt="" />
+                <img src="{{ asset('front_asset/images/logo.png') }}" alt="" />
             </a>
         </div>
         <nav class="navbar navbar-expand-lg cl_bd pt-0 pb-0" id="mainNav">
@@ -364,7 +364,7 @@
     <!-- Navigation End -->
 
 
-    {{-- <img src="{{ asset('public/front_asset/images/home.png') }}" class="logo footer_logo"> --}}
+    {{-- <img src="{{ asset('front_asset/images/home.png') }}" class="logo footer_logo"> --}}
 
     <!-- Main Content -->
     @section('container')
@@ -385,7 +385,7 @@
 
                     <!-- Grid column -->
                     <div class="col-md-3 mt-md-0 mt-3 centre" style="align-items: baseline">
-                        <img src="{{ asset('public/front_asset/images/logo.png') }}" width="250" class="logo footer_logo">
+                        <img src="{{ asset('front_asset/images/logo.png') }}" width="250" class="logo footer_logo">
                     </div>
 
 
@@ -455,10 +455,10 @@
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> --}}
 
     <!-- custom js -->
-    <script type="text/javascript" src="{{ asset('public/front_asset/js/my_validation.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('front_asset/js/my_validation.js') }}"></script>
 
     <!-- custom js of view cargo/vessel charter/ sale and purchase page -->
-    <script type="text/javascript" src="{{ asset('public/front_asset/js/my_custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('front_asset/js/my_custom.js') }}"></script>
 
     <!-- datepicker -->
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> --}}

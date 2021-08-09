@@ -50,9 +50,9 @@
 
         .blog_bg {
             /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                                    url("{{ asset('public/public/front_asset/images/banner-img.jpg') }}"); */
+                                    url("{{ asset('public/front_asset/images/banner-img.jpg') }}"); */
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                url("{{ asset('public/front_asset/images/banner-img.jpg') }}");
+                url("{{ asset('front_asset/images/banner-img.jpg') }}");
             background-attachment: fixed;
             width: 100%;
             height: auto;
@@ -63,7 +63,7 @@
 
         .about_bg{
             background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
-                url("{{ asset('public/front_asset/images/AboutUs-Image.jpg') }}");
+                url("{{ asset('front_asset/images/AboutUs-Image.jpg') }}");
             width: 100%;
             height: auto;
             background-repeat: no-repeat;
@@ -362,7 +362,7 @@
         <div class="col-12 col-lg-11 verCen">
             <div class="card-deck text-center mb-5 " style="margin-top: -60px">
                 <div class="card mr-4 ml-4 sh_card rad20">
-                    <img class="card-img-top card_mar" src="{{ asset('public/front_asset/images/1.png') }}" alt="Card image cap">
+                    <img class="card-img-top card_mar" src="{{ asset('front_asset/images/1.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="card-title cl_gd size24 pt-4">Latest Cargos</h5>
                         <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
@@ -375,7 +375,7 @@
                     </div>
                 </div>
                 <div class="card mr-4 ml-4 sh_card rad20">
-                    <img class="card-img-top card_mar" src="{{ asset('public/front_asset/images/2.png') }}" alt="Card image cap">
+                    <img class="card-img-top card_mar" src="{{ asset('front_asset/images/2.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="card-title cl_gd size24 pt-4">Latest Vessels for Charter</h5>
                         <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
@@ -388,7 +388,7 @@
                     </div>
                 </div>
                 <div class="card mr-4 ml-4 sh_card rad20">
-                    <img class="card-img-top card_mar" src="{{ asset('public/front_asset/images/3.png') }}" alt="Card image cap">
+                    <img class="card-img-top card_mar" src="{{ asset('front_asset/images/3.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="card-title cl_gd size24 pt-4">Latest Vessels for Sale</h5>
                         <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
@@ -413,7 +413,7 @@
         <div class="col-12 col-lg-12 verCen">
             <div class="card-deck text-center">
                 <div class="card bg_gd m-0 pl-2 pr-2">
-                    <img class="card-img-top" src="{{ asset('public/front_asset/images/4.png') }}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('front_asset/images/4.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="card-title cl_gl size30 pt-4">Latest Classifieds</h5>
                         <p class="card-text size14 text-white b4 mb-4">
@@ -423,7 +423,7 @@
                     </div>
                 </div>
                 <div class="card bg_gd m-0 pl-2 pr-2" style="border-left: 1px solid white !important; border-right: 1px solid white !important;">
-                    <img class="card-img-top" src="{{ asset('public/front_asset/images/5.png') }}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('front_asset/images/5.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="card-title cl_gl size30 pt-4">Events</h5>
                         <p class="card-text size14 text-white b4 mb-4">
@@ -433,7 +433,7 @@
                     </div>
                 </div>
                 <div class="card bg_gd m-0 pl-2 pr-2">
-                    <img class="card-img-top" src="{{ asset('public/front_asset/images/6.png') }}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('front_asset/images/6.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="card-title cl_gl size30 pt-4">Latest Job Posts</h5>
                         <p class="card-text size14 text-white b4 mb-4">
