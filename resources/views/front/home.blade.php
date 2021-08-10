@@ -50,7 +50,7 @@
 
         .blog_bg {
             /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                                    url("{{ asset('public/front_asset/images/banner-img.jpg') }}"); */
+                                    url("{{ asset('front_asset/images/banner-img.jpg') }}"); */
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
                 url("{{ asset('front_asset/images/banner-img.jpg') }}");
             background-attachment: fixed;

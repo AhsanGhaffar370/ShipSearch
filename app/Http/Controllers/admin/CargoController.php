@@ -15,8 +15,8 @@ use App\Models\ss_setup_unit;
 class CargoController extends Controller
 {
     function view(){
-
-        $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lunit','Dunit','Lport1','Lport2','Dport1','Dport2'])->desc()->get();
+        $data = ss_cargo::active()->orderBy('cargo_id', 'DESC')->get();//present
+        // $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lunit','Dunit','Lport1','Lport2','Dport1','Dport2'])->desc()->get();
 
         // dd($data[0]->Lregion->region_name);
 

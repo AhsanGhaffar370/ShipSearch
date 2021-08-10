@@ -15,8 +15,8 @@
     <script src="https://use.fontawesome.com/bd39c99e2f.js"></script>
 
     <!-- Custom Theme Style -->
-    <link href="{{ asset('admin_asset/css/custom.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin_asset/css/my_style.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/admin_asset/css/custom.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/admin_asset/css/my_style.css') }}" rel="stylesheet">
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/7516c4b4cc.js" crossorigin="anonymous"></script>

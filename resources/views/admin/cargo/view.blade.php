@@ -53,7 +53,6 @@
                                             <th>Laycan Date From</th>
                                             <th>Laycan Date To</th>
                                             <th>Quantity</th>
-                                            <th>Unit</th>
                                             <th>Max LOA</th>
                                             <th>Max Draft</th>
                                             <th>Max Height</th>
@@ -62,7 +61,6 @@
                                             <th>Over Age</th>
                                             <th>Hazmat</th>
                                             <th>Loading Discharge Rates</th>
-                                            <th>Loading Discharge Unit</th>
                                             <th>Loading Equipment Req</th>
                                             <th>Gear Lifting Capacity</th>
                                             <th>Loading/Discharge Equipment Req</th>
@@ -79,7 +77,7 @@
                                             <td>{{$count++}}</td>
                                             <td>{{$row->cargo_id}}</td>
                                             <td>{{$row->cargo_name}}</td>
-                                            <td>{{optional($row->cargotype)->cargo_type_name}}</td>
+                                            {{-- <td>{{optional($row->cargotype)->cargo_type_name}}</td>
                                             <td>{{optional($row->Lregion)->region_name}}</td>
                                             <td>{{optional($row->Lcountry)->country_name}}</td>
                                             <td>{{optional($row->Lport1)->port_name}}</td>
@@ -87,11 +85,19 @@
                                             <td>{{optional($row->Dregion)->region_name}}</td>
                                             <td>{{optional($row->Dcountry)->country_name}}</td>
                                             <td>{{optional($row->Dport1)->port_name}}</td>
-                                            <td>{{optional($row->Dport2)->port_name}}</td>
+                                            <td>{{optional($row->Dport2)->port_name}}</td> --}}
+                                            <td>{{$row->cargo_type_id}}</td>
+                                            <td>{{$row->loading_region_id}}</td>
+                                            <td>{{$row->loading_country_id}}</td>
+                                            <td>{{$row->loading_port_id1}}</td>
+                                            <td>{{$row->loading_port_id2}}</td>
+                                            <td>{{$row->discharge_region_id}}</td>
+                                            <td>{{$row->discharge_country_id}}</td>
+                                            <td>{{$row->discharge_port_id1}}</td>
+                                            <td>{{$row->discharge_port_id2}}</td>
                                             <td>{{$row->laycan_date_from}}</td>
                                             <td>{{$row->laycan_date_to}}</td>
                                             <td>{{$row->quantity}}</td>
-                                            <td>{{optional($row->Lunit)->unit_name}}</td>
                                             <td>{{$row->max_loa}}</td>
                                             <td>{{$row->max_draft}}</td>
                                             <td>{{$row->max_height}}</td>
@@ -100,7 +106,6 @@
                                             <td>{{$row->over_age}}</td>
                                             <td>{{$row->hazmat}}</td>
                                             <td>{{$row->loading_discharge_rates}}</td>
-                                            <td>{{optional($row->Dunit)->unit_name}}</td>
                                             <td>{{$row->loading_equipment_req}}</td>
                                             <td>{{$row->gear_lifting_capacity}}</td>
                                             <td>{{$row->loading_discharge_equipment_req}}</td>
