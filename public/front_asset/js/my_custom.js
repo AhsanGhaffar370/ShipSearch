@@ -19,6 +19,78 @@ $(document).ready(function() {
 
 
 
+
+    $(document).on("change", '#loading_region_id', function(e) {
+
+        // alert($(this).attr('name'));
+
+        var lregion_id = $('#loading_region_id').val();
+
+        $.ajax({
+            url: route('cargo.get_country'),
+            data: "region_id=" + lregion_id,
+            type: "get",
+            success: function(response) {
+
+                let json_data = $.parseJSON(response);
+                var post_str = "";
+
+                $.each(json_data, function(i, obj1) {
+                    // $.each(obj, function(i, obj1) {
+                    // console.log(obj1.lcountry.country_id);
+                    // console.log(i + "  " + obj1.lcountry.country_name);
+                    post_str += `
+                        <li>
+                        <a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false">
+                        <span class=" bs-ok-default check-mark"></span>
+                        <span class="text">` + obj1.lcountry.country_name + ` </span>
+                        </a>
+                        </li>
+                    `;
+                });
+                $(".loading_country_id .dropdown-menu .inner ul").html(post_str);
+
+            }
+        });
+    });
+
+    $(document).on("click", '#loading_country_id', function(e) {
+
+        // alert($(this).attr('name'));
+        console.log("hello");
+
+        var lregion_id = $('#loading_region_id').val();
+
+        $.ajax({
+            url: route('cargo.get_country'),
+            data: "region_id=" + lregion_id,
+            type: "get",
+            success: function(response) {
+
+                let json_data = $.parseJSON(response);
+                var post_str = "";
+
+                $.each(json_data, function(i, obj1) {
+                    // $.each(obj, function(i, obj1) {
+                    // console.log(obj1.lcountry.country_id);
+                    // console.log(i + "  " + obj1.lcountry.country_name);
+                    post_str += `
+                        <li>
+                        <a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false">
+                        <span class=" bs-ok-default check-mark"></span>
+                        <span class="text">` + obj1.lcountry.country_name + ` </span>
+                        </a>
+                        </li>
+                    `;
+                });
+                $(".loading_country_id .dropdown-menu .inner ul").html(post_str);
+
+            }
+        });
+    });
+
+
+
     function GetFormattedDate(date) {
         // var dateAr = '2014-01-06'.split('-');
         var dateAr = date.split('-');

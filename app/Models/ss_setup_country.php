@@ -29,4 +29,9 @@ class ss_setup_country extends Model
     // public function Dcargo(){
     //     return $this->hasMany('App\Models\ss_cargo',"discharge_country_id");
     // }
+
+    
+    public function region_country_port(){
+        return $this->hasMany('App\Models\ss_setup_region_country_port',"country_id");
+    }
 }

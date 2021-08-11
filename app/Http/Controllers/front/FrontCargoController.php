@@ -11,6 +11,8 @@ use App\Models\ss_setup_country;
 use App\Models\ss_setup_port;
 use App\Models\ss_setup_unit;
 use App\Models\cargo_search_history;
+use App\Models\ss_setup_region_country_port;
+
 // working
 // use App\Models\rel_cargo_lregion;
 // use App\Models\rel_ser_cargo_lregion;
@@ -367,6 +369,17 @@ class FrontCargoController extends Controller
             echo false;
         }
        
+    }
+
+    function get_country(Request $req){
+
+        $arr=explode(",",$req->region_id);
+        
+        // $data = ss_setup_region_country_port::with(['Lregion'])->active()->orderBy('cargo_id', 'DESC')->get();
+        $data = ss_setup_region_country_port::with(['Lcountry'])->whereIn('region_id',$arr)->get();
+
+        echo $data;
+        // echo gettype($arr);
     }
 
 

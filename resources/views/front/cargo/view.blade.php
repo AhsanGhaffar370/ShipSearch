@@ -82,7 +82,7 @@
                                             class="loading_region_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($region as $row)
-                                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
+                                                <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
@@ -255,7 +255,7 @@
                                         </td>
                                         <!-- -->
                                         <td class="">
-                                            <select name="loading_region_id[]" id="loading_region_id_{{ $row->id }}" form="search_cargo_{{ $row->id }}"
+                                            <select name="loading_region_id_{{ $row->id }}[]" id="loading_region_id_{{ $row->id }}" form="search_cargo_{{ $row->id }}"
                                                 class="loading_region_id ser_inp_fields" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($region as $row1)
