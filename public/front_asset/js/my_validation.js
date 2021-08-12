@@ -3,6 +3,186 @@ $(document).ready(function() {
 
 
 
+    $('#loading_country_id').prop('disabled', true);
+    $('#loading_port_id').prop('disabled', true);
+    $('#discharge_country_id').prop('disabled', true);
+    $('#discharge_port_id').prop('disabled', true);
+
+
+    $(document).on("change", 'select.ser_inp_fields', function(e) {
+
+        var region_country_id = $(this).val();
+        // var region_country_name = $(this).attr('id');
+        let country_port_attr = $(this).closest('section').parent().next().children('section').children('div').children('select').attr('id');
+        let country_port_par_attr = "." + $(this).closest('td').next().children('section').attr('class');
+
+        if (country_port_attr !== "discharge_region_id" && country_port_attr != undefined) {
+            $.ajax({
+                url: route('cargo.get_country'),
+                data: "region_country_id=" + region_country_id + "&country_port_name=" + country_port_attr,
+                type: "get",
+                success: function(response) {
+
+                    let json_data = $.parseJSON(response);
+                    var post_str = "";
+
+                    post_str += `
+                <select name="` + country_port_attr + `[]" id="` + country_port_attr + `" form="search_cargo"
+                    class="` + country_port_attr + ` ser_inp_fields" multiple title="Choose" data-size="5"
+                    data-selected-text-format="count > 2" data-live-search="true">`;
+
+                    $.each(json_data, function(i, obj1) {
+                        if (country_port_attr.includes('country'))
+                            post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
+                        else if (country_port_attr.includes('port'))
+                            post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
+                    });
+
+                    post_str += `</select>`;
+
+                    // if (country_port_par_attr == ".discharge_port_id_par") {
+                    //     console.log(country_port_par_attr);
+                    //     post_str += `
+                    //     <div class="text-right">
+                    //         <button type="submit" class=" btn bg_gd btn-sm size15 text-white pt-1 pb-1 mr-3"> 
+                    //             <i class="fas fa-search"></i> Search
+                    //         </button>
+                    //         <a href="#" id="close_ser" class="btn bg_grey text-dark size15 pt-1 pb-1 mr-1"> 
+                    //             <i class="fas fa-times"></i>
+                    //         </a>
+                    //     </div>`;
+
+                    // }
+                    // else
+                    $(country_port_par_attr).html(post_str);
+
+                    if (region_country_id.length == 0)
+                        $('#' + country_port_attr).prop('disabled', true);
+                    else
+                        $('#' + country_port_attr).prop('disabled', false);
+
+
+                    $('.' + country_port_attr).selectpicker();
+                }
+            });
+        }
+    });
+
+
+
+
+
+    $(document).on("change", 'select.ser_inp_fields_each', function(e) {
+
+        var region_country_id = $(this).val();
+        // var region_country_name = $(this).attr('id');
+        let country_port_attr = $(this).closest('section').parent().next().children('section').children('div').children('select').attr('id');
+        let country_port_par_attr = "." + $(this).closest('td').next().children('section').attr('class');
+
+
+        let id1 = country_port_attr.split('_');
+        let id = id1[id1.length - 1];
+
+        // console.log(id);
+        // console.log(country_port_par_attr);
+
+        // get selected data of country/port
+        let dd_id = "#" + country_port_attr;
+        var dd_data = $("#" + country_port_attr + " option:selected").map(function() { return $.trim($(this).text()); }).get().join(',');
+        let dd_data_arr = $("#" + country_port_attr).val();
+
+        if (country_port_attr !== "discharge_region_id_" + id && country_port_attr != undefined) {
+            $.ajax({
+                url: route('cargo.get_country'),
+                data: "region_country_id=" + region_country_id + "&country_port_name=" + country_port_attr,
+                type: "get",
+                success: function(response) {
+
+                    let json_data = $.parseJSON(response);
+                    var post_str = "";
+
+                    post_str += `
+                    <select name="` + country_port_attr + `[]" id="` + country_port_attr + `" form="search_cargo"
+                        class="` + country_port_attr + ` ser_inp_fields_each" multiple title="Choose" data-size="5"
+                        data-selected-text-format="count > 2" data-live-search="true">`;
+
+                    $.each(json_data, function(i, obj1) {
+                        if (country_port_attr.includes('country'))
+                            post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
+                        else if (country_port_attr.includes('port'))
+                            post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
+                    });
+
+                    post_str += `</select>`;
+
+                    $(country_port_par_attr).html(post_str);
+
+                    // populate selected data in their dropdown
+                    $.each(dd_data_arr, function(i, obj2) {
+                        $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
+                    });
+                    $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
+                    if (dd_data_arr.length > 2) {
+                        $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
+                    } else {
+                        $(dd_id).siblings(".btn").attr("title", dd_data);
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
+                    }
+
+
+
+                    if (region_country_id.length == 0)
+                        $('#' + country_port_attr).prop('disabled', true);
+                    else
+                        $('#' + country_port_attr).prop('disabled', false);
+
+
+                    $('.' + country_port_attr).selectpicker();
+
+
+                }
+            });
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //////////////////////////////////////
     // AJAX Request for checking email is already exist or not on signup page
     //////////////////////////////////////

@@ -17,62 +17,22 @@ $(document).ready(function() {
     $('.country_id').selectpicker();
     $('.port_id').selectpicker();
 
-
-    $('#loading_country_id').prop('disabled', true);
-    // $('#loading_region_id').click(function(e) {
-
-
-
-    $(document).on("change", 'select.ser_inp_fields', function(e) {
-
-        // alert($(this).attr('name'));
-
-        var region_id = $(this).val();
-        var region_country_name = $(this).attr('id');
-        // console.log($(this).closest('td').next().children('div').children('select').attr('id'));
-        // console.log($(this).closest('td').next().attr('class'));
-        country_port_attr = $(this).closest('td').next().children('div').children('select').attr('id');
-        $.ajax({
-            url: route('cargo.get_country'),
-            data: "region_id=" + region_id + "&country_port_name=" + country_port_attr,
-            type: "get",
-            success: function(response) {
-
-                // let json_data = $.parseJSON(response);
-                var post_str = "";
-                // console.log(json_data['data'][0]);
-                console.log(response);
-
-                post_str += `
-                                <select name="` + country_port_attr + `[]" id="` + country_port_attr + `" form="search_cargo"
-                                    class="` + country_port_attr + ` ser_inp_fields" multiple title="Choose" data-size="5"
-                                    data-selected-text-format="count > 2" data-live-search="true">`;
-
-                // $.each(json_data, function(i, obj1) {
-                //     if (country_port_attr.includes('country'))
-                //         post_str += `<option value="country">country</option>`;
-                // post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
-                // else if (country_port_attr.includes('port'))
-                // post_str += `<option value="port">port</option>`;
-                // post_str += `<option value="` + obj1.port_rel.country_id + `">` + obj1.port_rel.country_name + `</option>`;
-                // });
-                post_str += `</select>`;
-                // $(".loading_country_id .dropdown-menu .inner ul").html(post_str);
-                var abc = "." + $(this).closest('td').next().attr('class');
-                $(abc).html(post_str);
-
-                $('.' + country_port_attr).selectpicker();
-                // alert("hello");
-                if (region_id.length == 0)
-                    $('#' + country_port_attr).prop('disabled', true);
-            }
-        });
-
-    });
-
-
-
-
+    // $('.loading_country_id button').click(function(e) {
+    //     if ($('#loading_country_id').attr('disabled'))
+    //         alert("Please select Loading region");
+    // });
+    // $('.loading_port_id button').click(function(e) {
+    //     if ($('#loading_port_id').attr('disabled'))
+    //         alert("Please select Loading country");
+    // });
+    // $('.discharge_country_id button').click(function(e) {
+    //     if ($('#discharge_country_id').attr('disabled'))
+    //         alert("Please select Discharge region");
+    // });
+    // $('.discharge_port_id button').click(function(e) {
+    //     if ($('#discharge_port_id').attr('disabled'))
+    //         alert("Please select Discharge country");
+    // });
 
 
     // $(document).on("change", '#loading_region_id', function(e) {
@@ -112,18 +72,18 @@ $(document).ready(function() {
 
     // });
 
-    // $(document).on("click", '.loading_country_id_par .loading_country_id', function(e) {
-    $('.loading_country_id button').click(function(e) {
-        var lcountry_id = $('#loading_country_id').attr('disabled');
-
-        // alert("hello");
-        if (lcountry_id) {
-            alert("Please select Loading region");
-        }
-    });
+    // $('select.ser_inp_fields').click(function(e) {
+    // $(document).on("click", '.loading_port_id button', function(e) {
 
 
-    $('#loading_port_id').prop('disabled', true);
+
+
+    // $('.loading_port_id button').click(function(e) {
+    //     var lcountry_id = $('#loading_port_id').attr('disabled');
+    //     if (lcountry_id) {
+    //         alert("Please select Loading country");
+    //     }
+    // });
     // // $('#loading_region_id').click(function(e) {
     // $(document).on("change", '#loading_country_id', function(e) {
 
@@ -163,12 +123,7 @@ $(document).ready(function() {
 
     // });
 
-    $('.loading_port_id button').click(function(e) {
-        var lcountry_id = $('#loading_port_id').attr('disabled');
-        if (lcountry_id) {
-            alert("Please select Loading country");
-        }
-    });
+
 
 
     // $('.loading_country_id').click(function(e) {

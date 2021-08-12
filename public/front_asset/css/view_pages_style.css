@@ -103,7 +103,8 @@ table {
     background-color: #DEDEDE;
 }
 
-.ser_inp_fields {
+.ser_inp_fields,
+.ser_inp_fields_each {
     position: unset !important;
     width: 100% !important;
     /* widows: 215px !important; */
@@ -120,20 +121,27 @@ table {
 
 /* dropdown styling */
 
-.ser_inp_fields button {
+.ser_inp_fields button,
+.ser_inp_fields_each button {
     padding: 2px 5px 2px 5px;
     border-radius: 2px;
     font-size: 11px;
     font-family: 'Lato', sans-serif;
 }
 
+#ser_his_table22 td>section {
+    padding: 10px 5px 10px 0px !important;
+}
+
 #ser_his_table22 td>div {
     padding: 10px 5px 10px 0px !important;
 }
 
+
+/* 
 #ser_his_table22 td>input {
     margin: 10px 4px 10px 0px !important;
-}
+} */
 
 .dropdown-menu li a span {
     font-family: 'Lato', sans-serif;
@@ -155,7 +163,8 @@ table {
     padding: 0px 0px 0px 22px !important;
 }
 
-.ser_inp_fields>div.dropdown-menu.show {
+.ser_inp_fields>div.dropdown-menu.show,
+.ser_inp_fields_each>div.dropdown-menu.show {
     /* width: 169px !important;
     min-width: 50px !important;
     position: fixed !important;
@@ -175,7 +184,8 @@ table {
     /* left: 1px !important;  */
 }
 
-.ser_inp_fields .inner {
+.ser_inp_fields .inner,
+.ser_inp_fields_each .inner {
     overflow-x: clip !important;
 }
 
@@ -200,7 +210,8 @@ table {
     box-shadow: none;
 }
 
-.ser_inp_fields button:focus {
+.ser_inp_fields button:focus,
+.ser_inp_fields_each button:focus {
     box-shadow: none !important;
     /* outline: none !important; */
     outline-offset: -18px !important;
