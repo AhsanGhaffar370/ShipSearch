@@ -34,5 +34,8 @@ class ss_setup_port extends Model
     //     return $this->hasMany('App\Models\ss_cargo',"discharge_port_id_2");
     // }
 
+    public function region_country_port(){
+        return $this->hasMany('App\Models\ss_setup_region_country_port',"port_id");
+    }
     
 }

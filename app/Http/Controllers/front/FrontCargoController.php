@@ -373,12 +373,26 @@ class FrontCargoController extends Controller
 
     function get_country(Request $req){
 
+        $data=[];
         $arr=explode(",",$req->region_id);
+        // $arr1=explode(",",$req->country_id);
         
         // $data = ss_setup_region_country_port::with(['Lregion'])->active()->orderBy('cargo_id', 'DESC')->get();
-        $data = ss_setup_region_country_port::with(['Lcountry'])->whereIn('region_id',$arr)->get();
+        echo strpos($req->country_port_id, 'country');
+        if(strpos($req->country_port_id, 'country') !== false){
+            echo strpos($req->country_port_id, 'country');
+            // $data = ss_setup_region_country_port::select('country_id')->with(['country_rel'])->whereIn('region_id',$arr)->groupBy('country_id')->get();
+        }
+        else if (strpos($req->country_port_id, 'port') !== false){
+            echo "port";
+            // $data = ss_setup_region_country_port::select('port_id')->with(['port_rel'])->whereIn('country_id',$arr)->groupBy('port_id')->get();
+        }
+            
+        // $data[0]=$data1;
+        // $data[1]=$data2;
 
-        echo $data;
+        // echo json_encode(array('data'=>$data));
+        // echo $data;
         // echo gettype($arr);
     }
 
