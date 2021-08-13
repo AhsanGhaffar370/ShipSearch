@@ -39,8 +39,6 @@
                         <input type="text" required name="cargo_name" class="form-control">
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
-                    <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Cargo Type</label>
                         <select name="cargo_type_id[]" id="cargo_type_id" class="form-control cargo_type_id" multiple
@@ -52,89 +50,97 @@
                             {{-- data-actions-box="true"  --}}
                             >
                             @foreach ($cargo_type as $row)
-                                <option value="{{ $row->cargo_type_name }}">{{ $row->cargo_type_name }}</option>
+                                <option value="{{ $row->cargo_type_id }}">{{ $row->cargo_type_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Loading Region</label>
-                        <select name="loading_region_id[]" id="loading_region_id" class="form-control loading_region_id" multiple
-                            title="Choose"
-                            data-size="5"
-                            data-selected-text-format="count > 2" >
-                            @foreach ($region as $row)
-                            {{-- working --}}
-                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
-                            @endforeach
-                        </select>
+                        <section class="loading_region_id_par">
+                            <select name="loading_region_id[]" id="loading_region_id" class="form-control loading_region_id add_cargo_inp_fields" multiple
+                                title="Choose"
+                                data-size="5"
+                                data-selected-text-format="count > 2" >
+                                @foreach ($region as $row)
+                                {{-- working --}}
+                                    <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
+                                @endforeach
+                            </select>
+                        </section>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Loading Country</label>
-                        <select name="loading_country_id[]" id="loading_country_id" class="form-control loading_country_id" multiple
-                            title="Choose"
-                            data-size="5"
-                            data-selected-text-format="count > 2" >
-                            @foreach ($country as $row)
-                                <option value="{{ $row->country_name }}">{{ $row->country_name }}</option>
-                            @endforeach
-                        </select>
+                        <section class="loading_country_id_par">
+                            <select name="loading_country_id[]" id="loading_country_id" class="form-control loading_country_id add_cargo_inp_fields" multiple
+                                title="Choose"
+                                data-size="5"
+                                data-selected-text-format="count > 2" >
+                                @foreach ($country as $row)
+                                    <option value="{{ $row->country_id }}">{{ $row->country_name }}</option>
+                                @endforeach
+                            </select>
+                        </section>
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Loading Port</label>
-                        <select name="loading_port_id[]" id="loading_port_id" class="form-control loading_port_id" multiple
-                            title="Choose"
-                            data-size="5"
-                            data-selected-text-format="count > 2" >
-                            @foreach ($port as $row)
-                                <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
-                            @endforeach
-                        </select>
+                        <section class="loading_port_id_par">
+                            <select name="loading_port_id[]" id="loading_port_id" class="form-control loading_port_id add_cargo_inp_fields" multiple
+                                title="Choose"
+                                data-size="5"
+                                data-selected-text-format="count > 2" >
+                                @foreach ($port as $row)
+                                    <option value="{{ $row->port_id }}">{{ $row->port_name }}</option>
+                                @endforeach
+                            </select>
+                        </section>
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Discharge Region</label>
-                        <select name="discharge_region_id[]" id="discharge_region_id" class="form-control discharge_region_id " multiple
-                            title="Choose"
-                            data-size="5"
-                            data-selected-text-format="count > 2" >
-                            @foreach ($region as $row)
-                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
-                            @endforeach
-                        </select>
+                        <section class="discharge_region_id_par">
+                            <select name="discharge_region_id[]" id="discharge_region_id" class="form-control discharge_region_id add_cargo_inp_fields" multiple
+                                title="Choose"
+                                data-size="5"
+                                data-selected-text-format="count > 2" >
+                                @foreach ($region as $row)
+                                    <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
+                                @endforeach
+                            </select>
+                        </section>
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Discharge Country</label>
-                        <select name="discharge_country_id[]" id="discharge_country_id" class="form-control discharge_country_id" multiple
-                            title="Choose"
-                            data-size="5"
-                            data-selected-text-format="count > 2" >
-                            @foreach ($country as $row)
-                                <option value="{{ $row->country_name }}">{{ $row->country_name }}</option>
-                            @endforeach
-                        </select>
+                        <section class="discharge_country_id_par">
+                            <select name="discharge_country_id[]" id="discharge_country_id" class="form-control discharge_country_id add_cargo_inp_fields" multiple
+                                title="Choose"
+                                data-size="5"
+                                data-selected-text-format="count > 2" >
+                                @foreach ($country as $row)
+                                    <option value="{{ $row->country_id }}">{{ $row->country_name }}</option>
+                                @endforeach
+                            </select>
+                        </section>
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Discharge Port</label>
-                        <select name="discharge_port_id[]" id="discharge_port_id" class="form-control discharge_port_id" multiple
-                            title="Choose"
-                            data-size="5"
-                            data-selected-text-format="count > 2" >
-                            @foreach ($port as $row)
-                                <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
-                            @endforeach
-                        </select>
+                        <section class="discharge_port_id_par">
+                            <select name="discharge_port_id[]" id="discharge_port_id" class="form-control discharge_port_id add_cargo_inp_fields" multiple
+                                title="Choose"
+                                data-size="5"
+                                data-selected-text-format="count > 2" >
+                                @foreach ($port as $row)
+                                    <option value="{{ $row->port_id }}">{{ $row->port_name }}</option>
+                                @endforeach
+                            </select>
+                        </section>
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Laycan Date From</label>
                         <div class="input-group date" data-provide="datepicker" data-date-start-date="0d"
                             data-date-format="yyyy-mm-dd">
@@ -146,7 +152,7 @@
                         </div>
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Laycan Date To</label>
                         <div class="input-group date" data-provide="datepicker" data-date-start-date="0d"
                             data-date-format="yyyy-mm-dd">
@@ -296,18 +302,6 @@
                         </div>
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-2 col-md-4 col-sm-12 mt-4 mb-4">
-                        <label for="" class="mb-3">Hazmat</label><br>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" required id="hazmat1" name="hazmat" value="Yes" />
-                            <label class="form-check-label " for="hazmat1"> Yes </label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" required id="hazmat2" name="hazmat" value="No" />
-                            <label class="form-check-label" for="hazmat2"> No </label>
-                        </div>
-                    </div>
-                    <!-- -->
                     <div class="form-group col-12 col-lg-2 col-md-4 col-sm-12 mt-4">
                         <label for="" class="mb-3">Discharge Equipment Req</label><br>
                         <div class="form-check-inline">
@@ -333,6 +327,18 @@
                             <input class="form-check-input" type="radio" required id="combinable2" name="combinable"
                                 value="No" />
                             <label class="form-check-label" for="combinable2"> No </label>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="form-group col-12 col-lg-2 col-md-4 col-sm-12 mt-4 mb-4">
+                        <label for="" class="mb-3">Hazmat</label><br>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" required id="hazmat1" name="hazmat" value="Yes" />
+                            <label class="form-check-label " for="hazmat1"> Yes </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" required id="hazmat2" name="hazmat" value="No" />
+                            <label class="form-check-label" for="hazmat2"> No </label>
                         </div>
                     </div>
                     

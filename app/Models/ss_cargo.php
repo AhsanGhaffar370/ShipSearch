@@ -24,9 +24,9 @@ class ss_cargo extends Model
 
 
     // working
-    // public function Lregion(){
-    //     return $this->hasMany('App\Models\rel_cargo_lregion',"cargo_id");
-    // }
+    public function Lregion(){
+        return $this->hasMany('App\Models\rel_cargo_lregion',"cargo_id");
+    }
 
 
 

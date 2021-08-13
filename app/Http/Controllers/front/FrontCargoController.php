@@ -14,8 +14,8 @@ use App\Models\cargo_search_history;
 use App\Models\ss_setup_region_country_port;
 
 // working
-// use App\Models\rel_cargo_lregion;
-// use App\Models\rel_ser_cargo_lregion;
+use App\Models\rel_cargo_lregion;
+use App\Models\rel_ser_cargo_lregion;
 
 class FrontCargoController extends Controller
 {
@@ -36,13 +36,13 @@ class FrontCargoController extends Controller
 
         // $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])->get();
 
-        // $data = ss_cargo::with(['Lregion'])->active()->orderBy('cargo_id', 'DESC')->get();//working
-        $data = ss_cargo::active()->orderBy('cargo_id', 'DESC')->get();//present
+        $data = ss_cargo::with(['Lregion'])->active()->orderBy('cargo_id', 'DESC')->get();//working
+        // $data = ss_cargo::active()->orderBy('cargo_id', 'DESC')->get();//present
 
         
 
-        // $ser_data= cargo_search_history::with(['Lregion'])->where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();//working
-        $ser_data= cargo_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get(); //present
+        $ser_data= cargo_search_history::with(['Lregion'])->where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();//working
+        // $ser_data= cargo_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get(); //present
 
         $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
         $ss_setup_region= ss_setup_region::active()->get();
@@ -165,12 +165,12 @@ class FrontCargoController extends Controller
         
 
         //working
-        // foreach ($req->loading_region_id as $selectedOption){
-        //     $data_Lregion=new rel_cargo_lregion;
-        //     $data_Lregion->cargo_id = ss_cargo::latest()->first()->cargo_id;
-        //     $data_Lregion->region_id = $selectedOption;
-        //     $data_Lregion->save();
-        // }
+        foreach ($req->loading_region_id as $selectedOption){
+            $data_Lregion=new rel_cargo_lregion;
+            $data_Lregion->cargo_id = ss_cargo::latest()->first()->cargo_id;
+            $data_Lregion->lregion_id = $selectedOption;
+            $data_Lregion->save();
+        }
 
         $req->session()->flash('msg','Cargo Added');
         $req->session()->flash('alert','success');
@@ -243,12 +243,12 @@ class FrontCargoController extends Controller
             $ser_data->save();
 
              //working
-            // foreach ($req->loading_region_id as $selectedOption){
-            //     $ser_data_Lregion=new rel_ser_cargo_lregion;
-            //     $ser_data_Lregion->sercargo_id = cargo_search_history::latest()->first()->id;
-            //     $ser_data_Lregion->lregion_id = $selectedOption;
-            //     $ser_data_Lregion->save();
-            // }
+            foreach ($req->loading_region_id as $selectedOption){
+                $ser_data_Lregion=new rel_ser_cargo_lregion;
+                $ser_data_Lregion->ser_cargo_id = cargo_search_history::latest()->first()->id;
+                $ser_data_Lregion->lregion_id = $selectedOption;
+                $ser_data_Lregion->save();
+            }
 
             $total_rec=cargo_search_history::where("user_id",session('front_uid'))->count();
 

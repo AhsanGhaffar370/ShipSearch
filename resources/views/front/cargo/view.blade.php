@@ -64,7 +64,7 @@
                                             data-selected-text-format="count > 2" data-live-search="true"
                                             {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
                                             @foreach ($cargo_type as $row)
-                                                <option value="{{ $row->cargo_type_name }}">
+                                                <option value="{{ $row->cargo_type_id }}">
                                                     {{ $row->cargo_type_name }}
                                                 </option>
                                             @endforeach
@@ -207,15 +207,15 @@
                                 <td id="laycan_to-{{ $row->id }}">
                                     {{ date('d-M-Y', strtotime($row->laycan_date_to)) }}
                                 </td>
-                                <td class="{{ $row->loading_region_id }}" id="lregion-{{ $row->id }}">
-                                    <?php echo str_replace(',', ',<br>', $row->loading_region_id); ?>
-                                </td>
-                                {{-- working --}}
                                 {{-- <td class="{{ $row->loading_region_id }}" id="lregion-{{ $row->id }}">
-                                        @foreach ($row->Lregion as $ser_row12)
-                                            {{ optional($ser_row12->SCAregion)->region_name }},<br>
-                                        @endforeach
-                                    </td> --}}
+                                    <?php //echo str_replace(',', ',<br>', $row->loading_region_id); ?>
+                                </td> --}}
+                                {{-- working --}}
+                                <td class="{{ $row->loading_region_id }}" id="lregion-{{ $row->id }}">
+                                    @foreach ($row->Lregion as $ser_row12)
+                                        {{ optional($ser_row12->SCAregion)->region_name }},<br>
+                                    @endforeach
+                                </td>
                                 <td class="{{ $row->loading_country_id }}" id="lcountry-{{ $row->id }}">
                                     <?php echo str_replace(',', ',<br>', $row->loading_country_id); ?>
                                 </td>
@@ -465,12 +465,12 @@
                                     <td>{{ $row->cargo_name }}</td>
                                     <td><?php echo str_replace(',', ',<br>', $row->cargo_type_id); ?></td>
                                     {{-- Working --}}
-                                    {{-- <td>
-                                            @foreach ($row->Lregion as $row12)
-                                                {{ optional($row12->CAregion)->region_name }},<br>
-                                            @endforeach
-                                        </td> --}}
-                                    <td><?php echo str_replace(',', ',<br>', $row->loading_region_id); ?></td>
+                                    <td>
+                                        @foreach ($row->Lregion as $row12)
+                                            {{ optional($row12->CAregion)->region_name }},<br>
+                                        @endforeach
+                                    </td>
+                                    {{-- <td><?php //echo str_replace(',', ',<br>', $row->loading_region_id); ?></td> --}}
                                     <td><?php echo str_replace(',', ',<br>', $row->discharge_region_id); ?></td>
                                     <td>{{ date('d-M-Y', strtotime($row->laycan_date_from)) }}</td>
                                     <td>{{ date('d-M-Y', strtotime($row->laycan_date_to)) }}</td>
