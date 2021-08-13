@@ -21,14 +21,14 @@ class ss_setup_region extends Model
     }
 
     //working
-    // public function CAregion(){
-    //     return $this->hasMany('App\Models\rel_cargo_lregion',"region_id");
-    // }
+    public function CAregion(){
+        return $this->hasMany('App\Models\rel_cargo_lregion',"region_id");
+    }
 
     //working
-    // public function SCAregion(){
-    //     return $this->hasMany('App\Models\rel_ser_cargo_lregion',"region_id");
-    // }
+    public function SCAregion(){
+        return $this->hasMany('App\Models\rel_ser_cargo_lregion',"region_id");
+    }
 
 
 

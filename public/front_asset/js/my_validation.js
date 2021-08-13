@@ -80,7 +80,7 @@ $(document).ready(function() {
         }
     });
 
-
+    // #030303
 
     $(document).on("change", 'select.ser_inp_fields_each', function(e) {
 

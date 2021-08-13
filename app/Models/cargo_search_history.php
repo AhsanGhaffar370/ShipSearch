@@ -16,11 +16,17 @@ class cargo_search_history extends Model
     protected $guarded = []; 
 
 
+    // public function scopeActive($query){
+    //     return $query->where('is_active',1);
+    // }
 
 
     public function Lregion(){
-        return $this->hasMany('App\Models\rel_ser_cargo_lregion',"id");
+        return $this->hasMany('App\Models\rel_ser_cargo_lregion','cargo_id');
+        // return $this->hasMany(rel_ser_cargo_lregion::class,'id');
+        // return $this->hasMany('App\Models\rel_ser_cargo_lregion',"id","id");
     }
+
 
 
 

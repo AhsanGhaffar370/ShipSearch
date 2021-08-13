@@ -18,7 +18,7 @@ class rel_cargo_lregion extends Model
         return $this->belongsTo(ss_cargo::class,'cargo_id');
     }
 
-    
+
     public function CAregion(){
         return $this->belongsTo(ss_setup_region::class,'lregion_id');
     }

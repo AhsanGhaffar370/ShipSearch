@@ -39,10 +39,13 @@ class FrontCargoController extends Controller
         $data = ss_cargo::with(['Lregion'])->active()->orderBy('cargo_id', 'DESC')->get();//working
         // $data = ss_cargo::active()->orderBy('cargo_id', 'DESC')->get();//present
 
-        
 
+
+        // $ser_data= cargo_search_history::with(['Lregion'])->get();//working
         $ser_data= cargo_search_history::with(['Lregion'])->where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();//working
         // $ser_data= cargo_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get(); //present
+
+        // dd($ser_data);
 
         $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
         $ss_setup_region= ss_setup_region::active()->get();
@@ -239,13 +242,13 @@ class FrontCargoController extends Controller
             $ser_data->discharge_port_id=$ser_discharge_port;
             $ser_data->created_at=date('Y-m-d H:i:s');
             $ser_data->modified_at=date('Y-m-d H:i:s');
-            
+
             $ser_data->save();
 
              //working
             foreach ($req->loading_region_id as $selectedOption){
                 $ser_data_Lregion=new rel_ser_cargo_lregion;
-                $ser_data_Lregion->ser_cargo_id = cargo_search_history::latest()->first()->id;
+                $ser_data_Lregion->cargo_id = cargo_search_history::latest()->first()->id;
                 $ser_data_Lregion->lregion_id = $selectedOption;
                 $ser_data_Lregion->save();
             }
@@ -258,7 +261,8 @@ class FrontCargoController extends Controller
             }
         }
 
-        $data = ss_cargo::where('laycan_date_from', $laycan_from)
+        $data = ss_cargo::with(['Lregion'])
+                        ->where('laycan_date_from', $laycan_from)
                         ->where('laycan_date_to', $laycan_to)
                         ->where('cargo_type_id', $ser_cargo_type)
                         ->where('loading_region_id', $ser_loading_region)
@@ -272,7 +276,7 @@ class FrontCargoController extends Controller
                         ->get();
                         // ->whereBetween($laycan_col, [$from_date, $to_date])->get();
 
-        $ser_history= cargo_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
+        $ser_history= cargo_search_history::with(['Lregion'])->where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
 
 
         $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
