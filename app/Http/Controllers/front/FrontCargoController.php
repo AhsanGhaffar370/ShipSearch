@@ -165,8 +165,6 @@ class FrontCargoController extends Controller
         $data->save();
 
              
-        
-
         //working
         foreach ($req->loading_region_id as $selectedOption){
             $data_Lregion=new rel_cargo_lregion;
@@ -260,12 +258,15 @@ class FrontCargoController extends Controller
                 cargo_search_history::where('user_id',session('front_uid'))->first()->delete();
             }
         }
-
+        $mylregion=$req->loading_region_id;
+        //working
         $data = ss_cargo::with(['Lregion'])
+                        ->whereHas('Lregion', function($q) use ($mylregion) {
+                            $q->whereIn('lregion_id',$mylregion);
+                        })
                         ->where('laycan_date_from', $laycan_from)
                         ->where('laycan_date_to', $laycan_to)
                         ->where('cargo_type_id', $ser_cargo_type)
-                        ->where('loading_region_id', $ser_loading_region)
                         ->where('loading_country_id', $ser_loading_country)
                         ->where('loading_port_id', $ser_loading_port)
                         ->where('discharge_region_id', $ser_discharge_region)
@@ -276,6 +277,8 @@ class FrontCargoController extends Controller
                         ->get();
                         // ->whereBetween($laycan_col, [$from_date, $to_date])->get();
 
+        // dd($data);
+        //working
         $ser_history= cargo_search_history::with(['Lregion'])->where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
 
 
