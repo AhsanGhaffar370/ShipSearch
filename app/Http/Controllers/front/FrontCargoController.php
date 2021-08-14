@@ -38,14 +38,17 @@ class FrontCargoController extends Controller
 
         $data = ss_cargo::with(['Lregion'])->active()->orderBy('cargo_id', 'DESC')->get();//working
         // $data = ss_cargo::active()->orderBy('cargo_id', 'DESC')->get();//present
-
-
+        
+        
+        
+        // dd($data[4]->Lregion[0]->CAregion->region_name);
+        
 
         // $ser_data= cargo_search_history::with(['Lregion'])->get();//working
         $ser_data= cargo_search_history::with(['Lregion'])->where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();//working
         // $ser_data= cargo_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get(); //present
 
-        // dd($ser_data);
+        // dd($ser_data[0]->Lregion[0]->SCAregion->region_name);
 
         $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
         $ss_setup_region= ss_setup_region::active()->get();
@@ -144,11 +147,6 @@ class FrontCargoController extends Controller
         $data->gear_lifting_capacity=$req->gear_lifting_capacity;
         $data->discharge_equipment_req=$req->discharge_equipment_req;
 
-        // $data->loading_discharge_equipment_req=$req->loading_discharge_equipment_req;
-        // foreach ($req->loading_discharge_equipment_req as $selectedOption)
-        //     $data->loading_discharge_equipment_req .= $selectedOption.", ";
-        // $data->loading_discharge_equipment_req=rtrim($data->loading_discharge_equipment_req, ", ");
-
         $data->additional_info=$req->additional_info;
         $data->is_active="1";
         $data->created_at=date('Y-m-d H:i:s');
@@ -161,10 +159,8 @@ class FrontCargoController extends Controller
         // $data->title=$req->broacker_contact;
         // $data->title=$req->broacker_email;
 
-
         $data->save();
 
-             
         //working
         foreach ($req->loading_region_id as $selectedOption){
             $data_Lregion=new rel_cargo_lregion;
@@ -185,6 +181,7 @@ class FrontCargoController extends Controller
         $laycan_from=date("Y-m-d", strtotime($req->laycan_date_from));
         $laycan_to=date("Y-m-d", strtotime($req->laycan_date_to)); 
 
+        // it's not needed for now
         $ser_cargo_type="";
         foreach ($req->cargo_type_id as $selectedOption)
             $ser_cargo_type .= $selectedOption.",";
@@ -244,9 +241,10 @@ class FrontCargoController extends Controller
             $ser_data->save();
 
              //working
+            $ser_car_fk=cargo_search_history::latest()->first()->id;
             foreach ($req->loading_region_id as $selectedOption){
                 $ser_data_Lregion=new rel_ser_cargo_lregion;
-                $ser_data_Lregion->cargo_id = cargo_search_history::latest()->first()->id;
+                $ser_data_Lregion->cargo_id = $ser_car_fk;
                 $ser_data_Lregion->lregion_id = $selectedOption;
                 $ser_data_Lregion->save();
             }
@@ -258,11 +256,14 @@ class FrontCargoController extends Controller
                 cargo_search_history::where('user_id',session('front_uid'))->first()->delete();
             }
         }
-        $mylregion=$req->loading_region_id;
+
+
+        $loading_region_fk=$req->loading_region_id;
+
         //working
         $data = ss_cargo::with(['Lregion'])
-                        ->whereHas('Lregion', function($q) use ($mylregion) {
-                            $q->whereIn('lregion_id',$mylregion);
+                        ->whereHas('Lregion', function($q) use ($loading_region_fk) {
+                            $q->whereIn('lregion_id',$loading_region_fk);
                         })
                         ->where('laycan_date_from', $laycan_from)
                         ->where('laycan_date_to', $laycan_to)
@@ -297,12 +298,28 @@ class FrontCargoController extends Controller
 
     function search_req_ajax(Request $req){
         
-        $ser_data= cargo_search_history::where('id',$req->id)->first();   
+        $ser_data= cargo_search_history::with(['Lregion'])->where('id',$req->id)->first();   
 
-        $data = ss_cargo::where('cargo_type_id', $ser_data->cargo_type_id)
+        // dd($ser_data->Lregion->SCAregion);
+        $loading_region_fk=array();
+        foreach ($ser_data->Lregion as $row){
+            $loading_region_fk[]=$row->SCAregion->region_id;
+        }
+
+        // working  
+
+        //get specific record of table
+        // with(array('Lregion' => function($query) {
+        //     $query->select('cargo_id');
+        // }))
+        $data=[];
+        $data[0] = ss_cargo::with(['Lregion'])
+                        ->whereHas('Lregion', function($q) use ($loading_region_fk) {
+                            $q->whereIn('lregion_id',$loading_region_fk);
+                        })
+                        ->where('cargo_type_id', $ser_data->cargo_type_id)
                         ->where('laycan_date_from', $ser_data->laycan_date_from)
                         ->where('laycan_date_to', $ser_data->laycan_date_to)
-                        ->where('loading_region_id', $ser_data->loading_region_id)
                         ->where('loading_country_id', $ser_data->loading_country_id)
                         ->where('loading_port_id', $ser_data->loading_port_id)
                         ->where('discharge_region_id', $ser_data->discharge_region_id)
@@ -313,7 +330,15 @@ class FrontCargoController extends Controller
                         ->orderBy('cargo_id', 'DESC')
                         ->get();
 
-        // echo "<pre>";
+        $rname=array();
+        foreach ($data[0] as $row){
+            foreach ($row->Lregion as $row2){
+                $rname[$row->cargo_id][]=$row2->CAregion->region_name;
+            }
+        }
+
+        $data[1]=$rname;
+
         echo json_encode(array('data'=>$data));
         // echo $req->lregion;
 

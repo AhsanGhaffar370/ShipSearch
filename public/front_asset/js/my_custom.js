@@ -305,23 +305,26 @@ $(document).ready(function() {
             success: function(response) {
 
                 let json_data = $.parseJSON(response);
-                var len = json_data.length;
                 var post_str = "";
-                // console.log(json_data['data'][0]['cargo_name'])
+                // console.log(json_data)
 
-                if (json_data['data']['length'] == 0) {
+                if (json_data['data'][0]['length'] == 0) {
                     post_str +=
                         '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                 } else {
                     $.each(json_data, function(i, obj) {
-                        $.each(obj, function(i, obj1) {
+                        $.each(obj[0], function(i, obj1) {
                             // console.log(obj1);
                             // console.log(i + "  " + obj1);
                             post_str += `<tr class="">
                                     <td>` + obj1.ref_no + `</td>
                                     <td>` + obj1.cargo_name + `</td>
                                     <td>` + obj1.cargo_type_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.loading_region_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>`;
+                            $.each(json_data['data'][1][obj1.cargo_id], function(i, region_name_obj) {
+                                post_str += region_name_obj + ',<br>';
+                            });
+                            post_str += `</td>
                                     <td>` + obj1.discharge_region_id.replace(/,/g, ',<br>') + `</td>
                                     <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
                                     <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
@@ -335,7 +338,6 @@ $(document).ready(function() {
                                 .cargo_id + ` hide_detail_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
                                     </td>
                                     </tr>
-                                    
                                     <tr class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                     <td></td>
                                     <td>
@@ -394,7 +396,7 @@ $(document).ready(function() {
                 } //end else
                 $("#all_records").html(post_str);
 
-                $("#total_rec_found").html(json_data['data']['length'] + " EXACT MATCHES");
+                $("#total_rec_found").html(json_data['data'][0]['length'] + " EXACT MATCHES");
 
                 $('.hide_detail_btn').hide();
 
