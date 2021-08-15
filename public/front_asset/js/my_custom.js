@@ -321,7 +321,8 @@ $(document).ready(function() {
                                     <td>` + obj1.cargo_name + `</td>
                                     <td>` + obj1.cargo_type_id.replace(/,/g, ',<br>') + `</td>
                                     <td>`;
-                            $.each(json_data['data'][1][obj1.cargo_id], function(i, region_name_obj) {
+                            // working
+                            $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, region_name_obj) {
                                 post_str += region_name_obj + ',<br>';
                             });
                             post_str += `</td>
@@ -415,7 +416,7 @@ $(document).ready(function() {
         // $(".delete_rec").click(function(e){
         e.preventDefault();
         let el = e.target;
-        let table_row = $(el).parent().parent().parent();
+        let table_row = $(el).closest('tr');
         let deleteid = e.target.getAttribute('href');
 
         let confirmalert = confirm("Are you sure?");
@@ -471,8 +472,8 @@ $(document).ready(function() {
                 let json_data = $.parseJSON(response);
                 var len = json_data.length;
 
-                $("#laycan_date_from_" + uid).val(json_data['data']['laycan_date_from']);
-                $("#laycan_date_to_" + uid).val(json_data['data']['laycan_date_to']);
+                $("#laycan_date_from_" + uid).val(json_data['data'][0]['laycan_date_from']);
+                $("#laycan_date_to_" + uid).val(json_data['data'][0]['laycan_date_to']);
 
                 let arr = ["cargo_type_id", "loading_region_id", "loading_country_id", "loading_port_id",
                     "discharge_region_id", "discharge_country_id", "discharge_port_id"
@@ -481,21 +482,23 @@ $(document).ready(function() {
                 $.each(arr, function(i, obj1) {
 
                     let dd_id = "#" + obj1 + "_" + uid;
-                    let dd_data = json_data['data'][obj1];
-                    let dd_data_arr = dd_data.split(",");
 
-                    $.each(dd_data_arr, function(i, obj2) {
+                    let dd_data_ids = json_data['data'][1]["loading_region_id"];
+                    // let dd_data_arr = dd_data.split(",");
+
+                    $.each(dd_data_ids, function(i, obj2) {
+                        // console.log(obj2);
                         $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
                     });
 
                     $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
 
-                    if (dd_data_arr.length > 2) {
-                        $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
+                    if (dd_data_ids.length > 2) {
+                        $(dd_id).siblings(".btn").attr("title", dd_data_ids.length + " items selected");
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_ids.length + " items selected");
                     } else {
-                        $(dd_id).siblings(".btn").attr("title", dd_data);
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
+                        $(dd_id).siblings(".btn").attr("title", json_data['data'][2]["loading_region_id"]);
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(json_data['data'][2]["loading_region_id"]);
                     }
                 });
 
@@ -568,19 +571,24 @@ $(document).ready(function() {
                         var post_str = "";
                         // console.log(json_data['data'][0]['cargo_name'])
 
-                        if (json_data['data']['length'] == 0) {
+                        if (json_data['data'][0]['length'] == 0) {
                             post_str +=
                                 '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                         } else {
                             $.each(json_data, function(i, obj) {
-                                $.each(obj, function(i, obj1) {
+                                $.each(obj[0], function(i, obj1) {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
                                     post_str += `<tr class="">
                                                 <td>` + obj1.ref_no + `</td>
                                                 <td>` + obj1.cargo_name + `</td>
                                                 <td>` + obj1.cargo_type_id.replace(/,/g, ',<br>') + `</td>
-                                                <td>` + obj1.loading_region_id.replace(/,/g, ',<br>') + `</td>
+                                                <td>`;
+                                    // working
+                                    $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, region_name_obj) {
+                                        post_str += region_name_obj + ',<br>';
+                                    });
+                                    post_str += `</td>
                                                 <td>` + obj1.discharge_region_id.replace(/,/g, ',<br>') + `</td>
                                                 <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
                                                 <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
@@ -651,7 +659,7 @@ $(document).ready(function() {
                         } //end else
                         $("#all_records").html(post_str);
 
-                        $("#total_rec_found").html(json_data['data']['length'] + " EXACT MATCHES");
+                        $("#total_rec_found").html(json_data['data'][0]['length'] + " EXACT MATCHES");
 
                         $('.hide_detail_btn').hide();
                     }

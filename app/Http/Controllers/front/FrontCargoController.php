@@ -4,6 +4,8 @@ namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\ss_cargo;
 use App\Models\ss_setup_cargo_type;
 use App\Models\ss_setup_region;
@@ -39,10 +41,28 @@ class FrontCargoController extends Controller
         $data = ss_cargo::with(['Lregion'])->active()->orderBy('cargo_id', 'DESC')->get();//working
         // $data = ss_cargo::active()->orderBy('cargo_id', 'DESC')->get();//present
         
-        
-        
         // dd($data[4]->Lregion[0]->CAregion->region_name);
-        
+
+
+
+        // $arr = ["cargo_type_id", "loading_region_id", "loading_country_id", "loading_port_id",
+        // "discharge_region_id", "discharge_country_id", "discharge_port_id"
+        //             ];
+        // $rname=array();
+
+        // echo "<pre>";
+        // foreach ($data as $row){
+        //     foreach ($row->Lregion as $row2){
+        //         $rname[$arr[1]][$row->cargo_id][]=$row2->CAregion->region_name;
+        //     }   
+        // }
+        // foreach ($data as $row){
+        //     foreach ($row->Lregion as $row2){
+        //         $rname[$arr[4]][$row->cargo_id][]=$row2->CAregion->region_name;
+        //     }   
+        // }
+        // print_r($rname);
+
 
         // $ser_data= cargo_search_history::with(['Lregion'])->get();//working
         $ser_data= cargo_search_history::with(['Lregion'])->where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();//working
@@ -330,18 +350,21 @@ class FrontCargoController extends Controller
                         ->orderBy('cargo_id', 'DESC')
                         ->get();
 
-        $rname=array();
+        $arr = ["cargo_type_id", "loading_region_id", "loading_country_id", "loading_port_id",
+        "discharge_region_id", "discharge_country_id", "discharge_port_id"];
+        $names_fk=array();
         foreach ($data[0] as $row){
             foreach ($row->Lregion as $row2){
-                $rname[$row->cargo_id][]=$row2->CAregion->region_name;
+                $names_fk[$arr[1]][$row->cargo_id][]=$row2->CAregion->region_name;
             }
         }
 
-        $data[1]=$rname;
+
+        $data[1]=$names_fk;
 
         echo json_encode(array('data'=>$data));
         // echo $req->lregion;
-
+        
         // return view('front/cargo/view',['data'=>$data]);
     }
 
@@ -358,9 +381,40 @@ class FrontCargoController extends Controller
 
     function get_update_hist_data(Request $req){
 
-        $ser_data= cargo_search_history::where('id',$req->id)->first(); 
+        $data=[];
 
-        echo json_encode(array('data'=>$ser_data));
+        $ser_data= cargo_search_history::with(['Lregion'])->where('id',$req->id)->first(); 
+        $data[0] =$ser_data;
+
+        
+        // $arr = ["cargo_type_id", "loading_region_id", "loading_country_id", "loading_port_id",
+        // "discharge_region_id", "discharge_country_id", "discharge_port_id"];
+        $arr = ["loading_region_id"];
+
+        $ids_fk=array();
+        foreach ($ser_data->Lregion as $row){
+            $ids_fk[$arr[0]][]=$row->SCAregion->region_id;
+        } 
+
+
+        $names_fk=array();
+        $names_fk1=array();
+        foreach ($ser_data->Lregion as $row){
+            $names_fk[$arr[0]][]=$row->SCAregion->region_name;
+        }
+        foreach ($arr as $row){
+            $rname="";
+            foreach ($names_fk[$row] as $row1){
+                $rname.=$row1.",";
+            }
+            $names_fk1[$row][]=$rname;
+        }
+        // print_r($names_fk1);
+
+        $data[1] =$ids_fk;
+        $data[2] =$names_fk1;
+
+        echo json_encode(array('data'=>$data));
 
     }
 
@@ -381,19 +435,49 @@ class FrontCargoController extends Controller
         $data->save();
 
         if($data->wasChanged('modified_at')){
+
+            //working
+            rel_ser_cargo_lregion::where('cargo_id',$req->id)->delete();
             
-            $ser_data = ss_cargo::where('cargo_type_id', $data->cargo_type_id)
-            ->where('laycan_date_from', $data->laycan_date_from)
-            ->where('laycan_date_to', $data->laycan_date_to)
-            ->where('loading_region_id', $data->loading_region_id)
-            ->where('loading_country_id', $data->loading_country_id)
-            ->where('loading_port_id', $data->loading_port_id)
-            ->where('discharge_region_id', $data->discharge_region_id)
-            ->where('discharge_country_id', $data->discharge_country_id)
-            ->where('discharge_port_id', $data->discharge_port_id)
-            ->active()
-            ->orderBy('cargo_id', 'DESC')
-            ->get();
+            $loading_region_fk=explode(",",$req->loading_region_id);
+            foreach ($loading_region_fk as $selectedOption){
+                $ser_data_Lregion=new rel_ser_cargo_lregion;
+                $ser_data_Lregion->cargo_id = $req->id;
+                $ser_data_Lregion->lregion_id = $selectedOption;
+                $ser_data_Lregion->save();
+            }
+            
+            $ser_data=[];
+            $ser_data[0] = ss_cargo::with(['Lregion'])
+                                ->whereHas('Lregion', function($q) use ($loading_region_fk) {
+                                    $q->whereIn('lregion_id',$loading_region_fk);
+                                })
+                                ->where('cargo_type_id', $data->cargo_type_id)
+                                ->where('laycan_date_from', $data->laycan_date_from)
+                                ->where('laycan_date_to', $data->laycan_date_to)
+                                ->where('loading_region_id', $data->loading_region_id)
+                                ->where('loading_country_id', $data->loading_country_id)
+                                ->where('loading_port_id', $data->loading_port_id)
+                                ->where('discharge_region_id', $data->discharge_region_id)
+                                ->where('discharge_country_id', $data->discharge_country_id)
+                                ->where('discharge_port_id', $data->discharge_port_id)
+                                ->active()
+                                ->orderBy('cargo_id', 'DESC')
+                                ->get();
+
+            
+            $arr = ["cargo_type_id", "loading_region_id", "loading_country_id", "loading_port_id",
+            "discharge_region_id", "discharge_country_id", "discharge_port_id"];
+            $names_fk=array();
+            foreach ($ser_data[0] as $row){
+                foreach ($row->Lregion as $row2){
+                    $names_fk[$arr[1]][$row->cargo_id][]=$row2->CAregion->region_name;
+                }
+            }
+    
+    
+            $ser_data[1]=$names_fk;
+
 
             echo json_encode(array('data'=>$ser_data));
         }
