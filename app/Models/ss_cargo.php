@@ -27,6 +27,21 @@ class ss_cargo extends Model
     public function Lregion(){
         return $this->hasMany('App\Models\rel_cargo_lregion',"cargo_id");
     }
+    public function Dregion(){
+        return $this->hasMany('App\Models\rel_cargo_lregion',"cargo_id");
+    }
+    public function Lcountry(){
+        return $this->hasMany('App\Models\rel_cargo_lcountry',"cargo_id");
+    }
+    public function Dcountry(){
+        return $this->hasMany('App\Models\rel_cargo_dcountry',"cargo_id");
+    }
+    public function Lport(){
+        return $this->hasMany('App\Models\rel_cargo_lport',"cargo_id");
+    }
+    public function Dport(){
+        return $this->hasMany('App\Models\rel_cargo_dport',"cargo_id");
+    }
 
 
 

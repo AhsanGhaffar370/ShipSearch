@@ -23,6 +23,23 @@ class ss_setup_country extends Model
         return $query->orderBy('country_id',"DESC");
     }
 
+    
+    //working
+    public function CAlcountry(){
+        return $this->hasMany('App\Models\rel_cargo_lcountry',"country_id");
+    }
+    public function CAdcountry(){
+        return $this->hasMany('App\Models\rel_cargo_dcountry',"country_id");
+    }
+
+    //working
+    public function SCAlcountry(){
+        return $this->hasMany('App\Models\rel_ser_cargo_lcountry',"country_id");
+    }
+    public function SCAldcountry(){
+        return $this->hasMany('App\Models\rel_ser_cargo_dcountry',"country_id");
+    }
+
     // public function Lcargo(){
     //     return $this->hasMany('App\Models\ss_cargo',"loading_country_id");
     // }

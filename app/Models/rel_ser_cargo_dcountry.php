@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class rel_ser_cargo_lregion extends Model
+class rel_ser_cargo_dcountry extends Model
 {
     use HasFactory;
-    public $table='rel_ser_cargo_lregion';
+    public $table='rel_ser_cargo_dcountry';
     public $timestamps=false;
     protected $primaryKey = 'id';
 
 
-    public function Lregion(){
+    public function Dcountry(){
         return $this->belongsTo(cargo_search_history::class,'ser_cargo_id');
     }
 
     
-    public function SCAlregion(){
-        return $this->belongsTo(ss_setup_region::class,'lregion_id');
+    public function SCAdcountry(){
+        return $this->belongsTo(ss_setup_country::class,'dcountry_id');
     }
 }

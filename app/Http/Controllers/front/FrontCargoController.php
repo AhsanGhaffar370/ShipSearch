@@ -16,8 +16,21 @@ use App\Models\cargo_search_history;
 use App\Models\ss_setup_region_country_port;
 
 // working
+use App\Models\rel_cargo_cargotype;
 use App\Models\rel_cargo_lregion;
+use App\Models\rel_cargo_dregion;
+use App\Models\rel_cargo_lcountry;
+use App\Models\rel_cargo_dcountry;
+use App\Models\rel_cargo_lport;
+use App\Models\rel_cargo_dport;
+
+use App\Models\rel_ser_cargo_cargotype;
 use App\Models\rel_ser_cargo_lregion;
+use App\Models\rel_ser_cargo_dregion;
+use App\Models\rel_ser_cargo_lcountry;
+use App\Models\rel_ser_cargo_dcountry;
+use App\Models\rel_ser_cargo_lport;
+use App\Models\rel_ser_cargo_dport;
 
 class FrontCargoController extends Controller
 {
@@ -182,16 +195,53 @@ class FrontCargoController extends Controller
         $data->save();
 
         //working
+        $cid= ss_cargo::latest()->first()->cargo_id;
         foreach ($req->loading_region_id as $selectedOption){
-            $data_Lregion=new rel_cargo_lregion;
-            $data_Lregion->cargo_id = ss_cargo::latest()->first()->cargo_id;
-            $data_Lregion->lregion_id = $selectedOption;
-            $data_Lregion->save();
+            $data=new rel_cargo_lregion;
+            $data->cargo_id = $cid;
+            $data->lregion_id = $selectedOption;
+            $data->save();
+        }
+        foreach ($req->discharge_region_id as $selectedOption){
+            $data=new rel_cargo_dregion;
+            $data->cargo_id = $cid;
+            $data->lregion_id = $selectedOption;
+            $data->save();
+        }
+        foreach ($req->loading_country_id as $selectedOption){
+            $data=new rel_cargo_lcountry;
+            $data->cargo_id = $cid;
+            $data->lcountry_id = $selectedOption;
+            $data->save();
+        }
+        foreach ($req->discharge_country_id as $selectedOption){
+            $data=new rel_cargo_dcountry;
+            $data->cargo_id = $cid;
+            $data->dcountry_id = $selectedOption;
+            $data->save();
+        }
+        foreach ($req->loading_region_id as $selectedOption){
+            $data=new rel_cargo_lregion;
+            $data->cargo_id = $cid;
+            $data->lregion_id = $selectedOption;
+            $data->save();
+        }
+        foreach ($req->discharge_region_id as $selectedOption){
+            $data=new rel_cargo_lregion;
+            $data->cargo_id = $cid;
+            $data->lregion_id = $selectedOption;
+            $data->save();
+        }
+        foreach ($req->loading_region_id as $selectedOption){
+            $data=new rel_cargo_lregion;
+            $data->cargo_id = $cid;
+            $data->lregion_id = $selectedOption;
+            $data->save();
         }
 
         $req->session()->flash('msg','Cargo Added');
         $req->session()->flash('alert','success');
-        
+    
         return redirect()->route('cargo.view');
     }
 

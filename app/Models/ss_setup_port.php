@@ -21,6 +21,21 @@ class ss_setup_port extends Model
     }
 
     
+    //working
+    public function CAlport(){
+        return $this->hasMany('App\Models\rel_cargo_lport',"port_id");
+    }
+    public function CAdport(){
+        return $this->hasMany('App\Models\rel_cargo_dport',"port_id");
+    }
+
+    //working
+    public function SCAlport(){
+        return $this->hasMany('App\Models\rel_ser_cargo_lport',"port_id");
+    }
+    public function SCAdport(){
+        return $this->hasMany('App\Models\rel_ser_cargo_dport',"port_id");
+    }
     // public function Lcargo1(){
     //     return $this->hasMany('App\Models\ss_cargo',"loading_port_id_1");
     // }

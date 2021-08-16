@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class rel_ser_cargo_lregion extends Model
+class rel_ser_cargo_dregion extends Model
 {
     use HasFactory;
-    public $table='rel_ser_cargo_lregion';
+    public $table='rel_ser_cargo_dregion';
     public $timestamps=false;
     protected $primaryKey = 'id';
 
@@ -18,7 +18,7 @@ class rel_ser_cargo_lregion extends Model
     }
 
     
-    public function SCAlregion(){
-        return $this->belongsTo(ss_setup_region::class,'lregion_id');
+    public function SCAdregion(){
+        return $this->belongsTo(ss_setup_region::class,'dregion_id');
     }
 }

@@ -21,13 +21,19 @@ class ss_setup_region extends Model
     }
 
     //working
-    public function CAregion(){
+    public function CAlregion(){
         return $this->hasMany('App\Models\rel_cargo_lregion',"region_id");
+    }
+    public function CAdregion(){
+        return $this->hasMany('App\Models\rel_cargo_dregion',"region_id");
     }
 
     //working
-    public function SCAregion(){
+    public function SCAlregion(){
         return $this->hasMany('App\Models\rel_ser_cargo_lregion',"region_id");
+    }
+    public function SCAdregion(){
+        return $this->hasMany('App\Models\rel_ser_cargo_dregion',"region_id");
     }
 
 

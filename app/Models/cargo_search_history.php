@@ -26,6 +26,21 @@ class cargo_search_history extends Model
         // return $this->hasMany(rel_ser_cargo_lregion::class,'id');
         // return $this->hasMany('App\Models\rel_ser_cargo_lregion',"id","id");
     }
+    public function Dregion(){
+        return $this->hasMany('App\Models\rel_ser_cargo_lregion',"cargo_id");
+    }
+    public function Lcountry(){
+        return $this->hasMany('App\Models\rel_ser_cargo_lcountry',"cargo_id");
+    }
+    public function Dcountry(){
+        return $this->hasMany('App\Models\rel_ser_cargo_dcountry',"cargo_id");
+    }
+    public function Lport(){
+        return $this->hasMany('App\Models\rel_ser_cargo_lport',"cargo_id");
+    }
+    public function Dport(){
+        return $this->hasMany('App\Models\rel_ser_cargo_dport',"cargo_id");
+    }
 
 
 
