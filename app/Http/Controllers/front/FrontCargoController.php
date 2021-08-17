@@ -36,6 +36,7 @@ class FrontCargoController extends Controller
 {
     function view(){
 
+
         // $data = ss_cargo::with(['Lregion'])->active()->get();
         // dd($data[0]->Lregion->id);
         // dd($data[0]->Loadregion[0]->region_id->region_name);
@@ -51,8 +52,10 @@ class FrontCargoController extends Controller
 
         // $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])->get();
 
-        $data = ss_cargo::with(['cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
-                        ->active()->orderBy('cargo_id', 'DESC')->get();//working
+        $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])
+                        ->active()
+                        ->orderBy('cargo_id', 'DESC')
+                        ->get();//working
         // $data = ss_cargo::active()->orderBy('cargo_id', 'DESC')->get();//present
         
         // dd($data[4]->Lregion[0]->CAregion->region_name);
@@ -229,10 +232,10 @@ class FrontCargoController extends Controller
         $laycan_to=date("Y-m-d", strtotime($req->laycan_date_to)); 
 
         // it's not needed for now
-        // $ser_cargo_type="";
-        // foreach ($req->cargo_type_id as $selectedOption)
-        //     $ser_cargo_type .= $selectedOption.",";
-        // $ser_cargo_type=rtrim($ser_cargo_type, ",");
+        $ser_cargo_type="";
+        foreach ($req->cargo_type_id as $selectedOption)
+            $ser_cargo_type .= $selectedOption.",";
+        $ser_cargo_type=rtrim($ser_cargo_type, ",");
 
         // $ser_loading_region="";
         // foreach ($req->loading_region_id as $selectedOption)
@@ -317,8 +320,10 @@ class FrontCargoController extends Controller
             }
         }
 
-
-        $cargo_type_fk=$req->cargo_type_id;
+        // $cargo_type_fk=[];
+        // foreach ($req->cargo_type_id as $id)
+        //     $cargo_type_fk[]=$id;
+        // $cargo_type_fk=$req->cargo_type_id;
         $loading_region_fk=$req->loading_region_id;
         $loading_country_fk=$req->loading_country_id;
         $loading_port_fk=$req->loading_port_id;
@@ -326,43 +331,42 @@ class FrontCargoController extends Controller
         $discharge_country_fk=$req->discharge_country_id;
         $discharge_port_fk=$req->discharge_port_id;
 
+        $cargo_type_fk=[2,3];
+        echo "<pre>";
+        print_r($cargo_type_fk);
+        echo "</pre>";
+
         //working
-        $data = ss_cargo::with(['cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
-                        ->whereHas('cargotype', function($q) use ($cargo_type_fk) {
-                            $q->whereIn('cargo_type_id',$cargo_type_fk);
+        // $data = ss_cargo::with(['cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
+        $data = ss_cargo::whereHas('cargotype', function($q1) use ($cargo_type_fk) {
+                            $q1->whereIn('cargo_type_id',$cargo_type_fk);
                         })
-                        ->whereHas('Lregion', function($q) use ($loading_region_fk) {
-                            $q->whereIn('loading_region_id',$loading_region_fk);
-                        })
-                        ->whereHas('Lcountry', function($q) use ($loading_country_fk) {
-                            $q->whereIn('loading_country_id',$loading_country_fk);
-                        })
-                        ->whereHas('Lport', function($q) use ($loading_port_fk) {
-                            $q->whereIn('loading_port_id',$loading_port_fk);
-                        })
-                        ->whereHas('Dregion', function($q) use ($discharge_region_fk) {
-                            $q->whereIn('discharge_region_id',$discharge_region_fk);
-                        })
-                        ->whereHas('Dcountry', function($q) use ($discharge_country_fk) {
-                            $q->whereIn('discharge_country_id',$discharge_country_fk);
-                        })
-                        ->whereHas('Dport', function($q) use ($discharge_port_fk) {
-                            $q->whereIn('discharge_port_id',$discharge_port_fk);
-                        })
-                        ->where('laycan_date_from', $laycan_from)
-                        ->where('laycan_date_to', $laycan_to)
-                        // ->where('cargo_type_id', $ser_cargo_type)
-                        // ->where('loading_country_id', $ser_loading_country)
-                        // ->where('loading_port_id', $ser_loading_port)
-                        // ->where('discharge_region_id', $ser_discharge_region)
-                        // ->where('discharge_country_id', $ser_discharge_country)
-                        // ->where('discharge_port_id', $ser_discharge_port)
-                        ->active()
-                        ->orderBy('cargo_id', 'DESC')
+                        // ->whereHas('Lregion', function($q2) use ($loading_region_fk) {
+                        //     $q2->whereIn('loading_region_id',$loading_region_fk);
+                        // })
+                        // ->whereHas('Lcountry', function($q3) use ($loading_country_fk) {
+                        //     $q3->whereIn('loading_country_id',$loading_country_fk);
+                        // })
+                        // ->whereHas('Lport', function($q4) use ($loading_port_fk) {
+                        //     $q4->whereIn('loading_port_id',$loading_port_fk);
+                        // })
+                        // ->whereHas('Dregion', function($q5) use ($discharge_region_fk) {
+                        //     $q5->whereIn('discharge_region_id',$discharge_region_fk);
+                        // })
+                        // ->whereHas('Dcountry', function($q6) use ($discharge_country_fk) {
+                        //     $q6->whereIn('discharge_country_id',$discharge_country_fk);
+                        // })
+                        // ->whereHas('Dport', function($q7) use ($discharge_port_fk) {
+                        //     $q7->whereIn('discharge_port_id',$discharge_port_fk);
+                        // })
+                        // ->where('laycan_date_from', $laycan_from)
+                        // ->where('laycan_date_to', $laycan_to)
+                        // ->active()
+                        // ->orderBy('cargo_id', 'DESC')
                         ->get();
                         // ->whereBetween($laycan_col, [$from_date, $to_date])->get();
 
-        // dd($data);
+        dd($data);
         //working
         $ser_history= cargo_search_history::with(['cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
                                             ->where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
@@ -388,7 +392,7 @@ class FrontCargoController extends Controller
         // dd($ser_data->Lregion->SCAregion);
         $loading_region_fk=array();
         foreach ($ser_data->Lregion as $row){
-            $loading_region_fk[]=$row->SCAregion->region_id;
+            $loading_region_fk[]=$row->SCAlregion->region_id;
         }
 
         // working  
@@ -403,8 +407,8 @@ class FrontCargoController extends Controller
                             $q->whereIn('loading_region_id',$loading_region_fk);
                         })
                         ->where('cargo_type_id', $ser_data->cargo_type_id)
-                        ->where('laycan_date_from', $ser_data->laycan_date_from)
-                        ->where('laycan_date_to', $ser_data->laycan_date_to)
+                        // ->where('laycan_date_from', $ser_data->laycan_date_from)
+                        // ->where('laycan_date_to', $ser_data->laycan_date_to)
                         ->where('loading_country_id', $ser_data->loading_country_id)
                         ->where('loading_port_id', $ser_data->loading_port_id)
                         ->where('discharge_region_id', $ser_data->discharge_region_id)
@@ -420,7 +424,7 @@ class FrontCargoController extends Controller
         $names_fk=array();
         foreach ($data[0] as $row){
             foreach ($row->Lregion as $row2){
-                $names_fk[$arr[1]][$row->cargo_id][]=$row2->CAregion->region_name;
+                $names_fk[$arr[1]][$row->cargo_id][]=$row2->CAlregion->region_name;
             }
         }
 

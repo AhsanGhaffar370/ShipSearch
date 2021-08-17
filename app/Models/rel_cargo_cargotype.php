@@ -11,7 +11,7 @@ class rel_cargo_cargotype extends Model
     public $table='rel_cargo_cargotype';
     public $timestamps=false;
     protected $primaryKey = 'id';
-
+    
 
     public function cargotype(){
         return $this->belongsTo(ss_cargo::class,'cargo_id');
