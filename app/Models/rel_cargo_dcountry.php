@@ -19,6 +19,6 @@ class rel_cargo_dcountry extends Model
 
 
     public function CAdcountry(){
-        return $this->belongsTo(ss_setup_country::class,'dcountry_id');
+        return $this->belongsTo(ss_setup_country::class,'discharge_country_id');
     }
 }

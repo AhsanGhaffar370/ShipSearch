@@ -19,6 +19,6 @@ class rel_cargo_dport extends Model
 
 
     public function CAdport(){
-        return $this->belongsTo(ss_setup_port::class,'dport_id');
+        return $this->belongsTo(ss_setup_port::class,'discharge_port_id');
     }
 }

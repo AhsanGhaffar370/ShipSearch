@@ -19,6 +19,6 @@ class rel_cargo_dregion extends Model
 
 
     public function CAdregion(){
-        return $this->belongsTo(ss_setup_region::class,'dregion_id');
+        return $this->belongsTo(ss_setup_region::class,'discharge_region_id');
     }
 }

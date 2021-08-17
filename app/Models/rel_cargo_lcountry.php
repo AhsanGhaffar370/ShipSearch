@@ -19,6 +19,6 @@ class rel_cargo_lcountry extends Model
 
 
     public function CAlcountry(){
-        return $this->belongsTo(ss_setup_country::class,'lcountry_id');
+        return $this->belongsTo(ss_setup_country::class,'loading_country_id');
     }
 }

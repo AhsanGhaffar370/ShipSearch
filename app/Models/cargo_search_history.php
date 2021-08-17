@@ -20,14 +20,16 @@ class cargo_search_history extends Model
     //     return $query->where('is_active',1);
     // }
 
-
+    public function cargotype(){
+        return $this->hasMany('App\Models\rel_ser_cargo_cargotype',"cargo_id");
+    }
     public function Lregion(){
         return $this->hasMany('App\Models\rel_ser_cargo_lregion','cargo_id');
         // return $this->hasMany(rel_ser_cargo_lregion::class,'id');
         // return $this->hasMany('App\Models\rel_ser_cargo_lregion',"id","id");
     }
     public function Dregion(){
-        return $this->hasMany('App\Models\rel_ser_cargo_lregion',"cargo_id");
+        return $this->hasMany('App\Models\rel_ser_cargo_dregion',"cargo_id");
     }
     public function Lcountry(){
         return $this->hasMany('App\Models\rel_ser_cargo_lcountry',"cargo_id");

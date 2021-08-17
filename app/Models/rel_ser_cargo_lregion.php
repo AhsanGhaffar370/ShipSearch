@@ -19,6 +19,6 @@ class rel_ser_cargo_lregion extends Model
 
     
     public function SCAlregion(){
-        return $this->belongsTo(ss_setup_region::class,'lregion_id');
+        return $this->belongsTo(ss_setup_region::class,'loading_region_id');
     }
 }

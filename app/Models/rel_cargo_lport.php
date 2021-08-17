@@ -19,6 +19,6 @@ class rel_cargo_lport extends Model
 
 
     public function CAlport(){
-        return $this->belongsTo(ss_setup_port::class,'lport_id');
+        return $this->belongsTo(ss_setup_port::class,'loading_port_id');
     }
 }

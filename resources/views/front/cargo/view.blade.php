@@ -198,8 +198,13 @@
                                 <td id="id-{{ $row->id }}">
                                     {{ $row->id }}
                                 </td>
-                                <td id="cargotype-{{ $row->id }}">
-                                    <?php echo str_replace(',', ',<br>', $row->cargo_type_id); ?>
+                                {{-- <td id="cargotype-{{ $row->id }}">
+                                    <?php //echo str_replace(',', ',<br>', $row->cargo_type_id); ?>
+                                </td> --}}
+                                <td class="" id="cargotype-{{ $row->id }}">
+                                    @foreach ($row->cargotype as $ser_row12)
+                                        {{ optional($ser_row12->SCAcargotype)->cargo_type_name }},<br>
+                                    @endforeach
                                 </td>
                                 <td id="laycan_from-{{ $row->id }}">
                                     {{ date('d-M-Y', strtotime($row->laycan_date_from)) }}
@@ -211,26 +216,51 @@
                                     <?php //echo str_replace(',', ',<br>', $row->loading_region_id); ?>
                                 </td> --}}
                                 {{-- working --}}
-                                <td class="{{ $row->loading_region_id }}" id="lregion-{{ $row->id }}">
+                                <td class="" id="lregion-{{ $row->id }}">
                                     @foreach ($row->Lregion as $ser_row12)
-                                        {{ optional($ser_row12->SCAregion)->region_name }},<br>
+                                        {{ optional($ser_row12->SCAlregion)->region_name }},<br>
                                     @endforeach
                                 </td>
-                                <td class="{{ $row->loading_country_id }}" id="lcountry-{{ $row->id }}">
-                                    <?php echo str_replace(',', ',<br>', $row->loading_country_id); ?>
+                                {{-- <td class="{{ $row->loading_country_id }}" id="lcountry-{{ $row->id }}">
+                                    <?php //echo str_replace(',', ',<br>', $row->loading_country_id); ?>
+                                </td> --}}
+                                <td class="" id="lcountry-{{ $row->id }}">
+                                    @foreach ($row->Lcountry as $ser_row12)
+                                        {{ optional($ser_row12->SCAlcountry)->country_name }},<br>
+                                    @endforeach
                                 </td>
-                                <td class="{{ $row->loading_port_id }}" id="lport-{{ $row->id }}">
-                                    <?php echo str_replace(',', ',<br>', $row->loading_port_id); ?>
+                                {{-- <td class="{{ $row->loading_port_id }}" id="lport-{{ $row->id }}">
+                                    <?php //echo str_replace(',', ',<br>', $row->loading_port_id); ?>
+                                </td> --}}
+                                <td class="" id="lport-{{ $row->id }}">
+                                    @foreach ($row->Lport as $ser_row12)
+                                        {{ optional($ser_row12->SCAlport)->port_name }},<br>
+                                    @endforeach
                                 </td>
-                                <td class="{{ $row->discharge_region_id }}" id="dregion-{{ $row->id }}">
-                                    <?php echo str_replace(',', ',<br>', $row->discharge_region_id); ?>
+                                {{-- <td class="{{ $row->discharge_region_id }}" id="dregion-{{ $row->id }}">
+                                    <?php //echo str_replace(',', ',<br>', $row->discharge_region_id); ?>
+                                </td> --}}
+                                <td class="" id="dregion-{{ $row->id }}">
+                                    @foreach ($row->Dregion as $ser_row12)
+                                        {{ optional($ser_row12->SCAdregion)->region_name }},<br>
+                                    @endforeach
                                 </td>
-                                <td class="{{ $row->discharge_country_id }}" id="dcountry-{{ $row->id }}">
-                                    <?php echo str_replace(',', ',<br>', $row->discharge_country_id); ?>
+                                {{-- <td class="{{ $row->discharge_country_id }}" id="dcountry-{{ $row->id }}">
+                                    <?php //echo str_replace(',', ',<br>', $row->discharge_country_id); ?>
+                                </td> --}}
+                                <td class="" id="dcountry-{{ $row->id }}">
+                                    @foreach ($row->Dcountry as $ser_row12)
+                                        {{ optional($ser_row12->SCAdcountry)->country_name }},<br>
+                                    @endforeach
                                 </td>
                                 <td>
-                                    <span class="{{ $row->discharge_port_id }}" id="dport-{{ $row->id }}">
-                                        <?php echo str_replace(',', ',<br>', $row->discharge_port_id); ?>
+                                    {{-- <span class="{{ $row->discharge_port_id }}" id="dport-{{ $row->id }}">
+                                        <?php //echo str_replace(',', ',<br>', $row->discharge_port_id); ?>
+                                    </span> --}}
+                                    <span class="" id="dport-{{ $row->id }}">
+                                        @foreach ($row->Dport as $ser_row12)
+                                            {{ optional($ser_row12->SCAdport)->port_name }},<br>
+                                        @endforeach
                                     </span>
                                     <!-- edit delete buttons -->
                                     <div class="text-right edit_del_btns edit_del_btn_{{ $row->id }} d_n">
@@ -463,15 +493,24 @@
                                 <tr class="">
                                     <td>{{ $row->ref_no }}</td>
                                     <td>{{ $row->cargo_name }}</td>
-                                    <td><?php echo str_replace(',', ',<br>', $row->cargo_type_id); ?></td>
-                                    {{-- Working --}}
+                                    {{-- <td><?php //echo str_replace(',', ',<br>', $row->cargo_type_id); ?></td> --}}
                                     <td>
-                                        @foreach ($row->Lregion as $row12)
-                                            {{ optional($row12->CAregion)->region_name }},<br>
+                                        @foreach ($row->cargotype as $row12)
+                                            {{ optional($row12->CAcargotype)->cargo_type_name }},<br>
                                         @endforeach
                                     </td>
                                     {{-- <td><?php //echo str_replace(',', ',<br>', $row->loading_region_id); ?></td> --}}
-                                    <td><?php echo str_replace(',', ',<br>', $row->discharge_region_id); ?></td>
+                                    <td>
+                                        @foreach ($row->Lregion as $row12)
+                                            {{ optional($row12->CAlregion)->region_name }},<br>
+                                        @endforeach
+                                    </td>
+                                    {{-- <td><?php //echo str_replace(',', ',<br>', $row->discharge_region_id); ?></td> --}}
+                                    <td>
+                                        @foreach ($row->Dregion as $row12)
+                                            {{ optional($row12->CAdregion)->region_name }},<br>
+                                        @endforeach
+                                    </td>
                                     <td>{{ date('d-M-Y', strtotime($row->laycan_date_from)) }}</td>
                                     <td>{{ date('d-M-Y', strtotime($row->laycan_date_to)) }}</td>
                                     <td>{{ $row->quantity }}</td>
@@ -495,27 +534,44 @@
                                     <td></td>
                                     <td>
                                         <p class="b7 mb-0">Loading Country:</p>
-                                        <p class=""><?php echo str_replace(',', ',<br>', $row->loading_country_id); ?>
+                                        {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->loading_country_id); ?> --}}
+                                        <p>
+                                            @foreach ($row->Lcountry as $row12)
+                                                {{ optional($row12->CAlcountry)->country_name }},<br>
+                                            @endforeach
                                         </p>
                                         <p class="b7 mb-0">Max LOA:</p>
                                         <p class="">{{ $row->max_loa }}</p>
                                     </td>
                                     <td>
                                         <p class="b7 mb-0">Loading Port</p>
-                                        <p class=""><?php echo str_replace(',', ',<br>', $row->loading_port_id); ?></p>
+                                        {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->loading_port_id); ?></p> --}}
+                                        <p>
+                                            @foreach ($row->Lport as $row12)
+                                                {{ optional($row12->CAlport)->port_name }},<br>
+                                            @endforeach
+                                        </p>
                                         <p class="b7 mb-0">Max Draft:</p>
                                         <p class="">{{ $row->max_draft }}</p>
                                     </td>
                                     <td>
                                         <p class="b7 mb-0">Discharge Country</p>
-                                        <p class=""><?php echo str_replace(',', ',<br>', $row->discharge_country_id); ?>
+                                        {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->discharge_country_id); ?></p> --}}
+                                        <p>
+                                            @foreach ($row->Dcountry as $row12)
+                                                {{ optional($row12->CAdcountry)->country_name }},<br>
+                                            @endforeach
                                         </p>
                                         <p class="b7 mb-0">Max Height:</p>
                                         <p class="">{{ $row->max_height }}</p>
                                     </td>
                                     <td>
                                         <p class="b7 mb-0">Discharge Port</p>
-                                        <p class=""><?php echo str_replace(',', ',<br>', $row->discharge_port_id); ?>
+                                        {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->discharge_port_id); ?></p> --}}
+                                        <p>
+                                            @foreach ($row->Dport as $row12)
+                                                {{ optional($row12->CAdport)->port_name }},<br>
+                                            @endforeach
                                         </p>
                                         <p class="b7 mb-0">Loading Equipment Req:</p>
                                         <p class="">{{ $row->loading_equipment_req }}</p>

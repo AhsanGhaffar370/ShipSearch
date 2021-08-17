@@ -24,11 +24,14 @@ class ss_cargo extends Model
 
 
     // working
+    public function cargotype(){
+        return $this->hasMany('App\Models\rel_cargo_cargotype',"cargo_id");
+    }
     public function Lregion(){
         return $this->hasMany('App\Models\rel_cargo_lregion',"cargo_id");
     }
     public function Dregion(){
-        return $this->hasMany('App\Models\rel_cargo_lregion',"cargo_id");
+        return $this->hasMany('App\Models\rel_cargo_dregion',"cargo_id");
     }
     public function Lcountry(){
         return $this->hasMany('App\Models\rel_cargo_lcountry',"cargo_id");

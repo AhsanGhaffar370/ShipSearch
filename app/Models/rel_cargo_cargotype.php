@@ -19,6 +19,6 @@ class rel_cargo_cargotype extends Model
 
     
     public function CAcargotype(){
-        return $this->belongsTo(ss_setup_cargo_type::class,'cargotype_id');
+        return $this->belongsTo(ss_setup_cargo_type::class,'cargo_type_id'); // rel_cargo_cargo_type table ki id aegi yaha.
     }
 }

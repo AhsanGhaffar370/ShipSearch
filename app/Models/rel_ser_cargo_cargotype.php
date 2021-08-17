@@ -19,6 +19,6 @@ class rel_ser_cargo_cargotype extends Model
 
     
     public function SCAcargotype(){
-        return $this->belongsTo(ss_setup_cargo_type::class,'cargotype_id');
+        return $this->belongsTo(ss_setup_cargo_type::class,'cargo_type_id');
     }
 }

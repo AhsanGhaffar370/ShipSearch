@@ -39,11 +39,11 @@ $(document).ready(function() {
 
     //     // alert($(this).attr('name'));
 
-    //     var lregion_id = $('#loading_region_id').val();
+    //     var loading_region_id = $('#loading_region_id').val();
 
     //     $.ajax({
     //         url: route('cargo.get_country'),
-    //         data: "region_country_id=" + lregion_id,
+    //         data: "region_country_id=" + loading_region_id,
     //         type: "get",
     //         success: function(response) {
 
@@ -65,7 +65,7 @@ $(document).ready(function() {
     //             $(".loading_country_id_par").html(post_str);
 
     //             $('.loading_country_id').selectpicker();
-    //             if (lregion_id.length == 0)
+    //             if (loading_region_id.length == 0)
     //                 $('#loading_country_id').prop('disabled', true);
     //         }
     //     });
@@ -131,11 +131,11 @@ $(document).ready(function() {
     // $(document).on("click", '.loading_country_id', function(e) {
     // alert("hello");
 
-    // var lregion_id = $('#loading_region_id').val();
+    // var loading_region_id = $('#loading_region_id').val();
 
     // $.ajax({
     //     url: route('cargo.get_country'),
-    //     data: "region_id=" + lregion_id,
+    //     data: "region_id=" + loading_region_id,
     //     type: "get",
     //     success: function(response) {
 
