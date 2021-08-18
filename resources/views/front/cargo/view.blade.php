@@ -325,7 +325,7 @@
                                     <!-- -->
                                     <td class="">
                                         <section class="loading_region_id_par_{{ $row->id }}">
-                                            <select name="loading_region_id_{{ $row->id }}[]"
+                                            <select name="loading_region_id[]"
                                                 id="loading_region_id_{{ $row->id }}"
                                                 form="search_cargo_{{ $row->id }}"
                                                 class="loading_region_id ser_inp_fields_each" multiple title="Choose"

@@ -78,7 +78,7 @@ Route::get('/cargo/del_ser_hist_rec', [FrontCargoController::class, 'del_ser_his
 Route::get('/cargo/get_update_hist_data', [FrontCargoController::class, 'get_update_hist_data'] )->name('cargo.get_update_hist_data');
 Route::get('/cargo/update_hist_data', [FrontCargoController::class, 'update_hist_data'] )->name('cargo.update_hist_data');
 // Route::get('/cargo/update_search_hist', [FrontCargoController::class, 'update_search_hist'] )->name('cargo.update_search_hist');
-Route::get('/cargo/get_country', [FrontCargoController::class, 'get_country'] )->name('cargo.get_country');
+Route::get('/cargo/get_country_port', [FrontCargoController::class, 'get_country_port'] )->name('cargo.get_country_port');
 
 
 // Vessel Charter

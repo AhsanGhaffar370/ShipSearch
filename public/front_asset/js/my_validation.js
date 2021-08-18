@@ -23,7 +23,7 @@ $(document).ready(function() {
 
         if (country_port_attr !== "discharge_region_id" && country_port_attr != undefined) {
             $.ajax({
-                url: route('cargo.get_country'),
+                url: route('cargo.get_country_port'),
                 data: "region_country_id=" + region_country_id + "&country_port_name=" + country_port_attr,
                 type: "get",
                 success: function(response) {
@@ -102,7 +102,7 @@ $(document).ready(function() {
 
         if (country_port_attr !== "discharge_region_id_" + id && country_port_attr != undefined) {
             $.ajax({
-                url: route('cargo.get_country'),
+                url: route('cargo.get_country_port'),
                 data: "region_country_id=" + region_country_id + "&country_port_name=" + country_port_attr,
                 type: "get",
                 success: function(response) {
@@ -181,7 +181,7 @@ $(document).ready(function() {
 
         if (country_port_attr !== "discharge_region_id" && country_port_attr != undefined) {
             $.ajax({
-                url: route('cargo.get_country'),
+                url: route('cargo.get_country_port'),
                 data: "region_country_id=" + region_country_id + "&country_port_name=" + country_port_attr,
                 type: "get",
                 success: function(response) {
@@ -237,26 +237,6 @@ $(document).ready(function() {
             });
         }
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

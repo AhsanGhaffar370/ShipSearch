@@ -30,10 +30,13 @@
         rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-
+    <link href="http://fonts.cdnfonts.com/css/eras-demi-itc" rel="stylesheet">
+                
     <!-- custom css -->
     <link href="{{ asset('front_asset/css/my_style.css') }}" rel="stylesheet">
     <link href="{{ asset('front_asset/css/view_pages_style.css') }}" rel="stylesheet">
+    {{-- Eras font --}}
+    {{-- <link href="{{ asset('front_asset/css/eras_font/ErasMediumITC.ttf') }}" rel="stylesheet"> --}}
 
     <!-- datatables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
@@ -66,7 +69,7 @@
 
         .ft_social {
             color: white;
-            background: #2A7473;
+            background: #4D998D;
             border-radius: 6px;
             padding: 6px 8px;
             margin-right: 10px;
@@ -75,7 +78,7 @@
         .ft_border {
             margin-bottom: 1px;
             border: 0;
-            border-top: 6px solid #00c1ca;
+            border-top: 6px solid #4D998D;
         }
 
         button.btn.dropdown-toggle.btn-light {
@@ -122,7 +125,7 @@
         .icon_style {
             border: none;
             color: white;
-            background-color: #297477;
+            background-color: #4D998D;
             padding: 8px;
             font-size: 20px;
         }
@@ -227,7 +230,7 @@
                         {{-- <a class="btn btn-info rounded-0"
                             href="{{ route('logout') }}">({{ session('front_uname') }})
                             Logout</a> --}}
-                        <button class="btn_style btn_xxs t_italic" type="button" onclick="location.href='{{ route('logout') }}'">Logout</button>
+                        <button class="btn_style btn_xxs t_italic exo" type="button" onclick="location.href='{{ route('logout') }}'">Logout</button>
                     
                     @else
                     <button class="btn_style btn_xxs t_italic exo" type="button" onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button>
@@ -392,7 +395,7 @@
                     <!-- Grid column -->
                     <div class="col-md-4 offset-md-5 mb-md-0 mb-3">
 
-                        <h5 class="size42 cl_bl ">Contact Details:</h5>
+                        <h5 class="size42 cl-dark eras ">Contact Details:</h5>
 
                         <div class="p-2">
                             <i class="fas fa-phone-alt icon_style"></i> &nbsp;

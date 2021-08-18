@@ -41,6 +41,10 @@ body {
     font-family: 'Fjalla One', sans-serif !important;
 }
 
+.eras {
+    font-family: 'Eras Medium ITC', sans-serif !important;
+}
+
 .widee {
     max-width: 1296px;
     min-width: 250px;
@@ -590,15 +594,15 @@ a:hover {
 } */
 
 .btn_xxxs {
-    padding: 6px 10px !important;
+    padding: 5px 10px !important;
 }
 
 .btn_xxs {
-    padding: 10px 20px !important;
+    padding: 8px 20px !important;
 }
 
 .btn_xs {
-    padding: 10px 20px !important;
+    padding: 8px 20px !important;
 }
 
 .btn_sm {
@@ -1090,11 +1094,11 @@ BACKGROUND
 }
 
 .bg_gl {
-    background-color: #A8D5C0 !important;
+    background-color: #B4C8C6 !important;
 }
 
 .bg_gll {
-    background-color: #B4C8C6 !important;
+    background-color: #C8DEDC !important;
 }
 
 .bg_bd {
@@ -1149,77 +1153,77 @@ p {
 
 .size54 {
     font-size: 54px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size48 {
     font-size: 48px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size46 {
     font-size: 46px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size42 {
     font-size: 42px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size38 {
     font-size: 38px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size36 {
     font-size: 36px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size34 {
     font-size: 34px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size32 {
     font-size: 32px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size30 {
     font-size: 30px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size28 {
     font-size: 28px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size26 {
     font-size: 26px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size25 {
     font-size: 25px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size24 {
     font-size: 24px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size22 {
     font-size: 22px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size20 {
     font-size: 20px !important;
-    font-weight: 600 !important;
+    /* font-weight: 600 !important; */
 }
 
 .size18 {

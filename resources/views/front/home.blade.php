@@ -204,11 +204,11 @@
             <div class="row m-0">
                 <div class="col-12 col-lg-5 col-md-6 p-0">
                     <div class="container paddings text-left">
-                        <p class="main_hd text-left m-0 fjala">
+                        <p class="main_hd text-left m-0 eras">
                             MANAGE LOADS.<br>
                             DRIVE PROFITS.
                         </p>
-                        <p class="text-white">
+                        <p class="text-white size14">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis augue non ex accumsan
                             lobortis. Morbi a
                             tortor aliquet, sollicitudin urna nec, fringilla lorem. Aliquam erat volutpat. Ut rutrum risus
@@ -325,7 +325,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center mt-4">
-                                    <button type="submit" class="btn_style ser_hover bg_gl cl_gd btn_xxs">
+                                    <button type="submit" class="btn_style ser_hover cl_gd btn_xxs" style="background-color: #ABD6C2">
                                         Search
                                     </button>
                                 </div>
@@ -335,16 +335,15 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 
     <div class="widee text-center">
         <div class="col-12 col-lg-10 verCen pt-4 pb-5">
-            <h2 class="size48 exo cl_gd">
+            <p class="size48 b4 eras  cl_gd">
                 Manage loads. Drive profits.
-            </h2>
-            <p class="size18 cl_bl b6 pt-3">
+            </p>
+            <p class="size17 cl_bl b6">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis augue non ex accumsan lobortis.
                 Morbi a
                 tortor aliquet, sollicitudin urna nec, fringilla lorem. Aliquam erat volutpat. Ut rutrum risus tellus. Proin
@@ -355,7 +354,7 @@
         </div>
     </div>
 
-    <div class="bg_gll" style="height: 150px">
+    <div class="bg_gl" style="height: 150px">
     </div>
 
     <section class="widee ">
@@ -364,7 +363,7 @@
                 <div class="card mr-4 ml-4 sh_card rad20">
                     <img class="card-img-top card_mar" src="{{ asset('front_asset/images/1.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
-                        <h5 class="card-title cl_gd size24 pt-4">Latest Cargos</h5>
+                        <h5 class="eras card-title cl_gd size28 pt-4">Latest Cargos</h5>
                         <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
                             Cargo Name: xyz <br>
                             Cargo Type: xyz <br>
@@ -377,7 +376,7 @@
                 <div class="card mr-4 ml-4 sh_card rad20">
                     <img class="card-img-top card_mar" src="{{ asset('front_asset/images/2.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
-                        <h5 class="card-title cl_gd size24 pt-4">Latest Vessels for Charter</h5>
+                        <h5 class="eras card-title cl_gd size28 pt-4">Latest Vessels for Charter</h5>
                         <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
                             Cargo Name: xyz <br>
                             Cargo Type: xyz <br>
@@ -390,7 +389,7 @@
                 <div class="card mr-4 ml-4 sh_card rad20">
                     <img class="card-img-top card_mar" src="{{ asset('front_asset/images/3.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
-                        <h5 class="card-title cl_gd size24 pt-4">Latest Vessels for Sale</h5>
+                        <h5 class="eras card-title cl_gd size28 pt-4">Latest Vessels for Sale</h5>
                         <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
                             Cargo Name: xyz <br>
                             Cargo Type: xyz <br>
@@ -412,31 +411,31 @@
         <div class="widee ">
         <div class="col-12 col-lg-12 verCen">
             <div class="card-deck text-center">
-                <div class="card bg_gd m-0 pl-2 pr-2">
+                <div class="card bg_gd m-0 pl-4 pr-4">
                     <img class="card-img-top" src="{{ asset('front_asset/images/4.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
-                        <h5 class="card-title cl_gl size30 pt-4">Latest Classifieds</h5>
-                        <p class="card-text size14 text-white b4 mb-4">
+                        <h5 class="eras card-title cl_gl size36 pt-4">Latest Classifieds</h5>
+                        <p class="card-text size13 text-white b4 mb-4">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis augue non ex accumsan lobortis.
                             Morbi a tortor aliquet. Praesent ultricies finibus sodales.
                         </p>
                     </div>
                 </div>
-                <div class="card bg_gd m-0 pl-2 pr-2" style="border-left: 1px solid white !important; border-right: 1px solid white !important;">
+                <div class="card bg_gd m-0 pl-4 pr-4" style="border-left: 1px solid white !important; border-right: 1px solid white !important;">
                     <img class="card-img-top" src="{{ asset('front_asset/images/5.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
-                        <h5 class="card-title cl_gl size30 pt-4">Events</h5>
-                        <p class="card-text size14 text-white b4 mb-4">
+                        <h5 class="eras card-title cl_gl size36 pt-4">Events</h5>
+                        <p class="card-text size13 text-white b4 mb-4">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis augue non ex accumsan lobortis.
                             Morbi a tortor aliquet. Praesent ultricies finibus sodales.
                         </p>
                     </div>
                 </div>
-                <div class="card bg_gd m-0 pl-2 pr-2">
+                <div class="card bg_gd m-0 pl-4 pr-4">
                     <img class="card-img-top" src="{{ asset('front_asset/images/6.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
-                        <h5 class="card-title cl_gl size30 pt-4">Latest Job Posts</h5>
-                        <p class="card-text size14 text-white b4 mb-4">
+                        <h5 class="eras card-title cl_gl size36 pt-4">Latest Job Posts</h5>
+                        <p class="card-text size13 text-white b4 mb-4">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis augue non ex accumsan lobortis.
                             Morbi a tortor aliquet. Praesent ultricies finibus sodales.
                         </p>
@@ -451,14 +450,17 @@
     <section class="bg_gd pt-4 pb-4 mt-5 about_bg" >
         <div class="widee ">
             <div class="col-12 col-lg-4 pt-4 pb-5">
-                <h2 class="size40 b6 cl_gl">
+                <h2 class="eras size48 b4 cl_gd mb-2">
                     ABOUT US
                 </h2>
-                <p class="size14 cl_bl b4 pt-3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis augue non ex accumsan lobortis.
-                    Morbi a <br>
+                <hr class="line_decor col-2 m-0" style="border-top-color: #509787; border-top-width: 4px;">
+                <p class="size14 cl_bl b6 pt-3">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis augue non ex accumsan. 
+                    Proin sagittis augue non ex accumsan lobortis.
+                </p>
+                <p class="size14 cl_bl b6">
                     tortor aliquet, sollicitudin urna nec, fringilla lorem. Aliquam erat volutpat. Ut rutrum risus tellus. Proin
-                    gravida volutpat accumsan. Praesent ultricies finibus sodales. Mauris sed ex a neque tristique aliquam.
+                    gravida volutpat accumsan.
                 </p>
                 <button type="submit" class="btn_style btn_xxs">
                     Read More

@@ -9,165 +9,12 @@ $(document).ready(function() {
     $('.discharge_country_id').selectpicker();
     $('.discharge_port_id').selectpicker();
 
-
     //vessel
     $('.vessel_type_id').selectpicker();
     $('.charter_type_id').selectpicker();
     $('.region_id').selectpicker();
     $('.country_id').selectpicker();
     $('.port_id').selectpicker();
-
-    // $('.loading_country_id button').click(function(e) {
-    //     if ($('#loading_country_id').attr('disabled'))
-    //         alert("Please select Loading region");
-    // });
-    // $('.loading_port_id button').click(function(e) {
-    //     if ($('#loading_port_id').attr('disabled'))
-    //         alert("Please select Loading country");
-    // });
-    // $('.discharge_country_id button').click(function(e) {
-    //     if ($('#discharge_country_id').attr('disabled'))
-    //         alert("Please select Discharge region");
-    // });
-    // $('.discharge_port_id button').click(function(e) {
-    //     if ($('#discharge_port_id').attr('disabled'))
-    //         alert("Please select Discharge country");
-    // });
-
-
-    // $(document).on("change", '#loading_region_id', function(e) {
-
-    //     // alert($(this).attr('name'));
-
-    //     var loading_region_id = $('#loading_region_id').val();
-
-    //     $.ajax({
-    //         url: route('cargo.get_country'),
-    //         data: "region_country_id=" + loading_region_id,
-    //         type: "get",
-    //         success: function(response) {
-
-    //             let json_data = $.parseJSON(response);
-    //             var post_str = "";
-    //             // console.log(json_data['data'][0]);
-
-    //             post_str += `
-    //                         <select name="loading_country_id[]" id="loading_country_id" form="search_cargo"
-    //                             class="loading_country_id ser_inp_fields" multiple title="Choose" data-size="5"
-    //                             data-selected-text-format="count > 2" data-live-search="true">`;
-
-    //             $.each(json_data['data'][0], function(i, obj1) {
-    //                 post_str += `<option value="` + obj1.lcountry.country_id + `">` + obj1.lcountry.country_name + `</option>`;
-    //             });
-    //             post_str += `</select>`;
-
-    //             // $(".loading_country_id .dropdown-menu .inner ul").html(post_str);
-    //             $(".loading_country_id_par").html(post_str);
-
-    //             $('.loading_country_id').selectpicker();
-    //             if (loading_region_id.length == 0)
-    //                 $('#loading_country_id').prop('disabled', true);
-    //         }
-    //     });
-
-    // });
-
-    // $('select.ser_inp_fields').click(function(e) {
-    // $(document).on("click", '.loading_port_id button', function(e) {
-
-
-
-
-    // $('.loading_port_id button').click(function(e) {
-    //     var lcountry_id = $('#loading_port_id').attr('disabled');
-    //     if (lcountry_id) {
-    //         alert("Please select Loading country");
-    //     }
-    // });
-    // // $('#loading_region_id').click(function(e) {
-    // $(document).on("change", '#loading_country_id', function(e) {
-
-    //     var lcountry_id = $('#loading_country_id').val();
-
-    //     $.ajax({
-    //         url: route('cargo.get_country'),
-    //         data: "region_country_id=" + lcountry_id,
-    //         type: "get",
-    //         success: function(response) {
-
-    //             let json_data = $.parseJSON(response);
-    //             var post_str = "";
-
-    //             post_str += `
-    //                         <select name="loading_port_id[]" id="loading_port_id" form="search_cargo"
-    //                             class="loading_port_id ser_inp_fields" multiple title="Choose" data-size="5"
-    //                             data-selected-text-format="count > 2" data-live-search="true">`;
-
-    //             $.each(json_data['data'][1], function(i, obj1) {
-    //                 post_str += `<option value="` + obj1.lport.port_name + `">` + obj1.lport.port_name + `</option>`;
-    //             });
-    //             post_str += `</select>`;
-
-
-    //             // $(".loading_country_id .dropdown-menu .inner ul").html(post_str);
-    //             $(".loading_port_id_par").html(post_str);
-
-    //             $('.loading_port_id').selectpicker();
-
-    //             if (lcountry_id.length == 0)
-    //                 $('#loading_port_id').prop('disabled', true);
-
-
-    //         }
-    //     });
-
-    // });
-
-
-
-
-    // $('.loading_country_id').click(function(e) {
-    // setTimeout(function() {
-    // $(document).on("click", '.loading_country_id', function(e) {
-    // alert("hello");
-
-    // var loading_region_id = $('#loading_region_id').val();
-
-    // $.ajax({
-    //     url: route('cargo.get_country'),
-    //     data: "region_id=" + loading_region_id,
-    //     type: "get",
-    //     success: function(response) {
-
-    //         let json_data = $.parseJSON(response);
-    //         var post_str = "";
-
-
-    // $.each(obj, function(i, obj1) {
-    // console.log(obj1.lcountry.country_id);
-    // console.log(i + "  " + obj1.lcountry.country_name);
-    // post_str += `
-    //             <select name="loading_country_id[]" id="loading_country_id" form="search_cargo"
-    //                 class="loading_country_id ser_inp_fields" multiple title="Choose" data-size="5"
-    //                 data-selected-text-format="count > 2" data-live-search="true">`;
-
-    // $.each(json_data, function(i, obj1) {
-    //     post_str += `<option value="` + obj1.lcountry.country_name + `">` + obj1.lcountry.country_name + `</option>`;
-    // });
-    // post_str += `</select>`;
-
-
-    // $(".loading_country_id .dropdown-menu .inner ul").html(post_str);
-    // $(".loading_country_id_par").html(post_str);
-
-    // $('.loading_country_id').selectpicker();
-
-    // }
-    // });
-    // }, 2000);
-    // });
-
-
 
 
     function GetFormattedDate(date) {
@@ -319,14 +166,22 @@ $(document).ready(function() {
                             post_str += `<tr class="">
                                     <td>` + obj1.ref_no + `</td>
                                     <td>` + obj1.cargo_name + `</td>
-                                    <td>` + obj1.cargo_type_id.replace(/,/g, ',<br>') + `</td>
                                     <td>`;
-                            // working
-                            $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, region_name_obj) {
-                                post_str += region_name_obj + ',<br>';
+                            $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
+                                post_str += cargotype_obj + ',<br>';
                             });
                             post_str += `</td>
-                                    <td>` + obj1.discharge_region_id.replace(/,/g, ',<br>') + `</td>
+                                        <td>`;
+                            $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
+                                post_str += lregion_obj + ',<br>';
+                            });
+                            post_str += `</td>
+                                        <td>`;
+                            $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
+                                post_str += dregion_obj + ',<br>';
+                            });
+
+                            post_str += `</td>
                                     <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
                                     <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
                                     <td>` + obj1.quantity + `</td>
@@ -342,26 +197,42 @@ $(document).ready(function() {
                                     <tr class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                     <td></td>
                                     <td>
-                                        <p class="b7 mb-0">Loading Country:</p>
-                                        <p class="">` + obj1.loading_country_id.replace(/,/g, ',<br>') + `</p>
+                                        <p class="b7 mb-0">Loading Country:</p>`;
+                            post_str += `<p class="">`;
+                            $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
+                                post_str += lcountry_obj + ',<br>';
+                            });
+                            post_str += `</p>
                                         <p class="b7 mb-0">Max LOA:</p>
                                         <p class="">` + obj1.max_loa + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Loading Port:</p>
-                                        <p class="">` + obj1.loading_port_id.replace(/,/g, ',<br>') + `</p>
+                                        <p class="b7 mb-0">Loading Port:</p>`;
+                            post_str += `<p class="">`;
+                            $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
+                                post_str += lport_obj + ',<br>';
+                            });
+                            post_str += `</p>
                                         <p class="b7 mb-0">Max Draft:</p>
                                         <p class="">` + obj1.max_draft + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Discharge Country:</p>
-                                        <p class="">` + obj1.discharge_country_id.replace(/,/g, ',<br>') + `</p>
+                                        <p class="b7 mb-0">Discharge Country:</p>`;
+                            post_str += `<p class="">`;
+                            $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
+                                post_str += dcountry_obj + ',<br>';
+                            });
+                            post_str += `</p>
                                         <p class="b7 mb-0">Max Height:</p>
                                         <p class="">` + obj1.max_height + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Discharge Port:</p>
-                                        <p class="">` + obj1.discharge_port_id.replace(/,/g, ',<br>') + `</p>
+                                        <p class="b7 mb-0">Discharge Port:</p>`;
+                            post_str += `<p class="">`;
+                            $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
+                                post_str += dport_obj + ',<br>';
+                            });
+                            post_str += `</p>
                                         <p class="b7 mb-0">Loading Equipment Req:</p>
                                         <p class="">` + obj1.loading_equipment_req + `</p>
                                     </td>
@@ -483,7 +354,7 @@ $(document).ready(function() {
 
                     let dd_id = "#" + obj1 + "_" + uid;
 
-                    let dd_data_ids = json_data['data'][1]["loading_region_id"];
+                    let dd_data_ids = json_data['data'][1][obj1];
                     // let dd_data_arr = dd_data.split(",");
 
                     $.each(dd_data_ids, function(i, obj2) {
@@ -497,8 +368,8 @@ $(document).ready(function() {
                         $(dd_id).siblings(".btn").attr("title", dd_data_ids.length + " items selected");
                         $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_ids.length + " items selected");
                     } else {
-                        $(dd_id).siblings(".btn").attr("title", json_data['data'][2]["loading_region_id"]);
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(json_data['data'][2]["loading_region_id"]);
+                        $(dd_id).siblings(".btn").attr("title", json_data['data'][2][obj1]);
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(json_data['data'][2][obj1]);
                     }
                 });
 
@@ -526,20 +397,31 @@ $(document).ready(function() {
         let arr = ["cargo_type_id", "loading_region_id", "loading_country_id", "loading_port_id",
             "discharge_region_id", "discharge_country_id", "discharge_port_id"
         ];
-        let dd_str = new Array(7);
+        let dd_str_ids = new Array(7);
+        let dd_str_names = new Array(7);
         let count = 0;
 
         $.each(arr, function(i, obj1) {
             let dd_id = "#" + obj1 + "_" + uid;
-            var dd_data = $(dd_id).map(function() { return $(this).val(); }).get();
-            dd_str[count] = "";
-            $.each(dd_data, function(i, obj1) {
-                dd_str[count] += obj1 + ",";
+
+            var dd_data_ids = $(dd_id).map(function() { return $(this).val(); }).get();
+            dd_str_ids[count] = "";
+            $.each(dd_data_ids, function(i, obj1) {
+                dd_str_ids[count] += obj1 + ",";
             });
-            dd_str[count] = dd_str[count].replace(/,+$/, '');
+            dd_str_ids[count] = dd_str_ids[count].replace(/,+$/, '');
+
+
+            var dd_data_names = $(dd_id + " :selected").map(function() { return $(this).html(); }).get();
+            dd_str_names[count] = "";
+            $.each(dd_data_names, function(i, obj1) {
+                dd_str_names[count] += obj1 + ",";
+            });
+            dd_str_names[count] = dd_str_names[count].replace(/,+$/, '');
+
             count++;
         });
-        // console.log("cargo ", dd_str[1]);
+        // console.log("cargo ", dd_str_ids[1]);
 
 
         if (date_from == "") {
@@ -547,24 +429,24 @@ $(document).ready(function() {
         } else {
             $.ajax({
                 url: route('cargo.update_hist_data'),
-                data: "id=" + uid + "&cargo_type_id=" + dd_str[0] + "&laycan_date_from=" + date_from +
-                    "&laycan_date_to=" + date_to + "&loading_region_id=" + dd_str[1] + "&loading_country_id=" + dd_str[2] +
-                    "&loading_port_id=" + dd_str[3] + "&discharge_region_id=" + dd_str[4] +
-                    "&discharge_country_id=" + dd_str[5] + "&discharge_port_id=" + dd_str[6],
+                data: "id=" + uid + "&cargo_type_id=" + dd_str_ids[0] + "&laycan_date_from=" + date_from +
+                    "&laycan_date_to=" + date_to + "&loading_region_id=" + dd_str_ids[1] + "&loading_country_id=" + dd_str_ids[2] +
+                    "&loading_port_id=" + dd_str_ids[3] + "&discharge_region_id=" + dd_str_ids[4] +
+                    "&discharge_country_id=" + dd_str_ids[5] + "&discharge_port_id=" + dd_str_ids[6],
                 type: "get",
                 success: function(response) {
                     if (response == false) {
                         alert("something went wrong. Please try again");
                     } else {
-                        $("#cargotype-" + uid).html(dd_str[0].replace(/,/g, ',<br>'));
+                        $("#cargotype-" + uid).html(dd_str_names[0].replace(/,/g, ',<br>'));
                         $("#laycan_from-" + uid).html(date_from);
                         $("#laycan_to-" + uid).html(date_to);
-                        $("#lregion-" + uid).html(dd_str[1].replace(/,/g, ',<br>'));
-                        $("#lcountry-" + uid).html(dd_str[2].replace(/,/g, ',<br>'));
-                        $("#lport-" + uid).html(dd_str[3].replace(/,/g, ',<br>'));
-                        $("#dregion-" + uid).html(dd_str[4].replace(/,/g, ',<br>'));
-                        $("#dcountry-" + uid).html(dd_str[5].replace(/,/g, ',<br>'));
-                        $("#dport-" + uid).html(dd_str[6].replace(/,/g, ',<br>'));
+                        $("#lregion-" + uid).html(dd_str_names[1].replace(/,/g, ',<br>'));
+                        $("#lcountry-" + uid).html(dd_str_names[2].replace(/,/g, ',<br>'));
+                        $("#lport-" + uid).html(dd_str_names[3].replace(/,/g, ',<br>'));
+                        $("#dregion-" + uid).html(dd_str_names[4].replace(/,/g, ',<br>'));
+                        $("#dcountry-" + uid).html(dd_str_names[5].replace(/,/g, ',<br>'));
+                        $("#dport-" + uid).html(dd_str_names[6].replace(/,/g, ',<br>'));
 
                         let json_data = $.parseJSON(response);
                         var len = json_data.length;
@@ -580,80 +462,103 @@ $(document).ready(function() {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
                                     post_str += `<tr class="">
-                                                <td>` + obj1.ref_no + `</td>
-                                                <td>` + obj1.cargo_name + `</td>
-                                                <td>` + obj1.cargo_type_id.replace(/,/g, ',<br>') + `</td>
-                                                <td>`;
-                                    // working
-                                    $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, region_name_obj) {
-                                        post_str += region_name_obj + ',<br>';
+                                    <td>` + obj1.ref_no + `</td>
+                                    <td>` + obj1.cargo_name + `</td>
+                                    <td>`;
+                                    $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
+                                        post_str += cargotype_obj + ',<br>';
                                     });
                                     post_str += `</td>
-                                                <td>` + obj1.discharge_region_id.replace(/,/g, ',<br>') + `</td>
-                                                <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
-                                                <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
-                                                <td>` + obj1.quantity + `</td>
-                                                <td>` + obj1.loading_discharge_rates + `</td>
-                                                <td>` + obj1.created_at + `</td>
-                                                <td class="text-center">
-                                                    <a href="` + obj1.cargo_id + `" class="show_detail_btn_` + obj1
+                                        <td>`;
+                                    $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
+                                        post_str += lregion_obj + ',<br>';
+                                    });
+                                    post_str += `</td>
+                                        <td>`;
+                                    $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
+                                        post_str += dregion_obj + ',<br>';
+                                    });
+
+                                    post_str += `</td>
+                                    <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
+                                    <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
+                                    <td>` + obj1.quantity + `</td>
+                                    <td>` + obj1.loading_discharge_rates + `</td>
+                                    <td>` + obj1.created_at + `</td>
+                                    <td class="text-center">
+                                        <a href="` + obj1.cargo_id + `" class="show_detail_btn_` + obj1
                                         .cargo_id + ` show_detail_btn"><i class="fas fa-eye fa-2x"></i></a>
-                                                    <a href="` + obj1.cargo_id + `" class="hide_detail_btn_` + obj1
+                                        <a href="` + obj1.cargo_id + `" class="hide_detail_btn_` + obj1
                                         .cargo_id + ` hide_detail_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
-                                                </td>
-                                                </tr>
-                                                
-                                                <tr class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
-                                                <td></td>
-                                                <td>
-                                                    <p class="b7 mb-0">Loading Country:</p>
-                                                    <p class="">` + obj1.loading_country_id.replace(/,/g, ',<br>') + `</p>
-                                                    <p class="b7 mb-0">Max LOA:</p>
-                                                    <p class="">` + obj1.max_loa + `</p>
-                                                </td>
-                                                <td>
-                                                    <p class="b7 mb-0">Loading Port:</p>
-                                                    <p class="">` + obj1.loading_port_id.replace(/,/g, ',<br>') + `</p>
-                                                    <p class="b7 mb-0">Max Draft:</p>
-                                                    <p class="">` + obj1.max_draft + `</p>
-                                                </td>
-                                                <td>
-                                                    <p class="b7 mb-0">Discharge Country:</p>
-                                                    <p class="">` + obj1.discharge_country_id.replace(/,/g, ',<br>') + `</p>
-                                                    <p class="b7 mb-0">Max Height:</p>
-                                                    <p class="">` + obj1.max_height + `</p>
-                                                </td>
-                                                <td>
-                                                    <p class="b7 mb-0">Discharge Port:</p>
-                                                    <p class="">` + obj1.discharge_port_id.replace(/,/g, ',<br>') + `</p>
-                                                    <p class="b7 mb-0">Loading Equipment Req:</p>
-                                                    <p class="">` + obj1.loading_equipment_req + `</p>
-                                                </td>
-                                                <td>
-                                                    <p class="b7 mb-0">Over Age:</p>
-                                                    <p class="">` + obj1.over_age + `</p>
-                                                    <p class="b7 mb-0">Discharge Equipment Req:</p>
-                                                    <p class="">` + obj1.discharge_equipment_req + `</p>
-                                                </td>
-                                                <td>
-                                                    <p class="b7 mb-0">Hazmat:</p>
-                                                    <p class="">` + obj1.hazmat + `</p>
-                                                    <p class="b7 mb-0">Combinable:</p>
-                                                    <p class="">` + obj1.combinable + `</p>
-                                                </td>
-                                                <td>
-                                                    <p class="b7 mb-0">Commission:</p>
-                                                    <p class="">` + obj1.commision + `</p>
-                                                    <p class="b7 mb-0">Gear Lifting Capacity:</p>
-                                                    <p class="">` + obj1.gear_lifting_capacity + `</p>
-                                                </td>
-                                                <td colspan="2">
-                                                    <p class="b7 mb-0">Additional Info:</p>
-                                                    <p class="">` + obj1.additional_info + `</p>
-                                                </td>
-                                                <td></td>
-                                                </tr>
-                                                `;
+                                    </td>
+                                    </tr>
+                                    <tr class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                    <td></td>
+                                    <td>
+                                        <p class="b7 mb-0">Loading Country:</p>`;
+                                    post_str += `<p class="">`;
+                                    $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
+                                        post_str += lcountry_obj + ',<br>';
+                                    });
+                                    post_str += `</p>
+                                        <p class="b7 mb-0">Max LOA:</p>
+                                        <p class="">` + obj1.max_loa + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Loading Port:</p>`;
+                                    post_str += `<p class="">`;
+                                    $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
+                                        post_str += lport_obj + ',<br>';
+                                    });
+                                    post_str += `</p>
+                                        <p class="b7 mb-0">Max Draft:</p>
+                                        <p class="">` + obj1.max_draft + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Discharge Country:</p>`;
+                                    post_str += `<p class="">`;
+                                    $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
+                                        post_str += dcountry_obj + ',<br>';
+                                    });
+                                    post_str += `</p>
+                                        <p class="b7 mb-0">Max Height:</p>
+                                        <p class="">` + obj1.max_height + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Discharge Port:</p>`;
+                                    post_str += `<p class="">`;
+                                    $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
+                                        post_str += dport_obj + ',<br>';
+                                    });
+                                    post_str += `</p>
+                                        <p class="b7 mb-0">Loading Equipment Req:</p>
+                                        <p class="">` + obj1.loading_equipment_req + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Over Age:</p>
+                                        <p class="">` + obj1.over_age + `</p>
+                                        <p class="b7 mb-0">Discharge Equipment Req:</p>
+                                        <p class="">` + obj1.discharge_equipment_req + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Hazmat:</p>
+                                        <p class="">` + obj1.hazmat + `</p>
+                                        <p class="b7 mb-0">Combinable:</p>
+                                        <p class="">` + obj1.combinable + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Commission:</p>
+                                        <p class="">` + obj1.commision + `</p>
+                                        <p class="b7 mb-0">Gear Lifting Capacity:</p>
+                                        <p class="">` + obj1.gear_lifting_capacity + `</p>
+                                    </td>
+                                    <td colspan="2">
+                                        <p class="b7 mb-0">Additional Info:</p>
+                                        <p class="">` + obj1.additional_info + `</p>
+                                    </td>
+                                    <td></td>
+                                    </tr>
+                                    `;
                                 });
                             });
                         } //end else
