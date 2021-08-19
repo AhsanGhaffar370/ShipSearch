@@ -106,7 +106,7 @@
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Last Dry Docked:</label>
+                        <label for="">Last DD:</label>
                         <input type="date" required name="last_dry_docked" class="form-control">
                     </div>
                     <!-- -->
@@ -124,10 +124,10 @@
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">GRT</label>
-                                <input type="number" required name="GRT" class="left_round form-control ">
+                                <input type="number" required name="grt" class="left_round form-control ">
                             </div>
                             <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
-                                <select name="GRT_unit" id="GRT_unit"
+                                <select name="grt_unit" id="grt_unit"
                                     class="right_round form-control bg-light mt-4">
                                     <option value="MT">MT</option>
                                 </select>
@@ -139,10 +139,10 @@
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">NRT</label>
-                                <input type="number" required name="NRT" class="left_round form-control ">
+                                <input type="number" required name="nrt" class="left_round form-control ">
                             </div>
                             <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
-                                <select name="NRT_unit" id="NRT_unit"
+                                <select name="nrt_unit" id="nrt_unit"
                                     class="right_round form-control bg-light mt-4">
                                     <option value="MT">MT</option>
                                 </select>
@@ -239,7 +239,7 @@
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
-                                <label for="">FW Draft</label>
+                                <label for="">Fresh Water Draft</label>
                                 <input type="number" required name="fw_draft" class="left_round form-control ">
                             </div>
                             <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
@@ -250,6 +250,8 @@
                             </div>
                         </div>
                     </div>
+                    <!-- -->
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Main Engine</label>
@@ -291,11 +293,6 @@
                         </div>
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">In Service</label>
-                        <input type="text" required name="in_service" class="form-control">
-                    </div>
-                    <!-- -->
                     <div class="col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="" class="mb-3">In Service</label><br>
                         <div class="form-check-inline">
@@ -311,9 +308,21 @@
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Price</label>
-                        <input type="number" required name="price" class="form-control">
-                    </div>
+                        <div class="row">
+                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                                <label for="">Price</label>
+                                <input type="number" required name="price" class="left_round form-control ">
+                            </div>
+                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                                <select name="price_unit" id="price_unit"
+                                    class="right_round form-control bg-light mt-4">
+                                    <option value="USD">USD</option>
+                                    <option value="EURO">EURO</option>
+                                    <option value="GBP">GBP</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div> 
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Cargo Capacity</label>
@@ -331,15 +340,9 @@
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Brief Description</label>
-                        <textarea name="brief_description" id="brief_description" class="form-control" cols="30"
-                            rows="5"></textarea>
-                    </div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Additional Description</label>
                         <textarea name="additional_description" id="additional_description" class="form-control" cols="30"
-                            rows="5"></textarea>
+                            rows="5" maxlength = "250"></textarea>
                     </div>
 
                     <!-- -->

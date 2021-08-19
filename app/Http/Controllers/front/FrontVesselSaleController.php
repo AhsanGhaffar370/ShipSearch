@@ -4,14 +4,12 @@ namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ss_vessel;
 use App\Models\ss_vessel_sale;
 use App\Models\ss_setup_vessel_type;
 use App\Models\ss_setup_region;
 use App\Models\ss_setup_country;
 use App\Models\ss_setup_port;
 use App\Models\vessel_sale_search_history;
-use App\Models\vessel_search_history;
 
 class FrontVesselSaleController extends Controller
 {
@@ -63,45 +61,72 @@ class FrontVesselSaleController extends Controller
     function add_req(Request $req){
 
         $add_req= $req->all();
+        $add_req=new ss_vessel_sale;
+
+        $add_req->ref_no=$req->ref_no;
 
         $vessel_type="";
         foreach ($req->vessel_type_id as $selectedOption)
             $vessel_type .= $selectedOption.",";
-        $add_req["vessel_type_id"]=rtrim($vessel_type, ",");
-
-        $charter_type="";
-        foreach ($req->charter_type_id as $selectedOption)
-            $charter_type .= $selectedOption.",";
-        $add_req["charter_type_id"]=rtrim($charter_type, ",");
+        $add_req->vessel_type_id=rtrim($vessel_type, ",");
 
         $region="";
         foreach ($req->region_id as $selectedOption)
             $region .= $selectedOption.",";
-        $add_req["region_id"]=rtrim($region, ",");
+        $add_req->region_id=rtrim($region, ",");
 
         $country="";
         foreach ($req->country_id as $selectedOption)
             $country .= $selectedOption.",";
-        $add_req["country_id"]=rtrim($country, ",");
+        $add_req->country_id=rtrim($country, ",");
 
         $port="";
         foreach ($req->port_id as $selectedOption)
             $port .= $selectedOption.",";
-        $add_req["port_id"]=rtrim($port, ",");
+        $add_req->port_id=rtrim($port, ",");
 
+        $add_req->date_available=$req->date_available;
+        $add_req->operations_date=$req->operations_date;
+        $add_req->built_year=$req->built_year;
+        $add_req->last_dry_docked=$req->last_dry_docked;
+        $add_req->last_ss=$req->last_ss;
+        $add_req->classification=$req->classification;
+        $add_req->dwt=$req->dwt;
+        $add_req->lightweight=$req->lightweight;
+        $add_req->main_engine=$req->main_engine;
+        $add_req->aux_engines=$req->aux_engines;
+        $add_req->bow_thruster=$req->bow_thruster;
+        $add_req->gears=$req->gears;
+        $add_req->propellers=$req->propellers;
+        $add_req->in_service=$req->in_service;
+        $add_req->cargo_capacity=$req->cargo_capacity;
+        $add_req->holds_hatch=$req->holds_hatch;
+        $add_req->cover_type=$req->cover_type;
+        $add_req->additional_description=$req->additional_description;
+        
+        $add_req->grt=$req->grt." ".$req->grt_unit;
+        $add_req->nrt=$req->nrt." ".$req->nrt_unit;
+        $add_req->speed=$req->speed." ".$req->speed_unit;
+        $add_req->consumption=$req->consumption." ".$req->consumption_unit;
+        $add_req->loa=$req->loa." ".$req->loa_unit;
+        $add_req->breadth=$req->breadth." ".$req->breadth_unit;
+        $add_req->summer_draft=$req->summer_draft." ".$req->summer_draft_unit;
+        $add_req->fw_draft=$req->fw_draft." ".$req->fw_draft_unit;
+        $add_req->bunker_capacity=$req->bunker_capacity." ".$req->bunker_capacity_unit;
+        $add_req->price=$req->price." ".$req->price_unit;
 
-        $add_req["is_active"]="1";
-        $add_req["created_at"]=date('Y-m-d H:i:s');
-        $add_req["created_by"]=session('front_uid');
-        $add_req["modified_at"]=date('Y-m-d H:i:s');
-        $add_req["modified_by"]=session('front_uid');
+        $add_req->is_active="1";
+        $add_req->created_at=date('Y-m-d H:i:s');
+        $add_req->created_by=session('front_uid');
+        $add_req->modified_at=date('Y-m-d H:i:s');
+        $add_req->modified_by=session('front_uid');
 
-        ss_vessel_sale::create($add_req);
+        $add_req->save();
 
-        $req->session()->flash('msg','Vessel Added');
+        $req->session()->flash('msg','Vessel Sale Added');
         $req->session()->flash('alert','success');
         
-        return redirect()->route('vessel.view');
+        return redirect()->route('vessel_sale.view');
     }
 
 

@@ -172,7 +172,7 @@ class FrontCargoController extends Controller
         $data->laycan_date_to=$req->laycan_date_to;
         $data->quantity=$req->quantity." ".$req->quantity_unit;
         $data->max_loa=$req->max_loa." ".$req->max_loa_unit;
-        $data->max_draft=$req->max_draft." ".$req->max_draft_unit;
+        $data->stowage_factor=$req->stowage_factor." ".$req->stowage_factor_unit;
         $data->max_height=$req->max_height." ".$req->max_height_unit;
         $data->commision=$req->commision;
         $data->combinable=$req->combinable;

@@ -51,42 +51,16 @@
         .blog_bg {
             /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
                                     url("{{ asset('front_asset/images/banner-img.jpg') }}"); */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                url("{{ asset('front_asset/images/banner-img.jpg') }}");
-            background-attachment: fixed;
+            background-image: url("{{ asset('front_asset/images/banner-img.jpg') }}");
+            /* background-attachment: fixed; */
             width: 100%;
             height: auto;
+            /* max-height: 811px; */
+            min-height: 740px;
             background-repeat: no-repeat;
             background-size: cover !important;
             padding: 0px;
         }
-
-        .about_bg{
-            background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
-                url("{{ asset('front_asset/images/AboutUs-Image.jpg') }}");
-            width: 100%;
-            height: auto;
-            background-repeat: no-repeat;
-            background-size: cover !important;
-            padding: 0px;
-        }
-
-        /* .btn_style {
-            background-color: #ffffff26 !important;
-            color: white;
-            font-size: 17px !important;
-            margin: 0px 4px 0px 4px;
-            border-radius: 0px 0px 11px 11px;
-            border-top: none !important;
-            border: 1px solid white;
-            padding: 5px 25px;
-            height: 100%;
-        }
-
-        .btn_style:hover {
-            background-color: #ffffff78 !important;
-
-        } */
 
         label {
             color: white;
@@ -139,7 +113,7 @@
 
         .main_hd {
             color: #A5CEBC;
-            font-size: 54px;
+            font-size: 55px;
             font-weight: 400;
             line-height: 1.2;
             text-transform: capitalize;
@@ -199,7 +173,7 @@
         }
     </style>
 
-    <div class="jumbotron jumbotron-fluid bg1 blog_bg border-0">
+    <div class="jumbotron jumbotron-fluid blog_bg border-0">
         <div class="widee">
             <div class="row m-0">
                 <div class="col-12 col-lg-5 col-md-6 p-0">
@@ -328,6 +302,9 @@
                                     <button type="submit" class="btn_style ser_hover cl_gd btn_xxs" style="background-color: #ABD6C2">
                                         Search
                                     </button>
+                                    <button type="reset" value="reset" class="btn_style ser_hover bg-secondary btn_xxs" onclick="location.href='{{ route('home') }}'" style="background-color: #ABD6C2">
+                                        Reset
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -354,13 +331,13 @@
         </div>
     </div>
 
-    <div class="bg_gl" style="height: 150px">
+    <div class="z_ind_1" style="height: 150px; background-color:#B4C8C6 !important;">
     </div>
 
-    <section class="widee ">
+    <section class="widee">
         <div class="col-12 col-lg-11 verCen">
             <div class="card-deck text-center mb-5 " style="margin-top: -60px">
-                <div class="card mr-4 ml-4 sh_card rad20">
+                <div class="card mr-4 ml-4 mb-5 sh_card rad20">
                     <img class="card-img-top card_mar" src="{{ asset('front_asset/images/1.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="eras card-title cl_gd size28 pt-4">Latest Cargos</h5>
@@ -373,7 +350,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="card mr-4 ml-4 sh_card rad20">
+                <div class="card mr-4 ml-4 mb-5 sh_card rad20">
                     <img class="card-img-top card_mar" src="{{ asset('front_asset/images/2.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="eras card-title cl_gd size28 pt-4">Latest Vessels for Charter</h5>
@@ -386,7 +363,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="card mr-4 ml-4 sh_card rad20">
+                <div class="card mr-4 ml-4 mb-5 sh_card rad20">
                     <img class="card-img-top card_mar" src="{{ asset('front_asset/images/3.png') }}" alt="Card image cap">
                     <div class="card-body p-0">
                         <h5 class="eras card-title cl_gd size28 pt-4">Latest Vessels for Sale</h5>

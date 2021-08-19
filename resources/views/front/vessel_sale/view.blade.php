@@ -285,12 +285,13 @@
                         <tr>
                             <th width="2%">ID</th>
                             <th width="7%">Vessel Type</th>
-                            <th width="8%">Date Available</th>
-                            <th width="8%">Operations Date</th>
+                            {{-- <th width="8%">Date Available</th>
+                            <th width="8%">Operations Date</th> --}}
                             <th width="10%">Region</th>
                             <th width="10%">Country</th>
                             <th width="10%">Port</th>
                             <th width="10%">Built Year</th>
+                            <th width="10%">Price</th>
                             <th width="6%">Posted on</th>
 
                             @if(session('front_uid')!="")
@@ -309,12 +310,13 @@
                                 <tr class="">
                                     <td >{{$row->ref_no}}</td>
                                     <td ><p class=""><?php echo str_replace(',', ',<br>', $row->vessel_type_id); ?></p></td>
-                                    <td >{{date("d-M-Y", strtotime($row->date_available))}}</td>
-                                    <td >{{date("d-M-Y", strtotime($row->operations_date))}}</td>
+                                    {{-- <td >{{date("d-M-Y", strtotime($row->date_available))}}</td>
+                                    <td >{{date("d-M-Y", strtotime($row->operations_date))}}</td> --}}
                                     <td ><p class=""><?php echo str_replace(',', ',<br>', $row->region_id); ?></p></td>
                                     <td ><p class=""><?php echo str_replace(',', ',<br>', $row->country_id); ?></p></td>
                                     <td ><p class=""><?php echo str_replace(',', ',<br>', $row->port_id); ?></p></td>
                                     <td >{{$row->built_year}}</td>
+                                    <td >{{$row->price}}</td>
                                     <td >{{explode(" ",$row->created_at)[0]}}</td>
 
                                     @if (session('front_uid') != '')
@@ -332,7 +334,7 @@
                                 <tr class="show_details show_details_{{ $row->vessel_sale_id }} tr_bg_cl d_n">
                                     <td></td>
                                     <td>
-                                        <p class="b7 mb-0">Last Dry Docked:</p>
+                                        <p class="b7 mb-0">Last DD:</p>
                                         <p class="">{{ $row->last_dry_docked }}</p>
                                         <p class="b7 mb-0">Last SS:</p>
                                         <p class="">{{ $row->last_ss }}</p>
@@ -362,7 +364,7 @@
                                         <p class="">{{ $row->summer_draft }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">FW Draft:</p>
+                                        <p class="b7 mb-0">Fresh Water Draft:</p>
                                         <p class="">{{ $row->fw_draft }}</p>
                                         <p class="b7 mb-0">Main Engine:</p>
                                         <p class="">{{ $row->main_engine }}</p>
@@ -374,35 +376,30 @@
                                     <td>
                                         <p class="b7 mb-0">Gears:</p>
                                         <p class="">{{ $row->gears }}</p>
-                                        <p class="b7 mb-0">Brief Description:</p>
-                                        <p class="">{{ $row->brief_description }}</p>
                                         <p class="b7 mb-0">Propellers:</p>
                                         <p class="">{{ $row->propellers }}</p>
                                         <p class="b7 mb-0">Bunker Capacity:</p>
                                         <p class="">{{ $row->bunker_capacity }}</p>
-                                    </td>
-                                    <td>
                                         <p class="b7 mb-0">In Service:</p>
                                         <p class="">{{ $row->in_service }}</p>
-                                        <p class="b7 mb-0">Date Available:</p>
-                                        <p class="">{{ $row->date_available }}</p>
-                                        <p class="b7 mb-0">Price:</p>
-                                        <p class="">{{ $row->price }}</p>
-                                        <p class="b7 mb-0">Operations Date:</p>
-                                        <p class="">{{ $row->operations_date }}</p>
                                     </td>
                                     <td>
+                                        <p class="b7 mb-0">Date Available:</p>
+                                        <p class="">{{ date("d-M-Y", strtotime($row->date_available)) }}</p>
+                                        <p class="b7 mb-0">Operations Date:</p>
+                                        <p class="">{{ date("d-M-Y", strtotime($row->operations_date)) }}</p>
                                         <p class="b7 mb-0">Cargo Capacity:</p>
                                         <p class="">{{ $row->cargo_capacity }}</p>
                                         <p class="b7 mb-0">Holds Hatch:</p>
                                         <p class="">{{ $row->holds_hatch }}</p>
+                                    </td>
+                                    <td>
                                         <p class="b7 mb-0">Cover Type:</p>
                                         <p class="">{{ $row->cover_type }}</p>
                                         <p class="b7 mb-0">Additional Description:</p>
                                         <p class="">{{ $row->additional_description }}</p>
                                     </td>
                                    
-                                    <td></td>
                                     <td></td>
                                 </tr>
                             @endforeach

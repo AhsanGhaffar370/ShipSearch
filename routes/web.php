@@ -99,6 +99,13 @@ Route::get('/vessel_sale/get_update_hist_data', [FrontVesselSaleController::clas
 Route::get('/vessel_sale/update_hist_data', [FrontVesselSaleController::class, 'update_hist_data'] )->name('vessel_sale.update_hist_data');
 
 
+// Directory Charter
+Route::get('/directory/view', [FrontVesselSaleController::class, 'view'] )->name('directory.view');
+// Route::post('/vessel_sale/view', [FrontVesselSaleController::class, 'search_req'] )->name('vessel_sale.search_req');
+// Route::get('/vessel_sale/ser_hist_rec', [FrontVesselSaleController::class, 'search_req_ajax'] )->name('vessel_sale.ser_hist_rec');
+// Route::get('/vessel_sale/del_ser_hist_rec', [FrontVesselSaleController::class, 'del_ser_his_req_ajax'] )->name('vessel_sale.del_ser_hist_rec');
+// Route::get('/vessel_sale/get_update_hist_data', [FrontVesselSaleController::class, 'get_update_hist_data'] )->name('vessel_sale.get_update_hist_data');
+// Route::get('/vessel_sale/update_hist_data', [FrontVesselSaleController::class, 'update_hist_data'] )->name('vessel_sale.update_hist_data');
 
 
 Route::group(['middleware'=>['front_auth']],function(){

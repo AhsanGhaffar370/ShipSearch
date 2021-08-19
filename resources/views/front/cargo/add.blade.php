@@ -201,11 +201,11 @@
                     <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
-                                <label for="">Max Draft</label>
-                                <input type="number" required name="max_draft" class="left_round form-control ">
+                                <label for="">Stowage Factor</label>
+                                <input type="number" required name="stowage_factor" class="left_round form-control ">
                             </div>
                             <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
-                                <select name="max_draft_unit" id="max_draft_unit"
+                                <select name="stowage_factor_unit" id="stowage_factor_unit"
                                     class="right_round form-control mt-4 bg-light">
                                     <option value="Meters">Meters</option>
                                     <option value="Feet">Feet</option>
@@ -346,7 +346,7 @@
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Additional Info</label>
                         <textarea name="additional_info" id="additional_info" class="form-control" cols="30"
-                            rows="5"></textarea>
+                            rows="5" maxlength = "250"></textarea>
                     </div>
                     <!-- -->
                     <div class="col-12">

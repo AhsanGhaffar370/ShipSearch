@@ -462,7 +462,7 @@
 
         <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
             <div class="border">
-                <table class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
+                <table id="cargo_table" class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
                     <thead>
                         <tr>
                             <th width="5%">ID</th>
@@ -551,8 +551,8 @@
                                                 {{ optional($row12->CAlport)->port_name }},<br>
                                             @endforeach
                                         </p>
-                                        <p class="b7 mb-0">Max Draft:</p>
-                                        <p class="">{{ $row->max_draft }}</p>
+                                        <p class="b7 mb-0">Stowage Factor:</p>
+                                        <p class="">{{ $row->stowage_factor }}</p>
                                     </td>
                                     <td>
                                         <p class="b7 mb-0">Discharge Country</p>

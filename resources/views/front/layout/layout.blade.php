@@ -184,7 +184,7 @@
 <body class="bg-white">
     {{-- navbar-expand-lg --}}
     <div class="head_pad">
-        <div class="widee">
+        <div class="pl_1 pr_1">
             <div class="ml-auto d-flex flex-column  align-items-end">
             <div class="row m-0">
                 <div class="mt-auto mb-auto mr-4">
@@ -223,7 +223,7 @@
                             <a class="nav-link" href="{{ route('vessel_sale.view') }}">Sale & Purchase</a>
                         </li>
                         <li class="nav-item pb-4 pb-lg-0">
-                            <a class="nav-link" href="{{ route('home') }}">Voyage Estimator</a>
+                            <a class="nav-link" href="{{ route('directory.view') }}">Directory</a>
                         </li>
                     </ul>
                     @if (session('front_uid') != '')

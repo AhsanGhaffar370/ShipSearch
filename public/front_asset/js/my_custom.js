@@ -213,8 +213,8 @@ $(document).ready(function() {
                                 post_str += lport_obj + ',<br>';
                             });
                             post_str += `</p>
-                                        <p class="b7 mb-0">Max Draft:</p>
-                                        <p class="">` + obj1.max_draft + `</p>
+                                        <p class="b7 mb-0">Stowage Factor:</p>
+                                        <p class="">` + obj1.stowage_factor + `</p>
                                     </td>
                                     <td>
                                         <p class="b7 mb-0">Discharge Country:</p>`;
@@ -511,8 +511,8 @@ $(document).ready(function() {
                                         post_str += lport_obj + ',<br>';
                                     });
                                     post_str += `</p>
-                                        <p class="b7 mb-0">Max Draft:</p>
-                                        <p class="">` + obj1.max_draft + `</p>
+                                        <p class="b7 mb-0">Stowage Factor:</p>
+                                        <p class="">` + obj1.stowage_factor + `</p>
                                     </td>
                                     <td>
                                         <p class="b7 mb-0">Discharge Country:</p>`;
@@ -1096,12 +1096,11 @@ $(document).ready(function() {
                             post_str += `<tr class="">
                                     <td>` + obj1.ref_no + `</td>
                                     <td>` + obj1.vessel_type_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + GetFormattedDate(obj1.date_available) + `</td>
-                                    <td>` + GetFormattedDate(obj1.operations_date) + `</td>
                                     <td>` + obj1.region_id.replace(/,/g, ',<br>') + `</td>
                                     <td>` + obj1.country_id.replace(/,/g, ',<br>') + `</td>
                                     <td>` + obj1.port_id.replace(/,/g, ',<br>') + `</td>
                                     <td>` + obj1.built_year + `</td>
+                                    <td>` + obj1.price + `</td>
                                     <td>` + obj1.created_at + `</td>
                                     <td class="text-center">
                                         <a href="` + obj1.vessel_sale_id + `" class="show_detail_btn_` + obj1
@@ -1121,11 +1120,11 @@ $(document).ready(function() {
                                         <p class="b7 mb-0">Classification:</p>
                                         <p class="">` + obj1.classification + `</p>
                                         <p class="b7 mb-0">GRT:</p>
-                                        <p class="">` + obj1.GRT + `</p>
+                                        <p class="">` + obj1.grt + `</p>
                                     </td>
                                     <td>
                                         <p class="b7 mb-0">NRT:</p>
-                                        <p class="">` + obj1.NRT + `</p>
+                                        <p class="">` + obj1.nrt + `</p>
                                         <p class="b7 mb-0">DWT:</p>
                                         <p class="">` + obj1.dwt + `</p>
                                         <p class="b7 mb-0">Light Weight:</p>
@@ -1144,7 +1143,7 @@ $(document).ready(function() {
                                         <p class="">` + obj1.summer_draft + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">FW Draft:</p>
+                                        <p class="b7 mb-0">Fresh Water Draft:</p>
                                         <p class="">` + obj1.fw_draft + `</p>
                                         <p class="b7 mb-0">Main Engine:</p>
                                         <p class="">` + obj1.main_engine + `</p>
@@ -1156,34 +1155,29 @@ $(document).ready(function() {
                                     <td>
                                         <p class="b7 mb-0">Gears:</p>
                                         <p class="">` + obj1.gears + `</p>
-                                        <p class="b7 mb-0">Brief Description:</p>
-                                        <p class="">` + obj1.brief_description + `</p>
                                         <p class="b7 mb-0">Propellers:</p>
                                         <p class="">` + obj1.propellers + `</p>
                                         <p class="b7 mb-0">Bunker Capacity:</p>
                                         <p class="">` + obj1.bunker_capacity + `</p>
-                                    </td>
-                                    <td>
                                         <p class="b7 mb-0">In Service:</p>
                                         <p class="">` + obj1.in_service + `</p>
-                                        <p class="b7 mb-0">Date Available:</p>
-                                        <p class="">` + obj1.date_available + `</p>
-                                        <p class="b7 mb-0">Price:</p>
-                                        <p class="">` + obj1.price + `</p>
-                                        <p class="b7 mb-0">Operation Date:</p>
-                                        <p class="">` + obj1.operations_date + `</p>
                                     </td>
                                     <td>
+                                        <p class="b7 mb-0">Date Available:</p>
+                                        <p class="">` + GetFormattedDate(obj1.date_available) + `</p>
+                                        <p class="b7 mb-0">Operation Date:</p>
+                                        <p class="">` + GetFormattedDate(obj1.operations_date) + `</p>
                                         <p class="b7 mb-0">Cargo Capacity:</p>
                                         <p class="">` + obj1.cargo_capacity + `</p>
                                         <p class="b7 mb-0">Holds Hatch:</p>
                                         <p class="">` + obj1.holds_hatch + `</p>
+                                    </td>
+                                    <td>
                                         <p class="b7 mb-0">Cover Type:</p>
                                         <p class="">` + obj1.cover_type + `</p>
                                         <p class="b7 mb-0">Additional Description:</p>
                                         <p class="">` + obj1.additional_description + `</p>
                                     </td>
-                                    <td></td>
                                     <td></td>
                                     </tr>
                                     `;
@@ -1375,12 +1369,11 @@ $(document).ready(function() {
                                     post_str += `<tr class="">
                                     <td>` + obj1.ref_no + `</td>
                                     <td>` + obj1.vessel_type_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + GetFormattedDate(obj1.date_available) + `</td>
-                                    <td>` + GetFormattedDate(obj1.operations_date) + `</td>
                                     <td>` + obj1.region_id.replace(/,/g, ',<br>') + `</td>
                                     <td>` + obj1.country_id.replace(/,/g, ',<br>') + `</td>
                                     <td>` + obj1.port_id.replace(/,/g, ',<br>') + `</td>
                                     <td>` + obj1.built_year + `</td>
+                                    <td>` + obj1.price + `</td>
                                     <td>` + obj1.created_at + `</td>
                                     <td class="text-center">
                                         <a href="` + obj1.vessel_sale_id + `" class="show_detail_btn_` + obj1
@@ -1400,11 +1393,11 @@ $(document).ready(function() {
                                         <p class="b7 mb-0">Classification:</p>
                                         <p class="">` + obj1.classification + `</p>
                                         <p class="b7 mb-0">GRT:</p>
-                                        <p class="">` + obj1.GRT + `</p>
+                                        <p class="">` + obj1.grt + `</p>
                                     </td>
                                     <td>
                                         <p class="b7 mb-0">NRT:</p>
-                                        <p class="">` + obj1.NRT + `</p>
+                                        <p class="">` + obj1.nrt + `</p>
                                         <p class="b7 mb-0">DWT:</p>
                                         <p class="">` + obj1.dwt + `</p>
                                         <p class="b7 mb-0">Light Weight:</p>
@@ -1423,7 +1416,7 @@ $(document).ready(function() {
                                         <p class="">` + obj1.summer_draft + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">FW Draft:</p>
+                                        <p class="b7 mb-0">Fresh Water Draft:</p>
                                         <p class="">` + obj1.fw_draft + `</p>
                                         <p class="b7 mb-0">Main Engine:</p>
                                         <p class="">` + obj1.main_engine + `</p>
@@ -1435,34 +1428,29 @@ $(document).ready(function() {
                                     <td>
                                         <p class="b7 mb-0">Gears:</p>
                                         <p class="">` + obj1.gears + `</p>
-                                        <p class="b7 mb-0">Brief Description:</p>
-                                        <p class="">` + obj1.brief_description + `</p>
                                         <p class="b7 mb-0">Propellers:</p>
                                         <p class="">` + obj1.propellers + `</p>
                                         <p class="b7 mb-0">Bunker Capacity:</p>
                                         <p class="">` + obj1.bunker_capacity + `</p>
-                                    </td>
-                                    <td>
                                         <p class="b7 mb-0">In Service:</p>
                                         <p class="">` + obj1.in_service + `</p>
-                                        <p class="b7 mb-0">Date Available:</p>
-                                        <p class="">` + obj1.date_available + `</p>
-                                        <p class="b7 mb-0">Price:</p>
-                                        <p class="">` + obj1.price + `</p>
-                                        <p class="b7 mb-0">Operation Date:</p>
-                                        <p class="">` + obj1.operations_date + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Cargo Capacity:</p>
-                                        <p class="">` + obj1.cargo_capacity + `</p>
-                                        <p class="b7 mb-0">Holds Hatch:</p>
-                                        <p class="">` + obj1.holds_hatch + `</p>
+                                    <p class="b7 mb-0">Date Available:</p>
+                                    <p class="">` + GetFormattedDate(obj1.date_available) + `</p>
+                                    <p class="b7 mb-0">Operation Date:</p>
+                                    <p class="">` + GetFormattedDate(obj1.operations_date) + `</p>
+                                    <p class="b7 mb-0">Cargo Capacity:</p>
+                                    <p class="">` + obj1.cargo_capacity + `</p>
+                                    <p class="b7 mb-0">Holds Hatch:</p>
+                                    <p class="">` + obj1.holds_hatch + `</p>
+                                    </td>
+                                    <td>
                                         <p class="b7 mb-0">Cover Type:</p>
                                         <p class="">` + obj1.cover_type + `</p>
                                         <p class="b7 mb-0">Additional Description:</p>
                                         <p class="">` + obj1.additional_description + `</p>
                                     </td>
-                                    <td></td>
                                     <td></td>
                                     </tr>
                                     `;
@@ -1519,18 +1507,18 @@ $(document).ready(function() {
     //////////////////////////////////////
     // Show Pagination
     //////////////////////////////////////
-    //     $('#cargo_table').DataTable({
-    //         // "paging": false,
-    //         // "pagingType":"full_numbers",
-    //         //   "lengthMenu":[[5,10,25],[5,10,25]],
-    //         "lengthMenu": [
-    //             [10, 25, 50, 100, -1],
-    //             [10, 25, 50, 100, 'All']
-    //         ],
-    //         responsive: true,
-    //         type: 'date'
-    //         // stateSave: true
-    //     });
+    $('#cargo_table').DataTable({
+        // "paging": false,
+        // "pagingType":"full_numbers",
+        //   "lengthMenu":[[5,10,25],[5,10,25]],
+        // "lengthMenu": [
+        //     [10, 25, 50, 100, -1],
+        //     [10, 25, 50, 100, 'All']
+        // ],
+        // responsive: true,
+        // type: 'date'
+        // stateSave: true
+    });
 
 
 
