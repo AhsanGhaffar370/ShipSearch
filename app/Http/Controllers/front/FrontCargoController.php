@@ -52,13 +52,14 @@ class FrontCargoController extends Controller
 
         // $data = ss_cargo::with(['cargotype','Lcountry','Dcountry','Lregion','Dregion','Lport','Dport'])->get();
 
-        $data = ss_cargo::with(['cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
+        $data = ss_cargo::with(['user_info','cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
                         ->active()
                         ->orderBy('cargo_id', 'DESC')
                         ->get();//working
         // $data = ss_cargo::active()->orderBy('cargo_id', 'DESC')->get();//present
         
         // dd($data[4]->Lregion[0]->CAregion->region_name);
+        // dd($data[0]->user_info->email);
 
 
 
@@ -323,7 +324,7 @@ class FrontCargoController extends Controller
         // ->whereHas('cargotype', function($q1) use ($cargo_type_fk) {
         //     $q1->whereIn('cargo_type_id',$cargo_type_fk);
         // })
-        $data = ss_cargo::with(['cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
+        $data = ss_cargo::with(['user_info','cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
                         ->where('cargo_type_id', $ser_cargo_type)
                         ->where('loading_region_id', $ser_loading_region)
                         ->where('loading_country_id', $ser_loading_country)
@@ -370,7 +371,7 @@ class FrontCargoController extends Controller
         //     $query->select('cargo_id');
         // }))
         $data=[];
-        $data[0] = ss_cargo::with(['cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
+        $data[0] = ss_cargo::with(['user_info','cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
                         ->where('cargo_type_id', $ser_data->cargo_type_id)
                         ->where('loading_region_id', $ser_data->loading_region_id)
                         ->where('laycan_date_from', $ser_data->laycan_date_from)
@@ -500,7 +501,7 @@ class FrontCargoController extends Controller
             // $cargo_type_fk=$req_fk['cargo_type_id'];
 
             $ser_data=[];
-            $ser_data[0] = ss_cargo::with(['cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
+            $ser_data[0] = ss_cargo::with(['user_info','cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
                                 ->where('cargo_type_id', $data->cargo_type_id)
                                 ->where('loading_region_id', $data->loading_region_id)
                                 ->where('laycan_date_from', $data->laycan_date_from)

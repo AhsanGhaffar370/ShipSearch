@@ -22,8 +22,11 @@ class ss_cargo extends Model
         return $query->where('is_active',1);
     }
 
+    
+    public function user_info(){
+        return $this->belongsTo(ss_user::class,"created_by");
+    }
 
-    // working
     public function cargotype(){
         return $this->hasMany('App\Models\rel_cargo_cargotype',"cargo_id");
     }

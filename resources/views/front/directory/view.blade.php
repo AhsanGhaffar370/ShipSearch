@@ -42,7 +42,11 @@
                             </tr>
                         @else
                             @foreach ($data as $row)
-                                <tr class="">
+                                @if ($fuser_id == $row->user_id)
+                                    <tr class="focus_user_row" style="color:white !important ;background-color: #555555 !important;">
+                                @else
+                                    <tr class="">
+                                @endif
                                     <td width="5%" >{{$row->user_id}}</td>
                                     <td width="8%" >{{$row->first_name}}</td>
                                     <td width="8%" >{{$row->email}}</td>

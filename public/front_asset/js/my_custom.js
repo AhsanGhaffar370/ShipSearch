@@ -25,6 +25,10 @@ $(document).ready(function() {
         return newDate;
     }
 
+    // $(document).load(function () {
+    //     $(".focus_user_row").focus();
+    //    });
+
     //////////////////////////////////////
     // show record details button
     //////////////////////////////////////
@@ -163,104 +167,158 @@ $(document).ready(function() {
                         $.each(obj[0], function(i, obj1) {
                             // console.log(obj1);
                             // console.log(i + "  " + obj1);
-                            post_str += `<tr class="">
-                                    <td>` + obj1.ref_no + `</td>
-                                    <td>` + obj1.cargo_name + `</td>
-                                    <td>`;
-                            $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
-                                post_str += cargotype_obj + ',<br>';
-                            });
-                            post_str += `</td>
-                                        <td>`;
-                            $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
-                                post_str += lregion_obj + ',<br>';
-                            });
-                            post_str += `</td>
-                                        <td>`;
-                            $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
-                                post_str += dregion_obj + ',<br>';
-                            });
-
-                            post_str += `</td>
-                                    <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
-                                    <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
-                                    <td>` + obj1.quantity + `</td>
-                                    <td>` + obj1.loading_discharge_rates + `</td>
-                                    <td>` + obj1.created_at + `</td>
-                                    <td class="text-center">
-                                        <a href="` + obj1.cargo_id + `" class="show_detail_btn_` + obj1
-                                .cargo_id + ` show_detail_btn"><i class="fas fa-eye fa-2x"></i></a>
-                                        <a href="` + obj1.cargo_id + `" class="hide_detail_btn_` + obj1
-                                .cargo_id + ` hide_detail_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
-                                    </td>
-                                    </tr>
-                                    <tr class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
-                                    <td></td>
-                                    <td>
+                            post_str +=
+                            `<tr class="">
+                                <td>
+                                    <div class="td_h">` 
+                                        + obj1.ref_no +
+                                    `</div>
+                                </td>
+                                <td>
+                                    <div class="td_h">` 
+                                        + obj1.cargo_name +
+                                    `</div>
+                                    <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Loading Country:</p>`;
-                            post_str += `<p class="">`;
-                            $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
-                                post_str += lcountry_obj + ',<br>';
-                            });
-                            post_str += `</p>
-                                        <p class="b7 mb-0">Max LOA:</p>
-                                        <p class="">` + obj1.max_loa + `</p>
-                                    </td>
-                                    <td>
+                                        post_str += 
+                                            `<p class="">`;
+                                            $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
+                                                post_str += lcountry_obj + ',<br>';
+                                            });
+                                        post_str += 
+                                            `</p>
+                                            <p class="b7 mb-0">Max LOA:</p>
+                                            <p class="">` + obj1.max_loa + `</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`;
+                                        $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
+                                            post_str += cargotype_obj + ',<br>';
+                                        });
+                                    post_str +=
+                                    `</div>
+                                    <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Loading Port:</p>`;
-                            post_str += `<p class="">`;
-                            $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
-                                post_str += lport_obj + ',<br>';
-                            });
-                            post_str += `</p>
-                                        <p class="b7 mb-0">Stowage Factor:</p>
-                                        <p class="">` + obj1.stowage_factor + `</p>
-                                    </td>
-                                    <td>
+                                        post_str += 
+                                            `<p class="">`;
+                                            $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
+                                                post_str += lport_obj + ',<br>';
+                                            });
+                                        post_str += 
+                                            `</p>
+                                            <p class="b7 mb-0">Stowage Factor:</p>
+                                            <p class="">` + obj1.stowage_factor + `</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`;
+                                        $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
+                                            post_str += lregion_obj + ',<br>';
+                                        });
+                                    post_str +=
+                                    `</div>
+                                    <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Discharge Country:</p>`;
-                            post_str += `<p class="">`;
-                            $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
-                                post_str += dcountry_obj + ',<br>';
-                            });
-                            post_str += `</p>
-                                        <p class="b7 mb-0">Max Height:</p>
-                                        <p class="">` + obj1.max_height + `</p>
-                                    </td>
-                                    <td>
+                                        post_str += 
+                                            `<p class="">`;
+                                            $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
+                                                post_str += dcountry_obj + ',<br>';
+                                            });
+                                        post_str += 
+                                            `</p>
+                                            <p class="b7 mb-0">Max Height:</p>
+                                            <p class="">` + obj1.max_height + `</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`;
+                                        $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
+                                            post_str += dregion_obj + ',<br>';
+                                        });
+                                    post_str +=
+                                    `</div>
+                                    <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Discharge Port:</p>`;
-                            post_str += `<p class="">`;
-                            $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
-                                post_str += dport_obj + ',<br>';
-                            });
-                            post_str += `</p>
-                                        <p class="b7 mb-0">Loading Equipment Req:</p>
-                                        <p class="">` + obj1.loading_equipment_req + `</p>
-                                    </td>
-                                    <td>
+                                        post_str += 
+                                            `<p class="">`;
+                                            $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
+                                                post_str += dport_obj + ',<br>';
+                                            });
+                                        post_str += 
+                                            `</p>
+                                            <p class="b7 mb-0">Loading Equipment Req:</p>
+                                            <p class="">` + obj1.loading_equipment_req + `</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">` +
+                                        GetFormattedDate(obj1.laycan_date_from) +
+                                    `</div>
+                                    <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Over Age:</p>
                                         <p class="">` + obj1.over_age + `</p>
                                         <p class="b7 mb-0">Discharge Equipment Req:</p>
                                         <p class="">` + obj1.discharge_equipment_req + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">` +
+                                        GetFormattedDate(obj1.laycan_date_to) +
+                                    `</div>
+                                    <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Hazmat:</p>
                                         <p class="">` + obj1.hazmat + `</p>
                                         <p class="b7 mb-0">Combinable:</p>
                                         <p class="">` + obj1.combinable + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">` 
+                                        + obj1.quantity +
+                                    `</div>
+                                    <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Commission:</p>
                                         <p class="">` + obj1.commision + `</p>
                                         <p class="b7 mb-0">Gear Lifting Capacity:</p>
                                         <p class="">` + obj1.gear_lifting_capacity + `</p>
-                                    </td>
-                                    <td colspan="2">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.loading_discharge_rates +
+                                    `</div>
+                                    <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Additional Info:</p>
                                         <p class="">` + obj1.additional_info + `</p>
-                                    </td>
-                                    <td></td>
-                                    </tr>
-                                    `;
+                                        <p class="b7 mb-0">Company Name:</p>
+                                        <p class="">` + obj1.user_info.company_name + `</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.created_at +
+                                    `</div>
+                                    <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                        <p class="b7 mb-0">Email Address:</p>
+                                        <a href="#" class="">` + obj1.user_info.email + `</a>
+                                        <p class="b7 mb-0">Phone No:</p>
+                                        <p class="">` + obj1.user_info.phone + `</p>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <a href="` + obj1.cargo_id + `" class="show_detail_btn_` + obj1.cargo_id + ` show_detail_btn">
+                                    <i class="fas fa-eye fa-2x"></i>
+                                    </a>
+                                    <a href="` + obj1.cargo_id + `" class="hide_detail_btn_` + obj1.cargo_id + ` hide_detail_btn">
+                                    <i class="fas fa-eye-slash fa-2x"></i>
+                                    </a>
+                                    <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                    
+                                    </div>
+                                </td>
+                            </tr>
+                            `;
                         });
                     });
 
@@ -637,105 +695,144 @@ $(document).ready(function() {
                         $.each(obj, function(i, obj1) {
                             // console.log(obj1);
                             // console.log(i + "  " + obj1);
-                            post_str += `<tr class="">
-                                    <td>` + obj1.ref_no + `</td>
-                                    <td>` + obj1.vessel_name + `</td>
-                                    <td>` + obj1.vessel_type_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.charter_type_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
-                                    <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
-                                    <td>` + obj1.region_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.country_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.port_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.created_at + `</td>
-                                    <td class="text-center">
-                                        <a href="` + obj1.vessel_id + `" class="show_detail_btn_` + obj1
-                                .vessel_id + ` show_detail_btn"><i class="fas fa-eye fa-2x"></i></a>
-                                        <a href="` + obj1.vessel_id + `" class="hide_detail_btn_` + obj1
-                                .vessel_id + ` hide_detail_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
-                                    </td>
-                                    </tr>
-                                    
-                                    <tr class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
-                                    <td>
-                                    <p class="b7 mb-0">Built Year:</p>
-                                    <p class="">` + obj1.built_year + `</p>
-                                    <p class="b7 mb-0">DWT:</p>
-                                    <p class="">` + obj1.dwt + `</p>
-                                    <p class="b7 mb-0">DWCC:</p>
-                                    <p class="">` + obj1.dwcc + `</p>
-                                    </td>
-                                    <td>
+                            post_str += 
+                            `<tr class="">
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.ref_no + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                        <p class="b7 mb-0">Built Year:</p>
+                                        <p class="">` + obj1.built_year + `</p>
+                                        <p class="b7 mb-0">DWT:</p>
+                                        <p class="">` + obj1.dwt + `</p>
+                                        <p class="b7 mb-0">DWCC:</p>
+                                        <p class="">` + obj1.dwcc + `</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.vessel_name + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">IMO Number:</p>
                                         <p class="">` + obj1.imo_number + `</p>
                                         <p class="b7 mb-0">Call Sign:</p>
                                         <p class="">` + obj1.call_sign + `</p>
                                         <p class="b7 mb-0">Speed Ballast:</p>
                                         <p class="">` + obj1.speed_ballast + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.vessel_type_id.replace(/,/g, ',<br>') + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Speed Laden:</p>
                                         <p class="">` + obj1.speed_laden + `</p>
                                         <p class="b7 mb-0">Gross Tonnage:</p>
                                         <p class="">` + obj1.gross_tonnage + `</p>
                                         <p class="b7 mb-0">Net Tonnage:</p>
                                         <p class="">` + obj1.net_tonnage + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.charter_type_id.replace(/,/g, ',<br>') + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">LOA Max:</p>
                                         <p class="">` + obj1.loa_max + `</p>
                                         <p class="b7 mb-0">Beam Max:</p>
                                         <p class="">` + obj1.beam_max + `</p>
                                         <p class="b7 mb-0">Summer Draft:</p>
                                         <p class="">` + obj1.summer_draft + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + GetFormattedDate(obj1.laycan_date_from) + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Fresh Water Draft:</p>
                                         <p class="">` + obj1.fresh_water_draft + `</p>
                                         <p class="b7 mb-0">Grain Capacity:</p>
                                         <p class="">` + obj1.grain_capacity + `</p>
                                         <p class="b7 mb-0">Bale Capacity:</p>
                                         <p class="">` + obj1.bale_capacity + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + GetFormattedDate(obj1.laycan_date_to) + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Container Capacity 20FT:</p>
                                         <p class="">` + obj1.container_capacity_20ft + `</p>
                                         <p class="b7 mb-0">Container Capacity 40FT:</p>
                                         <p class="">` + obj1.container_capacity_40ft + `</p>
                                         <p class="b7 mb-0">Container Capacity 40CH:</p>
                                         <p class="">` + obj1.container_capacity_40ch + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.region_id.replace(/,/g, ',<br>') + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">IFO Consumption Empty:</p>
                                         <p class="">` + obj1.ifo_consumption_empty + `</p>
                                         <p class="b7 mb-0">IFO Consumption Laden:</p>
                                         <p class="">` + obj1.ifo_consumption_laden + `</p>
                                         <p class="b7 mb-0">IFO Consumption Port:</p>
                                         <p class="">` + obj1.ifo_consumption_port + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.country_id.replace(/,/g, ',<br>') + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">MGO Consumption Empty:</p>
                                         <p class="">` + obj1.mgo_consumption_empty + `</p>
                                         <p class="b7 mb-0">MGO Consumption Laden:</p>
                                         <p class="">` + obj1.mgo_consumption_laden + `</p>
                                         <p class="b7 mb-0">MGO Consumption Port:</p>
                                         <p class="">` + obj1.mgo_consumption_port + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.port_id.replace(/,/g, ',<br>') + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Lane Meters:</p>
                                         <p class="">` + obj1.lane_meters + `</p>
                                         <p class="b7 mb-0">P I Club:</p>
                                         <p class="">` + obj1.p_i_club + `</p>
                                         <p class="b7 mb-0">Classed By:</p>
                                         <p class="">` + obj1.classed_by + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.created_at + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Additional Info:</p>
                                         <p class="">` + obj1.additional_info + `</p>
-                                    </td>
-                                    <td></td>
-                                    </tr>
-                                    `;
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <a href="` + obj1.vessel_id + `" class="show_detail_btn_` + obj1.vessel_id + ` show_detail_btn">
+                                        <i class="fas fa-eye fa-2x"></i>
+                                    </a>
+                                    <a href="` + obj1.vessel_id + `" class="hide_detail_btn_` + obj1.vessel_id + ` hide_detail_btn">
+                                        <i class="fas fa-eye-slash fa-2x"></i>
+                                    </a>
+                                </td>
+                            </tr>     
+                            `;
                         });
                     });
 
@@ -922,104 +1019,143 @@ $(document).ready(function() {
                                 $.each(obj, function(i, obj1) {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
-                                    post_str += `<tr class="">
-                                    <td>` + obj1.ref_no + `</td>
-                                    <td>` + obj1.vessel_name + `</td>
-                                    <td>` + obj1.vessel_type_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.charter_type_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
-                                    <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
-                                    <td>` + obj1.region_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.country_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.port_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.created_at + `</td>
-                                    <td class="text-center">
-                                        <a href="` + obj1.vessel_id + `" class="show_detail_btn_` + obj1
-                                        .vessel_id + ` show_detail_btn"><i class="fas fa-eye fa-2x"></i></a>
-                                        <a href="` + obj1.vessel_id + `" class="hide_detail_btn_` + obj1
-                                        .vessel_id + ` hide_detail_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
-                                    </td>
-                                    </tr>
-                                    
-                                    <tr class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
-                                    <td>
-                                    <p class="b7 mb-0">Built Year:</p>
-                                    <p class="">` + obj1.built_year + `</p>
-                                    <p class="b7 mb-0">DWT:</p>
-                                    <p class="">` + obj1.dwt + `</p>
-                                    <p class="b7 mb-0">DWCC:</p>
-                                    <p class="">` + obj1.dwcc + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">IMO Number:</p>
-                                        <p class="">` + obj1.imo_number + `</p>
-                                        <p class="b7 mb-0">Call Sign:</p>
-                                        <p class="">` + obj1.call_sign + `</p>
-                                        <p class="b7 mb-0">Speed Ballast:</p>
-                                        <p class="">` + obj1.speed_ballast + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Speed Laden:</p>
-                                        <p class="">` + obj1.speed_laden + `</p>
-                                        <p class="b7 mb-0">Gross Tonnage:</p>
-                                        <p class="">` + obj1.gross_tonnage + `</p>
-                                        <p class="b7 mb-0">Net Tonnage:</p>
-                                        <p class="">` + obj1.net_tonnage + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">LOA Max:</p>
-                                        <p class="">` + obj1.loa_max + `</p>
-                                        <p class="b7 mb-0">Beam Max:</p>
-                                        <p class="">` + obj1.beam_max + `</p>
-                                        <p class="b7 mb-0">Summer Draft:</p>
-                                        <p class="">` + obj1.summer_draft + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Fresh Water Draft:</p>
-                                        <p class="">` + obj1.fresh_water_draft + `</p>
-                                        <p class="b7 mb-0">Grain Capacity:</p>
-                                        <p class="">` + obj1.grain_capacity + `</p>
-                                        <p class="b7 mb-0">Bale Capacity:</p>
-                                        <p class="">` + obj1.bale_capacity + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Container Capacity 20FT:</p>
-                                        <p class="">` + obj1.container_capacity_20ft + `</p>
-                                        <p class="b7 mb-0">Container Capacity 40FT:</p>
-                                        <p class="">` + obj1.container_capacity_40ft + `</p>
-                                        <p class="b7 mb-0">Container Capacity 40CH:</p>
-                                        <p class="">` + obj1.container_capacity_40ch + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">IFO Consumption Empty:</p>
-                                        <p class="">` + obj1.ifo_consumption_empty + `</p>
-                                        <p class="b7 mb-0">IFO Consumption Laden:</p>
-                                        <p class="">` + obj1.ifo_consumption_laden + `</p>
-                                        <p class="b7 mb-0">IFO Consumption Port:</p>
-                                        <p class="">` + obj1.ifo_consumption_port + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">MGO Consumption Empty:</p>
-                                        <p class="">` + obj1.mgo_consumption_empty + `</p>
-                                        <p class="b7 mb-0">MGO Consumption Laden:</p>
-                                        <p class="">` + obj1.mgo_consumption_laden + `</p>
-                                        <p class="b7 mb-0">MGO Consumption Port:</p>
-                                        <p class="">` + obj1.mgo_consumption_port + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Lane Meters:</p>
-                                        <p class="">` + obj1.lane_meters + `</p>
-                                        <p class="b7 mb-0">P I Club:</p>
-                                        <p class="">` + obj1.p_i_club + `</p>
-                                        <p class="b7 mb-0">Classed By:</p>
-                                        <p class="">` + obj1.classed_by + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Additional Info:</p>
-                                        <p class="">` + obj1.additional_info + `</p>
-                                    </td>
-                                    <td></td>
-                                    </tr>
+                                    post_str += 
+                                    `<tr class="">
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.ref_no + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Built Year:</p>
+                                                <p class="">` + obj1.built_year + `</p>
+                                                <p class="b7 mb-0">DWT:</p>
+                                                <p class="">` + obj1.dwt + `</p>
+                                                <p class="b7 mb-0">DWCC:</p>
+                                                <p class="">` + obj1.dwcc + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.vessel_name + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">IMO Number:</p>
+                                                <p class="">` + obj1.imo_number + `</p>
+                                                <p class="b7 mb-0">Call Sign:</p>
+                                                <p class="">` + obj1.call_sign + `</p>
+                                                <p class="b7 mb-0">Speed Ballast:</p>
+                                                <p class="">` + obj1.speed_ballast + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.vessel_type_id.replace(/,/g, ',<br>') + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Speed Laden:</p>
+                                                <p class="">` + obj1.speed_laden + `</p>
+                                                <p class="b7 mb-0">Gross Tonnage:</p>
+                                                <p class="">` + obj1.gross_tonnage + `</p>
+                                                <p class="b7 mb-0">Net Tonnage:</p>
+                                                <p class="">` + obj1.net_tonnage + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.charter_type_id.replace(/,/g, ',<br>') + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">LOA Max:</p>
+                                                <p class="">` + obj1.loa_max + `</p>
+                                                <p class="b7 mb-0">Beam Max:</p>
+                                                <p class="">` + obj1.beam_max + `</p>
+                                                <p class="b7 mb-0">Summer Draft:</p>
+                                                <p class="">` + obj1.summer_draft + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + GetFormattedDate(obj1.laycan_date_from) + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Fresh Water Draft:</p>
+                                                <p class="">` + obj1.fresh_water_draft + `</p>
+                                                <p class="b7 mb-0">Grain Capacity:</p>
+                                                <p class="">` + obj1.grain_capacity + `</p>
+                                                <p class="b7 mb-0">Bale Capacity:</p>
+                                                <p class="">` + obj1.bale_capacity + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + GetFormattedDate(obj1.laycan_date_to) + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Container Capacity 20FT:</p>
+                                                <p class="">` + obj1.container_capacity_20ft + `</p>
+                                                <p class="b7 mb-0">Container Capacity 40FT:</p>
+                                                <p class="">` + obj1.container_capacity_40ft + `</p>
+                                                <p class="b7 mb-0">Container Capacity 40CH:</p>
+                                                <p class="">` + obj1.container_capacity_40ch + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.region_id.replace(/,/g, ',<br>') + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">IFO Consumption Empty:</p>
+                                                <p class="">` + obj1.ifo_consumption_empty + `</p>
+                                                <p class="b7 mb-0">IFO Consumption Laden:</p>
+                                                <p class="">` + obj1.ifo_consumption_laden + `</p>
+                                                <p class="b7 mb-0">IFO Consumption Port:</p>
+                                                <p class="">` + obj1.ifo_consumption_port + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.country_id.replace(/,/g, ',<br>') + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">MGO Consumption Empty:</p>
+                                                <p class="">` + obj1.mgo_consumption_empty + `</p>
+                                                <p class="b7 mb-0">MGO Consumption Laden:</p>
+                                                <p class="">` + obj1.mgo_consumption_laden + `</p>
+                                                <p class="b7 mb-0">MGO Consumption Port:</p>
+                                                <p class="">` + obj1.mgo_consumption_port + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.port_id.replace(/,/g, ',<br>') + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Lane Meters:</p>
+                                                <p class="">` + obj1.lane_meters + `</p>
+                                                <p class="b7 mb-0">P I Club:</p>
+                                                <p class="">` + obj1.p_i_club + `</p>
+                                                <p class="b7 mb-0">Classed By:</p>
+                                                <p class="">` + obj1.classed_by + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.created_at + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Additional Info:</p>
+                                                <p class="">` + obj1.additional_info + `</p>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="` + obj1.vessel_id + `" class="show_detail_btn_` + obj1.vessel_id + ` show_detail_btn">
+                                                <i class="fas fa-eye fa-2x"></i>
+                                            </a>
+                                            <a href="` + obj1.vessel_id + `" class="hide_detail_btn_` + obj1.vessel_id + ` hide_detail_btn">
+                                                <i class="fas fa-eye-slash fa-2x"></i>
+                                            </a>
+                                        </td>
+                                    </tr>     
                                     `;
                                 });
                             });
@@ -1103,26 +1239,18 @@ $(document).ready(function() {
                         $.each(obj, function(i, obj1) {
                             // console.log(obj1);
                             // console.log(i + "  " + obj1);
-                            post_str += `<tr class="">
-                                    <td>` + obj1.ref_no + `</td>
-                                    <td>` + obj1.vessel_type_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.region_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.country_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.port_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.built_year + `</td>
-                                    <td>` + obj1.price + `</td>
-                                    <td>` + obj1.created_at + `</td>
-                                    <td class="text-center">
-                                        <a href="` + obj1.vessel_sale_id + `" class="show_detail_btn_` + obj1
-                                .vessel_sale_id + ` show_detail_btn"><i class="fas fa-eye fa-2x"></i></a>
-                                        <a href="` + obj1.vessel_sale_id + `" class="hide_detail_btn_` + obj1
-                                .vessel_sale_id + ` hide_detail_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
-                                    </td>
-                                    </tr>
-                                    
-                                    <tr class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
-                                    <td></td>
-                                    <td>
+                            post_str += 
+                            `<tr class="">
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.ref_no + 
+                                    `</div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.vessel_type_id.replace(/,/g, ',<br>') + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Last Dry Docked:</p>
                                         <p class="">` + obj1.last_dry_docked + `</p>
                                         <p class="b7 mb-0">Last SS:</p>
@@ -1131,8 +1259,13 @@ $(document).ready(function() {
                                         <p class="">` + obj1.classification + `</p>
                                         <p class="b7 mb-0">GRT:</p>
                                         <p class="">` + obj1.grt + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.region_id.replace(/,/g, ',<br>') + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">NRT:</p>
                                         <p class="">` + obj1.nrt + `</p>
                                         <p class="b7 mb-0">DWT:</p>
@@ -1141,8 +1274,13 @@ $(document).ready(function() {
                                         <p class="">` + obj1.lightweight + `</p>
                                         <p class="b7 mb-0">Speed:</p>
                                         <p class="">` + obj1.speed + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.country_id.replace(/,/g, ',<br>') + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Consumption:</p>
                                         <p class="">` + obj1.consumption + `</p>
                                         <p class="b7 mb-0">LOA:</p>
@@ -1151,8 +1289,13 @@ $(document).ready(function() {
                                         <p class="">` + obj1.breadth + `</p>
                                         <p class="b7 mb-0">Summer Draft:</p>
                                         <p class="">` + obj1.summer_draft + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.port_id.replace(/,/g, ',<br>') + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Fresh Water Draft:</p>
                                         <p class="">` + obj1.fw_draft + `</p>
                                         <p class="b7 mb-0">Main Engine:</p>
@@ -1161,8 +1304,13 @@ $(document).ready(function() {
                                         <p class="">` + obj1.aux_engines + `</p>
                                         <p class="b7 mb-0">Bow Thruster:</p>
                                         <p class="">` + obj1.bow_thruster + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.built_year + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Gears:</p>
                                         <p class="">` + obj1.gears + `</p>
                                         <p class="b7 mb-0">Propellers:</p>
@@ -1171,8 +1319,13 @@ $(document).ready(function() {
                                         <p class="">` + obj1.bunker_capacity + `</p>
                                         <p class="b7 mb-0">In Service:</p>
                                         <p class="">` + obj1.in_service + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.price + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Date Available:</p>
                                         <p class="">` + GetFormattedDate(obj1.date_available) + `</p>
                                         <p class="b7 mb-0">Operation Date:</p>
@@ -1181,16 +1334,29 @@ $(document).ready(function() {
                                         <p class="">` + obj1.cargo_capacity + `</p>
                                         <p class="b7 mb-0">Holds Hatch:</p>
                                         <p class="">` + obj1.holds_hatch + `</p>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td_h">`
+                                        + obj1.created_at + 
+                                    `</div>
+                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Cover Type:</p>
                                         <p class="">` + obj1.cover_type + `</p>
                                         <p class="b7 mb-0">Additional Description:</p>
                                         <p class="">` + obj1.additional_description + `</p>
-                                    </td>
-                                    <td></td>
-                                    </tr>
-                                    `;
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <a href="` + obj1.vessel_sale_id + `" class="show_detail_btn_` + obj1.vessel_sale_id + ` show_detail_btn">
+                                        <i class="fas fa-eye fa-2x"></i>
+                                    </a>
+                                    <a href="` + obj1.vessel_sale_id + `" class="hide_detail_btn_` + obj1.vessel_sale_id + ` hide_detail_btn">
+                                        <i class="fas fa-eye-slash fa-2x"></i>
+                                    </a>
+                                </td>
+                            </tr>     
+                            `;
                         });
                     });
 
@@ -1376,93 +1542,123 @@ $(document).ready(function() {
                                 $.each(obj, function(i, obj1) {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
-                                    post_str += `<tr class="">
-                                    <td>` + obj1.ref_no + `</td>
-                                    <td>` + obj1.vessel_type_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.region_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.country_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.port_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.built_year + `</td>
-                                    <td>` + obj1.price + `</td>
-                                    <td>` + obj1.created_at + `</td>
-                                    <td class="text-center">
-                                        <a href="` + obj1.vessel_sale_id + `" class="show_detail_btn_` + obj1
-                                        .vessel_sale_id + ` show_detail_btn"><i class="fas fa-eye fa-2x"></i></a>
-                                        <a href="` + obj1.vessel_sale_id + `" class="hide_detail_btn_` + obj1
-                                        .vessel_sale_id + ` hide_detail_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
-                                    </td>
-                                    </tr>
-                                    
-                                    <tr class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
-                                    <td></td>
-                                    <td>
-                                        <p class="b7 mb-0">Last Dry Docked:</p>
-                                        <p class="">` + obj1.last_dry_docked + `</p>
-                                        <p class="b7 mb-0">Last SS:</p>
-                                        <p class="">` + obj1.last_ss + `</p>
-                                        <p class="b7 mb-0">Classification:</p>
-                                        <p class="">` + obj1.classification + `</p>
-                                        <p class="b7 mb-0">GRT:</p>
-                                        <p class="">` + obj1.grt + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">NRT:</p>
-                                        <p class="">` + obj1.nrt + `</p>
-                                        <p class="b7 mb-0">DWT:</p>
-                                        <p class="">` + obj1.dwt + `</p>
-                                        <p class="b7 mb-0">Light Weight:</p>
-                                        <p class="">` + obj1.lightweight + `</p>
-                                        <p class="b7 mb-0">Speed:</p>
-                                        <p class="">` + obj1.speed + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Consumption:</p>
-                                        <p class="">` + obj1.consumption + `</p>
-                                        <p class="b7 mb-0">LOA:</p>
-                                        <p class="">` + obj1.loa + `</p>
-                                        <p class="b7 mb-0">Breadth:</p>
-                                        <p class="">` + obj1.breadth + `</p>
-                                        <p class="b7 mb-0">Summer Draft:</p>
-                                        <p class="">` + obj1.summer_draft + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Fresh Water Draft:</p>
-                                        <p class="">` + obj1.fw_draft + `</p>
-                                        <p class="b7 mb-0">Main Engine:</p>
-                                        <p class="">` + obj1.main_engine + `</p>
-                                        <p class="b7 mb-0">AUX Engines:</p>
-                                        <p class="">` + obj1.aux_engines + `</p>
-                                        <p class="b7 mb-0">Bow Thruster:</p>
-                                        <p class="">` + obj1.bow_thruster + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Gears:</p>
-                                        <p class="">` + obj1.gears + `</p>
-                                        <p class="b7 mb-0">Propellers:</p>
-                                        <p class="">` + obj1.propellers + `</p>
-                                        <p class="b7 mb-0">Bunker Capacity:</p>
-                                        <p class="">` + obj1.bunker_capacity + `</p>
-                                        <p class="b7 mb-0">In Service:</p>
-                                        <p class="">` + obj1.in_service + `</p>
-                                    </td>
-                                    <td>
-                                    <p class="b7 mb-0">Date Available:</p>
-                                    <p class="">` + GetFormattedDate(obj1.date_available) + `</p>
-                                    <p class="b7 mb-0">Operation Date:</p>
-                                    <p class="">` + GetFormattedDate(obj1.operations_date) + `</p>
-                                    <p class="b7 mb-0">Cargo Capacity:</p>
-                                    <p class="">` + obj1.cargo_capacity + `</p>
-                                    <p class="b7 mb-0">Holds Hatch:</p>
-                                    <p class="">` + obj1.holds_hatch + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Cover Type:</p>
-                                        <p class="">` + obj1.cover_type + `</p>
-                                        <p class="b7 mb-0">Additional Description:</p>
-                                        <p class="">` + obj1.additional_description + `</p>
-                                    </td>
-                                    <td></td>
-                                    </tr>
+                                    post_str += 
+                                    `<tr class="">
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.ref_no + 
+                                            `</div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.vessel_type_id.replace(/,/g, ',<br>') + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Last Dry Docked:</p>
+                                                <p class="">` + obj1.last_dry_docked + `</p>
+                                                <p class="b7 mb-0">Last SS:</p>
+                                                <p class="">` + obj1.last_ss + `</p>
+                                                <p class="b7 mb-0">Classification:</p>
+                                                <p class="">` + obj1.classification + `</p>
+                                                <p class="b7 mb-0">GRT:</p>
+                                                <p class="">` + obj1.grt + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.region_id.replace(/,/g, ',<br>') + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">NRT:</p>
+                                                <p class="">` + obj1.nrt + `</p>
+                                                <p class="b7 mb-0">DWT:</p>
+                                                <p class="">` + obj1.dwt + `</p>
+                                                <p class="b7 mb-0">Light Weight:</p>
+                                                <p class="">` + obj1.lightweight + `</p>
+                                                <p class="b7 mb-0">Speed:</p>
+                                                <p class="">` + obj1.speed + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.country_id.replace(/,/g, ',<br>') + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Consumption:</p>
+                                                <p class="">` + obj1.consumption + `</p>
+                                                <p class="b7 mb-0">LOA:</p>
+                                                <p class="">` + obj1.loa + `</p>
+                                                <p class="b7 mb-0">Breadth:</p>
+                                                <p class="">` + obj1.breadth + `</p>
+                                                <p class="b7 mb-0">Summer Draft:</p>
+                                                <p class="">` + obj1.summer_draft + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.port_id.replace(/,/g, ',<br>') + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Fresh Water Draft:</p>
+                                                <p class="">` + obj1.fw_draft + `</p>
+                                                <p class="b7 mb-0">Main Engine:</p>
+                                                <p class="">` + obj1.main_engine + `</p>
+                                                <p class="b7 mb-0">AUX Engines:</p>
+                                                <p class="">` + obj1.aux_engines + `</p>
+                                                <p class="b7 mb-0">Bow Thruster:</p>
+                                                <p class="">` + obj1.bow_thruster + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.built_year + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Gears:</p>
+                                                <p class="">` + obj1.gears + `</p>
+                                                <p class="b7 mb-0">Propellers:</p>
+                                                <p class="">` + obj1.propellers + `</p>
+                                                <p class="b7 mb-0">Bunker Capacity:</p>
+                                                <p class="">` + obj1.bunker_capacity + `</p>
+                                                <p class="b7 mb-0">In Service:</p>
+                                                <p class="">` + obj1.in_service + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.price + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Date Available:</p>
+                                                <p class="">` + GetFormattedDate(obj1.date_available) + `</p>
+                                                <p class="b7 mb-0">Operation Date:</p>
+                                                <p class="">` + GetFormattedDate(obj1.operations_date) + `</p>
+                                                <p class="b7 mb-0">Cargo Capacity:</p>
+                                                <p class="">` + obj1.cargo_capacity + `</p>
+                                                <p class="b7 mb-0">Holds Hatch:</p>
+                                                <p class="">` + obj1.holds_hatch + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.created_at + 
+                                            `</div>
+                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Cover Type:</p>
+                                                <p class="">` + obj1.cover_type + `</p>
+                                                <p class="b7 mb-0">Additional Description:</p>
+                                                <p class="">` + obj1.additional_description + `</p>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="` + obj1.vessel_sale_id + `" class="show_detail_btn_` + obj1.vessel_sale_id + ` show_detail_btn">
+                                                <i class="fas fa-eye fa-2x"></i>
+                                            </a>
+                                            <a href="` + obj1.vessel_sale_id + `" class="hide_detail_btn_` + obj1.vessel_sale_id + ` hide_detail_btn">
+                                                <i class="fas fa-eye-slash fa-2x"></i>
+                                            </a>
+                                        </td>
+                                    </tr>     
                                     `;
                                 });
                             });
@@ -1517,8 +1713,10 @@ $(document).ready(function() {
     //////////////////////////////////////
     // Show Pagination
     //////////////////////////////////////
-    $('#cargo_table').DataTable({
-        // "paging": false,
+    $('#cvs_table').DataTable({
+        searching: false,
+        paging: false,
+        info: false,
         // "pagingType":"full_numbers",
         //   "lengthMenu":[[5,10,25],[5,10,25]],
         // "lengthMenu": [

@@ -306,7 +306,7 @@
 
         <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
             <div class="border">
-                <table
+                <table id="cvs_table"
                     class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
                     <thead>
                         <tr>
@@ -335,16 +335,142 @@
                         @else
                             @foreach ($data as $row)
                                 <tr class="">
-                                    <td width="5%" >{{$row->ref_no}}</td>
-                                    <td width="8%" >{{$row->vessel_name}}</td>
-                                    <td width="8%" ><p class=""><?php echo str_replace(',', ',<br>', $row->vessel_type_id); ?></p></td>
-                                    <td width="8%" ><p class=""><?php echo str_replace(',', ',<br>', $row->charter_type_id); ?></p></td>
-                                    <td width="10%" >{{date("d-M-Y", strtotime($row->laycan_date_from))}}</td>
-                                    <td width="15%" >{{date("d-M-Y", strtotime($row->laycan_date_to))}}</td>
-                                    <td width="15%" ><p class=""><?php echo str_replace(',', ',<br>', $row->region_id); ?></p></td>
-                                    <td width="15%" ><p class=""><?php echo str_replace(',', ',<br>', $row->country_id); ?></p></td>
-                                    <td width="10%" ><p class=""><?php echo str_replace(',', ',<br>', $row->port_id); ?></p></td>
-                                    <td width="15%" >{{explode(" ",$row->created_at)[0]}}</td>
+                                    <td width="5%" >
+                                        <div class="td_h">
+                                            {{$row->ref_no}}
+                                        </div>
+                                        {{--  --}}
+                                        <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
+                                            <p class="b7 mb-0">Built Year:</p>
+                                            <p class="">{{ $row->built_year }}</p>
+                                            <p class="b7 mb-0">DWT:</p>
+                                            <p class="">{{ $row->dwt }}</p>
+                                            <p class="b7 mb-0">DWCC</p>
+                                            <p class="">{{ $row->dwcc }}</p>
+                                        </div>
+                                    </td>
+                                    <td width="8%" >
+                                        <div class="td_h">
+                                            {{$row->vessel_name}}
+                                        </div>
+                                        {{--  --}}
+                                        <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
+                                            <p class="b7 mb-0">IMO Number:</p>
+                                            <p class="">{{ $row->imo_number }}</p>
+                                            <p class="b7 mb-0">Call Sign:</p>
+                                            <p class="">{{ $row->call_sign }}</p>
+                                            <p class="b7 mb-0">Speed Blast:</p>
+                                            <p class="">{{ $row->speed_ballast }}</p>
+                                        </div>
+                                    </td>
+                                    <td width="8%" >
+                                        <div class="td_h">
+                                            <p class=""><?php echo str_replace(',', ',<br>', $row->vessel_type_id); ?></p>
+                                        </div>
+                                        {{--  --}}
+                                        <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
+                                            <p class="b7 mb-0">Speed Laden</p>
+                                            <p class="">{{ $row->speed_laden }}</p>
+                                            <p class="b7 mb-0">Gross Tonnage:</p>
+                                            <p class="">{{ $row->gross_tonnage }}</p>
+                                            <p class="b7 mb-0">Net Tonnage:</p>
+                                            <p class="">{{ $row->net_tonnage }}</p>
+                                        </div>
+                                    </td>
+                                    <td width="8%" >
+                                        <div class="td_h">
+                                            <p class=""><?php echo str_replace(',', ',<br>', $row->charter_type_id); ?></p>
+                                        </div>
+                                        {{--  --}}
+                                        <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
+                                            <p class="b7 mb-0">LOA Max:</p>
+                                            <p class="">{{ $row->loa_max }}</p>
+                                            <p class="b7 mb-0">Beam Max:</p>
+                                            <p class="">{{ $row->beam_max }}</p>
+                                            <p class="b7 mb-0">Summer Draft:</p>
+                                            <p class="">{{ $row->summer_draft }}</p>
+                                        </div>
+                                    </td>
+                                    <td width="10%" >
+                                        <div class="td_h">
+                                            {{date("d-M-Y", strtotime($row->laycan_date_from))}}
+                                        </div>
+                                        {{--  --}}
+                                        <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
+                                            <p class="b7 mb-0">Fresh Water Draft:</p>
+                                            <p class="">{{ $row->fresh_water_draft }}</p>
+                                            <p class="b7 mb-0">Grain Capacity:</p>
+                                            <p class="">{{ $row->grain_capacity }}</p>
+                                            <p class="b7 mb-0">Bale Capacity:</p>
+                                            <p class="">{{ $row->bale_capacity }}</p>
+                                        </div>
+                                    </td>
+                                    <td width="15%" >
+                                        <div class="td_h">
+                                            {{date("d-M-Y", strtotime($row->laycan_date_to))}}
+                                        </div>
+                                        {{--  --}}
+                                        <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
+                                            <p class="b7 mb-0">Container Capacity 20FT:</p>
+                                            <p class="">{{ $row->container_capacity_20ft }}</p>
+                                            <p class="b7 mb-0">Container Capacity 40FT:</p>
+                                            <p class="">{{ $row->container_capacity_40ft }}</p>
+                                            <p class="b7 mb-0">Container Capacity 4CH:</p>
+                                            <p class="">{{ $row->container_capacity_40ch }}</p>
+                                        </div>
+                                    </td>
+                                    <td width="15%" >
+                                        <div class="td_h">
+                                            <p class=""><?php echo str_replace(',', ',<br>', $row->region_id); ?></p>
+                                        </div>
+                                        {{--  --}}
+                                        <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
+                                            <p class="b7 mb-0">IFO Consumption Empty:</p>
+                                            <p class="">{{ $row->ifo_consumption_empty }}</p>
+                                            <p class="b7 mb-0">IFO Consumption Laden:</p>
+                                            <p class="">{{ $row->ifo_consumption_laden }}</p>
+                                            <p class="b7 mb-0">IFO Consumption Port:</p>
+                                            <p class="">{{ $row->ifo_consumption_port }}</p>
+                                        </div>
+                                    </td>
+                                    <td width="15%" >
+                                        <div class="td_h">
+                                            <p class=""><?php echo str_replace(',', ',<br>', $row->country_id); ?></p>
+                                        </div>
+                                        {{--  --}}
+                                        <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
+                                            <p class="b7 mb-0">MGO Consumption Empty:</p>
+                                            <p class="">{{ $row->mgo_consumption_empty }}</p>
+                                            <p class="b7 mb-0">MGO Consumption Laden:</p>
+                                            <p class="">{{ $row->mgo_consumption_laden }}</p>
+                                            <p class="b7 mb-0">MGO Consumption Port:</p>
+                                            <p class="">{{ $row->mgo_consumption_port }}</p>
+                                        </div>
+                                    </td>
+                                    <td width="10%" >
+                                        <div class="td_h">
+                                            <p class=""><?php echo str_replace(',', ',<br>', $row->port_id); ?></p>
+                                        </div>
+                                        {{--  --}}
+                                        <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
+                                            <p class="b7 mb-0">Lane Meters:</p>
+                                            <p class="">{{ $row->lane_meters }}</p>
+                                            <p class="b7 mb-0">P I Club:</p>
+                                            <p class="">{{ $row->p_i_club }}</p>
+                                            <p class="b7 mb-0">Classed By:</p>
+                                            <p class="">{{ $row->classed_by }}</p>
+                                        </div>
+                                    </td>
+                                    <td width="15%" >
+                                        <div class="td_h">
+                                            {{explode(" ",$row->created_at)[0]}}
+                                        </div>
+                                        {{--  --}}
+                                        <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
+                                            <p class="b7 mb-0">Additional Info:</p>
+                                            <p class="">{{ $row->additional_info }}</p>
+                                        </div>
+                                    </td>
 
                                     @if (session('front_uid') != '')
                                         <td width="10%" class="text-center">
@@ -357,86 +483,6 @@
                                         </td>
                                     @endif
 
-                                </tr>
-                                <tr class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
-                                    {{-- <td></td> --}}
-                                    <td>
-                                        <p class="b7 mb-0">Built Year:</p>
-                                        <p class="">{{ $row->built_year }}</p>
-                                        <p class="b7 mb-0">DWT:</p>
-                                        <p class="">{{ $row->dwt }}</p>
-                                        <p class="b7 mb-0">DWCC</p>
-                                        <p class="">{{ $row->dwcc }}</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">IMO Number:</p>
-                                        <p class="">{{ $row->imo_number }}</p>
-                                        <p class="b7 mb-0">Call Sign:</p>
-                                        <p class="">{{ $row->call_sign }}</p>
-                                        <p class="b7 mb-0">Speed Blast:</p>
-                                        <p class="">{{ $row->speed_ballast }}</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Speed Laden</p>
-                                        <p class="">{{ $row->speed_laden }}</p>
-                                        <p class="b7 mb-0">Gross Tonnage:</p>
-                                        <p class="">{{ $row->gross_tonnage }}</p>
-                                        <p class="b7 mb-0">Net Tonnage:</p>
-                                        <p class="">{{ $row->net_tonnage }}</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">LOA Max:</p>
-                                        <p class="">{{ $row->loa_max }}</p>
-                                        <p class="b7 mb-0">Beam Max:</p>
-                                        <p class="">{{ $row->beam_max }}</p>
-                                        <p class="b7 mb-0">Summer Draft:</p>
-                                        <p class="">{{ $row->summer_draft }}</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Fresh Water Draft:</p>
-                                        <p class="">{{ $row->fresh_water_draft }}</p>
-                                        <p class="b7 mb-0">Grain Capacity:</p>
-                                        <p class="">{{ $row->grain_capacity }}</p>
-                                        <p class="b7 mb-0">Bale Capacity:</p>
-                                        <p class="">{{ $row->bale_capacity }}</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Container Capacity 20FT:</p>
-                                        <p class="">{{ $row->container_capacity_20ft }}</p>
-                                        <p class="b7 mb-0">Container Capacity 40FT:</p>
-                                        <p class="">{{ $row->container_capacity_40ft }}</p>
-                                        <p class="b7 mb-0">Container Capacity 4CH:</p>
-                                        <p class="">{{ $row->container_capacity_40ch }}</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">IFO Consumption Empty:</p>
-                                        <p class="">{{ $row->ifo_consumption_empty }}</p>
-                                        <p class="b7 mb-0">IFO Consumption Laden:</p>
-                                        <p class="">{{ $row->ifo_consumption_laden }}</p>
-                                        <p class="b7 mb-0">IFO Consumption Port:</p>
-                                        <p class="">{{ $row->ifo_consumption_port }}</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">MGO Consumption Empty:</p>
-                                        <p class="">{{ $row->mgo_consumption_empty }}</p>
-                                        <p class="b7 mb-0">MGO Consumption Laden:</p>
-                                        <p class="">{{ $row->mgo_consumption_laden }}</p>
-                                        <p class="b7 mb-0">MGO Consumption Port:</p>
-                                        <p class="">{{ $row->mgo_consumption_port }}</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Lane Meters:</p>
-                                        <p class="">{{ $row->lane_meters }}</p>
-                                        <p class="b7 mb-0">P I Club:</p>
-                                        <p class="">{{ $row->p_i_club }}</p>
-                                        <p class="b7 mb-0">Classed By:</p>
-                                        <p class="">{{ $row->classed_by }}</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Additional Info:</p>
-                                        <p class="">{{ $row->additional_info }}</p>
-                                    </td>
-                                    <td></td>
                                 </tr>
                             @endforeach
                         @endif

@@ -28,4 +28,8 @@ class ss_user extends Model
     public function scopeCode($query, $code){
         return $query->where('activationcode',$code);
     }
+
+    public function user_info(){
+        return $this->hasMany('App\Models\ss_cargo',"user_id");
+    }
 }

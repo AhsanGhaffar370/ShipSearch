@@ -16,9 +16,18 @@ class Front_auth extends Controller
         $data = ss_user::isActive("1")->orderBy('user_id', 'DESC')->get();
 
 
-        return view('front/directory/view',['data'=>$data]);
+        return view('front/directory/view',['data'=>$data,
+                                            'fuser_id'=>"0"]);
     }
 
+    function view_user(Request $req){
+
+        $data = ss_user::isActive("1")->orderBy('user_id', 'DESC')->get();
+        // dd($req->id);
+
+        return view('front/directory/view',['data'=>$data,
+                                            'fuser_id'=>$req->id]);
+    }
 
 
 
