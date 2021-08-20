@@ -111,7 +111,7 @@ class FrontVesselSaleController extends Controller
         $add_req->loa=$req->loa." ".$req->loa_unit;
         $add_req->breadth=$req->breadth." ".$req->breadth_unit;
         $add_req->summer_draft=$req->summer_draft." ".$req->summer_draft_unit;
-        $add_req->fw_draft=$req->fw_draft." ".$req->fw_draft_unit;
+        $add_req->fresh_water_draft=$req->fresh_water_draft." ".$req->fresh_water_draft_unit;
         $add_req->bunker_capacity=$req->bunker_capacity." ".$req->bunker_capacity_unit;
         $add_req->price=$req->price." ".$req->price_unit;
 

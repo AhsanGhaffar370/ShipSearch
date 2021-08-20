@@ -136,7 +136,7 @@
                         <input type="number" required name="built_year" class="form-control">
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">DWT</label>
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">DWCC</label>
@@ -177,7 +177,7 @@
                         <input type="text" required name="call_sign" class="form-control">
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">Speed Ballast</label>
@@ -194,7 +194,7 @@
                         </div>
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">Speed Laden</label>
@@ -212,7 +212,7 @@
                         </div>
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">Gross Tonnage</label>
@@ -230,7 +230,7 @@
                         </div>
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">Net Tonnage</label>
@@ -248,7 +248,7 @@
                         </div>
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">LOA Max</label>
@@ -265,7 +265,7 @@
                         </div>
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">Beam Max</label>
@@ -282,7 +282,7 @@
                         </div>
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">Summer Draft</label>
@@ -299,7 +299,7 @@
                         </div>
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">Fresh Water Draft</label>
@@ -331,52 +331,19 @@
                         <input type="text" required name="lane_meters" class="form-control">
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
-                        <div class="row">
-                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
-                                <label for="">Container Capacity 20FT</label>
-                                <input type="number" required name="container_capacity_20ft" class="left_round form-control ">
-                            </div>
-                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
-                                <select name="container_capacity_20ft_unit" id="container_capacity_20ft_unit"
-                                    class="right_round form-control mt-4 bg-light">
-                                    <option value="Gallons">Gallons</option>
-                                    <option value="Litres">Litres</option>
-                                </select>
-                            </div>
-                        </div>
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
+                        <label for="">Container Capacity 20ft</label>
+                        <input type="text" required name="container_capacity_20ft" class="form-control">
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
-                        <div class="row">
-                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
-                                <label for="">Container Capacity 40FT</label>
-                                <input type="number" required name="container_capacity_40ft" class="left_round form-control ">
-                            </div>
-                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
-                                <select name="container_capacity_40ft_unit" id="container_capacity_40ft_unit"
-                                    class="right_round form-control mt-4 bg-light">
-                                    <option value="Gallons">Gallons</option>
-                                    <option value="Litres">Litres</option>
-                                </select>
-                            </div>
-                        </div>
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
+                        <label for="">Container Capacity 40ft</label>
+                        <input type="text" required name="container_capacity_40ft" class="form-control">
                     </div>
                     <!-- -->
-                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
-                        <div class="row">
-                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
-                                <label for="">Container Capacity 40CH</label>
-                                <input type="number" required name="container_capacity_40ch" class="left_round form-control ">
-                            </div>
-                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
-                                <select name="container_capacity_40ch_unit" id="container_capacity_40ch_unit"
-                                    class="right_round form-control mt-4 bg-light">
-                                    <option value="Gallons">Gallons</option>
-                                    <option value="Litres">Litres</option>
-                                </select>
-                            </div>
-                        </div>
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
+                        <label for="">Container Capacity 40CH</label>
+                        <input type="text" required name="container_capacity_40ch" class="form-control">
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
@@ -419,7 +386,7 @@
                         <input type="text" required name="p_i_club" class="form-control">
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
                         <label for="">Additional Info</label>
                         <textarea name="additional_info" id="additional_info" class="form-control" cols="30"
                             rows="5" maxlength = "250"></textarea>

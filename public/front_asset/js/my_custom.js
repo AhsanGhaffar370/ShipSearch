@@ -640,13 +640,13 @@ $(document).ready(function() {
                             post_str += `<tr class="">
                                     <td>` + obj1.ref_no + `</td>
                                     <td>` + obj1.vessel_name + `</td>
+                                    <td>` + obj1.vessel_type_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>` + obj1.charter_type_id.replace(/,/g, ',<br>') + `</td>
                                     <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
                                     <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
                                     <td>` + obj1.region_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>` + obj1.country_id.replace(/,/g, ',<br>') + `</td>
                                     <td>` + obj1.port_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.vessel_type_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.built_year + `</td>
-                                    <td>` + obj1.deadweight + `</td>
                                     <td>` + obj1.created_at + `</td>
                                     <td class="text-center">
                                         <a href="` + obj1.vessel_id + `" class="show_detail_btn_` + obj1
@@ -657,76 +657,81 @@ $(document).ready(function() {
                                     </tr>
                                     
                                     <tr class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
-                                    <td></td>
                                     <td>
-                                        <p class="b7 mb-0">Country:</p>
-                                        <p class="">` + obj1.country_id.replace(/,/g, ',<br>') + `</p>
-                                        <p class="b7 mb-0">Charter Type:</p>
-                                        <p class="">` + obj1.charter_type_id.replace(/,/g, ',<br>') + `</p>
-                                        <p class="b7 mb-0">IMO Number:</p>
-                                        <p class="">` + obj1.imo_number + `</p>
+                                    <p class="b7 mb-0">Built Year:</p>
+                                    <p class="">` + obj1.built_year + `</p>
+                                    <p class="b7 mb-0">DWT:</p>
+                                    <p class="">` + obj1.dwt + `</p>
+                                    <p class="b7 mb-0">DWCC:</p>
+                                    <p class="">` + obj1.dwcc + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">DWCC:</p>
-                                        <p class="">` + obj1.dwcc + `</p>
+                                        <p class="b7 mb-0">IMO Number:</p>
+                                        <p class="">` + obj1.imo_number + `</p>
                                         <p class="b7 mb-0">Call Sign:</p>
                                         <p class="">` + obj1.call_sign + `</p>
                                         <p class="b7 mb-0">Speed Ballast:</p>
                                         <p class="">` + obj1.speed_ballast + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Laden:</p>
-                                        <p class="">` + obj1.laden + `</p>
-                                        <p class="b7 mb-0">Gross:</p>
-                                        <p class="">` + obj1.gross + `</p>
+                                        <p class="b7 mb-0">Speed Laden:</p>
+                                        <p class="">` + obj1.speed_laden + `</p>
+                                        <p class="b7 mb-0">Gross Tonnage:</p>
+                                        <p class="">` + obj1.gross_tonnage + `</p>
                                         <p class="b7 mb-0">Net Tonnage:</p>
                                         <p class="">` + obj1.net_tonnage + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">LOA:</p>
-                                        <p class="">` + obj1.loa + `</p>
-                                        <p class="b7 mb-0">Beam:</p>
-                                        <p class="">` + obj1.beam + `</p>
-                                        <p class="b7 mb-0">Draft:</p>
-                                        <p class="">` + obj1.draft + `</p>
+                                        <p class="b7 mb-0">LOA Max:</p>
+                                        <p class="">` + obj1.loa_max + `</p>
+                                        <p class="b7 mb-0">Beam Max:</p>
+                                        <p class="">` + obj1.beam_max + `</p>
+                                        <p class="b7 mb-0">Summer Draft:</p>
+                                        <p class="">` + obj1.summer_draft + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Depth:</p>
-                                        <p class="">` + obj1.depth + `</p>
-                                        <p class="b7 mb-0">Grain:</p>
-                                        <p class="">` + obj1.grain + `</p>
+                                        <p class="b7 mb-0">Fresh Water Draft:</p>
+                                        <p class="">` + obj1.fresh_water_draft + `</p>
+                                        <p class="b7 mb-0">Grain Capacity:</p>
+                                        <p class="">` + obj1.grain_capacity + `</p>
                                         <p class="b7 mb-0">Bale Capacity:</p>
                                         <p class="">` + obj1.bale_capacity + `</p>
                                     </td>
                                     <td>
+                                        <p class="b7 mb-0">Container Capacity 20FT:</p>
+                                        <p class="">` + obj1.container_capacity_20ft + `</p>
+                                        <p class="b7 mb-0">Container Capacity 40FT:</p>
+                                        <p class="">` + obj1.container_capacity_40ft + `</p>
+                                        <p class="b7 mb-0">Container Capacity 40CH:</p>
+                                        <p class="">` + obj1.container_capacity_40ch + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">IFO Consumption Empty:</p>
+                                        <p class="">` + obj1.ifo_consumption_empty + `</p>
+                                        <p class="b7 mb-0">IFO Consumption Laden:</p>
+                                        <p class="">` + obj1.ifo_consumption_laden + `</p>
+                                        <p class="b7 mb-0">IFO Consumption Port:</p>
+                                        <p class="">` + obj1.ifo_consumption_port + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">MGO Consumption Empty:</p>
+                                        <p class="">` + obj1.mgo_consumption_empty + `</p>
+                                        <p class="b7 mb-0">MGO Consumption Laden:</p>
+                                        <p class="">` + obj1.mgo_consumption_laden + `</p>
+                                        <p class="b7 mb-0">MGO Consumption Port:</p>
+                                        <p class="">` + obj1.mgo_consumption_port + `</p>
+                                    </td>
+                                    <td>
                                         <p class="b7 mb-0">Lane Meters:</p>
                                         <p class="">` + obj1.lane_meters + `</p>
-                                        <p class="b7 mb-0">Container Capacity:</p>
-                                        <p class="">` + obj1.container_capacity + `</p>
-                                        <p class="b7 mb-0">Passenger Capacity:</p>
-                                        <p class="">` + obj1.passenger_capacity + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">IFO:</p>
-                                        <p class="">` + obj1.ifo + `</p>
-                                        <p class="b7 mb-0">IFO Laden:</p>
-                                        <p class="">` + obj1.ifo_laden + `</p>
-                                        <p class="b7 mb-0">IFO Port:</p>
-                                        <p class="">` + obj1.ifo_port + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">MGO:</p>
-                                        <p class="">` + obj1.mgo + `</p>
-                                        <p class="b7 mb-0">MGO Laden:</p>
-                                        <p class="">` + obj1.mgo_laden + `</p>
-                                        <p class="b7 mb-0">MGO Port:</p>
-                                        <p class="">` + obj1.mgo_port + `</p>
-                                    </td>
-                                    <td>
                                         <p class="b7 mb-0">P I Club:</p>
                                         <p class="">` + obj1.p_i_club + `</p>
                                         <p class="b7 mb-0">Classed By:</p>
                                         <p class="">` + obj1.classed_by + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Additional Info:</p>
+                                        <p class="">` + obj1.additional_info + `</p>
                                     </td>
                                     <td></td>
                                     </tr>
@@ -920,13 +925,13 @@ $(document).ready(function() {
                                     post_str += `<tr class="">
                                     <td>` + obj1.ref_no + `</td>
                                     <td>` + obj1.vessel_name + `</td>
+                                    <td>` + obj1.vessel_type_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>` + obj1.charter_type_id.replace(/,/g, ',<br>') + `</td>
                                     <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
                                     <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
                                     <td>` + obj1.region_id.replace(/,/g, ',<br>') + `</td>
+                                    <td>` + obj1.country_id.replace(/,/g, ',<br>') + `</td>
                                     <td>` + obj1.port_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.vessel_type_id.replace(/,/g, ',<br>') + `</td>
-                                    <td>` + obj1.built_year + `</td>
-                                    <td>` + obj1.deadweight + `</td>
                                     <td>` + obj1.created_at + `</td>
                                     <td class="text-center">
                                         <a href="` + obj1.vessel_id + `" class="show_detail_btn_` + obj1
@@ -937,76 +942,81 @@ $(document).ready(function() {
                                     </tr>
                                     
                                     <tr class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
-                                    <td></td>
                                     <td>
-                                        <p class="b7 mb-0">Country:</p>
-                                        <p class="">` + obj1.country_id.replace(/,/g, ',<br>') + `</p>
-                                        <p class="b7 mb-0">Charter Type:</p>
-                                        <p class="">` + obj1.charter_type_id.replace(/,/g, ',<br>') + `</p>
-                                        <p class="b7 mb-0">IMO Number:</p>
-                                        <p class="">` + obj1.imo_number + `</p>
+                                    <p class="b7 mb-0">Built Year:</p>
+                                    <p class="">` + obj1.built_year + `</p>
+                                    <p class="b7 mb-0">DWT:</p>
+                                    <p class="">` + obj1.dwt + `</p>
+                                    <p class="b7 mb-0">DWCC:</p>
+                                    <p class="">` + obj1.dwcc + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">DWCC:</p>
-                                        <p class="">` + obj1.dwcc + `</p>
+                                        <p class="b7 mb-0">IMO Number:</p>
+                                        <p class="">` + obj1.imo_number + `</p>
                                         <p class="b7 mb-0">Call Sign:</p>
                                         <p class="">` + obj1.call_sign + `</p>
                                         <p class="b7 mb-0">Speed Ballast:</p>
                                         <p class="">` + obj1.speed_ballast + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Laden:</p>
-                                        <p class="">` + obj1.laden + `</p>
-                                        <p class="b7 mb-0">Gross:</p>
-                                        <p class="">` + obj1.gross + `</p>
+                                        <p class="b7 mb-0">Speed Laden:</p>
+                                        <p class="">` + obj1.speed_laden + `</p>
+                                        <p class="b7 mb-0">Gross Tonnage:</p>
+                                        <p class="">` + obj1.gross_tonnage + `</p>
                                         <p class="b7 mb-0">Net Tonnage:</p>
                                         <p class="">` + obj1.net_tonnage + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">LOA:</p>
-                                        <p class="">` + obj1.loa + `</p>
-                                        <p class="b7 mb-0">Beam:</p>
-                                        <p class="">` + obj1.beam + `</p>
-                                        <p class="b7 mb-0">Draft:</p>
-                                        <p class="">` + obj1.draft + `</p>
+                                        <p class="b7 mb-0">LOA Max:</p>
+                                        <p class="">` + obj1.loa_max + `</p>
+                                        <p class="b7 mb-0">Beam Max:</p>
+                                        <p class="">` + obj1.beam_max + `</p>
+                                        <p class="b7 mb-0">Summer Draft:</p>
+                                        <p class="">` + obj1.summer_draft + `</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Depth:</p>
-                                        <p class="">` + obj1.depth + `</p>
-                                        <p class="b7 mb-0">Grain:</p>
-                                        <p class="">` + obj1.grain + `</p>
+                                        <p class="b7 mb-0">Fresh Water Draft:</p>
+                                        <p class="">` + obj1.fresh_water_draft + `</p>
+                                        <p class="b7 mb-0">Grain Capacity:</p>
+                                        <p class="">` + obj1.grain_capacity + `</p>
                                         <p class="b7 mb-0">Bale Capacity:</p>
                                         <p class="">` + obj1.bale_capacity + `</p>
                                     </td>
                                     <td>
+                                        <p class="b7 mb-0">Container Capacity 20FT:</p>
+                                        <p class="">` + obj1.container_capacity_20ft + `</p>
+                                        <p class="b7 mb-0">Container Capacity 40FT:</p>
+                                        <p class="">` + obj1.container_capacity_40ft + `</p>
+                                        <p class="b7 mb-0">Container Capacity 40CH:</p>
+                                        <p class="">` + obj1.container_capacity_40ch + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">IFO Consumption Empty:</p>
+                                        <p class="">` + obj1.ifo_consumption_empty + `</p>
+                                        <p class="b7 mb-0">IFO Consumption Laden:</p>
+                                        <p class="">` + obj1.ifo_consumption_laden + `</p>
+                                        <p class="b7 mb-0">IFO Consumption Port:</p>
+                                        <p class="">` + obj1.ifo_consumption_port + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">MGO Consumption Empty:</p>
+                                        <p class="">` + obj1.mgo_consumption_empty + `</p>
+                                        <p class="b7 mb-0">MGO Consumption Laden:</p>
+                                        <p class="">` + obj1.mgo_consumption_laden + `</p>
+                                        <p class="b7 mb-0">MGO Consumption Port:</p>
+                                        <p class="">` + obj1.mgo_consumption_port + `</p>
+                                    </td>
+                                    <td>
                                         <p class="b7 mb-0">Lane Meters:</p>
                                         <p class="">` + obj1.lane_meters + `</p>
-                                        <p class="b7 mb-0">Container Capacity:</p>
-                                        <p class="">` + obj1.container_capacity + `</p>
-                                        <p class="b7 mb-0">Passenger Capacity:</p>
-                                        <p class="">` + obj1.passenger_capacity + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">IFO:</p>
-                                        <p class="">` + obj1.ifo + `</p>
-                                        <p class="b7 mb-0">IFO Laden:</p>
-                                        <p class="">` + obj1.ifo_laden + `</p>
-                                        <p class="b7 mb-0">IFO Port:</p>
-                                        <p class="">` + obj1.ifo_port + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">MGO:</p>
-                                        <p class="">` + obj1.mgo + `</p>
-                                        <p class="b7 mb-0">MGO Laden:</p>
-                                        <p class="">` + obj1.mgo_laden + `</p>
-                                        <p class="b7 mb-0">MGO Port:</p>
-                                        <p class="">` + obj1.mgo_port + `</p>
-                                    </td>
-                                    <td>
                                         <p class="b7 mb-0">P I Club:</p>
                                         <p class="">` + obj1.p_i_club + `</p>
                                         <p class="b7 mb-0">Classed By:</p>
                                         <p class="">` + obj1.classed_by + `</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Additional Info:</p>
+                                        <p class="">` + obj1.additional_info + `</p>
                                     </td>
                                     <td></td>
                                     </tr>

@@ -389,7 +389,7 @@
                                         </section>
                                     </td>
                                     <!-- -->
-                                    <td class=" ">
+                                    <td class="">
                                         <section class="discharge_country_id_par_{{ $row->id }}">
                                             <select name="discharge_country_id[]"
                                                 id="discharge_country_id_{{ $row->id }}"

@@ -335,19 +335,19 @@
                         @else
                             @foreach ($data as $row)
                                 <tr class="">
-                                    <td >{{$row->ref_no}}</td>
-                                    <td >{{$row->vessel_name}}</td>
-                                    <td ><p class=""><?php echo str_replace(',', ',<br>', $row->vessel_type_id); ?></p></td>
-                                    <td ><p class=""><?php echo str_replace(',', ',<br>', $row->charter_type_id); ?></p></td>
-                                    <td >{{date("d-M-Y", strtotime($row->laycan_date_from))}}</td>
-                                    <td >{{date("d-M-Y", strtotime($row->laycan_date_to))}}</td>
-                                    <td ><p class=""><?php echo str_replace(',', ',<br>', $row->region_id); ?></p></td>
-                                    <td ><p class=""><?php echo str_replace(',', ',<br>', $row->country_id); ?></p></td>
-                                    <td ><p class=""><?php echo str_replace(',', ',<br>', $row->port_id); ?></p></td>
-                                    <td >{{explode(" ",$row->created_at)[0]}}</td>
+                                    <td width="5%" >{{$row->ref_no}}</td>
+                                    <td width="8%" >{{$row->vessel_name}}</td>
+                                    <td width="8%" ><p class=""><?php echo str_replace(',', ',<br>', $row->vessel_type_id); ?></p></td>
+                                    <td width="8%" ><p class=""><?php echo str_replace(',', ',<br>', $row->charter_type_id); ?></p></td>
+                                    <td width="10%" >{{date("d-M-Y", strtotime($row->laycan_date_from))}}</td>
+                                    <td width="15%" >{{date("d-M-Y", strtotime($row->laycan_date_to))}}</td>
+                                    <td width="15%" ><p class=""><?php echo str_replace(',', ',<br>', $row->region_id); ?></p></td>
+                                    <td width="15%" ><p class=""><?php echo str_replace(',', ',<br>', $row->country_id); ?></p></td>
+                                    <td width="10%" ><p class=""><?php echo str_replace(',', ',<br>', $row->port_id); ?></p></td>
+                                    <td width="15%" >{{explode(" ",$row->created_at)[0]}}</td>
 
                                     @if (session('front_uid') != '')
-                                        <td class="text-center">
+                                        <td width="10%" class="text-center">
                                             <a href='{{ $row->vessel_id }}'
                                                 class="show_detail_btn show_detail_btn_{{ $row->vessel_id }}"><i
                                                     class="fas fa-eye fa-2x"></i></a>
@@ -359,7 +359,7 @@
 
                                 </tr>
                                 <tr class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
-                                    <td></td>
+                                    {{-- <td></td> --}}
                                     <td>
                                         <p class="b7 mb-0">Built Year:</p>
                                         <p class="">{{ $row->built_year }}</p>
@@ -371,7 +371,7 @@
                                     <td>
                                         <p class="b7 mb-0">IMO Number:</p>
                                         <p class="">{{ $row->imo_number }}</p>
-                                        <p class="b7 mb-0">Call Sign</p>
+                                        <p class="b7 mb-0">Call Sign:</p>
                                         <p class="">{{ $row->call_sign }}</p>
                                         <p class="b7 mb-0">Speed Blast:</p>
                                         <p class="">{{ $row->speed_ballast }}</p>
@@ -401,8 +401,6 @@
                                         <p class="">{{ $row->bale_capacity }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Lane Meters:</p>
-                                        <p class="">{{ $row->lane_meters }}</p>
                                         <p class="b7 mb-0">Container Capacity 20FT:</p>
                                         <p class="">{{ $row->container_capacity_20ft }}</p>
                                         <p class="b7 mb-0">Container Capacity 40FT:</p>
@@ -411,27 +409,31 @@
                                         <p class="">{{ $row->container_capacity_40ch }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">IFO:</p>
-                                        <p class="">{{ $row->ifo }}</p>
-                                        <p class="b7 mb-0">IFO Laden:</p>
-                                        <p class="">{{ $row->ifo_laden }}</p>
-                                        <p class="b7 mb-0">IFO Port :</p>
-                                        <p class="">{{ $row->ifo_port }}</p>
+                                        <p class="b7 mb-0">IFO Consumption Empty:</p>
+                                        <p class="">{{ $row->ifo_consumption_empty }}</p>
+                                        <p class="b7 mb-0">IFO Consumption Laden:</p>
+                                        <p class="">{{ $row->ifo_consumption_laden }}</p>
+                                        <p class="b7 mb-0">IFO Consumption Port:</p>
+                                        <p class="">{{ $row->ifo_consumption_port }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">MGO:</p>
-                                        <p class="">{{ $row->mgo }}</p>
-                                        <p class="b7 mb-0">MGO Laden:</p>
-                                        <p class="">{{ $row->mgo_laden }}</p>
-                                        <p class="b7 mb-0">MGO Port:</p>
-                                        <p class="">{{ $row->mgo_port }}</p>
+                                        <p class="b7 mb-0">MGO Consumption Empty:</p>
+                                        <p class="">{{ $row->mgo_consumption_empty }}</p>
+                                        <p class="b7 mb-0">MGO Consumption Laden:</p>
+                                        <p class="">{{ $row->mgo_consumption_laden }}</p>
+                                        <p class="b7 mb-0">MGO Consumption Port:</p>
+                                        <p class="">{{ $row->mgo_consumption_port }}</p>
                                     </td>
                                     <td>
+                                        <p class="b7 mb-0">Lane Meters:</p>
+                                        <p class="">{{ $row->lane_meters }}</p>
                                         <p class="b7 mb-0">P I Club:</p>
                                         <p class="">{{ $row->p_i_club }}</p>
                                         <p class="b7 mb-0">Classed By:</p>
                                         <p class="">{{ $row->classed_by }}</p>
-                                        <p class="b7 mb-0">Additional Information:</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">Additional Info:</p>
                                         <p class="">{{ $row->additional_info }}</p>
                                     </td>
                                     <td></td>

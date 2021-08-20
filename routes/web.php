@@ -100,7 +100,7 @@ Route::get('/vessel_sale/update_hist_data', [FrontVesselSaleController::class, '
 
 
 // Directory Charter
-Route::get('/directory/view', [FrontVesselSaleController::class, 'view'] )->name('directory.view');
+Route::get('/directory/view', [Front_auth::class, 'view'] )->name('directory.view');
 // Route::post('/vessel_sale/view', [FrontVesselSaleController::class, 'search_req'] )->name('vessel_sale.search_req');
 // Route::get('/vessel_sale/ser_hist_rec', [FrontVesselSaleController::class, 'search_req_ajax'] )->name('vessel_sale.ser_hist_rec');
 // Route::get('/vessel_sale/del_ser_hist_rec', [FrontVesselSaleController::class, 'del_ser_his_req_ajax'] )->name('vessel_sale.del_ser_hist_rec');

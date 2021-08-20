@@ -45,9 +45,6 @@
             padding-bottom: 90px;
             padding-left: 0px;
         }
-
-
-
         .blog_bg {
             /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
                                     url("{{ asset('front_asset/images/banner-img.jpg') }}"); */
@@ -57,6 +54,16 @@
             height: auto;
             /* max-height: 811px; */
             min-height: 740px;
+            background-repeat: no-repeat;
+            background-size: cover !important;
+            padding: 0px;
+        }
+
+        .about_bg{
+            background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+                url("{{ asset('front_asset/images/AboutUs-Image.jpg') }}");
+            width: 100%;
+            height: auto;
             background-repeat: no-repeat;
             background-size: cover !important;
             padding: 0px;

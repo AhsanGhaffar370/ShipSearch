@@ -240,10 +240,10 @@
                         <div class="row">
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">Fresh Water Draft</label>
-                                <input type="number" required name="fw_draft" class="left_round form-control ">
+                                <input type="number" required name="fresh_water_draft" class="left_round form-control ">
                             </div>
                             <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
-                                <select name="fw_draft_unit" id="fw_draft_unit"
+                                <select name="fresh_water_draft_unit" id="fresh_water_draft_unit"
                                     class="right_round form-control bg-light mt-4">
                                     <option value="Meters">Meters</option>
                                 </select>

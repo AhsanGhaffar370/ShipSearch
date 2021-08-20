@@ -379,7 +379,7 @@
     {{-- <hr class="ft_border"> --}}
     <footer class="page-footer font-small bg_w  " style="border-top: 10px solid #2A7473 !important;">
 
-        <div class="widee">
+        <div class="pl_1 pr_1">
             <!-- Footer Links -->
             <div class="container-fluid text-center text-md-left pt-4 pb-4">
 
@@ -393,7 +393,7 @@
 
 
                     <!-- Grid column -->
-                    <div class="col-md-4 offset-md-5 mb-md-0 mb-3">
+                    <div class="col-md-3 offset-md-6 mb-md-0 mb-3">
 
                         <h5 class="size42 cl-dark eras ">Contact Details:</h5>
 

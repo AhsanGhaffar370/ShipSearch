@@ -10,6 +10,21 @@ use Mail;
 
 class Front_auth extends Controller
 {
+
+    function view(){
+
+        $data = ss_user::isActive("1")->orderBy('user_id', 'DESC')->get();
+
+
+        return view('front/directory/view',['data'=>$data]);
+    }
+
+
+
+
+
+
+
     function login_req(Request $req){
         $email= $req->email;
         $password= md5($req->pass);
@@ -23,6 +38,12 @@ class Front_auth extends Controller
                 $req->session()->put('front_uid',$res[0]->user_id);
                 $fullname=$res[0]->first_name;
                 $req->session()->put('front_uname',$fullname);
+                $company_name=$res[0]->company_name;
+                $req->session()->put('company_name',$company_name);
+                $phone=$res[0]->phone;
+                $req->session()->put('phone_no',$phone);
+                $email=$res[0]->email;
+                $req->session()->put('email_add',$email);
                 return redirect()->route('home');
             }
             else{

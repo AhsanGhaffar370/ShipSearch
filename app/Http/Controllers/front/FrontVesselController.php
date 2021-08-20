@@ -62,44 +62,81 @@ class FrontVesselController extends Controller
                                         'port'=>$ss_setup_port]
                                     );
     }
-
+    
     function add_req(Request $req){
 
-        $add_req= $req->all();
+        // $add_req= $req->all();
+        $add_req=new ss_vessel;
+
+        $add_req->vessel_name=$req->vessel_name;
+        $add_req->ref_no=$req->ref_no;
+
+        $add_req->laycan_date_from=$req->laycan_date_from;
+        $add_req->laycan_date_to=$req->laycan_date_to;
 
         $vessel_type="";
         foreach ($req->vessel_type_id as $selectedOption)
             $vessel_type .= $selectedOption.",";
-        $add_req["vessel_type_id"]=rtrim($vessel_type, ",");
+        $add_req->vessel_type_id=rtrim($vessel_type, ",");
 
         $charter_type="";
         foreach ($req->charter_type_id as $selectedOption)
             $charter_type .= $selectedOption.",";
-        $add_req["charter_type_id"]=rtrim($charter_type, ",");
+        $add_req->charter_type_id=rtrim($charter_type, ",");
 
         $region="";
         foreach ($req->region_id as $selectedOption)
             $region .= $selectedOption.",";
-        $add_req["region_id"]=rtrim($region, ",");
+        $add_req->region_id=rtrim($region, ",");
 
         $country="";
         foreach ($req->country_id as $selectedOption)
             $country .= $selectedOption.",";
-        $add_req["country_id"]=rtrim($country, ",");
+        $add_req->country_id=rtrim($country, ",");
 
         $port="";
         foreach ($req->port_id as $selectedOption)
             $port .= $selectedOption.",";
-        $add_req["port_id"]=rtrim($port, ",");
+        $add_req->port_id=rtrim($port, ",");
+
+        $add_req->built_year=$req->built_year;
+        $add_req->dwt=$req->dwt." ".$req->dwt_unit;
+        $add_req->dwcc=$req->dwcc." ".$req->dwcc_unit;
+        $add_req->imo_number=$req->imo_number;
+        $add_req->call_sign=$req->call_sign;
+        $add_req->speed_ballast=$req->speed_ballast." ".$req->speed_ballast_unit;
+        $add_req->speed_laden=$req->speed_laden." ".$req->speed_laden_unit;
+        $add_req->gross_tonnage=$req->gross_tonnage." ".$req->gross_tonnage_unit;
+        $add_req->net_tonnage=$req->net_tonnage." ".$req->net_tonnage_unit;
+        $add_req->loa_max=$req->loa_max." ".$req->loa_max_unit;
+        $add_req->beam_max=$req->beam_max." ".$req->beam_max_unit;
+        $add_req->summer_draft=$req->summer_draft." ".$req->summer_draft_unit;
+        $add_req->fresh_water_draft=$req->fresh_water_draft." ".$req->fresh_water_draft_unit;
+        $add_req->grain_capacity=$req->grain_capacity;
+        $add_req->bale_capacity=$req->bale_capacity;
+        $add_req->lane_meters=$req->lane_meters;
+        $add_req->container_capacity_20ft=$req->container_capacity_20ft." ".$req->container_capacity_20ft_unit;
+        $add_req->container_capacity_40ft=$req->container_capacity_40ft." ".$req->container_capacity_40ft_unit;
+        $add_req->container_capacity_40ch=$req->container_capacity_40ch." ".$req->container_capacity_40ch_unit;
+        $add_req->ifo_consumption_empty=$req->ifo_consumption_empty;
+        $add_req->ifo_consumption_laden=$req->ifo_consumption_laden;
+        $add_req->ifo_consumption_port=$req->ifo_consumption_port;
+        $add_req->mgo_consumption_empty=$req->mgo_consumption_empty;
+        $add_req->mgo_consumption_laden=$req->mgo_consumption_laden;
+        $add_req->mgo_consumption_port=$req->mgo_consumption_port;
+        $add_req->classed_by=$req->classed_by;
+        $add_req->p_i_club=$req->p_i_club;
+        $add_req->additional_info=$req->additional_info;
 
 
-        $add_req["is_active"]="1";
-        $add_req["created_at"]=date('Y-m-d H:i:s');
-        $add_req["created_by"]=session('front_uid');
-        $add_req["modified_at"]=date('Y-m-d H:i:s');
-        $add_req["modified_by"]=session('front_uid');
+        $add_req->is_active="1";
+        $add_req->created_at=date('Y-m-d H:i:s');
+        $add_req->created_by=session('front_uid');
+        $add_req->modified_at=date('Y-m-d H:i:s');
+        $add_req->modified_by=session('front_uid');
 
-        ss_vessel::create($add_req);
+        $add_req->save();
+        // ss_vessel::create($add_req);
 
         $req->session()->flash('msg','Vessel Added');
         $req->session()->flash('alert','success');

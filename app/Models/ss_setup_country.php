@@ -36,6 +36,7 @@ class ss_setup_country extends Model
     public function SCAlcountry(){
         return $this->hasMany('App\Models\rel_ser_cargo_lcountry',"country_id");
     }
+
     public function SCAldcountry(){
         return $this->hasMany('App\Models\rel_ser_cargo_dcountry',"country_id");
     }
@@ -46,7 +47,7 @@ class ss_setup_country extends Model
     // public function Dcargo(){
     //     return $this->hasMany('App\Models\ss_cargo',"discharge_country_id");
     // }
-
+    
     
     public function region_country_port(){
         return $this->hasMany('App\Models\ss_setup_region_country_port',"country_id");

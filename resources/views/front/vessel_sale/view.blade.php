@@ -341,11 +341,11 @@
                                         <p class="b7 mb-0">Classification:</p>
                                         <p class="">{{ $row->classification }}</p>
                                         <p class="b7 mb-0">GRT:</p>
-                                        <p class="">{{ $row->GRT }}</p>
+                                        <p class="">{{ $row->grt }}</p>
                                     </td>
                                     <td>
                                         <p class="b7 mb-0">NRT:</p>
-                                        <p class="">{{ $row->NRT }}</p>
+                                        <p class="">{{ $row->nrt }}</p>
                                         <p class="b7 mb-0">DWT:</p>
                                         <p class="">{{ $row->dwt }}</p>
                                         <p class="b7 mb-0">Light Weight:</p>
@@ -365,7 +365,7 @@
                                     </td>
                                     <td>
                                         <p class="b7 mb-0">Fresh Water Draft:</p>
-                                        <p class="">{{ $row->fw_draft }}</p>
+                                        <p class="">{{ $row->fresh_water_draft }}</p>
                                         <p class="b7 mb-0">Main Engine:</p>
                                         <p class="">{{ $row->main_engine }}</p>
                                         <p class="b7 mb-0">Aux Engines:</p>
