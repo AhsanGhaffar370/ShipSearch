@@ -136,14 +136,35 @@
                         <input type="number" required name="built_year" class="form-control">
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Dead Weight</label>
-                        <input type="text" required name="deadweight" class="form-control">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                        <div class="row">
+                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                                <label for="">DWT</label>
+                                {{-- <label for="">Dead Weight</label> --}}
+                                <input type="number" required name="dwt" class="left_round form-control ">
+                            </div>
+                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                                <select name="dwt_unit" id="dwt_unit"
+                                    class="right_round form-control mt-4 bg-light">
+                                    <option value="MT">MT</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">DWCC</label>
-                        <input type="text" required name="dwcc" class="form-control">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                        <div class="row">
+                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                                <label for="">DWCC</label>
+                                <input type="number" required name="dwcc" class="left_round form-control ">
+                            </div>
+                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                                <select name="dwcc_unit" id="dwcc_unit"
+                                    class="right_round form-control mt-4 bg-light">
+                                    <option value="MT">MT</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
@@ -156,49 +177,148 @@
                         <input type="text" required name="call_sign" class="form-control">
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Speed Ballast</label>
-                        <input type="text" required name="speed_ballast" class="form-control">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                        <div class="row">
+                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                                <label for="">Speed Ballast</label>
+                                <input type="number" required name="speed_ballast" class="left_round form-control ">
+                            </div>
+                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                                <select name="speed_ballast_unit" id="speed_ballast_unit"
+                                    class="right_round form-control mt-4 bg-light">
+                                    <option value="Nm/H">Nm/H</option>
+                                    <option value="mph">mph</option>
+                                    <option value="Km/H">Km/H</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                        <div class="row">
+                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                                <label for="">Speed Laden</label>
+                                {{-- <label for="">Laden</label> --}}
+                                <input type="number" required name="speed_laden" class="left_round form-control ">
+                            </div>
+                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                                <select name="speed_laden_unit" id="speed_laden_unit"
+                                    class="right_round form-control mt-4 bg-light">
+                                    <option value="Nm/H">Nm/H</option>
+                                    <option value="mph">mph</option>
+                                    <option value="Km/H">Km/H</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                        <div class="row">
+                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                                <label for="">Gross Tonnage</label>
+                                {{-- <label for="">Laden</label> --}}
+                                <input type="number" required name="gross_tonnage" class="left_round form-control ">
+                            </div>
+                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                                <select name="gross_tonnage_unit" id="gross_tonnage_unit"
+                                    class="right_round form-control mt-4 bg-light">
+                                    <option value="MT">MT</option>
+                                    <option value="Lbs">Lbs</option>
+                                    <option value="KG">KG</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                        <div class="row">
+                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                                <label for="">Net Tonnage</label>
+                                {{-- <label for="">Laden</label> --}}
+                                <input type="number" required name="net_tonnage" class="left_round form-control ">
+                            </div>
+                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                                <select name="net_tonnage_unit" id="net_tonnage_unit"
+                                    class="right_round form-control mt-4 bg-light">
+                                    <option value="MT">MT</option>
+                                    <option value="Lbs">Lbs</option>
+                                    <option value="KG">KG</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                        <div class="row">
+                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                                <label for="">LOA Max</label>
+                                {{-- <label for="">Laden</label> --}}
+                                <input type="number" required name="loa_max" class="left_round form-control ">
+                            </div>
+                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                                <select name="loa_max_unit" id="loa_max_unit"
+                                    class="right_round form-control mt-4 bg-light">
+                                    <option value="Meters">Meters</option>
+                                    <option value="Feet">Feet</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                        <div class="row">
+                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                                <label for="">Beam Max</label>
+                                {{-- <label for="">Laden</label> --}}
+                                <input type="number" required name="beam_max" class="left_round form-control ">
+                            </div>
+                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                                <select name="beam_max_unit" id="beam_max_unit"
+                                    class="right_round form-control mt-4 bg-light">
+                                    <option value="Meters">Meters</option>
+                                    <option value="Feet">Feet</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                        <div class="row">
+                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                                <label for="">Summer Draft</label>
+                                {{-- <label for="">Laden</label> --}}
+                                <input type="number" required name="summer_draft" class="left_round form-control ">
+                            </div>
+                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                                <select name="summer_draft_unit" id="summer_draft_unit"
+                                    class="right_round form-control mt-4 bg-light">
+                                    <option value="Meters">Meters</option>
+                                    <option value="Feet">Feet</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                        <div class="row">
+                            <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
+                                <label for="">Fresh Water Draft</label>
+                                {{-- <label for="">Laden</label> --}}
+                                <input type="number" required name="fresh_water_draft" class="left_round form-control ">
+                            </div>
+                            <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
+                                <select name="fresh_water_draft_unit" id="fresh_water_draft _unit"
+                                    class="right_round form-control mt-4 bg-light">
+                                    <option value="Meters">Meters</option>
+                                    <option value="Feet">Feet</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Laden</label>
-                        <input type="text" required name="laden" class="form-control">
-                    </div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Gross</label>
-                        <input type="text" required name="gross" class="form-control">
-                    </div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Net Tonnage</label>
-                        <input type="text" required name="net_tonnage" class="form-control">
-                    </div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">LOA</label>
-                        <input type="text" required name="loa" class="form-control">
-                    </div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Beam</label>
-                        <input type="text" required name="beam" class="form-control">
-                    </div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Draft</label>
-                        <input type="text" required name="draft" class="form-control">
-                    </div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Depth</label>
-                        <input type="number" required name="depth" class="form-control">
-                    </div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Grain</label>
-                        <input type="text" required name="grain" class="form-control">
+                        <label for="">Grain Capacity</label>
+                        <input type="text" required name="grain_capacity" class="form-control">
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
@@ -212,53 +332,64 @@
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Container Capacity</label>
-                        <input type="text" required name="container_capacity" class="form-control">
+                        <label for="">Container Capacity 20ft</label>
+                        <input type="text" required name="container_capacity_20ft" class="form-control">
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">IFO</label>
-                        <input type="text" required name="ifo" class="form-control">
+                        <label for="">Container Capacity 40ft</label>
+                        <input type="text" required name="container_capacity_40ft" class="form-control">
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">IFO Laden</label>
-                        <input type="text" required name="ifo_laden" class="form-control">
+                        <label for="">Container Capacity 40CH</label>
+                        <input type="text" required name="container_capacity_40ch" class="form-control">
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">IFO Port</label>
-                        <input type="text" required name="ifo_port" class="form-control">
+                        <label for="">IFO Consumption Empty</label>
+                        <input type="text" required name="ifo_consumption_empty" class="form-control">
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">MGO</label>
-                        <input type="text" required name="mgo" class="form-control">
+                        <label for="">IFO Consumption Laden</label>
+                        <input type="text" required name="ifo_consumption_laden" class="form-control">
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">MGO Landen</label>
-                        <input type="text" required name="mgo_laden" class="form-control">
+                        <label for="">IFO Consumption Port</label>
+                        <input type="text" required name="ifo_consumption_port" class="form-control">
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">MGO Port</label>
-                        <input type="text" required name="mgo_port" class="form-control">
+                        <label for="">MGO Consumption Empty</label>
+                        <input type="text" required name="MGO_consumption_empty" class="form-control">
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Passenger Capacity</label>
-                        <input type="text" required name="passenger_capacity" class="form-control">
+                        <label for="">MGO Consumption Laden</label>
+                        <input type="text" required name="MGO_consumption_laden" class="form-control">
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">P I Club</label>
-                        <input type="text" required name="p_i_club" class="form-control">
+                        <label for="">MGO Consumption Port</label>
+                        <input type="text" required name="MGO_consumption_port" class="form-control">
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Classed By</label>
                         <input type="text" required name="classed_by" class="form-control">
+                    </div>
+                    <!-- -->
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
+                        <label for="">P&I Club</label>
+                        <input type="text" required name="p_i_club" class="form-control">
+                    </div>
+                    <!-- -->
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
+                        <label for="">Additional Info</label>
+                        <textarea name="additional_info" id="additional_info" class="form-control" cols="30"
+                            rows="5" maxlength = "250"></textarea>
                     </div>
 
                     <!-- -->

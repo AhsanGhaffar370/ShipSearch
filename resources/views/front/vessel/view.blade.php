@@ -363,50 +363,52 @@
                                     <td>
                                         <p class="b7 mb-0">Built Year:</p>
                                         <p class="">{{ $row->built_year }}</p>
-                                        <p class="b7 mb-0">Dead Weight:</p>
-                                        <p class="">{{ $row->deadweight }}</p>
-                                        <p class="b7 mb-0">IMO Number:</p>
-                                        <p class="">{{ $row->imo_number }}</p>
-                                    </td>
-                                    <td>
+                                        <p class="b7 mb-0">DWT:</p>
+                                        <p class="">{{ $row->dwt }}</p>
                                         <p class="b7 mb-0">DWCC</p>
                                         <p class="">{{ $row->dwcc }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="b7 mb-0">IMO Number:</p>
+                                        <p class="">{{ $row->imo_number }}</p>
                                         <p class="b7 mb-0">Call Sign</p>
                                         <p class="">{{ $row->call_sign }}</p>
                                         <p class="b7 mb-0">Speed Blast:</p>
                                         <p class="">{{ $row->speed_ballast }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Laden</p>
-                                        <p class="">{{ $row->laden }}</p>
-                                        <p class="b7 mb-0">Gross:</p>
-                                        <p class="">{{ $row->gross }}</p>
+                                        <p class="b7 mb-0">Speed Laden</p>
+                                        <p class="">{{ $row->speed_laden }}</p>
+                                        <p class="b7 mb-0">Gross Tonnage:</p>
+                                        <p class="">{{ $row->gross_tonnage }}</p>
                                         <p class="b7 mb-0">Net Tonnage:</p>
                                         <p class="">{{ $row->net_tonnage }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">LOA:</p>
-                                        <p class="">{{ $row->loa }}</p>
-                                        <p class="b7 mb-0">Beam:</p>
-                                        <p class="">{{ $row->beam }}</p>
-                                        <p class="b7 mb-0">draft:</p>
-                                        <p class="">{{ $row->draft }}</p>
+                                        <p class="b7 mb-0">LOA Max:</p>
+                                        <p class="">{{ $row->loa_max }}</p>
+                                        <p class="b7 mb-0">Beam Max:</p>
+                                        <p class="">{{ $row->beam_max }}</p>
+                                        <p class="b7 mb-0">Summer Draft:</p>
+                                        <p class="">{{ $row->summer_draft }}</p>
                                     </td>
                                     <td>
-                                        <p class="b7 mb-0">Depth:</p>
-                                        <p class="">{{ $row->depth }}</p>
-                                        <p class="b7 mb-0">Grain:</p>
-                                        <p class="">{{ $row->grain }}</p>
+                                        <p class="b7 mb-0">Fresh Water Draft:</p>
+                                        <p class="">{{ $row->fresh_water_draft }}</p>
+                                        <p class="b7 mb-0">Grain Capacity:</p>
+                                        <p class="">{{ $row->grain_capacity }}</p>
                                         <p class="b7 mb-0">Bale Capacity:</p>
                                         <p class="">{{ $row->bale_capacity }}</p>
                                     </td>
                                     <td>
                                         <p class="b7 mb-0">Lane Meters:</p>
                                         <p class="">{{ $row->lane_meters }}</p>
-                                        <p class="b7 mb-0">Container Capacity:</p>
-                                        <p class="">{{ $row->container_capacity }}</p>
-                                        <p class="b7 mb-0">Passenger Capacity:</p>
-                                        <p class="">{{ $row->passenger_capacity }}</p>
+                                        <p class="b7 mb-0">Container Capacity 20FT:</p>
+                                        <p class="">{{ $row->container_capacity_20ft }}</p>
+                                        <p class="b7 mb-0">Container Capacity 40FT:</p>
+                                        <p class="">{{ $row->container_capacity_40ft }}</p>
+                                        <p class="b7 mb-0">Container Capacity 4CH:</p>
+                                        <p class="">{{ $row->container_capacity_40ch }}</p>
                                     </td>
                                     <td>
                                         <p class="b7 mb-0">IFO:</p>
@@ -429,6 +431,8 @@
                                         <p class="">{{ $row->p_i_club }}</p>
                                         <p class="b7 mb-0">Classed By:</p>
                                         <p class="">{{ $row->classed_by }}</p>
+                                        <p class="b7 mb-0">Additional Information:</p>
+                                        <p class="">{{ $row->additional_info }}</p>
                                     </td>
                                     <td></td>
                                 </tr>
