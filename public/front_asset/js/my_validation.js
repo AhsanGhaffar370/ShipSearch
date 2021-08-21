@@ -32,18 +32,19 @@ $(document).ready(function() {
                     var post_str = "";
 
                     post_str += `
-                <select name="` + country_port_attr + `[]" id="` + country_port_attr + `" form="search_cargo"
-                    class="` + country_port_attr + ` ser_inp_fields" multiple title="Choose" data-size="5"
-                    data-selected-text-format="count > 2" data-live-search="true">`;
+                    <select name="` + country_port_attr + `[]" id="` + country_port_attr + `" form="search_cargo"
+                        class="` + country_port_attr + ` ser_inp_fields" multiple title="Choose" data-size="5"
+                        data-selected-text-format="count > 2" data-live-search="true">`;
 
-                    $.each(json_data, function(i, obj1) {
-                        if (country_port_attr.includes('country'))
-                            post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
-                        else if (country_port_attr.includes('port'))
-                            post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
-                    });
+                        $.each(json_data, function(i, obj1) {
+                            if (country_port_attr.includes('country'))
+                                post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
+                            else if (country_port_attr.includes('port'))
+                                post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
+                        });
 
-                    post_str += `</select>`;
+                    post_str += 
+                    `</select>`;
 
                     $(country_port_par_attr).html(post_str);
 
@@ -191,7 +192,7 @@ $(document).ready(function() {
 
                     post_str += `
                 <select name="` + country_port_attr + `[]" id="` + country_port_attr + `"
-                    class="form-control ` + country_port_attr + ` add_cargo_inp_fields" multiple title="Choose" data-size="5"
+                    class="form-control ` + country_port_attr + ` add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Choose" data-size="5"
                     data-selected-text-format="count > 2" data-live-search="true">`;
 
                     $.each(json_data, function(i, obj1) {

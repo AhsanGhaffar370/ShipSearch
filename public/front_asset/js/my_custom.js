@@ -26,8 +26,29 @@ $(document).ready(function() {
     }
 
     // $(document).load(function () {
-    //     $(".focus_user_row").focus();
-    //    });
+    //      $(".focus_user_row").focus();
+    // });
+    
+    $("#home_vessel").hide();
+    $("#home_vsale").hide();
+    $('.home_form_link').click(function(e) {
+        e.preventDefault();
+        var id=$(this).attr("id");
+
+        $("#home_cargo").hide();
+        $("#home_vessel").hide();
+        $("#home_vsale").hide();
+
+        if(id.includes('cargo'))
+            $("#home_cargo").show();
+        if(id.includes('vessel'))
+            $("#home_vessel").show();
+        if(id.includes('vsale'))
+            $("#home_vsale").show();
+
+        
+        // $("#adv_ser_form").slideToggle(500);
+    });
 
     //////////////////////////////////////
     // show record details button

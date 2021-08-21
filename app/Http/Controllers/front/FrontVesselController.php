@@ -12,6 +12,18 @@ use App\Models\ss_setup_country;
 use App\Models\ss_setup_port;
 use App\Models\vessel_search_history;
 
+use App\Models\rel_vessel_vesseltype;
+use App\Models\rel_vessel_chartertype;
+use App\Models\rel_vessel_region;
+use App\Models\rel_vessel_country;
+use App\Models\rel_vessel_port;
+
+use App\Models\rel_ser_vessel_vesseltype;
+use App\Models\rel_ser_vessel_chartertype;
+use App\Models\rel_ser_vessel_region;
+use App\Models\rel_ser_vessel_country;
+use App\Models\rel_ser_vessel_port;
+
 class FrontVesselController extends Controller
 {
     function view(){
@@ -138,6 +150,26 @@ class FrontVesselController extends Controller
         $add_req->save();
         // ss_vessel::create($add_req);
 
+        
+        $arr=["vessel_type_id","charter_type_id","region_id","country_id","port_id"];
+        $cid= ss_vessel::latest()->first()->cargo_id;
+
+        foreach ($arr as $ids){
+            foreach ($req[$ids] as $selectedOption){
+                if($ids == "vessel_type_id") { $obj=new rel_vessel_vesseltype; }
+                if($ids == "charter_type_id") { $obj=new rel_vessel_chartertype; }
+                if($ids == "region_id") { $obj=new rel_vessel_region; }
+                if($ids == "country_id") { $obj=new rel_vessel_country; }
+                if($ids == "port_id") { $obj=new rel_vessel_port; }
+
+                $obj["cargo_id"] = $cid;
+                $obj[$ids] = $selectedOption;
+                $obj->save();
+            }
+
+        }
+        
+        
         $req->session()->flash('msg','Vessel Added');
         $req->session()->flash('alert','success');
         

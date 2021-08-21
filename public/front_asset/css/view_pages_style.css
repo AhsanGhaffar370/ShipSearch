@@ -125,7 +125,7 @@ table {
 .ser_inp_fields_each button {
     padding: 2px 5px 2px 5px;
     border-radius: 2px;
-    font-size: 11px;
+    font-size: 11px !important;
     font-family: 'Lato', sans-serif;
 }
 

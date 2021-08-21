@@ -9,7 +9,7 @@
         .ser_inp_fields button {
             padding: 7px 5px !important;
             border-radius: 2px;
-            font-size: 14px !important;
+            font-size: 11px !important;
             font-family: 'Lato', sans-serif;
         }
 
@@ -77,7 +77,9 @@
         }
 
         #laycan_date_to,
-        #laycan_date_from {
+        #laycan_date_from ,
+        #date_available ,
+        #operations_date {
             font-size: 13px;
             padding: 5px 10px;
             width: 100%;
@@ -96,7 +98,7 @@
         .sec_right {
             /* border-top: 1px solid white;
             border-right: 1px solid white; */
-            padding-right: 10px;
+            /* padding-right: 10px; */
             margin-left: 5px;
         }
 
@@ -201,119 +203,350 @@
                 <div class="col-12 col-lg-5 offset-lg-2 col-md-6 p-0">
                     <div class="row bg_gdd main_sec m-0">
                         <div class="top_links_grid">
-                            <a href="#" class="top_links centre">CARGO</a>
-                            <a href="#" class="top_links centre">Vessel <br> Charter</a>
-                            <a href="#" class="top_links centre">Sale & <br>Purchase</a>
-                            <a href="#" class="top_links centre">Directory</a>
+                            <a href="#" id="home_cargo_link" class="top_links centre home_form_link ">CARGO</a>
+                            <a href="#" id="home_vessel_link" class="top_links centre home_form_link ">Vessel <br> Charter</a>
+                            <a href="#" id="home_vsale_link" class="top_links centre home_form_link ">Sale & <br>Purchase</a>
+                            <a href="#" id="home_directory_link" class="top_links centre home_form_link ">Directory</a>
                         </div>
                         <div class="p-4">
 
-                            <form id="search_cargo" method="post" action="{{ route('cargo.search_req') }}"
-                                class="form-horizontal form-label-left " enctype="multipart/form-data">
-                                @csrf
+                            <div id="home_cargo">
+                                {{-- Cargo Form --}}
+                                <form id="search_cargo" method="post" action="{{ route('cargo.search_req') }}"
+                                    class="form-horizontal form-label-left home_cargo" enctype="multipart/form-data">
+                                    @csrf
 
 
-                                <div class="pos_rel mb-3">
-                                    <label for="cargo_type_id" class="cl_gll">Select Cargo:</label>
-                                    <select name="cargo_type_id[]" id="cargo_type_id" form="search_cargo"
-                                        class="cargo_type_id ser_inp_fields mb-2" multiple title="Any" data-size="5"
-                                        data-selected-text-format="count > 2" data-live-search="true">
-                                        @foreach ($cargo_type as $row)
-                                            <option value="{{ $row->cargo_type_name }}">{{ $row->cargo_type_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="row m-0">
-                                    <div class="col-12 col-lg-6 col-md-6 p-0">
-                                        <div class="text-white sec_left">
+                                    <div class="pos_rel mb-3">
+                                        <label for="cargo_type_id" class="cl_gll">Select Cargo:</label>
+                                        <select name="cargo_type_id[]" id="cargo_type_id" form="search_cargo"
+                                            class="cargo_type_id ser_inp_fields mb-2" multiple title="Any" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($cargo_type as $row)
+                                                <option value="{{ $row->cargo_type_id }}">{{ $row->cargo_type_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="row m-0">
+                                        <div class="col-12 col-lg-6 col-md-6 p-0">
+                                            <div class="text-white sec_left">
 
-                                            {{-- <label class="top_labels">Origin</label> --}}
-                                            <p class="">Origin:</p>
-                                            <label class="cl_gll">Select Origin:</label>
-                                            <select name="loading_region_id[]" id="loading_region_id" form="search_cargo"
-                                                class="loading_region_id ser_inp_fields mb-3" multiple title="Region"
-                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                                @foreach ($region as $row)
-                                                    <option value="{{ $row->region_name }}">{{ $row->region_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            <!-- -->
-                                            <select name="loading_country_id[]" id="loading_country_id" form="search_cargo"
-                                                class="loading_country_id ser_inp_fields mb-3" multiple title="Country"
-                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                                @foreach ($country as $row)
-                                                    <option value="{{ $row->country_name }}">{{ $row->country_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            <!-- -->
-                                            <select name="loading_port_id[]" id="loading_port_id" form="search_cargo"
-                                                class="loading_port_id ser_inp_fields mb-2" multiple title="Port"
-                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                                @foreach ($port as $row)
-                                                    <option value="{{ $row->port_name }}">{{ $row->port_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            <!-- -->
-                                            <label for="laycan_date_from" class="mt-4 cl_gll">Laycan Date From:</label>
-                                            <input type="date" required form="search_cargo" class=" from_date"
-                                                id="laycan_date_from" name="laycan_date_from"
-                                                placeholder="Laycan Date From" />
+                                                {{-- <label class="top_labels">Origin</label> --}}
+                                                <p class="">Origin:</p>
+                                                <label class="cl_gll">Select Origin:</label>
+                                                <div>
+                                                    <section class="loading_region_id_par">
+                                                        <select name="loading_region_id[]" id="loading_region_id" form="search_cargo"
+                                                            class="loading_region_id add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Region"
+                                                            data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                            @foreach ($region as $row)
+                                                                <option value="{{ $row->region_id }}">{{ $row->region_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </section>
+                                                </div>
+                                                <!-- -->
+                                                
+                                                <div>
+                                                    <section class="loading_country_id_par">
+                                                        <select name="loading_country_id[]" id="loading_country_id" form="search_cargo"
+                                                            class="loading_country_id add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Country"
+                                                            data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                            @foreach ($country as $row)
+                                                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </section>
+                                                </div>
+                                                <!-- -->
+                                                
+                                                <div>
+                                                    <section class="loading_port_id_par">
+                                                        <select name="loading_port_id[]" id="loading_port_id" form="search_cargo"
+                                                            class="loading_port_id add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Port"
+                                                            data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                            @foreach ($port as $row)
+                                                                <option value="{{ $row->port_id }}">{{ $row->port_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </section>
+                                                </div>
+                                                <!-- -->
+                                                <label for="laycan_date_from" class="mt-4 cl_gll">Laycan Date From:</label>
+                                                <input type="date" required form="search_cargo" class=" from_date"
+                                                    id="laycan_date_from" name="laycan_date_from"
+                                                    placeholder="Laycan Date From" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6 p-0">
+                                            <div class="text-white sec_right">
+
+                                                {{-- <label class="top_labels">Destination</label> --}}
+                                                <p class="">Destination:</p>
+                                                <label class="cl_gll">Select Destination:</label>
+                                                <div>
+                                                    <section class="discharge_region_id_par">
+                                                        <select name="discharge_region_id[]" id="discharge_region_id"
+                                                            form="search_cargo" class="discharge_region_id add_cargo_inp_fields ser_inp_fields mb-2" multiple
+                                                            title="Region" data-size="5" data-selected-text-format="count > 2"
+                                                            data-live-search="true">
+                                                            @foreach ($region as $row)
+                                                                <option value="{{ $row->region_id }}">{{ $row->region_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </section>
+                                                </div>
+                                                
+                                                <!-- -->
+                                                <div>
+                                                    <section class="discharge_country_id_par">
+                                                        <select name="discharge_country_id[]" id="discharge_country_id"
+                                                            form="search_cargo" class="discharge_country_id add_cargo_inp_fields ser_inp_fields mb-2"
+                                                            multiple title="Country" data-size="5" data-selected-text-format="count > 2"
+                                                            data-live-search="true">
+                                                            @foreach ($country as $row)
+                                                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </section>
+                                                </div>
+                                                <!-- -->
+                                                <div>
+                                                    <section class="discharge_port_id_par">
+                                                        <select name="discharge_port_id[]" id="discharge_port_id" form="search_cargo"
+                                                            class="discharge_port_id add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Port"
+                                                            data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                            @foreach ($port as $row)
+                                                                <option value="{{ $row->port_id }}">{{ $row->port_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </section>
+                                                </div>
+                                                <!-- -->
+                                                <label for="laycan_date_to" class="mt-4 cl_gll">Laycan Date To:</label>
+                                                <input type="date" required form="search_cargo" class=" to_date"
+                                                    id="laycan_date_to" name="laycan_date_to" placeholder="Laycan Date To" />
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-lg-6 col-md-6 p-0">
-                                        <div class="text-white sec_right">
+                                    <div class="text-center mt-4">
+                                        <button type="submit" class="btn_style ser_hover cl_gd btn_xxs" style="background-color: #ABD6C2">
+                                            Search
+                                        </button>
+                                        <button type="reset" value="reset" class="btn_style ser_hover bg-secondary btn_xxs" onclick="location.href='{{ route('home') }}'" style="background-color: #ABD6C2">
+                                            Reset
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>{{-- End Cargo Form --}}
 
-                                            {{-- <label class="top_labels">Destination</label> --}}
-                                            <p class="">Destination:</p>
-                                            <label class="cl_gll">Select Destination:</label>
-                                            <select name="discharge_region_id[]" id="discharge_region_id"
-                                                form="search_cargo" class="discharge_region_id ser_inp_fields mb-3" multiple
-                                                title="Region" data-size="5" data-selected-text-format="count > 2"
-                                                data-live-search="true">
-                                                @foreach ($region as $row)
-                                                    <option value="{{ $row->region_name }}">{{ $row->region_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            <!-- -->
-                                            <select name="discharge_country_id[]" id="discharge_country_id"
-                                                form="search_cargo" class="discharge_country_id ser_inp_fields mb-3"
-                                                multiple title="Country" data-size="5" data-selected-text-format="count > 2"
-                                                data-live-search="true">
-                                                @foreach ($country as $row)
-                                                    <option value="{{ $row->country_name }}">{{ $row->country_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            <!-- -->
-                                            <select name="discharge_port_id[]" id="discharge_port_id" form="search_cargo"
-                                                class="discharge_port_id ser_inp_fields mb-2" multiple title="Port"
-                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                                @foreach ($port as $row)
-                                                    <option value="{{ $row->port_name }}">{{ $row->port_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            <!-- -->
-                                            <label for="laycan_date_to" class="mt-4 cl_gll">Laycan Date To:</label>
-                                            <input type="date" required form="search_cargo" class=" to_date"
-                                                id="laycan_date_to" name="laycan_date_to" placeholder="Laycan Date To" />
+                            {{-- Vessel Charter Form --}}
+                            <div id="home_vessel">
+                                <form id="search_vessel" method="post" action="{{ route('vessel.search_req') }}"
+                                    class="form-horizontal form-label-left " enctype="multipart/form-data">
+                                    @csrf
+
+                                    <div class="row m-0">
+                                        <div class="col-12 col-lg-6 col-md-6 p-0">
+                                            <div class="text-white sec_left">
+                                                <!-- -->
+                                                <label for="vessel_type_id" class="cl_gll">Select Vessel:</label>
+                                                <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel"
+                                                    class="vessel_type_id ser_inp_fields mb-2" multiple title="Any" data-size="5"
+                                                    data-selected-text-format="count > 2" data-live-search="true">
+                                                    @foreach ($vessel_type as $row)
+                                                        <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6 p-0">
+                                            <div class="text-white sec_right">
+                                                <!-- -->
+                                                <label for="charter_type_id" class="cl_gll">Select Charter:</label>
+                                                <select name="charter_type_id[]" id="charter_type_id" form="search_vessel"
+                                                    class="charter_type_id ser_inp_fields mb-2" multiple title="Any" data-size="5"
+                                                    data-selected-text-format="count > 2" data-live-search="true">
+                                                    @foreach ($charter_type as $row)
+                                                        <option value="{{ $row->charter_type_id }}">{{ $row->charter_type_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="text-center mt-4">
-                                    <button type="submit" class="btn_style ser_hover cl_gd btn_xxs" style="background-color: #ABD6C2">
-                                        Search
-                                    </button>
-                                    <button type="reset" value="reset" class="btn_style ser_hover bg-secondary btn_xxs" onclick="location.href='{{ route('home') }}'" style="background-color: #ABD6C2">
-                                        Reset
-                                    </button>
-                                </div>
-                            </form>
+                                    <div class="pos_rel mb-3 mt-4">
+                                        <div>
+                                            <section class="region_id_par">
+                                                <select name="region_id[]" id="region_id"
+                                                    form="search_vessel" class="region_id add_cargo_inp_fields ser_inp_fields mb-2" multiple
+                                                    title="Region" data-size="5" data-selected-text-format="count > 2"
+                                                    data-live-search="true">
+                                                    @foreach ($region as $row)
+                                                        <option value="{{ $row->region_id }}">{{ $row->region_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </section>
+                                        </div>
+                                        
+                                        <!-- -->
+                                        <div>
+                                            <section class="country_id_par">
+                                                <select name="country_id[]" id="country_id"
+                                                    form="search_vessel" class="country_id add_cargo_inp_fields ser_inp_fields mb-2"
+                                                    multiple title="Country" data-size="5" data-selected-text-format="count > 2"
+                                                    data-live-search="true">
+                                                    @foreach ($country as $row)
+                                                        <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </section>
+                                        </div>
+                                        <!-- -->
+                                        <div>
+                                            <section class="port_id_par">
+                                                <select name="port_id[]" id="port_id" form="search_vessel"
+                                                    class="port_id add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Port"
+                                                    data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                    @foreach ($port as $row)
+                                                        <option value="{{ $row->port_id }}">{{ $row->port_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class="row m-0">
+                                        <div class="col-12 col-lg-6 col-md-6 p-0">
+                                            <div class="text-white sec_left">
+                                                <!-- -->
+                                                <label for="laycan_date_from" class="mt-4 cl_gll">Laycan Date From:</label>
+                                                <input type="date" required form="search_vessel" class=" from_date"
+                                                    id="laycan_date_from" name="laycan_date_from"
+                                                    placeholder="Laycan Date From" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6 p-0">
+                                            <div class="text-white sec_right">
+                                                <!-- -->
+                                                <label for="laycan_date_to" class="mt-4 cl_gll">Laycan Date To:</label>
+                                                <input type="date" required form="search_vessel" class=" to_date"
+                                                    id="laycan_date_to" name="laycan_date_to" placeholder="Laycan Date To" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-4">
+                                        <button type="submit" class="btn_style ser_hover cl_gd btn_xxs" style="background-color: #ABD6C2">
+                                            Search
+                                        </button>
+                                        <button type="reset" value="reset" class="btn_style ser_hover bg-secondary btn_xxs" onclick="location.href='{{ route('home') }}'" style="background-color: #ABD6C2">
+                                            Reset
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>{{-- End Vessel Charter --}}
+                            
+                            {{-- Vessel Charter Form --}}
+                            <div id="home_vsale">
+                                <form id="search_vessel_sale" method="post" action="{{ route('vessel_sale.search_req') }}"
+                                    class="form-horizontal form-label-left " enctype="multipart/form-data">
+                                    @csrf
+
+                                    <div class="pos_rel mb-3">
+                                        <div>
+                                            <label for="vessel_type_id" class="cl_gll">Select Vessel:</label>
+                                            <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel_sale"
+                                                class="vessel_type_id ser_inp_fields mb-2" multiple title="Any" data-size="5"
+                                                data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($vessel_type as $row)
+                                                    <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <section class="region_id_par mt-4">
+                                                <select name="region_id[]" id="region_id"
+                                                    form="search_vessel_sale" class="region_id add_cargo_inp_fields ser_inp_fields mb-2" multiple
+                                                    title="Region" data-size="5" data-selected-text-format="count > 2"
+                                                    data-live-search="true">
+                                                    @foreach ($region as $row)
+                                                        <option value="{{ $row->region_id }}">{{ $row->region_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </section>
+                                        </div>
+                                        
+                                        <!-- -->
+                                        <div>
+                                            <section class="country_id_par">
+                                                <select name="country_id[]" id="country_id"
+                                                    form="search_vessel_sale" class="country_id add_cargo_inp_fields ser_inp_fields mb-2"
+                                                    multiple title="Country" data-size="5" data-selected-text-format="count > 2"
+                                                    data-live-search="true">
+                                                    @foreach ($country as $row)
+                                                        <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </section>
+                                        </div>
+                                        <!-- -->
+                                        <div>
+                                            <section class="port_id_par">
+                                                <select name="port_id[]" id="port_id" form="search_vessel_sale"
+                                                    class="port_id add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Port"
+                                                    data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                    @foreach ($port as $row)
+                                                        <option value="{{ $row->port_id }}">{{ $row->port_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class="row m-0">
+                                        <div class="col-12 col-lg-6 col-md-6 p-0">
+                                            <div class="text-white sec_left">
+                                                <!-- -->
+                                                <label for="date_available" class="mt-4 cl_gll">Date Available:</label>
+                                                <input type="date" required form="search_vessel_sale" class=" date_available"
+                                                    id="date_available" name="date_available"
+                                                    placeholder="" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6 p-0">
+                                            <div class="text-white sec_right">
+                                                <!-- -->
+                                                <label for="operations_date" class="mt-4 cl_gll">Operations Date:</label>
+                                                <input type="date" required form="search_vessel_sale" class=" to_date"
+                                                    id="operations_date" name="operations_date" placeholder="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-4">
+                                        <button type="submit" class="btn_style ser_hover cl_gd btn_xxs" style="background-color: #ABD6C2">
+                                            Search
+                                        </button>
+                                        <button type="reset" value="reset" class="btn_style ser_hover bg-secondary btn_xxs" onclick="location.href='{{ route('home') }}'" style="background-color: #ABD6C2">
+                                            Reset
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>{{-- End Vessel Sale --}}
+                            
+
                         </div>
                     </div>
                 </div>

@@ -74,7 +74,7 @@
                             data-size="5"
                             data-selected-text-format="count > 2" >
                             @foreach ($region as $row)
-                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
+                                <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -86,7 +86,7 @@
                             data-size="5"
                             data-selected-text-format="count > 2" >
                             @foreach ($country as $row)
-                                <option value="{{ $row->country_name }}">{{ $row->country_name }}</option>
+                                <option value="{{ $row->country_id }}">{{ $row->country_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -98,7 +98,7 @@
                             data-size="5"
                             data-selected-text-format="count > 2" >
                             @foreach ($port as $row)
-                                <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
+                                <option value="{{ $row->port_id }}">{{ $row->port_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -114,7 +114,7 @@
                             {{-- data-actions-box="true"  --}}
                             >
                             @foreach ($vessel_type as $row)
-                                <option value="{{ $row->vessel_type_name }}">{{ $row->vessel_type_name }}</option>
+                                <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -126,7 +126,7 @@
                             data-size="5"
                             data-selected-text-format="count > 2" >
                             @foreach ($charter_type as $row)
-                                <option value="{{ $row->charter_type_name }}">{{ $row->charter_type_name }}</option>
+                                <option value="{{ $row->charter_type_id }}">{{ $row->charter_type_name }}</option>
                             @endforeach
                         </select>
                     </div>
