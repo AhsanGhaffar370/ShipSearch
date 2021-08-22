@@ -109,7 +109,7 @@
                                             class="region_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($region as $row)
-                                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
+                                                <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
                                             @endforeach
                                         </select>
                                     </section>
@@ -122,7 +122,7 @@
                                             class="country_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($country as $row)
-                                                <option value="{{ $row->country_name }}">{{ $row->country_name }}
+                                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -136,7 +136,7 @@
                                             class="port_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($port as $row)
-                                                <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
+                                                <option value="{{ $row->port_id }}">{{ $row->port_name }}</option>
                                             @endforeach
                                         </select>
                                     </section>
