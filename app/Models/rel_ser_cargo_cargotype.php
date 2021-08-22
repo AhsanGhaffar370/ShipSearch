@@ -14,7 +14,7 @@ class rel_ser_cargo_cargotype extends Model
 
 
     public function cargotype(){
-        return $this->belongsTo(cargo_search_history::class,'ser_cargo_id');
+        return $this->belongsTo(cargo_search_history::class,'cargo_id');
     }
 
     

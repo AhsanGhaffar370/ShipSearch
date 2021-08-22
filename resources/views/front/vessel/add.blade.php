@@ -69,7 +69,8 @@
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Region</label>
-                        <select name="region_id[]" id="region_id" class="form-control region_id" multiple
+                        <section class="region_id_par">
+                        <select name="region_id[]" id="region_id" class="form-control region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                             title="Choose"
                             data-size="5"
                             data-selected-text-format="count > 2" >
@@ -77,30 +78,35 @@
                                 <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
                             @endforeach
                         </select>
+                        </section>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Country</label>
-                        <select name="country_id[]" id="country_id" class="form-control country_id" multiple
-                            title="Choose"
-                            data-size="5"
-                            data-selected-text-format="count > 2" >
-                            @foreach ($country as $row)
-                                <option value="{{ $row->country_id }}">{{ $row->country_name }}</option>
-                            @endforeach
-                        </select>
+                        <section class="country_id_par">
+                            <select name="country_id[]" id="country_id" class="form-control country_id add_cvs_inp_fields ser_inp_fields21 mb-2 " multiple
+                                title="Choose"
+                                data-size="5"
+                                data-selected-text-format="count > 2" >
+                                @foreach ($country as $row)
+                                    <option value="{{ $row->country_id }}">{{ $row->country_name }}</option>
+                                @endforeach
+                            </select>
+                        </section>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Port</label>
-                        <select name="port_id[]" id="port_id" class="form-control port_id" multiple
-                            title="Choose"
-                            data-size="5"
-                            data-selected-text-format="count > 2" >
-                            @foreach ($port as $row)
-                                <option value="{{ $row->port_id }}">{{ $row->port_name }}</option>
-                            @endforeach
-                        </select>
+                        <section class="port_id_par">
+                            <select name="port_id[]" id="port_id" class="form-control port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
+                                title="Choose"
+                                data-size="5"
+                                data-selected-text-format="count > 2" >
+                                @foreach ($port as $row)
+                                    <option value="{{ $row->port_id }}">{{ $row->port_name }}</option>
+                                @endforeach
+                            </select>
+                        </section>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">

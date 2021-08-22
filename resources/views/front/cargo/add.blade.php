@@ -58,7 +58,7 @@
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Loading Region</label>
                         <section class="loading_region_id_par">
-                            <select name="loading_region_id[]" id="loading_region_id" class="form-control loading_region_id add_cargo_inp_fields" multiple
+                            <select name="loading_region_id[]" id="loading_region_id" class="form-control loading_region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                                 title="Choose"
                                 data-size="5"
                                 data-selected-text-format="count > 2" >
@@ -73,7 +73,7 @@
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Loading Country</label>
                         <section class="loading_country_id_par">
-                            <select name="loading_country_id[]" id="loading_country_id" class="form-control loading_country_id add_cargo_inp_fields" multiple
+                            <select name="loading_country_id[]" id="loading_country_id" class="form-control loading_country_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                                 title="Choose"
                                 data-size="5"
                                 data-selected-text-format="count > 2" >
@@ -87,7 +87,7 @@
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Loading Port</label>
                         <section class="loading_port_id_par">
-                            <select name="loading_port_id[]" id="loading_port_id" class="form-control loading_port_id add_cargo_inp_fields" multiple
+                            <select name="loading_port_id[]" id="loading_port_id" class="form-control loading_port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                                 title="Choose"
                                 data-size="5"
                                 data-selected-text-format="count > 2" >
@@ -101,7 +101,7 @@
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Discharge Region</label>
                         <section class="discharge_region_id_par">
-                            <select name="discharge_region_id[]" id="discharge_region_id" class="form-control discharge_region_id add_cargo_inp_fields" multiple
+                            <select name="discharge_region_id[]" id="discharge_region_id" class="form-control discharge_region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                                 title="Choose"
                                 data-size="5"
                                 data-selected-text-format="count > 2" >
@@ -115,7 +115,7 @@
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Discharge Country</label>
                         <section class="discharge_country_id_par">
-                            <select name="discharge_country_id[]" id="discharge_country_id" class="form-control discharge_country_id add_cargo_inp_fields" multiple
+                            <select name="discharge_country_id[]" id="discharge_country_id" class="form-control discharge_country_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                                 title="Choose"
                                 data-size="5"
                                 data-selected-text-format="count > 2" >
@@ -129,7 +129,7 @@
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Discharge Port</label>
                         <section class="discharge_port_id_par">
-                            <select name="discharge_port_id[]" id="discharge_port_id" class="form-control discharge_port_id add_cargo_inp_fields" multiple
+                            <select name="discharge_port_id[]" id="discharge_port_id" class="form-control discharge_port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                                 title="Choose"
                                 data-size="5"
                                 data-selected-text-format="count > 2" >

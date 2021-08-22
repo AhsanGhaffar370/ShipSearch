@@ -57,68 +57,89 @@
                                 @csrf
                                 <td></td>
                                 <td class="">
-                                    <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel"
-                                        class="vessel_type_id ser_inp_fields" multiple title="Choose" data-size="5"
-                                        data-selected-text-format="count > 2" data-live-search="true"
-                                        {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
-                                        @foreach ($vessel_type as $row)
-                                            <option value="{{ $row->vessel_type_name }}">{{ $row->vessel_type_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    
+                                    <section class="vessel_type_id_par">
+                                        <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel"
+                                            class="vessel_type_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true"
+                                            {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
+                                            @foreach ($vessel_type as $row)
+                                                <option value="{{ $row->vessel_type_name }}">{{ $row->vessel_type_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </section>
                                 </td>
                                 <!-- -->
                                 <td class="">
-                                    <select name="charter_type_id[]" id="charter_type_id" form="search_vessel"
-                                        class="charter_type_id ser_inp_fields" multiple title="Choose" data-size="5"
-                                        data-selected-text-format="count > 2" data-live-search="true"
-                                        {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
-                                        @foreach ($charter_type as $row)
-                                            <option value="{{ $row->charter_type_name }}">{{ $row->charter_type_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    
+                                    <section class="charter_type_id_par">
+                                        <select name="charter_type_id[]" id="charter_type_id" form="search_vessel"
+                                            class="charter_type_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true"
+                                            {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
+                                            @foreach ($charter_type as $row)
+                                                <option value="{{ $row->charter_type_name }}">{{ $row->charter_type_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </section>
                                 </td>
                                 <!-- -->
                                 <td class="">
-                                    <input type="date" required form="search_vessel" class=" from_date"
-                                        id="laycan_date_from" name="laycan_date_from" placeholder="Laycan Date From" />
+                                    
+                                    <section class="laycan_date_from_par">
+                                        <input type="date" required form="search_vessel" class=" from_date"
+                                            id="laycan_date_from" name="laycan_date_from" placeholder="Laycan Date From" />
+                                    </section>
                                 </td>
                                 <!-- -->
                                 <td class="">
-                                    <input type="date" required form="search_vessel" class=" to_date" id="laycan_date_to"
-                                        name="laycan_date_to" placeholder="Laycan Date To" />
+                                    
+                                    <section class="laycan_date_to_par">
+                                        <input type="date" required form="search_vessel" class=" to_date" id="laycan_date_to"
+                                            name="laycan_date_to" placeholder="Laycan Date To" />
+                                    </section>
                                 </td>
                                 <!-- -->
                                 <td class="">
-                                    <select name="region_id[]" id="region_id" form="search_vessel"
-                                        class="region_id ser_inp_fields" multiple title="Choose" data-size="5"
-                                        data-selected-text-format="count > 2" data-live-search="true">
-                                        @foreach ($region as $row)
-                                            <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
-                                        @endforeach
-                                    </select>
+                                    
+                                    <section class="region_id_par">
+                                        <select name="region_id[]" id="region_id" form="search_vessel"
+                                            class="region_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($region as $row)
+                                                <option value="{{ $row->region_name }}">{{ $row->region_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </section>
                                 </td>
                                 <!-- -->
                                 <td class=" ">
-                                    <select name="country_id[]" id="country_id" form="search_vessel"
-                                        class="country_id ser_inp_fields" multiple title="Choose" data-size="5"
-                                        data-selected-text-format="count > 2" data-live-search="true">
-                                        @foreach ($country as $row)
-                                            <option value="{{ $row->country_name }}">{{ $row->country_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    
+                                    <section class="country_id_par">
+                                        <select name="country_id[]" id="country_id" form="search_vessel"
+                                            class="country_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($country as $row)
+                                                <option value="{{ $row->country_name }}">{{ $row->country_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </section>
                                 </td>
                                 <!-- -->
                                 <td class="">
-                                    <select name="port_id[]" id="port_id" form="search_vessel"
-                                        class="port_id ser_inp_fields" multiple title="Choose" data-size="5"
-                                        data-selected-text-format="count > 2" data-live-search="true">
-                                        @foreach ($port as $row)
-                                            <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
-                                        @endforeach
-                                    </select>
+                                    
+                                    <section class="port_id_par">
+                                        <select name="port_id[]" id="port_id" form="search_vessel"
+                                            class="port_id ser_inp_fields" multiple title="Choose" data-size="5"
+                                            data-selected-text-format="count > 2" data-live-search="true">
+                                            @foreach ($port as $row)
+                                                <option value="{{ $row->port_name }}">{{ $row->port_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </section>
                                     <!-- Submit buttons -->
                                     <div class="text-right">
                                         <button type="submit" class=" btn bg_gd btn-sm size15 text-white pt-1 pb-1 mr-3"> 
@@ -152,11 +173,21 @@
                                 <td id="id-{{ $row->id }}">
                                     {{ $row->id }}
                                 </td>
-                                <td id="vesseltype-{{ $row->id }}">
-                                    <?php echo str_replace(',', ',<br>', $row->vessel_type_id); ?>
+                                {{-- <td id="vesseltype-{{ $row->id }}">
+                                    <?php //echo str_replace(',', ',<br>', $row->vessel_type_id); ?>
+                                </td> --}}
+                                <td class="" id="vesseltype-{{ $row->id }}">
+                                    @foreach ($row->vesseltype as $ser_row12)
+                                        {{ optional($ser_row12->SVvesseltype)->vessel_type_name }},<br>
+                                    @endforeach
                                 </td>
-                                <td id="chartertype-{{ $row->id }}">
-                                    <?php echo str_replace(',', ',<br>', $row->charter_type_id); ?>
+                                {{-- <td id="chartertype-{{ $row->id }}">
+                                    <?php //echo str_replace(',', ',<br>', $row->charter_type_id); ?>
+                                </td> --}}
+                                <td class="" id="chartertype-{{ $row->id }}">
+                                    @foreach ($row->chartertype as $ser_row12)
+                                        {{ optional($ser_row12->SVchartertype)->charter_type_name }},<br>
+                                    @endforeach
                                 </td>
                                 <td id="laycan_from-{{ $row->id }}">
                                     {{ date('d-M-Y', strtotime($row->laycan_date_from)) }}
@@ -164,15 +195,30 @@
                                 <td id="laycan_to-{{ $row->id }}">
                                     {{ date('d-M-Y', strtotime($row->laycan_date_to)) }}
                                 </td>
-                                <td class="{{ $row->region_id }}" id="region-{{ $row->id }}">
-                                    <?php echo str_replace(',', ',<br>', $row->region_id); ?>
+                                {{-- <td class="{{ $row->region_id }}" id="region-{{ $row->id }}">
+                                    <?php //echo str_replace(',', ',<br>', $row->region_id); ?>
+                                </td> --}}
+                                <td class="" id="region-{{ $row->id }}">
+                                    @foreach ($row->region as $ser_row12)
+                                        {{ optional($ser_row12->SVregion)->region_name }},<br>
+                                    @endforeach
                                 </td>
-                                <td class="{{ $row->country_id }}" id="country-{{ $row->id }}">
-                                    <?php echo str_replace(',', ',<br>', $row->country_id); ?>
+                                {{-- <td class="{{ $row->country_id }}" id="country-{{ $row->id }}">
+                                    <?php //echo str_replace(',', ',<br>', $row->country_id); ?>
+                                </td> --}}
+                                <td class="" id="country-{{ $row->id }}">
+                                    @foreach ($row->country as $ser_row12)
+                                        {{ optional($ser_row12->SVcountry)->country_name }},<br>
+                                    @endforeach
                                 </td>
                                 <td>
-                                    <span class="{{ $row->port_id }}" id="port-{{ $row->id }}">
-                                        <?php echo str_replace(',', ',<br>', $row->port_id); ?>
+                                    {{-- <span class="{{ $row->port_id }}" id="port-{{ $row->id }}">
+                                        <?php //echo str_replace(',', ',<br>', $row->port_id); ?>
+                                    </span> --}}
+                                    <span class="" id="port-{{ $row->id }}">
+                                        @foreach ($row->port as $ser_row12)
+                                            {{ optional($ser_row12->SVport)->port_name }},<br>
+                                        @endforeach
                                     </span>
                                     <div class="text-right edit_del_btns edit_del_btn_{{ $row->id }} d_n">
                                         <a href="{{ $row->id }}" id="ves_show_update_ser_hist_form_each" 
@@ -202,69 +248,90 @@
                                     @csrf
                                     <td></td>
                                     <td class="">
-                                        <select name="vessel_type_id[]" id="vessel_type_id_{{ $row->id }}" form="search_vessel_{{ $row->id }}"
-                                            class="vessel_type_id ser_inp_fields" multiple title="Choose" data-size="5"
-                                            data-selected-text-format="count > 2" data-live-search="true">
-                                            @foreach ($vessel_type as $row1)
-                                                <option value="{{ $row1->vessel_type_name }}">
-                                                    {{ $row1->vessel_type_name }}</option>
-                                            @endforeach
-                                        </select>
+                                        
+                                        <section class="vessel_type_id_par_{{ $row->id }}">
+                                            <select name="vessel_type_id[]" id="vessel_type_id_{{ $row->id }}" form="search_vessel_{{ $row->id }}"
+                                                class="vessel_type_id ser_inp_fields_each" multiple title="Choose" data-size="5"
+                                                data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($vessel_type as $row1)
+                                                    <option value="{{ $row1->vessel_type_name }}">
+                                                        {{ $row1->vessel_type_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </section>
                                     </td>
                                     <!-- -->
                                     <td class="">
-                                        <select name="charter_type_id[]" id="charter_type_id_{{ $row->id }}" form="search_vessel_{{ $row->id }}"
-                                            class="charter_type_id ser_inp_fields" multiple title="Choose" data-size="5"
-                                            data-selected-text-format="count > 2" data-live-search="true">
-                                            @foreach ($charter_type as $row1)
-                                                <option value="{{ $row1->charter_type_name }}">
-                                                    {{ $row1->charter_type_name }}</option>
-                                            @endforeach
-                                        </select>
+                                        
+                                        <section class="charter_type_id_par_{{ $row->id }}">
+                                            <select name="charter_type_id[]" id="charter_type_id_{{ $row->id }}" form="search_vessel_{{ $row->id }}"
+                                                class="charter_type_id ser_inp_fields_each" multiple title="Choose" data-size="5"
+                                                data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($charter_type as $row1)
+                                                    <option value="{{ $row1->charter_type_name }}">
+                                                        {{ $row1->charter_type_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </section>
                                     </td>
                                     <!-- -->
                                     <td class="">
-                                        <input type="date" required form="search_vessel_{{ $row->id }}" class=" from_date"
-                                            id="laycan_date_from_{{ $row->id }}" name="laycan_date_from"
-                                            placeholder="Laycan Date From" />
+                                        
+                                        <section class="laycan_date_from_par_{{ $row->id }}">
+                                            <input type="date" required form="search_vessel_{{ $row->id }}" class=" from_date"
+                                                id="laycan_date_from_{{ $row->id }}" name="laycan_date_from"
+                                                placeholder="Laycan Date From" />
+                                        </section>
                                     </td>
                                     <!-- -->
                                     <td class="">
-                                        <input type="date" required form="search_vessel_{{ $row->id }}" class=" to_date"
-                                            id="laycan_date_to_{{ $row->id }}" name="laycan_date_to" placeholder="Laycan Date To" />
+                                        
+                                        <section class="laycan_date_to_par_{{ $row->id }}">
+                                            <input type="date" required form="search_vessel_{{ $row->id }}" class=" to_date"
+                                                id="laycan_date_to_{{ $row->id }}" name="laycan_date_to" placeholder="Laycan Date To" />
+                                        </section>
                                     </td>
                                     <!-- -->
                                     <td class=" ">
-                                        <select name="region_id[]" id="region_id_{{ $row->id }}"
-                                            form="search_vessel_{{ $row->id }}" class="region_id ser_inp_fields" multiple title="Choose"
-                                            data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                            @foreach ($region as $row1)
-                                                <option value="{{ $row1->region_name }}">{{ $row1->region_name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        
+                                        <section class="region_id_par_{{ $row->id }}">
+                                            <select name="region_id[]" id="region_id_{{ $row->id }}"
+                                                form="search_vessel_{{ $row->id }}" class="region_id ser_inp_fields_each" multiple title="Choose"
+                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($region as $row1)
+                                                    <option value="{{ $row1->region_name }}">{{ $row1->region_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </section>
                                     </td>
                                     <!-- -->
                                     <td class=" ">
-                                        <select name="country_id[]" id="country_id_{{ $row->id }}"
-                                            form="search_vessel_{{ $row->id }}" class="country_id ser_inp_fields" multiple title="Choose"
-                                            data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                            @foreach ($country as $row1)
-                                                <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        
+                                        <section class="country_id_par_{{ $row->id }}">
+                                            <select name="country_id[]" id="country_id_{{ $row->id }}"
+                                                form="search_vessel_{{ $row->id }}" class="country_id ser_inp_fields_each" multiple title="Choose"
+                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($country as $row1)
+                                                    <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </section>
                                     </td>
                                     <!-- -->
                                     <td class="">
-                                        <select name="port_id[]" id="port_id_{{ $row->id }}" form="search_vessel_{{ $row->id }}"
-                                            class="port_id ser_inp_fields" multiple title="Choose" data-size="5"
-                                            data-selected-text-format="count > 2" data-live-search="true">
-                                            @foreach ($port as $row1)
-                                                <option value="{{ $row1->port_name }}">{{ $row1->port_name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        
+                                        <section class="port_id_par_{{ $row->id }}">
+                                            <select name="port_id[]" id="port_id_{{ $row->id }}" form="search_vessel_{{ $row->id }}"
+                                                class="port_id ser_inp_fields_each" multiple title="Choose" data-size="5"
+                                                data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($port as $row1)
+                                                    <option value="{{ $row1->port_name }}">{{ $row1->port_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </section>
                                         <div class="text-right">
                                             <button type="button" id="form_{{$row->id}}" 
                                             class="ves_req_update_ser_hist_each btn bg_gd btn-sm size15 text-white pt-1 pb-1 mr-3"> 
@@ -365,7 +432,12 @@
                                     </td>
                                     <td width="8%" >
                                         <div class="td_h">
-                                            <p class=""><?php echo str_replace(',', ',<br>', $row->vessel_type_id); ?></p>
+                                            {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->vessel_type_id); ?></p> --}}
+                                            <p>
+                                                @foreach ($row->vesseltype as $row12)
+                                                    {{ optional($row12->Vvesseltype)->vessel_type_name }},<br>
+                                                @endforeach
+                                            </p>
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
@@ -379,7 +451,12 @@
                                     </td>
                                     <td width="8%" >
                                         <div class="td_h">
-                                            <p class=""><?php echo str_replace(',', ',<br>', $row->charter_type_id); ?></p>
+                                            {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->charter_type_id); ?></p> --}}
+                                            <p>
+                                                @foreach ($row->chartertype as $row12)
+                                                    {{ optional($row12->Vchartertype)->charter_type_name }},<br>
+                                                @endforeach
+                                            </p>
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
@@ -421,7 +498,12 @@
                                     </td>
                                     <td width="15%" >
                                         <div class="td_h">
-                                            <p class=""><?php echo str_replace(',', ',<br>', $row->region_id); ?></p>
+                                            {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->region_id); ?></p> --}}
+                                            <p>
+                                                @foreach ($row->region as $row12)
+                                                    {{ optional($row12->Vregion)->region_name }},<br>
+                                                @endforeach
+                                            </p>
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
@@ -435,7 +517,12 @@
                                     </td>
                                     <td width="15%" >
                                         <div class="td_h">
-                                            <p class=""><?php echo str_replace(',', ',<br>', $row->country_id); ?></p>
+                                            {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->country_id); ?></p> --}}
+                                            <p>
+                                                @foreach ($row->country as $row12)
+                                                    {{ optional($row12->Vcountry)->country_name }},<br>
+                                                @endforeach
+                                            </p>
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
@@ -449,7 +536,12 @@
                                     </td>
                                     <td width="10%" >
                                         <div class="td_h">
-                                            <p class=""><?php echo str_replace(',', ',<br>', $row->port_id); ?></p>
+                                            {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->port_id); ?></p> --}}
+                                            <p>
+                                                @foreach ($row->port as $row12)
+                                                    {{ optional($row12->Vport)->port_name }},<br>
+                                                @endforeach
+                                            </p>
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">

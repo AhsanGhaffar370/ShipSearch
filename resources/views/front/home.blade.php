@@ -6,7 +6,48 @@
 @section('container')
 
     <style>
-        .ser_inp_fields button {
+    
+    
+
+
+
+
+
+
+
+
+    .ser_inp_fields21 {
+    position: unset !important;
+    width: 100% !important;
+    /* widows: 215px !important; */
+}
+
+
+
+    .ser_inp_fields21 button {
+    padding: 2px 5px 2px 5px;
+    border-radius: 2px;
+    font-size: 11px !important;
+    font-family: 'Lato', sans-serif;
+}
+
+
+
+    .ser_inp_fields21>div.dropdown-menu.show {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    width: 230px !important;
+    min-width: 100px !important;
+    border-radius: 0px 0px 7px 7px !important;
+    margin-top: 0px !important;
+    box-shadow: 0px 3px 7px #cccccc;
+}
+
+
+    .ser_inp_fields21 .inner {
+            overflow-x: clip !important;
+        }
+        .ser_inp_fields21 button {
             padding: 7px 5px !important;
             border-radius: 2px;
             font-size: 11px !important;
@@ -19,7 +60,7 @@
             font-size: 12px !important;
         }
 
-        .ser_inp_fields>div.dropdown-menu.show {
+        .ser_inp_fields21>div.dropdown-menu.show {
             /* transform: translate3d(0px, 29px, 0px) !important; */
             padding-top: 0px !important;
             padding-bottom: 0px !important;
@@ -32,7 +73,11 @@
 
 
 
-
+        .ser_inp_fields21 button:focus {
+    box-shadow: none !important;
+    /* outline: none !important; */
+    outline-offset: -18px !important;
+}
 
 
 
@@ -220,7 +265,7 @@
                                     <div class="pos_rel mb-3">
                                         <label for="cargo_type_id" class="cl_gll">Select Cargo:</label>
                                         <select name="cargo_type_id[]" id="cargo_type_id" form="search_cargo"
-                                            class="cargo_type_id ser_inp_fields mb-2" multiple title="Any" data-size="5"
+                                            class="cargo_type_id ser_inp_fields21 mb-2" multiple title="Any" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($cargo_type as $row)
                                                 <option value="{{ $row->cargo_type_id }}">{{ $row->cargo_type_name }}
@@ -238,7 +283,7 @@
                                                 <div>
                                                     <section class="loading_region_id_par">
                                                         <select name="loading_region_id[]" id="loading_region_id" form="search_cargo"
-                                                            class="loading_region_id add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Region"
+                                                            class="loading_region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Region"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             @foreach ($region as $row)
                                                                 <option value="{{ $row->region_id }}">{{ $row->region_name }}
@@ -252,7 +297,7 @@
                                                 <div>
                                                     <section class="loading_country_id_par">
                                                         <select name="loading_country_id[]" id="loading_country_id" form="search_cargo"
-                                                            class="loading_country_id add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Country"
+                                                            class="loading_country_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Country"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             @foreach ($country as $row)
                                                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
@@ -266,7 +311,7 @@
                                                 <div>
                                                     <section class="loading_port_id_par">
                                                         <select name="loading_port_id[]" id="loading_port_id" form="search_cargo"
-                                                            class="loading_port_id add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Port"
+                                                            class="loading_port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Port"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             @foreach ($port as $row)
                                                                 <option value="{{ $row->port_id }}">{{ $row->port_name }}
@@ -291,7 +336,7 @@
                                                 <div>
                                                     <section class="discharge_region_id_par">
                                                         <select name="discharge_region_id[]" id="discharge_region_id"
-                                                            form="search_cargo" class="discharge_region_id add_cargo_inp_fields ser_inp_fields mb-2" multiple
+                                                            form="search_cargo" class="discharge_region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                                                             title="Region" data-size="5" data-selected-text-format="count > 2"
                                                             data-live-search="true">
                                                             @foreach ($region as $row)
@@ -306,7 +351,7 @@
                                                 <div>
                                                     <section class="discharge_country_id_par">
                                                         <select name="discharge_country_id[]" id="discharge_country_id"
-                                                            form="search_cargo" class="discharge_country_id add_cargo_inp_fields ser_inp_fields mb-2"
+                                                            form="search_cargo" class="discharge_country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
                                                             multiple title="Country" data-size="5" data-selected-text-format="count > 2"
                                                             data-live-search="true">
                                                             @foreach ($country as $row)
@@ -320,7 +365,7 @@
                                                 <div>
                                                     <section class="discharge_port_id_par">
                                                         <select name="discharge_port_id[]" id="discharge_port_id" form="search_cargo"
-                                                            class="discharge_port_id add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Port"
+                                                            class="discharge_port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Port"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             @foreach ($port as $row)
                                                                 <option value="{{ $row->port_id }}">{{ $row->port_name }}
@@ -359,7 +404,7 @@
                                                 <!-- -->
                                                 <label for="vessel_type_id" class="cl_gll">Select Vessel:</label>
                                                 <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel"
-                                                    class="vessel_type_id ser_inp_fields mb-2" multiple title="Any" data-size="5"
+                                                    class="vessel_type_id ser_inp_fields21 mb-2" multiple title="Any" data-size="5"
                                                     data-selected-text-format="count > 2" data-live-search="true">
                                                     @foreach ($vessel_type as $row)
                                                         <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
@@ -373,7 +418,7 @@
                                                 <!-- -->
                                                 <label for="charter_type_id" class="cl_gll">Select Charter:</label>
                                                 <select name="charter_type_id[]" id="charter_type_id" form="search_vessel"
-                                                    class="charter_type_id ser_inp_fields mb-2" multiple title="Any" data-size="5"
+                                                    class="charter_type_id ser_inp_fields21 mb-2" multiple title="Any" data-size="5"
                                                     data-selected-text-format="count > 2" data-live-search="true">
                                                     @foreach ($charter_type as $row)
                                                         <option value="{{ $row->charter_type_id }}">{{ $row->charter_type_name }}
@@ -387,7 +432,7 @@
                                         <div>
                                             <section class="region_id_par">
                                                 <select name="region_id[]" id="region_id"
-                                                    form="search_vessel" class="region_id add_cargo_inp_fields ser_inp_fields mb-2" multiple
+                                                    form="search_vessel" class="region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                                                     title="Region" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     @foreach ($region as $row)
@@ -402,7 +447,7 @@
                                         <div>
                                             <section class="country_id_par">
                                                 <select name="country_id[]" id="country_id"
-                                                    form="search_vessel" class="country_id add_cargo_inp_fields ser_inp_fields mb-2"
+                                                    form="search_vessel" class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
                                                     multiple title="Country" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     @foreach ($country as $row)
@@ -416,7 +461,7 @@
                                         <div>
                                             <section class="port_id_par">
                                                 <select name="port_id[]" id="port_id" form="search_vessel"
-                                                    class="port_id add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Port"
+                                                    class="port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Port"
                                                     data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                     @foreach ($port as $row)
                                                         <option value="{{ $row->port_id }}">{{ $row->port_name }}
@@ -466,7 +511,7 @@
                                         <div>
                                             <label for="vessel_type_id" class="cl_gll">Select Vessel:</label>
                                             <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel_sale"
-                                                class="vessel_type_id ser_inp_fields mb-2" multiple title="Any" data-size="5"
+                                                class="vessel_type_id ser_inp_fields21 mb-2" multiple title="Any" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($vessel_type as $row)
                                                     <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
@@ -477,7 +522,7 @@
                                         <div>
                                             <section class="region_id_par mt-4">
                                                 <select name="region_id[]" id="region_id"
-                                                    form="search_vessel_sale" class="region_id add_cargo_inp_fields ser_inp_fields mb-2" multiple
+                                                    form="search_vessel_sale" class="region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                                                     title="Region" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     @foreach ($region as $row)
@@ -492,7 +537,7 @@
                                         <div>
                                             <section class="country_id_par">
                                                 <select name="country_id[]" id="country_id"
-                                                    form="search_vessel_sale" class="country_id add_cargo_inp_fields ser_inp_fields mb-2"
+                                                    form="search_vessel_sale" class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
                                                     multiple title="Country" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     @foreach ($country as $row)
@@ -506,7 +551,7 @@
                                         <div>
                                             <section class="port_id_par">
                                                 <select name="port_id[]" id="port_id" form="search_vessel_sale"
-                                                    class="port_id add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Port"
+                                                    class="port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Port"
                                                     data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                     @foreach ($port as $row)
                                                         <option value="{{ $row->port_id }}">{{ $row->port_name }}

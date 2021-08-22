@@ -22,13 +22,10 @@ class ss_setup_cargo_type extends Model
     }
 
     
-    
-    //working
+    // cargo
     public function CAcargotype(){
         return $this->hasMany('App\Models\rel_cargo_cargotype',"cargo_type_id");
     }
-
-    //working
     public function SCAcargotype(){
         return $this->hasMany('App\Models\rel_ser_cargo_cargotype',"cargo_type_id");
     }

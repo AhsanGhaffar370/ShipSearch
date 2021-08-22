@@ -21,7 +21,7 @@ class ss_setup_port extends Model
     }
 
     
-    //working
+    //cargo
     public function CAlport(){
         return $this->hasMany('App\Models\rel_cargo_lport',"port_id");
     }
@@ -29,13 +29,23 @@ class ss_setup_port extends Model
         return $this->hasMany('App\Models\rel_cargo_dport',"port_id");
     }
 
-    //working
+    //ser cargo
     public function SCAlport(){
         return $this->hasMany('App\Models\rel_ser_cargo_lport',"port_id");
     }
     public function SCAdport(){
         return $this->hasMany('App\Models\rel_ser_cargo_dport',"port_id");
     }
+
+    
+    // vessel and ser vessel
+    public function Vport(){
+        return $this->hasMany('App\Models\rel_vessel_port',"port_id");
+    }
+    public function SVport(){
+        return $this->hasMany('App\Models\rel_ser_vessel_port',"port_id");
+    }
+
     // public function Lcargo1(){
     //     return $this->hasMany('App\Models\ss_cargo',"loading_port_id_1");
     // }

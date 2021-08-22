@@ -15,17 +15,38 @@ class vessel_search_history extends Model
     
     protected $guarded = []; 
 
+
+
+    public function vesseltype(){
+        return $this->hasMany('App\Models\rel_ser_vessel_vesseltype',"vessel_id");
+    }
+    public function chartertype(){
+        return $this->hasMany('App\Models\rel_ser_vessel_chartertype',"vessel_id");
+    }
     public function region(){
-        return $this->belongsTo(ss_setup_region::class,'region_id');
+        return $this->hasMany('App\Models\rel_ser_vessel_region',"vessel_id");
     }
-
     public function country(){
-        return $this->belongsTo(ss_setup_country::class,'country_id');
+        return $this->hasMany('App\Models\rel_ser_vessel_country',"vessel_id");
+    }
+    public function port(){
+        return $this->hasMany('App\Models\rel_ser_vessel_port',"vessel_id");
     }
 
-    public function port(){
-        return $this->belongsTo(ss_setup_port::class,'port_id');
-    }
+
+
+
+    // public function region(){
+    //     return $this->belongsTo(ss_setup_region::class,'region_id');
+    // }
+
+    // public function country(){
+    //     return $this->belongsTo(ss_setup_country::class,'country_id');
+    // }
+
+    // public function port(){
+    //     return $this->belongsTo(ss_setup_port::class,'port_id');
+    // }
 
     
     // public function Dport2(){

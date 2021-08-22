@@ -20,7 +20,7 @@ class ss_setup_region extends Model
         return $query->orderBy('region_id',"DESC");
     }
 
-    //working
+    //cargo
     public function CAlregion(){
         return $this->hasMany('App\Models\rel_cargo_lregion',"region_id");
     }
@@ -28,13 +28,22 @@ class ss_setup_region extends Model
         return $this->hasMany('App\Models\rel_cargo_dregion',"region_id");
     }
 
-    //working
+    //ser cargo
     public function SCAlregion(){
         return $this->hasMany('App\Models\rel_ser_cargo_lregion',"region_id");
     }
     public function SCAdregion(){
         return $this->hasMany('App\Models\rel_ser_cargo_dregion',"region_id");
     }
+    
+    // vessel and ser vessel
+    public function Vregion(){
+        return $this->hasMany('App\Models\rel_vessel_region',"region_id");
+    }
+    public function SVregion(){
+        return $this->hasMany('App\Models\rel_ser_vessel_region',"region_id");
+    }
+
 
 
 

@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class rel_ser_vessel_region extends Model
 {
     use HasFactory;
+    public $table='rel_ser_vessel_region';
+    public $timestamps=false;
+    protected $primaryKey = 'id';
+    
+
+    public function region(){
+        return $this->belongsTo(vessel_search_history::class,'vessel_id');
+    }
+
+    
+    public function SVregion(){
+        return $this->belongsTo(ss_setup_region::class,'region_id'); // rel_ser_vessel_region table ki id aegi yaha.
+    }
 }

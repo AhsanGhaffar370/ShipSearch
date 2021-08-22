@@ -363,8 +363,8 @@ class FrontCargoController extends Controller
         $ser_data= cargo_search_history::with(['cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
                                         ->where('id',$req->id)->first();   
 
-        $cargo_type_fk=array();
-        foreach ($ser_data->cargotype as $row) { $cargo_type_fk[]=$row->SCAcargotype->cargo_type_id; }
+        // $cargo_type_fk=array();
+        // foreach ($ser_data->cargotype as $row) { $cargo_type_fk[]=$row->SCAcargotype->cargo_type_id; }
 
         //get specific record of table
         // with(array('Lregion' => function($query) {

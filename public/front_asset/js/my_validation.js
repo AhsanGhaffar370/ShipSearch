@@ -3,6 +3,8 @@ $(document).ready(function() {
 
 
 
+    $('#country_id').prop('disabled', true);
+    $('#port_id').prop('disabled', true);
     $('#loading_country_id').prop('disabled', true);
     $('#loading_port_id').prop('disabled', true);
     $('#discharge_country_id').prop('disabled', true);
@@ -168,7 +170,7 @@ $(document).ready(function() {
 
 
 
-    $(document).on("change", 'select.add_cargo_inp_fields', function(e) {
+    $(document).on("change", 'select.add_cvs_inp_fields', function(e) {
 
         var region_country_id = $(this).val();
         let country_port_attr = $(this).closest('section').parent().next().children('section').children('div').children('select').attr('id');
@@ -192,7 +194,7 @@ $(document).ready(function() {
 
                     post_str += `
                 <select name="` + country_port_attr + `[]" id="` + country_port_attr + `"
-                    class="form-control ` + country_port_attr + ` add_cargo_inp_fields ser_inp_fields mb-2" multiple title="Choose" data-size="5"
+                    class="form-control ` + country_port_attr + ` add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
                     data-selected-text-format="count > 2" data-live-search="true">`;
 
                     $.each(json_data, function(i, obj1) {

@@ -22,6 +22,14 @@ class ss_setup_charter_type extends Model
         return $query->orderBy('charter_type_id',"DESC");
     }
 
+    // vessel
+    public function Vchartertype(){
+        return $this->hasMany('App\Models\rel_vessel_chartertype',"charter_type_id");
+    }
+    public function SVchartertype(){
+        return $this->hasMany('App\Models\rel_ser_vessel_chartertype',"charter_type_id");
+    }
+
     // public function vessel(){
     //     return $this->hasMany('App\Models\ss_vessel',"charter_type_id");
     // }

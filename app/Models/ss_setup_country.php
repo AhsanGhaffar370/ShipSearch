@@ -24,7 +24,7 @@ class ss_setup_country extends Model
     }
 
     
-    //working
+    //cargo
     public function CAlcountry(){
         return $this->hasMany('App\Models\rel_cargo_lcountry',"country_id");
     }
@@ -32,13 +32,22 @@ class ss_setup_country extends Model
         return $this->hasMany('App\Models\rel_cargo_dcountry',"country_id");
     }
 
-    //working
+    //ser_cargo
     public function SCAlcountry(){
         return $this->hasMany('App\Models\rel_ser_cargo_lcountry',"country_id");
     }
 
     public function SCAldcountry(){
         return $this->hasMany('App\Models\rel_ser_cargo_dcountry',"country_id");
+    }
+
+    
+    // vessel and ser vessel
+    public function Vcountrye(){
+        return $this->hasMany('App\Models\rel_vessel_country',"country_id");
+    }
+    public function SVcountry(){
+        return $this->hasMany('App\Models\rel_ser_vessel_country',"country_id");
     }
 
     // public function Lcargo(){

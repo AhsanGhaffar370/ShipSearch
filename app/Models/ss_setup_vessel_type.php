@@ -21,6 +21,14 @@ class ss_setup_vessel_type extends Model
     public function scopeDesc($query){
         return $query->orderBy('vessel_type_id',"DESC");
     }
+    
+    // vessel and ser vessel
+    public function Vvesseltype(){
+        return $this->hasMany('App\Models\rel_vessel_vesseltype',"vessel_type_id");
+    }
+    public function SVvesseltype(){
+        return $this->hasMany('App\Models\rel_ser_vessel_vesseltype',"vessel_type_id");
+    }
 
     // public function vessel(){
     //     return $this->hasMany('App\Models\ss_vessel',"vessel_type_id");
