@@ -56,13 +56,13 @@
                         {{-- Advance Search Form --}}
                         {{-- /////////////////////// --}}
                         <tr id='adv_ser_form' class="pos_rel d_n adv_forms_tr">
-                            <form id="search_cargo" method="post" action="{{ route('cargo.search_req') }}"
+                            <form id="search_cvs_form" method="post" action="{{ route('cargo.search_req') }}"
                                 class="form-horizontal form-label-left " enctype="multipart/form-data">
                                 @csrf
                                 <td></td>
                                 <td class="">
                                     <section class="cargo_type_id_par">
-                                        <select name="cargo_type_id[]" id="cargo_type_id" form="search_cargo"
+                                        <select name="cargo_type_id[]" id="cargo_type_id" form="search_cvs_form"
                                             class="cargo_type_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true"
                                             {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
@@ -77,7 +77,7 @@
                                 <!-- -->
                                 <td class="">
                                     <section class="laycan_date_from_par">
-                                        <input type="date" required form="search_cargo" class=" from_date"
+                                        <input type="date" required form="search_cvs_form" class=" from_date"
                                             id="laycan_date_from" name="laycan_date_from"
                                             placeholder="Laycan Date From" />
                                     </section>
@@ -85,14 +85,14 @@
                                 <!-- -->
                                 <td class="">
                                     <section class="laycan_date_to_par">
-                                        <input type="date" required form="search_cargo" class=" to_date"
+                                        <input type="date" required form="search_cvs_form" class=" to_date"
                                             id="laycan_date_to" name="laycan_date_to" placeholder="Laycan Date To" />
                                     </section>
                                 </td>
                                 <!-- -->
                                 <td class="">
                                     <section class="loading_region_id_par">
-                                        <select name="loading_region_id[]" id="loading_region_id" form="search_cargo"
+                                        <select name="loading_region_id[]" id="loading_region_id" form="search_cvs_form"
                                             class="loading_region_id ser_inp_fields" multiple title="Choose"
                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($region as $row)
@@ -105,7 +105,7 @@
                                 <!-- -->
                                 <td class="">
                                     <section class="loading_country_id_par">
-                                        <select name="loading_country_id[]" id="loading_country_id" form="search_cargo"
+                                        <select name="loading_country_id[]" id="loading_country_id" form="search_cvs_form"
                                             class="loading_country_id ser_inp_fields" multiple title="Choose"
                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($country as $row)
@@ -118,7 +118,7 @@
                                 <!-- -->
                                 <td class="">
                                     <section class="loading_port_id_par">
-                                        <select name="loading_port_id[]" id="loading_port_id" form="search_cargo"
+                                        <select name="loading_port_id[]" id="loading_port_id" form="search_cvs_form"
                                             class="loading_port_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($port as $row)
@@ -131,7 +131,7 @@
                                 <td class="">
                                     <section class="discharge_region_id_par">
                                         <select name="discharge_region_id[]" id="discharge_region_id"
-                                            form="search_cargo" class="discharge_region_id ser_inp_fields" multiple
+                                            form="search_cvs_form" class="discharge_region_id ser_inp_fields" multiple
                                             title="Choose" data-size="5" data-selected-text-format="count > 2"
                                             data-live-search="true">
                                             @foreach ($region as $row)
@@ -145,7 +145,7 @@
                                 <td class="">
                                     <section class="discharge_country_id_par">
                                         <select name="discharge_country_id[]" id="discharge_country_id"
-                                            form="search_cargo" class="discharge_country_id ser_inp_fields" multiple
+                                            form="search_cvs_form" class="discharge_country_id ser_inp_fields" multiple
                                             title="Choose" data-size="5" data-selected-text-format="count > 2"
                                             data-live-search="true">
                                             @foreach ($country as $row)
@@ -158,7 +158,7 @@
                                 <!-- -->
                                 <td class="">
                                     <section class="discharge_port_id_par">
-                                        <select name="discharge_port_id[]" id="discharge_port_id" form="search_cargo"
+                                        <select name="discharge_port_id[]" id="discharge_port_id" form="search_cvs_form"
                                             class="discharge_port_id ser_inp_fields" multiple title="Choose"
                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($port as $row)
@@ -292,13 +292,13 @@
                             {{-- /////////////////////// --}}
                             <tr id='adv_ser_form_each_{{ $row->id }}'
                                 class="adv_ser_form_each pos_rel d_n adv_forms_tr">
-                                <form id="search_cargo_{{ $row->id }}" class="form-horizontal form-label-left ">
+                                <form id="search_cvs_form_{{ $row->id }}" class="form-horizontal form-label-left ">
                                     @csrf
                                     <td></td>
                                     <td class="">
                                         <section class="cargo_type_id_par_{{ $row->id }}">
                                             <select name="cargo_type_id[]" id="cargo_type_id_{{ $row->id }}"
-                                                form="search_cargo_{{ $row->id }}"
+                                                form="search_cvs_form_{{ $row->id }}"
                                                 class="cargo_type_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2"
                                                 data-live-search="true">
@@ -312,7 +312,7 @@
                                     <!-- -->
                                     <td class="">
                                         <section class="laycan_date_from_par_{{ $row->id }}">
-                                            <input type="date" required form="search_cargo_{{ $row->id }}"
+                                            <input type="date" required form="search_cvs_form_{{ $row->id }}"
                                                 class=" from_date" id="laycan_date_from_{{ $row->id }}"
                                                 name="laycan_date_from" placeholder="Laycan Date From" />
                                         </section>
@@ -320,7 +320,7 @@
                                     <!-- -->
                                     <td class="">
                                         <section class="laycan_date_to_par_{{ $row->id }}">
-                                            <input type="date" required form="search_cargo_{{ $row->id }}"
+                                            <input type="date" required form="search_cvs_form_{{ $row->id }}"
                                                 class=" to_date" id="laycan_date_to_{{ $row->id }}"
                                                 name="laycan_date_to" placeholder="Laycan Date To" />
                                         </section>
@@ -330,7 +330,7 @@
                                         <section class="loading_region_id_par_{{ $row->id }}">
                                             <select name="loading_region_id[]"
                                                 id="loading_region_id_{{ $row->id }}"
-                                                form="search_cargo_{{ $row->id }}"
+                                                form="search_cvs_form_{{ $row->id }}"
                                                 class="loading_region_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2"
                                                 data-live-search="true">
@@ -347,7 +347,7 @@
                                         <section class="loading_country_id_par_{{ $row->id }}">
                                             <select name="loading_country_id[]"
                                                 id="loading_country_id_{{ $row->id }}"
-                                                form="search_cargo_{{ $row->id }}"
+                                                form="search_cvs_form_{{ $row->id }}"
                                                 class="loading_country_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2"
                                                 data-live-search="true">
@@ -363,7 +363,7 @@
                                     <td class=" ">
                                         <section class="loading_port_id_par_{{ $row->id }}">
                                             <select name="loading_port_id[]" id="loading_port_id_{{ $row->id }}"
-                                                form="search_cargo_{{ $row->id }}"
+                                                form="search_cvs_form_{{ $row->id }}"
                                                 class="loading_port_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2"
                                                 data-live-search="true">
@@ -379,7 +379,7 @@
                                         <section class="discharge_region_id_par_{{ $row->id }}">
                                             <select name="discharge_region_id[]"
                                                 id="discharge_region_id_{{ $row->id }}"
-                                                form="search_cargo_{{ $row->id }}"
+                                                form="search_cvs_form_{{ $row->id }}"
                                                 class="discharge_region_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2"
                                                 data-live-search="true">
@@ -396,7 +396,7 @@
                                         <section class="discharge_country_id_par_{{ $row->id }}">
                                             <select name="discharge_country_id[]"
                                                 id="discharge_country_id_{{ $row->id }}"
-                                                form="search_cargo_{{ $row->id }}"
+                                                form="search_cvs_form_{{ $row->id }}"
                                                 class="discharge_country_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2"
                                                 data-live-search="true">
@@ -413,7 +413,7 @@
                                         <section class="discharge_port_id_par_{{ $row->id }}">
                                             <select name="discharge_port_id[]"
                                                 id="discharge_port_id_{{ $row->id }}"
-                                                form="search_cargo_{{ $row->id }}"
+                                                form="search_cvs_form_{{ $row->id }}"
                                                 class="discharge_port_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2"
                                                 data-live-search="true">

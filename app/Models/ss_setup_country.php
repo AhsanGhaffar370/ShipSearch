@@ -43,7 +43,7 @@ class ss_setup_country extends Model
 
     
     // vessel and ser vessel
-    public function Vcountrye(){
+    public function Vcountry(){
         return $this->hasMany('App\Models\rel_vessel_country',"country_id");
     }
     public function SVcountry(){

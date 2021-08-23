@@ -3,8 +3,8 @@ $(document).ready(function() {
 
 
 
-    $('#country_id').prop('disabled', true);
-    $('#port_id').prop('disabled', true);
+    $('.country_id').prop('disabled', true);
+    $('.port_id').prop('disabled', true);
     $('#loading_country_id').prop('disabled', true);
     $('#loading_port_id').prop('disabled', true);
     $('#discharge_country_id').prop('disabled', true);
@@ -34,7 +34,7 @@ $(document).ready(function() {
                     var post_str = "";
 
                     post_str += `
-                    <select name="` + country_port_attr + `[]" id="` + country_port_attr + `" form="search_cargo"
+                    <select name="` + country_port_attr + `[]" id="` + country_port_attr + `" form="search_cvs_form"
                         class="` + country_port_attr + ` ser_inp_fields" multiple title="Choose" data-size="5"
                         data-selected-text-format="count > 2" data-live-search="true">`;
 
@@ -83,7 +83,6 @@ $(document).ready(function() {
         }
     });
 
-    // #030303
 
     $(document).on("change", 'select.ser_inp_fields_each', function(e) {
 
@@ -114,7 +113,7 @@ $(document).ready(function() {
                     var post_str = "";
 
                     post_str += `
-                    <select name="` + country_port_attr + `[]" id="` + country_port_attr + `" form="search_cargo"
+                    <select name="` + country_port_attr + `[]" id="` + country_port_attr + `" form="search_cvs_form"
                         class="` + country_port_attr + ` ser_inp_fields_each" multiple title="Choose" data-size="5"
                         data-selected-text-format="count > 2" data-live-search="true">`;
 
@@ -224,6 +223,7 @@ $(document).ready(function() {
 
                     if (region_country_id.length == 0) {
                         $('#' + country_port_attr).prop('disabled', true);
+                        $('.' + country_port_attr).prop('disabled', true);
 
                         if (country_port_attr.includes('loading')) {
                             $('#loading_port_id').siblings('button').prop('disabled', true);
@@ -361,7 +361,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     //will work on form validation at the end
     //////////////////////////////////////
-    $('#search_cargo_removed').submit(function(e) {
+    $('#search_cvs_form_removed').submit(function(e) {
 
         var flag = true;
         var ids = ["laycan_date", "loading_region_id", "loading_country_id", "loading_port_id_1", "loading_port_id_2", "discharge_region_id", "discharge_country_id", "discharge_port_id_1", "discharge_port_id_2"];

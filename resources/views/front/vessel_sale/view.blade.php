@@ -51,12 +51,12 @@
                         {{-- Advance Search Form --}}
                         {{-- /////////////////////// --}}
                         <tr id='adv_ser_form' class="pos_rel d_n adv_forms_tr">
-                            <form id="search_vessel_sale" method="post" action="{{ route('vessel_sale.search_req') }}"
+                            <form id="search_cvs_form" method="post" action="{{ route('vessel_sale.search_req') }}"
                                 class="form-horizontal form-label-left " enctype="multipart/form-data">
                                 @csrf
                                 <td></td>
                                 <td class="">
-                                    <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel_sale"
+                                    <select name="vessel_type_id[]" id="vessel_type_id" form="search_cvs_form"
                                         class="vessel_type_id ser_inp_fields" multiple title="Choose" data-size="5"
                                         data-selected-text-format="count > 2" data-live-search="true"
                                         {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
@@ -68,17 +68,17 @@
                                 </td>
                                 <!-- -->
                                 <td class="">
-                                    <input type="date" required form="search_vessel_sale" class=" date_available"
+                                    <input type="date" required form="search_cvs_form" class=" date_available"
                                         id="date_available" name="date_available" placeholder="" />
                                 </td>
                                 <!-- -->
                                 <td class="">
-                                    <input type="date" required form="search_vessel_sale" class=" operations_date" id="operations_date"
+                                    <input type="date" required form="search_cvs_form" class=" operations_date" id="operations_date"
                                         name="operations_date" placeholder="" />
                                 </td>
                                 <!-- -->
                                 <td class="">
-                                    <select name="region_id[]" id="region_id" form="search_vessel_sale"
+                                    <select name="region_id[]" id="region_id" form="search_cvs_form"
                                         class="region_id ser_inp_fields" multiple title="Choose" data-size="5"
                                         data-selected-text-format="count > 2" data-live-search="true">
                                         @foreach ($region as $row)
@@ -88,7 +88,7 @@
                                 </td>
                                 <!-- -->
                                 <td class=" ">
-                                    <select name="country_id[]" id="country_id" form="search_vessel_sale"
+                                    <select name="country_id[]" id="country_id" form="search_cvs_form"
                                         class="country_id ser_inp_fields" multiple title="Choose" data-size="5"
                                         data-selected-text-format="count > 2" data-live-search="true">
                                         @foreach ($country as $row)
@@ -99,7 +99,7 @@
                                 </td>
                                 <!-- -->
                                 <td class="">
-                                    <select name="port_id[]" id="port_id" form="search_vessel_sale"
+                                    <select name="port_id[]" id="port_id" form="search_cvs_form"
                                         class="port_id ser_inp_fields" multiple title="Choose" data-size="5"
                                         data-selected-text-format="count > 2" data-live-search="true">
                                         @foreach ($port as $row)
@@ -182,11 +182,11 @@
                             {{-- advance search for each record --}}
                             {{-- /////////////////////// --}}
                             <tr id='adv_ser_form_each_{{ $row->id }}' class="adv_ser_form_each pos_rel d_n adv_forms_tr">
-                                <form id="search_vessel_sale_{{ $row->id }}" class="form-horizontal form-label-left ">
+                                <form id="search_cvs_form_{{ $row->id }}" class="form-horizontal form-label-left ">
                                     @csrf
                                     <td></td>
                                     <td class="">
-                                        <select name="vessel_type_id[]" id="vessel_type_id_{{ $row->id }}" form="search_vessel_sale_{{ $row->id }}"
+                                        <select name="vessel_type_id[]" id="vessel_type_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
                                             class="vessel_type_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($vessel_type as $row1)
@@ -197,19 +197,19 @@
                                     </td>
                                     <!-- -->
                                     <td class="">
-                                        <input type="date" required form="search_vessel_sale_{{ $row->id }}" class=" date_available"
+                                        <input type="date" required form="search_cvs_form_{{ $row->id }}" class=" date_available"
                                             id="date_available_{{ $row->id }}" name="date_available"
                                             placeholder="" />
                                     </td>
                                     <!-- -->
                                     <td class="">
-                                        <input type="date" required form="search_vessel_sale_{{ $row->id }}" class=" operations_date"
+                                        <input type="date" required form="search_cvs_form_{{ $row->id }}" class=" operations_date"
                                             id="operations_date_{{ $row->id }}" name="operations_date" placeholder="" />
                                     </td>
                                     <!-- -->
                                     <td class=" ">
                                         <select name="region_id[]" id="region_id_{{ $row->id }}"
-                                            form="search_vessel_sale_{{ $row->id }}" class="region_id ser_inp_fields" multiple title="Choose"
+                                            form="search_cvs_form_{{ $row->id }}" class="region_id ser_inp_fields" multiple title="Choose"
                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($region as $row1)
                                                 <option value="{{ $row1->region_name }}">{{ $row1->region_name }}
@@ -220,7 +220,7 @@
                                     <!-- -->
                                     <td class=" ">
                                         <select name="country_id[]" id="country_id_{{ $row->id }}"
-                                            form="search_vessel_sale_{{ $row->id }}" class="country_id ser_inp_fields" multiple title="Choose"
+                                            form="search_cvs_form_{{ $row->id }}" class="country_id ser_inp_fields" multiple title="Choose"
                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($country as $row1)
                                                 <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
@@ -230,7 +230,7 @@
                                     </td>
                                     <!-- -->
                                     <td class="">
-                                        <select name="port_id[]" id="port_id_{{ $row->id }}" form="search_vessel_sale_{{ $row->id }}"
+                                        <select name="port_id[]" id="port_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
                                             class="port_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($port as $row1)

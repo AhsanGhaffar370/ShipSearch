@@ -184,6 +184,8 @@ class FrontVesselController extends Controller
 
     function search_req(Request $req){
 
+        // dd($req);
+
         $laycan_from=date("Y-m-d", strtotime($req->laycan_date_from));
         $laycan_to=date("Y-m-d", strtotime($req->laycan_date_to));  
 
@@ -286,6 +288,7 @@ class FrontVesselController extends Controller
                                             ->orderBy('id', 'DESC')
                                             ->get();
 
+        // dd($ser_history);
 
         $ss_setup_vessel_type= ss_setup_vessel_type::active()->get();
         $ss_setup_charter_type= ss_setup_charter_type::active()->get();

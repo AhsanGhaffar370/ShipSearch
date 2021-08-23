@@ -257,14 +257,14 @@
 
                             <div id="home_cargo">
                                 {{-- Cargo Form --}}
-                                <form id="search_cargo" method="post" action="{{ route('cargo.search_req') }}"
+                                <form id="search_cvs_form" method="post" action="{{ route('cargo.search_req') }}"
                                     class="form-horizontal form-label-left home_cargo" enctype="multipart/form-data">
                                     @csrf
 
 
                                     <div class="pos_rel mb-3">
                                         <label for="cargo_type_id" class="cl_gll">Select Cargo:</label>
-                                        <select name="cargo_type_id[]" id="cargo_type_id" form="search_cargo"
+                                        <select name="cargo_type_id[]" id="cargo_type_id" form="search_cvs_form"
                                             class="cargo_type_id ser_inp_fields21 mb-2" multiple title="Any" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($cargo_type as $row)
@@ -282,7 +282,7 @@
                                                 <label class="cl_gll">Select Origin:</label>
                                                 <div>
                                                     <section class="loading_region_id_par">
-                                                        <select name="loading_region_id[]" id="loading_region_id" form="search_cargo"
+                                                        <select name="loading_region_id[]" id="loading_region_id" form="search_cvs_form"
                                                             class="loading_region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Region"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             @foreach ($region as $row)
@@ -296,7 +296,7 @@
                                                 
                                                 <div>
                                                     <section class="loading_country_id_par">
-                                                        <select name="loading_country_id[]" id="loading_country_id" form="search_cargo"
+                                                        <select name="loading_country_id[]" id="loading_country_id" form="search_cvs_form"
                                                             class="loading_country_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Country"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             @foreach ($country as $row)
@@ -310,7 +310,7 @@
                                                 
                                                 <div>
                                                     <section class="loading_port_id_par">
-                                                        <select name="loading_port_id[]" id="loading_port_id" form="search_cargo"
+                                                        <select name="loading_port_id[]" id="loading_port_id" form="search_cvs_form"
                                                             class="loading_port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Port"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             @foreach ($port as $row)
@@ -322,7 +322,7 @@
                                                 </div>
                                                 <!-- -->
                                                 <label for="laycan_date_from" class="mt-4 cl_gll">Laycan Date From:</label>
-                                                <input type="date" required form="search_cargo" class=" from_date"
+                                                <input type="date" required form="search_cvs_form" class=" from_date"
                                                     id="laycan_date_from" name="laycan_date_from"
                                                     placeholder="Laycan Date From" />
                                             </div>
@@ -336,7 +336,7 @@
                                                 <div>
                                                     <section class="discharge_region_id_par">
                                                         <select name="discharge_region_id[]" id="discharge_region_id"
-                                                            form="search_cargo" class="discharge_region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
+                                                            form="search_cvs_form" class="discharge_region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                                                             title="Region" data-size="5" data-selected-text-format="count > 2"
                                                             data-live-search="true">
                                                             @foreach ($region as $row)
@@ -351,7 +351,7 @@
                                                 <div>
                                                     <section class="discharge_country_id_par">
                                                         <select name="discharge_country_id[]" id="discharge_country_id"
-                                                            form="search_cargo" class="discharge_country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
+                                                            form="search_cvs_form" class="discharge_country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
                                                             multiple title="Country" data-size="5" data-selected-text-format="count > 2"
                                                             data-live-search="true">
                                                             @foreach ($country as $row)
@@ -364,7 +364,7 @@
                                                 <!-- -->
                                                 <div>
                                                     <section class="discharge_port_id_par">
-                                                        <select name="discharge_port_id[]" id="discharge_port_id" form="search_cargo"
+                                                        <select name="discharge_port_id[]" id="discharge_port_id" form="search_cvs_form"
                                                             class="discharge_port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Port"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             @foreach ($port as $row)
@@ -376,7 +376,7 @@
                                                 </div>
                                                 <!-- -->
                                                 <label for="laycan_date_to" class="mt-4 cl_gll">Laycan Date To:</label>
-                                                <input type="date" required form="search_cargo" class=" to_date"
+                                                <input type="date" required form="search_cvs_form" class=" to_date"
                                                     id="laycan_date_to" name="laycan_date_to" placeholder="Laycan Date To" />
                                             </div>
                                         </div>
@@ -394,7 +394,7 @@
 
                             {{-- Vessel Charter Form --}}
                             <div id="home_vessel">
-                                <form id="search_vessel" method="post" action="{{ route('vessel.search_req') }}"
+                                <form id="search_cvs_form" method="post" action="{{ route('vessel.search_req') }}"
                                     class="form-horizontal form-label-left " enctype="multipart/form-data">
                                     @csrf
 
@@ -403,7 +403,7 @@
                                             <div class="text-white sec_left">
                                                 <!-- -->
                                                 <label for="vessel_type_id" class="cl_gll">Select Vessel:</label>
-                                                <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel"
+                                                <select name="vessel_type_id[]" id="vessel_type_id" form="search_cvs_form"
                                                     class="vessel_type_id ser_inp_fields21 mb-2" multiple title="Any" data-size="5"
                                                     data-selected-text-format="count > 2" data-live-search="true">
                                                     @foreach ($vessel_type as $row)
@@ -417,7 +417,7 @@
                                             <div class="text-white sec_right">
                                                 <!-- -->
                                                 <label for="charter_type_id" class="cl_gll">Select Charter:</label>
-                                                <select name="charter_type_id[]" id="charter_type_id" form="search_vessel"
+                                                <select name="charter_type_id[]" id="charter_type_id" form="search_cvs_form"
                                                     class="charter_type_id ser_inp_fields21 mb-2" multiple title="Any" data-size="5"
                                                     data-selected-text-format="count > 2" data-live-search="true">
                                                     @foreach ($charter_type as $row)
@@ -432,7 +432,7 @@
                                         <div>
                                             <section class="region_id_par">
                                                 <select name="region_id[]" id="region_id"
-                                                    form="search_vessel" class="region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
+                                                    form="search_cvs_form" class="region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                                                     title="Region" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     @foreach ($region as $row)
@@ -447,7 +447,7 @@
                                         <div>
                                             <section class="country_id_par">
                                                 <select name="country_id[]" id="country_id"
-                                                    form="search_vessel" class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
+                                                    form="search_cvs_form" class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
                                                     multiple title="Country" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     @foreach ($country as $row)
@@ -460,7 +460,7 @@
                                         <!-- -->
                                         <div>
                                             <section class="port_id_par">
-                                                <select name="port_id[]" id="port_id" form="search_vessel"
+                                                <select name="port_id[]" id="port_id" form="search_cvs_form"
                                                     class="port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Port"
                                                     data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                     @foreach ($port as $row)
@@ -476,7 +476,7 @@
                                             <div class="text-white sec_left">
                                                 <!-- -->
                                                 <label for="laycan_date_from" class="mt-4 cl_gll">Laycan Date From:</label>
-                                                <input type="date" required form="search_vessel" class=" from_date"
+                                                <input type="date" required form="search_cvs_form" class=" from_date"
                                                     id="laycan_date_from" name="laycan_date_from"
                                                     placeholder="Laycan Date From" />
                                             </div>
@@ -485,7 +485,7 @@
                                             <div class="text-white sec_right">
                                                 <!-- -->
                                                 <label for="laycan_date_to" class="mt-4 cl_gll">Laycan Date To:</label>
-                                                <input type="date" required form="search_vessel" class=" to_date"
+                                                <input type="date" required form="search_cvs_form" class=" to_date"
                                                     id="laycan_date_to" name="laycan_date_to" placeholder="Laycan Date To" />
                                             </div>
                                         </div>
@@ -501,16 +501,16 @@
                                 </form>
                             </div>{{-- End Vessel Charter --}}
                             
-                            {{-- Vessel Charter Form --}}
+                            {{-- Vessel sale Form --}}
                             <div id="home_vsale">
-                                <form id="search_vessel_sale" method="post" action="{{ route('vessel_sale.search_req') }}"
+                                <form id="search_cvs_form" method="post" action="{{ route('vessel_sale.search_req') }}"
                                     class="form-horizontal form-label-left " enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="pos_rel mb-3">
                                         <div>
                                             <label for="vessel_type_id" class="cl_gll">Select Vessel:</label>
-                                            <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel_sale"
+                                            <select name="vessel_type_id[]" id="vessel_type_id" form="search_cvs_form"
                                                 class="vessel_type_id ser_inp_fields21 mb-2" multiple title="Any" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($vessel_type as $row)
@@ -521,10 +521,10 @@
                                         </div>
                                         <div>
                                             <section class="region_id_par mt-4">
-                                                <select name="region_id[]" id="region_id"
-                                                    form="search_vessel_sale" class="region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
+                                                <select name="region_id[]" id="region_id" form="search_cvs_form"
+                                                    class="region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
                                                     title="Region" data-size="5" data-selected-text-format="count > 2"
-                                                    data-live-search="true">
+                                                    data-live-search="true" >
                                                     @foreach ($region as $row)
                                                         <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                         </option>
@@ -532,13 +532,12 @@
                                                 </select>
                                             </section>
                                         </div>
-                                        
                                         <!-- -->
                                         <div>
                                             <section class="country_id_par">
-                                                <select name="country_id[]" id="country_id"
-                                                    form="search_vessel_sale" class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
-                                                    multiple title="Country" data-size="5" data-selected-text-format="count > 2"
+                                                <select name="country_id[]" id="country_id" form="search_cvs_form"
+                                                    class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
+                                                    title="Country" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     @foreach ($country as $row)
                                                         <option value="{{ $row->country_id }}">{{ $row->country_name }}
@@ -550,9 +549,10 @@
                                         <!-- -->
                                         <div>
                                             <section class="port_id_par">
-                                                <select name="port_id[]" id="port_id" form="search_vessel_sale"
-                                                    class="port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Port"
-                                                    data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                <select name="port_id[]" id="port_id" form="search_cvs_form"
+                                                    class="port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple 
+                                                    title="Port" data-size="5" data-selected-text-format="count > 2" 
+                                                    data-live-search="true">
                                                     @foreach ($port as $row)
                                                         <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                         </option>
@@ -566,7 +566,7 @@
                                             <div class="text-white sec_left">
                                                 <!-- -->
                                                 <label for="date_available" class="mt-4 cl_gll">Date Available:</label>
-                                                <input type="date" required form="search_vessel_sale" class=" date_available"
+                                                <input type="date" required form="search_cvs_form" class=" date_available"
                                                     id="date_available" name="date_available"
                                                     placeholder="" />
                                             </div>
@@ -575,7 +575,7 @@
                                             <div class="text-white sec_right">
                                                 <!-- -->
                                                 <label for="operations_date" class="mt-4 cl_gll">Operations Date:</label>
-                                                <input type="date" required form="search_vessel_sale" class=" to_date"
+                                                <input type="date" required form="search_cvs_form" class=" to_date"
                                                     id="operations_date" name="operations_date" placeholder="" />
                                             </div>
                                         </div>

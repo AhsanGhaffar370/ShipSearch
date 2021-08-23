@@ -52,19 +52,19 @@
                         {{-- Advance Search Form --}}
                         {{-- /////////////////////// --}}
                         <tr id='adv_ser_form' class="pos_rel d_n adv_forms_tr">
-                            <form id="search_vessel" method="post" action="{{ route('vessel.search_req') }}"
+                            <form id="search_cvs_form" method="post" action="{{ route('vessel.search_req') }}"
                                 class="form-horizontal form-label-left " enctype="multipart/form-data">
                                 @csrf
                                 <td></td>
                                 <td class="">
                                     
                                     <section class="vessel_type_id_par">
-                                        <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel"
+                                        <select name="vessel_type_id[]" id="vessel_type_id" form="search_cvs_form"
                                             class="vessel_type_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true"
                                             {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
                                             @foreach ($vessel_type as $row)
-                                                <option value="{{ $row->vessel_type_name }}">{{ $row->vessel_type_name }}
+                                                <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -74,12 +74,12 @@
                                 <td class="">
                                     
                                     <section class="charter_type_id_par">
-                                        <select name="charter_type_id[]" id="charter_type_id" form="search_vessel"
+                                        <select name="charter_type_id[]" id="charter_type_id" form="search_cvs_form"
                                             class="charter_type_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true"
                                             {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
                                             @foreach ($charter_type as $row)
-                                                <option value="{{ $row->charter_type_name }}">{{ $row->charter_type_name }}
+                                                <option value="{{ $row->charter_type_id }}">{{ $row->charter_type_name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -89,7 +89,7 @@
                                 <td class="">
                                     
                                     <section class="laycan_date_from_par">
-                                        <input type="date" required form="search_vessel" class=" from_date"
+                                        <input type="date" required form="search_cvs_form" class=" from_date"
                                             id="laycan_date_from" name="laycan_date_from" placeholder="Laycan Date From" />
                                     </section>
                                 </td>
@@ -97,7 +97,7 @@
                                 <td class="">
                                     
                                     <section class="laycan_date_to_par">
-                                        <input type="date" required form="search_vessel" class=" to_date" id="laycan_date_to"
+                                        <input type="date" required form="search_cvs_form" class=" to_date" id="laycan_date_to"
                                             name="laycan_date_to" placeholder="Laycan Date To" />
                                     </section>
                                 </td>
@@ -105,7 +105,7 @@
                                 <td class="">
                                     
                                     <section class="region_id_par">
-                                        <select name="region_id[]" id="region_id" form="search_vessel"
+                                        <select name="region_id[]" id="region_id" form="search_cvs_form"
                                             class="region_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($region as $row)
@@ -118,7 +118,7 @@
                                 <td class=" ">
                                     
                                     <section class="country_id_par">
-                                        <select name="country_id[]" id="country_id" form="search_vessel"
+                                        <select name="country_id[]" id="country_id" form="search_cvs_form"
                                             class="country_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($country as $row)
@@ -132,7 +132,7 @@
                                 <td class="">
                                     
                                     <section class="port_id_par">
-                                        <select name="port_id[]" id="port_id" form="search_vessel"
+                                        <select name="port_id[]" id="port_id" form="search_cvs_form"
                                             class="port_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($port as $row)
@@ -244,13 +244,13 @@
                             {{-- advance search for each record --}}
                             {{-- /////////////////////// --}}
                             <tr id='adv_ser_form_each_{{ $row->id }}' class="adv_ser_form_each pos_rel d_n adv_forms_tr">
-                                <form id="search_vessel_{{ $row->id }}" class="form-horizontal form-label-left ">
+                                <form id="search_cvs_form_{{ $row->id }}" class="form-horizontal form-label-left ">
                                     @csrf
                                     <td></td>
                                     <td class="">
                                         
                                         <section class="vessel_type_id_par_{{ $row->id }}">
-                                            <select name="vessel_type_id[]" id="vessel_type_id_{{ $row->id }}" form="search_vessel_{{ $row->id }}"
+                                            <select name="vessel_type_id[]" id="vessel_type_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
                                                 class="vessel_type_id ser_inp_fields_each" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($vessel_type as $row1)
@@ -264,7 +264,7 @@
                                     <td class="">
                                         
                                         <section class="charter_type_id_par_{{ $row->id }}">
-                                            <select name="charter_type_id[]" id="charter_type_id_{{ $row->id }}" form="search_vessel_{{ $row->id }}"
+                                            <select name="charter_type_id[]" id="charter_type_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
                                                 class="charter_type_id ser_inp_fields_each" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($charter_type as $row1)
@@ -278,7 +278,7 @@
                                     <td class="">
                                         
                                         <section class="laycan_date_from_par_{{ $row->id }}">
-                                            <input type="date" required form="search_vessel_{{ $row->id }}" class=" from_date"
+                                            <input type="date" required form="search_cvs_form_{{ $row->id }}" class=" from_date"
                                                 id="laycan_date_from_{{ $row->id }}" name="laycan_date_from"
                                                 placeholder="Laycan Date From" />
                                         </section>
@@ -287,7 +287,7 @@
                                     <td class="">
                                         
                                         <section class="laycan_date_to_par_{{ $row->id }}">
-                                            <input type="date" required form="search_vessel_{{ $row->id }}" class=" to_date"
+                                            <input type="date" required form="search_cvs_form_{{ $row->id }}" class=" to_date"
                                                 id="laycan_date_to_{{ $row->id }}" name="laycan_date_to" placeholder="Laycan Date To" />
                                         </section>
                                     </td>
@@ -296,7 +296,7 @@
                                         
                                         <section class="region_id_par_{{ $row->id }}">
                                             <select name="region_id[]" id="region_id_{{ $row->id }}"
-                                                form="search_vessel_{{ $row->id }}" class="region_id ser_inp_fields_each" multiple title="Choose"
+                                                form="search_cvs_form_{{ $row->id }}" class="region_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($region as $row1)
                                                     <option value="{{ $row1->region_name }}">{{ $row1->region_name }}
@@ -310,7 +310,7 @@
                                         
                                         <section class="country_id_par_{{ $row->id }}">
                                             <select name="country_id[]" id="country_id_{{ $row->id }}"
-                                                form="search_vessel_{{ $row->id }}" class="country_id ser_inp_fields_each" multiple title="Choose"
+                                                form="search_cvs_form_{{ $row->id }}" class="country_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($country as $row1)
                                                     <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
@@ -323,7 +323,7 @@
                                     <td class="">
                                         
                                         <section class="port_id_par_{{ $row->id }}">
-                                            <select name="port_id[]" id="port_id_{{ $row->id }}" form="search_vessel_{{ $row->id }}"
+                                            <select name="port_id[]" id="port_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
                                                 class="port_id ser_inp_fields_each" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($port as $row1)

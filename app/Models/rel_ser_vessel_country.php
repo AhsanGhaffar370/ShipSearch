@@ -18,7 +18,7 @@ class rel_ser_vessel_country extends Model
     }
 
     
-    public function SVcoutnry(){
+    public function SVcountry(){
         return $this->belongsTo(ss_setup_country::class,'country_id'); // rel_ser_vessel_country table ki id aegi yaha.
     }
 }
