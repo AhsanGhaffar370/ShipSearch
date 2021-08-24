@@ -615,7 +615,7 @@
                                             <p class="b7 mb-0">Additional Info:</p>
                                             <p class="">{{ $row->additional_info }}</p>
                                             <p class="b7 mb-0">Company Name:</p>
-                                            <p class="">{{ optional($row->user_info)->company_name }}</p>
+                                            <a href={{route('directory.view.user', ['id' => $row->created_by])}} target="_blank" class="">{{ optional($row->user_info)->company_name }}</a>
                                         </div>
                                     </td>
                                     <td>
@@ -625,7 +625,7 @@
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
                                             <p class="b7 mb-0">Email Address:</p>
-                                            <a href={{route('directory.view.user', ['id' => $row->created_by])}} class="">{{ optional($row->user_info)->email }}</a>
+                                            <p>{{ optional($row->user_info)->email }}</p>
                                             <p class="b7 mb-0">Phone No:</p>
                                             <p class="">{{ optional($row->user_info)->phone }}</p>
                                         </div>

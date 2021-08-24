@@ -144,7 +144,7 @@
                         <label for="">Laycan Date From</label>
                         <div class="input-group date" data-provide="datepicker" data-date-start-date="0d"
                             data-date-format="yyyy-mm-dd">
-                            <div class="input-group-addon bg_bl" style="padding: 7px 10px 7px 10px;">
+                            <div class="input-group-addon bg_gd" style="padding: 7px 10px 7px 10px;">
                                 <i class="fa fa-calendar"></i>
                             </div>
                             <input type="text" id="laycan_date_from" required class="form-control pull-right datepicker"
@@ -156,7 +156,7 @@
                         <label for="">Laycan Date To</label>
                         <div class="input-group date" data-provide="datepicker" data-date-start-date="0d"
                             data-date-format="yyyy-mm-dd">
-                            <div class="input-group-addon bg_bl" style="padding: 7px 10px 7px 10px;">
+                            <div class="input-group-addon bg_gd" style="padding: 7px 10px 7px 10px;">
                                 <i class="fa fa-calendar"></i>
                             </div>
                             <input type="text" id="laycan_date_to" required class="form-control pull-right datepicker"
@@ -344,9 +344,9 @@
                     
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 mt-4">
-                        <label for="">Additional Info</label>
+                        <label for="">Additional Notes</label>
                         <textarea name="additional_info" id="additional_info" class="form-control" cols="30"
-                            rows="5" maxlength = "250"></textarea>
+                            rows="3" maxlength = "250"></textarea>
                     </div>
                     <!-- -->
                     <div class="col-12">

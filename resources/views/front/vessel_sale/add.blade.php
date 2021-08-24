@@ -346,9 +346,9 @@
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Additional Description</label>
+                        <label for="">Additional Notes</label>
                         <textarea name="additional_description" id="additional_description" class="form-control" cols="30"
-                            rows="5" maxlength = "250"></textarea>
+                            rows="3" maxlength = "250"></textarea>
                     </div>
 
                     <!-- -->

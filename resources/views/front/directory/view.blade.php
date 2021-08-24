@@ -54,7 +54,7 @@
                                     <td width="8%" >{{$row->phone}}</td>
                                     <td width="8%" >{{$row->mail_address}}</td>
                                     <td width="8%" >{{$row->country_id}}</td>
-
+                                    
                                     {{-- @if (session('front_uid') != '')
                                         <td width="10%" class="text-center">
                                             <a href='{{ $row->vessel_id }}'
