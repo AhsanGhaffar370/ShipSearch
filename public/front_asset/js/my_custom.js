@@ -17,6 +17,116 @@ $(document).ready(function() {
     $('.port_id').selectpicker();
 
 
+
+    // $(".reset_btn").click(function(e){
+    //     e.preventDefault();
+    //     var par_id=$(this).closest('form').parent().attr('id');
+        
+    //     console.log(id);
+    // });
+    $(".reset_btn").click(function(e){
+        e.preventDefault();
+
+        $("input[type=date]").val("");
+        // $(".cargo_type_id option:selected").removeAttr("selected");
+        // $("#cargo_type_id option:selected").prop("selected", false);
+        $("#cargo_type_id").val('default');
+        $("#cargo_type_id").selectpicker("refresh");
+        $("#loading_region_id").val('default');
+        $("#loading_region_id").selectpicker("refresh");
+        $("#loading_country_id").val('default');
+        $("#loading_country_id").selectpicker("refresh");
+        $("#loading_port_id").val('default');
+        $("#loading_port_id").selectpicker("refresh");
+        $("#discharge_region_id").val('default');
+        $("#discharge_region_id").selectpicker("refresh");
+        $("#discharge_country_id").val('default');
+        $("#discharge_country_id").selectpicker("refresh");
+        $("#discharge_port_id").val('default');
+        $("#discharge_port_id").selectpicker("refresh");
+
+        $("#vessel_type_id").val('default');
+        $("#vessel_type_id").selectpicker("refresh");
+        $("#charter_type_id").val('default');
+        $("#charter_type_id").selectpicker("refresh");
+        $(".region_id").val('default');
+        $(".region_id").selectpicker("refresh");
+        $(".country_id").val('default');
+        $(".country_id").selectpicker("refresh");
+        $(".port_id").val('default');
+        $(".port_id").selectpicker("refresh");
+
+        var par_id=$(this).closest('form').parent().attr('id');
+
+        if(par_id=="home_cargo"){
+            var arr=['cargo_type_id','loading_region_id','loading_country_id','loading_port_id','discharge_region_id','discharge_country_id',
+            'discharge_port_id'];
+        }
+        if(par_id=="home_vessel"){
+            var arr=['vessel_type_id','charter_type_id','region_id','country_id','port_id'];
+        }
+        if(par_id=="home_vsale"){
+            var arr=['vessel_type_id','region_id','country_id','port_id'];
+        }
+        
+        $.ajax({
+            url: route('cargo.reset_region_country_port'),
+            // data: "region_country_id=" + region_country_id + "&country_port_name=" + country_port_attr,
+            type: "get",
+            success: function(response) {
+
+                let json_data = $.parseJSON(response);
+                
+                $.each(arr, function(i, obj) {
+                    var post_str = "";
+                    post_str += `
+                    <select name="` + obj + `[]" id="` + obj + `" form="search_cvs_form"
+                        class="` + obj + ` add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
+                        data-selected-text-format="count > 2" data-live-search="true">`;
+
+                        if (obj.includes('region')){
+                            $.each(json_data['data']['region'], function(i, obj1) {
+                                post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
+                            });
+                        }
+                        if (obj.includes('country')){
+                            $.each(json_data['data']['country'], function(i, obj1) {
+                                post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
+                            });
+                        }
+                        if (obj.includes('port')){
+                            $.each(json_data['data']['port'], function(i, obj1) {
+                                post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
+                            });
+                        }
+                        if (obj.includes('cargo_type')){
+                            $.each(json_data['data']['cargo_type'], function(i, obj1) {
+                                post_str += `<option value="` + obj1.cargo_type_id + `">` + obj1.cargo_type_name + `</option>`;
+                            });
+                        }
+                        if (obj.includes('vessel_type')){
+                            $.each(json_data['data']['vessel_type'], function(i, obj1) {
+                                post_str += `<option value="` + obj1.vessel_type_id + `">` + obj1.vessel_type_name + `</option>`;
+                            });
+                        }
+                        if (obj.includes('charter_type')){
+                            $.each(json_data['data']['charter_type'], function(i, obj1) {
+                                post_str += `<option value="` + obj1.charter_type_id + `">` + obj1.charter_type_name + `</option>`;
+                            });
+                        }
+
+                    post_str += 
+                    `</select>`;
+
+                    $('.' + obj+"_par").html(post_str);
+                    $('.' + obj).selectpicker();
+                    
+                });
+            }
+        });
+
+    });
+
     function GetFormattedDate(date) {
         // var dateAr = '2014-01-06'.split('-');
         var dateAr = date.split('-');

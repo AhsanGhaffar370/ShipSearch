@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\ss_cargo;
+
+use App\Models\ss_setup_vessel_type;
+use App\Models\ss_setup_charter_type;
 use App\Models\ss_setup_cargo_type;
 use App\Models\ss_setup_region;
 use App\Models\ss_setup_country;
@@ -551,6 +554,20 @@ class FrontCargoController extends Controller
         }
         // echo json_encode(array('data'=>$data));
         echo $data;
+    }
+
+    function reset_region_country_port(){
+
+        $data=[];
+        
+        $data['cargo_type']= ss_setup_cargo_type::active()->get();
+        $data['vessel_type']= ss_setup_vessel_type::active()->get();
+        $data['charter_typ']= ss_setup_charter_type::active()->get();
+        $data['region']= ss_setup_region::active()->get();
+        $data['country']= ss_setup_country::active()->get();
+        $data['port']= ss_setup_port::active()->get();
+
+        echo json_encode(array('data'=>$data));
     }
 
 

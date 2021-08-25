@@ -126,20 +126,19 @@
             border: none;
             color: white;
             background-color: #4D998D;
-            padding: 8px;
-            font-size: 20px;
+            padding: 6px;
+            font-size: 14px;
+            border-radius: 1px;
         }
 
         .head_pad {
-
-            padding: 20px 0px 10px 0px;
+            padding: 3px 0px 25px 25px;
             border-bottom: 20px solid #4D9A8E;
         }
 
         .ft_list {
             list-style-image: url("{{ asset('front_asset/images/dot.PNG') }}") !important;
             margin-left: 20px;
-
         }
 
         .ft_list li {
@@ -188,14 +187,14 @@
             <div class="ml-auto d-flex flex-column  align-items-end">
             <div class="row m-0">
                 <div class="mt-auto mb-auto mr-4">
-                    <i class="fas fa-phone-alt text-black-50"></i> &nbsp;
-                    <a href="tel:+012345678901" class=" text-black-50 font-weight-bold">+01 234 5678 901</a>
+                    <i class="fas fa-phone-alt fa-1x text-black-50"></i> &nbsp;
+                    <a href="tel:+012345678901" class="size13 text-black-50 b6">+01 234 5678 901</a>
                 </div>
 
                 <div class="mt-auto mb-auto mr-2">
-                    <i class="fa fa-envelope text-black-50"></i>&nbsp;
+                    <i class="fa fa-envelope fa-1x text-black-50"></i>&nbsp;
                     <a href="mailto:info@shipsearch.com"
-                        class=" text-black-50 font-weight-bold">info@shipsearch.com</a>
+                        class="size13 text-black-50 b6">info@shipsearch.com</a>
                 </div>
             </div>
         </div>
@@ -230,10 +229,10 @@
                         {{-- <a class="btn btn-info rounded-0"
                             href="{{ route('logout') }}">({{ session('front_uname') }})
                             Logout</a> --}}
-                        <button class="btn_style btn_xxs t_italic exo" type="button" onclick="location.href='{{ route('logout') }}'">Logout</button>
+                        <button class="btn_style size13 btn_xxs t_italic exo" type="button" onclick="location.href='{{ route('logout') }}'">Logout</button>
                     
                     @else
-                    <button class="btn_style btn_xxs t_italic exo" type="button" onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button>
+                    <button class="btn_style size13 btn_xxs t_italic exo" type="button" onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button>
                     @endif
                 </div>
             </nav>
@@ -395,17 +394,16 @@
                     <!-- Grid column -->
                     <div class="col-md-3 offset-md-6 mb-md-0 mb-3">
 
-                        <h5 class="size42 cl-dark eras ">Contact Details:</h5>
+                        <h5 class="size30 cl-dark eras ">Contact Details:</h5>
 
                         <div class="p-2">
-                            <i class="fas fa-phone-alt icon_style"></i> &nbsp;
-                            <a href="tel:+012345678901" class="ft_link text-dark font-weight-bold">+01 234 5678 901</a>
+                            <i class="fas fa-phone-alt icon_style"></i>&nbsp;
+                            <a href="tel:+012345678901" class="size14 ft_link text-dark b6">+01 234 5678 901</a>
                         </div>
 
                         <div class="p-2">
                             <i class="fa fa-envelope icon_style"></i>&nbsp;
-                            <a href="mailto:info@shipsearch.com"
-                                class="ft_link text-dark font-weight-bold">info@shipsearch.com</a>
+                            <a href="mailto:info@shipsearch.com" class="size14 ft_link text-dark b6">info@shipsearch.com</a>
                         </div>
                         <div class="p-2">
                             <a class="" href="#">
@@ -430,7 +428,7 @@
         <!-- Footer Links -->
 
         <!-- Copyright -->
-        <div class="text-white b4 text-center py-3 pt-4 pb-4 size18" style="background-color: #24292C;">
+        <div class="text-white size13 b4 text-center py-3 pt-2 pb-2 size18" style="background-color: #24292C;">
             Copyright 2021 Ship Search | Created by Webist Ltd (UK)
         </div>
         <!-- Copyright -->

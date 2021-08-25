@@ -3,12 +3,12 @@ $(document).ready(function() {
 
 
 
-    $('.country_id').prop('disabled', true);
-    $('.port_id').prop('disabled', true);
-    $('#loading_country_id').prop('disabled', true);
-    $('#loading_port_id').prop('disabled', true);
-    $('#discharge_country_id').prop('disabled', true);
-    $('#discharge_port_id').prop('disabled', true);
+    // $('.country_id').prop('disabled', true);
+    // $('.port_id').prop('disabled', true);
+    // $('#loading_country_id').prop('disabled', true);
+    // $('#loading_port_id').prop('disabled', true);
+    // $('#discharge_country_id').prop('disabled', true);
+    // $('#discharge_port_id').prop('disabled', true);
 
 
     $(document).on("change", 'select.ser_inp_fields', function(e) {
@@ -64,18 +64,18 @@ $(document).ready(function() {
                         $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
                     }
 
-                    if (region_country_id.length == 0) {
-                        $('#' + country_port_attr).prop('disabled', true);
+                    // if (region_country_id.length == 0) {
+                        // $('#' + country_port_attr).prop('disabled', true);
 
-                        if (country_port_attr.includes('loading')) {
-                            $('#loading_port_id').siblings('button').prop('disabled', true);
-                            $('#loading_port_id').siblings(".btn").find(".filter-option-inner-inner").html("Choose");
-                        }
-                        if (country_port_attr.includes('discharge')) {
-                            $('#discharge_port_id').siblings('button').prop('disabled', true);
-                            $('#discharge_port_id').siblings(".btn").find(".filter-option-inner-inner").html("Choose");
-                        }
-                    }
+                        // if (country_port_attr.includes('loading')) {
+                        //     $('#loading_port_id').siblings('button').prop('disabled', true);
+                        //     $('#loading_port_id').siblings(".btn").find(".filter-option-inner-inner").html("Choose");
+                        // }
+                        // if (country_port_attr.includes('discharge')) {
+                        //     $('#discharge_port_id').siblings('button').prop('disabled', true);
+                        //     $('#discharge_port_id').siblings(".btn").find(".filter-option-inner-inner").html("Choose");
+                        // }
+                    // }
 
                     $('.' + country_port_attr).selectpicker();
                 }
@@ -143,20 +143,20 @@ $(document).ready(function() {
 
 
 
-                    if (region_country_id.length == 0) {
-                        $('#' + country_port_attr).prop('disabled', true);
+                    // if (region_country_id.length == 0) {
+                    //     $('#' + country_port_attr).prop('disabled', true);
 
-                        if (country_port_attr.includes('loading')) {
-                            $('#loading_port_id_' + id).siblings('button').prop('disabled', true);
-                            $('#loading_port_id_' + id).siblings(".btn").find(".filter-option-inner-inner").html("Choose");
-                        }
+                    //     if (country_port_attr.includes('loading')) {
+                    //         $('#loading_port_id_' + id).siblings('button').prop('disabled', true);
+                    //         $('#loading_port_id_' + id).siblings(".btn").find(".filter-option-inner-inner").html("Choose");
+                    //     }
 
-                        if (country_port_attr.includes('discharge')) {
-                            $('#discharge_port_id_' + id).siblings('button').prop('disabled', true);
-                            $('#discharge_port_id_' + id).siblings(".btn").find(".filter-option-inner-inner").html("Choose");
-                        }
-                    } else
-                        $('#' + country_port_attr).prop('disabled', false);
+                    //     if (country_port_attr.includes('discharge')) {
+                    //         $('#discharge_port_id_' + id).siblings('button').prop('disabled', true);
+                    //         $('#discharge_port_id_' + id).siblings(".btn").find(".filter-option-inner-inner").html("Choose");
+                    //     }
+                    // } else
+                    //     $('#' + country_port_attr).prop('disabled', false);
 
 
                     $('.' + country_port_attr).selectpicker();
@@ -221,19 +221,19 @@ $(document).ready(function() {
                         $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
                     }
 
-                    if (region_country_id.length == 0) {
-                        $('#' + country_port_attr).prop('disabled', true);
-                        $('.' + country_port_attr).prop('disabled', true);
+                    // if (region_country_id.length == 0) {
+                    //     $('#' + country_port_attr).prop('disabled', true);
+                    //     $('.' + country_port_attr).prop('disabled', true);
 
-                        if (country_port_attr.includes('loading')) {
-                            $('#loading_port_id').siblings('button').prop('disabled', true);
-                            $('#loading_port_id').siblings(".btn").find(".filter-option-inner-inner").html("Choose");
-                        }
-                        if (country_port_attr.includes('discharge')) {
-                            $('#discharge_port_id').siblings('button').prop('disabled', true);
-                            $('#discharge_port_id').siblings(".btn").find(".filter-option-inner-inner").html("Choose");
-                        }
-                    }
+                    //     if (country_port_attr.includes('loading')) {
+                    //         $('#loading_port_id').siblings('button').prop('disabled', true);
+                    //         $('#loading_port_id').siblings(".btn").find(".filter-option-inner-inner").html("Choose");
+                    //     }
+                    //     if (country_port_attr.includes('discharge')) {
+                    //         $('#discharge_port_id').siblings('button').prop('disabled', true);
+                    //         $('#discharge_port_id').siblings(".btn").find(".filter-option-inner-inner").html("Choose");
+                    //     }
+                    // }
 
                     $('.' + country_port_attr).selectpicker();
                 }
