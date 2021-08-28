@@ -48,6 +48,9 @@ class ss_setup_region extends Model
 
 
 
+    public function region_country_port(){
+        return $this->hasMany('App\Models\ss_setup_region_country_port',"region_id");
+    }
 
 
 

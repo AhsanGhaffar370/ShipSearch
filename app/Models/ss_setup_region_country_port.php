@@ -20,6 +20,9 @@ class ss_setup_region_country_port extends Model
         return $query->orderBy('id',"DESC");
     }
 
+    public function region_rel(){
+        return $this->belongsTo(ss_setup_region::class,'region_id');
+    }
     public function country_rel(){
         return $this->belongsTo(ss_setup_country::class,'country_id');
     }

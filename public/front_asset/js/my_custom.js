@@ -18,12 +18,11 @@ $(document).ready(function() {
 
 
 
-    // $(".reset_btn").click(function(e){
-    //     e.preventDefault();
-    //     var par_id=$(this).closest('form').parent().attr('id');
-        
-    //     console.log(id);
-    // });
+    
+    
+    //////////////////////////////////////
+    // Working on Reset Button
+    //////////////////////////////////////
     $(".reset_btn").click(function(e){
         e.preventDefault();
 
@@ -44,7 +43,7 @@ $(document).ready(function() {
         $("#discharge_country_id").selectpicker("refresh");
         $("#discharge_port_id").val('default');
         $("#discharge_port_id").selectpicker("refresh");
-
+        
         $("#vessel_type_id").val('default');
         $("#vessel_type_id").selectpicker("refresh");
         $("#charter_type_id").val('default');
@@ -59,8 +58,7 @@ $(document).ready(function() {
         var par_id=$(this).closest('form').parent().attr('id');
 
         if(par_id=="home_cargo"){
-            var arr=['cargo_type_id','loading_region_id','loading_country_id','loading_port_id','discharge_region_id','discharge_country_id',
-            'discharge_port_id'];
+            var arr=['cargo_type_id','loading_region_id','loading_country_id','loading_port_id','discharge_region_id','discharge_country_id','discharge_port_id'];
         }
         if(par_id=="home_vessel"){
             var arr=['vessel_type_id','charter_type_id','region_id','country_id','port_id'];
@@ -117,7 +115,7 @@ $(document).ready(function() {
 
                     post_str += 
                     `</select>`;
-
+                    
                     $('.' + obj+"_par").html(post_str);
                     $('.' + obj).selectpicker();
                     
@@ -126,6 +124,8 @@ $(document).ready(function() {
         });
 
     });
+
+
 
     function GetFormattedDate(date) {
         // var dateAr = '2014-01-06'.split('-');

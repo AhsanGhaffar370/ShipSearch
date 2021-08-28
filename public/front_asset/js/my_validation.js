@@ -171,77 +171,122 @@ $(document).ready(function() {
 
     $(document).on("change", 'select.add_cvs_inp_fields', function(e) {
 
-        var region_country_id = $(this).val();
-        let country_port_attr = $(this).closest('section').parent().next().children('section').children('div').children('select').attr('id');
-        let country_port_par_attr = "." + $(this).closest('section').parent().next().children('section').attr('class');
+        let rcp_ids = $(this).val();
+        let rcp_name = "." + $(this).closest('section').attr('class');
+        // let country_port_attr = $(this).closest('section').parent().next().children('section').children('div').children('select').attr('id');
+        // let country_port_par_attr = "." + $(this).closest('section').parent().next().children('section').attr('class');
 
         // get selected data of country/port
-        let dd_id = "#" + country_port_attr;
-        var dd_data = $("#" + country_port_attr + " option:selected").map(function() { return $.trim($(this).text()); }).get().join(',');
-        let dd_data_arr = $("#" + country_port_attr).val();
+        // let dd_id = "#" + country_port_attr;
+        // var dd_data = $("#" + country_port_attr + " option:selected").map(function() { return $.trim($(this).text()); }).get().join(',');
+        // let dd_data_arr = $("#" + country_port_attr).val();
 
 
-        if (country_port_attr !== "discharge_region_id" && country_port_attr != undefined) {
-            $.ajax({
-                url: route('cargo.get_country_port'),
-                data: "region_country_id=" + region_country_id + "&country_port_name=" + country_port_attr,
-                type: "get",
-                success: function(response) {
+        // if (country_port_attr !== "discharge_region_id" && country_port_attr != undefined) {
+        $.ajax({
+            url: route('cargo.get_country_port'),
+            data: "rcp_ids=" + rcp_ids + "&rcp_name=" + rcp_name,
+            type: "get",
+            success: function(response) {
 
-                    let json_data = $.parseJSON(response);
-                    var post_str = "";
+                let json_data = $.parseJSON(response);
+                var post_str = "";
 
+                if(rcp_ids.includes("region")){
                     post_str += `
-                <select name="` + country_port_attr + `[]" id="` + country_port_attr + `"
-                    class="form-control ` + country_port_attr + ` add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
-                    data-selected-text-format="count > 2" data-live-search="true">`;
-
-                    $.each(json_data, function(i, obj1) {
+                    <select name="loading_country_id[]" id="loading_country_id"
+                        class="form-control loading_country_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
+                        data-selected-text-format="count > 2" data-live-search="true">`;
+                    $.each(json_data['data']['country'], function(i, obj1) {
                         if (country_port_attr.includes('country'))
                             post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
                         else if (country_port_attr.includes('port'))
                             post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
                     });
-
                     post_str += `</select>`;
-
                     $(country_port_par_attr).html(post_str);
-
-
-                    // populate selected data in their dropdown
-                    $.each(dd_data_arr, function(i, obj2) {
-                        $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
-                    });
-                    $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
-                    if (dd_data_arr.length > 2) {
-                        $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
-                    } else {
-                        $(dd_id).siblings(".btn").attr("title", dd_data);
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
-                    }
-
-                    // if (region_country_id.length == 0) {
-                    //     $('#' + country_port_attr).prop('disabled', true);
-                    //     $('.' + country_port_attr).prop('disabled', true);
-
-                    //     if (country_port_attr.includes('loading')) {
-                    //         $('#loading_port_id').siblings('button').prop('disabled', true);
-                    //         $('#loading_port_id').siblings(".btn").find(".filter-option-inner-inner").html("Choose");
-                    //     }
-                    //     if (country_port_attr.includes('discharge')) {
-                    //         $('#discharge_port_id').siblings('button').prop('disabled', true);
-                    //         $('#discharge_port_id').siblings(".btn").find(".filter-option-inner-inner").html("Choose");
-                    //     }
-                    // }
-
-                    $('.' + country_port_attr).selectpicker();
                 }
-            });
-        }
+
+                
+
+
+                // populate selected data in their dropdown
+                // $.each(dd_data_arr, function(i, obj2) {
+                //     $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
+                // });
+                // $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
+                // if (dd_data_arr.length > 2) {
+                //     $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
+                //     $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
+                // } else {
+                //     $(dd_id).siblings(".btn").attr("title", dd_data);
+                //     $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
+                // }
+
+                $('.' + country_port_attr).selectpicker();
+            }
+        });
+        // }
     });
 
 
+    // $(document).on("change", 'select.add_cvs_inp_fields', function(e) {
+
+    //     var region_country_id = $(this).val();
+    //     let country_port_attr = $(this).closest('section').parent().next().children('section').children('div').children('select').attr('id');
+    //     let country_port_par_attr = "." + $(this).closest('section').parent().next().children('section').attr('class');
+
+    //     // get selected data of country/port
+    //     let dd_id = "#" + country_port_attr;
+    //     var dd_data = $("#" + country_port_attr + " option:selected").map(function() { return $.trim($(this).text()); }).get().join(',');
+    //     let dd_data_arr = $("#" + country_port_attr).val();
+
+
+    //     if (country_port_attr !== "discharge_region_id" && country_port_attr != undefined) {
+    //         $.ajax({
+    //             url: route('cargo.get_country_port'),
+    //             data: "region_country_id=" + region_country_id + "&country_port_name=" + country_port_attr,
+    //             type: "get",
+    //             success: function(response) {
+
+    //                 let json_data = $.parseJSON(response);
+    //                 var post_str = "";
+
+    //                 post_str += `
+    //             <select name="` + country_port_attr + `[]" id="` + country_port_attr + `"
+    //                 class="form-control ` + country_port_attr + ` add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
+    //                 data-selected-text-format="count > 2" data-live-search="true">`;
+
+    //                 $.each(json_data, function(i, obj1) {
+    //                     if (country_port_attr.includes('country'))
+    //                         post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
+    //                     else if (country_port_attr.includes('port'))
+    //                         post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
+    //                 });
+
+    //                 post_str += `</select>`;
+
+    //                 $(country_port_par_attr).html(post_str);
+
+
+    //                 // populate selected data in their dropdown
+    //                 $.each(dd_data_arr, function(i, obj2) {
+    //                     $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
+    //                 });
+    //                 $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
+    //                 if (dd_data_arr.length > 2) {
+    //                     $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
+    //                     $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
+    //                 } else {
+    //                     $(dd_id).siblings(".btn").attr("title", dd_data);
+    //                     $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
+    //                 }
+
+    //                 $('.' + country_port_attr).selectpicker();
+    //             }
+    //         });
+    //     }
+    // });
 
 
 
