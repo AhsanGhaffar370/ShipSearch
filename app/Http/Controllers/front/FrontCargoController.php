@@ -564,17 +564,36 @@ class FrontCargoController extends Controller
         // $data = ss_setup_region_country_port::with(['Lregion'])->active()->orderBy('cargo_id', 'DESC')->get();
   
         if(strpos($req->rcp_name, 'region') !== false){
-            $data['country'] = ss_setup_region_country_port::select('country_id')->with(['country_rel'])->whereIn('region_id',$arr)->groupBy('country_id')->orderBy('country_id', 'ASC')->get();
-            $data['port'] = ss_setup_region_country_port::select('port_id')->with(['port_rel'])->whereIn('region_id',$arr)->groupBy('port_id')->orderBy('port_id', 'ASC')->get();
+            if(empty(trim($arr[0]))){
+                $data['country'] = ss_setup_region_country_port::select('country_id')->with(['country_rel'])->groupBy('country_id')->orderBy('country_id', 'ASC')->get();
+                $data['port'] = ss_setup_region_country_port::select('port_id')->with(['port_rel'])->groupBy('port_id')->orderBy('port_id', 'ASC')->get();
+            }
+            else {
+                $data['country'] = ss_setup_region_country_port::select('country_id')->with(['country_rel'])->whereIn('region_id',$arr)->groupBy('country_id')->orderBy('country_id', 'ASC')->get();
+                $data['port'] = ss_setup_region_country_port::select('port_id')->with(['port_rel'])->whereIn('region_id',$arr)->groupBy('port_id')->orderBy('port_id', 'ASC')->get();
+            }
         }
         else if (strpos($req->rcp_name, 'country') !== false){
-            $data['region'] = ss_setup_region_country_port::select('region_id')->with(['region_rel'])->whereIn('country_id',$arr)->groupBy('region_id')->orderBy('region_id', 'ASC')->get();
-            $data['port'] = ss_setup_region_country_port::select('port_id')->with(['port_rel'])->whereIn('country_id',$arr)->groupBy('port_id')->orderBy('port_id', 'ASC')->get();
+            if(count($arr)<1){
+                $data['region']= ss_setup_region_country_port::active()->get();
+                $data['port']= ss_setup_region_country_port::active()->get();
+            }
+            else{
+                $data['region'] = ss_setup_region_country_port::select('region_id')->with(['region_rel'])->whereIn('country_id',$arr)->groupBy('region_id')->orderBy('region_id', 'ASC')->get();
+                $data['port'] = ss_setup_region_country_port::select('port_id')->with(['port_rel'])->whereIn('country_id',$arr)->groupBy('port_id')->orderBy('port_id', 'ASC')->get();
+            }
         }
         else if (strpos($req->rcp_name, 'port') !== false){
-            $data['region'] = ss_setup_region_country_port::select('region_id')->with(['region_rel'])->whereIn('port_id',$arr)->groupBy('region_id')->orderBy('region_id', 'ASC')->get();
-            $data['country'] = ss_setup_region_country_port::select('country_id')->with(['country_rel'])->whereIn('port_id',$arr)->groupBy('country_id')->orderBy('country_id', 'ASC')->get();
+            if(count($arr)<1){
+                $data['region']= ss_setup_region_country_port::active()->get();
+                $data['country']= ss_setup_region_country_port::active()->get();
             }
+            else{
+                $data['region'] = ss_setup_region_country_port::select('region_id')->with(['region_rel'])->whereIn('port_id',$arr)->groupBy('region_id')->orderBy('region_id', 'ASC')->get();
+                $data['country'] = ss_setup_region_country_port::select('country_id')->with(['country_rel'])->whereIn('port_id',$arr)->groupBy('country_id')->orderBy('country_id', 'ASC')->get();
+            }
+        }
+
         echo json_encode(array('data'=>$data));
         // echo $data;
     }

@@ -172,7 +172,9 @@ $(document).ready(function() {
     $(document).on("change", 'select.add_cvs_inp_fields', function(e) {
 
         let rcp_ids = $(this).val();
-        let rcp_name = "." + $(this).closest('section').attr('class');
+        let rcp_name = $(this).attr('id');
+
+        console.log(rcp_ids);
         // let country_port_attr = $(this).closest('section').parent().next().children('section').children('div').children('select').attr('id');
         // let country_port_par_attr = "." + $(this).closest('section').parent().next().children('section').attr('class');
 
@@ -188,26 +190,37 @@ $(document).ready(function() {
             data: "rcp_ids=" + rcp_ids + "&rcp_name=" + rcp_name,
             type: "get",
             success: function(response) {
-
+                
                 let json_data = $.parseJSON(response);
                 var post_str = "";
-
-                if(rcp_ids.includes("region")){
+                
+                if(rcp_name.includes("region")){
+                    post_str = "";
                     post_str += `
                     <select name="loading_country_id[]" id="loading_country_id"
                         class="form-control loading_country_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
                         data-selected-text-format="count > 2" data-live-search="true">`;
                     $.each(json_data['data']['country'], function(i, obj1) {
-                        if (country_port_attr.includes('country'))
-                            post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
-                        else if (country_port_attr.includes('port'))
-                            post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
+                        post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
                     });
                     post_str += `</select>`;
-                    $(country_port_par_attr).html(post_str);
+                    $(".loading_country_id_par").html(post_str);
+                    $(".loading_country_id").selectpicker();
+
+                    post_str = "";
+                    post_str += `
+                    <select name="loading_port_id[]" id="loading_port_id"
+                        class="form-control loading_port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
+                        data-selected-text-format="count > 2" data-live-search="true">`;
+                    $.each(json_data['data']['port'], function(i, obj2) {
+                        post_str += `<option value="` + obj2.port_rel.port_id + `">` + obj2.port_rel.port_name + `</option>`;
+                    });
+                    post_str += `</select>`;
+                    $(".loading_port_id_par").html(post_str);
+                    $(".loading_port_id").selectpicker();
                 }
 
-                
+
 
 
                 // populate selected data in their dropdown
@@ -223,7 +236,6 @@ $(document).ready(function() {
                 //     $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
                 // }
 
-                $('.' + country_port_attr).selectpicker();
             }
         });
         // }

@@ -8,7 +8,7 @@ $(document).ready(function() {
     $('.discharge_region_id').selectpicker();
     $('.discharge_country_id').selectpicker();
     $('.discharge_port_id').selectpicker();
-
+    
     //vessel
     $('.vessel_type_id').selectpicker();
     $('.charter_type_id').selectpicker();
