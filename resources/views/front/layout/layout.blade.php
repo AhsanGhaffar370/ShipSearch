@@ -234,6 +234,7 @@
                     @else
                     <button class="btn_style size13 btn_xxs t_italic exo" type="button" onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button>
                     @endif
+                    
                 </div>
             </nav>
         </div>
@@ -446,6 +447,7 @@
     <!-- bootstrap bundle -->
 
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script> --}}
@@ -453,7 +455,8 @@
     {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> --}}
 
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> --}}
+
+    
 
     <!-- custom js -->
     <script type="text/javascript" src="{{ asset('front_asset/js/my_validation.js') }}"></script>
@@ -469,7 +472,11 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js">
     </script>
 
-
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        });
+    </script>
 </body>
 
 </html>

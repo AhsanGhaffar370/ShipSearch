@@ -615,6 +615,9 @@
                                             <p class="b7 mb-0">Additional Info:</p>
                                             <p class="">{{ $row->additional_info }}</p>
                                             <p class="b7 mb-0">Company Name:</p>
+                                            <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                                                Popover on left
+                                              </button>
                                             <a href={{route('directory.view.user', ['id' => $row->created_by])}} target="_blank" class="">{{ optional($row->user_info)->company_name }}</a>
                                         </div>
                                     </td>
