@@ -1,6 +1,10 @@
 $(document).ready(function() {
 
 
+    $(function(){
+        // Enables popover
+        $("[data-toggle=popover]").popover();
+    });
 
     $(document).on("change", 'select.ser_inp_fields', function(e) {
 

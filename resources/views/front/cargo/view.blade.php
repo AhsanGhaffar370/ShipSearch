@@ -615,10 +615,31 @@
                                             <p class="b7 mb-0">Additional Info:</p>
                                             <p class="">{{ $row->additional_info }}</p>
                                             <p class="b7 mb-0">Company Name:</p>
-                                            <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-                                                Popover on left
-                                              </button>
-                                            <a href={{route('directory.view.user', ['id' => $row->created_by])}} target="_blank" class="">{{ optional($row->user_info)->company_name }}</a>
+                                            <a  
+                                                href="#" 
+                                                class="" 
+                                                onclick="event.preventDefault()" 
+                                                tabindex="0" 
+                                                role="button" 
+                                                data-html="true" 
+                                                data-toggle="popover" 
+                                                data-trigger="click focus" 
+                                                data-placement="left"
+                                                title="<p class='m-0'><b>{{ optional($row->user_info)->company_name }}</b></p>" 
+                                                data-content='
+                                                <p class="size13 b6 m-0">Email </p>
+                                                <p class="size11 b4 mb-2">{{ optional($row->user_info)->email }}</p>
+                                                <p class="size13 b6 m-0">Phone No </p>
+                                                <p class="size11 b4 mb-2">{{ optional($row->user_info)->phone }}</p>
+                                                <p class="size13 b6 m-0">Address </p>
+                                                <p class="size11 b4 mb-2">{{ optional($row->user_info)->permanent_address }}</p>
+                                                <a href={{route('directory.view.user', ['id' => $row->created_by])}} target="_blank" class="btn btn-info btn_xxxs size11 text-white pt-1 pb-1 mr-3">
+                                                    View Detail
+                                                </a>
+                                                '>  
+                                                {{ optional($row->user_info)->company_name }}
+                                            </a>
+                                            {{-- <a href={{route('directory.view.user', ['id' => $row->created_by])}} target="_blank" class="">{{ optional($row->user_info)->company_name }}</a> --}}
                                         </div>
                                     </td>
                                     <td>
@@ -626,12 +647,12 @@
                                             {{ explode(' ', $row->created_at)[0] }}
                                         </div>
                                         {{--  --}}
-                                        <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
+                                        {{-- <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
                                             <p class="b7 mb-0">Email Address:</p>
                                             <p>{{ optional($row->user_info)->email }}</p>
                                             <p class="b7 mb-0">Phone No:</p>
                                             <p class="">{{ optional($row->user_info)->phone }}</p>
-                                        </div>
+                                        </div> --}}
                                     </td>
 
                                     @if (session('front_uid') != '')

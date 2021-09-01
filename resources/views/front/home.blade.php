@@ -260,7 +260,7 @@
                                 <form id="search_cvs_form" method="post" action="{{ route('cargo.search_req') }}"
                                     class="form-horizontal form-label-left home_cargo" enctype="multipart/form-data">
                                     @csrf
-
+                                
 
                                     <div class="pos_rel mb-3">
                                         <label for="cargo_type_id" class="size13 cl_gll">Select Cargo:</label>
