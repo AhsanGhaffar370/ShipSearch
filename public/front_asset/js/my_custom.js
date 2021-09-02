@@ -56,15 +56,19 @@ $(document).ready(function() {
         $(".port_id").selectpicker("refresh");
 
         var par_id=$(this).closest('form').parent().attr('id');
+        let form_id="";
 
         if(par_id=="home_cargo"){
             var arr=['cargo_type_id','loading_region_id','loading_country_id','loading_port_id','discharge_region_id','discharge_country_id','discharge_port_id'];
+            form_id="search_cargo_form";
         }
         if(par_id=="home_vessel"){
             var arr=['vessel_type_id','charter_type_id','region_id','country_id','port_id'];
+            form_id="search_vessel_form";
         }
         if(par_id=="home_vsale"){
             var arr=['vessel_type_id','region_id','country_id','port_id'];
+            form_id="search_vsale_form";
         }
         
         $.ajax({
@@ -78,7 +82,7 @@ $(document).ready(function() {
                 $.each(arr, function(i, obj) {
                     var post_str = "";
                     post_str += `
-                    <select name="` + obj + `[]" id="` + obj + `" form="search_cvs_form"
+                    <select name="` + obj + `[]" id="` + obj + `" form="` + form_id + `"
                         class="` + obj + ` add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
                         data-selected-text-format="count > 2" data-live-search="true">`;
 
@@ -124,7 +128,7 @@ $(document).ready(function() {
         });
 
     });
-
+    
 
 
     function GetFormattedDate(date) {
@@ -139,8 +143,8 @@ $(document).ready(function() {
     //      $(".focus_user_row").focus();
     // });
     
-    $("#home_vessel").hide();
-    $("#home_vsale").hide();
+    // $("#home_vessel").hide();
+    // $("#home_vsale").hide();
     $('.home_form_link').click(function(e) {
         e.preventDefault();
         var id=$(this).attr("id");
@@ -425,19 +429,36 @@ $(document).ready(function() {
                                         <p class="b7 mb-0">Additional Info:</p>
                                         <p class="">` + obj1.additional_info + `</p>
                                         <p class="b7 mb-0">Company Name:</p>
-                                        <p class="">` + obj1.user_info.company_name + `</p>
+                                        <a  
+                                            href="#" 
+                                            class="" 
+                                            onclick="event.preventDefault()" 
+                                            tabindex="0" 
+                                            role="button" 
+                                            data-html="true" 
+                                            data-toggle="popover" 
+                                            data-trigger="click" 
+                                            data-placement="left"
+                                            title="<p class='m-0'><b>` + obj1.user_info.company_name + `</b></p>" 
+                                            data-content='
+                                                <p class="size13 b6 m-0">Email </p>
+                                                <p class="size11 b4 mb-2">` + obj1.user_info.email + `</p>
+                                                <p class="size13 b6 m-0">Phone No </p>
+                                                <p class="size11 b4 mb-2">` + obj1.user_info.phone + `</p>
+                                                <p class="size13 b6 m-0">Address </p>
+                                                <p class="size11 b4 mb-2">` + obj1.user_info.permanent_address + `</p>
+                                                <a href= ` +route('directory.view.user',{id:obj1.created_by})+` target="_blank" class="btn btn-info btn_xxxs size11 text-white pt-1 pb-1 mr-3">
+                                                    View Detail
+                                                </a>
+                                            '>  
+                                            ` + obj1.user_info.company_name + `
+                                        </a>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="td_h">`
                                         + obj1.created_at +
                                     `</div>
-                                    <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
-                                        <p class="b7 mb-0">Email Address:</p>
-                                        <a href="#" class="">` + obj1.user_info.email + `</a>
-                                        <p class="b7 mb-0">Phone No:</p>
-                                        <p class="">` + obj1.user_info.phone + `</p>
-                                    </div>
                                 </td>
                                 <td class="text-center">
                                     <a href="` + obj1.cargo_id + `" class="show_detail_btn_` + obj1.cargo_id + ` show_detail_btn">
@@ -452,6 +473,12 @@ $(document).ready(function() {
                                 </td>
                             </tr>
                             `;
+                            // <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                            //     <p class="b7 mb-0">Email Address:</p>
+                            //     <a href="#" class="">` + obj1.user_info.email + `</a>
+                            //     <p class="b7 mb-0">Phone No:</p>
+                            //     <p class="">` + obj1.user_info.phone + `</p>
+                            // </div>
                         });
                     });
 
@@ -462,6 +489,8 @@ $(document).ready(function() {
                 $("#total_rec_found").html(json_data['data'][0]['length'] + " EXACT MATCHES");
 
                 $('.hide_detail_btn').hide();
+
+                $('[data-toggle="popover"]').popover()
 
             }
         });
@@ -652,104 +681,181 @@ $(document).ready(function() {
                                 $.each(obj[0], function(i, obj1) {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
-                                    post_str += `<tr class="">
-                                    <td>` + obj1.ref_no + `</td>
-                                    <td>` + obj1.cargo_name + `</td>
-                                    <td>`;
-                                    $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
-                                        post_str += cargotype_obj + ',<br>';
-                                    });
-                                    post_str += `</td>
-                                        <td>`;
-                                    $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
-                                        post_str += lregion_obj + ',<br>';
-                                    });
-                                    post_str += `</td>
-                                        <td>`;
-                                    $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
-                                        post_str += dregion_obj + ',<br>';
-                                    });
-
-                                    post_str += `</td>
-                                    <td>` + GetFormattedDate(obj1.laycan_date_from) + `</td>
-                                    <td>` + GetFormattedDate(obj1.laycan_date_to) + `</td>
-                                    <td>` + obj1.quantity + `</td>
-                                    <td>` + obj1.loading_discharge_rates + `</td>
-                                    <td>` + obj1.created_at + `</td>
-                                    <td class="text-center">
-                                        <a href="` + obj1.cargo_id + `" class="show_detail_btn_` + obj1
-                                        .cargo_id + ` show_detail_btn"><i class="fas fa-eye fa-2x"></i></a>
-                                        <a href="` + obj1.cargo_id + `" class="hide_detail_btn_` + obj1
-                                        .cargo_id + ` hide_detail_btn"><i class="fas fa-eye-slash fa-2x"></i></a>
-                                    </td>
-                                    </tr>
-                                    <tr class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
-                                    <td></td>
-                                    <td>
-                                        <p class="b7 mb-0">Loading Country:</p>`;
-                                    post_str += `<p class="">`;
-                                    $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
-                                        post_str += lcountry_obj + ',<br>';
-                                    });
-                                    post_str += `</p>
-                                        <p class="b7 mb-0">Max LOA:</p>
-                                        <p class="">` + obj1.max_loa + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Loading Port:</p>`;
-                                    post_str += `<p class="">`;
-                                    $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
-                                        post_str += lport_obj + ',<br>';
-                                    });
-                                    post_str += `</p>
-                                        <p class="b7 mb-0">Stowage Factor:</p>
-                                        <p class="">` + obj1.stowage_factor + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Discharge Country:</p>`;
-                                    post_str += `<p class="">`;
-                                    $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
-                                        post_str += dcountry_obj + ',<br>';
-                                    });
-                                    post_str += `</p>
-                                        <p class="b7 mb-0">Max Height:</p>
-                                        <p class="">` + obj1.max_height + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Discharge Port:</p>`;
-                                    post_str += `<p class="">`;
-                                    $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
-                                        post_str += dport_obj + ',<br>';
-                                    });
-                                    post_str += `</p>
-                                        <p class="b7 mb-0">Loading Equipment Req:</p>
-                                        <p class="">` + obj1.loading_equipment_req + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Over Age:</p>
-                                        <p class="">` + obj1.over_age + `</p>
-                                        <p class="b7 mb-0">Discharge Equipment Req:</p>
-                                        <p class="">` + obj1.discharge_equipment_req + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Hazmat:</p>
-                                        <p class="">` + obj1.hazmat + `</p>
-                                        <p class="b7 mb-0">Combinable:</p>
-                                        <p class="">` + obj1.combinable + `</p>
-                                    </td>
-                                    <td>
-                                        <p class="b7 mb-0">Commission:</p>
-                                        <p class="">` + obj1.commision + `</p>
-                                        <p class="b7 mb-0">Gear Lifting Capacity:</p>
-                                        <p class="">` + obj1.gear_lifting_capacity + `</p>
-                                    </td>
-                                    <td colspan="2">
-                                        <p class="b7 mb-0">Additional Info:</p>
-                                        <p class="">` + obj1.additional_info + `</p>
-                                    </td>
-                                    <td></td>
+                                    post_str += 
+                                    `<tr class="">
+                                        <td>
+                                            <div class="td_h">` 
+                                                + obj1.ref_no +
+                                            `</div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">` 
+                                                + obj1.cargo_name +
+                                            `</div>
+                                            <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Loading Country:</p>`;
+                                                post_str += 
+                                                    `<p class="">`;
+                                                    $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
+                                                        post_str += lcountry_obj + ',<br>';
+                                                    });
+                                                post_str += 
+                                                    `</p>
+                                                    <p class="b7 mb-0">Max LOA:</p>
+                                                    <p class="">` + obj1.max_loa + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`;
+                                                $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
+                                                    post_str += cargotype_obj + ',<br>';
+                                                });
+                                            post_str +=
+                                            `</div>
+                                            <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Loading Port:</p>`;
+                                                post_str += 
+                                                    `<p class="">`;
+                                                    $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
+                                                        post_str += lport_obj + ',<br>';
+                                                    });
+                                                post_str += 
+                                                    `</p>
+                                                    <p class="b7 mb-0">Stowage Factor:</p>
+                                                    <p class="">` + obj1.stowage_factor + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`;
+                                                $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
+                                                    post_str += lregion_obj + ',<br>';
+                                                });
+                                            post_str +=
+                                            `</div>
+                                            <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Discharge Country:</p>`;
+                                                post_str += 
+                                                    `<p class="">`;
+                                                    $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
+                                                        post_str += dcountry_obj + ',<br>';
+                                                    });
+                                                post_str += 
+                                                    `</p>
+                                                    <p class="b7 mb-0">Max Height:</p>
+                                                    <p class="">` + obj1.max_height + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`;
+                                                $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
+                                                    post_str += dregion_obj + ',<br>';
+                                                });
+                                            post_str +=
+                                            `</div>
+                                            <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Discharge Port:</p>`;
+                                                post_str += 
+                                                    `<p class="">`;
+                                                    $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
+                                                        post_str += dport_obj + ',<br>';
+                                                    });
+                                                post_str += 
+                                                    `</p>
+                                                    <p class="b7 mb-0">Loading Equipment Req:</p>
+                                                    <p class="">` + obj1.loading_equipment_req + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">` +
+                                                GetFormattedDate(obj1.laycan_date_from) +
+                                            `</div>
+                                            <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Over Age:</p>
+                                                <p class="">` + obj1.over_age + `</p>
+                                                <p class="b7 mb-0">Discharge Equipment Req:</p>
+                                                <p class="">` + obj1.discharge_equipment_req + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">` +
+                                                GetFormattedDate(obj1.laycan_date_to) +
+                                            `</div>
+                                            <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Hazmat:</p>
+                                                <p class="">` + obj1.hazmat + `</p>
+                                                <p class="b7 mb-0">Combinable:</p>
+                                                <p class="">` + obj1.combinable + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">` 
+                                                + obj1.quantity +
+                                            `</div>
+                                            <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Commission:</p>
+                                                <p class="">` + obj1.commision + `</p>
+                                                <p class="b7 mb-0">Gear Lifting Capacity:</p>
+                                                <p class="">` + obj1.gear_lifting_capacity + `</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.loading_discharge_rates +
+                                            `</div>
+                                            <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                                <p class="b7 mb-0">Additional Info:</p>
+                                                <p class="">` + obj1.additional_info + `</p>
+                                                <p class="b7 mb-0">Company Name:</p>
+                                                <a  
+                                                    href="#" 
+                                                    class="" 
+                                                    onclick="event.preventDefault()" 
+                                                    tabindex="0" 
+                                                    role="button" 
+                                                    data-html="true" 
+                                                    data-toggle="popover" 
+                                                    data-trigger="click" 
+                                                    data-placement="left"
+                                                    title="<p class='m-0'><b>` + obj1.user_info.company_name + `</b></p>" 
+                                                    data-content='
+                                                        <p class="size13 b6 m-0">Email </p>
+                                                        <p class="size11 b4 mb-2">` + obj1.user_info.email + `</p>
+                                                        <p class="size13 b6 m-0">Phone No </p>
+                                                        <p class="size11 b4 mb-2">` + obj1.user_info.phone + `</p>
+                                                        <p class="size13 b6 m-0">Address </p>
+                                                        <p class="size11 b4 mb-2">` + obj1.user_info.permanent_address + `</p>
+                                                        <a href= ` +route('directory.view.user',{id:obj1.created_by})+` target="_blank" class="btn btn-info btn_xxxs size11 text-white pt-1 pb-1 mr-3">
+                                                            View Detail
+                                                        </a>
+                                                    '>  
+                                                    ` + obj1.user_info.company_name + `
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td_h">`
+                                                + obj1.created_at +
+                                            `</div>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="` + obj1.cargo_id + `" class="show_detail_btn_` + obj1.cargo_id + ` show_detail_btn">
+                                            <i class="fas fa-eye fa-2x"></i>
+                                            </a>
+                                            <a href="` + obj1.cargo_id + `" class="hide_detail_btn_` + obj1.cargo_id + ` hide_detail_btn">
+                                            <i class="fas fa-eye-slash fa-2x"></i>
+                                            </a>
+                                            <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                            
+                                            </div>
+                                        </td>
                                     </tr>
                                     `;
+                                    // <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
+                                    //     <p class="b7 mb-0">Email Address:</p>
+                                    //     <a href="#" class="">` + obj1.user_info.email + `</a>
+                                    //     <p class="b7 mb-0">Phone No:</p>
+                                    //     <p class="">` + obj1.user_info.phone + `</p>
+                                    // </div>
                                 });
                             });
                         } //end else
@@ -758,6 +864,8 @@ $(document).ready(function() {
                         $("#total_rec_found").html(json_data['data'][0]['length'] + " EXACT MATCHES");
 
                         $('.hide_detail_btn').hide();
+
+                        $('[data-toggle="popover"]').popover()
                     }
                 }
             });

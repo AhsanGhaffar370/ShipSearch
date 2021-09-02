@@ -623,7 +623,7 @@
                                                 role="button" 
                                                 data-html="true" 
                                                 data-toggle="popover" 
-                                                data-trigger="click focus" 
+                                                data-trigger="click" 
                                                 data-placement="left"
                                                 title="<p class='m-0'><b>{{ optional($row->user_info)->company_name }}</b></p>" 
                                                 data-content='

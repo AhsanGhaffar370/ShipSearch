@@ -23,8 +23,8 @@
 
     <div class="container-fluid p-lg-5 p-md-2 mt-3 mb-5">
         <h1 class="size28 text-white b7 p-2 mb-3 bg_sec ">Cargo</h1>
-        <div class="bg-light  p-4 border rounded">
-            <form id="cargo_form" method="post" action="{{ route('cargo.add_req') }}"
+        <div id="home_cargo" class="bg-light  p-4 border rounded">
+            <form id="search_cargo_form" method="post" action="{{ route('cargo.add_req') }}"
                 class="form-horizontal form-label-left " enctype="multipart/form-data">
                 <!-- <form method="post" action="{{ url('/admin/post/add_post') }}" class="form-horizontal form-label-left"> -->
                 @csrf
@@ -41,18 +41,20 @@
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Cargo Type</label>
-                        <select name="cargo_type_id[]" id="cargo_type_id" class="form-control cargo_type_id" multiple
-                            title="Choose"
-                            data-size="5"
-                            data-selected-text-format="count > 2" 
-                            data-live-search="true" 
-                            {{-- data-max-options="5"   --}} 
-                            {{-- data-actions-box="true"  --}}
-                            >
-                            @foreach ($cargo_type as $row)
-                                <option value="{{ $row->cargo_type_id }}">{{ $row->cargo_type_name }}</option>
-                            @endforeach
-                        </select>
+                        <section class="cargo_type_id_par">
+                            <select name="cargo_type_id[]" id="cargo_type_id" class="form-control cargo_type_id" multiple
+                                title="Choose"
+                                data-size="5"
+                                data-selected-text-format="count > 2" 
+                                data-live-search="true" 
+                                {{-- data-max-options="5"   --}} 
+                                {{-- data-actions-box="true"  --}}
+                                >
+                                @foreach ($cargo_type as $row)
+                                    <option value="{{ $row->cargo_type_id }}">{{ $row->cargo_type_name }}</option>
+                                @endforeach
+                            </select>
+                        </section>
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">

@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
 
-    $(function(){
-        // Enables popover
-        $("[data-toggle=popover]").popover();
-    });
+    // $(function(){
+    //     // Enables popover
+    //     $("[data-toggle=popover]").popover();
+    // });
 
     $(document).on("change", 'select.ser_inp_fields', function(e) {
 
@@ -171,6 +171,15 @@ $(document).ready(function() {
         let rcp_ids = $(this).val();
         let rcp_name = $(this).attr('id');
 
+        let form_id1 = $(this).closest('form').parent('div').attr('id');
+        let form_id="";
+        if(form_id1.includes("cargo"))
+            form_id="search_cargo_form";
+        if(form_id1.includes("vessel"))
+            form_id="search_vessel_form";
+        if(form_id1.includes("vsale"))
+            form_id="search_vsale_form";
+
         let n_prefix="";
         if(rcp_name.includes("loading"))
             n_prefix="loading_";
@@ -202,7 +211,7 @@ $(document).ready(function() {
                     post_str = "";
                     post_str += `
                     <select name="`+n_prefix+n_list+`_id[]" id="`+n_prefix+n_list+`_id" class="form-control `+n_prefix+n_list+`_id add_cvs_inp_fields ser_inp_fields21 mb-2" 
-                        multiple title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
+                        multiple form="`+form_id+`" title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
                     if(rcp_ids.length<1){
                         $.each(json_data['data'][n_list], function(i, obj1) {
                             if(n_list=='region')

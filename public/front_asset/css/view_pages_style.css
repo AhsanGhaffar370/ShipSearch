@@ -107,6 +107,7 @@ table {
 .ser_inp_fields_each {
     position: unset !important;
     width: 100% !important;
+    /* display: none; */
     /* widows: 215px !important; */
 }
 
