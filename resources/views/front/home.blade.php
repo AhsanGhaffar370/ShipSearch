@@ -174,7 +174,6 @@
             text-transform: capitalize;
         }
 
-
         .card {
             
             border: none !important;
