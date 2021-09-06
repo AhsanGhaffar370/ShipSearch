@@ -16,8 +16,8 @@ class ss_setup_region extends Model
         return $query->where('is_active',1);
     }
 
-    public function scopeDesc($query){
-        return $query->orderBy('region_id',"DESC");
+    public function scopeAscend($query){
+        return $query->orderBy('region_name',"ASC");
     }
 
     //cargo

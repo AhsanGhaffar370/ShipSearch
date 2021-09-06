@@ -15,12 +15,12 @@ class HomeController extends Controller
 {
     
     function view(){
-        $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
-        $ss_setup_vessel_type= ss_setup_vessel_type::active()->get();
-        $ss_setup_charter_type= ss_setup_charter_type::active()->get();
-        $ss_setup_region= ss_setup_region::active()->get();
-        $ss_setup_country= ss_setup_country::active()->get();
-        $ss_setup_port= ss_setup_port::active()->get();
+        $ss_setup_cargo_type= ss_setup_cargo_type::active()->ascend()->get();
+        $ss_setup_vessel_type= ss_setup_vessel_type::active()->ascend()->get();
+        $ss_setup_charter_type= ss_setup_charter_type::active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::active()->ascend()->get();
 
         return view('front/home',['cargo_type'=>$ss_setup_cargo_type,
                                 'vessel_type'=>$ss_setup_vessel_type,

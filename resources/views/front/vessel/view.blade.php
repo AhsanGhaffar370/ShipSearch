@@ -14,7 +14,7 @@
     @if (session('front_uid') != '')
         <div class="bg-white">
             <div class="pt-2 pb-2 pl-3">
-                <a id="new_ser_req" class="btn_style size13 btn_xxxs" href="#"><i class="fas fa-search"></i> New Load Search</a>
+                <a id="new_ser_req" class="btn_style size13 btn_xxxs" href="#"><i class="fas fa-search"></i> New Vessel Search</a>
                 <a href={{ route('vessel.add') }} id="{{ session('front_uname') }}" class="btn_style size13 btn_xxxs ml-3 add_rec_validation"> 
                     <i class="fas fa-plus"></i> Add New Vessel
                 </a>

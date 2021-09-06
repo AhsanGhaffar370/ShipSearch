@@ -19,10 +19,10 @@ class FrontVesselSaleController extends Controller
 
         $ser_data= vessel_sale_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
 
-        $ss_setup_vessel_type= ss_setup_vessel_type::active()->get();
-        $ss_setup_region= ss_setup_region::active()->get();
-        $ss_setup_country= ss_setup_country::active()->get();
-        $ss_setup_port= ss_setup_port::active()->get();
+        $ss_setup_vessel_type= ss_setup_vessel_type::active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::active()->ascend()->get();
 
         return view('front/vessel_sale/view',['data'=>$data,
                                         'ser_data'=>$ser_data,
@@ -33,10 +33,10 @@ class FrontVesselSaleController extends Controller
     }
 
     function view_add(){
-        $ss_setup_vessel_type= ss_setup_vessel_type::active()->get();
-        $ss_setup_region= ss_setup_region::active()->get();
-        $ss_setup_country= ss_setup_country::active()->get();
-        $ss_setup_port= ss_setup_port::active()->get();
+        $ss_setup_vessel_type= ss_setup_vessel_type::active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::active()->ascend()->get();
 
         $data = ss_vessel_sale::latest()->first();
         // $data = ss_vessel_sale::latest()->take(1)->get();
@@ -201,10 +201,10 @@ class FrontVesselSaleController extends Controller
         $ser_history= vessel_sale_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
 
 
-        $ss_setup_vessel_type= ss_setup_vessel_type::active()->get();
-        $ss_setup_region= ss_setup_region::active()->get();
-        $ss_setup_country= ss_setup_country::active()->get();
-        $ss_setup_port= ss_setup_port::active()->get();
+        $ss_setup_vessel_type= ss_setup_vessel_type::active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::active()->ascend()->get();
 
         return view('front/vessel_sale/view',['data'=>$data,
                                         'ser_data'=>$ser_history,

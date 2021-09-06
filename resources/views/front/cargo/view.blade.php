@@ -15,7 +15,7 @@
     @if (session('front_uid') != '')
         <div class="bg-white">
             <div class="pt-2 pb-2 pl-3">
-                <a id="new_ser_req" class="btn_style size13 btn_xxxs" href="#"><i class="fas fa-search"></i> New Load
+                <a id="new_ser_req" class="btn_style size13 btn_xxxs" href="#"><i class="fas fa-search"></i> New  Cargo
                     Search</a>
                 <a href={{ route('cargo.add') }} id="{{ session('front_uname') }}"
                     class="btn_style size13 btn_xxxs ml-3 add_rec_validation">
@@ -469,14 +469,12 @@
                     <thead>
                         <tr>
                             <th width="5%">ID</th>
-                            <th width="10%">Cargo Name</th>
                             <th width="10%">Cargo Type</th>
-                            <th width="12%">Loading Region</th>
-                            <th width="12%">Discharge Region</th>
-                            <th width="8%">Laycan Date From</th>
-                            <th width="8%">Laycan Date To</th>
+                            <th width="8%">Loading Region</th>
+                            <th width="8%">Discharge Region</th>
+                            <th width="12%">Laycan Date From</th>
+                            <th width="12%">Laycan Date To</th>
                             <th width="5%">Quantity</th>
-                            {{-- <th width="8%">Unit</th> --}}
                             <th width="10%">Loading Discharge Rates</th>
                             <th width="8%">Posted on</th>
 
@@ -502,7 +500,9 @@
                                     </td>
                                     <td>
                                         <div class="td_h">
-                                            {{ $row->cargo_name }}
+                                            @foreach ($row->cargotype as $row12)
+                                                {{ optional($row12->CAcargotype)->cargo_type_name }},<br>
+                                            @endforeach
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
@@ -518,8 +518,8 @@
                                     </td>
                                     <td>
                                         <div class="td_h">
-                                            @foreach ($row->cargotype as $row12)
-                                                {{ optional($row12->CAcargotype)->cargo_type_name }},<br>
+                                            @foreach ($row->Lregion as $row12)
+                                                {{ optional($row12->CAlregion)->region_name }},<br>
                                             @endforeach
                                         </div>
                                         {{--  --}}
@@ -536,8 +536,8 @@
                                     </td>
                                     <td>
                                         <div class="td_h">
-                                            @foreach ($row->Lregion as $row12)
-                                                {{ optional($row12->CAlregion)->region_name }},<br>
+                                            @foreach ($row->Dregion as $row12)
+                                                {{ optional($row12->CAdregion)->region_name }},<br>
                                             @endforeach
                                         </div>
                                         {{--  --}}
@@ -554,9 +554,7 @@
                                     </td>
                                     <td>
                                         <div class="td_h">
-                                            @foreach ($row->Dregion as $row12)
-                                                {{ optional($row12->CAdregion)->region_name }},<br>
-                                            @endforeach
+                                            {{ date('d-M-Y', strtotime($row->laycan_date_from)) }}
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
@@ -572,7 +570,7 @@
                                     </td>
                                     <td>
                                         <div class="td_h">
-                                            {{ date('d-M-Y', strtotime($row->laycan_date_from)) }}
+                                            {{ date('d-M-Y', strtotime($row->laycan_date_to)) }}
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
@@ -584,7 +582,7 @@
                                     </td>
                                     <td>
                                         <div class="td_h">
-                                            {{ date('d-M-Y', strtotime($row->laycan_date_to)) }}
+                                            {{ $row->quantity }}
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
@@ -596,7 +594,7 @@
                                     </td>
                                     <td>
                                         <div class="td_h">
-                                            {{ $row->quantity }}
+                                            {{ $row->loading_discharge_rates }}
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
@@ -608,7 +606,7 @@
                                     </td>
                                     <td>
                                         <div class="td_h">
-                                            {{ $row->loading_discharge_rates }}
+                                            {{ explode(' ', $row->created_at)[0] }}
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
@@ -641,18 +639,6 @@
                                             </a>
                                             {{-- <a href={{route('directory.view.user', ['id' => $row->created_by])}} target="_blank" class="">{{ optional($row->user_info)->company_name }}</a> --}}
                                         </div>
-                                    </td>
-                                    <td>
-                                        <div class="td_h">
-                                            {{ explode(' ', $row->created_at)[0] }}
-                                        </div>
-                                        {{--  --}}
-                                        {{-- <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
-                                            <p class="b7 mb-0">Email Address:</p>
-                                            <p>{{ optional($row->user_info)->email }}</p>
-                                            <p class="b7 mb-0">Phone No:</p>
-                                            <p class="">{{ optional($row->user_info)->phone }}</p>
-                                        </div> --}}
                                     </td>
 
                                     @if (session('front_uid') != '')

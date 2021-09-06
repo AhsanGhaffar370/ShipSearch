@@ -92,10 +92,10 @@ class FrontCargoController extends Controller
 
         // dd($ser_data[0]->Lregion[0]->SCAlregion->region_name);
 
-        $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
-        $ss_setup_region= ss_setup_region::active()->get();
-        $ss_setup_country= ss_setup_country::active()->get();
-        $ss_setup_port= ss_setup_port::active()->get();
+        $ss_setup_cargo_type= ss_setup_cargo_type::active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::active()->ascend()->get();
 
         return view('front/cargo/view',['data'=>$data,
                                         'ser_data'=>$ser_data,
@@ -108,11 +108,10 @@ class FrontCargoController extends Controller
 
 
     function view_add(){
-        $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
-        $ss_setup_region= ss_setup_region::active()->get();
-        $ss_setup_country= ss_setup_country::active()->get();
-        $ss_setup_port= ss_setup_port::active()->get();
-        $ss_setup_unit= ss_setup_unit::active()->get();
+        $ss_setup_cargo_type= ss_setup_cargo_type::active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::active()->ascend()->get();
 
         $data = ss_cargo::latest()->first();
         // $data = ss_cargo::latest()->take(1)->get();
@@ -140,8 +139,7 @@ class FrontCargoController extends Controller
         // dd($req->ref_no);        
         $data=new ss_cargo;
 
-        
-        $data->cargo_name=$req->cargo_name;
+
         $data->ref_no=$req->ref_no;
 
         foreach ($req->cargo_type_id as $selectedOption)
@@ -348,10 +346,10 @@ class FrontCargoController extends Controller
                                             ->where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
 
 
-        $ss_setup_cargo_type= ss_setup_cargo_type::active()->get();
-        $ss_setup_region= ss_setup_region::active()->get();
-        $ss_setup_country= ss_setup_country::active()->get();
-        $ss_setup_port= ss_setup_port::active()->get();
+        $ss_setup_cargo_type= ss_setup_cargo_type::active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::active()->ascend()->get();
 
         return view('front/cargo/view',['data'=>$data,
                                         'ser_data'=>$ser_history,
@@ -433,7 +431,7 @@ class FrontCargoController extends Controller
         foreach ($data[0]->Dregion as $row) { $ids_fk[$arr[4]][]=$row->SCAdregion->region_id; }
         foreach ($data[0]->Dcountry as $row) { $ids_fk[$arr[5]][]=$row->SCAdcountry->country_id; }
         foreach ($data[0]->Dport as $row) { $ids_fk[$arr[6]][]=$row->SCAdport->port_id; }
-
+        
         $names_fk=array();
         $names_fk1=array();
         foreach ($data[0]->cargotype as $row) { $names_fk[$arr[0]][]=$row->SCAcargotype->cargo_type_name; }
@@ -564,9 +562,9 @@ class FrontCargoController extends Controller
         // $data = ss_setup_region_country_port::with(['Lregion'])->active()->orderBy('cargo_id', 'DESC')->get();
   
         if(empty(trim($arr[0]))){
-            $data['region']= ss_setup_region::active()->get();
-            $data['country']= ss_setup_country::active()->get();
-            $data['port']= ss_setup_port::active()->get();
+            $data['region']= ss_setup_region::active()->ascend()->get();
+            $data['country']= ss_setup_country::active()->ascend()->get();
+            $data['port']= ss_setup_port::active()->ascend()->get();
         }
         else if(strpos($req->rcp_name, 'region') !== false){
             $data['country'] = ss_setup_region_country_port::select('country_id')->with(['country_rel'])->whereIn('region_id',$arr)->groupBy('country_id')->orderBy('country_id', 'ASC')->get();
@@ -589,12 +587,12 @@ class FrontCargoController extends Controller
 
         $data=[];
         
-        $data['cargo_type']= ss_setup_cargo_type::active()->get();
-        $data['vessel_type']= ss_setup_vessel_type::active()->get();
-        $data['charter_typ']= ss_setup_charter_type::active()->get();
-        $data['region']= ss_setup_region::active()->get();
-        $data['country']= ss_setup_country::active()->get();
-        $data['port']= ss_setup_port::active()->get();
+        $data['cargo_type']= ss_setup_cargo_type::active()->ascend()->get();
+        $data['vessel_type']= ss_setup_vessel_type::active()->ascend()->get();
+        $data['charter_typ']= ss_setup_charter_type::active()->ascend()->get();
+        $data['region']= ss_setup_region::active()->ascend()->get();
+        $data['country']= ss_setup_country::active()->ascend()->get();
+        $data['port']= ss_setup_port::active()->ascend()->get();
 
         echo json_encode(array('data'=>$data));
     }

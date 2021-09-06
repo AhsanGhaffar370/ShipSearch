@@ -17,10 +17,9 @@ class ss_setup_cargo_type extends Model
         return $query->where('is_active',1);
     }
 
-    public function scopeDesc($query){
-        return $query->orderBy('cargo_type_id',"DESC");
+    public function scopeAscend($query){
+        return $query->orderBy('cargo_type_name',"ASC");
     }
-
     
     // cargo
     public function CAcargotype(){

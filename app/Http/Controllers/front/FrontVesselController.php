@@ -38,11 +38,11 @@ class FrontVesselController extends Controller
                                         ->orderBy('id', 'DESC')
                                         ->get();
 
-        $ss_setup_vessel_type= ss_setup_vessel_type::active()->get();
-        $ss_setup_charter_type= ss_setup_charter_type::active()->get();
-        $ss_setup_region= ss_setup_region::active()->get();
-        $ss_setup_country= ss_setup_country::active()->get();
-        $ss_setup_port= ss_setup_port::active()->get();
+        $ss_setup_vessel_type= ss_setup_vessel_type::active()->ascend()->get();
+        $ss_setup_charter_type= ss_setup_charter_type::active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::active()->ascend()->get();
 
         return view('front/vessel/view',['data'=>$data,
                                         'ser_data'=>$ser_data,
@@ -54,11 +54,11 @@ class FrontVesselController extends Controller
     }
 
     function view_add(){
-        $ss_setup_vessel_type= ss_setup_vessel_type::active()->get();
-        $ss_setup_charter_type= ss_setup_charter_type::active()->get();
-        $ss_setup_region= ss_setup_region::active()->get();
-        $ss_setup_country= ss_setup_country::active()->get();
-        $ss_setup_port= ss_setup_port::active()->get();
+        $ss_setup_vessel_type= ss_setup_vessel_type::active()->ascend()->get();
+        $ss_setup_charter_type= ss_setup_charter_type::active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::active()->ascend()->get();
 
         $data = ss_vessel::latest()->first();
         // $data = ss_vessel::latest()->take(1)->get();
@@ -290,11 +290,11 @@ class FrontVesselController extends Controller
 
         // dd($ser_history);
 
-        $ss_setup_vessel_type= ss_setup_vessel_type::active()->get();
-        $ss_setup_charter_type= ss_setup_charter_type::active()->get();
-        $ss_setup_region= ss_setup_region::active()->get();
-        $ss_setup_country= ss_setup_country::active()->get();
-        $ss_setup_port= ss_setup_port::active()->get();
+        $ss_setup_vessel_type= ss_setup_vessel_type::active()->ascend()->get();
+        $ss_setup_charter_type= ss_setup_charter_type::active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::active()->ascend()->get();
 
         return view('front/vessel/view',['data'=>$data,
                                         'ser_data'=>$ser_history,
@@ -392,7 +392,7 @@ class FrontVesselController extends Controller
         $data[2] =$names_fk1;
 
         echo json_encode(array('data'=>$ser_data));
-
+        
     }
 
     function update_hist_data(Request $req){

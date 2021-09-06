@@ -312,8 +312,11 @@ $(document).ready(function() {
                                     `</div>
                                 </td>
                                 <td>
-                                    <div class="td_h">` 
-                                        + obj1.cargo_name +
+                                    <div class="td_h">`;
+                                        $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
+                                            post_str += cargotype_obj + ',<br>';
+                                        });
+                                    post_str +=
                                     `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Loading Country:</p>`;
@@ -330,8 +333,8 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                        $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
-                                            post_str += cargotype_obj + ',<br>';
+                                        $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
+                                            post_str += lregion_obj + ',<br>';
                                         });
                                     post_str +=
                                     `</div>
@@ -350,8 +353,8 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                        $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
-                                            post_str += lregion_obj + ',<br>';
+                                        $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
+                                            post_str += dregion_obj + ',<br>';
                                         });
                                     post_str +=
                                     `</div>
@@ -369,11 +372,8 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`;
-                                        $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
-                                            post_str += dregion_obj + ',<br>';
-                                        });
-                                    post_str +=
+                                    <div class="td_h">`
+                                    + GetFormattedDate(obj1.laycan_date_from) +
                                     `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Discharge Port:</p>`;
@@ -389,8 +389,8 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">` +
-                                        GetFormattedDate(obj1.laycan_date_from) +
+                                    <div class="td_h">`
+                                    + GetFormattedDate(obj1.laycan_date_to) +
                                     `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Over Age:</p>
@@ -400,8 +400,8 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">` +
-                                        GetFormattedDate(obj1.laycan_date_to) +
+                                    <div class="td_h">`
+                                    + obj1.quantity +
                                     `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Hazmat:</p>
@@ -412,7 +412,7 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">` 
-                                        + obj1.quantity +
+                                        + obj1.loading_discharge_rates +
                                     `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Commission:</p>
@@ -423,7 +423,7 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`
-                                        + obj1.loading_discharge_rates +
+                                        + obj1.created_at +
                                     `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Additional Info:</p>
@@ -454,11 +454,6 @@ $(document).ready(function() {
                                             ` + obj1.user_info.company_name + `
                                         </a>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="td_h">`
-                                        + obj1.created_at +
-                                    `</div>
                                 </td>
                                 <td class="text-center">
                                     <a href="` + obj1.cargo_id + `" class="show_detail_btn_` + obj1.cargo_id + ` show_detail_btn">
@@ -671,7 +666,6 @@ $(document).ready(function() {
                         let json_data = $.parseJSON(response);
                         var len = json_data.length;
                         var post_str = "";
-                        // console.log(json_data['data'][0]['cargo_name'])
 
                         if (json_data['data'][0]['length'] == 0) {
                             post_str +=
@@ -689,8 +683,11 @@ $(document).ready(function() {
                                             `</div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` 
-                                                + obj1.cargo_name +
+                                            <div class="td_h">`;
+                                                $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
+                                                    post_str += cargotype_obj + ',<br>';
+                                                });
+                                            post_str +=
                                             `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Loading Country:</p>`;
@@ -707,8 +704,8 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">`;
-                                                $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
-                                                    post_str += cargotype_obj + ',<br>';
+                                                $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
+                                                    post_str += lregion_obj + ',<br>';
                                                 });
                                             post_str +=
                                             `</div>
@@ -727,8 +724,8 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">`;
-                                                $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
-                                                    post_str += lregion_obj + ',<br>';
+                                                $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
+                                                    post_str += dregion_obj + ',<br>';
                                                 });
                                             post_str +=
                                             `</div>
@@ -746,11 +743,8 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`;
-                                                $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
-                                                    post_str += dregion_obj + ',<br>';
-                                                });
-                                            post_str +=
+                                            <div class="td_h">`
+                                            + GetFormattedDate(obj1.laycan_date_from) +
                                             `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Discharge Port:</p>`;
@@ -766,8 +760,8 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` +
-                                                GetFormattedDate(obj1.laycan_date_from) +
+                                            <div class="td_h">`
+                                            + GetFormattedDate(obj1.laycan_date_to) +
                                             `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Over Age:</p>
@@ -777,8 +771,8 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` +
-                                                GetFormattedDate(obj1.laycan_date_to) +
+                                            <div class="td_h">`
+                                            + obj1.quantity +
                                             `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Hazmat:</p>
@@ -789,7 +783,7 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">` 
-                                                + obj1.quantity +
+                                                + obj1.loading_discharge_rates +
                                             `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Commission:</p>
@@ -800,7 +794,7 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">`
-                                                + obj1.loading_discharge_rates +
+                                                + obj1.created_at +
                                             `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Additional Info:</p>
@@ -831,11 +825,6 @@ $(document).ready(function() {
                                                     ` + obj1.user_info.company_name + `
                                                 </a>
                                             </div>
-                                        </td>
-                                        <td>
-                                            <div class="td_h">`
-                                                + obj1.created_at +
-                                            `</div>
                                         </td>
                                         <td class="text-center">
                                             <a href="` + obj1.cargo_id + `" class="show_detail_btn_` + obj1.cargo_id + ` show_detail_btn">

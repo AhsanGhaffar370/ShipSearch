@@ -18,8 +18,8 @@ class ss_setup_charter_type extends Model
         return $query->where('is_active',1);
     }
 
-    public function scopeDesc($query){
-        return $query->orderBy('charter_type_id',"DESC");
+    public function scopeAscend($query){
+        return $query->orderBy('charter_type_name',"ASC");
     }
 
     // vessel

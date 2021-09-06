@@ -35,11 +35,6 @@
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Cargo Name</label>
-                        <input type="text" required name="cargo_name" class="form-control">
-                    </div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Cargo Type</label>
                         <section class="cargo_type_id_par">
                             <select name="cargo_type_id[]" id="cargo_type_id" class="form-control cargo_type_id" multiple
@@ -56,6 +51,8 @@
                             </select>
                         </section>
                     </div>
+                    <!-- -->
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Loading Region</label>
