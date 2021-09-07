@@ -46,7 +46,7 @@
                                 <div class="row tr-row mt-2">
                                     <div class="col-10 pr-0">
                                         {{-- <input required="" type="text" min="1" name="skill[]" id="weight" class="form-control rounded" placeholder="skill"> --}}
-                                        <input type="file" name="image[]" required>
+                                        <input type="file" name="vessel_img[]" required>
                                     </div>
                                     <div class="col-2 pr-3 text-right">
                                         <div class=" rowfy-addrow btn btn-success btn-block">+</div>

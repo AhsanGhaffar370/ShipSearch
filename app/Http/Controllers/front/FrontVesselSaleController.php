@@ -60,11 +60,10 @@ class FrontVesselSaleController extends Controller
 
     function add_req(Request $req){
 
-        dd($req);
         
-        $req->validate([
-            'image'=>'required | mimes:jpg,jpeg,png,PNG',
-        ]);
+        // $req->validate([
+        //     'image'=>'required | mimes:jpg,jpeg,png,PNG',
+        // ]);
 
         $add_req= $req->all();
         $add_req=new ss_vessel_sale;
@@ -92,14 +91,25 @@ class FrontVesselSaleController extends Controller
         $add_req->port_id=rtrim($port, ",");
 
 
+        // dd($req->file('vessel_img'));
         
         // $vsale_img=$req->file('image')->store('public/post_images');
-        $vsale_img=$req->file('image');
-        $ext=$vsale_img->extension();
-        $final_img=time().".".$ext;
-        $vsale_img->storeAs('/public/vessel_sale_images',$final_img);
+        $final_img_str="";
+        $counter=29;
+        foreach ($req->file('vessel_img') as $selectedimg){
+            $vsale_img=$selectedimg;
+            $ext=$vsale_img->extension();
+            // basename($request->file('upfile')->getClientOriginalName(), '.'.$request->file('upfile')->getClientOriginalExtension());
+            // $name=$vsale_img['filename'];
+            $final_img=time().$counter.".".$ext;
+            $vsale_img->storeAs('/public/vessel_sale_images',$final_img);
 
-        $add_req->vessel_img=$final_img;
+            $final_img_str.=$final_img.",";
+            $counter++;
+        }
+        $add_req->vessel_img=rtrim($final_img_str, ",");
+
+        // dd($add_req->vessel_img);
 
         $add_req->date_available=$req->date_available;
         $add_req->operations_date=$req->operations_date;

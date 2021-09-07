@@ -314,8 +314,12 @@
                                     </td>
 									<td width="10%">
                                         <div class="td_h">
-                                            <img src="{{asset('storage/vessel_sale_images/'.$row->vessel_img)}}" width="80" class="img-thumbnail img-fluid" alt="vessel img">
-                                        </div>
+                                            @foreach (explode(',',$row->vessel_img) as $item)
+                                                <img data-enlargeable src="{{asset('storage/vessel_sale_images/'.$item)}}" width="80" class="img-thumbnail img-fluid" alt="vessel img"
+                                                style="cursor: zoom-in;">
+                                            @endforeach
+                                            
+                                        </div>  
                                     </td>
                                     <td width="10%">
                                         <div class="td_h">

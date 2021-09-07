@@ -8,7 +8,7 @@ $(document).ready(function() {
     $('.discharge_region_id').selectpicker();
     $('.discharge_country_id').selectpicker();
     $('.discharge_port_id').selectpicker();
-    
+
     //vessel
     $('.vessel_type_id').selectpicker();
     $('.charter_type_id').selectpicker();
@@ -18,12 +18,12 @@ $(document).ready(function() {
 
 
 
-    
-    
+
+
     //////////////////////////////////////
     // Working on Reset Button
     //////////////////////////////////////
-    $(".reset_btn").click(function(e){
+    $(".reset_btn").click(function(e) {
         e.preventDefault();
 
         $("input[type=date]").val("");
@@ -43,7 +43,7 @@ $(document).ready(function() {
         $("#discharge_country_id").selectpicker("refresh");
         $("#discharge_port_id").val('default');
         $("#discharge_port_id").selectpicker("refresh");
-        
+
         $("#vessel_type_id").val('default');
         $("#vessel_type_id").selectpicker("refresh");
         $("#charter_type_id").val('default');
@@ -55,22 +55,22 @@ $(document).ready(function() {
         $(".port_id").val('default');
         $(".port_id").selectpicker("refresh");
 
-        var par_id=$(this).closest('form').parent().attr('id');
-        let form_id="";
+        var par_id = $(this).closest('form').parent().attr('id');
+        let form_id = "";
 
-        if(par_id=="home_cargo"){
-            var arr=['cargo_type_id','loading_region_id','loading_country_id','loading_port_id','discharge_region_id','discharge_country_id','discharge_port_id'];
-            form_id="search_cargo_form";
+        if (par_id == "home_cargo") {
+            var arr = ['cargo_type_id', 'loading_region_id', 'loading_country_id', 'loading_port_id', 'discharge_region_id', 'discharge_country_id', 'discharge_port_id'];
+            form_id = "search_cargo_form";
         }
-        if(par_id=="home_vessel"){
-            var arr=['vessel_type_id','charter_type_id','region_id','country_id','port_id'];
-            form_id="search_vessel_form";
+        if (par_id == "home_vessel") {
+            var arr = ['vessel_type_id', 'charter_type_id', 'region_id', 'country_id', 'port_id'];
+            form_id = "search_vessel_form";
         }
-        if(par_id=="home_vsale"){
-            var arr=['vessel_type_id','region_id','country_id','port_id'];
-            form_id="search_vsale_form";
+        if (par_id == "home_vsale") {
+            var arr = ['vessel_type_id', 'region_id', 'country_id', 'port_id'];
+            form_id = "search_vsale_form";
         }
-        
+
         $.ajax({
             url: route('cargo.reset_region_country_port'),
             // data: "region_country_id=" + region_country_id + "&country_port_name=" + country_port_attr,
@@ -78,7 +78,7 @@ $(document).ready(function() {
             success: function(response) {
 
                 let json_data = $.parseJSON(response);
-                
+
                 $.each(arr, function(i, obj) {
                     var post_str = "";
                     post_str += `
@@ -86,49 +86,49 @@ $(document).ready(function() {
                         class="` + obj + ` add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
                         data-selected-text-format="count > 2" data-live-search="true">`;
 
-                        if (obj.includes('region')){
-                            $.each(json_data['data']['region'], function(i, obj1) {
-                                post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
-                            });
-                        }
-                        if (obj.includes('country')){
-                            $.each(json_data['data']['country'], function(i, obj1) {
-                                post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
-                            });
-                        }
-                        if (obj.includes('port')){
-                            $.each(json_data['data']['port'], function(i, obj1) {
-                                post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
-                            });
-                        }
-                        if (obj.includes('cargo_type')){
-                            $.each(json_data['data']['cargo_type'], function(i, obj1) {
-                                post_str += `<option value="` + obj1.cargo_type_id + `">` + obj1.cargo_type_name + `</option>`;
-                            });
-                        }
-                        if (obj.includes('vessel_type')){
-                            $.each(json_data['data']['vessel_type'], function(i, obj1) {
-                                post_str += `<option value="` + obj1.vessel_type_id + `">` + obj1.vessel_type_name + `</option>`;
-                            });
-                        }
-                        if (obj.includes('charter_type')){
-                            $.each(json_data['data']['charter_type'], function(i, obj1) {
-                                post_str += `<option value="` + obj1.charter_type_id + `">` + obj1.charter_type_name + `</option>`;
-                            });
-                        }
+                    if (obj.includes('region')) {
+                        $.each(json_data['data']['region'], function(i, obj1) {
+                            post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
+                        });
+                    }
+                    if (obj.includes('country')) {
+                        $.each(json_data['data']['country'], function(i, obj1) {
+                            post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
+                        });
+                    }
+                    if (obj.includes('port')) {
+                        $.each(json_data['data']['port'], function(i, obj1) {
+                            post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
+                        });
+                    }
+                    if (obj.includes('cargo_type')) {
+                        $.each(json_data['data']['cargo_type'], function(i, obj1) {
+                            post_str += `<option value="` + obj1.cargo_type_id + `">` + obj1.cargo_type_name + `</option>`;
+                        });
+                    }
+                    if (obj.includes('vessel_type')) {
+                        $.each(json_data['data']['vessel_type'], function(i, obj1) {
+                            post_str += `<option value="` + obj1.vessel_type_id + `">` + obj1.vessel_type_name + `</option>`;
+                        });
+                    }
+                    if (obj.includes('charter_type')) {
+                        $.each(json_data['data']['charter_type'], function(i, obj1) {
+                            post_str += `<option value="` + obj1.charter_type_id + `">` + obj1.charter_type_name + `</option>`;
+                        });
+                    }
 
-                    post_str += 
-                    `</select>`;
-                    
-                    $('.' + obj+"_par").html(post_str);
+                    post_str +=
+                        `</select>`;
+
+                    $('.' + obj + "_par").html(post_str);
                     $('.' + obj).selectpicker();
-                    
+
                 });
             }
         });
 
     });
-    
+
 
 
     function GetFormattedDate(date) {
@@ -142,27 +142,27 @@ $(document).ready(function() {
     // $(document).load(function () {
     //      $(".focus_user_row").focus();
     // });
-    
+
     // $("#home_vessel").hide();
     // $("#home_vsale").hide();
     $('.home_form_link').click(function(e) {
         e.preventDefault();
-        var id=$(this).attr("id");
+        var id = $(this).attr("id");
 
         $("#home_cargo").hide();
         $("#home_vessel").hide();
         $("#home_vsale").hide();
 
-        if(id.includes('cargo'))
+        if (id.includes('cargo'))
             $("#home_cargo").show();
-        if(id.includes('vessel'))
+        if (id.includes('vessel'))
             $("#home_vessel").show();
-        if(id.includes('vsale'))
+        if (id.includes('vsale'))
             $("#home_vsale").show();
-        if(id.includes('directory'))
+        if (id.includes('directory'))
             $("#home_cargo").show();
 
-        
+
         // $("#adv_ser_form").slideToggle(500);
     });
 
@@ -305,93 +305,93 @@ $(document).ready(function() {
                             // console.log(obj1);
                             // console.log(i + "  " + obj1);
                             post_str +=
-                            `<tr class="">
+                                `<tr class="">
                                 <td>
-                                    <div class="td_h">` 
-                                        + obj1.ref_no +
-                                    `</div>
+                                    <div class="td_h">` +
+                                obj1.ref_no +
+                                `</div>
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                        $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
-                                            post_str += cargotype_obj + ',<br>';
-                                        });
-                                    post_str +=
-                                    `</div>
+                            $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
+                                post_str += cargotype_obj + ',<br>';
+                            });
+                            post_str +=
+                                `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Loading Country:</p>`;
-                                        post_str += 
-                                            `<p class="">`;
-                                            $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
-                                                post_str += lcountry_obj + ',<br>';
-                                            });
-                                        post_str += 
-                                            `</p>
+                            post_str +=
+                                `<p class="">`;
+                            $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
+                                post_str += lcountry_obj + ',<br>';
+                            });
+                            post_str +=
+                                `</p>
                                             <p class="b7 mb-0">Max LOA:</p>
                                             <p class="">` + obj1.max_loa + `</p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                        $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
-                                            post_str += lregion_obj + ',<br>';
-                                        });
-                                    post_str +=
-                                    `</div>
+                            $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
+                                post_str += lregion_obj + ',<br>';
+                            });
+                            post_str +=
+                                `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Loading Port:</p>`;
-                                        post_str += 
-                                            `<p class="">`;
-                                            $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
-                                                post_str += lport_obj + ',<br>';
-                                            });
-                                        post_str += 
-                                            `</p>
+                            post_str +=
+                                `<p class="">`;
+                            $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
+                                post_str += lport_obj + ',<br>';
+                            });
+                            post_str +=
+                                `</p>
                                             <p class="b7 mb-0">Stowage Factor:</p>
                                             <p class="">` + obj1.stowage_factor + `</p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                        $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
-                                            post_str += dregion_obj + ',<br>';
-                                        });
-                                    post_str +=
-                                    `</div>
+                            $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
+                                post_str += dregion_obj + ',<br>';
+                            });
+                            post_str +=
+                                `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Discharge Country:</p>`;
-                                        post_str += 
-                                            `<p class="">`;
-                                            $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
-                                                post_str += dcountry_obj + ',<br>';
-                                            });
-                                        post_str += 
-                                            `</p>
+                            post_str +=
+                                `<p class="">`;
+                            $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
+                                post_str += dcountry_obj + ',<br>';
+                            });
+                            post_str +=
+                                `</p>
                                             <p class="b7 mb-0">Max Height:</p>
                                             <p class="">` + obj1.max_height + `</p>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                    + GetFormattedDate(obj1.laycan_date_from) +
-                                    `</div>
+                                    <div class="td_h">` +
+                                GetFormattedDate(obj1.laycan_date_from) +
+                                `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Discharge Port:</p>`;
-                                        post_str += 
-                                            `<p class="">`;
-                                            $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
-                                                post_str += dport_obj + ',<br>';
-                                            });
-                                        post_str += 
-                                            `</p>
+                            post_str +=
+                                `<p class="">`;
+                            $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
+                                post_str += dport_obj + ',<br>';
+                            });
+                            post_str +=
+                                `</p>
                                             <p class="b7 mb-0">Loading Equipment Req:</p>
                                             <p class="">` + obj1.loading_equipment_req + `</p>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                    + GetFormattedDate(obj1.laycan_date_to) +
-                                    `</div>
+                                    <div class="td_h">` +
+                                GetFormattedDate(obj1.laycan_date_to) +
+                                `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Over Age:</p>
                                         <p class="">` + obj1.over_age + `</p>
@@ -400,9 +400,9 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                    + obj1.quantity +
-                                    `</div>
+                                    <div class="td_h">` +
+                                obj1.quantity +
+                                `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Hazmat:</p>
                                         <p class="">` + obj1.hazmat + `</p>
@@ -411,9 +411,9 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">` 
-                                        + obj1.loading_discharge_rates +
-                                    `</div>
+                                    <div class="td_h">` +
+                                obj1.loading_discharge_rates +
+                                `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Commission:</p>
                                         <p class="">` + obj1.commision + `</p>
@@ -422,9 +422,9 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                        + obj1.created_at +
-                                    `</div>
+                                    <div class="td_h">` +
+                                obj1.created_at +
+                                `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Additional Info:</p>
                                         <p class="">` + obj1.additional_info + `</p>
@@ -447,7 +447,7 @@ $(document).ready(function() {
                                                 <p class="size11 b4 mb-2">` + obj1.user_info.phone + `</p>
                                                 <p class="size13 b6 m-0">Address </p>
                                                 <p class="size11 b4 mb-2">` + obj1.user_info.permanent_address + `</p>
-                                                <a href= ` +route('directory.view.user',{id:obj1.created_by})+` target="_blank" class="btn btn-info btn_xxxs size11 text-white pt-1 pb-1 mr-3">
+                                                <a href= ` + route('directory.view.user', { id: obj1.created_by }) + ` target="_blank" class="btn btn-info btn_xxxs size11 text-white pt-1 pb-1 mr-3">
                                                     View Detail
                                                 </a>
                                             '>  
@@ -675,94 +675,94 @@ $(document).ready(function() {
                                 $.each(obj[0], function(i, obj1) {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
-                                    post_str += 
-                                    `<tr class="">
+                                    post_str +=
+                                        `<tr class="">
                                         <td>
-                                            <div class="td_h">` 
-                                                + obj1.ref_no +
-                                            `</div>
+                                            <div class="td_h">` +
+                                        obj1.ref_no +
+                                        `</div>
                                         </td>
                                         <td>
                                             <div class="td_h">`;
-                                                $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
-                                                    post_str += cargotype_obj + ',<br>';
-                                                });
-                                            post_str +=
-                                            `</div>
+                                    $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
+                                        post_str += cargotype_obj + ',<br>';
+                                    });
+                                    post_str +=
+                                        `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Loading Country:</p>`;
-                                                post_str += 
-                                                    `<p class="">`;
-                                                    $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
-                                                        post_str += lcountry_obj + ',<br>';
-                                                    });
-                                                post_str += 
-                                                    `</p>
+                                    post_str +=
+                                        `<p class="">`;
+                                    $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
+                                        post_str += lcountry_obj + ',<br>';
+                                    });
+                                    post_str +=
+                                        `</p>
                                                     <p class="b7 mb-0">Max LOA:</p>
                                                     <p class="">` + obj1.max_loa + `</p>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="td_h">`;
-                                                $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
-                                                    post_str += lregion_obj + ',<br>';
-                                                });
-                                            post_str +=
-                                            `</div>
+                                    $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
+                                        post_str += lregion_obj + ',<br>';
+                                    });
+                                    post_str +=
+                                        `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Loading Port:</p>`;
-                                                post_str += 
-                                                    `<p class="">`;
-                                                    $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
-                                                        post_str += lport_obj + ',<br>';
-                                                    });
-                                                post_str += 
-                                                    `</p>
+                                    post_str +=
+                                        `<p class="">`;
+                                    $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
+                                        post_str += lport_obj + ',<br>';
+                                    });
+                                    post_str +=
+                                        `</p>
                                                     <p class="b7 mb-0">Stowage Factor:</p>
                                                     <p class="">` + obj1.stowage_factor + `</p>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="td_h">`;
-                                                $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
-                                                    post_str += dregion_obj + ',<br>';
-                                                });
-                                            post_str +=
-                                            `</div>
+                                    $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
+                                        post_str += dregion_obj + ',<br>';
+                                    });
+                                    post_str +=
+                                        `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Discharge Country:</p>`;
-                                                post_str += 
-                                                    `<p class="">`;
-                                                    $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
-                                                        post_str += dcountry_obj + ',<br>';
-                                                    });
-                                                post_str += 
-                                                    `</p>
+                                    post_str +=
+                                        `<p class="">`;
+                                    $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
+                                        post_str += dcountry_obj + ',<br>';
+                                    });
+                                    post_str +=
+                                        `</p>
                                                     <p class="b7 mb-0">Max Height:</p>
                                                     <p class="">` + obj1.max_height + `</p>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                            + GetFormattedDate(obj1.laycan_date_from) +
-                                            `</div>
+                                            <div class="td_h">` +
+                                        GetFormattedDate(obj1.laycan_date_from) +
+                                        `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Discharge Port:</p>`;
-                                                post_str += 
-                                                    `<p class="">`;
-                                                    $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
-                                                        post_str += dport_obj + ',<br>';
-                                                    });
-                                                post_str += 
-                                                    `</p>
+                                    post_str +=
+                                        `<p class="">`;
+                                    $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
+                                        post_str += dport_obj + ',<br>';
+                                    });
+                                    post_str +=
+                                        `</p>
                                                     <p class="b7 mb-0">Loading Equipment Req:</p>
                                                     <p class="">` + obj1.loading_equipment_req + `</p>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                            + GetFormattedDate(obj1.laycan_date_to) +
-                                            `</div>
+                                            <div class="td_h">` +
+                                        GetFormattedDate(obj1.laycan_date_to) +
+                                        `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Over Age:</p>
                                                 <p class="">` + obj1.over_age + `</p>
@@ -771,9 +771,9 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                            + obj1.quantity +
-                                            `</div>
+                                            <div class="td_h">` +
+                                        obj1.quantity +
+                                        `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Hazmat:</p>
                                                 <p class="">` + obj1.hazmat + `</p>
@@ -782,9 +782,9 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` 
-                                                + obj1.loading_discharge_rates +
-                                            `</div>
+                                            <div class="td_h">` +
+                                        obj1.loading_discharge_rates +
+                                        `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Commission:</p>
                                                 <p class="">` + obj1.commision + `</p>
@@ -793,9 +793,9 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.created_at +
-                                            `</div>
+                                            <div class="td_h">` +
+                                        obj1.created_at +
+                                        `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Additional Info:</p>
                                                 <p class="">` + obj1.additional_info + `</p>
@@ -818,7 +818,7 @@ $(document).ready(function() {
                                                         <p class="size11 b4 mb-2">` + obj1.user_info.phone + `</p>
                                                         <p class="size13 b6 m-0">Address </p>
                                                         <p class="size11 b4 mb-2">` + obj1.user_info.permanent_address + `</p>
-                                                        <a href= ` +route('directory.view.user',{id:obj1.created_by})+` target="_blank" class="btn btn-info btn_xxxs size11 text-white pt-1 pb-1 mr-3">
+                                                        <a href= ` + route('directory.view.user', { id: obj1.created_by }) + ` target="_blank" class="btn btn-info btn_xxxs size11 text-white pt-1 pb-1 mr-3">
                                                             View Detail
                                                         </a>
                                                     '>  
@@ -926,13 +926,13 @@ $(document).ready(function() {
                         $.each(obj[0], function(i, obj1) {
                             // console.log(obj1);
                             // console.log(i + "  " + obj1);
-                            post_str += 
-                            `<tr class="">
+                            post_str +=
+                                `<tr class="">
                                 <td>
-                                    <div class="td_h">`
-                                        + obj1.ref_no + 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                    <div class="td_h">` +
+                                obj1.ref_no +
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Built Year:</p>
                                         <p class="">` + obj1.built_year + `</p>
                                         <p class="b7 mb-0">DWT:</p>
@@ -942,10 +942,10 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                        + obj1.vessel_name + 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                    <div class="td_h">` +
+                                obj1.vessel_name +
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">IMO Number:</p>
                                         <p class="">` + obj1.imo_number + `</p>
                                         <p class="b7 mb-0">Call Sign:</p>
@@ -956,14 +956,14 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                    // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
-                                        post_str += 
-                                            $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_id], function(i, vesseltype_obj) {
-                                                post_str += vesseltype_obj + ',<br>';
-                                            });
-                                        post_str += 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                            // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
+                            post_str +=
+                                $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_id], function(i, vesseltype_obj) {
+                                    post_str += vesseltype_obj + ',<br>';
+                                });
+                            post_str +=
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Speed Laden:</p>
                                         <p class="">` + obj1.speed_laden + `</p>
                                         <p class="b7 mb-0">Gross Tonnage:</p>
@@ -974,14 +974,14 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                    // + obj1.charter_type_id.replace(/,/g, ',<br>') +
-                                        post_str += 
-                                            $.each(json_data['data'][1]['charter_type_id'][obj1.vessel_id], function(i, chartertype_obj) {
-                                                post_str += chartertype_obj + ',<br>';
-                                            });
-                                        post_str += 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                            // + obj1.charter_type_id.replace(/,/g, ',<br>') +
+                            post_str +=
+                                $.each(json_data['data'][1]['charter_type_id'][obj1.vessel_id], function(i, chartertype_obj) {
+                                    post_str += chartertype_obj + ',<br>';
+                                });
+                            post_str +=
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">LOA Max:</p>
                                         <p class="">` + obj1.loa_max + `</p>
                                         <p class="b7 mb-0">Beam Max:</p>
@@ -991,10 +991,10 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                        + GetFormattedDate(obj1.laycan_date_from) + 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                    <div class="td_h">` +
+                                GetFormattedDate(obj1.laycan_date_from) +
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Fresh Water Draft:</p>
                                         <p class="">` + obj1.fresh_water_draft + `</p>
                                         <p class="b7 mb-0">Grain Capacity:</p>
@@ -1004,10 +1004,10 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                        + GetFormattedDate(obj1.laycan_date_to) + 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                    <div class="td_h">` +
+                                GetFormattedDate(obj1.laycan_date_to) +
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Container Capacity 20FT:</p>
                                         <p class="">` + obj1.container_capacity_20ft + `</p>
                                         <p class="b7 mb-0">Container Capacity 40FT:</p>
@@ -1018,14 +1018,14 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                    // + obj1.region_id.replace(/,/g, ',<br>') +
-                                        post_str += 
-                                            $.each(json_data['data'][1]['region_id'][obj1.vessel_id], function(i, region_obj) {
-                                                post_str += region_obj + ',<br>';
-                                            });
-                                        post_str += 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                            // + obj1.region_id.replace(/,/g, ',<br>') +
+                            post_str +=
+                                $.each(json_data['data'][1]['region_id'][obj1.vessel_id], function(i, region_obj) {
+                                    post_str += region_obj + ',<br>';
+                                });
+                            post_str +=
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">IFO Consumption Empty:</p>
                                         <p class="">` + obj1.ifo_consumption_empty + `</p>
                                         <p class="b7 mb-0">IFO Consumption Laden:</p>
@@ -1036,14 +1036,14 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                    // + obj1.country_id.replace(/,/g, ',<br>') +
-                                        post_str += 
-                                            $.each(json_data['data'][1]['country_id'][obj1.vessel_id], function(i, country_obj) {
-                                                post_str += country_obj + ',<br>';
-                                            });
-                                        post_str += 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                            // + obj1.country_id.replace(/,/g, ',<br>') +
+                            post_str +=
+                                $.each(json_data['data'][1]['country_id'][obj1.vessel_id], function(i, country_obj) {
+                                    post_str += country_obj + ',<br>';
+                                });
+                            post_str +=
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">MGO Consumption Empty:</p>
                                         <p class="">` + obj1.mgo_consumption_empty + `</p>
                                         <p class="b7 mb-0">MGO Consumption Laden:</p>
@@ -1054,14 +1054,14 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                    // + obj1.port_id.replace(/,/g, ',<br>') +
-                                        post_str += 
-                                            $.each(json_data['data'][1]['port_id'][obj1.vessel_id], function(i, port_obj) {
-                                                post_str += port_obj + ',<br>';
-                                            });
-                                        post_str += 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                            // + obj1.port_id.replace(/,/g, ',<br>') +
+                            post_str +=
+                                $.each(json_data['data'][1]['port_id'][obj1.vessel_id], function(i, port_obj) {
+                                    post_str += port_obj + ',<br>';
+                                });
+                            post_str +=
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Lane Meters:</p>
                                         <p class="">` + obj1.lane_meters + `</p>
                                         <p class="b7 mb-0">P I Club:</p>
@@ -1071,10 +1071,10 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                        + obj1.created_at + 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                    <div class="td_h">` +
+                                obj1.created_at +
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Additional Info:</p>
                                         <p class="">` + obj1.additional_info + `</p>
                                     </div>
@@ -1275,13 +1275,13 @@ $(document).ready(function() {
                                 $.each(obj, function(i, obj1) {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
-                                    post_str += 
-                                    `<tr class="">
+                                    post_str +=
+                                        `<tr class="">
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.ref_no + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.ref_no +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Built Year:</p>
                                                 <p class="">` + obj1.built_year + `</p>
                                                 <p class="b7 mb-0">DWT:</p>
@@ -1291,10 +1291,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.vessel_name + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.vessel_name +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">IMO Number:</p>
                                                 <p class="">` + obj1.imo_number + `</p>
                                                 <p class="b7 mb-0">Call Sign:</p>
@@ -1304,10 +1304,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.vessel_type_id.replace(/,/g, ',<br>') + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.vessel_type_id.replace(/,/g, ',<br>') +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Speed Laden:</p>
                                                 <p class="">` + obj1.speed_laden + `</p>
                                                 <p class="b7 mb-0">Gross Tonnage:</p>
@@ -1317,10 +1317,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.charter_type_id.replace(/,/g, ',<br>') + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.charter_type_id.replace(/,/g, ',<br>') +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">LOA Max:</p>
                                                 <p class="">` + obj1.loa_max + `</p>
                                                 <p class="b7 mb-0">Beam Max:</p>
@@ -1330,10 +1330,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + GetFormattedDate(obj1.laycan_date_from) + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        GetFormattedDate(obj1.laycan_date_from) +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Fresh Water Draft:</p>
                                                 <p class="">` + obj1.fresh_water_draft + `</p>
                                                 <p class="b7 mb-0">Grain Capacity:</p>
@@ -1343,10 +1343,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + GetFormattedDate(obj1.laycan_date_to) + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        GetFormattedDate(obj1.laycan_date_to) +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Container Capacity 20FT:</p>
                                                 <p class="">` + obj1.container_capacity_20ft + `</p>
                                                 <p class="b7 mb-0">Container Capacity 40FT:</p>
@@ -1356,10 +1356,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.region_id.replace(/,/g, ',<br>') + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.region_id.replace(/,/g, ',<br>') +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">IFO Consumption Empty:</p>
                                                 <p class="">` + obj1.ifo_consumption_empty + `</p>
                                                 <p class="b7 mb-0">IFO Consumption Laden:</p>
@@ -1369,10 +1369,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.country_id.replace(/,/g, ',<br>') + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.country_id.replace(/,/g, ',<br>') +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">MGO Consumption Empty:</p>
                                                 <p class="">` + obj1.mgo_consumption_empty + `</p>
                                                 <p class="b7 mb-0">MGO Consumption Laden:</p>
@@ -1382,10 +1382,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.port_id.replace(/,/g, ',<br>') + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.port_id.replace(/,/g, ',<br>') +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Lane Meters:</p>
                                                 <p class="">` + obj1.lane_meters + `</p>
                                                 <p class="b7 mb-0">P I Club:</p>
@@ -1395,10 +1395,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.created_at + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.created_at +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Additional Info:</p>
                                                 <p class="">` + obj1.additional_info + `</p>
                                             </div>
@@ -1495,18 +1495,18 @@ $(document).ready(function() {
                         $.each(obj, function(i, obj1) {
                             // console.log(obj1);
                             // console.log(i + "  " + obj1);
-                            post_str += 
-                            `<tr class="">
+                            post_str +=
+                                `<tr class="">
                                 <td>
-                                    <div class="td_h">`
-                                        + obj1.ref_no + 
-                                    `</div>
+                                    <div class="td_h">` +
+                                obj1.ref_no +
+                                `</div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                        + obj1.vessel_type_id.replace(/,/g, ',<br>') + 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                    <div class="td_h">` +
+                                obj1.vessel_type_id.replace(/,/g, ',<br>') +
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Last Dry Docked:</p>
                                         <p class="">` + obj1.last_dry_docked + `</p>
                                         <p class="b7 mb-0">Last SS:</p>
@@ -1518,10 +1518,10 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                        + obj1.region_id.replace(/,/g, ',<br>') + 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                    <div class="td_h">` +
+                                obj1.region_id.replace(/,/g, ',<br>') +
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">NRT:</p>
                                         <p class="">` + obj1.nrt + `</p>
                                         <p class="b7 mb-0">DWT:</p>
@@ -1533,10 +1533,10 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                        + obj1.country_id.replace(/,/g, ',<br>') + 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                    <div class="td_h">` +
+                                obj1.country_id.replace(/,/g, ',<br>') +
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Consumption:</p>
                                         <p class="">` + obj1.consumption + `</p>
                                         <p class="b7 mb-0">LOA:</p>
@@ -1548,10 +1548,10 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                        + obj1.port_id.replace(/,/g, ',<br>') + 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                    <div class="td_h">` +
+                                obj1.port_id.replace(/,/g, ',<br>') +
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Fresh Water Draft:</p>
                                         <p class="">` + obj1.fw_draft + `</p>
                                         <p class="b7 mb-0">Main Engine:</p>
@@ -1563,10 +1563,10 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                        + obj1.built_year + 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                    <div class="td_h">` +
+                                obj1.built_year +
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Gears:</p>
                                         <p class="">` + obj1.gears + `</p>
                                         <p class="b7 mb-0">Propellers:</p>
@@ -1578,10 +1578,10 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                        + obj1.price + 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                    <div class="td_h">` +
+                                obj1.price +
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Date Available:</p>
                                         <p class="">` + GetFormattedDate(obj1.date_available) + `</p>
                                         <p class="b7 mb-0">Operation Date:</p>
@@ -1593,10 +1593,10 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">`
-                                        + obj1.created_at + 
-                                    `</div>
-                                    <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                    <div class="td_h">` +
+                                obj1.created_at +
+                                `</div>
+                                    <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Cover Type:</p>
                                         <p class="">` + obj1.cover_type + `</p>
                                         <p class="b7 mb-0">Additional Description:</p>
@@ -1798,18 +1798,18 @@ $(document).ready(function() {
                                 $.each(obj, function(i, obj1) {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
-                                    post_str += 
-                                    `<tr class="">
+                                    post_str +=
+                                        `<tr class="">
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.ref_no + 
-                                            `</div>
+                                            <div class="td_h">` +
+                                        obj1.ref_no +
+                                        `</div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.vessel_type_id.replace(/,/g, ',<br>') + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.vessel_type_id.replace(/,/g, ',<br>') +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Last Dry Docked:</p>
                                                 <p class="">` + obj1.last_dry_docked + `</p>
                                                 <p class="b7 mb-0">Last SS:</p>
@@ -1821,10 +1821,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.region_id.replace(/,/g, ',<br>') + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.region_id.replace(/,/g, ',<br>') +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">NRT:</p>
                                                 <p class="">` + obj1.nrt + `</p>
                                                 <p class="b7 mb-0">DWT:</p>
@@ -1836,10 +1836,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.country_id.replace(/,/g, ',<br>') + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.country_id.replace(/,/g, ',<br>') +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Consumption:</p>
                                                 <p class="">` + obj1.consumption + `</p>
                                                 <p class="b7 mb-0">LOA:</p>
@@ -1851,10 +1851,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.port_id.replace(/,/g, ',<br>') + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.port_id.replace(/,/g, ',<br>') +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Fresh Water Draft:</p>
                                                 <p class="">` + obj1.fw_draft + `</p>
                                                 <p class="b7 mb-0">Main Engine:</p>
@@ -1866,10 +1866,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.built_year + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.built_year +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Gears:</p>
                                                 <p class="">` + obj1.gears + `</p>
                                                 <p class="b7 mb-0">Propellers:</p>
@@ -1881,10 +1881,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.price + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.price +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Date Available:</p>
                                                 <p class="">` + GetFormattedDate(obj1.date_available) + `</p>
                                                 <p class="b7 mb-0">Operation Date:</p>
@@ -1896,10 +1896,10 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">`
-                                                + obj1.created_at + 
-                                            `</div>
-                                            <div class="show_details show_details_`+obj1.vessel_sale_id+` tr_bg_cl d_n">
+                                            <div class="td_h">` +
+                                        obj1.created_at +
+                                        `</div>
+                                            <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Cover Type:</p>
                                                 <p class="">` + obj1.cover_type + `</p>
                                                 <p class="b7 mb-0">Additional Description:</p>
@@ -1973,6 +1973,7 @@ $(document).ready(function() {
         searching: false,
         paging: false,
         info: false,
+        "order": [],
         // "pagingType":"full_numbers",
         //   "lengthMenu":[[5,10,25],[5,10,25]],
         // "lengthMenu": [
