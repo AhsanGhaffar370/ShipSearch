@@ -32,4 +32,5 @@ class ss_user extends Model
     public function user_info(){
         return $this->hasMany('App\Models\ss_cargo',"user_id");
     }
+    
 }

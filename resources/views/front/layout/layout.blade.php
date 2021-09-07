@@ -214,9 +214,9 @@
 
                     <!-- Grid column -->
                     <div class="col-md-3 mt-md-0 mt-3 centre" style="align-items: baseline">
-                        <img src="{{ asset('front_asset/images/logo.png') }}" width="250" class="logo footer_logo">
+                        <img src="{{ asset('front_asset/images/logo2.png') }}" width="250" class="logo footer_logo">
                     </div>
-
+                    
                     <!-- Grid column -->
                     <div class="col-md-3 offset-md-6 mb-md-0 mb-3">
 
@@ -303,6 +303,23 @@
         //     //  },1000);
             
         // });
+
+
+        $(document).ready(function() {
+            /*Add row event*/
+            $(document).on('click', '.rowfy-addrow', function(){
+                rowfyable = $(this).closest('.table');
+                lastRow = $('.tbody .tr-row:last', rowfyable).clone();
+                $('input', lastRow).val(''); //$('input', lastRow) -> this expression is equal to $( lastRow ).find( "input" )
+                $('.tbody', rowfyable).append(lastRow);
+                $(this).removeClass('rowfy-addrow btn-success').addClass('rowfy-deleterow btn-danger').text('-');
+            });
+    
+            /*Delete row event*/
+            $(document).on('click', '.rowfy-deleterow', function(){
+                $(this).closest('.tr-row').remove();
+            });
+        });   
     </script>
 </body>
 

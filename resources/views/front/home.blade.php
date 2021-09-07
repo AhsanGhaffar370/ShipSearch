@@ -248,7 +248,7 @@
                 <div class="col-12 col-lg-5 offset-lg-2 col-md-6 p-0">
                     <div class="row bg_gdd main_sec m-0">
                         <div class="top_links_grid">
-                            <a href="#" id="home_cargo_link" class="top_links centre home_form_link ">CARGO</a>
+                            <a href="#" id="home_cargo_link" class="top_links centre home_form_link ">Cargo</a>
                             <a href="#" id="home_vessel_link" class="top_links centre home_form_link ">Vessel <br> Charter</a>
                             <a href="#" id="home_vsale_link" class="top_links centre home_form_link ">Sale & <br>Purchase</a>
                             <a href="#" id="home_directory_link" class="top_links centre home_form_link ">Directory</a>

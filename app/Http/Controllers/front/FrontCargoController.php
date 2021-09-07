@@ -363,7 +363,7 @@ class FrontCargoController extends Controller
         
         $ser_data= cargo_search_history::with(['cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
                                         ->where('id',$req->id)->first();   
-
+        
         // $cargo_type_fk=array();
         // foreach ($ser_data->cargotype as $row) { $cargo_type_fk[]=$row->SCAcargotype->cargo_type_id; }
 
@@ -386,7 +386,7 @@ class FrontCargoController extends Controller
                         ->active()
                         ->orderBy('cargo_id', 'DESC')
                         ->get();
-
+        
         // javascript relationship understand nhi krta is lye relationship tables ka data alag se send kra he 
         $arr = ["cargo_type_id", "loading_region_id", "loading_country_id", "loading_port_id","discharge_region_id", "discharge_country_id", "discharge_port_id"];
         $names_fk=array();
@@ -431,7 +431,7 @@ class FrontCargoController extends Controller
         foreach ($data[0]->Dregion as $row) { $ids_fk[$arr[4]][]=$row->SCAdregion->region_id; }
         foreach ($data[0]->Dcountry as $row) { $ids_fk[$arr[5]][]=$row->SCAdcountry->country_id; }
         foreach ($data[0]->Dport as $row) { $ids_fk[$arr[6]][]=$row->SCAdport->port_id; }
-        
+
         $names_fk=array();
         $names_fk1=array();
         foreach ($data[0]->cargotype as $row) { $names_fk[$arr[0]][]=$row->SCAcargotype->cargo_type_name; }

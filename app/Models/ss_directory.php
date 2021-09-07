@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ss_directory extends Model
 {
+
     use HasFactory;
     public $table='ss_user';
     public $timestamps=false;
@@ -22,4 +23,5 @@ class ss_directory extends Model
     public function scopeDesc($query){
         return $query->orderBy('user_id',"DESC");
     }
+
 }

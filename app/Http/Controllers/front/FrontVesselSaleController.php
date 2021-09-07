@@ -60,6 +60,12 @@ class FrontVesselSaleController extends Controller
 
     function add_req(Request $req){
 
+        dd($req);
+        
+        $req->validate([
+            'image'=>'required | mimes:jpg,jpeg,png,PNG',
+        ]);
+
         $add_req= $req->all();
         $add_req=new ss_vessel_sale;
 
@@ -84,6 +90,16 @@ class FrontVesselSaleController extends Controller
         foreach ($req->port_id as $selectedOption)
             $port .= $selectedOption.",";
         $add_req->port_id=rtrim($port, ",");
+
+
+        
+        // $vsale_img=$req->file('image')->store('public/post_images');
+        $vsale_img=$req->file('image');
+        $ext=$vsale_img->extension();
+        $final_img=time().".".$ext;
+        $vsale_img->storeAs('/public/vessel_sale_images',$final_img);
+
+        $add_req->vessel_img=$final_img;
 
         $add_req->date_available=$req->date_available;
         $add_req->operations_date=$req->operations_date;

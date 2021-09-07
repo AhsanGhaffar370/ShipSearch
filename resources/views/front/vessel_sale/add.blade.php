@@ -39,6 +39,24 @@
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
+                        
+                         <label class="control-label col-md-3 col-sm-3 ">Image</label>
+                         <div class="table rowfy">
+                            <div class="tbody">
+                                <div class="row tr-row mt-2">
+                                    <div class="col-10 pr-0">
+                                        {{-- <input required="" type="text" min="1" name="skill[]" id="weight" class="form-control rounded" placeholder="skill"> --}}
+                                        <input type="file" name="image[]" required>
+                                    </div>
+                                    <div class="col-2 pr-3 text-right">
+                                        <div class=" rowfy-addrow btn btn-success btn-block">+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                  
+                    <!-- -->
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Region</label>
                         <section class="region_id_par">
                             <select name="region_id[]" id="region_id" class="form-control region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple

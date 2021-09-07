@@ -284,6 +284,7 @@
                     <thead>
                         <tr>
                             <th width="2%">ID</th>
+                            <th width="7%">Vessel Image</th>
                             <th width="7%">Vessel Type</th>
                             <th width="10%">Region</th>
                             <th width="10%">Country</th>
@@ -309,6 +310,11 @@
                                     <td width="3%">
                                         <div class="td_h">
                                             {{$row->ref_no}}
+                                        </div>
+                                    </td>
+									<td width="10%">
+                                        <div class="td_h">
+                                            <img src="{{asset('storage/vessel_sale_images/'.$row->vessel_img)}}" width="80" class="img-thumbnail img-fluid" alt="vessel img">
                                         </div>
                                     </td>
                                     <td width="10%">
