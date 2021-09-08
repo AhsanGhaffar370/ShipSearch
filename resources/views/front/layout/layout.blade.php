@@ -320,6 +320,7 @@
                 $(this).closest('.tr-row').remove();
             });
 
+            // image preview
             $('img[data-enlargeable]').addClass('img-enlargeable').click(function() {
                 var src = $(this).attr('src');
                 var modal;

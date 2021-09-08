@@ -8,249 +8,265 @@ $(document).ready(function() {
 
     $(document).on("change", 'select.ser_inp_fields', function(e) {
 
-        let rcp_ids = $(this).val();
-        let rcp_name = $(this).attr('id');
+        let selected_name = $("option:selected", this).text(); //OR  $(this).find('option:selected').text();
 
-        let n_prefix="";
-        if(rcp_name.includes("loading"))
-            n_prefix="loading_";
-        else if(rcp_name.includes("discharge"))
-            n_prefix="discharge_";
+        if (selected_name != 'Any') {
 
-        $.ajax({
-            url: route('cargo.get_country_port'),
-            data: "rcp_ids=" + rcp_ids + "&rcp_name=" + rcp_name,
-            type: "get",
-            success: function(response) {
-                
-                let json_data = $.parseJSON(response);
-                var post_str = "";
-                
-                let names=[];
-                if(rcp_name.includes("region"))
-                    names=['country','port'];
-                if(rcp_name.includes("country"))
-                    names=['region','port'];
-                if(rcp_name.includes("port"))
-                    names=['region','country'];
+            let rcp_ids = $(this).val();
+            let rcp_name = $(this).attr('id');
 
-                $.each(names, function(i, n_list) {
-                    // get selected data of country/port
-                    let dd_id = "#"+n_prefix+n_list+"_id";
-                    let dd_data = $(dd_id + " option:selected").map(function() { return $.trim($(this).text()); }).get().join(',');
-                    let dd_data_arr = $(dd_id).val();
-                    post_str = "";
-                    post_str += `
-                    <select name="`+n_prefix+n_list+`_id[]" id="`+n_prefix+n_list+`_id" class="`+n_prefix+n_list+`_id ser_inp_fields" form="search_cvs_form"
-                        multiple title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
-                    if(rcp_ids.length<1){
-                        $.each(json_data['data'][n_list], function(i, obj1) {
-                            if(n_list=='region')
-                                post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
-                            if(n_list=='country')
-                                post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
-                            if(n_list=='port')
-                                post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
+            let n_prefix = "";
+            if (rcp_name.includes("loading"))
+                n_prefix = "loading_";
+            else if (rcp_name.includes("discharge"))
+                n_prefix = "discharge_";
+
+            $.ajax({
+                url: route('cargo.get_country_port'),
+                data: "rcp_ids=" + rcp_ids + "&rcp_name=" + rcp_name,
+                type: "get",
+                success: function(response) {
+
+                    let json_data = $.parseJSON(response);
+                    var post_str = "";
+
+                    let names = [];
+                    if (rcp_name.includes("region"))
+                        names = ['country', 'port'];
+                    if (rcp_name.includes("country"))
+                        names = ['region', 'port'];
+                    if (rcp_name.includes("port"))
+                        names = ['region', 'country'];
+
+                    $.each(names, function(i, n_list) {
+                        // get selected data of country/port
+                        let dd_id = "#" + n_prefix + n_list + "_id";
+                        let dd_data = $(dd_id + " option:selected").map(function() { return $.trim($(this).text()); }).get().join(',');
+                        let dd_data_arr = $(dd_id).val();
+                        post_str = "";
+                        post_str += `
+                        <select name="` + n_prefix + n_list + `_id[]" id="` + n_prefix + n_list + `_id" class="` + n_prefix + n_list + `_id ser_inp_fields" form="search_cvs_form"
+                            multiple title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
+                        if (rcp_ids.length < 1) {
+                            $.each(json_data['data'][n_list], function(i, obj1) {
+                                if (n_list == 'region')
+                                    post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
+                                if (n_list == 'country')
+                                    post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
+                                if (n_list == 'port')
+                                    post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
+                            });
+                        } else {
+                            $.each(json_data['data'][n_list], function(i, obj1) {
+                                if (n_list == 'region')
+                                    post_str += `<option value="` + obj1.region_rel.region_id + `">` + obj1.region_rel.region_name + `</option>`;
+                                if (n_list == 'country')
+                                    post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
+                                if (n_list == 'port')
+                                    post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
+                            });
+                        }
+                        post_str += `</select>`;
+                        $("." + n_prefix + n_list + "_id_par").html(post_str);
+
+                        // populate selected data in their dropdown
+                        $.each(dd_data_arr, function(i, obj2) {
+                            $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
                         });
-                    }else{
-                        $.each(json_data['data'][n_list], function(i, obj1) {
-                            if(n_list=='region')
-                                post_str += `<option value="` + obj1.region_rel.region_id + `">` + obj1.region_rel.region_name + `</option>`;
-                            if(n_list=='country')
-                                post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
-                            if(n_list=='port')
-                                post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
-                        });
-                    }
-                    post_str += `</select>`;
-                    $("."+n_prefix+n_list+"_id_par").html(post_str);
+                        $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
+                        if (dd_data_arr.length > 2) {
+                            $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
+                            $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
+                        } else {
+                            $(dd_id).siblings(".btn").attr("title", dd_data);
+                            $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
+                        }
 
-                    // populate selected data in their dropdown
-                    $.each(dd_data_arr, function(i, obj2) {
-                        $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
+                        $("." + n_prefix + n_list + "_id").selectpicker();
                     });
-                    $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
-                    if (dd_data_arr.length > 2) {
-                        $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
-                    } else {
-                        $(dd_id).siblings(".btn").attr("title", dd_data);
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
-                    }
-
-                    $("."+n_prefix+n_list+"_id").selectpicker();
-                });
-            }
-        });
+                }
+            });
+        }
     });
 
     $(document).on("change", 'select.ser_inp_fields_each', function(e) {
 
-        let rcp_ids = $(this).val();
-        let rcp_name = $(this).attr('id');
 
-        let id1 = rcp_name.split('_');
-        let id = id1[id1.length - 1];
+        let selected_name = $("option:selected", this).text(); //OR  $(this).find('option:selected').text();
 
-        let n_prefix="";
-        if(rcp_name.includes("loading"))
-            n_prefix="loading_";
-        else if(rcp_name.includes("discharge"))
-            n_prefix="discharge_";
+        if (selected_name != 'Any') {
 
-        $.ajax({
-            url: route('cargo.get_country_port'),
-            data: "rcp_ids=" + rcp_ids + "&rcp_name=" + rcp_name,
-            type: "get",
-            success: function(response) {
-                
-                let json_data = $.parseJSON(response);
-                var post_str = "";
-                
-                let names=[];
-                if(rcp_name.includes("region"))
-                    names=['country','port'];
-                if(rcp_name.includes("country"))
-                    names=['region','port'];
-                if(rcp_name.includes("port"))
-                    names=['region','country'];
+            let rcp_ids = $(this).val();
+            let rcp_name = $(this).attr('id');
 
-                $.each(names, function(i, n_list) {
-                    // get selected data of country/port
-                    let dd_id = "#"+n_prefix+n_list+"_id_"+id;
-                    let dd_data = $(dd_id + " option:selected").map(function() { return $.trim($(this).text()); }).get().join(',');
-                    let dd_data_arr = $(dd_id).val();
-                    post_str = "";
-                    post_str += `
-                    <select name="`+n_prefix+n_list+`_id[]" id="`+n_prefix+n_list+`_id_`+id+`" class="`+n_prefix+n_list+`_id ser_inp_fields_each" form="search_cvs_form_`+id+`" 
-                        multiple title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
-                    if(rcp_ids.length<1){
-                        $.each(json_data['data'][n_list], function(i, obj1) {
-                            if(n_list=='region')
-                                post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
-                            if(n_list=='country')
-                                post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
-                            if(n_list=='port')
-                                post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
+            let id1 = rcp_name.split('_');
+            let id = id1[id1.length - 1];
+
+            let n_prefix = "";
+            if (rcp_name.includes("loading"))
+                n_prefix = "loading_";
+            else if (rcp_name.includes("discharge"))
+                n_prefix = "discharge_";
+
+            $.ajax({
+                url: route('cargo.get_country_port'),
+                data: "rcp_ids=" + rcp_ids + "&rcp_name=" + rcp_name,
+                type: "get",
+                success: function(response) {
+
+                    let json_data = $.parseJSON(response);
+                    var post_str = "";
+
+                    let names = [];
+                    if (rcp_name.includes("region"))
+                        names = ['country', 'port'];
+                    if (rcp_name.includes("country"))
+                        names = ['region', 'port'];
+                    if (rcp_name.includes("port"))
+                        names = ['region', 'country'];
+
+                    $.each(names, function(i, n_list) {
+                        // get selected data of country/port
+                        let dd_id = "#" + n_prefix + n_list + "_id_" + id;
+                        let dd_data = $(dd_id + " option:selected").map(function() { return $.trim($(this).text()); }).get().join(',');
+                        let dd_data_arr = $(dd_id).val();
+                        post_str = "";
+                        post_str += `
+                        <select name="` + n_prefix + n_list + `_id[]" id="` + n_prefix + n_list + `_id_` + id + `" class="` + n_prefix + n_list + `_id ser_inp_fields_each" form="search_cvs_form_` + id + `" 
+                            multiple title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
+                        if (rcp_ids.length < 1) {
+                            $.each(json_data['data'][n_list], function(i, obj1) {
+                                if (n_list == 'region')
+                                    post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
+                                if (n_list == 'country')
+                                    post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
+                                if (n_list == 'port')
+                                    post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
+                            });
+                        } else {
+                            $.each(json_data['data'][n_list], function(i, obj1) {
+                                if (n_list == 'region')
+                                    post_str += `<option value="` + obj1.region_rel.region_id + `">` + obj1.region_rel.region_name + `</option>`;
+                                if (n_list == 'country')
+                                    post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
+                                if (n_list == 'port')
+                                    post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
+                            });
+                        }
+                        post_str += `</select>`;
+                        $("." + n_prefix + n_list + "_id_par_" + id).html(post_str);
+
+                        // populate selected data in their dropdown
+                        $.each(dd_data_arr, function(i, obj2) {
+                            $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
                         });
-                    }else{
-                        $.each(json_data['data'][n_list], function(i, obj1) {
-                            if(n_list=='region')
-                                post_str += `<option value="` + obj1.region_rel.region_id + `">` + obj1.region_rel.region_name + `</option>`;
-                            if(n_list=='country')
-                                post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
-                            if(n_list=='port')
-                                post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
-                        });
-                    }
-                    post_str += `</select>`;
-                    $("."+n_prefix+n_list+"_id_par_"+id).html(post_str);
+                        $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
+                        if (dd_data_arr.length > 2) {
+                            $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
+                            $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
+                        } else {
+                            $(dd_id).siblings(".btn").attr("title", dd_data);
+                            $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
+                        }
 
-                    // populate selected data in their dropdown
-                    $.each(dd_data_arr, function(i, obj2) {
-                        $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
+                        $("." + n_prefix + n_list + "_id").selectpicker();
                     });
-                    $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
-                    if (dd_data_arr.length > 2) {
-                        $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
-                    } else {
-                        $(dd_id).siblings(".btn").attr("title", dd_data);
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
-                    }
-
-                    $("."+n_prefix+n_list+"_id").selectpicker();
-                });
-            }
-        });
+                }
+            });
+        }
     });
 
-    
+
     $(document).on("change", 'select.add_cvs_inp_fields', function(e) {
 
-        let rcp_ids = $(this).val();
-        let rcp_name = $(this).attr('id');
+        let selected_name = $("option:selected", this).text(); //OR  $(this).find('option:selected').text();
 
-        let form_id1 = $(this).closest('form').parent('div').attr('id');
-        let form_id="";
-        if(form_id1.includes("cargo"))
-            form_id="search_cargo_form";
-        if(form_id1.includes("vessel"))
-            form_id="search_vessel_form";
-        if(form_id1.includes("vsale"))
-            form_id="search_vsale_form";
+        if (selected_name != 'Any') {
 
-        let n_prefix="";
-        if(rcp_name.includes("loading"))
-            n_prefix="loading_";
-        else if(rcp_name.includes("discharge"))
-            n_prefix="discharge_";
+            let rcp_ids = $(this).val();
+            let rcp_name = $(this).attr('id');
 
-        $.ajax({
-            url: route('cargo.get_country_port'),
-            data: "rcp_ids=" + rcp_ids + "&rcp_name=" + rcp_name,
-            type: "get",
-            success: function(response) {
-                
-                let json_data = $.parseJSON(response);
-                var post_str = "";
-                
-                let names=[];
-                if(rcp_name.includes("region"))
-                    names=['country','port'];
-                if(rcp_name.includes("country"))
-                    names=['region','port'];
-                if(rcp_name.includes("port"))
-                    names=['region','country'];
+            let form_id1 = $(this).closest('form').parent('div').attr('id');
+            let form_id = "";
+            if (form_id1.includes("cargo"))
+                form_id = "search_cargo_form";
+            if (form_id1.includes("vessel"))
+                form_id = "search_vessel_form";
+            if (form_id1.includes("vsale"))
+                form_id = "search_vsale_form";
 
-                $.each(names, function(i, n_list) {
-                    // get selected data of country/port
-                    let dd_id = "#"+n_prefix+n_list+"_id";
-                    let dd_data = $(dd_id + " option:selected").map(function() { return $.trim($(this).text()); }).get().join(',');
-                    let dd_data_arr = $(dd_id).val();
-                    post_str = "";
-                    post_str += `
-                    <select name="`+n_prefix+n_list+`_id[]" id="`+n_prefix+n_list+`_id" class="form-control `+n_prefix+n_list+`_id add_cvs_inp_fields ser_inp_fields21 mb-2" 
-                        multiple form="`+form_id+`" title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
-                    if(rcp_ids.length<1){
-                        $.each(json_data['data'][n_list], function(i, obj1) {
-                            if(n_list=='region')
-                                post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
-                            if(n_list=='country')
-                                post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
-                            if(n_list=='port')
-                                post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
+            let n_prefix = "";
+            if (rcp_name.includes("loading"))
+                n_prefix = "loading_";
+            else if (rcp_name.includes("discharge"))
+                n_prefix = "discharge_";
+
+            $.ajax({
+                url: route('cargo.get_country_port'),
+                data: "rcp_ids=" + rcp_ids + "&rcp_name=" + rcp_name,
+                type: "get",
+                success: function(response) {
+
+                    let json_data = $.parseJSON(response);
+                    var post_str = "";
+
+                    let names = [];
+                    if (rcp_name.includes("region"))
+                        names = ['country', 'port'];
+                    if (rcp_name.includes("country"))
+                        names = ['region', 'port'];
+                    if (rcp_name.includes("port"))
+                        names = ['region', 'country'];
+
+                    $.each(names, function(i, n_list) {
+                        // get selected data of country/port
+                        let dd_id = "#" + n_prefix + n_list + "_id";
+                        let dd_data = $(dd_id + " option:selected").map(function() { return $.trim($(this).text()); }).get().join(',');
+                        let dd_data_arr = $(dd_id).val();
+                        post_str = "";
+                        post_str += `
+                        <select name="` + n_prefix + n_list + `_id[]" id="` + n_prefix + n_list + `_id" class="form-control ` + n_prefix + n_list + `_id add_cvs_inp_fields ser_inp_fields21 mb-2" 
+                            multiple form="` + form_id + `" title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
+                        if (rcp_ids.length < 1) {
+                            $.each(json_data['data'][n_list], function(i, obj1) {
+                                if (n_list == 'region')
+                                    post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
+                                if (n_list == 'country')
+                                    post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
+                                if (n_list == 'port')
+                                    post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
+                            });
+                        } else {
+                            $.each(json_data['data'][n_list], function(i, obj1) {
+                                if (n_list == 'region')
+                                    post_str += `<option value="` + obj1.region_rel.region_id + `">` + obj1.region_rel.region_name + `</option>`;
+                                if (n_list == 'country')
+                                    post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
+                                if (n_list == 'port')
+                                    post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
+                            });
+                        }
+                        post_str += `</select>`;
+                        $("." + n_prefix + n_list + "_id_par").html(post_str);
+
+                        // populate selected data in their dropdown
+                        $.each(dd_data_arr, function(i, obj2) {
+                            $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
                         });
-                    }else{
-                        $.each(json_data['data'][n_list], function(i, obj1) {
-                            if(n_list=='region')
-                                post_str += `<option value="` + obj1.region_rel.region_id + `">` + obj1.region_rel.region_name + `</option>`;
-                            if(n_list=='country')
-                                post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
-                            if(n_list=='port')
-                                post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
-                        });
-                    }
-                    post_str += `</select>`;
-                    $("."+n_prefix+n_list+"_id_par").html(post_str);
+                        $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
+                        if (dd_data_arr.length > 2) {
+                            $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
+                            $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
+                        } else {
+                            $(dd_id).siblings(".btn").attr("title", dd_data);
+                            $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
+                        }
 
-                    // populate selected data in their dropdown
-                    $.each(dd_data_arr, function(i, obj2) {
-                        $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
+                        $("." + n_prefix + n_list + "_id").selectpicker();
                     });
-                    $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
-                    if (dd_data_arr.length > 2) {
-                        $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
-                    } else {
-                        $(dd_id).siblings(".btn").attr("title", dd_data);
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
-                    }
-
-                    $("."+n_prefix+n_list+"_id").selectpicker();
-                });
-            }
-        });
+                }
+            });
+        }
     });
 
 

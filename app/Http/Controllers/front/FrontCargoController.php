@@ -578,11 +578,11 @@ class FrontCargoController extends Controller
             $data['region'] = ss_setup_region_country_port::select('region_id')->with(['region_rel'])->whereIn('port_id',$arr)->groupBy('region_id')->orderBy('region_id', 'ASC')->get();
             $data['country'] = ss_setup_region_country_port::select('country_id')->with(['country_rel'])->whereIn('port_id',$arr)->groupBy('country_id')->orderBy('country_id', 'ASC')->get();
         }
-
+        
         echo json_encode(array('data'=>$data));
         // echo $data;
     }
-
+    
     function reset_region_country_port(){
 
         $data=[];

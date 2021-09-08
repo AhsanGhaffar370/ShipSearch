@@ -54,6 +54,11 @@ class ss_setup_region extends Model
 
 
 
+    // Directory
+    // public function DirRegion(){
+    //     return $this->hasOne('App\Models\ss_setup_company_directory',"region_id");
+    // }
+
 
     // public function Lcargo(){
     //     return $this->hasMany('App\Models\ss_cargo',"loading_region_id");

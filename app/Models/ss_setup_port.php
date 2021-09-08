@@ -46,6 +46,12 @@ class ss_setup_port extends Model
         return $this->hasMany('App\Models\rel_ser_vessel_port',"port_id");
     }
 
+    
+    // Directory
+    // public function DirPort(){
+    //     return $this->hasOne('App\Models\ss_setup_company_directory',"port_id");
+    // }
+
     // public function Lcargo1(){
     //     return $this->hasMany('App\Models\ss_cargo',"loading_port_id_1");
     // }

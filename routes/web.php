@@ -17,7 +17,7 @@ use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\front\FrontCargoController;
 use App\Http\Controllers\front\FrontVesselController;
 use App\Http\Controllers\front\FrontVesselSaleController;
-
+use App\Http\Controllers\front\FrontDirectoryController;
 /*
 |--------------------------------------------------------------------------
 | Front Section
@@ -101,7 +101,7 @@ Route::get('/vessel_sale/update_hist_data', [FrontVesselSaleController::class, '
 
 
 // Directory Charter
-Route::get('/directory/view', [Front_auth::class, 'view'] )->name('directory.view');
+Route::get('/directory/view', [FrontDirectoryController::class, 'view'] )->name('directory.view');
 // Route::post('/vessel_sale/view', [FrontVesselSaleController::class, 'search_req'] )->name('vessel_sale.search_req');
 // Route::get('/vessel_sale/ser_hist_rec', [FrontVesselSaleController::class, 'search_req_ajax'] )->name('vessel_sale.ser_hist_rec');
 // Route::get('/vessel_sale/del_ser_hist_rec', [FrontVesselSaleController::class, 'del_ser_his_req_ajax'] )->name('vessel_sale.del_ser_hist_rec');
@@ -114,7 +114,7 @@ Route::group(['middleware'=>['front_auth']],function(){
     // Cargo
     Route::get('/cargo/add', [FrontCargoController::class, 'view_add'] )->name('cargo.add');
     Route::post('/cargo/add_req', [FrontCargoController::class, 'add_req'] )->name('cargo.add_req');
-    Route::get('/directory/view/{id}',[Front_auth::class, 'view_user'])->name('directory.view.user');
+    Route::get('/directory/view/{id}',[FrontDirectoryController::class, 'view_user'])->name('directory.view.user');
 
 
     // Vessel

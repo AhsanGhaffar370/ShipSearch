@@ -276,7 +276,7 @@
         <span id="total_rec_found" class="font-weight-bold pt-3 pl-2"> {{ sizeof($data) }} TOTAL RESULTS</span>
         
         <a href={{ route('vessel_sale.view') }} class="btn btn_style bg_gd ml-3 pl-2 pr-2"><i class="fas fa-sync-alt"></i></a>
-
+        
         <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
             <div class="border">
                 <table id="cvs_table"
@@ -284,12 +284,12 @@
                     <thead>
                         <tr>
                             <th width="2%">ID</th>
-                            <th width="7%">Vessel Image</th>
+                            <th width="14%">Vessel Image</th>
                             <th width="7%">Vessel Type</th>
-                            <th width="10%">Region</th>
-                            <th width="10%">Country</th>
-                            <th width="10%">Port</th>
-                            <th width="10%">Built Year</th>
+                            <th width="8%">Region</th>
+                            <th width="8%">Country</th>
+                            <th width="8%">Port</th>
+                            <th width="8%">Built Year</th>
                             <th width="10%">Price</th>
                             <th width="6%">Posted on</th>
 
@@ -314,12 +314,23 @@
                                     </td>
 									<td width="10%">
                                         <div class="td_h">
-                                            @foreach (explode(',',$row->vessel_img) as $item)
-                                                <img data-enlargeable src="{{asset('storage/vessel_sale_images/'.$item)}}" width="80" class="img-thumbnail img-fluid" alt="vessel img"
+                                            {{-- @foreach (explode(',',$row->vessel_img) as $item) --}}
+                                                <img data-enlargeable src="{{asset('storage/vessel_sale_images/'.explode(',',$row->vessel_img)[0])}}" width="80" class="img-thumbnail img-fluid" alt="vessel img"
                                                 style="cursor: zoom-in;">
-                                            @endforeach
-                                            
+                                            {{-- @endforeach --}}
                                         </div>  
+                                        {{--  --}}
+                                        <div class="show_details show_details_{{ $row->vessel_sale_id }} tr_bg_cl d_n">
+                                            <span class="d_n">{{$count=0}}</span>
+                                            @foreach (explode(',',$row->vessel_img) as $item)
+                                                @if($count==0)
+                                                    <span class="d_n">{{$count++}}</span>
+                                                @else
+                                                    <img data-enlargeable src="{{asset('storage/vessel_sale_images/'.$item)}}" width="80" class="img-thumbnail img-fluid" alt="vessel img"
+                                                style="cursor: zoom-in;">
+                                                @endif
+                                            @endforeach
+                                        </div>
                                     </td>
                                     <td width="10%">
                                         <div class="td_h">

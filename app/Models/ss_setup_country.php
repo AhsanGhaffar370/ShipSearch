@@ -50,6 +50,12 @@ class ss_setup_country extends Model
         return $this->hasMany('App\Models\rel_ser_vessel_country',"country_id");
     }
 
+    //Direcotry
+    // public function DirCountry(){
+    //     return $this->hasOne('App\Models\ss_setup_company_directory',"country_id");
+    // }
+
+
     // public function Lcargo(){
     //     return $this->hasMany('App\Models\ss_cargo',"loading_country_id");
     // }
