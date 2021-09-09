@@ -6,6 +6,18 @@ $(document).ready(function() {
     //     $("[data-toggle=popover]").popover();
     // });
 
+    // $(document).load(function() {
+    //     $(".focus_comapny_row").focus();
+    // });
+
+    let com_url_locat = window.location.href;
+    let com_url_locat_id1 = com_url_locat.split('#');
+    let comp_id31 = com_url_locat_id1[com_url_locat_id1.length - 1];
+    // console.log(com_url_locat);
+    // console.log(comp_id31);
+
+    // $(".company_id_" + comp_id31).css({ "color": "#FFFFFF !important", "background-color": "#555555 !important" });
+
     $(document).on("change", 'select.ser_inp_fields', function(e) {
 
         let selected_name = $("option:selected", this).text(); //OR  $(this).find('option:selected').text();

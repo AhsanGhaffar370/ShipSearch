@@ -158,7 +158,7 @@
         </div>
             <nav class="navbar navbar-expand-lg navbar-white bg-white p-0">
                 <a class="navbar-brand p-0" href="{{ route('home') }}">
-                    <img width="200" src="{{ asset('front_asset/images/logo.png') }}" alt="" />
+                    <img width="200" src="{{ asset('front_asset/images/logo3.png') }}" alt="" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

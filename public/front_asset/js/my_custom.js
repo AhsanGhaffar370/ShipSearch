@@ -139,9 +139,6 @@ $(document).ready(function() {
         return newDate;
     }
 
-    // $(document).load(function () {
-    //      $(".focus_user_row").focus();
-    // });
 
     // $("#home_vessel").hide();
     // $("#home_vsale").hide();

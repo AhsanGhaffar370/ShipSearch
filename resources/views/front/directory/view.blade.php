@@ -18,7 +18,7 @@
     {{-- Directory of company Table Records --}}
     {{-- ////////////////////////////////// --}}
     <div class="bg-white mt-2 pt-2">
-        <span id="total_rec_found" class="font-weight-bold pt-3 pl-2"> {{ sizeof($data) }} TOTAL RESULTS</span>
+        <span id="total_rec_found" class="font-weight-bold pt-3 pl-2"> {{ sizeof($data) }} TOTAL RESULTS {{$fuser_id}}</span>
 
         <a href={{ route('directory.view') }} class="btn btn_style bg_gd ml-3 pl-2 pr-2"><i
                 class="fas fa-sync-alt"></i></a>
@@ -48,7 +48,11 @@
                             </tr>
                         @else
                             @foreach ($data as $row)
-                                <tr class="">
+                                {{-- @if ($fuser_id == "#".$row->company_id) --}}
+                                    {{-- <tr id="{{$row->company_id}}" style="color:white !important ;background-color: #555555 !important;"> --}}
+                                {{-- @else --}}
+                                    <tr id="{{$row->company_id}}" class="company_id_{{$row->company_id}}">
+                                {{-- @endif --}}
                                     <td>
                                         <div class="td_h">
                                             {{ $row->company_id }}
@@ -121,11 +125,9 @@
                                             </div>
                                         </td>
                                     @endif
-
                                 </tr>
                             @endforeach
                         @endif
-
                     </tbody>
                 </table>
             </div>

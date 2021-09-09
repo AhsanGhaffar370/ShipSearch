@@ -114,8 +114,6 @@ Route::group(['middleware'=>['front_auth']],function(){
     // Cargo
     Route::get('/cargo/add', [FrontCargoController::class, 'view_add'] )->name('cargo.add');
     Route::post('/cargo/add_req', [FrontCargoController::class, 'add_req'] )->name('cargo.add_req');
-    Route::get('/directory/view/{id}',[FrontDirectoryController::class, 'view_user'])->name('directory.view.user');
-
 
     // Vessel
     // Route::get('/vessel/view/{id}',[FrontVesselController::class, 'view_detail'])->name('vessel.detail.id');
@@ -125,6 +123,9 @@ Route::group(['middleware'=>['front_auth']],function(){
     // Vessel Sale
     Route::get('/vessel_sale/add', [FrontVesselSaleController::class, 'view_add'] )->name('vessel_sale.add');
     Route::post('/vessel_sale/add_req', [FrontVesselSaleController::class, 'add_req'] )->name('vessel_sale.add_req');
+
+    // Directory
+    Route::get('/directory/view/#{id}',[FrontDirectoryController::class, 'view_company'])->name('directory.view.user');
 });
 
 

@@ -20,11 +20,11 @@ class FrontDirectoryController extends Controller
     }
 
 
-    function view_user(Request $req){
+    function view_company(Request $req){
 
         $data = ss_setup_company_directory::with(['DirRegion','DirCountry','DirPort'])->active()->desc()->get();
-        // dd($req->id);
-
+        // dd($req);
+        
         return view('front/directory/view',['data'=>$data,
                                             'fuser_id'=>$req->id]);
     }

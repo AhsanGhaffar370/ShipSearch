@@ -129,8 +129,7 @@ class FrontCargoController extends Controller
                                         'cargo_type'=>$ss_setup_cargo_type,
                                         'region'=>$ss_setup_region,
                                         'country'=>$ss_setup_country,
-                                        'port'=>$ss_setup_port,
-                                        'unit'=>$ss_setup_unit]
+                                        'port'=>$ss_setup_port]
                                     );
     }
 
