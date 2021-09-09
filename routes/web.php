@@ -18,6 +18,8 @@ use App\Http\Controllers\front\FrontCargoController;
 use App\Http\Controllers\front\FrontVesselController;
 use App\Http\Controllers\front\FrontVesselSaleController;
 use App\Http\Controllers\front\FrontDirectoryController;
+
+use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
 | Front Section
@@ -34,6 +36,11 @@ data entry in cargo and vessel section
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::get('create-symlink', function() {
+    Artisan::call('storage:link');
+});
+
 
 Route::get('/', [HomeController::class, 'view'] )->name('home');
 

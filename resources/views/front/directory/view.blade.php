@@ -51,7 +51,7 @@
                                 {{-- @if ($fuser_id == "#".$row->company_id) --}}
                                     {{-- <tr id="{{$row->company_id}}" style="color:white !important ;background-color: #555555 !important;"> --}}
                                 {{-- @else --}}
-                                    <tr id="{{$row->company_id}}" class="company_id_{{$row->company_id}}">
+                                    <tr id="{{$row->company_id-1}}" class="company_id_{{$row->company_id}}">
                                 {{-- @endif --}}
                                     <td>
                                         <div class="td_h">

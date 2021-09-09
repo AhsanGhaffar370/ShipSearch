@@ -305,18 +305,27 @@
         // });
 
 
+
         $(document).ready(function() {
+            let count_add=1;
+
             /*Add row event*/
             $(document).on('click', '.rowfy-addrow', function(){
-                rowfyable = $(this).closest('.table');
-                lastRow = $('.tbody .tr-row:last', rowfyable).clone();
-                $('input', lastRow).val(''); //$('input', lastRow) -> this expression is equal to $( lastRow ).find( "input" )
-                $('.tbody', rowfyable).append(lastRow);
-                $(this).removeClass('rowfy-addrow btn-success').addClass('rowfy-deleterow btn-danger').text('-');
+                if(count_add<9){
+                    count_add++;
+                    rowfyable = $(this).closest('.table');
+                    lastRow = $('.tbody .tr-row:last', rowfyable).clone();
+                    $('input', lastRow).val(''); //$('input', lastRow) -> this expression is equal to $( lastRow ).find( "input" )
+                    $('.tbody', rowfyable).append(lastRow);
+                    $(this).removeClass('rowfy-addrow btn-success').addClass('rowfy-deleterow btn-danger').text('-');
+                }else{
+                    alert('Maximum 9 images can upload');
+                }
             });
     
             /*Delete row event*/
             $(document).on('click', '.rowfy-deleterow', function(){
+                count_add--;
                 $(this).closest('.tr-row').remove();
             });
 

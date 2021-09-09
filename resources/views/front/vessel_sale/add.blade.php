@@ -34,10 +34,6 @@
                         <input type="text" required name="ref_no" class="form-control" value="{{$vessel_sale_ref_no}}" readonly>
                     </div>
                     <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
-                    <!-- -->
-                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
-                    <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         
                          <label class="control-label col-md-3 col-sm-3 ">Image</label>
@@ -49,12 +45,14 @@
                                         <input type="file" name="vessel_img[]" required>
                                     </div>
                                     <div class="col-2 pr-3 text-right">
-                                        <div class=" rowfy-addrow btn btn-success btn-block">+</div>
+                                        <div class=" rowfy-addrow btn btn_xxxs btn-success btn-block">+</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>                  
+                    <!-- -->
+                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12 m-0 p-0"></div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                         <label for="">Region</label>

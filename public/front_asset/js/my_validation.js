@@ -6,17 +6,14 @@ $(document).ready(function() {
     //     $("[data-toggle=popover]").popover();
     // });
 
-    // $(document).load(function() {
-    //     $(".focus_comapny_row").focus();
-    // });
-
+    // highlight comapany detail when user click on view detail button in view cargo page
     let com_url_locat = window.location.href;
-    let com_url_locat_id1 = com_url_locat.split('#');
-    let comp_id31 = com_url_locat_id1[com_url_locat_id1.length - 1];
-    // console.log(com_url_locat);
-    // console.log(comp_id31);
+    if (com_url_locat.includes("#") && com_url_locat.includes("directory/view")) {
+        let com_url_locat_id1 = com_url_locat.split('#');
+        let comp_id31 = com_url_locat_id1[com_url_locat_id1.length - 1];
+        $(".company_id_" + comp_id31).css({ "color": "#FFFFFF !important", "background-color": "#555555 !important" });
+    }
 
-    // $(".company_id_" + comp_id31).css({ "color": "#FFFFFF !important", "background-color": "#555555 !important" });
 
     $(document).on("change", 'select.ser_inp_fields', function(e) {
 
