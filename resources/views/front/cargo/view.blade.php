@@ -196,8 +196,7 @@
                         {{-- Search History data --}}
                         {{-- /////////////////////// --}}
                         @foreach ($ser_data as $row)
-                            <tr id="ser_hist_rec_{{ $row->id }}"
-                                class="ser_hist_rec_each car_ser_hist_rec_req_each ">
+                            <tr id="ser_hist_rec_{{ $row->id }}" class="ser_hist_rec_each car_ser_hist_rec_req_each ">
                                 <td id="id-{{ $row->id }}">
                                     {{ $row->id }}
                                 </td>
@@ -290,8 +289,7 @@
                             {{-- /////////////////////// --}}
                             {{-- advance search for each record --}}
                             {{-- /////////////////////// --}}
-                            <tr id='adv_ser_form_each_{{ $row->id }}'
-                                class="adv_ser_form_each pos_rel d_n adv_forms_tr">
+                            <tr id='adv_ser_form_each_{{ $row->id }}' class="adv_ser_form_each pos_rel d_n adv_forms_tr">
                                 <form id="search_cvs_form_{{ $row->id }}" class="form-horizontal form-label-left ">
                                     @csrf
                                     <td></td>

@@ -1205,11 +1205,6 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-
     //////////////////////////////////////
     // AJAX Request for updating search history recod
     //////////////////////////////////////
@@ -1228,19 +1223,32 @@ $(document).ready(function() {
 
         let arr = ["vessel_type_id", "charter_type_id", "region_id", "country_id", "port_id"];
 
-        let dd_str = new Array(5);
+        let dd_str_ids = new Array(7);
+        let dd_str_names = new Array(7);
+        // let dd_str = new Array(5);
         let count = 0;
 
         $.each(arr, function(i, obj1) {
             let dd_id = "#" + obj1 + "_" + uid;
-            var dd_data = $(dd_id).map(function() { return $(this).val(); }).get();
-            dd_str[count] = "";
-            $.each(dd_data, function(i, obj1) {
-                dd_str[count] += obj1 + ",";
+
+            var dd_data_ids = $(dd_id).map(function() { return $(this).val(); }).get();
+            dd_str_ids[count] = "";
+            $.each(dd_data_ids, function(i, obj1) {
+                dd_str_ids[count] += obj1 + ",";
             });
-            dd_str[count] = dd_str[count].replace(/,+$/, '');
+            dd_str_ids[count] = dd_str_ids[count].replace(/,+$/, '');
+
+
+            var dd_data_names = $(dd_id + " :selected").map(function() { return $(this).html(); }).get();
+            dd_str_names[count] = "";
+            $.each(dd_data_names, function(i, obj1) {
+                dd_str_names[count] += obj1 + ",";
+            });
+            dd_str_names[count] = dd_str_names[count].replace(/,+$/, '');
+
             count++;
         });
+
         // console.log("cargo ", dd_str[1]);
 
 
@@ -1249,37 +1257,37 @@ $(document).ready(function() {
         } else {
             $.ajax({
                 url: route('vessel.update_hist_data'),
-                data: "id=" + uid + "&vessel_type_id=" + dd_str[0] + "&charter_type_id=" + dd_str[1] + "&laycan_date_from=" + date_from +
-                    "&laycan_date_to=" + date_to + "&region_id=" + dd_str[2] + "&country_id=" + dd_str[3] +
-                    "&port_id=" + dd_str[4],
+                data: "id=" + uid + "&vessel_type_id=" + dd_str_ids[0] + "&charter_type_id=" + dd_str_ids[1] + "&laycan_date_from=" + date_from +
+                    "&laycan_date_to=" + date_to + "&region_id=" + dd_str_ids[2] + "&country_id=" + dd_str_ids[3] +
+                    "&port_id=" + dd_str_ids[4],
                 type: "get",
                 success: function(response) {
                     if (response == false) {
                         alert("something went wrong. Please try again");
                     } else {
-                        $("#vesseltype-" + uid).html(dd_str[0].replace(/,/g, ',<br>'));
-                        $("#chartertype-" + uid).html(dd_str[1].replace(/,/g, ',<br>'));
+                        $("#vesseltype-" + uid).html(dd_str_names[0].replace(/,/g, ',<br>'));
+                        $("#chartertype-" + uid).html(dd_str_names[1].replace(/,/g, ',<br>'));
                         $("#laycan_from-" + uid).html(date_from);
                         $("#laycan_to-" + uid).html(date_to);
-                        $("#region-" + uid).html(dd_str[2].replace(/,/g, ',<br>'));
-                        $("#country-" + uid).html(dd_str[3].replace(/,/g, ',<br>'));
-                        $("#port-" + uid).html(dd_str[4].replace(/,/g, ',<br>'));
+                        $("#region-" + uid).html(dd_str_names[2].replace(/,/g, ',<br>'));
+                        $("#country-" + uid).html(dd_str_names[3].replace(/,/g, ',<br>'));
+                        $("#port-" + uid).html(dd_str_names[4].replace(/,/g, ',<br>'));
 
                         let json_data = $.parseJSON(response);
                         var len = json_data.length;
                         var post_str = "";
                         // console.log(json_data['data'][0]['cargo_name'])
 
-                        if (json_data['data']['length'] == 0) {
+                        if (json_data['data'][0]['length'] == 0) {
                             post_str +=
                                 '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                         } else {
                             $.each(json_data, function(i, obj) {
-                                $.each(obj, function(i, obj1) {
+                                $.each(obj[0], function(i, obj1) {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
                                     post_str +=
-                                        `<tr class="">
+                                    `<tr class="">
                                         <td>
                                             <div class="td_h">` +
                                         obj1.ref_no +
@@ -1307,8 +1315,13 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` +
-                                        obj1.vessel_type_id.replace(/,/g, ',<br>') +
+                                            <div class="td_h">`;
+                                    // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
+                                    post_str +=
+                                        $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_id], function(i, vesseltype_obj) {
+                                            post_str += vesseltype_obj + ',<br>';
+                                        });
+                                    post_str +=
                                         `</div>
                                             <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Speed Laden:</p>
@@ -1320,8 +1333,13 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` +
-                                        obj1.charter_type_id.replace(/,/g, ',<br>') +
+                                            <div class="td_h">`;
+                                    // + obj1.charter_type_id.replace(/,/g, ',<br>') +
+                                    post_str +=
+                                        $.each(json_data['data'][1]['charter_type_id'][obj1.vessel_id], function(i, chartertype_obj) {
+                                            post_str += chartertype_obj + ',<br>';
+                                        });
+                                    post_str +=
                                         `</div>
                                             <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">LOA Max:</p>
@@ -1359,8 +1377,13 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` +
-                                        obj1.region_id.replace(/,/g, ',<br>') +
+                                            <div class="td_h">`;
+                                    // + obj1.region_id.replace(/,/g, ',<br>') +
+                                    post_str +=
+                                        $.each(json_data['data'][1]['region_id'][obj1.vessel_id], function(i, region_obj) {
+                                            post_str += region_obj + ',<br>';
+                                        });
+                                    post_str +=
                                         `</div>
                                             <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">IFO Consumption Empty:</p>
@@ -1372,8 +1395,13 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` +
-                                        obj1.country_id.replace(/,/g, ',<br>') +
+                                            <div class="td_h">`;
+                                    // + obj1.country_id.replace(/,/g, ',<br>') +
+                                    post_str +=
+                                        $.each(json_data['data'][1]['country_id'][obj1.vessel_id], function(i, country_obj) {
+                                            post_str += country_obj + ',<br>';
+                                        });
+                                    post_str +=
                                         `</div>
                                             <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">MGO Consumption Empty:</p>
@@ -1385,8 +1413,13 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` +
-                                        obj1.port_id.replace(/,/g, ',<br>') +
+                                            <div class="td_h">`;
+                                    // + obj1.port_id.replace(/,/g, ',<br>') +
+                                    post_str +=
+                                        $.each(json_data['data'][1]['port_id'][obj1.vessel_id], function(i, port_obj) {
+                                            post_str += port_obj + ',<br>';
+                                        });
+                                    post_str +=
                                         `</div>
                                             <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Lane Meters:</p>
@@ -1414,14 +1447,14 @@ $(document).ready(function() {
                                                 <i class="fas fa-eye-slash fa-2x"></i>
                                             </a>
                                         </td>
-                                    </tr>     
+                                    </tr>  
                                     `;
                                 });
                             });
                         } //end else
                         $("#all_records").html(post_str);
 
-                        $("#total_rec_found").html(json_data['data']['length'] + " EXACT MATCHES");
+                        $("#total_rec_found").html(json_data['data'][0]['length'] + " EXACT MATCHES");
 
                         $('.hide_detail_btn').hide();
                     }

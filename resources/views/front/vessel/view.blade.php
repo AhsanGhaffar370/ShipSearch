@@ -248,13 +248,12 @@
                                     @csrf
                                     <td></td>
                                     <td class="">
-                                        
                                         <section class="vessel_type_id_par_{{ $row->id }}">
                                             <select name="vessel_type_id[]" id="vessel_type_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
                                                 class="vessel_type_id ser_inp_fields_each" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($vessel_type as $row1)
-                                                    <option value="{{ $row1->vessel_type_name }}">
+                                                    <option value="{{ $row1->vessel_type_id }}">
                                                         {{ $row1->vessel_type_name }}</option>
                                                 @endforeach
                                             </select>
@@ -262,13 +261,12 @@
                                     </td>
                                     <!-- -->
                                     <td class="">
-                                        
                                         <section class="charter_type_id_par_{{ $row->id }}">
                                             <select name="charter_type_id[]" id="charter_type_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
                                                 class="charter_type_id ser_inp_fields_each" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($charter_type as $row1)
-                                                    <option value="{{ $row1->charter_type_name }}">
+                                                    <option value="{{ $row1->charter_type_id }}">
                                                         {{ $row1->charter_type_name }}</option>
                                                 @endforeach
                                             </select>
@@ -299,7 +297,7 @@
                                                 form="search_cvs_form_{{ $row->id }}" class="region_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($region as $row1)
-                                                    <option value="{{ $row1->region_name }}">{{ $row1->region_name }}
+                                                    <option value="{{ $row1->region_id }}">{{ $row1->region_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -313,7 +311,7 @@
                                                 form="search_cvs_form_{{ $row->id }}" class="country_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($country as $row1)
-                                                    <option value="{{ $row1->country_name }}">{{ $row1->country_name }}
+                                                    <option value="{{ $row1->country_id }}">{{ $row1->country_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -327,7 +325,7 @@
                                                 class="port_id ser_inp_fields_each" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($port as $row1)
-                                                    <option value="{{ $row1->port_name }}">{{ $row1->port_name }}
+                                                    <option value="{{ $row1->port_id }}">{{ $row1->port_name }}
                                                     </option>
                                                 @endforeach
                                             </select>

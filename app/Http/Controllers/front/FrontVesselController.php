@@ -391,7 +391,7 @@ class FrontVesselController extends Controller
         $data[1] =$ids_fk;
         $data[2] =$names_fk1;
 
-        echo json_encode(array('data'=>$ser_data));
+        echo json_encode(array('data'=>$data));
 
     }
 
