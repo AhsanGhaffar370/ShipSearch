@@ -45,6 +45,14 @@ class ss_setup_port extends Model
     public function SVport(){
         return $this->hasMany('App\Models\rel_ser_vessel_port',"port_id");
     }
+    
+    // vessel_sale and ser vessel_sale
+    public function VSport(){
+        return $this->hasMany('App\Models\rel_vsale_port',"port_id");
+    }
+    public function SVSport(){
+        return $this->hasMany('App\Models\rel_ser_vsale_port',"port_id");
+    }
 
     
     // Directory

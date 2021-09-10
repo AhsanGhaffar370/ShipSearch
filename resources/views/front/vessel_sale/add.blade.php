@@ -111,7 +111,7 @@
                                 {{-- data-actions-box="true"  --}}
                                 >
                                 @foreach ($vessel_type as $row)
-                                    <option value="{{ $row->vessel_type_name }}">{{ $row->vessel_type_name }}</option>
+                                    <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}</option>
                                 @endforeach
                             </select>
                         </section>

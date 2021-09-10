@@ -1172,35 +1172,41 @@ $(document).ready(function() {
                 let json_data = $.parseJSON(response);
                 var len = json_data.length;
 
-                $("#laycan_date_from_" + uid).val(json_data['data']['laycan_date_from']);
-                $("#laycan_date_to_" + uid).val(json_data['data']['laycan_date_to']);
+                $("#laycan_date_from_" + uid).val(json_data['data'][0]['laycan_date_from']);
+                $("#laycan_date_to_" + uid).val(json_data['data'][0]['laycan_date_to']);
 
                 let arr = ["vessel_type_id", "charter_type_id", "region_id", "country_id", "port_id"];
 
                 $.each(arr, function(i, obj1) {
 
                     let dd_id = "#" + obj1 + "_" + uid;
-                    let dd_data = json_data['data'][obj1];
-                    let dd_data_arr = dd_data.split(",");
 
-                    $.each(dd_data_arr, function(i, obj2) {
+                    let dd_data_ids = json_data['data'][1][obj1];
+                    // let dd_data_arr = dd_data.split(",");
+
+                    $.each(dd_data_ids, function(i, obj2) {
                         $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
                     });
 
                     $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
 
-                    if (dd_data_arr.length > 2) {
-                        $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
+                    if (dd_data_ids.length > 2) {
+                        $(dd_id).siblings(".btn").attr("title", dd_data_ids.length + " items selected");
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_ids.length + " items selected");
                     } else {
-                        $(dd_id).siblings(".btn").attr("title", dd_data);
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
+                        $(dd_id).siblings(".btn").attr("title",  json_data['data'][2][obj1]);
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html( json_data['data'][2][obj1]);
                     }
                 });
 
             }
         });
     });
+
+
+
+
+
 
 
 
@@ -1450,7 +1456,6 @@ $(document).ready(function() {
 
 
 
-
     //////////////////////////////////////
     // AJAX Request for Searching records when user click on any record inside search history table.
     //////////////////////////////////////
@@ -1484,12 +1489,12 @@ $(document).ready(function() {
                 var post_str = "";
                 // console.log(json_data['data'][0]['cargo_name'])
 
-                if (json_data['data']['length'] == 0) {
+                if (json_data['data'][0]['length'] == 0) {
                     post_str +=
                         '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                 } else {
                     $.each(json_data, function(i, obj) {
-                        $.each(obj, function(i, obj1) {
+                        $.each(obj[0], function(i, obj1) {
                             // console.log(obj1);
                             // console.log(i + "  " + obj1);
                             post_str +=
@@ -1500,9 +1505,14 @@ $(document).ready(function() {
                                 `</div>
                                 </td>
                                 <td>
-                                    <div class="td_h">` +
-                                obj1.vessel_type_id.replace(/,/g, ',<br>') +
-                                `</div>
+                                    <div class="td_h">`;
+                                        post_str +=
+                                            $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id], function(i, vesseltype_obj) {
+                                                post_str += vesseltype_obj + ',<br>';
+                                            });
+                                        post_str +=
+                                        // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
+                                    `</div>
                                     <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Last Dry Docked:</p>
                                         <p class="">` + obj1.last_dry_docked + `</p>
@@ -1515,9 +1525,14 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">` +
-                                obj1.region_id.replace(/,/g, ',<br>') +
-                                `</div>
+                                    <div class="td_h">`;
+                                        post_str +=
+                                            $.each(json_data['data'][1]['region_id'][obj1.vessel_sale_id], function(i, region_obj) {
+                                                post_str += region_obj + ',<br>';
+                                            });
+                                        post_str +=
+                                        // + obj1.region_id.replace(/,/g, ',<br>')  +
+                                    `</div>
                                     <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">NRT:</p>
                                         <p class="">` + obj1.nrt + `</p>
@@ -1530,9 +1545,14 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">` +
-                                obj1.country_id.replace(/,/g, ',<br>') +
-                                `</div>
+                                    <div class="td_h">`;
+                                        post_str +=
+                                            $.each(json_data['data'][1]['country_id'][obj1.vessel_sale_id], function(i, country_obj) {
+                                                post_str += country_obj + ',<br>';
+                                            });
+                                        post_str +=
+                                        // + obj1.country_id.replace(/,/g, ',<br>')  +
+                                    `</div>
                                     <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Consumption:</p>
                                         <p class="">` + obj1.consumption + `</p>
@@ -1545,9 +1565,14 @@ $(document).ready(function() {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="td_h">` +
-                                obj1.port_id.replace(/,/g, ',<br>') +
-                                `</div>
+                                    <div class="td_h">`;
+                                        post_str +=
+                                            $.each(json_data['data'][1]['port_id'][obj1.vessel_sale_id], function(i, port_obj) {
+                                                post_str += port_obj + ',<br>';
+                                            });
+                                        post_str +=
+                                        // + obj1.port_id.replace(/,/g, ',<br>')  + 
+                                    `</div>
                                     <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Fresh Water Draft:</p>
                                         <p class="">` + obj1.fw_draft + `</p>
@@ -1617,15 +1642,13 @@ $(document).ready(function() {
                 } //end else
                 $("#all_records").html(post_str);
 
-                $("#total_rec_found").html(json_data['data']['length'] + " EXACT MATCHES");
+                $("#total_rec_found").html(json_data['data'][0]['length'] + " EXACT MATCHES");
 
                 $('.hide_detail_btn').hide();
 
             }
         });
     });
-
-
 
 
 
@@ -1668,9 +1691,6 @@ $(document).ready(function() {
 
 
 
-
-
-
     //////////////////////////////////////
     // Show Update search history form when user click on Edit
     //////////////////////////////////////
@@ -1696,35 +1716,37 @@ $(document).ready(function() {
                 let json_data = $.parseJSON(response);
                 var len = json_data.length;
 
-                $("#date_available_" + uid).val(json_data['data']['date_available']);
-                $("#operations_date_" + uid).val(json_data['data']['operations_date']);
+                $("#date_available_" + uid).val(json_data['data'][0]['date_available']);
+                $("#operations_date_" + uid).val(json_data['data'][0]['operations_date']);
 
                 let arr = ["vessel_type_id", "region_id", "country_id", "port_id"];
 
                 $.each(arr, function(i, obj1) {
 
                     let dd_id = "#" + obj1 + "_" + uid;
-                    let dd_data = json_data['data'][obj1];
-                    let dd_data_arr = dd_data.split(",");
 
-                    $.each(dd_data_arr, function(i, obj2) {
+                    let dd_data_ids = json_data['data'][1][obj1];
+                    // let dd_data_arr = dd_data.split(",");
+
+                    $.each(dd_data_ids, function(i, obj2) {
                         $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
                     });
 
                     $(dd_id).siblings(".btn").attr("class", "btn dropdown-toggle btn-light");
 
-                    if (dd_data_arr.length > 2) {
-                        $(dd_id).siblings(".btn").attr("title", dd_data_arr.length + " items selected");
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_arr.length + " items selected");
+                    if (dd_data_ids.length > 2) {
+                        $(dd_id).siblings(".btn").attr("title", dd_data_ids.length + " items selected");
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_ids.length + " items selected");
                     } else {
-                        $(dd_id).siblings(".btn").attr("title", dd_data);
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data);
+                        $(dd_id).siblings(".btn").attr("title",  json_data['data'][2][obj1]);
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html( json_data['data'][2][obj1]);
                     }
                 });
 
             }
         });
     });
+
 
 
 
@@ -1787,12 +1809,12 @@ $(document).ready(function() {
                         var post_str = "";
                         // console.log(json_data['data'][0]['cargo_name'])
 
-                        if (json_data['data']['length'] == 0) {
+                        if (json_data['data'][0]['length'] == 0) {
                             post_str +=
                                 '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                         } else {
                             $.each(json_data, function(i, obj) {
-                                $.each(obj, function(i, obj1) {
+                                $.each(obj[0], function(i, obj1) {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
                                     post_str +=
@@ -1803,8 +1825,12 @@ $(document).ready(function() {
                                         `</div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` +
-                                        obj1.vessel_type_id.replace(/,/g, ',<br>') +
+                                            <div class="td_h">`;
+                                            $.each(json_data['data'][1]['vessel_type_id'][obj1.cargo_id], function(i, vesseltype_obj) {
+                                                post_str += vesseltype_obj + ',<br>';
+                                            });
+                                            post_str +=
+                                            //  + obj1.vessel_type_id.replace(/,/g, ',<br>') +
                                         `</div>
                                             <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Last Dry Docked:</p>
@@ -1818,8 +1844,12 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` +
-                                        obj1.region_id.replace(/,/g, ',<br>') +
+                                            <div class="td_h">`;
+                                            $.each(json_data['data'][1]['region_id'][obj1.cargo_id], function(i, region_obj) {
+                                                post_str += region_obj + ',<br>';
+                                            });
+                                            post_str +=
+                                            //  + obj1.vessel_type_id.replace(/,/g, ',<br>') +
                                         `</div>
                                             <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">NRT:</p>
@@ -1833,8 +1863,12 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` +
-                                        obj1.country_id.replace(/,/g, ',<br>') +
+                                            <div class="td_h">`;
+                                            $.each(json_data['data'][1]['country_id'][obj1.cargo_id], function(i, country_obj) {
+                                                post_str += country_obj + ',<br>';
+                                            });
+                                            post_str +=
+                                            //  + obj1.vessel_type_id.replace(/,/g, ',<br>') +
                                         `</div>
                                             <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Consumption:</p>
@@ -1848,8 +1882,12 @@ $(document).ready(function() {
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td_h">` +
-                                        obj1.port_id.replace(/,/g, ',<br>') +
+                                            <div class="td_h">`;
+                                            $.each(json_data['data'][1]['port_id'][obj1.cargo_id], function(i, port_obj) {
+                                                post_str += port_obj + ',<br>';
+                                            });
+                                            post_str +=
+                                            //  + obj1.vessel_type_id.replace(/,/g, ',<br>') +
                                         `</div>
                                             <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Fresh Water Draft:</p>
@@ -1918,7 +1956,7 @@ $(document).ready(function() {
                         } //end else
                         $("#all_records").html(post_str);
 
-                        $("#total_rec_found").html(json_data['data']['length'] + " EXACT MATCHES");
+                        $("#total_rec_found").html(json_data['data'][0]['length'] + " EXACT MATCHES");
 
                         $('.hide_detail_btn').hide();
                     }
@@ -1926,8 +1964,6 @@ $(document).ready(function() {
             });
         }
     });
-
-
 
 
 

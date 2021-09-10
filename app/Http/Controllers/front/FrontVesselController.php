@@ -392,7 +392,7 @@ class FrontVesselController extends Controller
         $data[2] =$names_fk1;
 
         echo json_encode(array('data'=>$ser_data));
-        
+
     }
 
     function update_hist_data(Request $req){

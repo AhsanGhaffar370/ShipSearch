@@ -18,7 +18,7 @@
     {{-- Directory of company Table Records --}}
     {{-- ////////////////////////////////// --}}
     <div class="bg-white mt-2 pt-2">
-        <span id="total_rec_found" class="font-weight-bold pt-3 pl-2"> {{ sizeof($data) }} TOTAL RESULTS {{$fuser_id}}</span>
+        <span id="total_rec_found" class="font-weight-bold pt-3 pl-2"> {{ sizeof($data) }} TOTAL RESULTS</span>
 
         <a href={{ route('directory.view') }} class="btn btn_style bg_gd ml-3 pl-2 pr-2"><i
                 class="fas fa-sync-alt"></i></a>

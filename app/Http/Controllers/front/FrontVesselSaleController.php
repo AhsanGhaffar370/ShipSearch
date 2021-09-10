@@ -11,13 +11,29 @@ use App\Models\ss_setup_country;
 use App\Models\ss_setup_port;
 use App\Models\vessel_sale_search_history;
 
+use App\Models\rel_vsale_vesseltype;
+use App\Models\rel_vsale_region;
+use App\Models\rel_vsale_country;
+use App\Models\rel_vsale_port;
+
+use App\Models\rel_ser_vsale_vesseltype;
+use App\Models\rel_ser_vsale_region;
+use App\Models\rel_ser_vsale_country;
+use App\Models\rel_ser_vsale_port;
+
 class FrontVesselSaleController extends Controller
 {
     function view(){
-
-        $data = ss_vessel_sale::active()->orderBy('vessel_sale_id', 'DESC')->get();
-
-        $ser_data= vessel_sale_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
+        
+        $data = ss_vessel_sale::with(['vesseltype','region','country','port'])
+                        ->active()
+                        ->orderBy('vessel_sale_id', 'DESC')
+                        ->get();
+        
+        $ser_data= vessel_sale_search_history::with(['vesseltype','region','country','port'])
+                                        ->where('user_id',session('front_uid'))
+                                        ->orderBy('id', 'DESC')
+                                        ->get();
 
         $ss_setup_vessel_type= ss_setup_vessel_type::active()->ascend()->get();
         $ss_setup_region= ss_setup_region::active()->ascend()->get();
@@ -39,14 +55,14 @@ class FrontVesselSaleController extends Controller
         $ss_setup_port= ss_setup_port::active()->ascend()->get();
 
         $data = ss_vessel_sale::latest()->first();
-        // $data = ss_vessel_sale::latest()->take(1)->get();
-        // $data = ss_vessel_sale::orderBy('vessel_sale_id', 'DESC')->first();
+        // $data = ss_vessel::latest()->take(1)->get();
+        // $data = ss_vessel::orderBy('vessel_id', 'DESC')->first();
 
         if($data==null){
             $ref_no=25000+1;
             $ref_no="VSA".$ref_no;
         }else{
-            $ref_no=$data->vessel_sale_id+1;
+            $ref_no=$data->vessel_id+1;
             $ref_no="VSA".$ref_no;
         }
 
@@ -65,7 +81,7 @@ class FrontVesselSaleController extends Controller
         //     'image'=>'required | mimes:jpg,jpeg,png,PNG',
         // ]);
 
-        $add_req= $req->all();
+        // $add_req= $req->all();
         $add_req=new ss_vessel_sale;
 
         $add_req->ref_no=$req->ref_no;
@@ -90,8 +106,6 @@ class FrontVesselSaleController extends Controller
             $port .= $selectedOption.",";
         $add_req->port_id=rtrim($port, ",");
 
-
-        // dd($req->file('vessel_img'));
         
         // $vsale_img=$req->file('image')->store('public/post_images');
         $final_img_str="";
@@ -109,7 +123,6 @@ class FrontVesselSaleController extends Controller
         }
         $add_req->vessel_img=rtrim($final_img_str, ",");
 
-        // dd($add_req->vessel_img);
 
         $add_req->date_available=$req->date_available;
         $add_req->operations_date=$req->operations_date;
@@ -149,6 +162,23 @@ class FrontVesselSaleController extends Controller
 
         $add_req->save();
 
+        
+        $arr=["vessel_type_id","region_id","country_id","port_id"];
+        $cid= ss_vessel_sale::latest()->first()->vessel_sale_id;
+        foreach ($arr as $ids){
+            foreach ($req[$ids] as $selectedOption){
+                if($ids == "vessel_type_id") { $obj=new rel_vsale_vesseltype; }
+                if($ids == "region_id") { $obj=new rel_vsale_region; }
+                if($ids == "country_id") { $obj=new rel_vsale_country; }
+                if($ids == "port_id") { $obj=new rel_vsale_port; }
+
+                $obj["vessel_sale_id"] = $cid;
+                $obj[$ids] = $selectedOption;
+                $obj->save();
+            }
+
+        }
+
         $req->session()->flash('msg','Vessel Sale Added');
         $req->session()->flash('alert','success');
         
@@ -166,7 +196,6 @@ class FrontVesselSaleController extends Controller
         foreach ($req->vessel_type_id as $selectedOption)
             $ser_vessel_type .= $selectedOption.",";
         $ser_vessel_type=rtrim($ser_vessel_type, ",");
-        
         
         $ser_region="";
         foreach ($req->region_id as $selectedOption)
@@ -205,6 +234,24 @@ class FrontVesselSaleController extends Controller
             
             $ser_data->save();
 
+            
+            
+            $arr=["vessel_type_id","region_id","country_id","port_id"];
+            $cid= vessel_sale_search_history::latest()->first()->id;
+            foreach ($arr as $ids){
+                foreach ($req[$ids] as $selectedOption){
+                    
+                    if($ids == "vessel_type_id") { $obj=new rel_ser_vsale_vesseltype; }
+                    if($ids == "region_id") { $obj=new rel_ser_vsale_region; }
+                    if($ids == "country_id") { $obj=new rel_ser_vsale_country; }
+                    if($ids == "port_id") { $obj=new rel_ser_vsale_port; }
+
+                    $obj["vessel_sale_id"] = $cid;
+                    $obj[$ids] = $selectedOption;
+                    $obj->save();
+                }
+            }
+
             $total_rec=vessel_sale_search_history::where("user_id",session('front_uid'))->count();
 
             if($total_rec>14){
@@ -224,7 +271,10 @@ class FrontVesselSaleController extends Controller
                         ->get();
                         // ->whereBetween($laycan_col, [$date_available, $operations_date])->get();
 
-        $ser_history= vessel_sale_search_history::where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
+        $ser_history= vessel_sale_search_history::with(['vesseltype','region','country','port'])
+                                                ->where('user_id',session('front_uid'))
+                                                ->orderBy('id', 'DESC')
+                                                ->get();
 
 
         $ss_setup_vessel_type= ss_setup_vessel_type::active()->ascend()->get();
@@ -241,11 +291,19 @@ class FrontVesselSaleController extends Controller
     }
 
     function search_req_ajax(Request $req){
-        
-        $ser_data= vessel_sale_search_history::where('id',$req->id)->first();   
 
-        $data = ss_vessel_sale::where('date_available', $ser_data->date_available)
-                        ->where('operations_date', $ser_data->operations_date)
+         
+        $ser_data= vessel_sale_search_history::with(['vesseltype','region','country','port'])
+                                        ->where('id',$req->id)->first();   
+        
+        //get specific record of table
+        // with(array('Lregion' => function($query) {
+        //     $query->select('vessel_id');
+        // }))
+        $data=[];
+        $data[0] = ss_vessel_sale::with(['vesseltype','region','country','port'])
+                        ->where('laycan_date_from', $ser_data->laycan_date_from)
+                        ->where('laycan_date_to', $ser_data->laycan_date_to)
                         ->where('vessel_type_id', $ser_data->vessel_type_id)
                         ->where('region_id', $ser_data->region_id)
                         ->where('country_id', $ser_data->country_id)
@@ -254,11 +312,20 @@ class FrontVesselSaleController extends Controller
                         ->orderBy('vessel_sale_id', 'DESC')
                         ->get();
 
+
+        // javascript relationship understand nhi krta is lye relationship tables ka data alag se send kra he 
+        $arr=["vessel_type_id","region_id","country_id","port_id"];
+        $names_fk=array();
+        foreach ($data[0] as $row){
+            foreach ($row->vesseltype as $row2) { $names_fk[$arr[0]][$row->vessel_sale_id][]=$row2->VSvesseltype->vessel_type_name; }
+            foreach ($row->region as $row2) { $names_fk[$arr[1]][$row->vessel_sale_id][]=$row2->VSregion->region_name; }
+            foreach ($row->country as $row2) { $names_fk[$arr[2]][$row->vessel_sale_id][]=$row2->VScountry->country_name; }
+            foreach ($row->port as $row2) { $names_fk[$arr[3]][$row->vessel_sale_id][]=$row2->VSport->port_name; }
+        }
+        $data[1]=$names_fk;
         // echo "<pre>";
         echo json_encode(array('data'=>$data));
-        // echo $req->lregion;
 
-        // return view('front/cargo/view',['data'=>$data]);
     }
 
     function del_ser_his_req_ajax(Request $req){
@@ -274,17 +341,47 @@ class FrontVesselSaleController extends Controller
 
     function get_update_hist_data(Request $req){
 
-        $ser_data= vessel_sale_search_history::where('id',$req->id)->first(); 
+
+        $data=[];
+        $ser_data= vessel_sale_search_history::with(['vesseltype','region','country','port'])
+                                        ->where('id',$req->id)->first(); 
+
+        $data[0] =$ser_data;
+
+        // javascript relationship understand nhi krta is lye relationship tables ka data alag se send kra he 
+        $arr=["vessel_type_id","region_id","country_id","port_id"];
+        $ids_fk=array();
+        foreach ($data[0]->vesseltype as $row) { $ids_fk[$arr[0]][]=$row->SVSvesseltype->vessel_type_id; }
+        foreach ($data[0]->region as $row) { $ids_fk[$arr[1]][]=$row->SVSregion->region_id; }
+        foreach ($data[0]->country as $row) { $ids_fk[$arr[2]][]=$row->SVScountry->country_id; }
+        foreach ($data[0]->port as $row) { $ids_fk[$arr[3]][]=$row->SVSport->port_id; }
+
+        $names_fk=array();
+        $names_fk1=array();
+        foreach ($data[0]->vesseltype as $row) { $names_fk[$arr[0]][]=$row->SVSvesseltype->vessel_type_name; }
+        foreach ($data[0]->region as $row) { $names_fk[$arr[1]][]=$row->SVSregion->region_name; }
+        foreach ($data[0]->country as $row) { $names_fk[$arr[2]][]=$row->SVScountry->country_name; }
+        foreach ($data[0]->port as $row) { $names_fk[$arr[3]][]=$row->SVSport->port_name; }
+
+        foreach ($arr as $row){
+            $names_str="";
+            foreach ($names_fk[$row] as $row1){ $names_str.=$row1.","; }
+            $names_fk1[$row]=rtrim($names_str,',');
+        }
+
+        $data[1] =$ids_fk;
+        $data[2] =$names_fk1;
 
         echo json_encode(array('data'=>$ser_data));
 
     }
 
     function update_hist_data(Request $req){
+
         $data= vessel_sale_search_history::find($req->id);
 
-        $data->date_available=date("Y-m-d", strtotime($req->date_available));
-        $data->operations_date=date("Y-m-d", strtotime($req->operations_date));
+        $data->laycan_date_from=date("Y-m-d", strtotime($req->laycan_date_from));
+        $data->laycan_date_to=date("Y-m-d", strtotime($req->laycan_date_to));
         $data->vessel_type_id= $req->vessel_type_id;
         $data->region_id= $req->region_id;
         $data->country_id= $req->country_id;
@@ -295,22 +392,59 @@ class FrontVesselSaleController extends Controller
 
         if($data->wasChanged('modified_at')){
             
-            $ser_data = ss_vessel_sale::where('vessel_type_id', $data->vessel_type_id)
-            ->where('date_available', $data->date_available)
-            ->where('operations_date', $data->operations_date)
-            ->where('region_id', $data->region_id)
-            ->where('country_id', $data->country_id)
-            ->where('port_id', $data->port_id)
-            ->active()
-            ->orderBy('vessel_sale_id', 'DESC')
-            ->get();
+            //relationship tables me data delete krrhe he
+            rel_ser_vsale_vesseltype::where('vessel_sale_id',$req->id)->delete();
+            rel_ser_vsale_region::where('vessel_sale_id',$req->id)->delete();
+            rel_ser_vsale_country::where('vessel_sale_id',$req->id)->delete();
+            rel_ser_vsale_port::where('vessel_sale_id',$req->id)->delete();
+
+            //relationship tables me data insert krrhe he
+            $arr=["vessel_type_id","region_id","country_id","port_id"];
+            $req_fk=[];
+            foreach ($arr as $ids){
+                $req_fk[$ids]=explode(",",$req[$ids]);
+                foreach ($req_fk[$ids] as $selectedOption){
+                    if($ids == "vessel_type_id") { $obj=new rel_ser_vsale_vesseltype; }
+                    if($ids == "region_id") { $obj=new rel_ser_vsale_region; }
+                    if($ids == "country_id") { $obj=new rel_ser_vsale_country; }
+                    if($ids == "port_id") { $obj=new rel_ser_vsale_port; }
+                    $obj["vessel_sale_id"] = $req->id;
+                    $obj[$ids] = $selectedOption;
+                    $obj->save();
+                }   
+            }
+
+            $ser_data=[];
+            $ser_data[0] = ss_vessel_sale::with(['vesseltype','region','country','port'])
+                                ->where('vessel_type_id', $data->vessel_type_id)
+                                ->where('laycan_date_from', $data->laycan_date_from)
+                                ->where('laycan_date_to', $data->laycan_date_to)
+                                ->where('region_id', $data->region_id)
+                                ->where('country_id', $data->country_id)
+                                ->where('port_id', $data->port_id)
+                                ->active()
+                                ->orderBy('vessel_sale_id', 'DESC')
+                                ->get();
+
+
+            // javascript relationship understand nhi krta is lye relationship tables ka data alag se send kra he 
+            $arr=["vessel_type_id","region_id","country_id","port_id"];
+            $names_fk=array();
+            foreach ($ser_data[0] as $row){
+                foreach ($row->vesseltype as $row2) { $names_fk[$arr[0]][$row->vessel_sale_id][]=$row2->VSvesseltype->vessel_type_name; }
+                foreach ($row->region as $row2) { $names_fk[$arr[1]][$row->vessel_sale_id][]=$row2->VSregion->region_name; }
+                foreach ($row->country as $row2) { $names_fk[$arr[2]][$row->vessel_sale_id][]=$row2->VScountry->country_name; }
+                foreach ($row->port as $row2) { $names_fk[$arr[3]][$row->vessel_sale_id][]=$row2->VSport->port_name; }
+            }
+            $ser_data[1]=$names_fk;
+
 
             echo json_encode(array('data'=>$ser_data));
         }
         else{
             echo false;
         }
-       
+     
     }
 
 

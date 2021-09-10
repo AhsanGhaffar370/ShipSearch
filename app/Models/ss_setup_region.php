@@ -43,6 +43,14 @@ class ss_setup_region extends Model
     public function SVregion(){
         return $this->hasMany('App\Models\rel_ser_vessel_region',"region_id");
     }
+    
+    // vessel_sale and ser vessel_sale
+    public function VSregion(){
+        return $this->hasMany('App\Models\rel_vsale_region',"region_id");
+    }
+    public function SVSregion(){
+        return $this->hasMany('App\Models\rel_ser_vsale_region',"region_id");
+    }
 
 
 

@@ -49,6 +49,14 @@ class ss_setup_country extends Model
     public function SVcountry(){
         return $this->hasMany('App\Models\rel_ser_vessel_country',"country_id");
     }
+    
+    // vessel_sale and ser vessel_sale
+    public function VScountry(){
+        return $this->hasMany('App\Models\rel_vsale_country',"country_id");
+    }
+    public function SVScountry(){
+        return $this->hasMany('App\Models\rel_ser_vsale_country',"country_id");
+    }
 
     //Direcotry
     // public function DirCountry(){

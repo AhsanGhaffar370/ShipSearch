@@ -29,6 +29,14 @@ class ss_setup_vessel_type extends Model
     public function SVvesseltype(){
         return $this->hasMany('App\Models\rel_ser_vessel_vesseltype',"vessel_type_id");
     }
+    
+    // vessel_sale and ser vessel_sale
+    public function VSvesseltype(){
+        return $this->hasMany('App\Models\rel_vsale_vesseltype',"vessel_type_id");
+    }
+    public function SVSvesseltype(){
+        return $this->hasMany('App\Models\rel_ser_vsale_vesseltype',"vessel_type_id");
+    }
 
     // public function vessel(){
     //     return $this->hasMany('App\Models\ss_vessel',"vessel_type_id");
