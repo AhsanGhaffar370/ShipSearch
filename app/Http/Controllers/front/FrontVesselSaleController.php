@@ -62,7 +62,7 @@ class FrontVesselSaleController extends Controller
             $ref_no=25000+1;
             $ref_no="VSA".$ref_no;
         }else{
-            $ref_no=$data->vessel_id+1;
+            $ref_no=$data->vessel_sale_id+1;
             $ref_no="VSA".$ref_no;
         }
 
@@ -187,7 +187,10 @@ class FrontVesselSaleController extends Controller
 
 
     
+
     function search_req(Request $req){
+
+        // dd($req);
 
         $date_available=date("Y-m-d", strtotime($req->date_available));
         $operations_date=date("Y-m-d", strtotime($req->operations_date));  
@@ -212,11 +215,12 @@ class FrontVesselSaleController extends Controller
             $ser_port .= $selectedOption.",";
         $ser_port=rtrim($ser_port, ",");
 
+        // dd($ser_port);
         if(session('front_uid')!=""){
 
             // $ser_data=$req->all();
             // $ser_data['user_id']=session('front_uid');
-            // cargo_search_history::create($ser_data);
+            // vessel_search_history::create($ser_data);
 
             $ser_data=new vessel_sale_search_history;
             
@@ -224,7 +228,7 @@ class FrontVesselSaleController extends Controller
             
             $ser_data->date_available=$date_available;
             $ser_data->operations_date=$operations_date;
-            $ser_data->vessel_type_id=$ser_vessel_type;      
+            $ser_data->vessel_type_id=$ser_vessel_type;       
             $ser_data->region_id=$ser_region;        
             $ser_data->country_id=$ser_country;        
             $ser_data->port_id=$ser_port;
@@ -252,6 +256,8 @@ class FrontVesselSaleController extends Controller
                 }
             }
 
+
+
             $total_rec=vessel_sale_search_history::where("user_id",session('front_uid'))->count();
 
             if($total_rec>14){
@@ -260,7 +266,12 @@ class FrontVesselSaleController extends Controller
             }
         }
 
-        $data = ss_vessel_sale::where('date_available', $date_available)
+        // $vessel_type_fk=$req->vessel_type_id;
+        // ->whereHas('vesseltype', function($q1) use ($vessel_type_fk) {
+        //     $q1->whereIn('vessel_type_id',$vessel_type_fk);
+        // })
+        $data = ss_vessel_sale::with(['vesseltype','region','country','port'])
+                        ->where('date_available', $date_available)
                         ->where('operations_date', $operations_date)
                         ->where('vessel_type_id', $ser_vessel_type)
                         ->where('region_id', $ser_region)
@@ -269,13 +280,14 @@ class FrontVesselSaleController extends Controller
                         ->active()
                         ->orderBy('vessel_sale_id', 'DESC')
                         ->get();
-                        // ->whereBetween($laycan_col, [$date_available, $operations_date])->get();
+                        // ->whereBetween($laycan_col, [$from_date, $to_date])->get();
 
         $ser_history= vessel_sale_search_history::with(['vesseltype','region','country','port'])
-                                                ->where('user_id',session('front_uid'))
-                                                ->orderBy('id', 'DESC')
-                                                ->get();
+                                            ->where('user_id',session('front_uid'))
+                                            ->orderBy('id', 'DESC')
+                                            ->get();
 
+        // dd($ser_history);
 
         $ss_setup_vessel_type= ss_setup_vessel_type::active()->ascend()->get();
         $ss_setup_region= ss_setup_region::active()->ascend()->get();
@@ -290,6 +302,7 @@ class FrontVesselSaleController extends Controller
                                         'port'=>$ss_setup_port]);
     }
 
+
     function search_req_ajax(Request $req){
 
          
@@ -302,8 +315,8 @@ class FrontVesselSaleController extends Controller
         // }))
         $data=[];
         $data[0] = ss_vessel_sale::with(['vesseltype','region','country','port'])
-                        ->where('laycan_date_from', $ser_data->laycan_date_from)
-                        ->where('laycan_date_to', $ser_data->laycan_date_to)
+                        ->where('date_available', $ser_data->date_available)
+                        ->where('operations_date', $ser_data->operations_date)
                         ->where('vessel_type_id', $ser_data->vessel_type_id)
                         ->where('region_id', $ser_data->region_id)
                         ->where('country_id', $ser_data->country_id)
@@ -372,7 +385,7 @@ class FrontVesselSaleController extends Controller
         $data[1] =$ids_fk;
         $data[2] =$names_fk1;
 
-        echo json_encode(array('data'=>$ser_data));
+        echo json_encode(array('data'=>$data));
 
     }
 
@@ -380,8 +393,8 @@ class FrontVesselSaleController extends Controller
 
         $data= vessel_sale_search_history::find($req->id);
 
-        $data->laycan_date_from=date("Y-m-d", strtotime($req->laycan_date_from));
-        $data->laycan_date_to=date("Y-m-d", strtotime($req->laycan_date_to));
+        $data->date_available=date("Y-m-d", strtotime($req->date_available));
+        $data->operations_date=date("Y-m-d", strtotime($req->operations_date));
         $data->vessel_type_id= $req->vessel_type_id;
         $data->region_id= $req->region_id;
         $data->country_id= $req->country_id;
@@ -417,8 +430,8 @@ class FrontVesselSaleController extends Controller
             $ser_data=[];
             $ser_data[0] = ss_vessel_sale::with(['vesseltype','region','country','port'])
                                 ->where('vessel_type_id', $data->vessel_type_id)
-                                ->where('laycan_date_from', $data->laycan_date_from)
-                                ->where('laycan_date_to', $data->laycan_date_to)
+                                ->where('date_available', $data->date_available)
+                                ->where('operations_date', $data->operations_date)
                                 ->where('region_id', $data->region_id)
                                 ->where('country_id', $data->country_id)
                                 ->where('port_id', $data->port_id)

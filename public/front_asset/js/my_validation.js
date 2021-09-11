@@ -19,7 +19,7 @@ $(document).ready(function() {
 
         let selected_name = $("option:selected", this).text(); //OR  $(this).find('option:selected').text();
 
-        if (selected_name != 'Any') {
+        if (selected_name.trim() !== 'Any') {
 
             let rcp_ids = $(this).val();
             let rcp_name = $(this).attr('id');
@@ -103,7 +103,7 @@ $(document).ready(function() {
 
         let selected_name = $("option:selected", this).text(); //OR  $(this).find('option:selected').text();
 
-        if (selected_name != 'Any') {
+        if (selected_name.trim() !== 'Any') {
 
             let rcp_ids = $(this).val();
             let rcp_name = $(this).attr('id');
@@ -189,9 +189,9 @@ $(document).ready(function() {
     $(document).on("change", 'select.add_cvs_inp_fields', function(e) {
 
         let selected_name = $("option:selected", this).text(); //OR  $(this).find('option:selected').text();
+        
 
-        if (selected_name != 'Any') {
-
+        if (selected_name.trim() !== 'Any') {
             let rcp_ids = $(this).val();
             let rcp_name = $(this).attr('id');
 
@@ -275,6 +275,8 @@ $(document).ready(function() {
                     });
                 }
             });
+        }else{
+            console.log('asdfdsfd');
         }
     });
 

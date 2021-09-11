@@ -44,9 +44,6 @@
 
 
 
-
-
-
                         {{-- /////////////////////// --}}
                         {{-- Advance Search Form --}}
                         {{-- /////////////////////// --}}
@@ -56,15 +53,14 @@
                                 @csrf
                                 <td></td>
                                 <td class="">
-
+                                    
                                     <section class="vessel_type_id_par">
                                         <select name="vessel_type_id[]" id="vessel_type_id" form="search_cvs_form"
                                             class="vessel_type_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true"
                                             {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
                                             @foreach ($vessel_type as $row)
-                                                <option value="{{ $row->vessel_type_id }}">
-                                                    {{ $row->vessel_type_name }}
+                                                <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -138,6 +134,7 @@
                                 <!-- -->
                             </form>
                         </tr>
+
 
 
 
@@ -225,6 +222,92 @@
                                     @csrf
                                     <td></td>
                                     <td class="">
+                                        <section class="vessel_type_id_par_{{ $row->id }}">
+                                            <select name="vessel_type_id[]" id="vessel_type_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
+                                                class="vessel_type_id ser_inp_fields_each" multiple title="Choose" data-size="5"
+                                                data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($vessel_type as $row1)
+                                                    <option value="{{ $row1->vessel_type_id }}">
+                                                        {{ $row1->vessel_type_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </section>
+                                    </td>
+                                    <!-- -->
+                                    <td class="">
+                                        <section class="date_available_par">
+                                            <input type="date" required form="search_cvs_form_{{ $row->id }}" class=" date_available"
+                                                id="date_available_{{ $row->id }}" name="date_available"
+                                                placeholder="" />
+                                        </section>
+                                    </td>
+                                    <!-- -->
+                                    <td class="">
+                                        <section class="operations_date_par">
+                                            <input type="date" required form="search_cvs_form_{{ $row->id }}" class=" operations_date"
+                                                id="operations_date_{{ $row->id }}" name="operations_date" placeholder="" />
+                                        </section>
+                                    </td>
+                                    <!-- -->
+                                    <td class=" ">
+                                        
+                                        <section class="region_id_par_{{ $row->id }}">
+                                            <select name="region_id[]" id="region_id_{{ $row->id }}"
+                                                form="search_cvs_form_{{ $row->id }}" class="region_id ser_inp_fields_each" multiple title="Choose"
+                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($region as $row1)
+                                                    <option value="{{ $row1->region_id }}">{{ $row1->region_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </section>
+                                    </td>
+                                    <!-- -->
+                                    <td class=" ">
+                                        
+                                        <section class="country_id_par_{{ $row->id }}">
+                                            <select name="country_id[]" id="country_id_{{ $row->id }}"
+                                                form="search_cvs_form_{{ $row->id }}" class="country_id ser_inp_fields_each" multiple title="Choose"
+                                                data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($country as $row1)
+                                                    <option value="{{ $row1->country_id }}">{{ $row1->country_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </section>
+                                    </td>
+                                    <!-- -->
+                                    <td class="">
+                                        
+                                        <section class="port_id_par_{{ $row->id }}">
+                                            <select name="port_id[]" id="port_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
+                                                class="port_id ser_inp_fields_each" multiple title="Choose" data-size="5"
+                                                data-selected-text-format="count > 2" data-live-search="true">
+                                                @foreach ($port as $row1)
+                                                    <option value="{{ $row1->port_id }}">{{ $row1->port_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </section>
+                                        <div class="text-right">
+                                            <button type="button" id="form_{{$row->id}}" 
+                                            class="vsale_req_update_ser_hist_each btn bg_gd btn-sm size15 text-white pt-1 pb-1 mr-3"> 
+                                                <i class="fas fa-search"></i> Search
+                                            </button>
+                                            <a href="{{ $row->id }}" id="close_ser_each_{{ $row->id }}"
+                                            class="btn bg_grey text-dark size15 pt-1 pb-1 mr-1 close_ser_each"> 
+                                                <i href="{{ $row->id }}" class="fas fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <!-- -->
+                                </form>
+                            </tr>
+                            {{-- <tr id='adv_ser_form_each_{{ $row->id }}' class="adv_ser_form_each pos_rel d_n adv_forms_tr">
+                                <form id="search_cvs_form_{{ $row->id }}" class="form-horizontal form-label-left ">
+                                    @csrf
+                                    <td></td>
+                                    <td class="">
                                         <section class="vessel_type_id_par">
                                             <select name="vessel_type_id[]" id="vessel_type_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
                                                 class="vessel_type_id ser_inp_fields" multiple title="Choose" data-size="5"
@@ -302,7 +385,7 @@
                                     </td>
                                     <!-- -->
                                 </form>
-                            </tr>
+                            </tr> --}}
                         @endforeach
                     </tbody>
                 </table>
@@ -365,21 +448,18 @@
                                     </td>
 									<td width="13%">
                                         <div class="td_h">
-                                            {{-- @foreach (explode(',',$row->vessel_img) as $item) --}}
-                                                <img data-enlargeable src="{{asset('storage/vessel_sale_images/'.explode(',',$row->vessel_img)[0])}}" width="80" class="img-thumbnail img-fluid" alt="vessel img"
-                                                style="cursor: zoom-in;">
-                                            {{-- @endforeach --}}
+                                            <img data-enlargeable src="{{asset('storage/vessel_sale_images/'.explode(',',$row->vessel_img)[0])}}" width="80" class="img-thumbnail img-fluid" alt="vessel img"
+                                            style="cursor: zoom-in;">
                                         </div>  
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->vessel_sale_id }} tr_bg_cl d_n">
                                             <span class="d_n">{{$count=0}}</span>
                                             @foreach (explode(',',$row->vessel_img) as $item)
-                                                @if($count==0)
-                                                    <span class="d_n">{{$count++}}</span>
-                                                @else
+                                                @if($count!=0)
                                                     <img data-enlargeable src="{{asset('storage/vessel_sale_images/'.$item)}}" width="80" class="img-thumbnail img-fluid" alt="vessel img"
-                                                style="cursor: zoom-in;">
+                                                    style="cursor: zoom-in;">
                                                 @endif
+                                                <span class="d_n">{{$count++}}</span>
                                             @endforeach
                                         </div>
                                     </td>

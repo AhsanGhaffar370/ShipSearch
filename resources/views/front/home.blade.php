@@ -265,7 +265,7 @@
                                     <div class="pos_rel mb-3">
                                         <label for="cargo_type_id" class="size13 cl_gll">Select Cargo:</label>
                                         <select name="cargo_type_id[]" id="cargo_type_id" form="search_cargo_form"
-                                            class="cargo_type_id ser_inp_fields21 mb-2" multiple title="Any" data-size="5"
+                                            class="cargo_type_id ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
                                             @foreach ($cargo_type as $row)
                                                 <option value="{{ $row->cargo_type_id }}">{{ $row->cargo_type_name }}
@@ -408,7 +408,7 @@
                                                 <!-- -->
                                                 <label for="vessel_type_id" class="size13 cl_gll">Select Vessel:</label>
                                                 <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel_form"
-                                                    class="vessel_type_id ser_inp_fields21 mb-2" multiple title="Any" data-size="5"
+                                                    class="vessel_type_id ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
                                                     data-selected-text-format="count > 2" data-live-search="true">
                                                     @foreach ($vessel_type as $row)
                                                         <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
@@ -422,7 +422,7 @@
                                                 <!-- -->
                                                 <label for="charter_type_id" class="size13 cl_gll">Select Charter:</label>
                                                 <select name="charter_type_id[]" id="charter_type_id" form="search_vessel_form"
-                                                    class="charter_type_id ser_inp_fields21 mb-2" multiple title="Any" data-size="5"
+                                                    class="charter_type_id ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
                                                     data-selected-text-format="count > 2" data-live-search="true">
                                                     @foreach ($charter_type as $row)
                                                         <option value="{{ $row->charter_type_id }}">{{ $row->charter_type_name }}
@@ -518,7 +518,7 @@
                                         <div>
                                             <label for="vessel_type_id" class="size13 cl_gll">Select Vessel:</label>
                                             <select name="vessel_type_id[]" id="vessel_type_id" form="search_vsale_form"
-                                                class="vessel_type_id ser_inp_fields21 mb-2" multiple title="Any" data-size="5"
+                                                class="vessel_type_id ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 @foreach ($vessel_type as $row)
                                                     <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
@@ -526,6 +526,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        
                                         <div>
                                             <label class="size13 cl_gll mt-4">Select Region:</label>
                                             <section class="region_id_par">

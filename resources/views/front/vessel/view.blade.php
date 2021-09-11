@@ -400,7 +400,7 @@
                         @else
                             @foreach ($data as $row)
                                 <tr class="">
-                                    <td width="5%" >
+                                    <td width="5%">
                                         <div class="td_h">
                                             {{$row->ref_no}}
                                         </div>
