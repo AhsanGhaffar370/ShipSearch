@@ -331,12 +331,12 @@ class FrontCargoController extends Controller
                         ->where('discharge_region_id', $ser_discharge_region)
                         ->where('discharge_country_id', $ser_discharge_country)
                         ->where('discharge_port_id', $ser_discharge_port)
-                        ->where('laycan_date_from', $laycan_from)
-                        ->where('laycan_date_to', $laycan_to)
+                        ->whereBetween("laycan_date_from", [$laycan_from, $laycan_to])
+                        ->whereBetween("laycan_date_to", [$laycan_from, $laycan_to])
                         ->active()
                         ->orderBy('cargo_id', 'DESC')
                         ->get();
-                        // ->whereBetween($laycan_col, [$from_date, $to_date])->get();
+                        
                         
         // dd($data);
         //working
@@ -372,14 +372,16 @@ class FrontCargoController extends Controller
         $data=[];
         $data[0] = ss_cargo::with(['user_info','cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
                         ->where('cargo_type_id', $ser_data->cargo_type_id)
+                        // ->where('laycan_date_from', $ser_data->laycan_date_from)
+                        // ->where('laycan_date_to', $ser_data->laycan_date_to)
                         ->where('loading_region_id', $ser_data->loading_region_id)
-                        ->where('laycan_date_from', $ser_data->laycan_date_from)
-                        ->where('laycan_date_to', $ser_data->laycan_date_to)
                         ->where('loading_country_id', $ser_data->loading_country_id)
                         ->where('loading_port_id', $ser_data->loading_port_id)
                         ->where('discharge_region_id', $ser_data->discharge_region_id)
                         ->where('discharge_country_id', $ser_data->discharge_country_id)
                         ->where('discharge_port_id', $ser_data->discharge_port_id)
+                        ->whereBetween("laycan_date_from", [$ser_data->laycan_date_from, $ser_data->laycan_date_to])
+                        ->whereBetween("laycan_date_to", [$ser_data->laycan_date_from, $ser_data->laycan_date_to])
                         // ->whereBetween($req->laycan_date, [$from_date, $to_date])
                         ->active()
                         ->orderBy('cargo_id', 'DESC')
@@ -503,14 +505,14 @@ class FrontCargoController extends Controller
             $ser_data[0] = ss_cargo::with(['user_info','cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
                                 ->where('cargo_type_id', $data->cargo_type_id)
                                 ->where('loading_region_id', $data->loading_region_id)
-                                ->where('laycan_date_from', $data->laycan_date_from)
-                                ->where('laycan_date_to', $data->laycan_date_to)
                                 ->where('loading_region_id', $data->loading_region_id)
                                 ->where('loading_country_id', $data->loading_country_id)
                                 ->where('loading_port_id', $data->loading_port_id)
                                 ->where('discharge_region_id', $data->discharge_region_id)
                                 ->where('discharge_country_id', $data->discharge_country_id)
                                 ->where('discharge_port_id', $data->discharge_port_id)
+                                ->whereBetween("laycan_date_from", [$data->laycan_date_from, $data->laycan_date_to])
+                                ->whereBetween("laycan_date_to", [$data->laycan_date_from, $data->laycan_date_to])
                                 ->active()
                                 ->orderBy('cargo_id', 'DESC')
                                 ->get();

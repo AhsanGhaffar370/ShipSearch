@@ -217,7 +217,7 @@ class FrontVesselSaleController extends Controller
         foreach ($req->port_id as $selectedOption)
             $ser_port .= $selectedOption.",";
         $ser_port=rtrim($ser_port, ",");
-
+        
         // dd($ser_port);
         if(session('front_uid')!=""){
 
