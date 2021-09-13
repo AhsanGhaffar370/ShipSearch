@@ -15,12 +15,13 @@ class HomeController extends Controller
 {
     
     function view(){
-        $ss_setup_cargo_type= ss_setup_cargo_type::active()->ascend()->get();
-        $ss_setup_vessel_type= ss_setup_vessel_type::active()->ascend()->get();
-        $ss_setup_charter_type= ss_setup_charter_type::active()->ascend()->get();
-        $ss_setup_region= ss_setup_region::active()->ascend()->get();
-        $ss_setup_country= ss_setup_country::active()->ascend()->get();
-        $ss_setup_port= ss_setup_port::active()->ascend()->get();
+        $ss_setup_cargo_type= ss_setup_cargo_type::where('cargo_type_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_vessel_type= ss_setup_vessel_type::where('vessel_type_name','!=','Any')->active()->get();
+        $ss_setup_charter_type= ss_setup_charter_type::where('charter_type_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::where('region_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::where('port_name','!=','Any')->active()->ascend()->get();
+        
 
         return view('front/home',['cargo_type'=>$ss_setup_cargo_type,
                                 'vessel_type'=>$ss_setup_vessel_type,

@@ -63,6 +63,7 @@
                                             class="vessel_type_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true"
                                             {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
+                                            <option value="11">Any</option>
                                             @foreach ($vessel_type as $row)
                                                 <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
                                                 </option>
@@ -78,6 +79,7 @@
                                             class="charter_type_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true"
                                             {{-- data-max-options="5" --}} {{-- data-actions-box="true" --}}>
+                                            <option value="5">Any</option>
                                             @foreach ($charter_type as $row)
                                                 <option value="{{ $row->charter_type_id }}">{{ $row->charter_type_name }}
                                                 </option>
@@ -108,6 +110,7 @@
                                         <select name="region_id[]" id="region_id" form="search_cvs_form"
                                             class="region_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
+                                            <option value="26">Any</option>
                                             @foreach ($region as $row)
                                                 <option value="{{ $row->region_id }}">{{ $row->region_name }}</option>
                                             @endforeach
@@ -121,6 +124,7 @@
                                         <select name="country_id[]" id="country_id" form="search_cvs_form"
                                             class="country_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
+                                            <option value="197">Any</option>
                                             @foreach ($country as $row)
                                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                 </option>
@@ -135,6 +139,7 @@
                                         <select name="port_id[]" id="port_id" form="search_cvs_form"
                                             class="port_id ser_inp_fields" multiple title="Choose" data-size="5"
                                             data-selected-text-format="count > 2" data-live-search="true">
+                                            <option value="5638">Any</option>
                                             @foreach ($port as $row)
                                                 <option value="{{ $row->port_id }}">{{ $row->port_name }}</option>
                                             @endforeach
@@ -252,6 +257,7 @@
                                             <select name="vessel_type_id[]" id="vessel_type_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
                                                 class="vessel_type_id ser_inp_fields_each" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
+                                                <option value="11">Any</option>
                                                 @foreach ($vessel_type as $row1)
                                                     <option value="{{ $row1->vessel_type_id }}">
                                                         {{ $row1->vessel_type_name }}</option>
@@ -265,6 +271,7 @@
                                             <select name="charter_type_id[]" id="charter_type_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
                                                 class="charter_type_id ser_inp_fields_each" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
+                                                <option value="5">Any</option>
                                                 @foreach ($charter_type as $row1)
                                                     <option value="{{ $row1->charter_type_id }}">
                                                         {{ $row1->charter_type_name }}</option>
@@ -296,6 +303,7 @@
                                             <select name="region_id[]" id="region_id_{{ $row->id }}"
                                                 form="search_cvs_form_{{ $row->id }}" class="region_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                <option value="26">Any</option>
                                                 @foreach ($region as $row1)
                                                     <option value="{{ $row1->region_id }}">{{ $row1->region_name }}
                                                     </option>
@@ -310,6 +318,7 @@
                                             <select name="country_id[]" id="country_id_{{ $row->id }}"
                                                 form="search_cvs_form_{{ $row->id }}" class="country_id ser_inp_fields_each" multiple title="Choose"
                                                 data-size="5" data-selected-text-format="count > 2" data-live-search="true">
+                                                <option value="197">Any</option>
                                                 @foreach ($country as $row1)
                                                     <option value="{{ $row1->country_id }}">{{ $row1->country_name }}
                                                     </option>
@@ -324,6 +333,7 @@
                                             <select name="port_id[]" id="port_id_{{ $row->id }}" form="search_cvs_form_{{ $row->id }}"
                                                 class="port_id ser_inp_fields_each" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
+                                                <option value="5638">Any</option>
                                                 @foreach ($port as $row1)
                                                     <option value="{{ $row1->port_id }}">{{ $row1->port_name }}
                                                     </option>

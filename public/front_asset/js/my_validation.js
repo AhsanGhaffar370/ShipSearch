@@ -56,6 +56,14 @@ $(document).ready(function() {
                         post_str += `
                         <select name="` + n_prefix + n_list + `_id[]" id="` + n_prefix + n_list + `_id" class="` + n_prefix + n_list + `_id ser_inp_fields" form="search_cvs_form"
                             multiple title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
+
+                        // if (n_list == 'region')
+                        //     post_str+=`<option value="26">Any</option>`;
+                        // if (n_list == 'country')
+                        //     post_str+=`<option value="197">Any</option>`;
+                        // if (n_list == 'port')
+                        //     post_str+=`<option value="5638">Any</option>`;
+
                         if (rcp_ids.length < 1) {
                             $.each(json_data['data'][n_list], function(i, obj1) {
                                 if (n_list == 'region')
@@ -143,6 +151,7 @@ $(document).ready(function() {
                         post_str += `
                         <select name="` + n_prefix + n_list + `_id[]" id="` + n_prefix + n_list + `_id_` + id + `" class="` + n_prefix + n_list + `_id ser_inp_fields_each" form="search_cvs_form_` + id + `" 
                             multiple title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
+
                         if (rcp_ids.length < 1) {
                             $.each(json_data['data'][n_list], function(i, obj1) {
                                 if (n_list == 'region')
@@ -236,6 +245,7 @@ $(document).ready(function() {
                         post_str += `
                         <select name="` + n_prefix + n_list + `_id[]" id="` + n_prefix + n_list + `_id" class="form-control ` + n_prefix + n_list + `_id add_cvs_inp_fields ser_inp_fields21 mb-2" 
                             multiple form="` + form_id + `" title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
+
                         if (rcp_ids.length < 1) {
                             $.each(json_data['data'][n_list], function(i, obj1) {
                                 if (n_list == 'region')

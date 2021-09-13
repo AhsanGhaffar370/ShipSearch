@@ -14,7 +14,6 @@ use App\Models\ss_setup_cargo_type;
 use App\Models\ss_setup_region;
 use App\Models\ss_setup_country;
 use App\Models\ss_setup_port;
-use App\Models\ss_setup_unit;
 use App\Models\cargo_search_history;
 use App\Models\ss_setup_region_country_port;
 
@@ -92,10 +91,10 @@ class FrontCargoController extends Controller
 
         // dd($ser_data[0]->Lregion[0]->SCAlregion->region_name);
 
-        $ss_setup_cargo_type= ss_setup_cargo_type::active()->ascend()->get();
-        $ss_setup_region= ss_setup_region::active()->ascend()->get();
-        $ss_setup_country= ss_setup_country::active()->ascend()->get();
-        $ss_setup_port= ss_setup_port::active()->ascend()->get();
+        $ss_setup_cargo_type= ss_setup_cargo_type::where('cargo_type_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::where('region_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::where('port_name','!=','Any')->active()->ascend()->get();
 
         return view('front/cargo/view',['data'=>$data,
                                         'ser_data'=>$ser_data,
@@ -108,10 +107,10 @@ class FrontCargoController extends Controller
 
 
     function view_add(){
-        $ss_setup_cargo_type= ss_setup_cargo_type::active()->ascend()->get();
-        $ss_setup_region= ss_setup_region::active()->ascend()->get();
-        $ss_setup_country= ss_setup_country::active()->ascend()->get();
-        $ss_setup_port= ss_setup_port::active()->ascend()->get();
+        $ss_setup_cargo_type= ss_setup_cargo_type::where('cargo_type_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::where('region_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::where('port_name','!=','Any')->active()->ascend()->get();
 
         $data = ss_cargo::latest()->first();
         // $data = ss_cargo::latest()->take(1)->get();
@@ -345,10 +344,10 @@ class FrontCargoController extends Controller
                                             ->where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
 
 
-        $ss_setup_cargo_type= ss_setup_cargo_type::active()->ascend()->get();
-        $ss_setup_region= ss_setup_region::active()->ascend()->get();
-        $ss_setup_country= ss_setup_country::active()->ascend()->get();
-        $ss_setup_port= ss_setup_port::active()->ascend()->get();
+        $ss_setup_cargo_type= ss_setup_cargo_type::where('cargo_type_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_region= ss_setup_region::where('region_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_country= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
+        $ss_setup_port= ss_setup_port::where('port_name','!=','Any')->active()->ascend()->get();
 
         return view('front/cargo/view',['data'=>$data,
                                         'ser_data'=>$ser_history,
@@ -586,12 +585,12 @@ class FrontCargoController extends Controller
 
         $data=[];
         
-        $data['cargo_type']= ss_setup_cargo_type::active()->ascend()->get();
-        $data['vessel_type']= ss_setup_vessel_type::active()->ascend()->get();
-        $data['charter_typ']= ss_setup_charter_type::active()->ascend()->get();
-        $data['region']= ss_setup_region::active()->ascend()->get();
-        $data['country']= ss_setup_country::active()->ascend()->get();
-        $data['port']= ss_setup_port::active()->ascend()->get();
+        $data['cargo_type']= ss_setup_cargo_type::where('cargo_type_name','!=','Any')->active()->ascend()->get();
+        $data['vessel_type']= ss_setup_vessel_type::where('vessel_type_name','!=','Any')->active()->ascend()->get();
+        $data['charter_typ']= ss_setup_charter_type::where('charter_type_name','!=','Any')->active()->ascend()->get();
+        $data['region']= ss_setup_region::where('region_name','!=','Any')->active()->ascend()->get();
+        $data['country']= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
+        $data['port']= ss_setup_port::where('port_name','!=','Any')->active()->ascend()->get();
 
         echo json_encode(array('data'=>$data));
     }

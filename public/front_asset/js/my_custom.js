@@ -87,31 +87,37 @@ $(document).ready(function() {
                         data-selected-text-format="count > 2" data-live-search="true">`;
 
                     if (obj.includes('region')) {
+                        post_str+=`<option value="26">Any</option>`;
                         $.each(json_data['data']['region'], function(i, obj1) {
                             post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
                         });
                     }
                     if (obj.includes('country')) {
+                        post_str+=`<option value="197">Any</option>`;
                         $.each(json_data['data']['country'], function(i, obj1) {
                             post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
                         });
                     }
                     if (obj.includes('port')) {
+                        post_str+=`<option value="5638">Any</option>`;
                         $.each(json_data['data']['port'], function(i, obj1) {
                             post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
                         });
                     }
                     if (obj.includes('cargo_type')) {
+                        post_str+=`<option value="13">Any</option>`;
                         $.each(json_data['data']['cargo_type'], function(i, obj1) {
                             post_str += `<option value="` + obj1.cargo_type_id + `">` + obj1.cargo_type_name + `</option>`;
                         });
                     }
                     if (obj.includes('vessel_type')) {
+                        post_str+=`<option value="11">Any</option>`;
                         $.each(json_data['data']['vessel_type'], function(i, obj1) {
                             post_str += `<option value="` + obj1.vessel_type_id + `">` + obj1.vessel_type_name + `</option>`;
                         });
                     }
                     if (obj.includes('charter_type')) {
+                        post_str+=`<option value="5">Any</option>`;
                         $.each(json_data['data']['charter_type'], function(i, obj1) {
                             post_str += `<option value="` + obj1.charter_type_id + `">` + obj1.charter_type_name + `</option>`;
                         });
