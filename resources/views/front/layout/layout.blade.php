@@ -187,7 +187,8 @@
                         <button class="btn_style size13 btn_xxs t_italic exo" type="button" onclick="location.href='{{ route('logout') }}'">Logout</button>
                     
                     @else
-                    <button class="btn_style size13 btn_xxs t_italic exo" type="button" onclick="location.href='{{ route('login') }}'">LOGIN / REGISTER</button>
+                    <button class="btn_style size13 btn_xxs t_italic exo mr-2" type="button" onclick="location.href='{{ route('signup') }}'">REGISTER</button>
+                    <button class="btn_style size13 btn_xxs t_italic exo" type="button" onclick="location.href='{{ route('login') }}'">LOGIN</button>
                     @endif
                     
                 </div>

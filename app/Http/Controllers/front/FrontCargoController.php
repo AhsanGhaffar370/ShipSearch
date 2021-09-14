@@ -336,25 +336,26 @@ class FrontCargoController extends Controller
                         ->active()
                         ->orderBy('cargo_id', 'DESC')
                         ->get();
-                        
-                        
+        
+        
         // dd($data);
         //working
         $ser_history= cargo_search_history::with(['cargotype','Lregion','Dregion','Lcountry','Dcountry','Lport','Dport'])
                                             ->where('user_id',session('front_uid'))->orderBy('id', 'DESC')->get();
-
-
+        
+        
         $ss_setup_cargo_type= ss_setup_cargo_type::where('cargo_type_name','!=','Any')->active()->ascend()->get();
         $ss_setup_region= ss_setup_region::where('region_name','!=','Any')->active()->ascend()->get();
         $ss_setup_country= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
         $ss_setup_port= ss_setup_port::where('port_name','!=','Any')->active()->ascend()->get();
-
+        
         return view('front/cargo/view',['data'=>$data,
                                         'ser_data'=>$ser_history,
                                         'cargo_type'=>$ss_setup_cargo_type,
                                         'region'=>$ss_setup_region,
                                         'country'=>$ss_setup_country,
                                         'port'=>$ss_setup_port]);
+        
     }
 
     function search_req_ajax(Request $req){
@@ -447,7 +448,7 @@ class FrontCargoController extends Controller
             foreach ($names_fk[$row] as $row1){ $names_str.=$row1.","; }
             $names_fk1[$row]=rtrim($names_str,',');
         }
-
+        
         $data[1] =$ids_fk;
         $data[2] =$names_fk1;
 

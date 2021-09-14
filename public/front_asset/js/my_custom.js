@@ -440,7 +440,7 @@ $(document).ready(function() {
                                             role="button" 
                                             data-html="true" 
                                             data-toggle="popover" 
-                                            data-trigger="click" 
+                                            data-trigger="focus" 
                                             data-placement="left"
                                             title="<p class='m-0'><b>` + obj1.user_info.company_name + `</b></p>" 
                                             data-content='

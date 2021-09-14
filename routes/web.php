@@ -56,7 +56,16 @@ Route::get('/login', function () {
 })->name('login');
 Route::post('login_req',[Front_auth::class,'login_req'])->name('login_req');
 
-Route::post('reg_req',[Front_auth::class,'reg_req'])->name('reg_req');
+
+// Route::get('/signup', function () {
+//     if((session()->has('front_uid'))){
+//         return redirect()->route('home');
+//     }else{
+//         return view('front/signup');
+//     }
+// })->name('signup');
+Route::get('/signup',[Front_auth::class, 'view_signup'])->name('signup');
+Route::post('signup_req',[Front_auth::class,'signup_req'])->name('signup_req');
 
 Route::get('email_verification/{code}', [Front_auth::class, 'email_ver_req'] )->name('email_verification.code');
 

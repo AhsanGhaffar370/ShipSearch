@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;
 
+use App\Models\ss_setup_region;
+use App\Models\ss_setup_country;
+use App\Models\ss_setup_port;
+
 class Front_auth extends Controller
 {
 
@@ -30,7 +34,21 @@ class Front_auth extends Controller
     }
 
 
+    function view_signup(){
 
+        if((session()->has('front_uid'))){
+            return redirect()->route('home');
+        }else{
+        
+            $ss_setup_region= ss_setup_region::where('region_name','!=','Any')->active()->ascend()->get();
+            $ss_setup_country= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
+            $ss_setup_port= ss_setup_port::where('port_name','!=','Any')->active()->ascend()->get();
+            
+            return view('front/signup',['region'=>$ss_setup_region,
+                                        'country'=>$ss_setup_country,
+                                        'port'=>$ss_setup_port]);
+        }
+    }
 
 
 
@@ -66,7 +84,7 @@ class Front_auth extends Controller
         }
     }
 
-    function reg_req(Request $req){
+    function signup_req(Request $req){
 
         ss_user::email($req->email)->isActive("0")->delete();
 
