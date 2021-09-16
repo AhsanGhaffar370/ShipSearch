@@ -539,7 +539,7 @@ $(document).ready(function() {
             success: function(response) {
                 if (response == "exist") {
                     $("#msg21").html(
-                        '<div class="size13 alert alert-warning"><i class="fas fa-info-circle"></i> Email Already Exist</div>'
+                        '<div class="alert alert-warning"><i class="fas fa-info-circle"></i> Email Already Exist</div>'
                     );
                     $('#sign12').attr('disabled', 'disabled');
                 } else if (response == "not exist") {
@@ -576,7 +576,7 @@ $(document).ready(function() {
 
         if (pass2_val != pass1_val) {
             $("#pass_msg").html(
-                '<div class="size13 alert alert-warning"><i class="fas fa-info-circle"></i> Password & Confirm Password should be same</div>'
+                '<div class="alert alert-warning"><i class="fas fa-info-circle"></i> Password & Confirm Password should be same</div>'
             );
             cfrm_border.css({
                 "border": "1px solid red",

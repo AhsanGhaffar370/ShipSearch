@@ -8,7 +8,7 @@
 
 <style>
 
-    .ser_inp_fields21 {
+    /* .ser_inp_fields21 {
         position: unset !important;
         width: 100% !important;
         display: none;
@@ -54,7 +54,7 @@
 
     form div section{
         position: relative !important;
-    }
+    } */
 
     label {
         /* color: white; */
@@ -72,21 +72,19 @@
 <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
 
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-8">
             <div class="animate form login_form bg-white shadow-sm rounded-lg border mt-4">
                 <p class="bg_gdd text-white size36 text-center b7 m-0 p-3">
                     Register
                 </p>
                 <form method="post" action={{route('signup_req')}} id="reg_form21" class="p-4">
                     @csrf
-                    {{-- Error Msg --}}
-                    <span id="msg21" class=""></span>
-                    <span id="pass_msg" class=""></span>
+                    
 
                     {{-- Personal Details --}}
                     <h4 class="m-0 pt-3 pl-1">Personal Details</h4>
                     <hr class="mt-2 mb-3 p-0">
-                    <div class="p-0">
+                    <div class="p-0 mt-2">
                         <div class="row m-0">
                             <div class="col-6 p-1">
                                 <label for="first_name" class="size14 mb-1">First Name</label>
@@ -119,49 +117,38 @@
                         <input type="text" name="post_number" id="post_number" class="form-control" required />
                     </div>
                     <div class="p-1 mt-2">
-                        <label for="country_id" class="size14 mb-1">Country</label>
-                        <section class="country_id_par">
-                            <select name="country_id[]" id="country_id"
-                                form="search_vessel_form" class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
-                                multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
-                                data-live-search="true">
-                                <option value="197">Any</option>
-                                @foreach ($country as $row)
-                                    <option value="{{ $row->country_id }}">{{ $row->country_name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </section>
+                        <label for="" class="size14 mb-1">Country</label>
+                        <select name="country_id" id="" class="form-control" 
+                            {{-- onmousedown="if(this.options.length>8){this.size=8;}"  
+                            onchange='this.size=0;' 
+                            onblur="this.size=0;" --}}
+                            >
+                            <option value="197">Any</option>
+                            @foreach ($country as $row)
+                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="p-1 mt-2">
-                        <label for="state_id" class="size14 mb-1">State</label>
-                        <section class="country_id_par">
-                            <select name="country_id[]" id="country_id"
-                                form="search_vessel_form" class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
-                                multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
-                                data-live-search="true">
-                                <option value="197">Any</option>
-                                {{-- @foreach ($country as $row)
-                                    <option value="{{ $row->country_id }}">{{ $row->country_name }}
-                                    </option>
-                                @endforeach --}}
-                            </select>
-                        </section>
+                        <label for="" class="size14 mb-1">State</label>
+                        <select name="state_id" id="" class="form-control">
+                            <option value="197">Any</option>
+                            @foreach ($country as $row)
+                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="p-1 mt-2">
-                        <label for="city_id" class="size14 mb-1">City</label>
-                        <section class="country_id_par">
-                            <select name="country_id[]" id="country_id"
-                                form="search_vessel_form" class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
-                                multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
-                                data-live-search="true">
-                                <option value="197">Any</option>
-                                {{-- @foreach ($country as $row)
-                                    <option value="{{ $row->country_id }}">{{ $row->country_name }}
-                                    </option>
-                                @endforeach --}}
-                            </select>
-                        </section>
+                        <label for="" class="size14 mb-1">City</label>
+                        <select name="city_id" id="" class="form-control">
+                            <option value="197">Any</option>
+                            @foreach ($country as $row)
+                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="p-1 mt-2">
                         <label for="zip_code" class="size14 mb-1">Zip Code</label>
@@ -203,7 +190,7 @@
                         <label for="company_email" class="size14 mb-1">Company Email</label>
                         <input type="email" name="company_email" id="company_email" class="form-control" required />
                     </div>
-                    <div class="p-0">
+                    <div class="p-0 mt-2">
                         <div class="row m-0">
                             <div class="col-6 p-1">
                                 <label for="contact_person_first_name" class="size14 mb-1">Contact Person First Name</label>
@@ -221,49 +208,34 @@
                     </div>
                    
                     <div class="p-1 mt-2">
-                        <label for="region_id" class="size14 mb-1">Region</label>
-                        <section class="country_id_par">
-                            <select name="country_id[]" id="country_id"
-                                form="search_vessel_form" class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
-                                multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
-                                data-live-search="true">
-                                <option value="197">Any</option>
-                                {{-- @foreach ($country as $row)
-                                    <option value="{{ $row->country_id }}">{{ $row->country_name }}
-                                    </option>
-                                @endforeach --}}
-                            </select>
-                        </section>
+                        <label for="" class="size14 mb-1">Region</label>
+                        <select name="company_region_id" id="" class="form-control">
+                            <option value="197">Any</option>
+                            @foreach ($country as $row)
+                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="p-1 mt-2">
-                        <label for="country_id" class="size14 mb-1">Country</label>
-                        <section class="country_id_par">
-                            <select name="country_id[]" id="country_id"
-                                form="search_vessel_form" class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
-                                multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
-                                data-live-search="true">
-                                <option value="197">Any</option>
-                                {{-- @foreach ($country as $row)
-                                    <option value="{{ $row->country_id }}">{{ $row->country_name }}
-                                    </option>
-                                @endforeach --}}
-                            </select>
-                        </section>
+                        <label for="" class="size14 mb-1">Country</label>
+                        <select name="company_country_id" id="" class="form-control">
+                            <option value="197">Any</option>
+                            @foreach ($country as $row)
+                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="p-1 mt-2">
-                        <label for="port_id" class="size14 mb-1">Port</label>
-                        <section class="country_id_par">
-                            <select name="country_id[]" id="country_id"
-                                form="search_vessel_form" class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
-                                multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
-                                data-live-search="true">
-                                <option value="197">Any</option>
-                                {{-- @foreach ($country as $row)
-                                    <option value="{{ $row->country_id }}">{{ $row->country_name }}
-                                    </option>
-                                @endforeach --}}
-                            </select>
-                        </section>
+                        <label for="" class="size14 mb-1">Port</label>
+                        <select name="company_port_id" id="" class="form-control">
+                            <option value="197">Any</option>
+                            @foreach ($country as $row)
+                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="p-1 mt-2">
                         <label for="business_address" class="size14 mb-1">Business Address</label>
@@ -300,6 +272,10 @@
                     {{-- Login Details --}}
                     <h4 class="m-0 pt-5 pl-1">Login Details</h4>
                     <hr class="mt-2 mb-3 p-0">
+
+                    {{-- Error Msg --}}
+                    <span id="msg21" class="size11"></span>
+                    <span id="pass_msg" class="size11"></span>
 
                     <div class="p-1 mt-2">
                         <label for="email" class="size14 mb-1">Email</label>

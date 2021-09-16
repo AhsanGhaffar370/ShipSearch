@@ -58,11 +58,11 @@ Route::post('login_req',[Front_auth::class,'login_req'])->name('login_req');
 
 
 // Route::get('/signup', function () {
-//     if((session()->has('front_uid'))){
-//         return redirect()->route('home');
-//     }else{
-//         return view('front/signup');
-//     }
+    // if((session()->has('front_uid'))){
+    //     return redirect()->route('home');
+    // }else{
+    //     return view('front/signup');
+    // }
 // })->name('signup');
 Route::get('/signup',[Front_auth::class, 'view_signup'])->name('signup');
 Route::post('signup_req',[Front_auth::class,'signup_req'])->name('signup_req');

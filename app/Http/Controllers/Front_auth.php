@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\ss_user;
+use App\Models\ss_setup_company_directory;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail as FacadesMail;
@@ -85,58 +86,86 @@ class Front_auth extends Controller
     }
 
     function signup_req(Request $req){
-
+    
         ss_user::email($req->email)->isActive("0")->delete();
-
-
+    
+    
+        // User details
         $user=new ss_user;
-
-        $user->first_name=$req->name;
+    
+        $user->first_name=$req->first_name;
+        $user->last_name=$req->last_name;
         $user->email=$req->email;
+    
         $user->password=md5($req->pass);
         $code=md5($req->email.time());
         $user->activationcode=$code;
         $user->is_active=0;
-
-        
-        $user->last_name=" ";
-        $user->date_of_birth=date('Y-m-d');
-        $user->company_id=2;
-        $user->job_title=" ";
-        $user->permanent_address=" ";
-        $user->temporary_address=" ";
-        $user->post_number=" ";
+    
+    
+        $user->date_of_birth=$req->date_of_birth;
+        // $user->company_id=2;
+        $user->company_name=$req->company_name;
+        $user->job_title=$req->job_title;
+        $user->permanent_address=$req->permanent_address;
+        $user->temporary_address=$req->temporary_address;
+        $user->post_number=$req->post_number;
         $user->country_id=2;
-        $user->company_name=" ";
         $user->state_id=1;
         $user->city_id=1;
-        $user->zip_code=" ";
-        $user->phone=" ";
-        $user->mobile=" ";
-        $user->fax=" ";
-        $user->mail_address=" ";
-        $user->description=" ";
+        $user->zip_code=$req->zip_code;
+        $user->phone=$req->phone;
+        $user->mobile=$req->mobile;
+        $user->fax=$req->fax;
+        $user->mail_address=$req->mail_address;
+        $user->description=$req->description;
         $user->member_type_id=1;
         $user->created_at=date('Y-m-d');
-        $user->modified_at=date('Y-m-d');
-        $user->created_by=1;
-        $user->modified_by=1;
-        $user->modified_at=date('Y-m-d');
-
+    
         $user->save();
 
+        // company details
+        $cid= ss_user::latest()->first()->user_id;
+
+        $company=new ss_setup_company_directory;
+
+        $company->company_name;
+        $company->region_id;
+        $company->country_id;
+        $company->port_id;
+        $company->business_address;
+        $company->contact_person_first_name;
+        $company->contact_person_last_name;
+        $company->phone;
+        $company->email;
+        $company->fax;
+        $company->website;
+        $company->company_name;
+        $company->company_name;
+        $company->company_name;
+        $company->company_name;
+        $company->company_name;
+        $company->company_name;
+
+
+
+
+
+
+
+    
         $user21['to']=$req->email;
         $data=['code'=>$code];
-
+    
         Mail::send('front/mail_format',$data, function($messages) use ($user21){
-            $messages->from('ahsanrao237@gmail.com', 'ShipSearch Support');
+            $messages->from('info@shipsearch.com', 'ShipSearch Support');
             $messages->to($user21['to']);
             $messages->subject("Email Verification | shipsearch.com");
             // $message->attach($pathToFile, array('as' => $display, 'mime' => $mime));
         });
-
+    
         $req->session()->flash('reg_msg',$req->email);
-
+    
         return redirect()->route('login');
     }
 
