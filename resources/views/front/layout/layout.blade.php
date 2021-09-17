@@ -278,6 +278,7 @@
 
     <script>
         $(document).ready(function(){
+            // vessel charter image preview dialog box on vessel_sale page
             $("#dialog").dialog({
                 draggable: false,
                 resizable: false,
@@ -307,7 +308,6 @@
                 let srcs=$(this).siblings('.img-fluid');
                 // console.log($(this).siblings('.img-fluid')[0]);
                 $.each(srcs, function(i, obj) {
-                    // console.log($(obj).attr('src'));
                     post_str+=`
                     <div class="carousel-item">
                         <img class="d-block w-100" src="` + $(obj).attr('src') + `" alt="First slide">
@@ -315,9 +315,34 @@
                     `;
                 });
 
-
                 $('.carousel-inner').html(post_str);
                 $("#dialog").dialog('open');
+            });
+
+
+            //delete all popup on cargo page
+            
+            $("#show_delete_popup").dialog({
+                draggable: false,
+                resizable: false,
+                closeOnEscape: false,
+                autoOpen: false,
+                width: '25%',
+                modal: true
+            });
+            
+            $(".ui-dialog-titlebar").hide();
+
+            $("#close_delete_popup").click(function(e){
+                e.preventDefault();
+                $("#show_delete_popup").dialog("close");
+            });
+
+            $(document).on('click', '#delete_popup', function(e){
+                
+                e.preventDefault();
+
+                $("#show_delete_popup").dialog('open');
             });
         });
     </script>

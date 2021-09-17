@@ -14,9 +14,9 @@
     @if (session('front_uid') != '')
         <div class="bg-white">
             <div class="pt-2 pb-2 pl-3">
-                <a id="new_ser_req" class="btn_style size13 btn_xxxs" href="#"><i class="fas fa-search"></i> New Vessel Sale Search</a>
+                <a id="new_ser_req" class="btn_style size13 btn_xxxs" href="#"><i class="fas fa-search"></i> Search Vessel for Sale</a>
                 <a href={{ route('vessel_sale.add') }} id="{{ session('front_uname') }}" class="btn_style size13 btn_xxxs ml-3 add_rec_validation"> 
-                    <i class="fas fa-plus"></i> Add New Vessel Sale
+                    <i class="fas fa-plus"></i> Add Vessel for Sale
                 </a>
             </div>
 
@@ -27,7 +27,7 @@
             <div class="border table-wrapper-scroll-y my-custom-scrollbar">
                 <table id="ser_his_table22"
                     class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
-                    <thead class="pos_rel z_ind999">
+                    <thead class="pos_rel">
                         <tr>
                             <th width="2%">#</th>
                             <th width="15%">Vessel Type</th>
@@ -343,7 +343,7 @@
                     <thead>
                         <tr>
                             <th width="2%">ID</th>
-                            <th width="14%">Vessel Image</th>
+                            <th width="6%">Vessel Image</th>
                             <th width="7%">Vessel Type</th>
                             <th width="8%">Region</th>
                             <th width="8%">Country</th>
@@ -366,14 +366,16 @@
                         @else
                             @foreach ($data as $row)
                                 <tr class="">
-                                    <td width="3%">
+                                    <td>
                                         <div class="td_h">
                                             {{$row->ref_no}}
                                         </div>
                                     </td>
-									<td width="13%">
+									<td>
                                         <div class="td_h">
-                                            <img src="{{asset('storage/vessel_sale_images/'.explode(',',$row->vessel_img)[0])}}" width="80" id="show_img31" class="img-thumbnail img-fluid" alt="vessel img">
+                                            <img src="{{asset('storage/vessel_sale_images/'.explode(',',$row->vessel_img)[0])}}" width="80" id="show_img31" 
+                                            class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">
+
                                             <span class="d_n">{{$count=0}}</span>
                                             @foreach (explode(',',$row->vessel_img) as $item)
                                                 @if($count!=0)
@@ -395,7 +397,7 @@
                                             @endforeach
                                         </div> --}}
                                     </td>
-                                    <td width="10%">
+                                    <td>
                                         <div class="td_h">
                                             {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->vessel_type_id); ?></p> --}}
                                             <p>
@@ -416,7 +418,7 @@
                                             <p class="">{{ $row->grt }}</p>
                                         </div>
                                     </td>
-                                    <td width="10%">
+                                    <td>
                                         <div class="td_h">
                                             {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->region_id); ?></p> --}}
                                             <p>
@@ -437,7 +439,7 @@
                                             <p class="">{{ $row->speed }}</p>
                                         </div>
                                     </td>
-                                    <td width="10%">
+                                    <td>
                                         <div class="td_h">
                                             {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->country_id); ?></p> --}}
                                             <p>
@@ -458,7 +460,7 @@
                                             <p class="">{{ $row->summer_draft }}</p>
                                         </div>
                                     </td>
-                                    <td width="10%">
+                                    <td>
                                         <div class="td_h">
                                             {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->port_id); ?></p> --}}
                                             <p>
@@ -479,7 +481,7 @@
                                             <p class="">{{ $row->bow_thruster }}</p>
                                         </div>
                                     </td>
-                                    <td width="10%">
+                                    <td>
                                         <div class="td_h">
                                             {{$row->built_year}}
                                         </div>
@@ -495,7 +497,7 @@
                                             <p class="">{{ $row->in_service }}</p>
                                         </div>
                                     </td>
-                                    <td width="10%">
+                                    <td>
                                         <div class="td_h">
                                             {{$row->price}}
                                         </div>
@@ -511,7 +513,7 @@
                                             <p class="">{{ $row->holds_hatch }}</p>
                                         </div>
                                     </td>
-                                    <td width="10%">
+                                    <td>
                                         <div class="td_h">
                                             {{explode(" ",$row->created_at)[0]}}
                                         </div>
@@ -524,7 +526,7 @@
                                         </div>
                                     </td>
                                     @if (session('front_uid') != '')
-                                        <td width="4%" class="text-center">
+                                        <td class="text-center">
                                             <a href='{{ $row->vessel_sale_id }}'
                                                 class="show_detail_btn show_detail_btn_{{ $row->vessel_sale_id }}"><i
                                                     class="fas fa-eye fa-2x"></i></a>
@@ -546,7 +548,7 @@
 </div>
 
 
-<div id="dialog" class="text-right rounded" style="display: none">
+<div id="dialog" class="text-right rounded" style="display: none; padding:0px !important;">
     {{-- <button id="close_dialog" class="btn" style="background-color: #EA6279; color: white;">Close</button> --}}
     <a href="#" id="close_dialog" style="font-size:20px; position: inherit;">&times;</a>
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

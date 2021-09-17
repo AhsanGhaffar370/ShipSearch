@@ -415,6 +415,19 @@ class FrontCargoController extends Controller
         }
     }
 
+    
+    function del_selected_ser_his_req_ajax(Request $req){
+        $ids=explode(',',$req->ids);
+        try {
+            cargo_search_history::whereIn('id', $ids)->delete();
+            echo "1";
+        } catch (\Throwable $e) {
+            report($e);
+            echo "0";
+        }
+
+    }
+
     function get_update_hist_data(Request $req){
 
         $data=[];

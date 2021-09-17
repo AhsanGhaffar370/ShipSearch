@@ -91,6 +91,7 @@ Route::get('/cargo/view', [FrontCargoController::class, 'view'] )->name('cargo.v
 Route::post('/cargo/view', [FrontCargoController::class, 'search_req'] )->name('cargo.search_req');
 Route::get('/cargo/ser_hist_rec', [FrontCargoController::class, 'search_req_ajax'] )->name('cargo.ser_hist_rec');
 Route::get('/cargo/del_ser_hist_rec', [FrontCargoController::class, 'del_ser_his_req_ajax'] )->name('cargo.del_ser_hist_rec');
+Route::get('/cargo/del_selected_ser_hist_rec', [FrontCargoController::class, 'del_selected_ser_his_req_ajax'] )->name('cargo.del_selected_ser_hist_rec');
 Route::get('/cargo/get_update_hist_data', [FrontCargoController::class, 'get_update_hist_data'] )->name('cargo.get_update_hist_data');
 Route::get('/cargo/update_hist_data', [FrontCargoController::class, 'update_hist_data'] )->name('cargo.update_hist_data');
 // Route::get('/cargo/update_search_hist', [FrontCargoController::class, 'update_search_hist'] )->name('cargo.update_search_hist');

@@ -32,6 +32,7 @@
                     class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
                     <thead class="pos_rel z_ind999">
                         <tr>
+                            <th width='2%'></th>
                             <th width="5%">#</th>
                             <th width="10%">Cargo Type</th>
                             <th width="10%">Laycan Date From</th>
@@ -59,6 +60,7 @@
                             <form id="search_cvs_form" method="post" action="{{ route('cargo.search_req') }}"
                                 class="form-horizontal form-label-left " enctype="multipart/form-data">
                                 @csrf
+                                <td></td>
                                 <td></td>
                                 <td class="">
                                     <section class="cargo_type_id_par">
@@ -204,6 +206,9 @@
                         {{-- /////////////////////// --}}
                         @foreach ($ser_data as $row)
                             <tr id="ser_hist_rec_{{ $row->id }}" class="ser_hist_rec_each car_ser_hist_rec_req_each ">
+                                <td>
+                                    <input type="checkbox" name="car_delete_selected_rec[]" class="mt-1" value="{{ $row->id }}">
+                                </td>
                                 <td id="id-{{ $row->id }}">
                                     {{ $row->id }}
                                 </td>
@@ -453,6 +458,24 @@
                     </tbody>
                 </table>
             </div>
+            <div class="pt-2 pb-2 pr-3 d-flex justify-content-end">
+                <a href="#" id="delete_popup" class="btn_style size13 btn_xxxs">
+                    Delete All
+                </a>
+            </div>
+
+            <div id="show_delete_popup" class="text-right rounded" style="display: none;">
+                <a href="#" id="close_delete_popup" style="font-size:20px; position: inherit;">&times;</a>
+                <p class="size20 cl_gd text-center" style="margin-top: -30px">Choose</p>
+                <div class="pt-3 pb-2 text-center">
+                    <a href="#" id="delete_all_car_ser_hist" class="btn_style size13 btn_xxxs text-white">
+                        Delete All Searches
+                    </a>
+                    <a href="#" id="delete_selected_car_ser_hist" class="btn_style size13 btn_xxxs text-white">
+                        DELETE Selected Searches
+                    </a>
+                </div>
+            </div>
         </div>
     @endif
 
@@ -504,6 +527,7 @@
                         @else
                             @foreach ($data as $row)
                                 <tr class="">
+                                    
                                     <td>
                                         <div class="td_h">
                                             {{ $row->ref_no }}

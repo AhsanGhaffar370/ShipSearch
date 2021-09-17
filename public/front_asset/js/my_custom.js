@@ -135,6 +135,41 @@ $(document).ready(function() {
 
     });
 
+    /////////////////////////////////////////////////
+    // Delete Selected Cargo Search History Record
+    /////////////////////////////////////////////////
+    $(document).on("click", '#delete_selected_car_ser_hist', function(e) {
+        e.preventDefault();
+        let ids=$("input[name='car_delete_selected_rec[]']:checked").map(function(){return $(this).val();}).get();
+        console.log(ids);
+
+        // let table_row = $(el).closest('tr');
+
+        let confirmalert = confirm("Are you sure?");
+        if (confirmalert == true) {
+            // AJAX Request
+            $.ajax({
+                url: route('cargo.del_selected_ser_hist_rec'),
+                data: "ids=" + ids,
+                type: "get",
+                success: function(response) {
+                    // alert(response);
+                    if (response == "1") {
+                        // Remove row from HTML Table
+                        // table_row.css('background', 'tomato');
+                        // table_row.fadeOut(800, function() {
+                        //     table_row.remove();
+                        // });
+                        alert("success");
+                    } else {
+                        alert('Invalid ID.');
+                    }
+
+                }
+            });
+        }
+        
+    });
 
 
     function GetFormattedDate(date) {
