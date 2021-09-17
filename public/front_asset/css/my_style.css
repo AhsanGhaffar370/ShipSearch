@@ -118,7 +118,9 @@ a {
     text-decoration: none !important;
 }
 
-
+/* .caros{
+    background-size: contain; width: 100%; height: 100%; position: fixed; z-index: 10000; top: 0; left: 0; cursor: zoom-out;
+} */
 /* a:hover {
     color: white !important;
 } */

@@ -442,7 +442,9 @@ $(document).ready(function() {
                                             data-toggle="popover" 
                                             data-trigger="focus" 
                                             data-placement="left"
-                                            title="<p class='m-0'><b>` + obj1.user_info.company_name + `</b></p>" 
+                                            title='
+                                                <p class="m-0"><b>` + obj1.user_info.company_name + `</b><a href="#" id="popovercloseid" type="button" class="close" >&times;</a></p>
+                                            '
                                             data-content='
                                                 <p class="size13 b6 m-0">Email </p>
                                                 <p class="size11 b4 mb-2">` + obj1.user_info.email + `</p>

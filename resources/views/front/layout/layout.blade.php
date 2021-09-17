@@ -276,7 +276,51 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
-    
+    <script>
+        $(document).ready(function(){
+            $("#dialog").dialog({
+                draggable: false,
+                resizable: false,
+                closeOnEscape: false,
+                autoOpen: false,
+                width: '50%',
+                modal: true
+            });
+		
+            // $("#dialog").dialog();
+            $(".ui-dialog-titlebar").hide();
+            
+            $("#close_dialog").click(function(e){
+                e.preventDefault();
+                $("#dialog").dialog("close");
+            });
+
+            $(document).on('click', '#show_img31', function(e){
+                let src=$(this).attr('src');
+
+                let post_str=`
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="` + src + `" alt="First slide">
+                    </div>
+                    `;
+
+                let srcs=$(this).siblings('.img-fluid');
+                // console.log($(this).siblings('.img-fluid')[0]);
+                $.each(srcs, function(i, obj) {
+                    // console.log($(obj).attr('src'));
+                    post_str+=`
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="` + $(obj).attr('src') + `" alt="First slide">
+                    </div>
+                    `;
+                });
+
+
+                $('.carousel-inner').html(post_str);
+                $("#dialog").dialog('open');
+            });
+        });
+    </script>
 
     <!-- custom js -->
     <script type="text/javascript" src="{{ asset('front_asset/js/my_validation.js') }}"></script>
@@ -294,6 +338,11 @@
     <script>
         $(function () {
             $('[data-toggle="popover"]').popover()
+        });
+
+        $(document).on('click', '#popovercloseid', function(e){
+            e.preventDefault();
+            $('.comp_popover').popover('hide'); 
         });
 
         // $(document).ready(function(){
@@ -330,37 +379,84 @@
                 $(this).closest('.tr-row').remove();
             });
 
-            // image preview
-            $('img[data-enlargeable]').addClass('img-enlargeable').click(function() {
-                var src = $(this).attr('src');
-                var modal;
 
-                function removeModal() {
-                    modal.remove();
-                    $('body').off('keyup.modal-close');
-                }
-                modal = $('<div>').css({
-                    background: 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
-                    backgroundSize: 'contain',
-                    width: '100%',
-                    height: '100%',
-                    position: 'fixed',
-                    zIndex: '10000',
-                    top: '0',
-                    left: '0',
-                    cursor: 'zoom-out'
-                }).click(function() {
-                    removeModal();
-                }).appendTo('body');
-                //handling ESC
-                $('body').on('keyup.modal-close', function(e) {
-                    if (e.key === 'Escape') {
-                    removeModal();
-                    }
-                });
-            });
+            // image preview
+            // $('img[data-enlargeable]').addClass('img-enlargeable').click(function() {
+            //     var src = $(this).attr('src');
+            //     var modal;
+
+            //     function removeModal() {
+            //         modal.remove();
+            //         $('body').off('keyup.modal-close');
+            //     }
+            //     modal = $('<div>').css({
+            //         background: 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
+            //         backgroundSize: 'contain',
+            //         width: '100%',
+            //         height: '100%',
+            //         position: 'fixed',
+            //         zIndex: '10000',
+            //         top: '0',
+            //         left: '0',
+            //         cursor: 'zoom-out'
+            //     }).click(function() {
+            //         removeModal();
+            //     }).appendTo('body');
+            //     //handling ESC
+            //     $('body').on('keyup.modal-close', function(e) {
+            //         if (e.key === 'Escape') {
+            //         removeModal();
+            //         }
+            //     });
+            // });
+
+            
+
+            // $('img[data-enlargeable]').addClass('img-enlargeable').click(function() {
+                
+                // var src = $(this).attr('src');
+                // var modal;
+
+                // function removeModal() {
+                //     modal.remove();
+                //     $('body').off('keyup.modal-close');
+                // }
+                // modal = $('<div>').html(
+                //     `
+                //     <div id="carouselExampleControls" class="carousel caros slide" data-ride="carousel" 
+                //     style="background-size: contain; width: 100%; height: 100%; position: fixed; z-index: 10000; top: 0; left: 0; cursor: zoom-out;">
+                //         <div class="carousel-inner">
+                //             <div class="carousel-item active">
+                //                 <img class="d-block" style="width: 70%; height: 70%; margin:5% auto 0% auto;" src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="First slide">
+                //             </div>
+                //             <div class="carousel-item active">
+                //                 <img class="d-block" style="width: 70%; height: 70%; margin:5% auto 0% auto;" src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="First slide">
+                //             </div>
+                //         </div>
+                //         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                //             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                //             <span class="sr-only">Previous</span>
+                //         </a>
+                //         <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                //             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                //             <span class="sr-only">Next</span>
+                //         </a>
+                //     </div>
+                //     `
+                // ).appendTo('body');
+                // //handling ESC
+                // $('body').on('keyup.modal-close', function(e) {
+                //     if (e.key === 'Escape') {
+                //     removeModal();
+                //     }
+                // });
+            // });
         });   
     </script>
+
+
+            
+
 </body>
 
 </html>
