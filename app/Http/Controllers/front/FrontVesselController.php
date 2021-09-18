@@ -270,14 +270,15 @@ class FrontVesselController extends Controller
         // ->whereHas('vesseltype', function($q1) use ($vessel_type_fk) {
         //     $q1->whereIn('vessel_type_id',$vessel_type_fk);
         // })
+        
         $data = ss_vessel::with(['vesseltype','chartertype','region','country','port'])
-                        ->where('laycan_date_from', $laycan_from)
-                        ->where('laycan_date_to', $laycan_to)
                         ->where('vessel_type_id', $ser_vessel_type)
                         ->where('charter_type_id', $ser_charter_type)
                         ->where('region_id', $ser_region)
                         ->where('country_id', $ser_country)
                         ->where('port_id', $ser_port)
+                        ->whereBetween("laycan_date_from", [$laycan_from, $laycan_to])
+                        ->whereBetween("laycan_date_to", [$laycan_from, $laycan_to])
                         ->active()
                         ->orderBy('vessel_id', 'DESC')
                         ->get();
@@ -316,13 +317,13 @@ class FrontVesselController extends Controller
         // }))
         $data=[];
         $data[0] = ss_vessel::with(['vesseltype','chartertype','region','country','port'])
-                        ->where('laycan_date_from', $ser_data->laycan_date_from)
-                        ->where('laycan_date_to', $ser_data->laycan_date_to)
                         ->where('vessel_type_id', $ser_data->vessel_type_id)
                         ->where('charter_type_id', $ser_data->charter_type_id)
                         ->where('region_id', $ser_data->region_id)
                         ->where('country_id', $ser_data->country_id)
                         ->where('port_id', $ser_data->port_id)
+                        ->whereBetween("laycan_date_from", [$ser_data->laycan_date_from, $ser_data->laycan_date_to])
+                        ->whereBetween("laycan_date_to", [$ser_data->laycan_date_from, $ser_data->laycan_date_to])
                         ->active()
                         ->orderBy('vessel_id', 'DESC')
                         ->get();
@@ -355,6 +356,37 @@ class FrontVesselController extends Controller
         }else{
             echo "0";
         }
+    }
+
+    
+    function del_selected_ser_his_req_ajax(Request $req){
+        
+        try {
+            if($req->del_type=='selected'){
+                $ids=explode(',',$req->ids);
+                try{
+                    vessel_search_history::whereIn('id', $ids)->delete();
+                    echo "1";
+                }catch(\Throwable $e){
+                    report($e);
+                    echo "0";
+                }
+            }
+            if($req->del_type=='all'){
+                try{
+                    vessel_search_history::whereNotNull('id')->delete();
+                    echo "1";
+                }catch(\Throwable $e){
+                    report($e);
+                    echo "0";
+                }
+            }
+            
+        } catch (\Throwable $e) {
+            report($e);
+            echo "0";
+        }
+
     }
 
     function get_update_hist_data(Request $req){
@@ -439,11 +471,11 @@ class FrontVesselController extends Controller
             $ser_data[0] = ss_vessel::with(['vesseltype','chartertype','region','country','port'])
                                 ->where('vessel_type_id', $data->vessel_type_id)
                                 ->where('charter_type_id', $data->charter_type_id)
-                                ->where('laycan_date_from', $data->laycan_date_from)
-                                ->where('laycan_date_to', $data->laycan_date_to)
                                 ->where('region_id', $data->region_id)
                                 ->where('country_id', $data->country_id)
                                 ->where('port_id', $data->port_id)
+                                ->whereBetween("laycan_date_from", [$data->laycan_date_from, $data->laycan_date_to])
+                                ->whereBetween("laycan_date_to", [$data->laycan_date_from, $data->laycan_date_to])
                                 ->active()
                                 ->orderBy('vessel_id', 'DESC')
                                 ->get();

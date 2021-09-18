@@ -96,6 +96,8 @@ class FrontCargoController extends Controller
         $ss_setup_country= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
         $ss_setup_port= ss_setup_port::where('port_name','!=','Any')->active()->ascend()->get();
 
+        // dd($data[0]->cargotype[count($data[0]->cargotype)-1]->CAcargotype->cargo_type_name);
+
         return view('front/cargo/view',['data'=>$data,
                                         'ser_data'=>$ser_data,
                                         'cargo_type'=>$ss_setup_cargo_type,
@@ -417,10 +419,28 @@ class FrontCargoController extends Controller
 
     
     function del_selected_ser_his_req_ajax(Request $req){
-        $ids=explode(',',$req->ids);
+        
         try {
-            cargo_search_history::whereIn('id', $ids)->delete();
-            echo "1";
+            if($req->del_type=='selected'){
+                $ids=explode(',',$req->ids);
+                try{
+                    cargo_search_history::whereIn('id', $ids)->delete();
+                    echo "1";
+                }catch(\Throwable $e){
+                    report($e);
+                    echo "0";
+                }
+            }
+            if($req->del_type=='all'){
+                try{
+                    cargo_search_history::whereNotNull('id')->delete();
+                    echo "1";
+                }catch(\Throwable $e){
+                    report($e);
+                    echo "0";
+                }
+            }
+            
         } catch (\Throwable $e) {
             report($e);
             echo "0";

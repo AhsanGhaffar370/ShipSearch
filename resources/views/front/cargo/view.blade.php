@@ -32,8 +32,8 @@
                     class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
                     <thead class="pos_rel z_ind999">
                         <tr>
-                            <th width='2%'></th>
-                            <th width="5%">#</th>
+                            <th width='1%'></th>
+                            <th width="3%">#</th>
                             <th width="10%">Cargo Type</th>
                             <th width="10%">Laycan Date From</th>
                             <th width="10%">Laycan Date To</th>
@@ -42,7 +42,7 @@
                             <th width="10%">Loading Port</th>
                             <th width="10%">Discharge Region</th>
                             <th width="10%">Discharge Country</th>
-                            <th width="15%">Discharge Port</th>
+                            <th width="17%">Discharge Port</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -207,7 +207,7 @@
                         @foreach ($ser_data as $row)
                             <tr id="ser_hist_rec_{{ $row->id }}" class="ser_hist_rec_each car_ser_hist_rec_req_each ">
                                 <td>
-                                    <input type="checkbox" name="car_delete_selected_rec[]" class="mt-1" value="{{ $row->id }}">
+                                    <input type="checkbox" name="delete_selected_rec[]" class="mt-1" value="{{ $row->id }}">
                                 </td>
                                 <td id="id-{{ $row->id }}">
                                     {{ $row->id }}
@@ -217,7 +217,10 @@
                                 </td> --}}
                                 <td class="" id="cargotype-{{ $row->id }}">
                                     @foreach ($row->cargotype as $ser_row12)
-                                        {{ optional($ser_row12->SCAcargotype)->cargo_type_name }},<br>
+                                        {{ optional($ser_row12->SCAcargotype)->cargo_type_name }}
+                                        @if($row->cargotype[count($row->cargotype)-1]->SCAcargotype->cargo_type_name!=$ser_row12->SCAcargotype->cargo_type_name)
+                                            ,<br>
+                                        @endif
                                     @endforeach
                                 </td>
                                 <td id="laycan_from-{{ $row->id }}">
@@ -232,7 +235,10 @@
                                 {{-- working --}}
                                 <td class="" id="lregion-{{ $row->id }}">
                                     @foreach ($row->Lregion as $ser_row12)
-                                        {{ optional($ser_row12->SCAlregion)->region_name }},<br>
+                                        {{ optional($ser_row12->SCAlregion)->region_name }}
+                                        @if($row->Lregion[count($row->Lregion)-1]->SCAlregion->region_name!=$ser_row12->SCAlregion->region_name)
+                                            ,<br>
+                                        @endif
                                     @endforeach
                                 </td>
                                 {{-- <td class="{{ $row->loading_country_id }}" id="lcountry-{{ $row->id }}">
@@ -240,7 +246,10 @@
                                 </td> --}}
                                 <td class="" id="lcountry-{{ $row->id }}">
                                     @foreach ($row->Lcountry as $ser_row12)
-                                        {{ optional($ser_row12->SCAlcountry)->country_name }},<br>
+                                        {{ optional($ser_row12->SCAlcountry)->country_name }}
+                                        @if($row->Lcountry[count($row->Lcountry)-1]->SCAlcountry->country_name!=$ser_row12->SCAlcountry->country_name)
+                                            ,<br>
+                                        @endif
                                     @endforeach
                                 </td>
                                 {{-- <td class="{{ $row->loading_port_id }}" id="lport-{{ $row->id }}">
@@ -248,7 +257,10 @@
                                 </td> --}}
                                 <td class="" id="lport-{{ $row->id }}">
                                     @foreach ($row->Lport as $ser_row12)
-                                        {{ optional($ser_row12->SCAlport)->port_name }},<br>
+                                        {{ optional($ser_row12->SCAlport)->port_name }}
+                                        @if($row->Lport[count($row->Lport)-1]->SCAlport->port_name!=$ser_row12->SCAlport->port_name)
+                                            ,<br>
+                                        @endif
                                     @endforeach
                                 </td>
                                 {{-- <td class="{{ $row->discharge_region_id }}" id="dregion-{{ $row->id }}">
@@ -256,7 +268,10 @@
                                 </td> --}}
                                 <td class="" id="dregion-{{ $row->id }}">
                                     @foreach ($row->Dregion as $ser_row12)
-                                        {{ optional($ser_row12->SCAdregion)->region_name }},<br>
+                                        {{ optional($ser_row12->SCAdregion)->region_name }}
+                                        @if($row->Dregion[count($row->Dregion)-1]->SCAdregion->region_name!=$ser_row12->SCAdregion->region_name)
+                                            ,<br>
+                                        @endif
                                     @endforeach
                                 </td>
                                 {{-- <td class="{{ $row->discharge_country_id }}" id="dcountry-{{ $row->id }}">
@@ -264,7 +279,10 @@
                                 </td> --}}
                                 <td class="" id="dcountry-{{ $row->id }}">
                                     @foreach ($row->Dcountry as $ser_row12)
-                                        {{ optional($ser_row12->SCAdcountry)->country_name }},<br>
+                                        {{ optional($ser_row12->SCAdcountry)->country_name }}
+                                        @if($row->Dcountry[count($row->Dcountry)-1]->SCAdcountry->country_name!=$ser_row12->SCAdcountry->country_name)
+                                            ,<br>
+                                        @endif
                                     @endforeach
                                 </td>
                                 <td>
@@ -273,7 +291,10 @@
                                     </span> --}}
                                     <span class="" id="dport-{{ $row->id }}">
                                         @foreach ($row->Dport as $ser_row12)
-                                            {{ optional($ser_row12->SCAdport)->port_name }},<br>
+                                            {{ optional($ser_row12->SCAdport)->port_name }}
+                                            @if($row->Dport[count($row->Dport)-1]->SCAdport->port_name!=$ser_row12->SCAdport->port_name)
+                                                ,<br>
+                                            @endif
                                         @endforeach
                                     </span>
                                     <!-- edit delete buttons -->
@@ -304,6 +325,7 @@
                             <tr id='adv_ser_form_each_{{ $row->id }}' class="adv_ser_form_each pos_rel d_n adv_forms_tr">
                                 <form id="search_cvs_form_{{ $row->id }}" class="form-horizontal form-label-left ">
                                     @csrf
+                                    <td></td>
                                     <td></td>
                                     <td class="">
                                         <section class="cargo_type_id_par_{{ $row->id }}">
@@ -468,10 +490,10 @@
                 <a href="#" id="close_delete_popup" style="font-size:20px; position: inherit;">&times;</a>
                 <p class="size20 cl_gd text-center" style="margin-top: -30px">Choose</p>
                 <div class="pt-3 pb-2 text-center">
-                    <a href="#" id="delete_all_car_ser_hist" class="btn_style size13 btn_xxxs text-white">
+                    <a href="#" id="car_delete_all" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
                         Delete All Searches
                     </a>
-                    <a href="#" id="delete_selected_car_ser_hist" class="btn_style size13 btn_xxxs text-white">
+                    <a href="#" id="car_delete_selected" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
                         DELETE Selected Searches
                     </a>
                 </div>
@@ -537,15 +559,22 @@
                                     <td>
                                         <div class="td_h">
                                             @foreach ($row->cargotype as $row12)
-                                                {{ optional($row12->CAcargotype)->cargo_type_name }},<br>
+                                                {{ optional($row12->CAcargotype)->cargo_type_name }}
+                                                @if($row->cargotype[count($row->cargotype)-1]->CAcargotype->cargo_type_name!=$row12->CAcargotype->cargo_type_name)
+                                                    ,<br>
+                                                @endif
                                             @endforeach
+                                            {{-- ,,,{{(end($row->cargotype))->cargo_type_name}} --}}
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
                                             <p class="b7 mb-0">Loading Country:</p>
                                             <p>
                                                 @foreach ($row->Lcountry as $row12)
-                                                    {{ optional($row12->CAlcountry)->country_name }},<br>
+                                                    {{ optional($row12->CAlcountry)->country_name }}
+                                                    @if($row->Lcountry[count($row->Lcountry)-1]->CAlcountry->country_name!=$row12->CAlcountry->country_name)
+                                                        ,<br>
+                                                    @endif
                                                 @endforeach
                                             </p>
                                             <p class="b7 mb-0">Max LOA:</p>
@@ -555,7 +584,10 @@
                                     <td>
                                         <div class="td_h">
                                             @foreach ($row->Lregion as $row12)
-                                                {{ optional($row12->CAlregion)->region_name }},<br>
+                                                {{ optional($row12->CAlregion)->region_name }}
+                                                @if($row->Lregion[count($row->Lregion)-1]->CAlregion->region_name!=$row12->CAlregion->region_name)
+                                                    ,<br>
+                                                @endif
                                             @endforeach
                                         </div>
                                         {{--  --}}
@@ -563,7 +595,10 @@
                                             <p class="b7 mb-0">Loading Port</p>
                                             <p>
                                                 @foreach ($row->Lport as $row12)
-                                                    {{ optional($row12->CAlport)->port_name }},<br>
+                                                    {{ optional($row12->CAlport)->port_name }}
+                                                    @if($row->Lport[count($row->Lport)-1]->CAlport->port_name!=$row12->CAlport->port_name)
+                                                        ,<br>
+                                                    @endif
                                                 @endforeach
                                             </p>
                                             <p class="b7 mb-0">Stowage Factor:</p>
@@ -573,7 +608,10 @@
                                     <td>
                                         <div class="td_h">
                                             @foreach ($row->Dregion as $row12)
-                                                {{ optional($row12->CAdregion)->region_name }},<br>
+                                                {{ optional($row12->CAdregion)->region_name }}
+                                                @if($row->Dregion[count($row->Dregion)-1]->CAdregion->region_name!=$row12->CAdregion->region_name)
+                                                    ,<br>
+                                                @endif
                                             @endforeach
                                         </div>
                                         {{--  --}}
@@ -581,7 +619,10 @@
                                             <p class="b7 mb-0">Discharge Country</p>
                                             <p>
                                                 @foreach ($row->Dcountry as $row12)
-                                                    {{ optional($row12->CAdcountry)->country_name }},<br>
+                                                    {{ optional($row12->CAdcountry)->country_name }}
+                                                    @if($row->Dcountry[count($row->Dcountry)-1]->CAdcountry->country_name!=$row12->CAdcountry->country_name)
+                                                        ,<br>
+                                                    @endif
                                                 @endforeach
                                             </p>
                                             <p class="b7 mb-0">Max Height:</p>
@@ -597,7 +638,10 @@
                                             <p class="b7 mb-0">Discharge Port</p>
                                             <p>
                                                 @foreach ($row->Dport as $row12)
-                                                    {{ optional($row12->CAdport)->port_name }},<br>
+                                                    {{ optional($row12->CAdport)->port_name }}
+                                                    @if($row->Dport[count($row->Dport)-1]->CAdport->port_name!=$row12->CAdport->port_name)
+                                                        ,<br>
+                                                    @endif
                                                 @endforeach
                                             </p>
                                             <p class="b7 mb-0">Loading Equipment Req:</p>

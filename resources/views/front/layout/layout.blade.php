@@ -284,7 +284,7 @@
                 resizable: false,
                 closeOnEscape: false,
                 autoOpen: false,
-                width: '50%',
+                width: '60%',
                 modal: true
             });
 		
@@ -327,7 +327,7 @@
                 resizable: false,
                 closeOnEscape: false,
                 autoOpen: false,
-                width: '25%',
+                width: '450px',
                 modal: true
             });
             

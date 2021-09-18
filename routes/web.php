@@ -104,6 +104,7 @@ Route::get('/vessel/view', [FrontVesselController::class, 'view'] )->name('vesse
 Route::post('/vessel/view', [FrontVesselController::class, 'search_req'] )->name('vessel.search_req');
 Route::get('/vessel/ser_hist_rec', [FrontVesselController::class, 'search_req_ajax'] )->name('vessel.ser_hist_rec');
 Route::get('/vessel/del_ser_hist_rec', [FrontVesselController::class, 'del_ser_his_req_ajax'] )->name('vessel.del_ser_hist_rec');
+Route::get('/vessel/del_selected_ser_hist_rec', [FrontVesselController::class, 'del_selected_ser_his_req_ajax'] )->name('vessel.del_selected_ser_hist_rec');
 Route::get('/vessel/get_update_hist_data', [FrontVesselController::class, 'get_update_hist_data'] )->name('vessel.get_update_hist_data');
 Route::get('/vessel/update_hist_data', [FrontVesselController::class, 'update_hist_data'] )->name('vessel.update_hist_data');
 
@@ -113,6 +114,7 @@ Route::get('/vessel_sale/view', [FrontVesselSaleController::class, 'view'] )->na
 Route::post('/vessel_sale/view', [FrontVesselSaleController::class, 'search_req'] )->name('vessel_sale.search_req');
 Route::get('/vessel_sale/ser_hist_rec', [FrontVesselSaleController::class, 'search_req_ajax'] )->name('vessel_sale.ser_hist_rec');
 Route::get('/vessel_sale/del_ser_hist_rec', [FrontVesselSaleController::class, 'del_ser_his_req_ajax'] )->name('vessel_sale.del_ser_hist_rec');
+Route::get('/vessel_sale/del_selected_ser_hist_rec', [FrontVesselSaleController::class, 'del_selected_ser_his_req_ajax'] )->name('vessel_sale.del_selected_ser_hist_rec');
 Route::get('/vessel_sale/get_update_hist_data', [FrontVesselSaleController::class, 'get_update_hist_data'] )->name('vessel_sale.get_update_hist_data');
 Route::get('/vessel_sale/update_hist_data', [FrontVesselSaleController::class, 'update_hist_data'] )->name('vessel_sale.update_hist_data');
 

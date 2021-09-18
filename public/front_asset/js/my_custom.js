@@ -138,40 +138,72 @@ $(document).ready(function() {
     /////////////////////////////////////////////////
     // Delete Selected Cargo Search History Record
     /////////////////////////////////////////////////
-    $(document).on("click", '#delete_selected_car_ser_hist', function(e) {
+    $(document).on("click", '.del_sel_all_ser_hist', function(e) {
         e.preventDefault();
-        let ids=$("input[name='car_delete_selected_rec[]']:checked").map(function(){return $(this).val();}).get();
-        console.log(ids);
 
-        // let table_row = $(el).closest('tr');
+        let del_btn_id=$(this).attr('id');
+        let del_type;
+        let cvs_name;
+        let ids;
+        let flag=false;
+
+        if(del_btn_id.includes('selected')){
+            del_type='selected';
+            ids=$("input[name='delete_selected_rec[]']:checked").map(function(){return $(this).val();}).get();
+            if (ids.length >= 1)
+                flag=true;
+        }
+        if(del_btn_id.includes('all')){
+            del_type='all';
+            ids=0;
+            flag=true;
+        }
+        if(del_btn_id.includes('car'))
+            cvs_name='cargo';
+        if(del_btn_id.includes('ves'))
+            cvs_name='cargo';
+        if(del_btn_id.includes('vsale'))
+            cvs_name='vessel_sale';
+        
+        $("#show_delete_popup").dialog("close");
 
         let confirmalert = confirm("Are you sure?");
-        if (confirmalert == true) {
-            // AJAX Request
-            $.ajax({
-                url: route('cargo.del_selected_ser_hist_rec'),
-                data: "ids=" + ids,
-                type: "get",
-                success: function(response) {
-                    // alert(response);
-                    if (response == "1") {
-                        // Remove row from HTML Table
-                        // table_row.css('background', 'tomato');
-                        // table_row.fadeOut(800, function() {
-                        //     table_row.remove();
-                        // });
-                        alert("success");
-                    } else {
-                        alert('Invalid ID.');
-                    }
 
-                }
-            });
-        }
-        
+        if (confirmalert == true) {
+            if (flag==true) {
+                // AJAX Request
+                $.ajax({
+                    url: route(cvs_name+'.del_selected_ser_hist_rec'),
+                    data: "ids=" + ids + "&del_type=" + del_type,
+                    type: "get",
+                    success: function(response) {
+                        if (response == "1") {
+                            if(del_type=='selected'){
+                                $.each(ids, function(i, obj){
+                                    let table_row = $("#ser_hist_rec_"+obj);
+                                    table_row.css('background', 'tomato');
+                                    table_row.fadeOut(800, function() {
+                                        table_row.remove();
+                                    });
+                                });
+                            }
+                            if(del_type=='all'){
+                                let table_row = $(".ser_hist_rec_each");
+                                table_row.css('background', 'tomato');
+                                table_row.fadeOut(800, function() {
+                                    table_row.remove();
+                                });
+                            }
+                        } else
+                            alert('Something went wrong, please try again');
+                    }
+                });
+            }else
+                alert('Please Select a record to delete');
+        } 
     });
 
-
+    
     function GetFormattedDate(date) {
         // var dateAr = '2014-01-06'.split('-');
         var dateAr = date.split('-');
@@ -352,7 +384,9 @@ $(document).ready(function() {
                                 <td>
                                     <div class="td_h">`;
                             $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
-                                post_str += cargotype_obj + ',<br>';
+                                post_str += cargotype_obj;
+                                if(json_data['data'][1]['cargo_type_id'][obj1.cargo_id][json_data['data'][1]['cargo_type_id'][obj1.cargo_id].length-1]!=cargotype_obj)
+                                    post_str +=`,<br>`;
                             });
                             post_str +=
                                 `</div>
@@ -361,7 +395,9 @@ $(document).ready(function() {
                             post_str +=
                                 `<p class="">`;
                             $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
-                                post_str += lcountry_obj + ',<br>';
+                                post_str += lcountry_obj;
+                                if(json_data['data'][1]['loading_country_id'][obj1.cargo_id][json_data['data'][1]['loading_country_id'][obj1.cargo_id].length-1]!=lcountry_obj)
+                                    post_str +=`,<br>`;
                             });
                             post_str +=
                                 `</p>
@@ -372,7 +408,9 @@ $(document).ready(function() {
                                 <td>
                                     <div class="td_h">`;
                             $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
-                                post_str += lregion_obj + ',<br>';
+                                post_str += lregion_obj;
+                                if(json_data['data'][1]['loading_region_id'][obj1.cargo_id][json_data['data'][1]['loading_region_id'][obj1.cargo_id].length-1]!=lregion_obj)
+                                    post_str +=`,<br>`;
                             });
                             post_str +=
                                 `</div>
@@ -381,7 +419,9 @@ $(document).ready(function() {
                             post_str +=
                                 `<p class="">`;
                             $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
-                                post_str += lport_obj + ',<br>';
+                                post_str += lport_obj;
+                                if(json_data['data'][1]['loading_port_id'][obj1.cargo_id][json_data['data'][1]['loading_port_id'][obj1.cargo_id].length-1]!=lport_obj)
+                                    post_str +=`,<br>`;
                             });
                             post_str +=
                                 `</p>
@@ -392,7 +432,9 @@ $(document).ready(function() {
                                 <td>
                                     <div class="td_h">`;
                             $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
-                                post_str += dregion_obj + ',<br>';
+                                post_str += dregion_obj;
+                                if(json_data['data'][1]['discharge_region_id'][obj1.cargo_id][json_data['data'][1]['discharge_region_id'][obj1.cargo_id].length-1]!=dregion_obj)
+                                    post_str +=`,<br>`;
                             });
                             post_str +=
                                 `</div>
@@ -401,7 +443,9 @@ $(document).ready(function() {
                             post_str +=
                                 `<p class="">`;
                             $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
-                                post_str += dcountry_obj + ',<br>';
+                                post_str += dcountry_obj;
+                                if(json_data['data'][1]['discharge_country_id'][obj1.cargo_id][json_data['data'][1]['discharge_country_id'][obj1.cargo_id].length-1]!=dcountry_obj)
+                                    post_str +=`,<br>`;
                             });
                             post_str +=
                                 `</p>
@@ -418,7 +462,9 @@ $(document).ready(function() {
                             post_str +=
                                 `<p class="">`;
                             $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
-                                post_str += dport_obj + ',<br>';
+                                post_str += dport_obj;
+                                if(json_data['data'][1]['discharge_port_id'][obj1.cargo_id][json_data['data'][1]['discharge_port_id'][obj1.cargo_id].length-1]!=dport_obj)
+                                    post_str +=`,<br>`;
                             });
                             post_str +=
                                 `</p>
@@ -725,7 +771,9 @@ $(document).ready(function() {
                                         <td>
                                             <div class="td_h">`;
                                     $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
-                                        post_str += cargotype_obj + ',<br>';
+                                        post_str += cargotype_obj;
+                                        if(json_data['data'][1]['cargo_type_id'][obj1.cargo_id][json_data['data'][1]['cargo_type_id'][obj1.cargo_id].length-1]!=cargotype_obj)
+                                            post_str +=`,<br>`;
                                     });
                                     post_str +=
                                         `</div>
@@ -734,7 +782,9 @@ $(document).ready(function() {
                                     post_str +=
                                         `<p class="">`;
                                     $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
-                                        post_str += lcountry_obj + ',<br>';
+                                        post_str += lcountry_obj;
+                                        if(json_data['data'][1]['loading_country_id'][obj1.cargo_id][json_data['data'][1]['loading_country_id'][obj1.cargo_id].length-1]!=lcountry_obj)
+                                            post_str +=`,<br>`;
                                     });
                                     post_str +=
                                         `</p>
@@ -745,7 +795,9 @@ $(document).ready(function() {
                                         <td>
                                             <div class="td_h">`;
                                     $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
-                                        post_str += lregion_obj + ',<br>';
+                                        post_str += lregion_obj;
+                                        if(json_data['data'][1]['loading_region_id'][obj1.cargo_id][json_data['data'][1]['loading_region_id'][obj1.cargo_id].length-1]!=lregion_obj)
+                                            post_str +=`,<br>`;
                                     });
                                     post_str +=
                                         `</div>
@@ -754,7 +806,9 @@ $(document).ready(function() {
                                     post_str +=
                                         `<p class="">`;
                                     $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
-                                        post_str += lport_obj + ',<br>';
+                                        post_str += lport_obj;
+                                        if(json_data['data'][1]['loading_port_id'][obj1.cargo_id][json_data['data'][1]['loading_port_id'][obj1.cargo_id].length-1]!=lport_obj)
+                                            post_str +=`,<br>`;
                                     });
                                     post_str +=
                                         `</p>
@@ -765,7 +819,9 @@ $(document).ready(function() {
                                         <td>
                                             <div class="td_h">`;
                                     $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
-                                        post_str += dregion_obj + ',<br>';
+                                        post_str += dregion_obj;
+                                        if(json_data['data'][1]['discharge_region_id'][obj1.cargo_id][json_data['data'][1]['discharge_region_id'][obj1.cargo_id].length-1]!=dregion_obj)
+                                            post_str +=`,<br>`;
                                     });
                                     post_str +=
                                         `</div>
@@ -774,7 +830,9 @@ $(document).ready(function() {
                                     post_str +=
                                         `<p class="">`;
                                     $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
-                                        post_str += dcountry_obj + ',<br>';
+                                        post_str += dcountry_obj;
+                                        if(json_data['data'][1]['discharge_country_id'][obj1.cargo_id][json_data['data'][1]['discharge_country_id'][obj1.cargo_id].length-1]!=dcountry_obj)
+                                            post_str +=`,<br>`;
                                     });
                                     post_str +=
                                         `</p>
@@ -791,7 +849,9 @@ $(document).ready(function() {
                                     post_str +=
                                         `<p class="">`;
                                     $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
-                                        post_str += dport_obj + ',<br>';
+                                        post_str += dport_obj;
+                                        if(json_data['data'][1]['discharge_port_id'][obj1.cargo_id][json_data['data'][1]['discharge_port_id'][obj1.cargo_id].length-1]!=dport_obj)
+                                            post_str +=`,<br>`;
                                     });
                                     post_str +=
                                         `</p>
@@ -848,9 +908,11 @@ $(document).ready(function() {
                                                     role="button" 
                                                     data-html="true" 
                                                     data-toggle="popover" 
-                                                    data-trigger="click" 
+                                                    data-trigger="focus" 
                                                     data-placement="left"
-                                                    title="<p class='m-0'><b>` + obj1.user_info.company_name + `</b></p>" 
+                                                    title='
+                                                        <p class="m-0"><b>` + obj1.user_info.company_name + `</b><a href="#" id="popovercloseid" type="button" class="close" >&times;</a></p>
+                                                    '
                                                     data-content='
                                                         <p class="size13 b6 m-0">Email </p>
                                                         <p class="size11 b4 mb-2">` + obj1.user_info.email + `</p>
@@ -999,7 +1061,9 @@ $(document).ready(function() {
                             // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
                             post_str +=
                                 $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_id], function(i, vesseltype_obj) {
-                                    post_str += vesseltype_obj + ',<br>';
+                                    post_str += vesseltype_obj;
+                                    if(json_data['data'][1]['vessel_type_id'][obj1.vessel_id][json_data['data'][1]['vessel_type_id'][obj1.vessel_id].length-1]!=vesseltype_obj)
+                                        post_str +=`,<br>`;
                                 });
                             post_str +=
                                 `</div>
@@ -1017,7 +1081,9 @@ $(document).ready(function() {
                             // + obj1.charter_type_id.replace(/,/g, ',<br>') +
                             post_str +=
                                 $.each(json_data['data'][1]['charter_type_id'][obj1.vessel_id], function(i, chartertype_obj) {
-                                    post_str += chartertype_obj + ',<br>';
+                                    post_str += chartertype_obj;
+                                    if(json_data['data'][1]['charter_type_id'][obj1.vessel_id][json_data['data'][1]['charter_type_id'][obj1.vessel_id].length-1]!=chartertype_obj)
+                                        post_str +=`,<br>`;
                                 });
                             post_str +=
                                 `</div>
@@ -1061,7 +1127,9 @@ $(document).ready(function() {
                             // + obj1.region_id.replace(/,/g, ',<br>') +
                             post_str +=
                                 $.each(json_data['data'][1]['region_id'][obj1.vessel_id], function(i, region_obj) {
-                                    post_str += region_obj + ',<br>';
+                                    post_str += region_obj;
+                                    if(json_data['data'][1]['region_id'][obj1.vessel_id][json_data['data'][1]['region_id'][obj1.vessel_id].length-1]!=region_obj)
+                                        post_str +=`,<br>`;
                                 });
                             post_str +=
                                 `</div>
@@ -1079,7 +1147,9 @@ $(document).ready(function() {
                             // + obj1.country_id.replace(/,/g, ',<br>') +
                             post_str +=
                                 $.each(json_data['data'][1]['country_id'][obj1.vessel_id], function(i, country_obj) {
-                                    post_str += country_obj + ',<br>';
+                                    post_str += country_obj;
+                                    if(json_data['data'][1]['country_id'][obj1.vessel_id][json_data['data'][1]['country_id'][obj1.vessel_id].length-1]!=country_obj)
+                                        post_str +=`,<br>`;
                                 });
                             post_str +=
                                 `</div>
@@ -1097,7 +1167,9 @@ $(document).ready(function() {
                             // + obj1.port_id.replace(/,/g, ',<br>') +
                             post_str +=
                                 $.each(json_data['data'][1]['port_id'][obj1.vessel_id], function(i, port_obj) {
-                                    post_str += port_obj + ',<br>';
+                                    post_str += port_obj;
+                                    if(json_data['data'][1]['port_id'][obj1.vessel_id][json_data['data'][1]['port_id'][obj1.vessel_id].length-1]!=port_obj)
+                                        post_str +=`,<br>`;
                                 });
                             post_str +=
                                 `</div>
@@ -1330,7 +1402,7 @@ $(document).ready(function() {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
                                     post_str +=
-                                    `<tr class="">
+                                        `<tr class="">
                                         <td>
                                             <div class="td_h">` +
                                         obj1.ref_no +
@@ -1362,7 +1434,9 @@ $(document).ready(function() {
                                     // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
                                     post_str +=
                                         $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_id], function(i, vesseltype_obj) {
-                                            post_str += vesseltype_obj + ',<br>';
+                                            post_str += vesseltype_obj;
+                                            if(json_data['data'][1]['vessel_type_id'][obj1.vessel_id][json_data['data'][1]['vessel_type_id'][obj1.vessel_id].length-1]!=vesseltype_obj)
+                                                post_str +=`,<br>`;
                                         });
                                     post_str +=
                                         `</div>
@@ -1380,7 +1454,9 @@ $(document).ready(function() {
                                     // + obj1.charter_type_id.replace(/,/g, ',<br>') +
                                     post_str +=
                                         $.each(json_data['data'][1]['charter_type_id'][obj1.vessel_id], function(i, chartertype_obj) {
-                                            post_str += chartertype_obj + ',<br>';
+                                            post_str += chartertype_obj;
+                                            if(json_data['data'][1]['charter_type_id'][obj1.vessel_id][json_data['data'][1]['charter_type_id'][obj1.vessel_id].length-1]!=chartertype_obj)
+                                                post_str +=`,<br>`;
                                         });
                                     post_str +=
                                         `</div>
@@ -1424,7 +1500,9 @@ $(document).ready(function() {
                                     // + obj1.region_id.replace(/,/g, ',<br>') +
                                     post_str +=
                                         $.each(json_data['data'][1]['region_id'][obj1.vessel_id], function(i, region_obj) {
-                                            post_str += region_obj + ',<br>';
+                                            post_str += region_obj;
+                                            if(json_data['data'][1]['region_id'][obj1.vessel_id][json_data['data'][1]['region_id'][obj1.vessel_id].length-1]!=region_obj)
+                                                post_str +=`,<br>`;
                                         });
                                     post_str +=
                                         `</div>
@@ -1442,7 +1520,9 @@ $(document).ready(function() {
                                     // + obj1.country_id.replace(/,/g, ',<br>') +
                                     post_str +=
                                         $.each(json_data['data'][1]['country_id'][obj1.vessel_id], function(i, country_obj) {
-                                            post_str += country_obj + ',<br>';
+                                            post_str += country_obj;
+                                            if(json_data['data'][1]['country_id'][obj1.vessel_id][json_data['data'][1]['country_id'][obj1.vessel_id].length-1]!=country_obj)
+                                                post_str +=`,<br>`;
                                         });
                                     post_str +=
                                         `</div>
@@ -1460,7 +1540,9 @@ $(document).ready(function() {
                                     // + obj1.port_id.replace(/,/g, ',<br>') +
                                     post_str +=
                                         $.each(json_data['data'][1]['port_id'][obj1.vessel_id], function(i, port_obj) {
-                                            post_str += port_obj + ',<br>';
+                                            post_str += port_obj;
+                                            if(json_data['data'][1]['port_id'][obj1.vessel_id][json_data['data'][1]['port_id'][obj1.vessel_id].length-1]!=port_obj)
+                                                post_str +=`,<br>`;
                                         });
                                     post_str +=
                                         `</div>
@@ -1490,7 +1572,7 @@ $(document).ready(function() {
                                                 <i class="fas fa-eye-slash fa-2x"></i>
                                             </a>
                                         </td>
-                                    </tr>  
+                                    </tr>     
                                     `;
                                 });
                             });
@@ -1580,29 +1662,28 @@ $(document).ready(function() {
                                 obj1.ref_no +
                                 `</div>
                                 </td>
-                                <td width="13%">
+                                <td>
                                     <div class="td_h">
-                                        <img data-enlargeable src="/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" 
-                                        class="img-thumbnail img-fluid" alt="vessel img"
-                                        style="cursor: zoom-in;">
-                                    </div>  
-                                    <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">`;
-                                    let count_img=0;
-                                        $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
-                                            if(count_img!=0){
-                                                post_str += `<img data-enlargeable src="/storage/vessel_sale_images/` + vessel_img21 + `" width="80" 
-                                                class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
-                                            }
-                                            count_img++;
-                                        });
-                                    post_str +=
-                                    `</div>
+                                        <img src="/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
+                                        class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
+                                        let count_img=0;
+                                            $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
+                                                if(count_img!=0){
+                                                    post_str += `<img src="/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
+                                                }
+                                                count_img++;
+                                            });
+                                        post_str +=
+                                        `
+                                    </div> 
                                 </td>
                                 <td>
                                     <div class="td_h">`;
                                             $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id], function(i, vesseltype_obj) {
-                                                post_str += vesseltype_obj + ',<br>';
-                                            });
+                                                post_str += vesseltype_obj;
+                                                if(json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id][json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id].length-1]!=vesseltype_obj)
+                                                    post_str +=`,<br>`;
+                                                });
                                         post_str +=
                                         // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
                                     `</div>
@@ -1620,8 +1701,10 @@ $(document).ready(function() {
                                 <td>
                                     <div class="td_h">`;
                                         $.each(json_data['data'][1]['region_id'][obj1.vessel_sale_id], function(i, region_obj) {
-                                            post_str += region_obj + ',<br>';
-                                        });
+                                            post_str += region_obj;
+                                            if(json_data['data'][1]['region_id'][obj1.vessel_sale_id][json_data['data'][1]['region_id'][obj1.vessel_sale_id].length-1]!=region_obj)
+                                                post_str +=`,<br>`;
+                                            });
                                     post_str +=
                                         // + obj1.region_id.replace(/,/g, ',<br>')  +
                                     `</div>
@@ -1639,8 +1722,10 @@ $(document).ready(function() {
                                 <td>
                                     <div class="td_h">`;
                                         $.each(json_data['data'][1]['country_id'][obj1.vessel_sale_id], function(i, country_obj) {
-                                            post_str += country_obj + ',<br>';
-                                        });
+                                            post_str += country_obj;
+                                            if(json_data['data'][1]['country_id'][obj1.vessel_sale_id][json_data['data'][1]['country_id'][obj1.vessel_sale_id].length-1]!=country_obj)
+                                                post_str +=`,<br>`;
+                                            });
                                     post_str +=
                                         // + obj1.country_id.replace(/,/g, ',<br>')  +
                                     `</div>
@@ -1658,8 +1743,10 @@ $(document).ready(function() {
                                 <td>
                                     <div class="td_h">`;
                                         $.each(json_data['data'][1]['port_id'][obj1.vessel_sale_id], function(i, port_obj) {
-                                            post_str += port_obj + ',<br>';
-                                        });
+                                            post_str += port_obj;
+                                            if(json_data['data'][1]['port_id'][obj1.vessel_sale_id][json_data['data'][1]['port_id'][obj1.vessel_sale_id].length-1]!=port_obj)
+                                                post_str +=`,<br>`;
+                                            });
                                     post_str +=
                                         // + obj1.port_id.replace(/,/g, ',<br>')  + 
                                     `</div>
@@ -1921,35 +2008,34 @@ $(document).ready(function() {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
                                     post_str +=
-                                    `<tr class="">
+                                        `<tr class="">
                                         <td>
                                             <div class="td_h">` +
                                         obj1.ref_no +
                                         `</div>
                                         </td>
-                                        <td width="13%">
+                                        <td>
                                             <div class="td_h">
-                                                <img data-enlargeable src="/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" 
-                                                class="img-thumbnail img-fluid" alt="vessel img"
-                                                style="cursor: zoom-in;">
-                                            </div>  
-                                            <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">`;
-                                            let count_img=0;
-                                                $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
-                                                    if(count_img!=0){
-                                                        post_str += `<img data-enlargeable src="/storage/vessel_sale_images/` + vessel_img21 + `" width="80" 
-                                                        class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
-                                                    }
-                                                    count_img++;
-                                                });
-                                            post_str +=
-                                            `</div>
+                                                <img src="/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
+                                                class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
+                                                let count_img=0;
+                                                    $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
+                                                        if(count_img!=0){
+                                                            post_str += `<img src="/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
+                                                        }
+                                                        count_img++;
+                                                    });
+                                                post_str +=
+                                                `
+                                            </div> 
                                         </td>
                                         <td>
                                             <div class="td_h">`;
                                                     $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id], function(i, vesseltype_obj) {
-                                                        post_str += vesseltype_obj + ',<br>';
-                                                    });
+                                                        post_str += vesseltype_obj;
+                                                        if(json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id][json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id].length-1]!=vesseltype_obj)
+                                                            post_str +=`,<br>`;
+                                                        });
                                                 post_str +=
                                                 // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
                                             `</div>
@@ -1967,8 +2053,10 @@ $(document).ready(function() {
                                         <td>
                                             <div class="td_h">`;
                                                 $.each(json_data['data'][1]['region_id'][obj1.vessel_sale_id], function(i, region_obj) {
-                                                    post_str += region_obj + ',<br>';
-                                                });
+                                                    post_str += region_obj;
+                                                    if(json_data['data'][1]['region_id'][obj1.vessel_sale_id][json_data['data'][1]['region_id'][obj1.vessel_sale_id].length-1]!=region_obj)
+                                                        post_str +=`,<br>`;
+                                                    });
                                             post_str +=
                                                 // + obj1.region_id.replace(/,/g, ',<br>')  +
                                             `</div>
@@ -1986,8 +2074,10 @@ $(document).ready(function() {
                                         <td>
                                             <div class="td_h">`;
                                                 $.each(json_data['data'][1]['country_id'][obj1.vessel_sale_id], function(i, country_obj) {
-                                                    post_str += country_obj + ',<br>';
-                                                });
+                                                    post_str += country_obj;
+                                                    if(json_data['data'][1]['country_id'][obj1.vessel_sale_id][json_data['data'][1]['country_id'][obj1.vessel_sale_id].length-1]!=country_obj)
+                                                        post_str +=`,<br>`;
+                                                    });
                                             post_str +=
                                                 // + obj1.country_id.replace(/,/g, ',<br>')  +
                                             `</div>
@@ -2005,8 +2095,10 @@ $(document).ready(function() {
                                         <td>
                                             <div class="td_h">`;
                                                 $.each(json_data['data'][1]['port_id'][obj1.vessel_sale_id], function(i, port_obj) {
-                                                    post_str += port_obj + ',<br>';
-                                                });
+                                                    post_str += port_obj;
+                                                    if(json_data['data'][1]['port_id'][obj1.vessel_sale_id][json_data['data'][1]['port_id'][obj1.vessel_sale_id].length-1]!=port_obj)
+                                                        post_str +=`,<br>`;
+                                                    });
                                             post_str +=
                                                 // + obj1.port_id.replace(/,/g, ',<br>')  + 
                                             `</div>

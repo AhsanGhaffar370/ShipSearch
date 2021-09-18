@@ -274,12 +274,12 @@ class FrontVesselSaleController extends Controller
         //     $q1->whereIn('vessel_type_id',$vessel_type_fk);
         // })
         $data = ss_vessel_sale::with(['vesseltype','region','country','port'])
-                        ->where('date_available', $date_available)
-                        ->where('operations_date', $operations_date)
                         ->where('vessel_type_id', $ser_vessel_type)
                         ->where('region_id', $ser_region)
                         ->where('country_id', $ser_country)
                         ->where('port_id', $ser_port)
+                        ->whereBetween("date_available", [$date_available, $operations_date])
+                        ->whereBetween("operations_date", [$date_available, $operations_date])
                         ->active()
                         ->orderBy('vessel_sale_id', 'DESC')
                         ->get();
@@ -317,12 +317,12 @@ class FrontVesselSaleController extends Controller
         // }))
         $data=[];
         $data[0] = ss_vessel_sale::with(['vesseltype','region','country','port'])
-                        ->where('date_available', $ser_data->date_available)
-                        ->where('operations_date', $ser_data->operations_date)
                         ->where('vessel_type_id', $ser_data->vessel_type_id)
                         ->where('region_id', $ser_data->region_id)
                         ->where('country_id', $ser_data->country_id)
                         ->where('port_id', $ser_data->port_id)
+                        ->whereBetween("date_available", [$ser_data->date_available, $ser_data->operations_date])
+                        ->whereBetween("operations_date", [$ser_data->date_available, $ser_data->operations_date])
                         ->active()
                         ->orderBy('vessel_sale_id', 'DESC')
                         ->get();
@@ -352,6 +352,36 @@ class FrontVesselSaleController extends Controller
         }else{
             echo "0";
         }
+    }
+
+    function del_selected_ser_his_req_ajax(Request $req){
+        
+        try {
+            if($req->del_type=='selected'){
+                $ids=explode(',',$req->ids);
+                try{
+                    vessel_sale_search_history::whereIn('id', $ids)->delete();
+                    echo "1";
+                }catch(\Throwable $e){
+                    report($e);
+                    echo "0";
+                }
+            }
+            if($req->del_type=='all'){
+                try{
+                    vessel_sale_search_history::whereNotNull('id')->delete();
+                    echo "1";
+                }catch(\Throwable $e){
+                    report($e);
+                    echo "0";
+                }
+            }
+            
+        } catch (\Throwable $e) {
+            report($e);
+            echo "0";
+        }
+
     }
 
     function get_update_hist_data(Request $req){
@@ -432,11 +462,11 @@ class FrontVesselSaleController extends Controller
             $ser_data=[];
             $ser_data[0] = ss_vessel_sale::with(['vesseltype','region','country','port'])
                                 ->where('vessel_type_id', $data->vessel_type_id)
-                                ->where('date_available', $data->date_available)
-                                ->where('operations_date', $data->operations_date)
                                 ->where('region_id', $data->region_id)
                                 ->where('country_id', $data->country_id)
                                 ->where('port_id', $data->port_id)
+                                ->whereBetween("date_available", [$data->date_available, $data->operations_date])
+                                ->whereBetween("operations_date", [$data->date_available, $data->operations_date])
                                 ->active()
                                 ->orderBy('vessel_sale_id', 'DESC')
                                 ->get();

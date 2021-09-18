@@ -29,12 +29,13 @@
                     class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
                     <thead class="pos_rel">
                         <tr>
+                            <th width='1%'></th>
                             <th width="2%">#</th>
                             <th width="15%">Vessel Type</th>
                             <th width="10%">Date Available</th>
                             <th width="10%">Operations Date</th>
                             <th width="15%">Region</th>
-                            <th width="15%">Country</th>
+                            <th width="13%">Country</th>
                             <th width="20%">Port</th>
                         </tr>
                     </thead>
@@ -51,6 +52,7 @@
                             <form id="search_cvs_form" method="post" action="{{ route('vessel_sale.search_req') }}"
                                 class="form-horizontal form-label-left " enctype="multipart/form-data">
                                 @csrf
+                                <td></td>
                                 <td></td>
                                 <td class="">
                                     
@@ -156,6 +158,9 @@
                         {{-- /////////////////////// --}}
                         @foreach ($ser_data as $row)
                             <tr id="ser_hist_rec_{{ $row->id }}" class="ser_hist_rec_each vsale_ser_hist_rec_req_each ">
+                                <td>
+                                    <input type="checkbox" name="delete_selected_rec[]" class="mt-1" value="{{ $row->id }}">
+                                </td>
                                 <td id="id-{{ $row->id }}">
                                     {{ $row->id }}
                                 </td>
@@ -164,7 +169,10 @@
                                 </td> --}}
                                 <td class="" id="vesseltype-{{ $row->id }}">
                                     @foreach ($row->vesseltype as $ser_row12)
-                                        {{ optional($ser_row12->SVSvesseltype)->vessel_type_name }},<br>
+                                        {{ optional($ser_row12->SVSvesseltype)->vessel_type_name }}
+                                        @if($row->vesseltype[count($row->vesseltype)-1]->SVSvesseltype->vessel_type_name!=$ser_row12->SVSvesseltype->vessel_type_name)
+                                            ,<br>
+                                        @endif
                                     @endforeach
                                 </td>
                                 <td id="date_available-{{ $row->id }}">
@@ -178,7 +186,10 @@
                                 </td> --}}
                                 <td class="" id="region-{{ $row->id }}">
                                     @foreach ($row->region as $ser_row12)
-                                        {{ optional($ser_row12->SVSregion)->region_name }},<br>
+                                        {{ optional($ser_row12->SVSregion)->region_name }}
+                                        @if($row->region[count($row->region)-1]->SVSregion->region_name!=$ser_row12->SVSregion->region_name)
+                                            ,<br>
+                                        @endif
                                     @endforeach
                                 </td>
                                 {{-- <td class="{{ $row->country_id }}" id="country-{{ $row->id }}">
@@ -186,7 +197,10 @@
                                 </td> --}}
                                 <td class="" id="country-{{ $row->id }}">
                                     @foreach ($row->country as $ser_row12)
-                                        {{ optional($ser_row12->SVScountry)->country_name }},<br>
+                                        {{ optional($ser_row12->SVScountry)->country_name }}
+                                        @if($row->country[count($row->country)-1]->SVScountry->country_name!=$ser_row12->SVScountry->country_name)
+                                            ,<br>
+                                        @endif
                                     @endforeach
                                 </td>
                                 <td>
@@ -195,7 +209,10 @@
                                     </span> --}}
                                     <span class="" id="port-{{ $row->id }}">
                                         @foreach ($row->port as $ser_row12)
-                                            {{ optional($ser_row12->SVSport)->port_name }},<br>
+                                            {{ optional($ser_row12->SVSport)->port_name }}
+                                            @if($row->port[count($row->port)-1]->SVSport->port_name!=$ser_row12->SVSport->port_name)
+                                                ,<br>
+                                            @endif
                                         @endforeach
                                     </span>
                                     <div class="text-right edit_del_btns edit_del_btn_{{ $row->id }} d_n">
@@ -224,6 +241,7 @@
                             <tr id='adv_ser_form_each_{{ $row->id }}' class="adv_ser_form_each pos_rel d_n adv_forms_tr">
                                 <form id="search_cvs_form_{{ $row->id }}" class="form-horizontal form-label-left ">
                                     @csrf
+                                    <td></td>
                                     <td></td>
                                     <td class="">
                                         <section class="vessel_type_id_par_{{ $row->id }}">
@@ -315,6 +333,24 @@
                     </tbody>
                 </table>
             </div>
+            <div class="pt-2 pb-2 pr-3 d-flex justify-content-end">
+                <a href="#" id="delete_popup" class="btn_style size13 btn_xxxs">
+                    Delete All
+                </a>
+            </div>
+
+            <div id="show_delete_popup" class="text-right rounded" style="display: none;">
+                <a href="#" id="close_delete_popup" style="font-size:20px; position: inherit;">&times;</a>
+                <p class="size20 cl_gd text-center" style="margin-top: -30px">Choose</p>
+                <div class="pt-3 pb-2 text-center">
+                    <a href="#" id="vsale_delete_all" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
+                        Delete All Searches
+                    </a>
+                    <a href="#" id="vsale_delete_selected" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
+                        DELETE Selected Searches
+                    </a>
+                </div>
+            </div>
         </div>
     @endif
 
@@ -402,7 +438,10 @@
                                             {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->vessel_type_id); ?></p> --}}
                                             <p>
                                                 @foreach ($row->vesseltype as $row12)
-                                                    {{ optional($row12->VSvesseltype)->vessel_type_name }},<br>
+                                                    {{ optional($row12->VSvesseltype)->vessel_type_name }}
+                                                    @if($row->vesseltype[count($row->vesseltype)-1]->VSvesseltype->vessel_type_name!=$row12->VSvesseltype->vessel_type_name)
+                                                        ,<br>
+                                                    @endif
                                                 @endforeach
                                             </p>
                                         </div>
@@ -423,7 +462,10 @@
                                             {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->region_id); ?></p> --}}
                                             <p>
                                                 @foreach ($row->region as $row12)
-                                                    {{ optional($row12->VSregion)->region_name }},<br>
+                                                    {{ optional($row12->VSregion)->region_name }}
+                                                    @if($row->region[count($row->region)-1]->VSregion->region_name!=$row12->VSregion->region_name)
+                                                        ,<br>
+                                                    @endif
                                                 @endforeach
                                             </p>
                                         </div>
@@ -444,7 +486,10 @@
                                             {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->country_id); ?></p> --}}
                                             <p>
                                                 @foreach ($row->country as $row12)
-                                                    {{ optional($row12->VScountry)->country_name }},<br>
+                                                    {{ optional($row12->VScountry)->country_name }}
+                                                    @if($row->country[count($row->country)-1]->VScountry->country_name!=$row12->VScountry->country_name)
+                                                        ,<br>
+                                                    @endif
                                                 @endforeach
                                             </p>
                                         </div>
@@ -465,7 +510,10 @@
                                             {{-- <p class=""><?php //echo str_replace(',', ',<br>', $row->port_id); ?></p> --}}
                                             <p>
                                                 @foreach ($row->port as $row12)
-                                                    {{ optional($row12->VSport)->port_name }},<br>
+                                                    {{ optional($row12->VSport)->port_name }}
+                                                    @if($row->port[count($row->port)-1]->VSport->port_name!=$row12->VSport->port_name)
+                                                        ,<br>
+                                                    @endif
                                                 @endforeach
                                             </p>
                                         </div>
@@ -564,11 +612,11 @@
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
     <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
   </div>
