@@ -17,18 +17,36 @@ $(document).ready(function() {
     $('.port_id').selectpicker();
 
 
+    //////////////////////////////////////
+    //  highlight comapany detail when user click on view detail button in view cargo page
+    //////////////////////////////////////
+    let com_url_locat = window.location.href;
+    
+    if (com_url_locat.includes("#") && com_url_locat.includes("directory/view")) {
+        let com_url_locat_id1 = com_url_locat.split('#');
+        let comp_id31 = com_url_locat_id1[com_url_locat_id1.length - 1];
+        $(".company_id_" + comp_id31).css({ "color": "#FFFFFF !important", "background-color": "#555555 !important" });
+    }
+    
+    //////////////////////////////////////
+    //  highlight navbar-link when visit any link of navbar.
+    //////////////////////////////////////
+    if (com_url_locat.includes("cargo")) 
+        $(".nav_link_cargo").addClass("nav_link_border");
+    else if (com_url_locat.includes("vessel_sale")) 
+        $(".nav_link_vessel_sale").addClass("nav_link_border");
+    else if (com_url_locat.includes("vessel")) 
+        $(".nav_link_vessel").addClass("nav_link_border");
+    else if (com_url_locat.includes("directory")) 
+        $(".nav_link_directory").addClass("nav_link_border");
 
 
 
     //////////////////////////////////////
-    // Working on Reset Button
+    // Reset all form fields code
     //////////////////////////////////////
-    $(".reset_btn").click(function(e) {
-        e.preventDefault();
-
+    function reset_homepage_forms(){
         $("input[type=date]").val("");
-        // $(".cargo_type_id option:selected").removeAttr("selected");
-        // $("#cargo_type_id option:selected").prop("selected", false);
         $("#cargo_type_id").val('default');
         $("#cargo_type_id").selectpicker("refresh");
         $("#loading_region_id").val('default');
@@ -55,84 +73,116 @@ $(document).ready(function() {
         $(".port_id").val('default');
         $(".port_id").selectpicker("refresh");
 
-        var par_id = $(this).closest('form').parent().attr('id');
-        let form_id = "";
+        // var par_id = $(this).closest('form').parent().attr('id');
+        // let form_id = "";
+        // var arr = [];
+        // if (par_id == "home_cargo") {
+        //     arr = ['cargo_type_id', 'loading_region_id', 'loading_country_id', 'loading_port_id', 'discharge_region_id', 'discharge_country_id', 'discharge_port_id'];
+        //     form_id = "search_cargo_form";
+        // }
+        // if (par_id == "home_vessel") {
+        //     arr = ['vessel_type_id', 'charter_type_id', 'region_id', 'country_id', 'port_id'];
+        //     form_id = "search_vessel_form";
+        // }
+        // if (par_id == "home_vsale") {
+        //     arr = ['vessel_type_id', 'region_id', 'country_id', 'port_id'];
+        //     form_id = "search_vsale_form";
+        // }
 
-        if (par_id == "home_cargo") {
-            var arr = ['cargo_type_id', 'loading_region_id', 'loading_country_id', 'loading_port_id', 'discharge_region_id', 'discharge_country_id', 'discharge_port_id'];
-            form_id = "search_cargo_form";
-        }
-        if (par_id == "home_vessel") {
-            var arr = ['vessel_type_id', 'charter_type_id', 'region_id', 'country_id', 'port_id'];
-            form_id = "search_vessel_form";
-        }
-        if (par_id == "home_vsale") {
-            var arr = ['vessel_type_id', 'region_id', 'country_id', 'port_id'];
-            form_id = "search_vsale_form";
-        }
-
+        var form_ids = ['search_cargo_form', 'search_vessel_form', 'search_vsale_form'];
         $.ajax({
             url: route('cargo.reset_region_country_port'),
-            // data: "region_country_id=" + region_country_id + "&country_port_name=" + country_port_attr,
             type: "get",
+            cache:true,
             success: function(response) {
 
                 let json_data = $.parseJSON(response);
 
-                $.each(arr, function(i, obj) {
-                    var post_str = "";
-                    post_str += `
-                    <select name="` + obj + `[]" id="` + obj + `" form="` + form_id + `"
-                        class="` + obj + ` add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
-                        data-selected-text-format="count > 2" data-live-search="true">`;
+                $.each(form_ids, function(i, form_id) {
+                    var arr=[];
+                    if(form_id=='search_cargo_form')
+                        arr = ['cargo_type_id', 'loading_region_id', 'loading_country_id', 'loading_port_id', 'discharge_region_id', 'discharge_country_id', 'discharge_port_id'];
+                    if(form_id=='search_vessel_form')
+                        arr = ['vessel_type_id', 'charter_type_id', 'region_id', 'country_id', 'port_id'];
+                    if(form_id=='search_vsale_form')
+                        arr = ['vessel_type_id', 'region_id', 'country_id', 'port_id'];
 
-                    if (obj.includes('region')) {
-                        post_str+=`<option value="26">Any</option>`;
-                        $.each(json_data['data']['region'], function(i, obj1) {
-                            post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
-                        });
-                    }
-                    if (obj.includes('country')) {
-                        post_str+=`<option value="197">Any</option>`;
-                        $.each(json_data['data']['country'], function(i, obj1) {
-                            post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
-                        });
-                    }
-                    if (obj.includes('port')) {
-                        post_str+=`<option value="5638">Any</option>`;
-                        $.each(json_data['data']['port'], function(i, obj1) {
-                            post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
-                        });
-                    }
-                    if (obj.includes('cargo_type')) {
-                        post_str+=`<option value="13">Any</option>`;
-                        $.each(json_data['data']['cargo_type'], function(i, obj1) {
-                            post_str += `<option value="` + obj1.cargo_type_id + `">` + obj1.cargo_type_name + `</option>`;
-                        });
-                    }
-                    if (obj.includes('vessel_type')) {
-                        post_str+=`<option value="11">Any</option>`;
-                        $.each(json_data['data']['vessel_type'], function(i, obj1) {
-                            post_str += `<option value="` + obj1.vessel_type_id + `">` + obj1.vessel_type_name + `</option>`;
-                        });
-                    }
-                    if (obj.includes('charter_type')) {
-                        post_str+=`<option value="5">Any</option>`;
-                        $.each(json_data['data']['charter_type'], function(i, obj1) {
-                            post_str += `<option value="` + obj1.charter_type_id + `">` + obj1.charter_type_name + `</option>`;
-                        });
-                    }
+                    $.each(arr, function(i, obj) {
+                        var post_str = "";
+                        post_str += `
+                        <select name="` + obj + `[]" id="` + obj + `" form="` + form_id + `"
+                            class="` + obj + ` add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
+                            data-selected-text-format="count > 2" data-live-search="true">`;
 
-                    post_str +=
-                        `</select>`;
+                        if (obj.includes('region')) {
+                            post_str+=`<option value="26">Any</option>`;
+                            $.each(json_data['data']['region'], function(i, obj1) {
+                                post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
+                            });
+                        }
+                        if (obj.includes('country')) {
+                            post_str+=`<option value="197">Any</option>`;
+                            $.each(json_data['data']['country'], function(i, obj1) {
+                                post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
+                            });
+                        }
+                        if (obj.includes('port')) {
+                            post_str+=`<option value="5638">Any</option>`;
+                            $.each(json_data['data']['port'], function(i, obj1) {
+                                post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
+                            });
+                        }
+                        if (obj.includes('cargo_type')) {
+                            post_str+=`<option value="13">Any</option>`;
+                            $.each(json_data['data']['cargo_type'], function(i, obj1) {
+                                post_str += `<option value="` + obj1.cargo_type_id + `">` + obj1.cargo_type_name + `</option>`;
+                            });
+                        }
+                        if (obj.includes('vessel_type')) {
+                            post_str+=`<option value="11">Any</option>`;
+                            $.each(json_data['data']['vessel_type'], function(i, obj1) {
+                                post_str += `<option value="` + obj1.vessel_type_id + `">` + obj1.vessel_type_name + `</option>`;
+                            });
+                        }
+                        if (obj.includes('charter_type')) {
+                            post_str+=`<option value="5">Any</option>`;
+                            $.each(json_data['data']['charter_type'], function(i, obj1) {
+                                post_str += `<option value="` + obj1.charter_type_id + `">` + obj1.charter_type_name + `</option>`;
+                            });
+                        }
+                        post_str +=
+                            `</select>`;
 
-                    $('.' + obj + "_par").html(post_str);
-                    $('.' + obj).selectpicker();
+                        $('#'+form_id+' .' + obj + "_par").html(post_str);
+                        $('.' + obj).selectpicker();
 
+                    });
                 });
             }
         });
+    }
 
+
+
+    //////////////////////////////////////
+    // Set timeout for homepage 
+    //////////////////////////////////////
+    setTimeout(function() { 
+        
+        if (com_url_locat.includes("cargo") || com_url_locat.includes("vessel") ) {
+            console.log( "window loaded" );
+        }else{
+            reset_homepage_forms();
+        }
+    },1000);
+    
+    //////////////////////////////////////
+    // Working on Reset Button
+    //////////////////////////////////////
+    $(".reset_btn").click(function(e) {
+        e.preventDefault();
+
+        reset_homepage_forms();
     });
 
     /////////////////////////////////////////////////
@@ -218,6 +268,9 @@ $(document).ready(function() {
     $('.home_form_link').click(function(e) {
         e.preventDefault();
         var id = $(this).attr("id");
+
+        $('.home_form_link').css({'background-color':'#276F6C'})
+        $(this).css({'background-color':'#abd6c2'})
 
         $("#home_cargo").hide();
         $("#home_vessel").hide();

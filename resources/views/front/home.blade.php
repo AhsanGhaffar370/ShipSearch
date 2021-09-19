@@ -225,6 +225,9 @@
             color: white;
             background-color: #226b68;
         }
+        #home_cargo_link{
+            background-color:#abd6c2 ;
+        }
     </style>
 
     <div class="jumbotron jumbotron-fluid blog_bg border-0">
@@ -264,15 +267,17 @@
 
                                     <div class="pos_rel mb-3">
                                         <label for="cargo_type_id" class="size13 cl_gll">Select Cargo:</label>
-                                        <select name="cargo_type_id[]" id="cargo_type_id" form="search_cargo_form"
-                                            class="cargo_type_id ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
-                                            data-selected-text-format="count > 2" data-live-search="true">
-                                            <option value="13">Any</option>
-                                            @foreach ($cargo_type as $row)
-                                                <option value="{{ $row->cargo_type_id }}">{{ $row->cargo_type_name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        <section class="cargo_type_id_par">
+                                            <select name="cargo_type_id[]" id="cargo_type_id" form="search_cargo_form"
+                                                class="cargo_type_id ser_inp_fields21  mb-2" multiple title="Choose" data-size="5"
+                                                data-selected-text-format="count > 2" data-live-search="true">
+                                                <option value="13">Any</option>
+                                                {{-- @foreach ($cargo_type as $row)
+                                                    <option value="{{ $row->cargo_type_id }}">{{ $row->cargo_type_name }}
+                                                    </option>
+                                                @endforeach --}}
+                                            </select>
+                                        </section>
                                     </div>
                                     <div class="row m-0">
                                         <div class="col-12 col-lg-6 col-md-6 p-0">
@@ -284,13 +289,13 @@
                                                     <label class="size13 cl_gll">Select Region:</label>
                                                     <section class="loading_region_id_par">
                                                         <select name="loading_region_id[]" id="loading_region_id" form="search_cargo_form"
-                                                            class="loading_region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose"
+                                                            class="loading_region_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             <option value="26">Any</option>
-                                                            @foreach ($region as $row)
+                                                            {{-- @foreach ($region as $row)
                                                                 <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </section>
                                                 </div>
@@ -300,13 +305,13 @@
                                                     <label class="size13 cl_gll">Select Country:</label>
                                                     <section class="loading_country_id_par">
                                                         <select name="loading_country_id[]" id="loading_country_id" form="search_cargo_form"
-                                                            class="loading_country_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose"
+                                                            class="loading_country_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             <option value="197">Any</option>
-                                                            @foreach ($country as $row)
+                                                            {{-- @foreach ($country as $row)
                                                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </section>
                                                 </div>
@@ -316,13 +321,13 @@
                                                     <label class="size13 cl_gll">Select Port:</label>
                                                     <section class="loading_port_id_par">
                                                         <select name="loading_port_id[]" id="loading_port_id" form="search_cargo_form"
-                                                            class="loading_port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose"
+                                                            class="loading_port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             <option value="5638">Any</option>
-                                                            @foreach ($port as $row)
+                                                            {{-- @foreach ($port as $row)
                                                                 <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </section>
                                                 </div>
@@ -342,14 +347,14 @@
                                                     <label class="size13 cl_gll">Select Region:</label>
                                                     <section class="discharge_region_id_par">
                                                         <select name="discharge_region_id[]" id="discharge_region_id"
-                                                            form="search_cargo_form" class="discharge_region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
+                                                            form="search_cargo_form" class="discharge_region_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple
                                                             title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                             data-live-search="true">
                                                             <option value="26">Any</option>
-                                                            @foreach ($region as $row)
+                                                            {{-- @foreach ($region as $row)
                                                                 <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </section>
                                                 </div>
@@ -359,14 +364,14 @@
                                                     <label class="size13 cl_gll">Select Country:</label>
                                                     <section class="discharge_country_id_par">
                                                         <select name="discharge_country_id[]" id="discharge_country_id"
-                                                            form="search_cargo_form" class="discharge_country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
+                                                            form="search_cargo_form" class="discharge_country_id add_cvs_inp_fields ser_inp_fields21  mb-2"
                                                             multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                             data-live-search="true">
                                                             <option value="197">Any</option>
-                                                            @foreach ($country as $row)
+                                                            {{-- @foreach ($country as $row)
                                                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </section>
                                                 </div>
@@ -375,13 +380,13 @@
                                                     <label class="size13 cl_gll">Select Port:</label>
                                                     <section class="discharge_port_id_par">
                                                         <select name="discharge_port_id[]" id="discharge_port_id" form="search_cargo_form"
-                                                            class="discharge_port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose"
+                                                            class="discharge_port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             <option value="5638">Any</option>
-                                                            @foreach ($port as $row)
+                                                            {{-- @foreach ($port as $row)
                                                                 <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </section>
                                                 </div>
@@ -393,7 +398,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="size13 btn_style ser_hover cl_gd btn_xxs" style="background-color: #ABD6C2">
+                                        <button type="submit" class="size13 btn_style ser_hover cl_gdd font-weight-bold btn_xxs" style="background-color: #ABD6C2">
                                             Search
                                         </button>
                                         <button type="button" value="reset" class="size13 btn_style ser_hover reset_btn bg-secondary btn_xxs" style="background-color: #ABD6C2">
@@ -414,30 +419,34 @@
                                             <div class="text-white sec_left">
                                                 <!-- -->
                                                 <label for="vessel_type_id" class="size13 cl_gll">Select Vessel:</label>
-                                                <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel_form"
-                                                    class="vessel_type_id ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
-                                                    data-selected-text-format="count > 2" data-live-search="true">
-                                                    <option value="11">Any</option>
-                                                    @foreach ($vessel_type as $row)
-                                                        <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
+                                                <section class="vessel_type_id_par">
+                                                    <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel_form"
+                                                        class="vessel_type_id ser_inp_fields21  mb-2" multiple title="Choose" data-size="5"
+                                                        data-selected-text-format="count > 2" data-live-search="true">
+                                                        <option value="11">Any</option>
+                                                        {{-- @foreach ($vessel_type as $row)
+                                                            <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
+                                                            </option>
+                                                        @endforeach --}}
+                                                    </select>
+                                                </section>
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 p-0">
                                             <div class="text-white sec_right">
                                                 <!-- -->
                                                 <label for="charter_type_id" class="size13 cl_gll">Select Charter:</label>
-                                                <select name="charter_type_id[]" id="charter_type_id" form="search_vessel_form"
-                                                    class="charter_type_id ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
-                                                    data-selected-text-format="count > 2" data-live-search="true">
-                                                    <option value="5">Any</option>
-                                                    @foreach ($charter_type as $row)
-                                                        <option value="{{ $row->charter_type_id }}">{{ $row->charter_type_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
+                                                <section class="charter_type_id_par">
+                                                    <select name="charter_type_id[]" id="charter_type_id" form="search_vessel_form"
+                                                        class="charter_type_id ser_inp_fields21  mb-2" multiple title="Choose" data-size="5"
+                                                        data-selected-text-format="count > 2" data-live-search="true">
+                                                        <option value="5">Any</option>
+                                                        {{-- @foreach ($charter_type as $row)
+                                                            <option value="{{ $row->charter_type_id }}">{{ $row->charter_type_name }}
+                                                            </option>
+                                                        @endforeach --}}
+                                                    </select>
+                                                </section>
                                             </div>
                                         </div>
                                     </div>
@@ -446,14 +455,14 @@
                                             <label class="size13 cl_gll">Select Region:</label>
                                             <section class="region_id_par">
                                                 <select name="region_id[]" id="region_id"
-                                                    form="search_vessel_form" class="region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
+                                                    form="search_vessel_form" class="region_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple
                                                     title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     <option value="26">Any</option>
-                                                    @foreach ($region as $row)
+                                                    {{-- @foreach ($region as $row)
                                                         <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>
@@ -463,14 +472,14 @@
                                             <label class="size13 cl_gll">Select Country:</label>
                                             <section class="country_id_par">
                                                 <select name="country_id[]" id="country_id"
-                                                    form="search_vessel_form" class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2"
+                                                    form="search_vessel_form" class="country_id add_cvs_inp_fields ser_inp_fields21  mb-2"
                                                     multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     <option value="197">Any</option>
-                                                    @foreach ($country as $row)
+                                                    {{-- @foreach ($country as $row)
                                                         <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>
@@ -479,13 +488,13 @@
                                             <label class="size13 cl_gll">Select Port:</label>
                                             <section class="port_id_par">
                                                 <select name="port_id[]" id="port_id" form="search_vessel_form"
-                                                    class="port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose"
+                                                    class="port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                     data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                     <option value="5638">Any</option>
-                                                    @foreach ($port as $row)
+                                                    {{-- @foreach ($port as $row)
                                                         <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>
@@ -510,7 +519,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="btn_style size13 ser_hover cl_gd btn_xxs" style="background-color: #ABD6C2">
+                                        <button type="submit" class="btn_style size13 ser_hover cl_gdd font-weight-bold btn_xxs" style="background-color: #ABD6C2">
                                             Search
                                         </button>
                                         <button type="button" value="reset" class="size13 btn_style ser_hover reset_btn bg-secondary btn_xxs" style="background-color: #ABD6C2">
@@ -529,29 +538,31 @@
                                     <div class="pos_rel mb-3">
                                         <div>
                                             <label for="vessel_type_id" class="size13 cl_gll">Select Vessel:</label>
-                                            <select name="vessel_type_id[]" id="vessel_type_id" form="search_vsale_form"
-                                                class="vessel_type_id ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
-                                                data-selected-text-format="count > 2" data-live-search="true">
-                                                <option value="11">Any</option>
-                                                @foreach ($vessel_type as $row)
-                                                    <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            <section class="vessel_type_id_par">
+                                                <select name="vessel_type_id[]" id="vessel_type_id" form="search_vsale_form"
+                                                    class="vessel_type_id ser_inp_fields21  mb-2" multiple title="Choose" data-size="5"
+                                                    data-selected-text-format="count > 2" data-live-search="true">
+                                                    <option value="11">Any</option>
+                                                    {{-- @foreach ($vessel_type as $row)
+                                                        <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
+                                                        </option>
+                                                    @endforeach --}}
+                                                </select>
+                                            </section>
                                         </div>
                                         
                                         <div>
                                             <label class="size13 cl_gll mt-4">Select Region:</label>
                                             <section class="region_id_par">
                                                 <select name="region_id[]" id="region_id" form="search_vsale_form"
-                                                    class="region_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
+                                                    class="region_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple
                                                     title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true" >
                                                     <option value="26">Any</option>
-                                                    @foreach ($region as $row)
+                                                    {{-- @foreach ($region as $row)
                                                         <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>
@@ -560,14 +571,14 @@
                                             <label class="size13 cl_gll">Select Country:</label>
                                             <section class="country_id_par">
                                                 <select name="country_id[]" id="country_id" form="search_vsale_form"
-                                                    class="country_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple
+                                                    class="country_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple
                                                     title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     <option value="197">Any</option>
-                                                    @foreach ($country as $row)
+                                                    {{-- @foreach ($country as $row)
                                                         <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>
@@ -576,14 +587,14 @@
                                             <label class="size13 cl_gll">Select Port:</label>
                                             <section class="port_id_par">
                                                 <select name="port_id[]" id="port_id" form="search_vsale_form"
-                                                    class="port_id add_cvs_inp_fields ser_inp_fields21 mb-2" multiple 
+                                                    class="port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple 
                                                     title="Choose" data-size="5" data-selected-text-format="count > 2" 
                                                     data-live-search="true">
                                                     <option value="5638">Any</option>
-                                                    @foreach ($port as $row)
+                                                    {{-- @foreach ($port as $row)
                                                         <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>
@@ -608,7 +619,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="btn_style size13 ser_hover cl_gd btn_xxs" style="background-color: #ABD6C2">
+                                        <button type="submit" class="btn_style size13 ser_hover cl_gdd font-weight-bold btn_xxs" style="background-color: #ABD6C2">
                                             Search
                                         </button>
                                         <button type="button" value="reset" class="size13 btn_style ser_hover reset_btn bg-secondary btn_xxs" style="background-color: #ABD6C2">
@@ -643,49 +654,125 @@
         </div>
     </div>
     
-    <div class="z_ind_1" style="height: 150px; background-color:#B4C8C6 !important;">
-    </div>
+    {{-- <div class="z_ind_1" style="height: 150px; background-color:#B4C8C6 !important;">
+    </div> --}}
 
     <section class="widee">
         <div class="col-12 col-lg-11 verCen">
-            <div class="card-deck text-center mb-5 " style="margin-top: -60px">
+            <div class="card-deck text-center mb-5 ">
                 <div class="card mr-4 ml-4 mb-5 sh_card rad20">
                     <img class="card-img-top card_mar" src="{{ asset('front_asset/images/1.png') }}" alt="Card image cap">
-                    <div class="card-body p-0">
-                        <h5 class="eras card-title cl_gd size28 pt-4">Latest Cargos</h5>
-                        <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
-                            Cargo Name: xyz <br>
-                            Cargo Type: xyz <br>
-                            Destination: xyz <br>
-                            Origin: xyz <br>
-                            Destination Port: xyz
-                        </p>
+                    <div class="card-body pl-1 pr-1 pb-5 pt-2">
+                        <h5 class="eras card-title text-center cl_gd size28 pt-4">Latest Cargos</h5>
+
+                        <div id="carouselExampleControls1" class="carousel slide pl-0 pr-0 pb-2 pt-2" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <p class="card-text size14 cl_bl">
+                                        <b>Cargo Name:</b> xyz1 <br>
+                                        <b>Cargo Type:</b> xyz1 <br>
+                                        <b>Destination:</b> xyz1 <br>
+                                        <b>Origin:</b> xyz1 <br>
+                                        <b>Destination Port:</b> xyz1
+                                    </p>
+                                </div>
+                                <div class="carousel-item">
+                                    <p class="card-text size14 cl_bl">
+                                        <b>Cargo Name:</b> xyz2 <br>
+                                        <b>Cargo Type:</b> xyz2 <br>
+                                        <b>Destination:</b> xyz2 <br>
+                                        <b>Origin:</b> xyz2 <br>
+                                        <b>Destination Port:</b> xyz2
+                                    </p>
+                                </div>
+                            </div>
+
+                            <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon bg_gd" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon bg_gd" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="card mr-4 ml-4 mb-5 sh_card rad20">
                     <img class="card-img-top card_mar" src="{{ asset('front_asset/images/2.png') }}" alt="Card image cap">
-                    <div class="card-body p-0">
-                        <h5 class="eras card-title cl_gd size28 pt-4">Latest Vessels for Charter</h5>
-                        <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
-                            Cargo Name: xyz <br>
-                            Cargo Type: xyz <br>
-                            Destination: xyz <br>
-                            Origin: xyz <br>
-                            Destination Port: xyz
-                        </p>
+                    <div class="card-body pl-1 pr-1 pb-5 pt-2">
+                        <h5 class="eras card-title text-center cl_gd size28 pt-4">Latest Vessels for Charter</h5>
+
+                        <div id="carouselExampleControls2" class="carousel slide pl-0 pr-0 pb-2 pt-2" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <p class="card-text size14 cl_bl">
+                                        <b>Cargo Name:</b> xyz1 <br>
+                                        <b>Cargo Type:</b> xyz1 <br>
+                                        <b>Destination:</b> xyz1 <br>
+                                        <b>Origin:</b> xyz1 <br>
+                                        <b>Destination Port:</b> xyz1
+                                    </p>
+                                </div>
+                                <div class="carousel-item">
+                                    <p class="card-text size14 cl_bl">
+                                        <b>Cargo Name:</b> xyz2 <br>
+                                        <b>Cargo Type:</b> xyz2 <br>
+                                        <b>Destination:</b> xyz2 <br>
+                                        <b>Origin:</b> xyz2 <br>
+                                        <b>Destination Port:</b> xyz2
+                                    </p>
+                                </div>
+                            </div>
+
+                            <a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon bg_gd" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon bg_gd" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="card mr-4 ml-4 mb-5 sh_card rad20">
                     <img class="card-img-top card_mar" src="{{ asset('front_asset/images/3.png') }}" alt="Card image cap">
-                    <div class="card-body p-0">
-                        <h5 class="eras card-title cl_gd size28 pt-4">Latest Vessels for Sale</h5>
-                        <p class="card-text size14 b6 bg_gll cl_bl p-3 mb-4">
-                            Cargo Name: xyz <br>
-                            Cargo Type: xyz <br>
-                            Destination: xyz <br>
-                            Origin: xyz <br>
-                            Destination Port: xyz
-                        </p>
+                    <div class="card-body pl-1 pr-1 pb-5 pt-2">
+                        <h5 class="eras card-title text-center cl_gd size28 pt-4">Latest Vessels for Sale</h5>
+
+                        <div id="carouselExampleControls3" class="carousel slide pl-0 pr-0 pb-2 pt-2" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <p class="card-text size14 cl_bl">
+                                        <b>Cargo Name:</b> xyz1 <br>
+                                        <b>Cargo Type:</b> xyz1 <br>
+                                        <b>Destination:</b> xyz1 <br>
+                                        <b>Origin:</b> xyz1 <br>
+                                        <b>Destination Port:</b> xyz1
+                                    </p>
+                                </div>
+                                <div class="carousel-item">
+                                    <p class="card-text size14 cl_bl">
+                                        <b>Cargo Name:</b> xyz2 <br>
+                                        <b>Cargo Type:</b> xyz2 <br>
+                                        <b>Destination:</b> xyz2 <br>
+                                        <b>Origin:</b> xyz2 <br>
+                                        <b>Destination Port:</b> xyz2
+                                    </p>
+                                </div>
+                            </div>
+
+                            <a class="carousel-control-prev" href="#carouselExampleControls3" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon bg_gd" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls3" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon bg_gd" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -751,7 +838,7 @@
                     tortor aliquet, sollicitudin urna nec, fringilla lorem. Aliquam erat volutpat. Ut rutrum risus tellus. Proin
                     gravida volutpat accumsan.
                 </p>
-                <button type="submit" class="btn_style size13 btn_xxs">
+                <button type="button" class="btn_style size13 btn_xxs">
                     Read More
                 </button>
             </div>

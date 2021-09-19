@@ -123,7 +123,6 @@
                             onchange='this.size=0;' 
                             onblur="this.size=0;" --}}
                             >
-                            <option value="197">Any</option>
                             @foreach ($country as $row)
                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                 </option>
@@ -133,7 +132,6 @@
                     <div class="p-1 mt-2">
                         <label for="" class="size14 mb-1">State</label>
                         <select name="state_id" id="" class="form-control">
-                            <option value="197">Any</option>
                             @foreach ($country as $row)
                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                 </option>
@@ -143,7 +141,6 @@
                     <div class="p-1 mt-2">
                         <label for="" class="size14 mb-1">City</label>
                         <select name="city_id" id="" class="form-control">
-                            <option value="197">Any</option>
                             @foreach ($country as $row)
                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                 </option>
@@ -210,7 +207,6 @@
                     <div class="p-1 mt-2">
                         <label for="" class="size14 mb-1">Region</label>
                         <select name="company_region_id" id="" class="form-control">
-                            <option value="197">Any</option>
                             @foreach ($country as $row)
                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                 </option>
@@ -220,7 +216,6 @@
                     <div class="p-1 mt-2">
                         <label for="" class="size14 mb-1">Country</label>
                         <select name="company_country_id" id="" class="form-control">
-                            <option value="197">Any</option>
                             @foreach ($country as $row)
                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                 </option>
@@ -230,7 +225,6 @@
                     <div class="p-1 mt-2">
                         <label for="" class="size14 mb-1">Port</label>
                         <select name="company_port_id" id="" class="form-control">
-                            <option value="197">Any</option>
                             @foreach ($country as $row)
                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                 </option>
@@ -260,9 +254,9 @@
                     <div class="p-1 mt-2">
                         <label for="member_type" class="size14 mb-1">Select Plan</label>
                         <select name="member_type" id="member_type" class="form-control member_type ">
-                            <option value="Monthly">Monthly</option>
-                            <option value="Yearly">Yearly</option>
-                            <option value="Free">Free</option>
+                            <option value="1">Monthly</option>
+                            <option value="2">Yearly</option>
+                            <option value="3">Free</option>
                         </select>
                     </div>
 
@@ -278,7 +272,7 @@
                     <span id="pass_msg" class="size11"></span>
 
                     <div class="p-1 mt-2">
-                        <label for="email" class="size14 mb-1">Email</label>
+                        <label for="email" class="size14 mb-1">Login Email</label>
                         <input type="email" name="email" id="email31" class="form-control" required />
                     </div>
                     <div class="p-1 mt-2">

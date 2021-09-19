@@ -32,5 +32,22 @@ class ss_user extends Model
     public function user_info(){
         return $this->hasMany('App\Models\ss_cargo',"user_id");
     }
+
     
+
+    public function region(){
+        return $this->belongsTo(ss_setup_region::class,'region_id');
+    }
+    public function country(){
+        return $this->belongsTo(ss_setup_country::class,'country_id');
+    }
+    public function port(){
+        return $this->belongsTo(ss_setup_port::class,'port_id');
+    }
+    public function state(){
+        return $this->belongsTo(ss_setup_state::class,'state_id');
+    }
+    public function city(){
+        return $this->belongsTo(ss_setup_city::class,'city_id');
+    }
 }

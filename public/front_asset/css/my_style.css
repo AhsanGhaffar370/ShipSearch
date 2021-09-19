@@ -1061,6 +1061,9 @@ FOREGROUND
 
 /* Primary color */
 
+.cl_gdd {
+    color: #2A7473 !important;
+}
 .cl_gd {
     color: #4D998D !important;
 }

@@ -34,25 +34,6 @@ class Front_auth extends Controller
                                             'fuser_id'=>$req->id]);
     }
 
-
-    function view_signup(){
-
-        if((session()->has('front_uid'))){
-            return redirect()->route('home');
-        }else{
-        
-            $ss_setup_region= ss_setup_region::where('region_name','!=','Any')->active()->ascend()->get();
-            $ss_setup_country= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
-            $ss_setup_port= ss_setup_port::where('port_name','!=','Any')->active()->ascend()->get();
-            
-            return view('front/signup',['region'=>$ss_setup_region,
-                                        'country'=>$ss_setup_country,
-                                        'port'=>$ss_setup_port]);
-        }
-    }
-
-
-
     function login_req(Request $req){
         $email= $req->email;
         $password= md5($req->pass);
@@ -85,6 +66,22 @@ class Front_auth extends Controller
         }
     }
 
+    function view_signup(){
+
+        if((session()->has('front_uid'))){
+            return redirect()->route('home');
+        }else{
+        
+            $ss_setup_region= ss_setup_region::where('region_name','!=','Any')->active()->ascend()->get();
+            $ss_setup_country= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
+            $ss_setup_port= ss_setup_port::where('port_name','!=','Any')->active()->ascend()->get();
+            
+            return view('front/signup',['region'=>$ss_setup_region,
+                                        'country'=>$ss_setup_country,
+                                        'port'=>$ss_setup_port]);
+        }
+    }
+
     function signup_req(Request $req){
     
         ss_user::email($req->email)->isActive("0")->delete();
@@ -110,9 +107,9 @@ class Front_auth extends Controller
         $user->permanent_address=$req->permanent_address;
         $user->temporary_address=$req->temporary_address;
         $user->post_number=$req->post_number;
-        $user->country_id=2;
-        $user->state_id=1;
-        $user->city_id=1;
+        $user->country_id=$req->country_id;
+        $user->state_id=$req->state_id;
+        $user->city_id=$req->city_id;
         $user->zip_code=$req->zip_code;
         $user->phone=$req->phone;
         $user->mobile=$req->mobile;

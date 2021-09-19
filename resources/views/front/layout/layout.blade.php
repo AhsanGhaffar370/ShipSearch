@@ -118,12 +118,16 @@
             font-style: italic;
             font-weight: 600;
             font-family: 'Exo', sans-serif !important;
-            padding: 5px 20px !important;
+            padding: 5px 0px !important;
             margin-bottom: -18px;
         }
 
         .form-group section select{
             display: none;
+        }
+
+        .nav_link_border{
+            border-bottom: 3px double #36716B;
         }
 
     </style>
@@ -170,17 +174,17 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item pb-4 pb-lg-0">
-                            <a class="nav-link" href="{{ route('cargo.view') }}">Cargo</a>
+                        <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
+                            <a class="nav-link nav_link_cargo" href="{{ route('cargo.view') }}">Cargo</a>
                         </li>
-                        <li class="nav-item pb-4 pb-lg-0">
-                            <a class="nav-link" href="{{ route('vessel.view') }}">Vessel Charter</a>
+                        <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
+                            <a class="nav-link nav_link_vessel" href="{{ route('vessel.view') }}">Vessel Charter</a>
                         </li>
-                        <li class="nav-item pb-4 pb-lg-0">
-                            <a class="nav-link" href="{{ route('vessel_sale.view') }}">Sale & Purchase</a>
+                        <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
+                            <a class="nav-link nav_link_vessel_sale" href="{{ route('vessel_sale.view') }}">Sale & Purchase</a>
                         </li>
-                        <li class="nav-item pb-4 pb-lg-0">
-                            <a class="nav-link" href="{{ route('directory.view') }}">Directory</a>
+                        <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
+                            <a class="nav-link nav_link_directory" href="{{ route('directory.view') }}">Directory</a>
                         </li>
                     </ul>
                     @if (session('front_uid') != '')
@@ -214,14 +218,14 @@
                 <div class="row">
 
                     <!-- Grid column -->
-                    <div class="col-md-3 mt-md-0 mt-3 centre" style="align-items: baseline">
+                    <div class="col-md-3 mt-md-0 mt-3 pr-5 pl-5 pt-4 pb-4 centre" style="align-items: baseline">
                         <img src="{{ asset('front_asset/images/logo2.png') }}" width="250" class="logo footer_logo">
                     </div>
                     
                     <!-- Grid column -->
-                    <div class="col-md-3 offset-md-6 mb-md-0 mb-3">
+                    <div class="col-lg-2 col-md-4 offset-lg-7 offset-md-5 mb-md-0 mb-3 text-left">
 
-                        <h5 class="size30 cl-dark eras ">Contact Details:</h5>
+                        <h5 class="size30 eras ">Contact Details:</h5>
 
                         <div class="p-2">
                             <i class="fas fa-phone-alt icon_style"></i>&nbsp;
@@ -284,7 +288,7 @@
                 resizable: false,
                 closeOnEscape: false,
                 autoOpen: false,
-                width: '60%',
+                width: '50%',
                 modal: true
             });
 		
@@ -320,7 +324,7 @@
             });
 
 
-            //delete all popup on cargo page
+            //delete all dialog box on cargo, vessel and vessel sale page
             
             $("#show_delete_popup").dialog({
                 draggable: false,

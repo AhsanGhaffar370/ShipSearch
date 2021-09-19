@@ -623,7 +623,7 @@ class FrontCargoController extends Controller
         
         $data['cargo_type']= ss_setup_cargo_type::where('cargo_type_name','!=','Any')->active()->ascend()->get();
         $data['vessel_type']= ss_setup_vessel_type::where('vessel_type_name','!=','Any')->active()->ascend()->get();
-        $data['charter_typ']= ss_setup_charter_type::where('charter_type_name','!=','Any')->active()->ascend()->get();
+        $data['charter_type']= ss_setup_charter_type::where('charter_type_name','!=','Any')->active()->ascend()->get();
         $data['region']= ss_setup_region::where('region_name','!=','Any')->active()->ascend()->get();
         $data['country']= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
         $data['port']= ss_setup_port::where('port_name','!=','Any')->active()->ascend()->get();
