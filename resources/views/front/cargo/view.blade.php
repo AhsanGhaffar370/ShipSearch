@@ -15,10 +15,10 @@
     @if (session('front_uid') != '')
         <div class="bg-white">
             <div class="pt-2 pb-2 pl-3">
-                <a id="new_ser_req" class="btn_style size13 btn_xxxs" href="#"><i class="fas fa-search"></i> New  Cargo
-                    Search</a>
-                <a href={{ route('cargo.add') }} id="{{ session('front_uname') }}"
-                    class="btn_style size13 btn_xxxs ml-3 add_rec_validation">
+                <a id="new_ser_req" class="btn_style size13 btn_xxxs" href="#">
+                    <i class="fas fa-search"></i> New  Cargo Search
+                </a>
+                <a href={{ route('cargo.add') }} class="btn_style size13 btn_xxxs ml-3 add_new_cvs_val">
                     <i class="fas fa-plus"></i> Add New Cargo
                 </a>
             </div>
@@ -30,7 +30,7 @@
             <div class="border table-wrapper-scroll-y my-custom-scrollbar">
                 <table id="ser_his_table22"
                     class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
-                    <thead class="pos_rel z_ind999">
+                    <thead class="pos_rel">
                         <tr>
                             <th width='1%'></th>
                             <th width="3%">#</th>
@@ -535,9 +535,9 @@
                             <th width="10%">Loading Discharge Rates</th>
                             <th width="8%">Posted on</th>
 
-                            @if (session('front_uid') != '')
-                                <th width="2%">Details</th>
-                            @endif
+                            {{-- @if (session('front_uid') != '') --}}
+                            <th width="2%">Details</th>
+                            {{-- @endif --}}
                         </tr>
                     </thead>
 
@@ -704,16 +704,16 @@
                                                 data-trigger="click" 
                                                 data-placement="left"
                                                 title='
-                                                <p class="m-0"><b>{{ optional($row->user_info)->company_name }}</b><a href="#" id="popovercloseid" type="button" class="close" >&times;</a></p>
+                                                <p class="m-0"><b>{{ optional($row->user_info->company)->company_name }}</b><a href="#" id="popovercloseid" type="button" class="close" >&times;</a></p>
                                                 '
                                                 data-content='
                                                 <p class="size13 b6 m-0">Email </p>
-                                                <p class="size11 b4 mb-2">{{ optional($row->user_info)->email }}</p>
+                                                <p class="size11 b4 mb-2">{{ optional($row->user_info->company)->email }}</p>
                                                 <p class="size13 b6 m-0">Phone No </p>
-                                                <p class="size11 b4 mb-2">{{ optional($row->user_info)->phone }}</p>
+                                                <p class="size11 b4 mb-2">{{ optional($row->user_info->company)->phone }}</p>
                                                 <p class="size13 b6 m-0">Address </p>
-                                                <p class="size11 b4 mb-2">{{ optional($row->user_info)->permanent_address }}</p>
-                                                <a href={{route('directory.view.user', ['id' => $row->created_by])}} target="_blank" class="btn btn-info btn_xxxs size11 text-white pt-1 pb-1 mr-3">
+                                                <p class="size11 b4 mb-2">{{ optional($row->user_info->company)->bussiness_address }}</p>
+                                                <a href={{route('directory.view.user', ['id' => optional ($row->user_info->company)->company_id])}} target="_blank" class="btn btn-info btn_xxxs size11 text-white pt-1 pb-1 mr-3">
                                                     View Detail
                                                 </a>
                                                 '>  
@@ -723,7 +723,7 @@
                                         </div>
                                     </td>
 
-                                    @if (session('front_uid') != '')
+                                    {{-- @if (session('front_uid') != '') --}}
                                         <td class="text-center">
                                             <a href='{{ $row->cargo_id }}'
                                                 class="show_detail_btn show_detail_btn_{{ $row->cargo_id }}"><i
@@ -736,7 +736,7 @@
                                             <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">
                                             </div>
                                         </td>
-                                    @endif
+                                    {{-- @endif --}}
 
                                 </tr>
                             @endforeach

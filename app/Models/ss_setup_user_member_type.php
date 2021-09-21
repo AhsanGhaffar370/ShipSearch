@@ -20,6 +20,8 @@ class ss_setup_user_member_type extends Model
     }
 
     public function user_member_type(){
-        return $this->hasMany('App\Models\ss_user',"user_member_type_id");
+        // return $this->hasMany('model_name(user)',"foreign_key(name of FK inside user table)",'local_key (name of primary key of this table)');
+        return $this->hasMany('App\Models\ss_user',"member_type_id"); //here, member_type_id is a fk column inside ss_user table. 
+        // select * from ss_user where member_type_id=1;
     }
 }

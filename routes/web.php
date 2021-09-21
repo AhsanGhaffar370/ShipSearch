@@ -74,8 +74,12 @@ Route::get('checkmail',[Front_auth::class, 'checkmail_ajax'])->name('checkmail')
 
 
 Route::get('/logout',function(){
+    session()->forget('member_type');
     session()->forget('front_uid');
     session()->forget('front_uname');
+    session()->forget('company_name');
+    session()->forget('company_phone');
+    session()->forget('company_email');
     return redirect()->route('login');
 })->name('logout');
 
@@ -86,38 +90,10 @@ Route::get('/logout',function(){
 | Front Section
 |--------------------------------------------------------------------------
 */
-// Cargo
-Route::get('/cargo/view', [FrontCargoController::class, 'view'] )->name('cargo.view');
-Route::post('/cargo/view', [FrontCargoController::class, 'search_req'] )->name('cargo.search_req');
-Route::get('/cargo/ser_hist_rec', [FrontCargoController::class, 'search_req_ajax'] )->name('cargo.ser_hist_rec');
-Route::get('/cargo/del_ser_hist_rec', [FrontCargoController::class, 'del_ser_his_req_ajax'] )->name('cargo.del_ser_hist_rec');
-Route::get('/cargo/del_selected_ser_hist_rec', [FrontCargoController::class, 'del_selected_ser_his_req_ajax'] )->name('cargo.del_selected_ser_hist_rec');
-Route::get('/cargo/get_update_hist_data', [FrontCargoController::class, 'get_update_hist_data'] )->name('cargo.get_update_hist_data');
-Route::get('/cargo/update_hist_data', [FrontCargoController::class, 'update_hist_data'] )->name('cargo.update_hist_data');
-// Route::get('/cargo/update_search_hist', [FrontCargoController::class, 'update_search_hist'] )->name('cargo.update_search_hist');
+
+
 Route::get('/cargo/get_country_port', [FrontCargoController::class, 'get_country_port'] )->name('cargo.get_country_port');
 Route::get('/cargo/reset_region_country_port', [FrontCargoController::class, 'reset_region_country_port'] )->name('cargo.reset_region_country_port');
-
-
-// Vessel Charter
-Route::get('/vessel/view', [FrontVesselController::class, 'view'] )->name('vessel.view');
-Route::post('/vessel/view', [FrontVesselController::class, 'search_req'] )->name('vessel.search_req');
-Route::get('/vessel/ser_hist_rec', [FrontVesselController::class, 'search_req_ajax'] )->name('vessel.ser_hist_rec');
-Route::get('/vessel/del_ser_hist_rec', [FrontVesselController::class, 'del_ser_his_req_ajax'] )->name('vessel.del_ser_hist_rec');
-Route::get('/vessel/del_selected_ser_hist_rec', [FrontVesselController::class, 'del_selected_ser_his_req_ajax'] )->name('vessel.del_selected_ser_hist_rec');
-Route::get('/vessel/get_update_hist_data', [FrontVesselController::class, 'get_update_hist_data'] )->name('vessel.get_update_hist_data');
-Route::get('/vessel/update_hist_data', [FrontVesselController::class, 'update_hist_data'] )->name('vessel.update_hist_data');
-
-
-// Vessel_sale Charter
-Route::get('/vessel_sale/view', [FrontVesselSaleController::class, 'view'] )->name('vessel_sale.view');
-Route::post('/vessel_sale/view', [FrontVesselSaleController::class, 'search_req'] )->name('vessel_sale.search_req');
-Route::get('/vessel_sale/ser_hist_rec', [FrontVesselSaleController::class, 'search_req_ajax'] )->name('vessel_sale.ser_hist_rec');
-Route::get('/vessel_sale/del_ser_hist_rec', [FrontVesselSaleController::class, 'del_ser_his_req_ajax'] )->name('vessel_sale.del_ser_hist_rec');
-Route::get('/vessel_sale/del_selected_ser_hist_rec', [FrontVesselSaleController::class, 'del_selected_ser_his_req_ajax'] )->name('vessel_sale.del_selected_ser_hist_rec');
-Route::get('/vessel_sale/get_update_hist_data', [FrontVesselSaleController::class, 'get_update_hist_data'] )->name('vessel_sale.get_update_hist_data');
-Route::get('/vessel_sale/update_hist_data', [FrontVesselSaleController::class, 'update_hist_data'] )->name('vessel_sale.update_hist_data');
-
 
 // Directory Charter
 Route::get('/directory/view', [FrontDirectoryController::class, 'view'] )->name('directory.view');
@@ -131,20 +107,54 @@ Route::get('/directory/view', [FrontDirectoryController::class, 'view'] )->name(
 Route::group(['middleware'=>['front_auth']],function(){
 
     // Cargo
-    Route::get('/cargo/add', [FrontCargoController::class, 'view_add'] )->name('cargo.add');
-    Route::post('/cargo/add_req', [FrontCargoController::class, 'add_req'] )->name('cargo.add_req');
+    Route::get('/cargo/view', [FrontCargoController::class, 'view'] )->name('cargo.view');
+    Route::post('/cargo/view', [FrontCargoController::class, 'search_req'] )->name('cargo.search_req');
+    Route::get('/cargo/ser_hist_rec', [FrontCargoController::class, 'search_req_ajax'] )->name('cargo.ser_hist_rec');
+    Route::get('/cargo/del_ser_hist_rec', [FrontCargoController::class, 'del_ser_his_req_ajax'] )->name('cargo.del_ser_hist_rec');
+    Route::get('/cargo/del_selected_ser_hist_rec', [FrontCargoController::class, 'del_selected_ser_his_req_ajax'] )->name('cargo.del_selected_ser_hist_rec');
+    Route::get('/cargo/get_update_hist_data', [FrontCargoController::class, 'get_update_hist_data'] )->name('cargo.get_update_hist_data');
+    Route::get('/cargo/update_hist_data', [FrontCargoController::class, 'update_hist_data'] )->name('cargo.update_hist_data');
+    // Route::get('/cargo/update_search_hist', [FrontCargoController::class, 'update_search_hist'] )->name('cargo.update_search_hist');
 
-    // Vessel
-    // Route::get('/vessel/view/{id}',[FrontVesselController::class, 'view_detail'])->name('vessel.detail.id');
-    Route::get('/vessel/add', [FrontVesselController::class, 'view_add'] )->name('vessel.add');
-    Route::post('/vessel/add_req', [FrontVesselController::class, 'add_req'] )->name('vessel.add_req');
 
-    // Vessel Sale
-    Route::get('/vessel_sale/add', [FrontVesselSaleController::class, 'view_add'] )->name('vessel_sale.add');
-    Route::post('/vessel_sale/add_req', [FrontVesselSaleController::class, 'add_req'] )->name('vessel_sale.add_req');
+    // Vessel Charter
+    Route::get('/vessel/view', [FrontVesselController::class, 'view'] )->name('vessel.view');
+    Route::post('/vessel/view', [FrontVesselController::class, 'search_req'] )->name('vessel.search_req');
+    Route::get('/vessel/ser_hist_rec', [FrontVesselController::class, 'search_req_ajax'] )->name('vessel.ser_hist_rec');
+    Route::get('/vessel/del_ser_hist_rec', [FrontVesselController::class, 'del_ser_his_req_ajax'] )->name('vessel.del_ser_hist_rec');
+    Route::get('/vessel/del_selected_ser_hist_rec', [FrontVesselController::class, 'del_selected_ser_his_req_ajax'] )->name('vessel.del_selected_ser_hist_rec');
+    Route::get('/vessel/get_update_hist_data', [FrontVesselController::class, 'get_update_hist_data'] )->name('vessel.get_update_hist_data');
+    Route::get('/vessel/update_hist_data', [FrontVesselController::class, 'update_hist_data'] )->name('vessel.update_hist_data');
 
-    // Directory
-    Route::get('/directory/view/#{id}',[FrontDirectoryController::class, 'view_company'])->name('directory.view.user');
+
+    // Vessel_sale Charter
+    Route::get('/vessel_sale/view', [FrontVesselSaleController::class, 'view'] )->name('vessel_sale.view');
+    Route::post('/vessel_sale/view', [FrontVesselSaleController::class, 'search_req'] )->name('vessel_sale.search_req');
+    Route::get('/vessel_sale/ser_hist_rec', [FrontVesselSaleController::class, 'search_req_ajax'] )->name('vessel_sale.ser_hist_rec');
+    Route::get('/vessel_sale/del_ser_hist_rec', [FrontVesselSaleController::class, 'del_ser_his_req_ajax'] )->name('vessel_sale.del_ser_hist_rec');
+    Route::get('/vessel_sale/del_selected_ser_hist_rec', [FrontVesselSaleController::class, 'del_selected_ser_his_req_ajax'] )->name('vessel_sale.del_selected_ser_hist_rec');
+    Route::get('/vessel_sale/get_update_hist_data', [FrontVesselSaleController::class, 'get_update_hist_data'] )->name('vessel_sale.get_update_hist_data');
+    Route::get('/vessel_sale/update_hist_data', [FrontVesselSaleController::class, 'update_hist_data'] )->name('vessel_sale.update_hist_data');
+
+
+    Route::group(['middleware'=>['member_type_auth']],function(){
+        // Cargo
+        Route::get('/cargo/add', [FrontCargoController::class, 'view_add'] )->name('cargo.add');
+        Route::post('/cargo/add_req', [FrontCargoController::class, 'add_req'] )->name('cargo.add_req');
+
+        // Vessel
+        // Route::get('/vessel/view/{id}',[FrontVesselController::class, 'view_detail'])->name('vessel.detail.id');
+        Route::get('/vessel/add', [FrontVesselController::class, 'view_add'] )->name('vessel.add');
+        Route::post('/vessel/add_req', [FrontVesselController::class, 'add_req'] )->name('vessel.add_req');
+
+        // Vessel Sale
+        Route::get('/vessel_sale/add', [FrontVesselSaleController::class, 'view_add'] )->name('vessel_sale.add');
+        Route::post('/vessel_sale/add_req', [FrontVesselSaleController::class, 'add_req'] )->name('vessel_sale.add_req');
+        
+        // Directory
+        Route::get('/directory/view/#{id}',[FrontDirectoryController::class, 'view_company'])->name('directory.view.user');
+    });
+
 });
 
 

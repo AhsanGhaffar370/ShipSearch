@@ -24,9 +24,26 @@ class ss_setup_company_directory extends Model
         return $query->orderBy('company_id',"DESC");
     }
 
-
+    // user table
+    public function user(){
+        // return $this->belongsTo(model_name(user),'foreign_key(name of FK inside this table)', 'other_key(name of pk inside user table)'); 
+        return $this->belongsTo(ss_user::class,'user_id'); // here, user_id is a fk inside company table.
+    }
+    
+    public function region(){
+        // return $this->belongsTo(model_name(region),'foreign_key(name of FK inside this table)', 'other_key(name of pk inside region table)'); 
+        return $this->belongsTo(ss_setup_region::class,'region_id'); // here, region_id is a fk inside user table.
+    }
+    public function country(){
+        return $this->belongsTo(ss_setup_country::class,'country_id');
+    }
+    public function port(){
+        return $this->belongsTo(ss_setup_port::class,'port_id');
+    }
     
 
+
+    // directory table
     public function DirRegion(){
         return $this->belongsTo(ss_setup_region::class,'region_id');
     }

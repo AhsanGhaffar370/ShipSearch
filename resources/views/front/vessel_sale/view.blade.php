@@ -15,7 +15,8 @@
         <div class="bg-white">
             <div class="pt-2 pb-2 pl-3">
                 <a id="new_ser_req" class="btn_style size13 btn_xxxs" href="#"><i class="fas fa-search"></i> Search Vessel for Sale</a>
-                <a href={{ route('vessel_sale.add') }} id="{{ session('front_uname') }}" class="btn_style size13 btn_xxxs ml-3 add_rec_validation"> 
+               
+                <a href={{ route('vessel_sale.add') }} class="btn_style size13 btn_xxxs ml-3 add_new_cvs_val">
                     <i class="fas fa-plus"></i> Add Vessel for Sale
                 </a>
             </div>
@@ -409,14 +410,14 @@
                                     </td>
 									<td>
                                         <div class="td_h">
-                                            <img src="{{asset('storage/vessel_sale_images/'.explode(',',$row->vessel_img)[0])}}" width="80" id="show_img31" 
+                                            <img src="{{asset('public/storage/vessel_sale_images/'.explode(',',$row->vessel_img)[0])}}" width="80" id="show_img31" 
                                             class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">
 
                                             <span class="d_n">{{$count=0}}</span>
                                             @foreach (explode(',',$row->vessel_img) as $item)
                                                 @if($count!=0)
-                                                    {{-- <input type="hidden" value="{{asset('storage/vessel_sale_images/'.$item)}}"> --}}
-                                                    <img src="{{asset('storage/vessel_sale_images/'.$item)}}" width="80" class="img-thumbnail img-fluid d_n" alt="vessel img">
+                                                    {{-- <input type="hidden" value="{{asset('public/storage/vessel_sale_images/'.$item)}}"> --}}
+                                                    <img src="{{asset('public/storage/vessel_sale_images/'.$item)}}" width="80" class="img-thumbnail img-fluid d_n" alt="vessel img">
                                                 @endif
                                                 <span class="d_n">{{$count++}}</span>
                                             @endforeach
@@ -426,7 +427,7 @@
                                             <span class="d_n">{{$count=0}}</span>
                                             @foreach (explode(',',$row->vessel_img) as $item)
                                                 @if($count!=0)
-                                                    <img data-enlargeable src="{{asset('storage/vessel_sale_images/'.$item)}}" width="80" class="img-thumbnail img-fluid" alt="vessel img"
+                                                    <img data-enlargeable src="{{asset('public/storage/vessel_sale_images/'.$item)}}" width="80" class="img-thumbnail img-fluid" alt="vessel img"
                                                     style="cursor: zoom-in;">
                                                 @endif
                                                 <span class="d_n">{{$count++}}</span>
@@ -602,13 +603,7 @@
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100" src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="Third slide">
+        <img class="d-block w-100" src="{{asset('public/storage/vessel_sale_images/163139027729.jpg')}}" alt="First slide">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -622,48 +617,6 @@
   </div>
 </div>
 
-{{-- <div id="carouselExampleControls" class="carousel caros slide" data-ride="carousel" 
-    style="background-size: contain; width: 100%; height: 100%; position: fixed; z-index: 10000; top: 0; left: 0; cursor: zoom-out;">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" style="width: 70%; height: 70%; margin:5% auto 0% auto;" src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="First slide">
-                
-            </div>
-            <div class="carousel-item active">
-                <img class="d-block w-100"src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="First slide">
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div> --}}
-	
-    {{-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="First slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="Second slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="Third slide">
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div> --}}
 
 {{-- Access Denied message --}}
 {{-- <div id="dialog" class="text-right rounded p-1 d_n">

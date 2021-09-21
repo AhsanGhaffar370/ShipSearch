@@ -24,7 +24,9 @@ class ss_setup_state extends Model
     }
 
     public function state(){
-        return $this->hasMany('App\Models\ss_user',"state_id");
+        // return $this->hasMany('model_name(user)',"foreign_key(name of FK inside user table)",'local_key (name of primary key of this table)');
+        return $this->hasMany('App\Models\ss_user',"state_id"); //here, state_id is a fk column inside ss_user table. 
+        // select * from ss_user where state_id=1;
     }
 
     

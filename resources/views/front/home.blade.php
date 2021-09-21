@@ -277,10 +277,10 @@
                                                 class="cargo_type_id ser_inp_fields21  mb-2" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
                                                 <option value="13">Any</option>
-                                                {{-- @foreach ($cargo_type as $row)
+                                                @foreach ($cargo_type as $row)
                                                     <option value="{{ $row->cargo_type_id }}">{{ $row->cargo_type_name }}
                                                     </option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                         </section>
                                     </div>
@@ -297,10 +297,10 @@
                                                             class="loading_region_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             <option value="26">Any</option>
-                                                            {{-- @foreach ($region as $row)
+                                                            @foreach ($region as $row)
                                                                 <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                                 </option>
-                                                            @endforeach --}}
+                                                            @endforeach
                                                         </select>
                                                     </section>
                                                 </div>
@@ -313,10 +313,10 @@
                                                             class="loading_country_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             <option value="197">Any</option>
-                                                            {{-- @foreach ($country as $row)
+                                                            @foreach ($country as $row)
                                                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                                 </option>
-                                                            @endforeach --}}
+                                                            @endforeach
                                                         </select>
                                                     </section>
                                                 </div>
@@ -329,10 +329,10 @@
                                                             class="loading_port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             <option value="5638">Any</option>
-                                                            {{-- @foreach ($port as $row)
+                                                            @foreach ($port as $row)
                                                                 <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                                 </option>
-                                                            @endforeach --}}
+                                                            @endforeach
                                                         </select>
                                                     </section>
                                                 </div>
@@ -356,10 +356,10 @@
                                                             title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                             data-live-search="true">
                                                             <option value="26">Any</option>
-                                                            {{-- @foreach ($region as $row)
+                                                            @foreach ($region as $row)
                                                                 <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                                 </option>
-                                                            @endforeach --}}
+                                                            @endforeach
                                                         </select>
                                                     </section>
                                                 </div>
@@ -373,10 +373,10 @@
                                                             multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                             data-live-search="true">
                                                             <option value="197">Any</option>
-                                                            {{-- @foreach ($country as $row)
+                                                            @foreach ($country as $row)
                                                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                                 </option>
-                                                            @endforeach --}}
+                                                            @endforeach
                                                         </select>
                                                     </section>
                                                 </div>
@@ -388,10 +388,10 @@
                                                             class="discharge_port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             <option value="5638">Any</option>
-                                                            {{-- @foreach ($port as $row)
+                                                            @foreach ($port as $row)
                                                                 <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                                 </option>
-                                                            @endforeach --}}
+                                                            @endforeach
                                                         </select>
                                                     </section>
                                                 </div>
@@ -403,7 +403,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="size13 btn_style ser_hover btn_bg cl_gdd b6 btn_xxs">
+                                        <button type="submit" class="size13 btn_style ser_hover btn_bg cl_gdd b6 btn_xxs check_login" >
                                             Search
                                         </button>
                                         <button type="button" value="reset" class="size13 btn_style b6 ser_hover cl_gdd btn_bg reset_btn btn_xxs">
@@ -429,10 +429,10 @@
                                                         class="vessel_type_id ser_inp_fields21  mb-2" multiple title="Choose" data-size="5"
                                                         data-selected-text-format="count > 2" data-live-search="true">
                                                         <option value="11">Any</option>
-                                                        {{-- @foreach ($vessel_type as $row)
+                                                        @foreach ($vessel_type as $row)
                                                             <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
                                                             </option>
-                                                        @endforeach --}}
+                                                        @endforeach
                                                     </select>
                                                 </section>
                                             </div>
@@ -446,10 +446,10 @@
                                                         class="charter_type_id ser_inp_fields21  mb-2" multiple title="Choose" data-size="5"
                                                         data-selected-text-format="count > 2" data-live-search="true">
                                                         <option value="5">Any</option>
-                                                        {{-- @foreach ($charter_type as $row)
+                                                        @foreach ($charter_type as $row)
                                                             <option value="{{ $row->charter_type_id }}">{{ $row->charter_type_name }}
                                                             </option>
-                                                        @endforeach --}}
+                                                        @endforeach
                                                     </select>
                                                 </section>
                                             </div>
@@ -464,10 +464,10 @@
                                                     title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     <option value="26">Any</option>
-                                                    {{-- @foreach ($region as $row)
+                                                    @foreach ($region as $row)
                                                         <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                         </option>
-                                                    @endforeach --}}
+                                                    @endforeach
                                                 </select>
                                             </section>
                                         </div>
@@ -481,10 +481,10 @@
                                                     multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     <option value="197">Any</option>
-                                                    {{-- @foreach ($country as $row)
+                                                    @foreach ($country as $row)
                                                         <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                         </option>
-                                                    @endforeach --}}
+                                                    @endforeach
                                                 </select>
                                             </section>
                                         </div>
@@ -496,10 +496,10 @@
                                                     class="port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                     data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                     <option value="5638">Any</option>
-                                                    {{-- @foreach ($port as $row)
+                                                    @foreach ($port as $row)
                                                         <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                         </option>
-                                                    @endforeach --}}
+                                                    @endforeach
                                                 </select>
                                             </section>
                                         </div>
@@ -524,7 +524,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="size13 btn_style ser_hover btn_bg cl_gdd b6 btn_xxs">
+                                        <button type="submit" class="size13 btn_style ser_hover btn_bg cl_gdd b6 btn_xxs check_login" >
                                             Search
                                         </button>
                                         <button type="button" value="reset" class="size13 btn_style b6 ser_hover cl_gdd btn_bg reset_btn btn_xxs">
@@ -548,10 +548,10 @@
                                                     class="vessel_type_id ser_inp_fields21  mb-2" multiple title="Choose" data-size="5"
                                                     data-selected-text-format="count > 2" data-live-search="true">
                                                     <option value="11">Any</option>
-                                                    {{-- @foreach ($vessel_type as $row)
+                                                    @foreach ($vessel_type as $row)
                                                         <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
                                                         </option>
-                                                    @endforeach --}}
+                                                    @endforeach
                                                 </select>
                                             </section>
                                         </div>
@@ -564,10 +564,10 @@
                                                     title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true" >
                                                     <option value="26">Any</option>
-                                                    {{-- @foreach ($region as $row)
+                                                    @foreach ($region as $row)
                                                         <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                         </option>
-                                                    @endforeach --}}
+                                                    @endforeach
                                                 </select>
                                             </section>
                                         </div>
@@ -580,10 +580,10 @@
                                                     title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
                                                     <option value="197">Any</option>
-                                                    {{-- @foreach ($country as $row)
+                                                    @foreach ($country as $row)
                                                         <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                         </option>
-                                                    @endforeach --}}
+                                                    @endforeach
                                                 </select>
                                             </section>
                                         </div>
@@ -596,10 +596,10 @@
                                                     title="Choose" data-size="5" data-selected-text-format="count > 2" 
                                                     data-live-search="true">
                                                     <option value="5638">Any</option>
-                                                    {{-- @foreach ($port as $row)
+                                                    @foreach ($port as $row)
                                                         <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                         </option>
-                                                    @endforeach --}}
+                                                    @endforeach
                                                 </select>
                                             </section>
                                         </div>
@@ -624,7 +624,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="size13 btn_style ser_hover btn_bg cl_gdd b6 btn_xxs">
+                                        <button type="submit" class="size13 btn_style ser_hover btn_bg cl_gdd b6 btn_xxs check_login" >
                                             Search
                                         </button>
                                         <button type="button" value="reset" class="size13 btn_style b6 ser_hover cl_gdd btn_bg reset_btn btn_xxs">
@@ -849,5 +849,6 @@
             </div>
         </div>
     </section>
+
 
 @endsection

@@ -20,6 +20,13 @@ class ss_setup_region extends Model
         return $query->orderBy('region_name',"ASC");
     }
 
+    // company
+    public function company(){
+        // return $this->hasMany('model_name(company)',"foreign_key(name of FK inside company table)",'local_key (name of primary key of this table)');
+        return $this->hasMany('App\Models\ss_setup_company_directory',"region_id"); //here, region_id is a fk column inside ss_company table. 
+        // select * from company where user_id=1;
+    }
+
     //cargo
     public function CAlregion(){
         return $this->hasMany('App\Models\rel_cargo_lregion',"region_id");

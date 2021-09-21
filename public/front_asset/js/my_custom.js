@@ -167,14 +167,14 @@ $(document).ready(function() {
     //////////////////////////////////////
     // Set timeout for homepage 
     //////////////////////////////////////
-    setTimeout(function() { 
+    // setTimeout(function() { 
         
-        if (com_url_locat.includes("cargo") || com_url_locat.includes("vessel") ) {
-            console.log( "window loaded" );
-        }else{
-            reset_homepage_forms();
-        }
-    },1000);
+    //     if (com_url_locat.includes("cargo") || com_url_locat.includes("vessel") ) {
+    //         console.log( "window loaded" );
+    //     }else{
+    //         reset_homepage_forms();
+    //     }
+    // },1000);
     
     //////////////////////////////////////
     // Working on Reset Button
@@ -295,14 +295,24 @@ $(document).ready(function() {
     $('.hide_detail_btn').hide();
     $(document).on("click", '.show_detail_btn', function(e) {
         e.preventDefault();
-        let id = $(this).attr('href');
-        $('.show_details_' + id).fadeToggle("slow");
-        $('.show_detail_btn_' + id).hide();
-        $('.hide_detail_btn_' + id).show();
 
-        $(this).parent().parent().css({
-            "background-color": "#F1F1F1"
-        });
+        if ($("#member_type21").val() == "Free") {
+            e.preventDefault();
+            
+            $(".ui-dialog-titlebar").hide();
+            $("#access_denied").dialog('open');
+        }else{
+            let id = $(this).attr('href');
+            $('.show_details_' + id).fadeToggle("slow");
+            $('.show_detail_btn_' + id).hide();
+            $('.hide_detail_btn_' + id).show();
+    
+            $(this).parent().parent().css({
+                "background-color": "#F1F1F1"
+            });
+        }
+        
+        
     });
 
     //////////////////////////////////////
@@ -1717,12 +1727,12 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">
-                                        <img src="/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
+                                        <img src="public/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
                                         class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
                                         let count_img=0;
                                             $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
                                                 if(count_img!=0){
-                                                    post_str += `<img src="/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
+                                                    post_str += `<img src="public/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
                                                 }
                                                 count_img++;
                                             });
@@ -2069,12 +2079,12 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">
-                                                <img src="/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
+                                                <img src="public/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
                                                 class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
                                                 let count_img=0;
                                                     $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
                                                         if(count_img!=0){
-                                                            post_str += `<img src="/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
+                                                            post_str += `<img src="public/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
                                                         }
                                                         count_img++;
                                                     });

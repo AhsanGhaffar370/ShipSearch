@@ -893,35 +893,20 @@
 
 
         $('.add_cargo_btn').click(function(e) {
-
-
-
             if ($(this).attr('id') == "") {
-
                 e.preventDefault();
 
                 $("#dialog").dialog({
-
                     draggable: false,
-
                     resizable: false,
-
                     closeOnEscape: false,
-
                     width: '30%',
-
                     modal: true
-
                 });
-
-
-
                 $(".ui-dialog-titlebar").hide();
 
                 $("#dialog").dialog();
-
             }
-
         });
 
 

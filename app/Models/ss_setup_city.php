@@ -24,6 +24,8 @@ class ss_setup_city extends Model
     }
 
     public function city(){
-        return $this->hasMany('App\Models\ss_user',"city_id");
+        // return $this->hasMany('model_name(user)',"foreign_key(name of FK inside user table)",'local_key (name of primary key of this table)');
+        return $this->hasMany('App\Models\ss_user',"city_id"); //here, city_id is a fk column inside ss_user table. 
+        // select * from ss_user where city_id=1;
     }
 }

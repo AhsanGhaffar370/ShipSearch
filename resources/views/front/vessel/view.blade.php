@@ -15,7 +15,8 @@
         <div class="bg-white">
             <div class="pt-2 pb-2 pl-3">
                 <a id="new_ser_req" class="btn_style size13 btn_xxxs" href="#"><i class="fas fa-search"></i> Search Vessel for Charter</a>
-                <a href={{ route('vessel.add') }} id="{{ session('front_uname') }}" class="btn_style size13 btn_xxxs ml-3 add_rec_validation"> 
+                
+                <a href={{ route('vessel.add') }} class="btn_style size13 btn_xxxs ml-3 add_new_cvs_val">
                     <i class="fas fa-plus"></i> Add Vessel for Charter
                 </a>
             </div>
@@ -27,7 +28,7 @@
             <div class="border table-wrapper-scroll-y my-custom-scrollbar">
                 <table id="ser_his_table22"
                     class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
-                    <thead class="pos_rel z_ind999">
+                    <thead class="pos_rel">
                         <tr>
                             <th width="2%"></th>
                             <th width="2%">#</th>

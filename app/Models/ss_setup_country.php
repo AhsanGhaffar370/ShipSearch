@@ -24,6 +24,21 @@ class ss_setup_country extends Model
     }
 
     
+    //ss_user
+    public function user(){
+        // return $this->hasMany('model_name(user)',"foreign_key(name of FK inside user table)",'local_key (name of primary key of this table)');
+        return $this->hasMany('App\Models\ss_user',"country_id"); //here, country_id is a fk column inside ss_user table. 
+        // select * from ss_user where country_id=1;
+    }
+    
+    // company
+    public function company(){
+        // return $this->hasMany('model_name(company)',"foreign_key(name of FK inside company table)",'local_key (name of primary key of this table)');
+        return $this->hasMany('App\Models\ss_setup_company_directory',"country_id"); //here, country_id is a fk column inside ss_company table. 
+        // select * from company where user_id=1;
+    }
+
+
     //cargo
     public function CAlcountry(){
         return $this->hasMany('App\Models\rel_cargo_lcountry',"country_id");

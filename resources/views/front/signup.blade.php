@@ -237,8 +237,8 @@
                         </select>
                     </div>
                     <div class="p-1 mt-2">
-                        <label for="business_address" class="size14 mb-1">Business Address</label>
-                        <input type="text" name="business_address" id="business_address" class="form-control" required />
+                        <label for="bussiness_address" class="size14 mb-1">business Address</label>
+                        <input type="text" name="bussiness_address" id="bussiness_address" class="form-control" required />
                     </div>
                     <div class="p-1 mt-2">
                         <label for="company_fax" class="size14 mb-1">Comapany Fax</label>

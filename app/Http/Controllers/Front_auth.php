@@ -19,48 +19,39 @@ use App\Models\ss_setup_user_member_type;
 
 class Front_auth extends Controller
 {
-
-    function view(){
-
-        $data = ss_user::isActive("1")->orderBy('user_id', 'DESC')->get();
-
-
-        return view('front/directory/view',['data'=>$data,
-                                            'fuser_id'=>"0"]);
-    }
-
-    function view_user(Request $req){
-
-        $data = ss_user::isActive("1")->orderBy('user_id', 'DESC')->get();
-        // dd($req->id);
-
-        return view('front/directory/view',['data'=>$data,
-                                            'fuser_id'=>$req->id]);
-    }
-
     function login_req(Request $req){
         $email= $req->email;
         $password= md5($req->pass);
 
-        $res=ss_user::email($email)->pass($password)->get();
+        $res=ss_user::with(['user_member_type','company','country','state','city'])
+                    ->email($email)
+                    ->pass($password)
+                    ->get()[0];
 
-        if(isset($res[0])){
+        // dd($res->user_member_type->member_type);
+
+        if(isset($res)){
             
-            $res=ss_user::email($email)->pass($password)->isActive("1")->get();
-            if(isset($res[0])){
-                $req->session()->put('front_uid',$res[0]->user_id);
-                $fullname=$res[0]->first_name;
+            $res=ss_user::with(['user_member_type','company','country','state','city'])
+                        ->email($email)
+                        ->pass($password)
+                        ->isActive("1")
+                        ->get()[0];
+            if(isset($res)){
+                $req->session()->put('member_type',$res->user_member_type->member_type);
+                $req->session()->put('front_uid',$res->user_id);
+                $fullname=$res->first_name.' '.$res->last_name ;
                 $req->session()->put('front_uname',$fullname);
-                $company_name=$res[0]->company_name;
+                $company_name=$res->company->company_name;
                 $req->session()->put('company_name',$company_name);
-                $phone=$res[0]->phone;
-                $req->session()->put('phone_no',$phone);
-                $email=$res[0]->email;
-                $req->session()->put('email_add',$email);
+                $phone=$res->company->phone;
+                $req->session()->put('company_phone',$phone);
+                $email=$res->company->email;
+                $req->session()->put('company_email',$email);
                 return redirect()->route('home');
             }
             else{
-                $req->session()->flash('err','verification error');
+                $req->session()->flash('err','verification error. Signup again to get new verification code.');
                 
                 return redirect()->route('login');
             }
@@ -107,7 +98,7 @@ class Front_auth extends Controller
         $user->password=md5($req->pass);
         $code=md5($req->email.time());
         $user->activationcode=$code;
-        $user->is_active=0;
+        $user->is_active=1;
     
     
         $user->date_of_birth=$req->date_of_birth;
@@ -127,7 +118,7 @@ class Front_auth extends Controller
         $user->mail_address=$req->mail_address;
         $user->description=$req->description;
         $user->member_type_id=$req->member_type_id;
-        $user->created_at=date('Y-m-d');
+        // $user->created_at=date('Y-m-d');
     
         $user->save();
 
@@ -144,32 +135,28 @@ class Front_auth extends Controller
         $company->region_id=$req->company_region_id;
         $company->country_id=$req->company_country_id;
         $company->port_id=$req->company_port_id;
-        $company->business_address=$req->company_business_address;
+        $company->bussiness_address=$req->bussiness_address;
         $company->fax=$req->company_fax;
         $company->website=$req->company_website;
         $company->user_id=$cid;
-        $company->is_active=0;
+        $company->is_active=1;
 
         $company->save();
 
 
 
-
-
-
-        
-
-        $user21['to']=$req->email;
-        $data=['code'=>$code];
+        // $user21['to']=$req->email;
+        // $data=['code'=>$code];
     
-        Mail::send('front/mail_format',$data, function($messages) use ($user21){
-            $messages->from('info@shipsearch.com', 'ShipSearch Support');
-            $messages->to($user21['to']);
-            $messages->subject("Email Verification | shipsearch.com");
-            // $message->attach($pathToFile, array('as' => $display, 'mime' => $mime));
-        });
+        // Mail::send('front/mail_format',$data, function($messages) use ($user21){
+        //     // $messages->from('info@shipsearch.com', 'ShipSearch Support');
+        //     $messages->from('ahsanrao237@gmail.com', 'ShipSearch Support');
+        //     $messages->to($user21['to']);
+        //     $messages->subject("Email Verification | shipsearch.com");
+        //     // $message->attach($pathToFile, array('as' => $display, 'mime' => $mime));
+        // });
     
-        $req->session()->flash('reg_msg',$req->email);
+        // $req->session()->flash('reg_msg',$req->email);
     
         return redirect()->route('login');
     }

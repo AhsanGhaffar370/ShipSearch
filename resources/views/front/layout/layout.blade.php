@@ -175,13 +175,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
-                            <a class="nav-link nav_link_cargo" href="{{ route('cargo.view') }}">Cargo</a>
+                            <a class="nav-link check_login nav_link_cargo" href="{{ route('cargo.view') }}">Cargo</a>
                         </li>
                         <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
-                            <a class="nav-link nav_link_vessel" href="{{ route('vessel.view') }}">Vessel Charter</a>
+                            <a class="nav-link check_login nav_link_vessel" href="{{ route('vessel.view') }}">Vessel Charter</a>
                         </li>
                         <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
-                            <a class="nav-link nav_link_vessel_sale" href="{{ route('vessel_sale.view') }}">Sale & Purchase</a>
+                            <a class="nav-link check_login nav_link_vessel_sale" href="{{ route('vessel_sale.view') }}">Sale & Purchase</a>
                         </li>
                         <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
                             <a class="nav-link nav_link_directory" href="{{ route('directory.view') }}">Directory</a>
@@ -204,6 +204,21 @@
     @section('container')
     @show
     <!-- Main Content End -->
+
+
+    <input type="hidden" name="is_logged_in" id="is_logged_in" value="{{ session('front_uid') }}">
+    <input type="hidden" name="member_type21" id="member_type21" value="{{ session('member_type') }}">
+    
+    <div id="access_denied" class="text-right rounded p-1" style="display: none;">
+        <p class="size20 text-left text-white bg_gdd p-2 rounded">Access Denied</p>
+
+        <p class="text-left">
+            Please <a href={{ route('login') }} class="btn_style text-white size13 btn-sm exo">Login</a> to access.
+        </p>
+        <br>
+        <hr>
+        <button id="close_access_denied" class="btn btn-danger btn-sm size13">Close</button>
+    </div>
 
 
     <!-- Footer -->
@@ -282,6 +297,10 @@
 
     <script>
         $(document).ready(function(){
+
+            var someSession = <%= Session["member_type"].ToString() %>;
+            alert(someSession)
+
             // vessel charter image preview dialog box on vessel_sale page
             $("#dialog").dialog({
                 draggable: false,
@@ -347,6 +366,49 @@
                 e.preventDefault();
 
                 $("#show_delete_popup").dialog('open');
+            });
+
+            
+            //validation on cvs pages
+            
+            $("#access_denied").dialog({
+                draggable: false,
+                resizable: false,
+                closeOnEscape: false,
+                autoOpen: false,
+                width: '30%',
+                modal: true
+            });
+
+            $("#close_access_denied").click(function(e){
+                e.preventDefault();
+                $("#access_denied").dialog("close");
+            });
+
+            $(document).on('click', '.check_login', function(e){
+                
+                // e.preventDefault();
+                // $("#access_denied").dialog('open');
+
+                if ($("#is_logged_in").val() == "" ) {
+                    e.preventDefault();
+                    
+                    $(".ui-dialog-titlebar").hide();
+                    $("#access_denied").dialog('open');
+                }
+            });
+
+            $(document).on('click', '.add_new_cvs_val', function(e){
+                
+                // e.preventDefault();
+                // $("#access_denied").dialog('open');
+
+                if ($("#member_type21").val() == "Free" ) {
+                    e.preventDefault();
+                    
+                    $(".ui-dialog-titlebar").hide();
+                    $("#access_denied").dialog('open');
+                }
             });
         });
     </script>
