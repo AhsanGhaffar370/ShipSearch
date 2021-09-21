@@ -226,7 +226,12 @@
             background-color: #226b68;
         }
         #home_cargo_link{
-            background-color:#abd6c2 ;
+            /* background-color:#abd6c2 ; */
+            background-color: #06423f
+        }
+
+        .btn_bg{
+            background-color: #ABD6C2;
         }
     </style>
 
@@ -398,10 +403,10 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="size13 btn_style ser_hover cl_gdd font-weight-bold btn_xxs" style="background-color: #ABD6C2">
+                                        <button type="submit" class="size13 btn_style ser_hover btn_bg cl_gdd b6 btn_xxs">
                                             Search
                                         </button>
-                                        <button type="button" value="reset" class="size13 btn_style ser_hover reset_btn bg-secondary btn_xxs" style="background-color: #ABD6C2">
+                                        <button type="button" value="reset" class="size13 btn_style b6 ser_hover cl_gdd btn_bg reset_btn btn_xxs">
                                             Reset
                                         </button>
                                     </div>
@@ -519,10 +524,10 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="btn_style size13 ser_hover cl_gdd font-weight-bold btn_xxs" style="background-color: #ABD6C2">
+                                        <button type="submit" class="size13 btn_style ser_hover btn_bg cl_gdd b6 btn_xxs">
                                             Search
                                         </button>
-                                        <button type="button" value="reset" class="size13 btn_style ser_hover reset_btn bg-secondary btn_xxs" style="background-color: #ABD6C2">
+                                        <button type="button" value="reset" class="size13 btn_style b6 ser_hover cl_gdd btn_bg reset_btn btn_xxs">
                                             Reset
                                         </button>
                                     </div>
@@ -619,10 +624,10 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="btn_style size13 ser_hover cl_gdd font-weight-bold btn_xxs" style="background-color: #ABD6C2">
+                                        <button type="submit" class="size13 btn_style ser_hover btn_bg cl_gdd b6 btn_xxs">
                                             Search
                                         </button>
-                                        <button type="button" value="reset" class="size13 btn_style ser_hover reset_btn bg-secondary btn_xxs" style="background-color: #ABD6C2">
+                                        <button type="button" value="reset" class="size13 btn_style b6 ser_hover cl_gdd btn_bg reset_btn btn_xxs">
                                             Reset
                                         </button>
                                     </div>

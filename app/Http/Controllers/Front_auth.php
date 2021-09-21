@@ -13,6 +13,10 @@ use App\Models\ss_setup_region;
 use App\Models\ss_setup_country;
 use App\Models\ss_setup_port;
 
+use App\Models\ss_setup_state;
+use App\Models\ss_setup_city;
+use App\Models\ss_setup_user_member_type;
+
 class Front_auth extends Controller
 {
 
@@ -75,17 +79,23 @@ class Front_auth extends Controller
             $ss_setup_region= ss_setup_region::where('region_name','!=','Any')->active()->ascend()->get();
             $ss_setup_country= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
             $ss_setup_port= ss_setup_port::where('port_name','!=','Any')->active()->ascend()->get();
+            $ss_setup_state= ss_setup_state::active()->ascend()->get();
+            $ss_setup_city= ss_setup_city::active()->ascend()->get();
+            $ss_setup_user_member_type= ss_setup_user_member_type::active()->get();
             
             return view('front/signup',['region'=>$ss_setup_region,
                                         'country'=>$ss_setup_country,
-                                        'port'=>$ss_setup_port]);
+                                        'port'=>$ss_setup_port,
+                                        'state'=>$ss_setup_state,
+                                        'city'=>$ss_setup_city,
+                                        'member_type'=>$ss_setup_user_member_type]);
         }
     }
 
     function signup_req(Request $req){
     
         ss_user::email($req->email)->isActive("0")->delete();
-    
+
     
         // User details
         $user=new ss_user;
@@ -116,7 +126,7 @@ class Front_auth extends Controller
         $user->fax=$req->fax;
         $user->mail_address=$req->mail_address;
         $user->description=$req->description;
-        $user->member_type_id=1;
+        $user->member_type_id=$req->member_type_id;
         $user->created_at=date('Y-m-d');
     
         $user->save();
@@ -126,31 +136,29 @@ class Front_auth extends Controller
 
         $company=new ss_setup_company_directory;
 
-        $company->company_name;
-        $company->region_id;
-        $company->country_id;
-        $company->port_id;
-        $company->business_address;
-        $company->contact_person_first_name;
-        $company->contact_person_last_name;
-        $company->phone;
-        $company->email;
-        $company->fax;
-        $company->website;
-        $company->company_name;
-        $company->company_name;
-        $company->company_name;
-        $company->company_name;
-        $company->company_name;
-        $company->company_name;
+        $company->company_name=$req->company_name;
+        $company->email=$req->company_email;
+        $company->contact_person_first_name=$req->contact_person_first_name;
+        $company->contact_person_last_name=$req->contact_person_last_name;
+        $company->phone=$req->company_phone;
+        $company->region_id=$req->company_region_id;
+        $company->country_id=$req->company_country_id;
+        $company->port_id=$req->company_port_id;
+        $company->business_address=$req->company_business_address;
+        $company->fax=$req->company_fax;
+        $company->website=$req->company_website;
+        $company->user_id=$cid;
+        $company->is_active=0;
+
+        $company->save();
 
 
 
 
 
 
+        
 
-    
         $user21['to']=$req->email;
         $data=['code'=>$code];
     

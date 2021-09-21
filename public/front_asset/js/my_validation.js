@@ -60,6 +60,7 @@ $(document).ready(function() {
 
                         if (rcp_ids.length < 1) {
                             $.each(json_data['data'][n_list], function(i, obj1) {
+                                console.log(obj1);
                                 if (n_list == 'region')
                                     post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
                                 if (n_list == 'country')

@@ -118,11 +118,12 @@
                     </div>
                     <div class="p-1 mt-2">
                         <label for="" class="size14 mb-1">Country</label>
-                        <select name="country_id" id="" class="form-control" 
+                        <select name="country_id" id="country_id" class="form-control" 
                             {{-- onmousedown="if(this.options.length>8){this.size=8;}"  
                             onchange='this.size=0;' 
                             onblur="this.size=0;" --}}
                             >
+                            <option value="-1" disabled selected>Choose</option>
                             @foreach ($country as $row)
                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                 </option>
@@ -131,19 +132,20 @@
                     </div>
                     <div class="p-1 mt-2">
                         <label for="" class="size14 mb-1">State</label>
-                        <select name="state_id" id="" class="form-control">
-                            @foreach ($country as $row)
-                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                        <select name="state_id" id="state_id" class="form-control">
+                            <option value="-1" disabled selected>Choose</option>
+                            @foreach ($state as $row)
+                                <option value="{{ $row->state_id }}">{{ $row->state_name }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="p-1 mt-2">
                         <label for="" class="size14 mb-1">City</label>
-                        <select name="city_id" id="" class="form-control">
-                            @foreach ($country as $row)
-                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
-                                </option>
+                        <select name="city_id" id="city_id" class="form-control">
+                            <option value="-1" disabled selected>Choose</option>
+                            @foreach ($city as $row)
+                                <option value="{{ $row->city_id }}">{{ $row->city_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -206,16 +208,18 @@
                    
                     <div class="p-1 mt-2">
                         <label for="" class="size14 mb-1">Region</label>
-                        <select name="company_region_id" id="" class="form-control">
-                            @foreach ($country as $row)
-                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                        <select name="company_region_id" id="company_region_id" class="form-control">
+                            <option value="-1" disabled selected>Choose</option>
+                            @foreach ($region as $row)
+                                <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="p-1 mt-2">
                         <label for="" class="size14 mb-1">Country</label>
-                        <select name="company_country_id" id="" class="form-control">
+                        <select name="company_country_id" id="company_country_id" class="form-control">
+                            <option value="-1" disabled selected>Choose</option>
                             @foreach ($country as $row)
                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                 </option>
@@ -224,9 +228,10 @@
                     </div>
                     <div class="p-1 mt-2">
                         <label for="" class="size14 mb-1">Port</label>
-                        <select name="company_port_id" id="" class="form-control">
-                            @foreach ($country as $row)
-                                <option value="{{ $row->country_id }}">{{ $row->country_name }}
+                        <select name="company_port_id" id="company_port_id" class="form-control">
+                            <option value="-1" disabled selected>Choose</option>
+                            @foreach ($port as $row)
+                                <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                 </option>
                             @endforeach
                         </select>
@@ -253,10 +258,14 @@
 
                     <div class="p-1 mt-2">
                         <label for="member_type" class="size14 mb-1">Select Plan</label>
-                        <select name="member_type" id="member_type" class="form-control member_type ">
-                            <option value="1">Monthly</option>
+                        <select name="member_type_id" id="member_type_id" class="form-control member_type ">
+                            <option value="-1" disabled selected>Choose</option>
+                            @foreach ($member_type as $row)
+                                <option value="{{ $row->user_member_type_id }}">{{ $row->member_type }}</option>
+                            @endforeach
+                            {{-- <option value="1">Monthly</option>
                             <option value="2">Yearly</option>
-                            <option value="3">Free</option>
+                            <option value="3">Free</option> --}}
                         </select>
                     </div>
 

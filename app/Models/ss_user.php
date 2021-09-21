@@ -33,6 +33,10 @@ class ss_user extends Model
         return $this->hasMany('App\Models\ss_cargo',"user_id");
     }
 
+    public function user_member_type(){
+        return $this->belongsTo(ss_setup_user_member_type::class,'member_type_id');
+    }
+
     
 
     public function region(){
