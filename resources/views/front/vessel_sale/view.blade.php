@@ -410,14 +410,14 @@
                                     </td>
 									<td>
                                         <div class="td_h">
-                                            <img src="{{asset('public/storage/vessel_sale_images/'.explode(',',$row->vessel_img)[0])}}" width="80" id="show_img31" 
+                                            <img src="{{asset('storage/vessel_sale_images/'.explode(',',$row->vessel_img)[0])}}" width="80" id="show_img31" 
                                             class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">
 
                                             <span class="d_n">{{$count=0}}</span>
                                             @foreach (explode(',',$row->vessel_img) as $item)
                                                 @if($count!=0)
-                                                    {{-- <input type="hidden" value="{{asset('public/storage/vessel_sale_images/'.$item)}}"> --}}
-                                                    <img src="{{asset('public/storage/vessel_sale_images/'.$item)}}" width="80" class="img-thumbnail img-fluid d_n" alt="vessel img">
+                                                    {{-- <input type="hidden" value="{{asset('storage/vessel_sale_images/'.$item)}}"> --}}
+                                                    <img src="{{asset('storage/vessel_sale_images/'.$item)}}" width="80" class="img-thumbnail img-fluid d_n" alt="vessel img">
                                                 @endif
                                                 <span class="d_n">{{$count++}}</span>
                                             @endforeach
@@ -427,7 +427,7 @@
                                             <span class="d_n">{{$count=0}}</span>
                                             @foreach (explode(',',$row->vessel_img) as $item)
                                                 @if($count!=0)
-                                                    <img data-enlargeable src="{{asset('public/storage/vessel_sale_images/'.$item)}}" width="80" class="img-thumbnail img-fluid" alt="vessel img"
+                                                    <img data-enlargeable src="{{asset('storage/vessel_sale_images/'.$item)}}" width="80" class="img-thumbnail img-fluid" alt="vessel img"
                                                     style="cursor: zoom-in;">
                                                 @endif
                                                 <span class="d_n">{{$count++}}</span>
@@ -603,7 +603,7 @@
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100" src="{{asset('public/storage/vessel_sale_images/163139027729.jpg')}}" alt="First slide">
+        <img class="d-block w-100" src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="First slide">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

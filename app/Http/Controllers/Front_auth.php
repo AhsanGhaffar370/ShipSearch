@@ -17,6 +17,10 @@ use App\Models\ss_setup_state;
 use App\Models\ss_setup_city;
 use App\Models\ss_setup_user_member_type;
 
+use App\Models\cargo_search_history;
+use App\Models\vessel_search_history;
+use App\Models\vessel_sale_search_history;
+
 class Front_auth extends Controller
 {
     function login_req(Request $req){
@@ -193,5 +197,24 @@ class Front_auth extends Controller
         }else{
             echo "exist";
         }
+    }
+
+    function logout_req(){
+
+
+        if(session('member_type') =="Free"){
+            cargo_search_history::where('user_id',session('front_uid'))->delete();
+            vessel_search_history::where('user_id',session('front_uid'))->delete();
+            vessel_sale_search_history::where('user_id',session('front_uid'))->delete();
+        }
+
+        session()->forget('member_type');
+        session()->forget('front_uid');
+        session()->forget('front_uname');
+        session()->forget('company_name');
+        session()->forget('company_phone');
+        session()->forget('company_email');
+        
+        return redirect()->route('login');
     }
 }

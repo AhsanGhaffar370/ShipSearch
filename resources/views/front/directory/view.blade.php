@@ -24,8 +24,8 @@
                 class="fas fa-sync-alt"></i></a>
 
         <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
-            <div class="border">
-                <table id="cvs_table" class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
+            {{-- <div class="border"> --}}
+                <table id="directory_table" class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
                     <thead>
                         <tr>
                             <th width="5%">ID</th>
@@ -70,7 +70,7 @@
                                     </td>
                                     <td>
                                         <div class="td_h">
-                                            {{ $row->email }}
+                                            {{ $row->website }}
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->company_id }} tr_bg_cl d_n">
@@ -80,7 +80,7 @@
                                     </td>
                                     <td>
                                         <div class="td_h">
-                                            {{ $row->website }}
+                                            {{ $row->email }}
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->company_id }} tr_bg_cl d_n">
@@ -130,7 +130,7 @@
                         @endif
                     </tbody>
                 </table>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
 </div>

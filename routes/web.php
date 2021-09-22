@@ -56,6 +56,8 @@ Route::get('/login', function () {
 })->name('login');
 Route::post('login_req',[Front_auth::class,'login_req'])->name('login_req');
 
+Route::get('/logout',[Front_auth::class,'logout_req'])->name('logout');
+
 
 // Route::get('/signup', function () {
     // if((session()->has('front_uid'))){
@@ -73,15 +75,9 @@ Route::get('checkmail',[Front_auth::class, 'checkmail_ajax'])->name('checkmail')
 
 
 
-Route::get('/logout',function(){
-    session()->forget('member_type');
-    session()->forget('front_uid');
-    session()->forget('front_uname');
-    session()->forget('company_name');
-    session()->forget('company_phone');
-    session()->forget('company_email');
-    return redirect()->route('login');
-})->name('logout');
+// Route::get('/logout',function(){
+   
+// })->name('logout');
 
 
 
@@ -150,7 +146,7 @@ Route::group(['middleware'=>['front_auth']],function(){
         // Vessel Sale
         Route::get('/vessel_sale/add', [FrontVesselSaleController::class, 'view_add'] )->name('vessel_sale.add');
         Route::post('/vessel_sale/add_req', [FrontVesselSaleController::class, 'add_req'] )->name('vessel_sale.add_req');
-        
+
         // Directory
         Route::get('/directory/view/#{id}',[FrontDirectoryController::class, 'view_company'])->name('directory.view.user');
     });

@@ -1727,12 +1727,12 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">
-                                        <img src="public/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
+                                        <img src="storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
                                         class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
                                         let count_img=0;
                                             $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
                                                 if(count_img!=0){
-                                                    post_str += `<img src="public/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
+                                                    post_str += `<img src="storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
                                                 }
                                                 count_img++;
                                             });
@@ -2079,12 +2079,12 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">
-                                                <img src="public/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
+                                                <img src="storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
                                                 class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
                                                 let count_img=0;
                                                     $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
                                                         if(count_img!=0){
-                                                            post_str += `<img src="public/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
+                                                            post_str += `<img src="storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
                                                         }
                                                         count_img++;
                                                     });
@@ -2280,6 +2280,22 @@ $(document).ready(function() {
     //////////////////////////////////////
     $('#cvs_table').DataTable({
         searching: false,
+        paging: false,
+        info: false,
+        "order": [],
+        // "pagingType":"full_numbers",
+        //   "lengthMenu":[[5,10,25],[5,10,25]],
+        // "lengthMenu": [
+        //     [10, 25, 50, 100, -1],
+        //     [10, 25, 50, 100, 'All']
+        // ],
+        // responsive: true,
+        // type: 'date'
+        // stateSave: true
+    });
+
+    $('#directory_table').DataTable({
+        searching: true,
         paging: false,
         info: false,
         "order": [],

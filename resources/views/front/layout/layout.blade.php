@@ -213,7 +213,7 @@
         <p class="size20 text-left text-white bg_gdd p-2 rounded">Access Denied</p>
 
         <p class="text-left">
-            Please <a href={{ route('login') }} class="btn_style text-white size13 btn-sm exo">Login</a> to access.
+            Become a  <a href={{ route('login') }} class="btn_style text-white size13 btn-sm exo">member</a> to access.
         </p>
         <br>
         <hr>
@@ -297,9 +297,6 @@
 
     <script>
         $(document).ready(function(){
-
-            var someSession = <%= Session["member_type"].ToString() %>;
-            alert(someSession)
 
             // vessel charter image preview dialog box on vessel_sale page
             $("#dialog").dialog({
