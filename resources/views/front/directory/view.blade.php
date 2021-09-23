@@ -5,10 +5,17 @@
 
 @section('container')
 
+<style>
+    #directory_table_filter{
+        position: fixed;
+        right: 3%;
+        /* top: 0px; */
+        margin-top: -43px;
+    }
+</style>
 
 
-
-<div class="container-fluid bg-color pt-5 pb-5">
+<div class="container-fluid bg-color pt-2 pb-2">
 
 
 
@@ -23,7 +30,7 @@
         <a href={{ route('directory.view') }} class="btn btn_style bg_gd ml-3 pl-2 pr-2"><i
                 class="fas fa-sync-alt"></i></a>
 
-        <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
+        <div class="table-wrapper-scroll-y mt-3" style="position: relative; min-height: 100px !important; max-height: 290px !important; overflow: auto;">
             {{-- <div class="border"> --}}
                 <table id="directory_table" class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
                     <thead>

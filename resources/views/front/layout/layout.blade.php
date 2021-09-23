@@ -227,7 +227,7 @@
 
         <div class="pl_1 pr_1">
             <!-- Footer Links -->
-            <div class="container-fluid text-center text-md-left pt-4 pb-4">
+            <div class="container-fluid text-center text-md-left pt-3 pb-3">
 
                 <!-- Grid row -->
                 <div class="row">
@@ -274,7 +274,7 @@
         <!-- Footer Links -->
 
         <!-- Copyright -->
-        <div class="text-white size13 b4 text-center py-3 pt-2 pb-2 size18" style="background-color: #24292C;">
+        <div class="text-white size13 b4 text-center pt-2 pb-2 size18" style="background-color: #24292C;">
             Copyright 2021 Ship Search | Created by Webist Ltd (UK)
         </div>
         <!-- Copyright -->
