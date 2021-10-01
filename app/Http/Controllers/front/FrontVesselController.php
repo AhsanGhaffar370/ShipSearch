@@ -266,17 +266,43 @@ class FrontVesselController extends Controller
             }
         }
 
+        $ser_vessel_type_opt='=';
+        if(strpos($ser_vessel_type, '11') !== false){
+            $ser_vessel_type="abc";
+            $ser_vessel_type_opt='!=';
+        }
+        $ser_charter_type_opt='=';
+        if(strpos($ser_charter_type, '5') !== false){
+            $ser_charter_type="abc";
+            $ser_charter_type_opt='!=';
+        }
+        $ser_region_opt='=';
+        if(strpos($ser_region, '26') !== false){
+            $ser_region="abc";
+            $ser_region_opt='!=';
+        }
+        $ser_country_opt='=';
+        if(strpos($ser_country, '197') !== false){
+            $ser_country="abc";
+            $ser_country_opt='!=';
+        }
+        $ser_port_opt='=';
+        if(strpos($ser_port, '5638') !== false){
+            $ser_port="abc";
+            $ser_port_opt='!=';
+        }
+
         // $vessel_type_fk=$req->vessel_type_id;
         // ->whereHas('vesseltype', function($q1) use ($vessel_type_fk) {
         //     $q1->whereIn('vessel_type_id',$vessel_type_fk);
         // })
         
         $data = ss_vessel::with(['vesseltype','chartertype','region','country','port'])
-                        ->where('vessel_type_id', $ser_vessel_type)
-                        ->where('charter_type_id', $ser_charter_type)
-                        ->where('region_id', $ser_region)
-                        ->where('country_id', $ser_country)
-                        ->where('port_id', $ser_port)
+                        ->where('vessel_type_id', $ser_vessel_type_opt, $ser_vessel_type)
+                        ->where('charter_type_id', $ser_charter_type_opt, $ser_charter_type)
+                        ->where('region_id', $ser_region_opt, $ser_region)
+                        ->where('country_id', $ser_country_opt, $ser_country)
+                        ->where('port_id', $ser_port_opt, $ser_port)
                         ->whereBetween("laycan_date_from", [$laycan_from, $laycan_to])
                         ->whereBetween("laycan_date_to", [$laycan_from, $laycan_to])
                         ->active()
@@ -311,17 +337,44 @@ class FrontVesselController extends Controller
         $ser_data= vessel_search_history::with(['vesseltype','chartertype','region','country','port'])
                                         ->where('id',$req->id)->first();   
         
+
+        $ser_vessel_type_opt='=';
+        if(strpos($ser_data->vessel_type_id, '11') !== false){
+            $ser_data->vessel_type_id="abc";
+            $ser_vessel_type_opt='!=';
+        }
+        $ser_charter_type_opt='=';
+        if(strpos($ser_data->charter_type_id, '5') !== false){
+            $ser_data->charter_type_id="abc";
+            $ser_charter_type_opt='!=';
+        }
+        $ser_region_opt='=';
+        if(strpos($ser_data->region_id, '26') !== false){
+            $ser_data->region_id="abc";
+            $ser_region_opt='!=';
+        }
+        $ser_country_opt='=';
+        if(strpos($ser_data->country_id, '197') !== false){
+            $ser_data->country_id="abc";
+            $ser_country_opt='!=';
+        }
+        $ser_port_opt='=';
+        if(strpos($ser_data->port_id, '5638') !== false){
+            $ser_data->port_id="abc";
+            $ser_port_opt='!=';
+        }
+
         //get specific record of table
         // with(array('Lregion' => function($query) {
         //     $query->select('vessel_id');
         // }))
         $data=[];
         $data[0] = ss_vessel::with(['vesseltype','chartertype','region','country','port'])
-                        ->where('vessel_type_id', $ser_data->vessel_type_id)
-                        ->where('charter_type_id', $ser_data->charter_type_id)
-                        ->where('region_id', $ser_data->region_id)
-                        ->where('country_id', $ser_data->country_id)
-                        ->where('port_id', $ser_data->port_id)
+                        ->where('vessel_type_id', $ser_vessel_type_opt, $ser_data->vessel_type_id)
+                        ->where('charter_type_id', $ser_charter_type_opt, $ser_data->charter_type_id)
+                        ->where('region_id', $ser_region_opt, $ser_data->region_id)
+                        ->where('country_id', $ser_country_opt, $ser_data->country_id)
+                        ->where('port_id', $ser_port_opt, $ser_data->port_id)
                         ->whereBetween("laycan_date_from", [$ser_data->laycan_date_from, $ser_data->laycan_date_to])
                         ->whereBetween("laycan_date_to", [$ser_data->laycan_date_from, $ser_data->laycan_date_to])
                         ->active()
@@ -467,13 +520,39 @@ class FrontVesselController extends Controller
                 }   
             }
 
+            $ser_vessel_type_opt='=';
+            if(strpos($data->vessel_type_id, '11') !== false){
+                $data->vessel_type_id="abc";
+                $ser_vessel_type_opt='!=';
+            }
+            $ser_charter_type_opt='=';
+            if(strpos($data->charter_type_id, '5') !== false){
+                $data->charter_type_id="abc";
+                $ser_charter_type_opt='!=';
+            }
+            $ser_region_opt='=';
+            if(strpos($data->region_id, '26') !== false){
+                $data->region_id="abc";
+                $ser_region_opt='!=';
+            }
+            $ser_country_opt='=';
+            if(strpos($data->country_id, '197') !== false){
+                $data->country_id="abc";
+                $ser_country_opt='!=';
+            }
+            $ser_port_opt='=';
+            if(strpos($data->port_id, '5638') !== false){
+                $data->port_id="abc";
+                $ser_port_opt='!=';
+            }
+
             $ser_data=[];
             $ser_data[0] = ss_vessel::with(['vesseltype','chartertype','region','country','port'])
-                                ->where('vessel_type_id', $data->vessel_type_id)
-                                ->where('charter_type_id', $data->charter_type_id)
-                                ->where('region_id', $data->region_id)
-                                ->where('country_id', $data->country_id)
-                                ->where('port_id', $data->port_id)
+                                ->where('vessel_type_id', $ser_vessel_type_opt, $data->vessel_type_id)
+                                ->where('charter_type_id', $ser_charter_type_opt, $data->charter_type_id)
+                                ->where('region_id', $ser_region_opt, $data->region_id)
+                                ->where('country_id', $ser_country_opt, $data->country_id)
+                                ->where('port_id', $ser_port_opt, $data->port_id)
                                 ->whereBetween("laycan_date_from", [$data->laycan_date_from, $data->laycan_date_to])
                                 ->whereBetween("laycan_date_to", [$data->laycan_date_from, $data->laycan_date_to])
                                 ->active()

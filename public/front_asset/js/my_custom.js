@@ -252,7 +252,7 @@ $(document).ready(function() {
                 alert('Please Select a record to delete');
         } 
     });
-
+    
     
     function GetFormattedDate(date) {
         // var dateAr = '2014-01-06'.split('-');

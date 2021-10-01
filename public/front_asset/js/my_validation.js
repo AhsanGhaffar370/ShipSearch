@@ -51,33 +51,52 @@ $(document).ready(function() {
                         <select name="` + n_prefix + n_list + `_id[]" id="` + n_prefix + n_list + `_id" class="` + n_prefix + n_list + `_id ser_inp_fields" form="search_cvs_form"
                             multiple title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
 
-                        // if (n_list == 'region')
-                        //     post_str+=`<option value="26">Any</option>`;
-                        // if (n_list == 'country')
-                        //     post_str+=`<option value="197">Any</option>`;
-                        // if (n_list == 'port')
-                        //     post_str+=`<option value="5638">Any</option>`;
+
+                        // console.log(json_data['data'][n_list].length);
+                        if(n_list == 'region' && json_data['data']['region'].length>1)
+                            post_str += `<option value="26">Any</option>`;
+                        if(n_list == 'country' && json_data['data']['country'].length>1)
+                            post_str += `<option value="197">Any</option>`;
+                        if(n_list == 'port' && json_data['data']['port'].length>1)
+                            post_str += `<option value="5638">Any</option>`;
 
                         if (rcp_ids.length < 1) {
                             $.each(json_data['data'][n_list], function(i, obj1) {
-                                console.log(obj1);
-                                if (n_list == 'region')
+                                if (n_list == 'region' && json_data['data']['region'].length == 1)
+                                    post_str += `<option value="` + obj1.region_id + `" selected>` + obj1.region_name + `</option>`;
+                                else if(n_list == 'region')
                                     post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
-                                if (n_list == 'country')
+                                
+                                if (n_list == 'country' && json_data['data']['country'].length == 1)
+                                    post_str += `<option value="` + obj1.country_id + `" selected>` + obj1.country_name + `</option>`;
+                                else if(n_list == 'country')
                                     post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
-                                if (n_list == 'port')
+                                
+                                if (n_list == 'port' && json_data['data']['port'].length == 1)
+                                    post_str += `<option value="` + obj1.port_id + `" selected>` + obj1.port_name + `</option>`;
+                                else if(n_list == 'port')
                                     post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
                             });
                         } else {
                             $.each(json_data['data'][n_list], function(i, obj1) {
-                                if (n_list == 'region')
+                                if (n_list == 'region' && json_data['data']['region'].length == 1)
+                                    post_str += `<option value="` + obj1.region_rel.region_id + `" selected>` + obj1.region_rel.region_name + `</option>`;
+                                else if(n_list == 'region')
                                     post_str += `<option value="` + obj1.region_rel.region_id + `">` + obj1.region_rel.region_name + `</option>`;
-                                if (n_list == 'country')
+                                
+                                if (n_list == 'country' && json_data['data']['country'].length == 1)
+                                    post_str += `<option value="` + obj1.country_rel.country_id + `" selected>` + obj1.country_rel.country_name + `</option>`;
+                                else if(n_list == 'country')
                                     post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
-                                if (n_list == 'port')
+                                
+                                if (n_list == 'port' && json_data['data']['port'].length == 1)
+                                    post_str += `<option value="` + obj1.port_rel.port_id + `" selected>` + obj1.port_rel.port_name + `</option>`;
+                                else if(n_list == 'port')
                                     post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
+                                
                             });
                         }
+
                         post_str += `</select>`;
                         $("." + n_prefix + n_list + "_id_par").html(post_str);
 
@@ -147,25 +166,51 @@ $(document).ready(function() {
                         <select name="` + n_prefix + n_list + `_id[]" id="` + n_prefix + n_list + `_id_` + id + `" class="` + n_prefix + n_list + `_id ser_inp_fields_each" form="search_cvs_form_` + id + `" 
                             multiple title="Choose" data-size="5" data-selected-text-format="count > 2" data-live-search="true">`;
 
+                        // console.log(json_data['data'][n_list].length);
+                        if(n_list == 'region' && json_data['data']['region'].length>1)
+                            post_str += `<option value="26">Any</option>`;
+                        if(n_list == 'country' && json_data['data']['country'].length>1)
+                            post_str += `<option value="197">Any</option>`;
+                        if(n_list == 'port' && json_data['data']['port'].length>1)
+                            post_str += `<option value="5638">Any</option>`;
+
                         if (rcp_ids.length < 1) {
                             $.each(json_data['data'][n_list], function(i, obj1) {
-                                if (n_list == 'region')
+                                if (n_list == 'region' && json_data['data']['region'].length == 1)
+                                    post_str += `<option value="` + obj1.region_id + `" selected>` + obj1.region_name + `</option>`;
+                                else if(n_list == 'region')
                                     post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
-                                if (n_list == 'country')
+                                
+                                if (n_list == 'country' && json_data['data']['country'].length == 1)
+                                    post_str += `<option value="` + obj1.country_id + `" selected>` + obj1.country_name + `</option>`;
+                                else if(n_list == 'country')
                                     post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
-                                if (n_list == 'port')
+                                
+                                if (n_list == 'port' && json_data['data']['port'].length == 1)
+                                    post_str += `<option value="` + obj1.port_id + `" selected>` + obj1.port_name + `</option>`;
+                                else if(n_list == 'port')
                                     post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
                             });
                         } else {
                             $.each(json_data['data'][n_list], function(i, obj1) {
-                                if (n_list == 'region')
+                                if (n_list == 'region' && json_data['data']['region'].length == 1)
+                                    post_str += `<option value="` + obj1.region_rel.region_id + `" selected>` + obj1.region_rel.region_name + `</option>`;
+                                else if(n_list == 'region')
                                     post_str += `<option value="` + obj1.region_rel.region_id + `">` + obj1.region_rel.region_name + `</option>`;
-                                if (n_list == 'country')
+                                
+                                if (n_list == 'country' && json_data['data']['country'].length == 1)
+                                    post_str += `<option value="` + obj1.country_rel.country_id + `" selected>` + obj1.country_rel.country_name + `</option>`;
+                                else if(n_list == 'country')
                                     post_str += `<option value="` + obj1.country_rel.country_id + `">` + obj1.country_rel.country_name + `</option>`;
-                                if (n_list == 'port')
+                                
+                                if (n_list == 'port' && json_data['data']['port'].length == 1)
+                                    post_str += `<option value="` + obj1.port_rel.port_id + `" selected>` + obj1.port_rel.port_name + `</option>`;
+                                else if(n_list == 'port')
                                     post_str += `<option value="` + obj1.port_rel.port_id + `">` + obj1.port_rel.port_name + `</option>`;
+                                
                             });
                         }
+
                         post_str += `</select>`;
                         $("." + n_prefix + n_list + "_id_par_" + id).html(post_str);
 
@@ -307,8 +352,6 @@ $(document).ready(function() {
                     });
                 }
             });
-        }else{
-            console.log('asdfdsfd');
         }
     });
     // $(document).on("change", 'select.add_cvs_inp_fields', function(e) {

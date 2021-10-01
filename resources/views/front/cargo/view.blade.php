@@ -680,8 +680,8 @@
                                     <td>
                                         <div class="td_h">
                                             {{-- {{ $row->loading_discharge_rates }} --}}
-                                            {{ explode(' ', $row->loading_discharge_rates)[0] }}
-                                            {{ explode(' ', $row->loading_discharge_rates)[1] }}
+                                            {{ explode(' ', $row->loading_discharge_rates,2)[0] }}
+                                            {{ explode(' ', $row->loading_discharge_rates,2)[1] }}
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->cargo_id }} tr_bg_cl d_n">

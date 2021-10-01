@@ -269,15 +269,36 @@ class FrontVesselSaleController extends Controller
             }
         }
 
+        $ser_vessel_type_opt='=';
+        if(strpos($ser_vessel_type, '11') !== false){
+            $ser_vessel_type="abc";
+            $ser_vessel_type_opt='!=';
+        }
+        $ser_region_opt='=';
+        if(strpos($ser_region, '26') !== false){
+            $ser_region="abc";
+            $ser_region_opt='!=';
+        }
+        $ser_country_opt='=';
+        if(strpos($ser_country, '197') !== false){
+            $ser_country="abc";
+            $ser_country_opt='!=';
+        }
+        $ser_port_opt='=';
+        if(strpos($ser_port, '5638') !== false){
+            $ser_port="abc";
+            $ser_port_opt='!=';
+        }
+
         // $vessel_type_fk=$req->vessel_type_id;
         // ->whereHas('vesseltype', function($q1) use ($vessel_type_fk) {
         //     $q1->whereIn('vessel_type_id',$vessel_type_fk);
         // })
         $data = ss_vessel_sale::with(['vesseltype','region','country','port'])
-                        ->where('vessel_type_id', $ser_vessel_type)
-                        ->where('region_id', $ser_region)
-                        ->where('country_id', $ser_country)
-                        ->where('port_id', $ser_port)
+                        ->where('vessel_type_id', $ser_vessel_type_opt, $ser_vessel_type)
+                        ->where('region_id', $ser_region_opt, $ser_region)
+                        ->where('country_id', $ser_country_opt, $ser_country)
+                        ->where('port_id', $ser_port_opt, $ser_port)
                         ->whereBetween("date_available", [$date_available, $operations_date])
                         ->whereBetween("operations_date", [$date_available, $operations_date])
                         ->active()
@@ -311,16 +332,38 @@ class FrontVesselSaleController extends Controller
         $ser_data= vessel_sale_search_history::with(['vesseltype','region','country','port'])
                                         ->where('id',$req->id)->first();   
         
+
+        $ser_vessel_type_opt='=';
+        if(strpos($ser_data->vessel_type_id, '11') !== false){
+            $ser_data->vessel_type_id="abc";
+            $ser_vessel_type_opt='!=';
+        }
+        $ser_region_opt='=';
+        if(strpos($ser_data->region_id, '26') !== false){
+            $ser_data->region_id="abc";
+            $ser_region_opt='!=';
+        }
+        $ser_country_opt='=';
+        if(strpos($ser_data->country_id, '197') !== false){
+            $ser_data->country_id="abc";
+            $ser_country_opt='!=';
+        }
+        $ser_port_opt='=';
+        if(strpos($ser_data->port_id, '5638') !== false){
+            $ser_data->port_id="abc";
+            $ser_port_opt='!=';
+        }
+
         //get specific record of table
         // with(array('Lregion' => function($query) {
         //     $query->select('vessel_id');
         // }))
         $data=[];
         $data[0] = ss_vessel_sale::with(['vesseltype','region','country','port'])
-                        ->where('vessel_type_id', $ser_data->vessel_type_id)
-                        ->where('region_id', $ser_data->region_id)
-                        ->where('country_id', $ser_data->country_id)
-                        ->where('port_id', $ser_data->port_id)
+                        ->where('vessel_type_id', $ser_vessel_type_opt, $ser_data->vessel_type_id)
+                        ->where('region_id', $ser_region_opt, $ser_data->region_id)
+                        ->where('country_id', $ser_country_opt, $ser_data->country_id)
+                        ->where('port_id', $ser_port_opt, $ser_data->port_id)
                         ->whereBetween("date_available", [$ser_data->date_available, $ser_data->operations_date])
                         ->whereBetween("operations_date", [$ser_data->date_available, $ser_data->operations_date])
                         ->active()
@@ -459,12 +502,33 @@ class FrontVesselSaleController extends Controller
                 }   
             }
 
+            $ser_vessel_type_opt='=';
+            if(strpos($data->vessel_type_id, '11') !== false){
+                $data->vessel_type_id="abc";
+                $ser_vessel_type_opt='!=';
+            }
+            $ser_region_opt='=';
+            if(strpos($data->region_id, '26') !== false){
+                $data->region_id="abc";
+                $ser_region_opt='!=';
+            }
+            $ser_country_opt='=';
+            if(strpos($data->country_id, '197') !== false){
+                $data->country_id="abc";
+                $ser_country_opt='!=';
+            }
+            $ser_port_opt='=';
+            if(strpos($data->port_id, '5638') !== false){
+                $data->port_id="abc";
+                $ser_port_opt='!=';
+            }
+
             $ser_data=[];
             $ser_data[0] = ss_vessel_sale::with(['vesseltype','region','country','port'])
-                                ->where('vessel_type_id', $data->vessel_type_id)
-                                ->where('region_id', $data->region_id)
-                                ->where('country_id', $data->country_id)
-                                ->where('port_id', $data->port_id)
+                                ->where('vessel_type_id', $ser_vessel_type_opt, $data->vessel_type_id)
+                                ->where('region_id', $ser_region_opt, $data->region_id)
+                                ->where('country_id', $ser_country_opt, $data->country_id)
+                                ->where('port_id', $ser_port_opt, $data->port_id)
                                 ->whereBetween("date_available", [$data->date_available, $data->operations_date])
                                 ->whereBetween("operations_date", [$data->date_available, $data->operations_date])
                                 ->active()
