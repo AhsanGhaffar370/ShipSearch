@@ -32,7 +32,7 @@ class ss_user extends Model
     public function user_info(){
         return $this->hasMany('App\Models\ss_cargo',"user_id");
     }
-
+    
     public function user_member_type(){
         // return $this->belongsTo(model_name(member),'foreign_key(name of FK inside this table)', 'other_key(name of pk inside member table)'); 
         return $this->belongsTo(ss_setup_user_member_type::class,'member_type_id','user_member_type_id'); // here, member_type_id is a fk inside user table.

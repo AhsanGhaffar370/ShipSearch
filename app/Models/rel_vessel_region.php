@@ -12,9 +12,9 @@ class rel_vessel_region extends Model
     public $timestamps=false;
     protected $primaryKey = 'id';
 
-
     public function region(){
-        return $this->belongsTo(ss_vessel::class,'vessel_id');
+        // return $this->belongsTo(model_name(ss_vessel),'foreign_key(name of FK inside this table)', 'other_key(name of pk inside ss_vessel table)');
+        return $this->belongsTo(ss_vessel::class,'vessel_id'); // here, vessel_id is a fk inside rel_vessel_region table.
     }
 
 

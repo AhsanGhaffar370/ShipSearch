@@ -32,8 +32,11 @@ class ss_vessel extends Model
     public function chartertype(){
         return $this->hasMany('App\Models\rel_vessel_chartertype',"vessel_id");
     }
+    
     public function region(){
-        return $this->hasMany('App\Models\rel_vessel_region',"vessel_id");
+        // return $this->hasMany('model_name(rel_vessel_region)',"foreign_key(name of FK inside rel_vessel_region table)",'local_key (name of primary key of this table)');
+        return $this->hasMany('App\Models\rel_vessel_region',"vessel_id"); //here, vessel_id is a fk column inside rel_vessel_region table. 
+        // select * from rel_vessel_region where vessel_id=1;
     }
     public function country(){
         return $this->hasMany('App\Models\rel_vessel_country',"vessel_id");

@@ -41,6 +41,7 @@ class Front_auth extends Controller
                         ->pass($password)
                         ->isActive("1")
                         ->get()[0];
+                        
             if(isset($res)){
                 $req->session()->put('member_type',$res->user_member_type->member_type);
                 $req->session()->put('front_uid',$res->user_id);

@@ -307,8 +307,10 @@ $(document).ready(function() {
             $('.show_detail_btn_' + id).hide();
             $('.hide_detail_btn_' + id).show();
     
+            // $(".company_id_" + comp_id31).css({ "color": "#FFFFFF !important", "background-color": "#555555 !important" });
             $(this).parent().parent().css({
-                "background-color": "#F1F1F1"
+                "background-color": "#F1F1F1",
+                "color": "#212529 !important"
             });
         }
         
