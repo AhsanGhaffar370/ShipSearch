@@ -207,10 +207,12 @@
                                     @endforeach
                                 </td>
                                 <td id="laycan_from-{{ $row->id }}">
-                                    {{ date('d-M-Y', strtotime($row->laycan_date_from)) }}
+                                    {{-- {{ date('d-M-Y', strtotime($row->laycan_date_from)) }} --}}
+                                    {{ $row->laycan_date_from }}
                                 </td>
                                 <td id="laycan_to-{{ $row->id }}">
-                                    {{ date('d-M-Y', strtotime($row->laycan_date_to)) }}
+                                    {{-- {{ date('d-M-Y', strtotime($row->laycan_date_to)) }} --}}
+                                    {{ $row->laycan_date_to }}
                                 </td>
                                 {{-- <td class="{{ $row->region_id }}" id="region-{{ $row->id }}">
                                     <?php //echo str_replace(',', ',<br>', $row->region_id); ?>
@@ -524,7 +526,8 @@
                                     </td>
                                     <td width="10%" >
                                         <div class="td_h">
-                                            {{date("d-M-Y", strtotime($row->laycan_date_from))}}
+                                            {{-- {{ date('d-M-Y', strtotime($row->laycan_date_from)) }} --}}
+                                            {{ $row->laycan_date_from }}
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">
@@ -538,7 +541,8 @@
                                     </td>
                                     <td width="15%" >
                                         <div class="td_h">
-                                            {{date("d-M-Y", strtotime($row->laycan_date_to))}}
+                                            {{-- {{ date('d-M-Y', strtotime($row->laycan_date_to)) }} --}}
+                                            {{ $row->laycan_date_to }}
                                         </div>
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->vessel_id }} tr_bg_cl d_n">

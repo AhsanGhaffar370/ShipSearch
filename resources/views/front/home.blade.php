@@ -233,6 +233,7 @@
         .btn_bg{
             background-color: #ABD6C2;
         }
+
     </style>
 
     <div class="jumbotron jumbotron-fluid blog_bg border-0">
@@ -693,11 +694,11 @@
                             </div>
 
                             <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon bg_gd" aria-hidden="true"></span>
+                                <span class="" aria-hidden="true"><i class="fas fa-chevron-left fa-2x cl_gdd"></i></span>
                                 <span class="sr-only">Previous</span>
                             </a>
                             <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon bg_gd" aria-hidden="true"></span>
+                                <span class="" aria-hidden="true"><i class="fas fa-chevron-right fa-2x cl_gdd"></i></span>
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>
@@ -732,11 +733,11 @@
                             </div>
 
                             <a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon bg_gd" aria-hidden="true"></span>
+                                <span class="" aria-hidden="true"><i class="fas fa-chevron-left fa-2x cl_gdd"></i></span>
                                 <span class="sr-only">Previous</span>
                             </a>
                             <a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon bg_gd" aria-hidden="true"></span>
+                                <span class="" aria-hidden="true"><i class="fas fa-chevron-right fa-2x cl_gdd"></i></span>
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>
@@ -770,11 +771,11 @@
                             </div>
 
                             <a class="carousel-control-prev" href="#carouselExampleControls3" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon bg_gd" aria-hidden="true"></span>
+                                <span class="" aria-hidden="true"><i class="fas fa-chevron-left fa-2x cl_gdd"></i></span>
                                 <span class="sr-only">Previous</span>
                             </a>
                             <a class="carousel-control-next" href="#carouselExampleControls3" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon bg_gd" aria-hidden="true"></span>
+                                <span class="" aria-hidden="true"><i class="fas fa-chevron-right fa-2x cl_gdd"></i></span>
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>

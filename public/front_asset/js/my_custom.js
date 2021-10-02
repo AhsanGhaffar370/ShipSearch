@@ -520,7 +520,7 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">` +
-                                GetFormattedDate(obj1.laycan_date_from) +
+                                obj1.laycan_date_from +
                                 `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Discharge Port:</p>`;
@@ -539,7 +539,7 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">` +
-                                GetFormattedDate(obj1.laycan_date_to) +
+                                obj1.laycan_date_to +
                                 `</div>
                                     <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Over Age:</p>
@@ -586,7 +586,7 @@ $(document).ready(function() {
                                             role="button" 
                                             data-html="true" 
                                             data-toggle="popover" 
-                                            data-trigger="focus" 
+                                            data-trigger="click" 
                                             data-placement="left"
                                             title='
                                                 <p class="m-0"><b>` + obj1.user_info.company_name + `</b><a href="#" id="popovercloseid" type="button" class="close" >&times;</a></p>
@@ -805,8 +805,8 @@ $(document).ready(function() {
                         alert("something went wrong. Please try again");
                     } else {
                         $("#cargotype-" + uid).html(dd_str_names[0].replace(/,/g, ',<br>'));
-                        $("#laycan_from-" + uid).html(GetFormattedDate(date_from));
-                        $("#laycan_to-" + uid).html(GetFormattedDate(date_to));
+                        $("#laycan_from-" + uid).html(date_from);
+                        $("#laycan_to-" + uid).html(date_to);
                         $("#lregion-" + uid).html(dd_str_names[1].replace(/,/g, ',<br>'));
                         $("#lcountry-" + uid).html(dd_str_names[2].replace(/,/g, ',<br>'));
                         $("#lport-" + uid).html(dd_str_names[3].replace(/,/g, ',<br>'));
@@ -907,7 +907,7 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">` +
-                                        GetFormattedDate(obj1.laycan_date_from) +
+                                        obj1.laycan_date_from +
                                         `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Discharge Port:</p>`;
@@ -926,7 +926,7 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">` +
-                                        GetFormattedDate(obj1.laycan_date_to) +
+                                        obj1.laycan_date_to +
                                         `</div>
                                             <div class="show_details show_details_` + obj1.cargo_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Over Age:</p>
@@ -973,9 +973,9 @@ $(document).ready(function() {
                                                     role="button" 
                                                     data-html="true" 
                                                     data-toggle="popover" 
-                                                    data-trigger="focus" 
-                                                    data-placement="left"
-                                                    title='
+                                                    data-trigger="click" 
+                                                    data-placement="left" 
+                                                    title=' 
                                                         <p class="m-0"><b>` + obj1.user_info.company_name + `</b><a href="#" id="popovercloseid" type="button" class="close" >&times;</a></p>
                                                     '
                                                     data-content='
@@ -1163,7 +1163,7 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">` +
-                                GetFormattedDate(obj1.laycan_date_from) +
+                                obj1.laycan_date_from +
                                 `</div>
                                     <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Fresh Water Draft:</p>
@@ -1176,7 +1176,7 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">` +
-                                GetFormattedDate(obj1.laycan_date_to) +
+                                obj1.laycan_date_to +
                                 `</div>
                                     <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Container Capacity 20FT:</p>
@@ -1447,8 +1447,8 @@ $(document).ready(function() {
                     } else {
                         $("#vesseltype-" + uid).html(dd_str_names[0].replace(/,/g, ',<br>'));
                         $("#chartertype-" + uid).html(dd_str_names[1].replace(/,/g, ',<br>'));
-                        $("#laycan_from-" + uid).html(GetFormattedDate(date_from));
-                        $("#laycan_to-" + uid).html(GetFormattedDate(date_to));
+                        $("#laycan_from-" + uid).html(date_from);
+                        $("#laycan_to-" + uid).html(date_to);
                         $("#region-" + uid).html(dd_str_names[2].replace(/,/g, ',<br>'));
                         $("#country-" + uid).html(dd_str_names[3].replace(/,/g, ',<br>'));
                         $("#port-" + uid).html(dd_str_names[4].replace(/,/g, ',<br>'));
@@ -1536,7 +1536,7 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">` +
-                                        GetFormattedDate(obj1.laycan_date_from) +
+                                        obj1.laycan_date_from +
                                         `</div>
                                             <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Fresh Water Draft:</p>
@@ -1549,7 +1549,7 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">` +
-                                        GetFormattedDate(obj1.laycan_date_to) +
+                                        obj1.laycan_date_to +
                                         `</div>
                                             <div class="show_details show_details_` + obj1.vessel_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Container Capacity 20FT:</p>
@@ -1729,12 +1729,12 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">
-                                        <img src="storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
+                                        <img src="/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
                                         class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
                                         let count_img=0;
                                             $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
                                                 if(count_img!=0){
-                                                    post_str += `<img src="storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
+                                                    post_str += `<img src="/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
                                                 }
                                                 count_img++;
                                             });
@@ -1847,9 +1847,9 @@ $(document).ready(function() {
                                 `</div>
                                     <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Date Available:</p>
-                                        <p class="">` + GetFormattedDate(obj1.date_available) + `</p>
+                                        <p class="">` + obj1.date_available + `</p>
                                         <p class="b7 mb-0">Operation Date:</p>
-                                        <p class="">` + GetFormattedDate(obj1.operations_date) + `</p>
+                                        <p class="">` + obj1.operations_date + `</p>
                                         <p class="b7 mb-0">Cargo Capacity:</p>
                                         <p class="">` + obj1.cargo_capacity + `</p>
                                         <p class="b7 mb-0">Holds Hatch:</p>
@@ -2053,8 +2053,8 @@ $(document).ready(function() {
                         alert("something went wrong. Please try again");
                     } else {
                         $("#vesseltype-" + uid).html(dd_str_names[0].replace(/,/g, ',<br>'));
-                        $("#date_available-" + uid).html(GetFormattedDate(date_from));
-                        $("#operations_date-" + uid).html(GetFormattedDate(date_to));   
+                        $("#date_available-" + uid).html(date_from);
+                        $("#operations_date-" + uid).html(date_to);   
                         $("#region-" + uid).html(dd_str_names[1].replace(/,/g, ',<br>'));
                         $("#country-" + uid).html(dd_str_names[2].replace(/,/g, ',<br>'));
                         $("#port-" + uid).html(dd_str_names[3].replace(/,/g, ',<br>'));
@@ -2081,12 +2081,12 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">
-                                                <img src="storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
+                                                <img src="/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
                                                 class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
                                                 let count_img=0;
                                                     $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
                                                         if(count_img!=0){
-                                                            post_str += `<img src="storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
+                                                            post_str += `<img src="/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
                                                         }
                                                         count_img++;
                                                     });
@@ -2199,9 +2199,9 @@ $(document).ready(function() {
                                         `</div>
                                             <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Date Available:</p>
-                                                <p class="">` + GetFormattedDate(obj1.date_available) + `</p>
+                                                <p class="">` + obj1.date_available + `</p>
                                                 <p class="b7 mb-0">Operation Date:</p>
-                                                <p class="">` + GetFormattedDate(obj1.operations_date) + `</p>
+                                                <p class="">` + obj1.operations_date + `</p>
                                                 <p class="b7 mb-0">Cargo Capacity:</p>
                                                 <p class="">` + obj1.cargo_capacity + `</p>
                                                 <p class="b7 mb-0">Holds Hatch:</p>

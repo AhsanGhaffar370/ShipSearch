@@ -130,6 +130,16 @@
             border-bottom: 3px double #36716B;
         }
 
+        
+        .carousel-control-prev, .carousel-control-next{
+            opacity: 1 !important;
+        }
+
+        a:focus-visible {
+            outline: none !important;
+        }
+
+
     </style>
 
 

@@ -177,10 +177,12 @@
                                     @endforeach
                                 </td>
                                 <td id="date_available-{{ $row->id }}">
-                                    {{ date('d-M-Y', strtotime($row->date_available)) }}
+                                    {{-- {{ date('d-M-Y', strtotime($row->date_available)) }} --}}
+                                    {{ $row->date_available }}
                                 </td>
                                 <td id="operations_date-{{ $row->id }}">
-                                    {{ date('d-M-Y', strtotime($row->operations_date)) }}
+                                    {{-- {{ date('d-M-Y', strtotime($row->operations_date)) }} --}}
+                                    {{ $row->operations_date }}
                                 </td>
                                 {{-- <td class="{{ $row->region_id }}" id="region-{{ $row->id }}">
                                     <?php //echo str_replace(',', ',<br>', $row->region_id); ?>
@@ -217,8 +219,7 @@
                                         @endforeach
                                     </span>
                                     <div class="text-right edit_del_btns edit_del_btn_{{ $row->id }} d_n">
-                                        <a href="{{ $row->id }}" id="vsale_show_update_ser_hist_form_each" 
-                                        class="btn btn-info btn-sm size13 text-white pt-1 pb-1 mr-3"> 
+                                        <a href="{{ $row->id }}" id="vsale_show_update_ser_hist_form_each" class="btn btn-info btn-sm size13 text-white pt-1 pb-1 mr-3"> 
                                             <i href="{{ $row->id }}" class="fas fa-edit"></i> EDIT
                                         </a>
                                         <a href="{{ $row->id }}" id="vsale_delete_rec" class="btn btn-danger btn-sm size13 text-white pt-1 pb-1"> 
@@ -553,9 +554,13 @@
                                         {{--  --}}
                                         <div class="show_details show_details_{{ $row->vessel_sale_id }} tr_bg_cl d_n">
                                             <p class="b7 mb-0">Date Available:</p>
-                                            <p class="">{{ date("d-M-Y", strtotime($row->date_available)) }}</p>
+                                            <p class="">{{ $row->date_available }}</p>
+                                            {{-- {{ date('d-M-Y', strtotime($row->date_available)) }}  --}}
+                                            
                                             <p class="b7 mb-0">Operations Date:</p>
-                                            <p class="">{{ date("d-M-Y", strtotime($row->operations_date)) }}</p>
+                                            <p class="">{{ $row->operations_date }}</p>
+                                            {{-- {{ date('d-M-Y', strtotime($row->operations_date)) }}  --}}
+                                            
                                             <p class="b7 mb-0">Cargo Capacity:</p>
                                             <p class="">{{ $row->cargo_capacity }}</p>
                                             <p class="b7 mb-0">Holds Hatch:</p>
@@ -596,25 +601,24 @@
     </div>
 </div>
 
-
 <div id="dialog" class="text-right rounded" style="display: none; padding:0px !important;">
     {{-- <button id="close_dialog" class="btn" style="background-color: #EA6279; color: white;">Close</button> --}}
-    <a href="#" id="close_dialog" style="font-size:20px; position: inherit;">&times;</a>
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="First slide">
-      </div>
+    <a href="#" id="close_dialog"><i class="far fa-times-circle" style="font-size: 23px"></i></a>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="{{asset('storage/vessel_sale_images/163139027729.jpg')}}" alt="First slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="" aria-hidden="true"><i class="fas fa-chevron-left fa-2x cl_gdd"></i></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="" aria-hidden="true"><i class="fas fa-chevron-right fa-2x cl_gdd"></i></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
 </div>
 
 
