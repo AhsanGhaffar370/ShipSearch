@@ -239,7 +239,7 @@ $(document).ready(function() {
 
         let selected_name = $("option:selected", this).text(); //OR  $(this).find('option:selected').text();
         
-        console.log(selected_name);
+        // console.log(selected_name);
 
         if (selected_name.trim() !== 'Any') {
             let rcp_ids = $(this).val();
@@ -788,15 +788,14 @@ $(document).ready(function() {
     //////////////////////////////////////
     //will work on form validation at the end
     //////////////////////////////////////
-    $('#cargo_form_removed').submit(function(e) {
-
+    $('#search_cargo_form').submit(function(e) {
+        // e.preventDefault();
         var flag = true;
-        var ids = ["cargo_type_id", "loading_region_id", "loading_country_id", "loading_port_id_1", "loading_port_id_2", "discharge_region_id", "discharge_country_id", "discharge_port_id_1", "discharge_port_id_2", "unit_id", "loading_discharge_unit_id"];
+        var ids = ["cargo_type_id", "loading_region_id", "loading_country_id", "loading_port_id", "discharge_region_id", "discharge_country_id", "discharge_port_id"];
 
         for (var i = 0; i < ids.length; i++) {
             check_dropdowns(ids[i]);
         }
-        check_eqp_req();
 
         for (var i = 0; i < ids.length; i++) {
             if (check_dropdowns(ids[i]) == false) {
@@ -805,12 +804,15 @@ $(document).ready(function() {
             }
         }
 
-        if (flag === true && check_eqp_req() === true) {
+        if (flag === true) {
             return;
         } else {
+            alert('Please fill out all input fields to proceed.');
             e.preventDefault();
         }
     });
+
+
 
 
     //////////////////////////////////////
@@ -846,21 +848,19 @@ $(document).ready(function() {
 
 
 
+});// jquery end
 
-
-});
 
 
 function check_dropdowns(id) {
-    var cargo_type = $("#" + id);
-    var cargo_type_val = cargo_type.val();
+    var dd_type = $("#" + id);
+    var dd_type_val = dd_type.val();
 
-    if (cargo_type_val == null) {
-        cargo_type.css({ "border": "1px solid red" });
-        cargo_type.focus();
+    if (dd_type_val.length < 1) {
+        // dd_type.parent().css({ "border": "2px solid red" });
+        dd_type.focus();
         return false;
     } else {
-        cargo_type.css({ "border": "2px solid green", "padding": "5px" });
         return true;
     }
 } //end of function

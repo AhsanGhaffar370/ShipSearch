@@ -277,11 +277,11 @@
                                             <select name="cargo_type_id[]" id="cargo_type_id" form="search_cargo_form"
                                                 class="cargo_type_id ser_inp_fields21  mb-2" multiple title="Choose" data-size="5"
                                                 data-selected-text-format="count > 2" data-live-search="true">
-                                                <option value="13">Any</option>
+                                                {{-- <option value="13">Any</option>
                                                 @foreach ($cargo_type as $row)
                                                     <option value="{{ $row->cargo_type_id }}">{{ $row->cargo_type_name }}
                                                     </option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </section>
                                     </div>
@@ -297,11 +297,11 @@
                                                         <select name="loading_region_id[]" id="loading_region_id" form="search_cargo_form"
                                                             class="loading_region_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                                            <option value="26">Any</option>
+                                                            {{-- <option value="26">Any</option>
                                                             @foreach ($region as $row)
                                                                 <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </section>
                                                 </div>
@@ -313,11 +313,11 @@
                                                         <select name="loading_country_id[]" id="loading_country_id" form="search_cargo_form"
                                                             class="loading_country_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                                            <option value="197">Any</option>
+                                                            {{-- <option value="197">Any</option>
                                                             @foreach ($country as $row)
                                                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </section>
                                                 </div>
@@ -329,11 +329,11 @@
                                                         <select name="loading_port_id[]" id="loading_port_id" form="search_cargo_form"
                                                             class="loading_port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                                            <option value="5638">Any</option>
+                                                            {{-- <option value="5638">Any</option>
                                                             @foreach ($port as $row)
                                                                 <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </section>
                                                 </div>
@@ -356,11 +356,11 @@
                                                             form="search_cargo_form" class="discharge_region_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple
                                                             title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                             data-live-search="true">
-                                                            <option value="26">Any</option>
+                                                            {{-- <option value="26">Any</option>
                                                             @foreach ($region as $row)
                                                                 <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </section>
                                                 </div>
@@ -373,11 +373,11 @@
                                                             form="search_cargo_form" class="discharge_country_id add_cvs_inp_fields ser_inp_fields21  mb-2"
                                                             multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                             data-live-search="true">
-                                                            <option value="197">Any</option>
+                                                            {{-- <option value="197">Any</option>
                                                             @foreach ($country as $row)
                                                                 <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </section>
                                                 </div>
@@ -388,11 +388,11 @@
                                                         <select name="discharge_port_id[]" id="discharge_port_id" form="search_cargo_form"
                                                             class="discharge_port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                                            <option value="5638">Any</option>
+                                                            {{-- <option value="5638">Any</option>
                                                             @foreach ($port as $row)
                                                                 <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </section>
                                                 </div>
@@ -429,11 +429,11 @@
                                                     <select name="vessel_type_id[]" id="vessel_type_id" form="search_vessel_form"
                                                         class="vessel_type_id ser_inp_fields21  mb-2" multiple title="Choose" data-size="5"
                                                         data-selected-text-format="count > 2" data-live-search="true">
-                                                        <option value="11">Any</option>
+                                                        {{-- <option value="11">Any</option>
                                                         @foreach ($vessel_type as $row)
                                                             <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
                                                             </option>
-                                                        @endforeach
+                                                        @endforeach --}}
                                                     </select>
                                                 </section>
                                             </div>
@@ -446,11 +446,11 @@
                                                     <select name="charter_type_id[]" id="charter_type_id" form="search_vessel_form"
                                                         class="charter_type_id ser_inp_fields21  mb-2" multiple title="Choose" data-size="5"
                                                         data-selected-text-format="count > 2" data-live-search="true">
-                                                        <option value="5">Any</option>
+                                                        {{-- <option value="5">Any</option>
                                                         @foreach ($charter_type as $row)
                                                             <option value="{{ $row->charter_type_id }}">{{ $row->charter_type_name }}
                                                             </option>
-                                                        @endforeach
+                                                        @endforeach --}}
                                                     </select>
                                                 </section>
                                             </div>
@@ -464,11 +464,11 @@
                                                     form="search_vessel_form" class="region_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple
                                                     title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
-                                                    <option value="26">Any</option>
+                                                    {{-- <option value="26">Any</option>
                                                     @foreach ($region as $row)
                                                         <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>
@@ -481,11 +481,11 @@
                                                     form="search_vessel_form" class="country_id add_cvs_inp_fields ser_inp_fields21  mb-2"
                                                     multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
-                                                    <option value="197">Any</option>
+                                                    {{-- <option value="197">Any</option>
                                                     @foreach ($country as $row)
                                                         <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>
@@ -496,11 +496,11 @@
                                                 <select name="port_id[]" id="port_id" form="search_vessel_form"
                                                     class="port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                     data-size="5" data-selected-text-format="count > 2" data-live-search="true">
-                                                    <option value="5638">Any</option>
+                                                    {{-- <option value="5638">Any</option>
                                                     @foreach ($port as $row)
                                                         <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>
@@ -548,11 +548,11 @@
                                                 <select name="vessel_type_id[]" id="vessel_type_id" form="search_vsale_form"
                                                     class="vessel_type_id ser_inp_fields21  mb-2" multiple title="Choose" data-size="5"
                                                     data-selected-text-format="count > 2" data-live-search="true">
-                                                    <option value="11">Any</option>
+                                                    {{-- <option value="11">Any</option>
                                                     @foreach ($vessel_type as $row)
                                                         <option value="{{ $row->vessel_type_id }}">{{ $row->vessel_type_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>
@@ -564,11 +564,11 @@
                                                     class="region_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple
                                                     title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true" >
-                                                    <option value="26">Any</option>
+                                                    {{-- <option value="26">Any</option>
                                                     @foreach ($region as $row)
                                                         <option value="{{ $row->region_id }}">{{ $row->region_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>
@@ -580,11 +580,11 @@
                                                     class="country_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple
                                                     title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                     data-live-search="true">
-                                                    <option value="197">Any</option>
+                                                    {{-- <option value="197">Any</option>
                                                     @foreach ($country as $row)
                                                         <option value="{{ $row->country_id }}">{{ $row->country_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>
@@ -596,11 +596,11 @@
                                                     class="port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple 
                                                     title="Choose" data-size="5" data-selected-text-format="count > 2" 
                                                     data-live-search="true">
-                                                    <option value="5638">Any</option>
+                                                    {{-- <option value="5638">Any</option>
                                                     @foreach ($port as $row)
                                                         <option value="{{ $row->port_id }}">{{ $row->port_name }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                             </section>
                                         </div>

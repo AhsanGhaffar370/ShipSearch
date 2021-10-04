@@ -167,14 +167,14 @@ $(document).ready(function() {
     //////////////////////////////////////
     // Set timeout for homepage 
     //////////////////////////////////////
-    // setTimeout(function() { 
+    setTimeout(function() { 
         
-    //     if (com_url_locat.includes("cargo") || com_url_locat.includes("vessel") ) {
-    //         console.log( "window loaded" );
-    //     }else{
-    //         reset_homepage_forms();
-    //     }
-    // },1000);
+        if (com_url_locat.includes("cargo") || com_url_locat.includes("vessel") ) {
+            console.log( "window loaded" );
+        }else{
+            reset_homepage_forms();
+        }
+    },1000);
     
     //////////////////////////////////////
     // Working on Reset Button
