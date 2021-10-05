@@ -172,7 +172,7 @@
         </div>
             <nav class="navbar navbar-expand-lg navbar-white bg-white p-0">
                 <a class="navbar-brand p-0" href="{{ route('home') }}">
-                    <img width="200" src="{{ asset('front_asset/images/final_logo.png') }}" alt="" />
+                    <img src="{{ asset('front_asset/images/final_logo.png') }}" alt="" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -244,7 +244,7 @@
 
                     <!-- Grid column -->
                     <div class="col-md-3 mt-md-0 mt-3 pr-5 pl-5 pt-4 pb-4 centre" style="align-items: baseline">
-                        <img src="{{ asset('front_asset/images/logo2.png') }}" width="250" class="logo footer_logo">
+                        <img src="{{ asset('front_asset/images/final_logo.png') }}" class="logo footer_logo">
                     </div>
                     
                     <!-- Grid column -->

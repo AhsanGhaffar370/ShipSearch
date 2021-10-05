@@ -2083,6 +2083,7 @@ $(document).ready(function() {
                                             <div class="td_h">
                                                 <img src="/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
                                                 class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
+                                                // http://www.eqan.net/shipsearch/public//storage/vessel_sale_images/
                                                 let count_img=0;
                                                     $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
                                                         if(count_img!=0){
