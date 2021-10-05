@@ -280,7 +280,7 @@ $(document).ready(function() {
 
                     $.each(names, function(i, n_list) {
                         // get selected data of country/port
-                        let dd_id = "#" + n_prefix + n_list + "_id";
+                        let dd_id = "#" + form_id + " #" + n_prefix + n_list + "_id";
                         let dd_data = $(dd_id + " option:selected").map(function() { return $.trim($(this).text()); }).get().join(',');
                         let dd_data_arr = $(dd_id).val();
                         post_str = "";
@@ -333,7 +333,7 @@ $(document).ready(function() {
                             });
                         }
                         post_str += `</select>`;
-                        $("." + n_prefix + n_list + "_id_par").html(post_str);
+                        $("#" + form_id + " ." + n_prefix + n_list + "_id_par").html(post_str);
 
                         // populate selected data in their dropdown
                         $.each(dd_data_arr, function(i, obj2) {
