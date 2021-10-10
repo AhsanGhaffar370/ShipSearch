@@ -234,6 +234,18 @@
             background-color: #ABD6C2;
         }
 
+        /* a:after {
+            content: url("{{ asset('front_asset/images/wdot.png') }}");
+            display: block;
+            transition: 0.8s ease-in-out;
+        }
+
+        a:hover:after {
+            content: url("{{ asset('front_asset/images/dot.PNG') }}");
+            display: block;
+            transform: scale(1.02, 1.03);
+        } */
+
     </style>
 
     <div class="jumbotron jumbotron-fluid blog_bg border-0">
@@ -693,11 +705,11 @@
                                 </div>
                             </div>
 
-                            <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">
+                            <a class="carousel-control-prev bg_w" href="#carouselExampleControls1" role="button" data-slide="prev">
                                 <span class="" aria-hidden="true"><i class="fas fa-chevron-left fa-2x cl_gdd"></i></span>
                                 <span class="sr-only">Previous</span>
                             </a>
-                            <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next">
+                            <a class="carousel-control-next bg_w" href="#carouselExampleControls1" role="button" data-slide="next">
                                 <span class="" aria-hidden="true"><i class="fas fa-chevron-right fa-2x cl_gdd"></i></span>
                                 <span class="sr-only">Next</span>
                             </a>
@@ -732,11 +744,11 @@
                                 </div>
                             </div>
 
-                            <a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev">
+                            <a class="carousel-control-prev bg_w" href="#carouselExampleControls2" role="button" data-slide="prev">
                                 <span class="" aria-hidden="true"><i class="fas fa-chevron-left fa-2x cl_gdd"></i></span>
                                 <span class="sr-only">Previous</span>
                             </a>
-                            <a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next">
+                            <a class="carousel-control-next bg_w" href="#carouselExampleControls2" role="button" data-slide="next">
                                 <span class="" aria-hidden="true"><i class="fas fa-chevron-right fa-2x cl_gdd"></i></span>
                                 <span class="sr-only">Next</span>
                             </a>
@@ -770,11 +782,11 @@
                                 </div>
                             </div>
 
-                            <a class="carousel-control-prev" href="#carouselExampleControls3" role="button" data-slide="prev">
+                            <a class="carousel-control-prev bg_w" href="#carouselExampleControls3" role="button" data-slide="prev">
                                 <span class="" aria-hidden="true"><i class="fas fa-chevron-left fa-2x cl_gdd"></i></span>
                                 <span class="sr-only">Previous</span>
                             </a>
-                            <a class="carousel-control-next" href="#carouselExampleControls3" role="button" data-slide="next">
+                            <a class="carousel-control-next bg_w" href="#carouselExampleControls3" role="button" data-slide="next">
                                 <span class="" aria-hidden="true"><i class="fas fa-chevron-right fa-2x cl_gdd"></i></span>
                                 <span class="sr-only">Next</span>
                             </a>
