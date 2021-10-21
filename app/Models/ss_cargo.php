@@ -26,7 +26,7 @@ class ss_cargo extends Model
     // user table
     public function user_info(){
         // return $this->belongsTo(model_name(user),'foreign_key(name of FK inside this table)', 'other_key(name of pk inside user table)'); 
-        return $this->belongsTo(ss_user::class,'created_by'); // here, created_by is a fk inside cargo table.
+        return $this->belongsTo(users::class,'created_by'); // here, created_by is a fk inside cargo table.
     }
 
     public function cargotype(){

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
-use App\Models\ss_user;
+use App\Models\users;
 use App\Models\ss_setup_company_directory;
 
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class Front_auth extends Controller
         $email= $req->email;
         $password= md5($req->pass);
 
-        $res=ss_user::with(['user_member_type','company','country','state','city'])
+        $res=users::with(['user_member_type','company','country','state','city'])
                     ->email($email)
                     ->pass($password)
                     ->get()[0];
@@ -36,7 +36,7 @@ class Front_auth extends Controller
 
         if(isset($res)){
             
-            $res=ss_user::with(['user_member_type','company','country','state','city'])
+            $res=users::with(['user_member_type','company','country','state','city'])
                         ->email($email)
                         ->pass($password)
                         ->isActive("1")
@@ -44,7 +44,7 @@ class Front_auth extends Controller
                         
             if(isset($res)){
                 $req->session()->put('member_type',$res->user_member_type->member_type);
-                $req->session()->put('front_uid',$res->user_id);
+                $req->session()->put('front_uid',$res->id);
                 $fullname=$res->first_name.' '.$res->last_name ;
                 $req->session()->put('front_uname',$fullname);
                 $company_name=$res->company->company_name;
@@ -53,6 +53,12 @@ class Front_auth extends Controller
                 $req->session()->put('company_phone',$phone);
                 $email=$res->company->email;
                 $req->session()->put('company_email',$email);
+
+                $req->session()->put('messenger_color',$res->messenger_color);
+                $req->session()->put('dark_mode',$res->dark_mode);
+                $req->session()->put('active_status',$res->active_status);
+                $req->session()->put('name',$res->name);
+                
                 return redirect()->route('home');
             }
             else{
@@ -90,11 +96,11 @@ class Front_auth extends Controller
 
     function signup_req(Request $req){
     
-        ss_user::email($req->email)->isActive("0")->delete();
+        users::email($req->email)->isActive("0")->delete();
 
     
         // User details
-        $user=new ss_user;
+        $user=new users;
     
         $user->first_name=$req->first_name;
         $user->last_name=$req->last_name;
@@ -128,7 +134,7 @@ class Front_auth extends Controller
         $user->save();
 
         // company details
-        $cid= ss_user::latest()->first()->user_id;
+        $cid= users::latest()->first()->id;
 
         $company=new ss_setup_company_directory;
 
@@ -143,7 +149,7 @@ class Front_auth extends Controller
         $company->bussiness_address=$req->bussiness_address;
         $company->fax=$req->company_fax;
         $company->website=$req->company_website;
-        $company->user_id=$cid;
+        $company->idn_to_ascii=$cid;
         $company->is_active=1;
 
         $company->save();
@@ -169,11 +175,11 @@ class Front_auth extends Controller
     function email_ver_req($code){
 
         $status="invalid code";
-        $res= ss_user::code($code)->exists();
+        $res= users::code($code)->exists();
 
         if($res){
             // echo 'exist';
-            $user=ss_user::code($code)->isActive('0')->first();
+            $user=users::code($code)->isActive('0')->first();
             if($user==null){
                 $status="already verified";
             }else{
@@ -191,7 +197,7 @@ class Front_auth extends Controller
     }
 
     function checkmail_ajax(Request $req){
-        $user= ss_user::email($req->email)->isActive("1")->first();
+        $user= users::email($req->email)->isActive("1")->first();
 
         if($user==null){
             echo "not exist";
