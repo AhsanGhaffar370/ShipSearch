@@ -7,10 +7,10 @@
             <nav>
                 <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">MESSAGES</span> </a>
                 {{-- header buttons --}}
-                <nav class="m-header-right">
+                {{-- <nav class="m-header-right">
                     <a href="#"><i class="fas fa-cog settings-btn"></i></a>
                     <a href="#" class="listView-x"><i class="fas fa-times"></i></a>
-                </nav>
+                </nav> --}}
             </nav>
             {{-- Search input --}}
             <input type="text" class="messenger-search" placeholder="Search" />
@@ -18,8 +18,8 @@
             <div class="messenger-listView-tabs">
                 <a href="#" @if($route == 'user') class="active-tab" @endif data-view="users">
                     <span class="far fa-user"></span> People</a>
-                <a href="#" @if($route == 'group') class="active-tab" @endif data-view="groups">
-                    <span class="fas fa-users"></span> Groups</a>
+                {{-- <a href="#" @if($route == 'group') class="active-tab" @endif data-view="groups">
+                    <span class="fas fa-users"></span> Groups</a> --}}
             </div>
         </div>
         {{-- tabs and lists --}}
@@ -67,15 +67,19 @@
                 {{-- header back button, avatar and user name --}}
                 <div style="display: inline-flex;">
                     <a href="#" class="show-listView"><i class="fas fa-arrow-left"></i></a>
-                    <div class="avatar av-s header-avatar" style="margin: 0px 10px; margin-top: -5px; margin-bottom: -5px;">
-                    </div>
-                    <a href="#" class="user-name">{{ config('chatify.name') }}</a>
+                    {{-- <div class="avatar av-s header-avatar" style="margin: 0px 10px; margin-top: -5px; margin-bottom: -5px;">
+                    </div> --}}
+                    <a href="#" class="user-name">{{ config('chatify.name') =='Chatify Messenger'?'Messenger': config('chatify.name') }}</a>
                 </div>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
-                    <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a>
-                    <a href="/"><i class="fas fa-home"></i></a>
-                    <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a>
+                    {{-- <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a> --}}
+                    <a href="/">
+                        {{-- <img src="http://127.0.0.1:8000/front_asset/images/final_logo.png" alt="" srcset=""> --}}
+                        {{-- <i class="fas fa-home"></i> --}}
+                    </a>
+
+                    {{-- <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a> --}}
                 </nav>
             </nav>
         </div>
@@ -107,13 +111,13 @@
         </div>
     </div>
     {{-- ---------------------- Info side ---------------------- --}}
-    <div class="messenger-infoView app-scroll">
-        {{-- nav actions --}}
+    {{-- <div class="messenger-infoView app-scroll">
+        
         <nav>
             <a href="#"><i class="fas fa-times"></i></a>
         </nav>
         {!! view('Chatify::layouts.info')->render() !!}
-    </div>
+    </div> --}}
 </div>
 
 @include('Chatify::layouts.modals')

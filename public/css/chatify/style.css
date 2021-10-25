@@ -1,6 +1,9 @@
 body {
   margin: 0;
 }
+p{
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+}
 /*internet connection*/
 .internet-connection {
   display: none;

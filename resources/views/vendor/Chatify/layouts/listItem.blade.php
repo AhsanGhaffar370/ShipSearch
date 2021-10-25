@@ -4,15 +4,15 @@
         <tr data-action="0">
             {{-- Avatar side --}}
             <td>
-            <div class="avatar av-m" style="background-color: #d9efff; text-align: center;">
+            {{-- <div class="avatar av-m" style="background-color: #d9efff; text-align: center;">
                 <span class="far fa-bookmark" style="font-size: 22px; color: #68a5ff; margin-top: calc(50% - 10px);"></span>
-            </div>
+            </div> --}}
             </td>
             {{-- center side --}}
-            <td>
+            {{-- <td>
                 <p data-id="{{ 'user_'.session('front_uid') }}">Saved Messages <span>You</span></p>
                 <span>Save messages secretly</span>
-            </td>
+            </td> --}}
         </tr>
     </table>
 @endif
@@ -26,9 +26,9 @@
             @if($user->active_status)
                 <span class="activeStatus"></span>
             @endif
-        <div class="avatar av-m" 
+        {{-- <div class="avatar av-m" 
         style="background-image: url('{{ asset('/storage/'.config('chatify.user_avatar.folder').'/'.$user->avatar) }}');">
-        </div>
+        </div> --}}
         </td>
         {{-- center side --}}
         <td>
@@ -67,9 +67,9 @@
     <tr data-action="0">
         {{-- Avatar side --}}
         <td>
-        <div class="avatar av-m"
+        {{-- <div class="avatar av-m"
         style="background-image: url('{{ asset('/storage/'.config('chatify.user_avatar.folder').'/'.$user->avatar) }}');">
-        </div>
+        </div> --}}
         </td>
         {{-- center side --}}
         <td>
