@@ -52,6 +52,7 @@ class FrontVesselSaleController extends Controller
     }
 
     function view_add(){
+        
         $ss_setup_vessel_type= ss_setup_vessel_type::where('vessel_type_name','!=','Any')->active()->get();
         $ss_setup_region= ss_setup_region::where('region_name','!=','Any')->active()->ascend()->get();
         $ss_setup_country= ss_setup_country::where('country_name','!=','Any')->active()->ascend()->get();
@@ -88,6 +89,7 @@ class FrontVesselSaleController extends Controller
         $add_req=new ss_vessel_sale;
 
         $add_req->ref_no=$req->ref_no;
+        
 
         $vessel_type="";
         foreach ($req->vessel_type_id as $selectedOption)
@@ -193,10 +195,12 @@ class FrontVesselSaleController extends Controller
 
     function search_req(Request $req){
 
-        // dd($req);
-
+        
         $date_available=date("Y-m-d", strtotime($req->date_available));
         $operations_date=date("Y-m-d", strtotime($req->operations_date));  
+
+        $dwt_from = $req->dwt_from;
+        $dwt_to = $req->dwt_to;
 
         $ser_vessel_type="";
         foreach ($req->vessel_type_id as $selectedOption)
@@ -235,6 +239,8 @@ class FrontVesselSaleController extends Controller
             $ser_data->region_id=$ser_region;        
             $ser_data->country_id=$ser_country;        
             $ser_data->port_id=$ser_port;
+            $ser_data->dwt_from=$dwt_from;
+            $ser_data->dwt_to=$dwt_to;
             
             $ser_data->created_at=date('Y-m-d H:i:s');
             $ser_data->modified_at=date('Y-m-d H:i:s');
@@ -301,6 +307,7 @@ class FrontVesselSaleController extends Controller
                         ->where('port_id', $ser_port_opt, $ser_port)
                         ->whereBetween("date_available", [$date_available, $operations_date])
                         ->whereBetween("operations_date", [$date_available, $operations_date])
+                        ->orwhereBetween("dwt", [$dwt_from, $dwt_to])
                         ->active()
                         ->orderBy('vessel_sale_id', 'DESC')
                         ->get();

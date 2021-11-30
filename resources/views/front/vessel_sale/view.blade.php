@@ -30,12 +30,14 @@
                     class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
                     <thead class="pos_rel">
                         <tr>
-                            <th width='1%'></th>
+                            <th width='1%'><input type="checkbox" name="check_all" id="check_all"></th>
                             <th width="2%">#</th>
-                            <th width="15%">Vessel Type</th>
+                            <th width="10%">Vessel Type</th>
+                            <th width="7%">DWT From</th>
+                            <th width="7%">DWT To</th>
                             <th width="10%">Date Available</th>
-                            <th width="10%">Operations Date</th>
-                            <th width="15%">Region</th>
+                            <th width="10%">Last Operations Date</th>
+                            <th width="10%">Region</th>
                             <th width="13%">Country</th>
                             <th width="20%">Port</th>
                         </tr>
@@ -73,11 +75,27 @@
                                 <!-- -->
                                 <td class="">
                                     
+                                    <section class="dwt_from">
+                                        <input type="number" step="5000" required="" name="dwt_from" class="dwt_from">
+                                   
+                                    </section>
+                                </td>
+                                <td class="">
+                                    
+                                    <section class="dwt_to">
+                                        <input type="number" step="5000" required="" name="dwt_to" class="dwt_to">
+                                   
+                                    </section>
+                                </td>
+                                {{--  --}}
+                                <td class="">
+                                    
                                     <section class="date_available_par">
                                         <input type="date" required form="search_cvs_form" class=" date_available"
                                             id="date_available" name="date_available" placeholder="" />
                                     </section>
                                 </td>
+                                
                                 <!-- -->
                                 <td class="">
                                     
@@ -178,8 +196,17 @@
                                 </td>
                                 <td id="date_available-{{ $row->id }}">
                                     {{-- {{ date('d-M-Y', strtotime($row->date_available)) }} --}}
+                                    {{ $row->dwt_from }}
+                                </td>
+                                <td id="date_available-{{ $row->id }}">
+                                    {{-- {{ date('d-M-Y', strtotime($row->date_available)) }} --}}
+                                    {{ $row->dwt_to }}
+                                </td>
+                                <td id="date_available-{{ $row->id }}">
+                                    {{-- {{ date('d-M-Y', strtotime($row->date_available)) }} --}}
                                     {{ $row->date_available }}
                                 </td>
+                               
                                 <td id="operations_date-{{ $row->id }}">
                                     {{-- {{ date('d-M-Y', strtotime($row->operations_date)) }} --}}
                                     {{ $row->operations_date }}
@@ -260,6 +287,18 @@
                                     </td>
                                     <!-- -->
                                     <td class="">
+                                        <section class="dwt_from_{{ $row->id }}">
+                                            <input type="number" step="5000" value="{{ $row->dwt_from }}" id="dwt_from_{{ $row->id }}" name="dwt_from" class="ser_inp_fields left_round ">
+                                        </section>
+                                    </td>
+                                    <td class="">
+                                        <section class="dwt_to_{{ $row->id }}">
+                                            <section class="dwt_to_{{ $row->id }}">
+                                                <input type="number" step="5000" value="{{ $row->dwt_to }}" id="dwt_to_{{ $row->id }}"  name="dwt_to" class="ser_inp_fields left_round ">
+                                            </section>
+                                        </section>
+                                    </td>
+                                    <td class="">
                                         <section class="date_available_par_{{ $row->id }}">
                                             <input type="date" required form="search_cvs_form_{{ $row->id }}" class=" date_available"
                                                 id="date_available_{{ $row->id }}" name="date_available"
@@ -337,19 +376,22 @@
             </div>
             <div class="pt-2 pb-2 pr-3 d-flex justify-content-end">
                 <a href="#" id="delete_popup" class="btn_style size13 btn_xxxs">
-                    Delete All
+                    Delete
                 </a>
             </div>
 
             <div id="show_delete_popup" class="text-right rounded" style="display: none;">
-                <a href="#" id="close_delete_popup" style="font-size:20px; position: inherit;">&times;</a>
-                <p class="size20 cl_gd text-center" style="margin-top: -30px">Choose</p>
+                {{-- <a href="#" id="close_delete_popup" style="font-size:20px; position: inherit;">&times;</a> --}}
+                <p class="size20 cl_gd text-center" style="margin-top: 5px">Are you sure want to delete selected search</p>
                 <div class="pt-3 pb-2 text-center">
-                    <a href="#" id="vsale_delete_all" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
+                    {{-- <a href="#" id="car_delete_all" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
                         Delete All Searches
+                    </a> --}}
+                    <a href="#" id="car_delete_selected" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
+                        Yes
                     </a>
-                    <a href="#" id="vsale_delete_selected" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
-                        DELETE Selected Searches
+                    <a href="#" id="car_delete_selected_no" class="btn_style size13 btn_xxxs text-white mt-1">
+                        No
                     </a>
                 </div>
             </div>
@@ -374,7 +416,7 @@
         
         <a href={{ route('vessel_sale.view') }} class="btn btn_style bg_gd ml-3 pl-2 pr-2"><i class="fas fa-sync-alt"></i></a>
         
-        <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
+        <div class="table-wrapper-scroll-y  mt-3">
             <div class="border">
                 <table id="cvs_table"
                     class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
@@ -557,7 +599,7 @@
                                             <p class="">{{ $row->date_available }}</p>
                                             {{-- {{ date('d-M-Y', strtotime($row->date_available)) }}  --}}
                                             
-                                            <p class="b7 mb-0">Operations Date:</p>
+                                            <p class="b7 mb-0">Last Operations Date:</p>
                                             <p class="">{{ $row->operations_date }}</p>
                                             {{-- {{ date('d-M-Y', strtotime($row->operations_date)) }}  --}}
                                             

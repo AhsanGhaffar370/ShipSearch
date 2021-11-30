@@ -82,7 +82,7 @@ class FrontVesselController extends Controller
     }
     
     function add_req(Request $req){
-
+        
         // $add_req= $req->all();
         $add_req=new ss_vessel;
 
@@ -152,7 +152,7 @@ class FrontVesselController extends Controller
         $add_req->created_by=session('front_uid');
         $add_req->modified_at=date('Y-m-d H:i:s');
         $add_req->modified_by=session('front_uid');
-
+        
         $add_req->save();
         // ss_vessel::create($add_req);
 
@@ -184,11 +184,14 @@ class FrontVesselController extends Controller
 
     function search_req(Request $req){
 
-        // dd($req);
-
+        
         $laycan_from=date("Y-m-d", strtotime($req->laycan_date_from));
         $laycan_to=date("Y-m-d", strtotime($req->laycan_date_to));  
 
+        $dwt_from = $req->dwt_from;
+        
+        $dwt_to = $req->dwt_to;
+        
         $ser_vessel_type="";
         foreach ($req->vessel_type_id as $selectedOption)
             $ser_vessel_type .= $selectedOption.",";
@@ -231,6 +234,8 @@ class FrontVesselController extends Controller
             $ser_data->region_id=$ser_region;        
             $ser_data->country_id=$ser_country;        
             $ser_data->port_id=$ser_port;
+            $ser_data->dwt_from=$dwt_from;
+            $ser_data->dwt_to=$dwt_to;
             
             $ser_data->created_at=date('Y-m-d H:i:s');
             $ser_data->modified_at=date('Y-m-d H:i:s');
@@ -305,11 +310,12 @@ class FrontVesselController extends Controller
                         ->where('port_id', $ser_port_opt, $ser_port)
                         ->whereBetween("laycan_date_from", [$laycan_from, $laycan_to])
                         ->whereBetween("laycan_date_to", [$laycan_from, $laycan_to])
+                        ->orwhereBetween("dwt", [$dwt_from, $dwt_to])
                         ->active()
                         ->orderBy('vessel_id', 'DESC')
                         ->get();
                         // ->whereBetween($laycan_col, [$from_date, $to_date])->get();
-
+        
         $ser_history= vessel_search_history::with(['vesseltype','chartertype','region','country','port'])
                                             ->where('user_id',session('front_uid'))
                                             ->orderBy('id', 'DESC')
@@ -334,10 +340,11 @@ class FrontVesselController extends Controller
 
     function search_req_ajax(Request $req){
         
+        
         $ser_data= vessel_search_history::with(['vesseltype','chartertype','region','country','port'])
                                         ->where('id',$req->id)->first();   
         
-
+        
         $ser_vessel_type_opt='=';
         if(strpos($ser_data->vessel_type_id, '11') !== false){
             $ser_data->vessel_type_id="abc";
@@ -490,6 +497,9 @@ class FrontVesselController extends Controller
         $data->region_id= $req->region_id;
         $data->country_id= $req->country_id;
         $data->port_id= $req->port_id;
+        $data->dwt_from= $req->dwt_from;
+        $data->dwt_to= $req->dwt_to;
+        
         $data->modified_at=date('Y-m-d H:i:s');
 
         $data->save();
@@ -555,6 +565,8 @@ class FrontVesselController extends Controller
                                 ->where('port_id', $ser_port_opt, $data->port_id)
                                 ->whereBetween("laycan_date_from", [$data->laycan_date_from, $data->laycan_date_to])
                                 ->whereBetween("laycan_date_to", [$data->laycan_date_from, $data->laycan_date_to])
+                                ->orWhereBetween("dwt_from", [$data->dwt_from, $data->dwt_to])
+                                ->orWhereBetween("dwt_to", [$data->dwt_from, $data->dwt_to])
                                 ->active()
                                 ->orderBy('vessel_id', 'DESC')
                                 ->get();

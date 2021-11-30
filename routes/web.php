@@ -46,6 +46,9 @@ Route::get('/', [HomeController::class, 'view'] )->name('home');
 
 
 
+Route::get('clear_cache', function () {
+    Artisan::call('optimize:clear');
+});
 
 Route::get('/login', function () {
     if((session()->has('front_uid'))){
@@ -99,12 +102,21 @@ Route::get('/directory/view', [FrontDirectoryController::class, 'view'] )->name(
 // Route::get('/vessel_sale/get_update_hist_data', [FrontVesselSaleController::class, 'get_update_hist_data'] )->name('vessel_sale.get_update_hist_data');
 // Route::get('/vessel_sale/update_hist_data', [FrontVesselSaleController::class, 'update_hist_data'] )->name('vessel_sale.update_hist_data');
 
+//Cargo
+Route::get('/cargo/view', [FrontCargoController::class, 'view'] )->name('cargo.view');
+Route::post('/cargo/view', [FrontCargoController::class, 'search_req'] )->name('cargo.search_req');
+
+//Vessel
+Route::get('/vessel/view', [FrontVesselController::class, 'view'] )->name('vessel.view');
+Route::post('/vessel/view', [FrontVesselController::class, 'search_req'] )->name('vessel.search_req');
+
+//Vessel_sale
+Route::get('/vessel_sale/view', [FrontVesselSaleController::class, 'view'] )->name('vessel_sale.view');
+Route::post('/vessel_sale/view', [FrontVesselSaleController::class, 'search_req'] )->name('vessel_sale.search_req');
 
 Route::group(['middleware'=>['front_auth']],function(){
 
     // Cargo
-    Route::get('/cargo/view', [FrontCargoController::class, 'view'] )->name('cargo.view');
-    Route::post('/cargo/view', [FrontCargoController::class, 'search_req'] )->name('cargo.search_req');
     Route::get('/cargo/ser_hist_rec', [FrontCargoController::class, 'search_req_ajax'] )->name('cargo.ser_hist_rec');
     Route::get('/cargo/del_ser_hist_rec', [FrontCargoController::class, 'del_ser_his_req_ajax'] )->name('cargo.del_ser_hist_rec');
     Route::get('/cargo/del_selected_ser_hist_rec', [FrontCargoController::class, 'del_selected_ser_his_req_ajax'] )->name('cargo.del_selected_ser_hist_rec');
@@ -114,8 +126,6 @@ Route::group(['middleware'=>['front_auth']],function(){
 
 
     // Vessel Charter
-    Route::get('/vessel/view', [FrontVesselController::class, 'view'] )->name('vessel.view');
-    Route::post('/vessel/view', [FrontVesselController::class, 'search_req'] )->name('vessel.search_req');
     Route::get('/vessel/ser_hist_rec', [FrontVesselController::class, 'search_req_ajax'] )->name('vessel.ser_hist_rec');
     Route::get('/vessel/del_ser_hist_rec', [FrontVesselController::class, 'del_ser_his_req_ajax'] )->name('vessel.del_ser_hist_rec');
     Route::get('/vessel/del_selected_ser_hist_rec', [FrontVesselController::class, 'del_selected_ser_his_req_ajax'] )->name('vessel.del_selected_ser_hist_rec');
@@ -124,8 +134,6 @@ Route::group(['middleware'=>['front_auth']],function(){
 
 
     // Vessel_sale Charter
-    Route::get('/vessel_sale/view', [FrontVesselSaleController::class, 'view'] )->name('vessel_sale.view');
-    Route::post('/vessel_sale/view', [FrontVesselSaleController::class, 'search_req'] )->name('vessel_sale.search_req');
     Route::get('/vessel_sale/ser_hist_rec', [FrontVesselSaleController::class, 'search_req_ajax'] )->name('vessel_sale.ser_hist_rec');
     Route::get('/vessel_sale/del_ser_hist_rec', [FrontVesselSaleController::class, 'del_ser_his_req_ajax'] )->name('vessel_sale.del_ser_hist_rec');
     Route::get('/vessel_sale/del_selected_ser_hist_rec', [FrontVesselSaleController::class, 'del_selected_ser_his_req_ajax'] )->name('vessel_sale.del_selected_ser_hist_rec');

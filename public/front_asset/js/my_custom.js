@@ -1,5 +1,23 @@
-$(document).ready(function() {
-
+$(document).ready(function () {
+    $("#check_all").click(function () {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });
+    $(document).on('change', "#cargo_type_id,#loading_region_id,#loading_country_id,#loading_port_id,#discharge_region_id,#discharge_country_id,#discharge_port_id,#vessel_type_id,#charter_type_id,#region_id,#country_id,#port_id", function (e) {
+        console.log("hello");
+        if ($(this).find(':selected').text().includes('Any') && $("#" + (this).id + " option[value=" + $(this).find(':selected').val() + "]").is(":checked")) {
+            $('#' + (this).id + ' option').attr("disabled", true);
+            $("#" + (this).id + " option[value=" + $(this).find(':selected').val() + "]").removeAttr('disabled');
+            $('#' + (this).id + '').selectpicker('refresh');
+        }
+        if ($(this).find(':selected').text() != "Any") {
+            $('#' + (this).id + ' option:contains("Any")').attr("disabled", true);
+            $('#' + (this).id + '').selectpicker('refresh');
+        }
+        if (($("#" + (this).id + " option[value=" + $(this).find(':selected').val() + "]").is(":checked") == false)) {
+            $('#' + (this).id + ' option').removeAttr("disabled");
+            $('#' + (this).id + '').selectpicker('refresh');
+        }
+    });
     //cargo
     $('.cargo_type_id').selectpicker();
     $('.loading_region_id').selectpicker();
@@ -21,23 +39,23 @@ $(document).ready(function() {
     //  highlight comapany detail when user click on view detail button in view cargo page
     //////////////////////////////////////
     let com_url_locat = window.location.href;
-    
+
     if (com_url_locat.includes("#") && com_url_locat.includes("directory/view")) {
         let com_url_locat_id1 = com_url_locat.split('#');
         let comp_id31 = com_url_locat_id1[com_url_locat_id1.length - 1];
         $(".company_id_" + comp_id31).css({ "color": "#FFFFFF !important", "background-color": "#555555 !important" });
     }
-    
+
     //////////////////////////////////////
     //  highlight navbar-link when visit any link of navbar.
     //////////////////////////////////////
-    if (com_url_locat.includes("cargo")) 
+    if (com_url_locat.includes("cargo"))
         $(".nav_link_cargo").addClass("nav_link_border");
-    else if (com_url_locat.includes("vessel_sale")) 
+    else if (com_url_locat.includes("vessel_sale"))
         $(".nav_link_vessel_sale").addClass("nav_link_border");
-    else if (com_url_locat.includes("vessel")) 
+    else if (com_url_locat.includes("vessel"))
         $(".nav_link_vessel").addClass("nav_link_border");
-    else if (com_url_locat.includes("directory")) 
+    else if (com_url_locat.includes("directory"))
         $(".nav_link_directory").addClass("nav_link_border");
 
 
@@ -45,7 +63,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // Reset all form fields code
     //////////////////////////////////////
-    function reset_homepage_forms(){
+    function reset_homepage_forms() {
         $("input[type=date]").val("");
         $("#cargo_type_id").val('default');
         $("#cargo_type_id").selectpicker("refresh");
@@ -93,67 +111,68 @@ $(document).ready(function() {
         $.ajax({
             url: route('cargo.reset_region_country_port'),
             type: "get",
-            cache:true,
-            success: function(response) {
+            cache: true,
+            success: function (response) {
 
                 let json_data = $.parseJSON(response);
 
-                $.each(form_ids, function(i, form_id) {
-                    var arr=[];
-                    if(form_id=='search_cargo_form')
+                $.each(form_ids, function (i, form_id) {
+
+                    var arr = [];
+                    if (form_id == 'search_cargo_form')
                         arr = ['cargo_type_id', 'loading_region_id', 'loading_country_id', 'loading_port_id', 'discharge_region_id', 'discharge_country_id', 'discharge_port_id'];
-                    if(form_id=='search_vessel_form')
+                    if (form_id == 'search_vessel_form')
                         arr = ['vessel_type_id', 'charter_type_id', 'region_id', 'country_id', 'port_id'];
-                    if(form_id=='search_vsale_form')
+                    if (form_id == 'search_vsale_form')
                         arr = ['vessel_type_id', 'region_id', 'country_id', 'port_id'];
 
-                    $.each(arr, function(i, obj) {
+                    $.each(arr, function (i, obj) {
                         var post_str = "";
                         post_str += `
                         <select name="` + obj + `[]" id="` + obj + `" form="` + form_id + `"
-                            class="` + obj + ` add_cvs_inp_fields ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
+                            class="` + obj + ` add_cvs_inp_fields abcd ser_inp_fields21 mb-2" multiple title="Choose" data-size="5"
                             data-selected-text-format="count > 2" data-live-search="true">`;
 
                         if (obj.includes('region')) {
-                            post_str+=`<option value="26">Any</option>`;
-                            $.each(json_data['data']['region'], function(i, obj1) {
+                            post_str += `<option value="26">Any</option>`;
+                            $.each(json_data['data']['region'], function (i, obj1) {
                                 post_str += `<option value="` + obj1.region_id + `">` + obj1.region_name + `</option>`;
                             });
                         }
                         if (obj.includes('country')) {
-                            post_str+=`<option value="197">Any</option>`;
-                            $.each(json_data['data']['country'], function(i, obj1) {
+                            post_str += `<option value="197">Any</option>`;
+                            $.each(json_data['data']['country'], function (i, obj1) {
                                 post_str += `<option value="` + obj1.country_id + `">` + obj1.country_name + `</option>`;
                             });
                         }
                         if (obj.includes('port')) {
-                            post_str+=`<option value="5638">Any</option>`;
-                            $.each(json_data['data']['port'], function(i, obj1) {
+                            post_str += `<option value="5638">Any</option>`;
+                            $.each(json_data['data']['port'], function (i, obj1) {
                                 post_str += `<option value="` + obj1.port_id + `">` + obj1.port_name + `</option>`;
                             });
                         }
                         if (obj.includes('cargo_type')) {
-                            post_str+=`<option value="13">Any</option>`;
-                            $.each(json_data['data']['cargo_type'], function(i, obj1) {
+                            post_str += `<option value="13" >Any</option>`;
+                            $.each(json_data['data']['cargo_type'], function (i, obj1) {
                                 post_str += `<option value="` + obj1.cargo_type_id + `">` + obj1.cargo_type_name + `</option>`;
                             });
                         }
                         if (obj.includes('vessel_type')) {
-                            post_str+=`<option value="11">Any</option>`;
-                            $.each(json_data['data']['vessel_type'], function(i, obj1) {
+                            post_str += `<option value="11">Any</option>`;
+                            $.each(json_data['data']['vessel_type'], function (i, obj1) {
                                 post_str += `<option value="` + obj1.vessel_type_id + `">` + obj1.vessel_type_name + `</option>`;
                             });
                         }
                         if (obj.includes('charter_type')) {
-                            post_str+=`<option value="5">Any</option>`;
-                            $.each(json_data['data']['charter_type'], function(i, obj1) {
+                            post_str += `<option value="5">Any</option>`;
+                            $.each(json_data['data']['charter_type'], function (i, obj1) {
                                 post_str += `<option value="` + obj1.charter_type_id + `">` + obj1.charter_type_name + `</option>`;
                             });
                         }
                         post_str +=
                             `</select>`;
 
-                        $('#'+form_id+' .' + obj + "_par").html(post_str);
+                        $('#' + form_id + ' .' + obj + "_par").html(post_str);
                         $('.' + obj).selectpicker();
 
                     });
@@ -167,97 +186,108 @@ $(document).ready(function() {
     //////////////////////////////////////
     // Set timeout for homepage 
     //////////////////////////////////////
-    setTimeout(function() { 
-        
-        if (com_url_locat.includes("cargo") || com_url_locat.includes("vessel") ) {
-            console.log( "window loaded" );
-        }else{
+    setTimeout(function () {
+
+
+        if (com_url_locat.includes("cargo") || com_url_locat.includes("vessel")) {
+            console.log("window loaded");
+        } else {
             reset_homepage_forms();
         }
-    },1000);
-    
+    }, 1000);
+
     //////////////////////////////////////
     // Working on Reset Button
     //////////////////////////////////////
-    $(".reset_btn").click(function(e) {
+    $(".reset_btn").click(function (e) {
         e.preventDefault();
 
         reset_homepage_forms();
     });
 
+
+    /////////////////////////////////////////////////
+    // No Selected Cargo Search History Record
+    /////////////////////////////////////////////////
+    $(document).on('click', '#car_delete_selected_no', function (e) {
+        e.preventDefault();
+
+        $("#show_delete_popup").dialog("close");
+    });
+
     /////////////////////////////////////////////////
     // Delete Selected Cargo Search History Record
     /////////////////////////////////////////////////
-    $(document).on("click", '.del_sel_all_ser_hist', function(e) {
+    $(document).on("click", '.del_sel_all_ser_hist', function (e) {
         e.preventDefault();
 
-        let del_btn_id=$(this).attr('id');
+        let del_btn_id = $(this).attr('id');
         let del_type;
         let cvs_name;
         let ids;
-        let flag=false;
+        let flag = false;
 
-        if(del_btn_id.includes('selected')){
-            del_type='selected';
-            ids=$("input[name='delete_selected_rec[]']:checked").map(function(){return $(this).val();}).get();
+        if (del_btn_id.includes('selected')) {
+            del_type = 'selected';
+            ids = $("input[name='delete_selected_rec[]']:checked").map(function () { return $(this).val(); }).get();
             if (ids.length >= 1)
-                flag=true;
+                flag = true;
         }
-        if(del_btn_id.includes('all')){
-            del_type='all';
-            ids=0;
-            flag=true;
+        if (del_btn_id.includes('all')) {
+            del_type = 'all';
+            ids = 0;
+            flag = true;
         }
-        if(del_btn_id.includes('car'))
-            cvs_name='cargo';
-        if(del_btn_id.includes('ves'))
-            cvs_name='cargo';
-        if(del_btn_id.includes('vsale'))
-            cvs_name='vessel_sale';
-        
+        if (del_btn_id.includes('car'))
+            cvs_name = 'cargo';
+        if (del_btn_id.includes('ves'))
+            cvs_name = 'cargo';
+        if (del_btn_id.includes('vsale'))
+            cvs_name = 'vessel_sale';
+
         $("#show_delete_popup").dialog("close");
 
-        let confirmalert = confirm("Are you sure?");
+        // let confirmalert = confirm("Are you sure?");
 
-        if (confirmalert == true) {
-            if (flag==true) {
-                // AJAX Request
-                $.ajax({
-                    url: route(cvs_name+'.del_selected_ser_hist_rec'),
-                    data: "ids=" + ids + "&del_type=" + del_type,
-                    type: "get",
-                    success: function(response) {
-                        if (response == "1") {
-                            if(del_type=='selected'){
-                                $.each(ids, function(i, obj){
-                                    let table_row = $("#ser_hist_rec_"+obj);
-                                    table_row.css('background', 'tomato');
-                                    table_row.fadeOut(800, function() {
-                                        table_row.remove();
-                                    });
-                                });
-                            }
-                            if(del_type=='all'){
-                                let table_row = $(".ser_hist_rec_each");
+        // if (confirmalert == true) {
+        if (flag == true) {
+            // AJAX Request
+            $.ajax({
+                url: route(cvs_name + '.del_selected_ser_hist_rec'),
+                data: "ids=" + ids + "&del_type=" + del_type,
+                type: "get",
+                success: function (response) {
+                    if (response == "1") {
+                        if (del_type == 'selected') {
+                            $.each(ids, function (i, obj) {
+                                let table_row = $("#ser_hist_rec_" + obj);
                                 table_row.css('background', 'tomato');
-                                table_row.fadeOut(800, function() {
+                                table_row.fadeOut(800, function () {
                                     table_row.remove();
                                 });
-                            }
-                        } else
-                            alert('Something went wrong, please try again');
-                    }
-                });
-            }else
-                alert('Please Select a record to delete');
-        } 
+                            });
+                        }
+                        if (del_type == 'all') {
+                            let table_row = $(".ser_hist_rec_each");
+                            table_row.css('background', 'tomato');
+                            table_row.fadeOut(800, function () {
+                                table_row.remove();
+                            });
+                        }
+                    } else
+                        alert('Something went wrong, please try again');
+                }
+            });
+        } else
+            alert('Please Select a record to delete');
+        // } 
     });
-    
-    
+
+
     function GetFormattedDate(date) {
         // var dateAr = '2014-01-06'.split('-');
         var dateAr = date.split('-');
-        var mon = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ];
+        var mon = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];
         var newDate = dateAr[2] + '-' + mon[parseInt(dateAr[1]) - 1] + '-' + dateAr[0];
         return newDate;
     }
@@ -265,12 +295,12 @@ $(document).ready(function() {
 
     // $("#home_vessel").hide();
     // $("#home_vsale").hide();
-    $('.home_form_link').click(function(e) {
+    $('.home_form_link').click(function (e) {
         e.preventDefault();
         var id = $(this).attr("id");
 
-        $('.home_form_link').css({'background-color':'#276F6C'})
-        $(this).css({'background-color':'#06423f'})
+        $('.home_form_link').css({ 'background-color': '#276F6C' })
+        $(this).css({ 'background-color': '#06423f' })
 
         $("#home_cargo").hide();
         $("#home_vessel").hide();
@@ -293,34 +323,34 @@ $(document).ready(function() {
     // show record details button
     //////////////////////////////////////
     $('.hide_detail_btn').hide();
-    $(document).on("click", '.show_detail_btn', function(e) {
+    $(document).on("click", '.show_detail_btn', function (e) {
         e.preventDefault();
 
         if ($("#member_type21").val() == "Free") {
             e.preventDefault();
-            
+
             $(".ui-dialog-titlebar").hide();
             $("#access_denied").dialog('open');
-        }else{
+        } else {
             let id = $(this).attr('href');
             $('.show_details_' + id).fadeToggle("slow");
             $('.show_detail_btn_' + id).hide();
             $('.hide_detail_btn_' + id).show();
-    
+
             // $(".company_id_" + comp_id31).css({ "color": "#FFFFFF !important", "background-color": "#555555 !important" });
             $(this).parent().parent().css({
                 "background-color": "#F1F1F1",
                 "color": "#212529 !important"
             });
         }
-        
-        
+
+
     });
 
     //////////////////////////////////////
     // hide record details button
     //////////////////////////////////////
-    $(document).on("click", '.hide_detail_btn', function(e) {
+    $(document).on("click", '.hide_detail_btn', function (e) {
         e.preventDefault();
         let id = $(this).attr('href');
         $('.show_details_' + id).fadeToggle("slow");
@@ -335,7 +365,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // Request for New Search(New Load Search button)
     //////////////////////////////////////
-    $('#new_ser_req').click(function(e) {
+    $('#new_ser_req').click(function (e) {
         e.preventDefault();
         $("#adv_ser_form").show();
         $("#cargo_type_id").focus();
@@ -350,7 +380,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // Close new request search form
     //////////////////////////////////////
-    $('#close_ser').click(function(e) {
+    $('#close_ser').click(function (e) {
         e.preventDefault();
         $("#adv_ser_form").hide();
         // $("#adv_ser_form").slideToggle(500);
@@ -360,7 +390,7 @@ $(document).ready(function() {
     ////////////////////////////////////// 
     // Close update search request form of each record
     //////////////////////////////////////
-    $(document).on('click', '.close_ser_each', function(e) {
+    $(document).on('click', '.close_ser_each', function (e) {
         e.preventDefault();
         let el = e.target;
         // let table_row = $(el).parent().parent().parent();
@@ -401,7 +431,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // AJAX Request for Searching records when user click on any record inside search history table.
     //////////////////////////////////////
-    $(document).on("click", '.car_ser_hist_rec_req_each', function(e) {
+    $(document).on("click", '.car_ser_hist_rec_req_each', function (e) {
 
         let id2 = $(this).attr('id');
         let id1 = id2.split('_');
@@ -425,7 +455,7 @@ $(document).ready(function() {
             // data: "id=" + id + "&cargotype=" + cargotype + "&laycan_from=" + laycan_from + "&laycan_to=" + laycan_to + "&lregion=" + lregion + "&dregion=" + dregion + "&lcountry=" + lcountry + "&dcountry=" + dcountry + "&lport=" + lport + "&dport=" + dport,
             data: "id=" + id,
             type: "get",
-            success: function(response) {
+            success: function (response) {
 
                 let json_data = $.parseJSON(response);
                 var post_str = "";
@@ -435,8 +465,8 @@ $(document).ready(function() {
                     post_str +=
                         '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                 } else {
-                    $.each(json_data, function(i, obj) {
-                        $.each(obj[0], function(i, obj1) {
+                    $.each(json_data, function (i, obj) {
+                        $.each(obj[0], function (i, obj1) {
                             // console.log(obj1);
                             // console.log(i + "  " + obj1);
                             post_str +=
@@ -448,10 +478,10 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                            $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
+                            $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function (i, cargotype_obj) {
                                 post_str += cargotype_obj;
-                                if(json_data['data'][1]['cargo_type_id'][obj1.cargo_id][json_data['data'][1]['cargo_type_id'][obj1.cargo_id].length-1]!=cargotype_obj)
-                                    post_str +=`,<br>`;
+                                if (json_data['data'][1]['cargo_type_id'][obj1.cargo_id][json_data['data'][1]['cargo_type_id'][obj1.cargo_id].length - 1] != cargotype_obj)
+                                    post_str += `,<br>`;
                             });
                             post_str +=
                                 `</div>
@@ -459,10 +489,10 @@ $(document).ready(function() {
                                         <p class="b7 mb-0">Loading Country:</p>`;
                             post_str +=
                                 `<p class="">`;
-                            $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
+                            $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function (i, lcountry_obj) {
                                 post_str += lcountry_obj;
-                                if(json_data['data'][1]['loading_country_id'][obj1.cargo_id][json_data['data'][1]['loading_country_id'][obj1.cargo_id].length-1]!=lcountry_obj)
-                                    post_str +=`,<br>`;
+                                if (json_data['data'][1]['loading_country_id'][obj1.cargo_id][json_data['data'][1]['loading_country_id'][obj1.cargo_id].length - 1] != lcountry_obj)
+                                    post_str += `,<br>`;
                             });
                             post_str +=
                                 `</p>
@@ -472,10 +502,10 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                            $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
+                            $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function (i, lregion_obj) {
                                 post_str += lregion_obj;
-                                if(json_data['data'][1]['loading_region_id'][obj1.cargo_id][json_data['data'][1]['loading_region_id'][obj1.cargo_id].length-1]!=lregion_obj)
-                                    post_str +=`,<br>`;
+                                if (json_data['data'][1]['loading_region_id'][obj1.cargo_id][json_data['data'][1]['loading_region_id'][obj1.cargo_id].length - 1] != lregion_obj)
+                                    post_str += `,<br>`;
                             });
                             post_str +=
                                 `</div>
@@ -483,10 +513,10 @@ $(document).ready(function() {
                                         <p class="b7 mb-0">Loading Port:</p>`;
                             post_str +=
                                 `<p class="">`;
-                            $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
+                            $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function (i, lport_obj) {
                                 post_str += lport_obj;
-                                if(json_data['data'][1]['loading_port_id'][obj1.cargo_id][json_data['data'][1]['loading_port_id'][obj1.cargo_id].length-1]!=lport_obj)
-                                    post_str +=`,<br>`;
+                                if (json_data['data'][1]['loading_port_id'][obj1.cargo_id][json_data['data'][1]['loading_port_id'][obj1.cargo_id].length - 1] != lport_obj)
+                                    post_str += `,<br>`;
                             });
                             post_str +=
                                 `</p>
@@ -496,10 +526,10 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                            $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
+                            $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function (i, dregion_obj) {
                                 post_str += dregion_obj;
-                                if(json_data['data'][1]['discharge_region_id'][obj1.cargo_id][json_data['data'][1]['discharge_region_id'][obj1.cargo_id].length-1]!=dregion_obj)
-                                    post_str +=`,<br>`;
+                                if (json_data['data'][1]['discharge_region_id'][obj1.cargo_id][json_data['data'][1]['discharge_region_id'][obj1.cargo_id].length - 1] != dregion_obj)
+                                    post_str += `,<br>`;
                             });
                             post_str +=
                                 `</div>
@@ -507,10 +537,10 @@ $(document).ready(function() {
                                         <p class="b7 mb-0">Discharge Country:</p>`;
                             post_str +=
                                 `<p class="">`;
-                            $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
+                            $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function (i, dcountry_obj) {
                                 post_str += dcountry_obj;
-                                if(json_data['data'][1]['discharge_country_id'][obj1.cargo_id][json_data['data'][1]['discharge_country_id'][obj1.cargo_id].length-1]!=dcountry_obj)
-                                    post_str +=`,<br>`;
+                                if (json_data['data'][1]['discharge_country_id'][obj1.cargo_id][json_data['data'][1]['discharge_country_id'][obj1.cargo_id].length - 1] != dcountry_obj)
+                                    post_str += `,<br>`;
                             });
                             post_str +=
                                 `</p>
@@ -526,10 +556,10 @@ $(document).ready(function() {
                                         <p class="b7 mb-0">Discharge Port:</p>`;
                             post_str +=
                                 `<p class="">`;
-                            $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
+                            $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function (i, dport_obj) {
                                 post_str += dport_obj;
-                                if(json_data['data'][1]['discharge_port_id'][obj1.cargo_id][json_data['data'][1]['discharge_port_id'][obj1.cargo_id].length-1]!=dport_obj)
-                                    post_str +=`,<br>`;
+                                if (json_data['data'][1]['discharge_port_id'][obj1.cargo_id][json_data['data'][1]['discharge_port_id'][obj1.cargo_id].length - 1] != dport_obj)
+                                    post_str += `,<br>`;
                             });
                             post_str +=
                                 `</p>
@@ -649,7 +679,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // AJAX Request for delete a record of search history 
     //////////////////////////////////////
-    $(document).on('click', '#car_delete_rec', function(e) {
+    $(document).on('click', '#car_delete_rec', function (e) {
         // $(".delete_rec").click(function(e){
         e.preventDefault();
         let el = e.target;
@@ -663,12 +693,12 @@ $(document).ready(function() {
                 url: route('cargo.del_ser_hist_rec'),
                 data: "id=" + deleteid,
                 type: "get",
-                success: function(response) {
+                success: function (response) {
                     // alert(response);
                     if (response == "1") {
                         // Remove row from HTML Table
                         table_row.css('background', 'tomato');
-                        table_row.fadeOut(800, function() {
+                        table_row.fadeOut(800, function () {
                             table_row.remove();
                         });
                     } else {
@@ -687,11 +717,12 @@ $(document).ready(function() {
     //////////////////////////////////////
     // Show Update search history form when user click on Edit
     //////////////////////////////////////
-    $(document).on('click', '#car_show_update_ser_hist_form_each', function(e) {
+    $(document).on('click', '#car_show_update_ser_hist_form_each', function (e) {
         e.preventDefault();
+        
         let el = e.target;
         let uid = el.getAttribute('href');
-
+        
         $("#adv_ser_form").hide();
 
         $(".ser_hist_rec_each").show();
@@ -704,7 +735,7 @@ $(document).ready(function() {
             url: route('cargo.get_update_hist_data'),
             data: "id=" + uid,
             type: "get",
-            success: function(response) {
+            success: function (response) {
 
                 let json_data = $.parseJSON(response);
                 var len = json_data.length;
@@ -716,14 +747,14 @@ $(document).ready(function() {
                     "discharge_region_id", "discharge_country_id", "discharge_port_id"
                 ];
 
-                $.each(arr, function(i, obj1) {
+                $.each(arr, function (i, obj1) {
 
                     let dd_id = "#" + obj1 + "_" + uid;
 
                     let dd_data_ids = json_data['data'][1][obj1];
                     // let dd_data_arr = dd_data.split(",");
 
-                    $.each(dd_data_ids, function(i, obj2) {
+                    $.each(dd_data_ids, function (i, obj2) {
                         // console.log(obj2);
                         $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
                     });
@@ -748,7 +779,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // AJAX Request for updating search history recod
     //////////////////////////////////////
-    $(document).on('click', '.car_req_update_ser_hist_each', function(e) {
+    $(document).on('click', '.car_req_update_ser_hist_each', function (e) {
         e.preventDefault();
         let el = e.target;
         let uid = el.getAttribute('id').split("_")[1];
@@ -767,20 +798,20 @@ $(document).ready(function() {
         let dd_str_names = new Array(7);
         let count = 0;
 
-        $.each(arr, function(i, obj1) {
+        $.each(arr, function (i, obj1) {
             let dd_id = "#" + obj1 + "_" + uid;
 
-            var dd_data_ids = $(dd_id).map(function() { return $(this).val(); }).get();
+            var dd_data_ids = $(dd_id).map(function () { return $(this).val(); }).get();
             dd_str_ids[count] = "";
-            $.each(dd_data_ids, function(i, obj1) {
+            $.each(dd_data_ids, function (i, obj1) {
                 dd_str_ids[count] += obj1 + ",";
             });
             dd_str_ids[count] = dd_str_ids[count].replace(/,+$/, '');
 
 
-            var dd_data_names = $(dd_id + " :selected").map(function() { return $(this).html(); }).get();
+            var dd_data_names = $(dd_id + " :selected").map(function () { return $(this).html(); }).get();
             dd_str_names[count] = "";
-            $.each(dd_data_names, function(i, obj1) {
+            $.each(dd_data_names, function (i, obj1) {
                 dd_str_names[count] += obj1 + ",";
             });
             dd_str_names[count] = dd_str_names[count].replace(/,+$/, '');
@@ -800,7 +831,7 @@ $(document).ready(function() {
                     "&loading_port_id=" + dd_str_ids[3] + "&discharge_region_id=" + dd_str_ids[4] +
                     "&discharge_country_id=" + dd_str_ids[5] + "&discharge_port_id=" + dd_str_ids[6],
                 type: "get",
-                success: function(response) {
+                success: function (response) {
                     if (response == false) {
                         alert("something went wrong. Please try again");
                     } else {
@@ -822,8 +853,8 @@ $(document).ready(function() {
                             post_str +=
                                 '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                         } else {
-                            $.each(json_data, function(i, obj) {
-                                $.each(obj[0], function(i, obj1) {
+                            $.each(json_data, function (i, obj) {
+                                $.each(obj[0], function (i, obj1) {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
                                     post_str +=
@@ -835,10 +866,10 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">`;
-                                    $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function(i, cargotype_obj) {
+                                    $.each(json_data['data'][1]['cargo_type_id'][obj1.cargo_id], function (i, cargotype_obj) {
                                         post_str += cargotype_obj;
-                                        if(json_data['data'][1]['cargo_type_id'][obj1.cargo_id][json_data['data'][1]['cargo_type_id'][obj1.cargo_id].length-1]!=cargotype_obj)
-                                            post_str +=`,<br>`;
+                                        if (json_data['data'][1]['cargo_type_id'][obj1.cargo_id][json_data['data'][1]['cargo_type_id'][obj1.cargo_id].length - 1] != cargotype_obj)
+                                            post_str += `,<br>`;
                                     });
                                     post_str +=
                                         `</div>
@@ -846,10 +877,10 @@ $(document).ready(function() {
                                                 <p class="b7 mb-0">Loading Country:</p>`;
                                     post_str +=
                                         `<p class="">`;
-                                    $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function(i, lcountry_obj) {
+                                    $.each(json_data['data'][1]['loading_country_id'][obj1.cargo_id], function (i, lcountry_obj) {
                                         post_str += lcountry_obj;
-                                        if(json_data['data'][1]['loading_country_id'][obj1.cargo_id][json_data['data'][1]['loading_country_id'][obj1.cargo_id].length-1]!=lcountry_obj)
-                                            post_str +=`,<br>`;
+                                        if (json_data['data'][1]['loading_country_id'][obj1.cargo_id][json_data['data'][1]['loading_country_id'][obj1.cargo_id].length - 1] != lcountry_obj)
+                                            post_str += `,<br>`;
                                     });
                                     post_str +=
                                         `</p>
@@ -859,10 +890,10 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">`;
-                                    $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function(i, lregion_obj) {
+                                    $.each(json_data['data'][1]['loading_region_id'][obj1.cargo_id], function (i, lregion_obj) {
                                         post_str += lregion_obj;
-                                        if(json_data['data'][1]['loading_region_id'][obj1.cargo_id][json_data['data'][1]['loading_region_id'][obj1.cargo_id].length-1]!=lregion_obj)
-                                            post_str +=`,<br>`;
+                                        if (json_data['data'][1]['loading_region_id'][obj1.cargo_id][json_data['data'][1]['loading_region_id'][obj1.cargo_id].length - 1] != lregion_obj)
+                                            post_str += `,<br>`;
                                     });
                                     post_str +=
                                         `</div>
@@ -870,10 +901,10 @@ $(document).ready(function() {
                                                 <p class="b7 mb-0">Loading Port:</p>`;
                                     post_str +=
                                         `<p class="">`;
-                                    $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function(i, lport_obj) {
+                                    $.each(json_data['data'][1]['loading_port_id'][obj1.cargo_id], function (i, lport_obj) {
                                         post_str += lport_obj;
-                                        if(json_data['data'][1]['loading_port_id'][obj1.cargo_id][json_data['data'][1]['loading_port_id'][obj1.cargo_id].length-1]!=lport_obj)
-                                            post_str +=`,<br>`;
+                                        if (json_data['data'][1]['loading_port_id'][obj1.cargo_id][json_data['data'][1]['loading_port_id'][obj1.cargo_id].length - 1] != lport_obj)
+                                            post_str += `,<br>`;
                                     });
                                     post_str +=
                                         `</p>
@@ -883,10 +914,10 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">`;
-                                    $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function(i, dregion_obj) {
+                                    $.each(json_data['data'][1]['discharge_region_id'][obj1.cargo_id], function (i, dregion_obj) {
                                         post_str += dregion_obj;
-                                        if(json_data['data'][1]['discharge_region_id'][obj1.cargo_id][json_data['data'][1]['discharge_region_id'][obj1.cargo_id].length-1]!=dregion_obj)
-                                            post_str +=`,<br>`;
+                                        if (json_data['data'][1]['discharge_region_id'][obj1.cargo_id][json_data['data'][1]['discharge_region_id'][obj1.cargo_id].length - 1] != dregion_obj)
+                                            post_str += `,<br>`;
                                     });
                                     post_str +=
                                         `</div>
@@ -894,10 +925,10 @@ $(document).ready(function() {
                                                 <p class="b7 mb-0">Discharge Country:</p>`;
                                     post_str +=
                                         `<p class="">`;
-                                    $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function(i, dcountry_obj) {
+                                    $.each(json_data['data'][1]['discharge_country_id'][obj1.cargo_id], function (i, dcountry_obj) {
                                         post_str += dcountry_obj;
-                                        if(json_data['data'][1]['discharge_country_id'][obj1.cargo_id][json_data['data'][1]['discharge_country_id'][obj1.cargo_id].length-1]!=dcountry_obj)
-                                            post_str +=`,<br>`;
+                                        if (json_data['data'][1]['discharge_country_id'][obj1.cargo_id][json_data['data'][1]['discharge_country_id'][obj1.cargo_id].length - 1] != dcountry_obj)
+                                            post_str += `,<br>`;
                                     });
                                     post_str +=
                                         `</p>
@@ -913,10 +944,10 @@ $(document).ready(function() {
                                                 <p class="b7 mb-0">Discharge Port:</p>`;
                                     post_str +=
                                         `<p class="">`;
-                                    $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function(i, dport_obj) {
+                                    $.each(json_data['data'][1]['discharge_port_id'][obj1.cargo_id], function (i, dport_obj) {
                                         post_str += dport_obj;
-                                        if(json_data['data'][1]['discharge_port_id'][obj1.cargo_id][json_data['data'][1]['discharge_port_id'][obj1.cargo_id].length-1]!=dport_obj)
-                                            post_str +=`,<br>`;
+                                        if (json_data['data'][1]['discharge_port_id'][obj1.cargo_id][json_data['data'][1]['discharge_port_id'][obj1.cargo_id].length - 1] != dport_obj)
+                                            post_str += `,<br>`;
                                     });
                                     post_str +=
                                         `</p>
@@ -1055,7 +1086,7 @@ $(document).ready(function() {
     // AJAX Request for Searching records when user click on any record inside search history table.
     //////////////////////////////////////
 
-    $(document).on("click", '.ves_ser_hist_rec_req_each', function(e) {
+    $(document).on("click", '.ves_ser_hist_rec_req_each', function (e) {
 
         let id2 = $(this).attr('id');
         let id1 = id2.split('_');
@@ -1072,13 +1103,13 @@ $(document).ready(function() {
             'background-color': "#555555",
             "color": "white"
         });
-
+        
         $.ajax({
             url: route('vessel.ser_hist_rec'),
             // data: "id=" + id + "&cargotype=" + cargotype + "&laycan_from=" + laycan_from + "&laycan_to=" + laycan_to + "&lregion=" + lregion + "&dregion=" + dregion + "&lcountry=" + lcountry + "&dcountry=" + dcountry + "&lport=" + lport + "&dport=" + dport,
             data: "id=" + id,
             type: "get",
-            success: function(response) {
+            success: function (response) {
 
                 let json_data = $.parseJSON(response);
                 var len = json_data.length;
@@ -1089,8 +1120,8 @@ $(document).ready(function() {
                     post_str +=
                         '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                 } else {
-                    $.each(json_data, function(i, obj) {
-                        $.each(obj[0], function(i, obj1) {
+                    $.each(json_data, function (i, obj) {
+                        $.each(obj[0], function (i, obj1) {
                             // console.log(obj1);
                             // console.log(i + "  " + obj1);
                             post_str +=
@@ -1125,10 +1156,10 @@ $(document).ready(function() {
                                     <div class="td_h">`;
                             // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
                             post_str +=
-                                $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_id], function(i, vesseltype_obj) {
+                                $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_id], function (i, vesseltype_obj) {
                                     post_str += vesseltype_obj;
-                                    if(json_data['data'][1]['vessel_type_id'][obj1.vessel_id][json_data['data'][1]['vessel_type_id'][obj1.vessel_id].length-1]!=vesseltype_obj)
-                                        post_str +=`,<br>`;
+                                    if (json_data['data'][1]['vessel_type_id'][obj1.vessel_id][json_data['data'][1]['vessel_type_id'][obj1.vessel_id].length - 1] != vesseltype_obj)
+                                        post_str += `,<br>`;
                                 });
                             post_str +=
                                 `</div>
@@ -1145,10 +1176,10 @@ $(document).ready(function() {
                                     <div class="td_h">`;
                             // + obj1.charter_type_id.replace(/,/g, ',<br>') +
                             post_str +=
-                                $.each(json_data['data'][1]['charter_type_id'][obj1.vessel_id], function(i, chartertype_obj) {
+                                $.each(json_data['data'][1]['charter_type_id'][obj1.vessel_id], function (i, chartertype_obj) {
                                     post_str += chartertype_obj;
-                                    if(json_data['data'][1]['charter_type_id'][obj1.vessel_id][json_data['data'][1]['charter_type_id'][obj1.vessel_id].length-1]!=chartertype_obj)
-                                        post_str +=`,<br>`;
+                                    if (json_data['data'][1]['charter_type_id'][obj1.vessel_id][json_data['data'][1]['charter_type_id'][obj1.vessel_id].length - 1] != chartertype_obj)
+                                        post_str += `,<br>`;
                                 });
                             post_str +=
                                 `</div>
@@ -1191,10 +1222,10 @@ $(document).ready(function() {
                                     <div class="td_h">`;
                             // + obj1.region_id.replace(/,/g, ',<br>') +
                             post_str +=
-                                $.each(json_data['data'][1]['region_id'][obj1.vessel_id], function(i, region_obj) {
+                                $.each(json_data['data'][1]['region_id'][obj1.vessel_id], function (i, region_obj) {
                                     post_str += region_obj;
-                                    if(json_data['data'][1]['region_id'][obj1.vessel_id][json_data['data'][1]['region_id'][obj1.vessel_id].length-1]!=region_obj)
-                                        post_str +=`,<br>`;
+                                    if (json_data['data'][1]['region_id'][obj1.vessel_id][json_data['data'][1]['region_id'][obj1.vessel_id].length - 1] != region_obj)
+                                        post_str += `,<br>`;
                                 });
                             post_str +=
                                 `</div>
@@ -1211,10 +1242,10 @@ $(document).ready(function() {
                                     <div class="td_h">`;
                             // + obj1.country_id.replace(/,/g, ',<br>') +
                             post_str +=
-                                $.each(json_data['data'][1]['country_id'][obj1.vessel_id], function(i, country_obj) {
+                                $.each(json_data['data'][1]['country_id'][obj1.vessel_id], function (i, country_obj) {
                                     post_str += country_obj;
-                                    if(json_data['data'][1]['country_id'][obj1.vessel_id][json_data['data'][1]['country_id'][obj1.vessel_id].length-1]!=country_obj)
-                                        post_str +=`,<br>`;
+                                    if (json_data['data'][1]['country_id'][obj1.vessel_id][json_data['data'][1]['country_id'][obj1.vessel_id].length - 1] != country_obj)
+                                        post_str += `,<br>`;
                                 });
                             post_str +=
                                 `</div>
@@ -1231,10 +1262,10 @@ $(document).ready(function() {
                                     <div class="td_h">`;
                             // + obj1.port_id.replace(/,/g, ',<br>') +
                             post_str +=
-                                $.each(json_data['data'][1]['port_id'][obj1.vessel_id], function(i, port_obj) {
+                                $.each(json_data['data'][1]['port_id'][obj1.vessel_id], function (i, port_obj) {
                                     post_str += port_obj;
-                                    if(json_data['data'][1]['port_id'][obj1.vessel_id][json_data['data'][1]['port_id'][obj1.vessel_id].length-1]!=port_obj)
-                                        post_str +=`,<br>`;
+                                    if (json_data['data'][1]['port_id'][obj1.vessel_id][json_data['data'][1]['port_id'][obj1.vessel_id].length - 1] != port_obj)
+                                        post_str += `,<br>`;
                                 });
                             post_str +=
                                 `</div>
@@ -1289,7 +1320,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // AJAX Request for delete a record of search history 
     //////////////////////////////////////
-    $(document).on('click', '#ves_delete_rec', function(e) {
+    $(document).on('click', '#ves_delete_rec', function (e) {
         // $(".delete_rec").click(function(e){
         e.preventDefault();
         let el = e.target;
@@ -1303,12 +1334,12 @@ $(document).ready(function() {
                 url: route('vessel.del_ser_hist_rec'),
                 data: "id=" + deleteid,
                 type: "get",
-                success: function(response) {
+                success: function (response) {
                     // alert(response);
                     if (response == "1") {
                         // Remove row from HTML Table
                         table_row.css('background', 'red');
-                        table_row.fadeOut(800, function() {
+                        table_row.fadeOut(800, function () {
                             table_row.remove();
                         });
                     } else {
@@ -1330,7 +1361,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // Show Update search history form when user click on Edit
     //////////////////////////////////////
-    $(document).on('click', '#ves_show_update_ser_hist_form_each', function(e) {
+    $(document).on('click', '#ves_show_update_ser_hist_form_each', function (e) {
         e.preventDefault();
         let el = e.target;
         let uid = el.getAttribute('href');
@@ -1347,7 +1378,7 @@ $(document).ready(function() {
             url: route('vessel.get_update_hist_data'),
             data: "id=" + uid,
             type: "get",
-            success: function(response) {
+            success: function (response) {
 
                 let json_data = $.parseJSON(response);
                 var len = json_data.length;
@@ -1357,14 +1388,14 @@ $(document).ready(function() {
 
                 let arr = ["vessel_type_id", "charter_type_id", "region_id", "country_id", "port_id"];
 
-                $.each(arr, function(i, obj1) {
+                $.each(arr, function (i, obj1) {
 
                     let dd_id = "#" + obj1 + "_" + uid;
 
                     let dd_data_ids = json_data['data'][1][obj1];
                     // let dd_data_arr = dd_data.split(",");
 
-                    $.each(dd_data_ids, function(i, obj2) {
+                    $.each(dd_data_ids, function (i, obj2) {
                         $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
                     });
 
@@ -1374,8 +1405,8 @@ $(document).ready(function() {
                         $(dd_id).siblings(".btn").attr("title", dd_data_ids.length + " items selected");
                         $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_ids.length + " items selected");
                     } else {
-                        $(dd_id).siblings(".btn").attr("title",  json_data['data'][2][obj1]);
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html( json_data['data'][2][obj1]);
+                        $(dd_id).siblings(".btn").attr("title", json_data['data'][2][obj1]);
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(json_data['data'][2][obj1]);
                     }
                 });
 
@@ -1388,7 +1419,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // AJAX Request for updating search history recod
     //////////////////////////////////////
-    $(document).on('click', '.ves_req_update_ser_hist_each', function(e) {
+    $(document).on('click', '.ves_req_update_ser_hist_each', function (e) {
         e.preventDefault();
         let el = e.target;
         let uid = el.getAttribute('id').split("_")[1];
@@ -1398,7 +1429,8 @@ $(document).ready(function() {
 
         let date_from = $("#laycan_date_from_" + uid).val();
         let date_to = $("#laycan_date_to_" + uid).val();
-
+        let dwt_from = $("#dwt_from_" + uid).val();
+        let dwt_to = $("#dwt_to_" + uid).val();
 
 
         let arr = ["vessel_type_id", "charter_type_id", "region_id", "country_id", "port_id"];
@@ -1408,20 +1440,20 @@ $(document).ready(function() {
         // let dd_str = new Array(5);
         let count = 0;
 
-        $.each(arr, function(i, obj1) {
+        $.each(arr, function (i, obj1) {
             let dd_id = "#" + obj1 + "_" + uid;
 
-            var dd_data_ids = $(dd_id).map(function() { return $(this).val(); }).get();
+            var dd_data_ids = $(dd_id).map(function () { return $(this).val(); }).get();
             dd_str_ids[count] = "";
-            $.each(dd_data_ids, function(i, obj1) {
+            $.each(dd_data_ids, function (i, obj1) {
                 dd_str_ids[count] += obj1 + ",";
             });
             dd_str_ids[count] = dd_str_ids[count].replace(/,+$/, '');
 
 
-            var dd_data_names = $(dd_id + " :selected").map(function() { return $(this).html(); }).get();
+            var dd_data_names = $(dd_id + " :selected").map(function () { return $(this).html(); }).get();
             dd_str_names[count] = "";
-            $.each(dd_data_names, function(i, obj1) {
+            $.each(dd_data_names, function (i, obj1) {
                 dd_str_names[count] += obj1 + ",";
             });
             dd_str_names[count] = dd_str_names[count].replace(/,+$/, '');
@@ -1439,9 +1471,9 @@ $(document).ready(function() {
                 url: route('vessel.update_hist_data'),
                 data: "id=" + uid + "&vessel_type_id=" + dd_str_ids[0] + "&charter_type_id=" + dd_str_ids[1] + "&laycan_date_from=" + date_from +
                     "&laycan_date_to=" + date_to + "&region_id=" + dd_str_ids[2] + "&country_id=" + dd_str_ids[3] +
-                    "&port_id=" + dd_str_ids[4],
+                    "&port_id=" + dd_str_ids[4]+"&dwt_from=" + dwt_from+"&dwt_to=" + dwt_to,
                 type: "get",
-                success: function(response) {
+                success: function (response) {
                     if (response == false) {
                         alert("something went wrong. Please try again");
                     } else {
@@ -1462,8 +1494,8 @@ $(document).ready(function() {
                             post_str +=
                                 '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                         } else {
-                            $.each(json_data, function(i, obj) {
-                                $.each(obj[0], function(i, obj1) {
+                            $.each(json_data, function (i, obj) {
+                                $.each(obj[0], function (i, obj1) {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
                                     post_str +=
@@ -1498,10 +1530,10 @@ $(document).ready(function() {
                                             <div class="td_h">`;
                                     // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
                                     post_str +=
-                                        $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_id], function(i, vesseltype_obj) {
+                                        $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_id], function (i, vesseltype_obj) {
                                             post_str += vesseltype_obj;
-                                            if(json_data['data'][1]['vessel_type_id'][obj1.vessel_id][json_data['data'][1]['vessel_type_id'][obj1.vessel_id].length-1]!=vesseltype_obj)
-                                                post_str +=`,<br>`;
+                                            if (json_data['data'][1]['vessel_type_id'][obj1.vessel_id][json_data['data'][1]['vessel_type_id'][obj1.vessel_id].length - 1] != vesseltype_obj)
+                                                post_str += `,<br>`;
                                         });
                                     post_str +=
                                         `</div>
@@ -1518,10 +1550,10 @@ $(document).ready(function() {
                                             <div class="td_h">`;
                                     // + obj1.charter_type_id.replace(/,/g, ',<br>') +
                                     post_str +=
-                                        $.each(json_data['data'][1]['charter_type_id'][obj1.vessel_id], function(i, chartertype_obj) {
+                                        $.each(json_data['data'][1]['charter_type_id'][obj1.vessel_id], function (i, chartertype_obj) {
                                             post_str += chartertype_obj;
-                                            if(json_data['data'][1]['charter_type_id'][obj1.vessel_id][json_data['data'][1]['charter_type_id'][obj1.vessel_id].length-1]!=chartertype_obj)
-                                                post_str +=`,<br>`;
+                                            if (json_data['data'][1]['charter_type_id'][obj1.vessel_id][json_data['data'][1]['charter_type_id'][obj1.vessel_id].length - 1] != chartertype_obj)
+                                                post_str += `,<br>`;
                                         });
                                     post_str +=
                                         `</div>
@@ -1564,10 +1596,10 @@ $(document).ready(function() {
                                             <div class="td_h">`;
                                     // + obj1.region_id.replace(/,/g, ',<br>') +
                                     post_str +=
-                                        $.each(json_data['data'][1]['region_id'][obj1.vessel_id], function(i, region_obj) {
+                                        $.each(json_data['data'][1]['region_id'][obj1.vessel_id], function (i, region_obj) {
                                             post_str += region_obj;
-                                            if(json_data['data'][1]['region_id'][obj1.vessel_id][json_data['data'][1]['region_id'][obj1.vessel_id].length-1]!=region_obj)
-                                                post_str +=`,<br>`;
+                                            if (json_data['data'][1]['region_id'][obj1.vessel_id][json_data['data'][1]['region_id'][obj1.vessel_id].length - 1] != region_obj)
+                                                post_str += `,<br>`;
                                         });
                                     post_str +=
                                         `</div>
@@ -1584,10 +1616,10 @@ $(document).ready(function() {
                                             <div class="td_h">`;
                                     // + obj1.country_id.replace(/,/g, ',<br>') +
                                     post_str +=
-                                        $.each(json_data['data'][1]['country_id'][obj1.vessel_id], function(i, country_obj) {
+                                        $.each(json_data['data'][1]['country_id'][obj1.vessel_id], function (i, country_obj) {
                                             post_str += country_obj;
-                                            if(json_data['data'][1]['country_id'][obj1.vessel_id][json_data['data'][1]['country_id'][obj1.vessel_id].length-1]!=country_obj)
-                                                post_str +=`,<br>`;
+                                            if (json_data['data'][1]['country_id'][obj1.vessel_id][json_data['data'][1]['country_id'][obj1.vessel_id].length - 1] != country_obj)
+                                                post_str += `,<br>`;
                                         });
                                     post_str +=
                                         `</div>
@@ -1604,10 +1636,10 @@ $(document).ready(function() {
                                             <div class="td_h">`;
                                     // + obj1.port_id.replace(/,/g, ',<br>') +
                                     post_str +=
-                                        $.each(json_data['data'][1]['port_id'][obj1.vessel_id], function(i, port_obj) {
+                                        $.each(json_data['data'][1]['port_id'][obj1.vessel_id], function (i, port_obj) {
                                             post_str += port_obj;
-                                            if(json_data['data'][1]['port_id'][obj1.vessel_id][json_data['data'][1]['port_id'][obj1.vessel_id].length-1]!=port_obj)
-                                                post_str +=`,<br>`;
+                                            if (json_data['data'][1]['port_id'][obj1.vessel_id][json_data['data'][1]['port_id'][obj1.vessel_id].length - 1] != port_obj)
+                                                post_str += `,<br>`;
                                         });
                                     post_str +=
                                         `</div>
@@ -1682,7 +1714,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // AJAX Request for Searching records when user click on any record inside search history table.
     //////////////////////////////////////
-    $(document).on("click", '.vsale_ser_hist_rec_req_each', function(e) {
+    $(document).on("click", '.vsale_ser_hist_rec_req_each', function (e) {
 
         let id2 = $(this).attr('id');
         let id1 = id2.split('_');
@@ -1705,7 +1737,7 @@ $(document).ready(function() {
             // data: "id=" + id + "&cargotype=" + cargotype + "&date_available=" + date_available + "&operations_date=" + operations_date + "&lregion=" + lregion + "&dregion=" + dregion + "&lcountry=" + lcountry + "&dcountry=" + dcountry + "&lport=" + lport + "&dport=" + dport,
             data: "id=" + id,
             type: "get",
-            success: function(response) {
+            success: function (response) {
 
                 let json_data = $.parseJSON(response);
                 var len = json_data.length;
@@ -1716,8 +1748,8 @@ $(document).ready(function() {
                     post_str +=
                         '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                 } else {
-                    $.each(json_data, function(i, obj) {
-                        $.each(obj[0], function(i, obj1) {
+                    $.each(json_data, function (i, obj) {
+                        $.each(obj[0], function (i, obj1) {
                             // console.log(obj1);
                             // console.log(i + "  " + obj1);
                             post_str +=
@@ -1731,27 +1763,27 @@ $(document).ready(function() {
                                     <div class="td_h">
                                         <img src="http://www.eqan.net/shipsearch/public/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
                                         class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
-                                        let count_img=0;
-                                            $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
-                                                if(count_img!=0){
-                                                    post_str += `<img src="http://www.eqan.net/shipsearch/public/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
-                                                }
-                                                count_img++;
-                                            });
-                                        post_str +=
-                                        `
+                            let count_img = 0;
+                            $.each(obj1.vessel_img.split(','), function (i, vessel_img21) {
+                                if (count_img != 0) {
+                                    post_str += `<img src="http://www.eqan.net/shipsearch/public/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
+                                }
+                                count_img++;
+                            });
+                            post_str +=
+                                `
                                     </div> 
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                            $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id], function(i, vesseltype_obj) {
-                                                post_str += vesseltype_obj;
-                                                if(json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id][json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id].length-1]!=vesseltype_obj)
-                                                    post_str +=`,<br>`;
-                                                });
-                                        post_str +=
-                                        // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
-                                    `</div>
+                            $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id], function (i, vesseltype_obj) {
+                                post_str += vesseltype_obj;
+                                if (json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id][json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id].length - 1] != vesseltype_obj)
+                                    post_str += `,<br>`;
+                            });
+                            post_str +=
+                                // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
+                                `</div>
                                     <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Last Dry Docked:</p>
                                         <p class="">` + obj1.last_dry_docked + `</p>
@@ -1765,14 +1797,14 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                        $.each(json_data['data'][1]['region_id'][obj1.vessel_sale_id], function(i, region_obj) {
-                                            post_str += region_obj;
-                                            if(json_data['data'][1]['region_id'][obj1.vessel_sale_id][json_data['data'][1]['region_id'][obj1.vessel_sale_id].length-1]!=region_obj)
-                                                post_str +=`,<br>`;
-                                            });
-                                    post_str +=
-                                        // + obj1.region_id.replace(/,/g, ',<br>')  +
-                                    `</div>
+                            $.each(json_data['data'][1]['region_id'][obj1.vessel_sale_id], function (i, region_obj) {
+                                post_str += region_obj;
+                                if (json_data['data'][1]['region_id'][obj1.vessel_sale_id][json_data['data'][1]['region_id'][obj1.vessel_sale_id].length - 1] != region_obj)
+                                    post_str += `,<br>`;
+                            });
+                            post_str +=
+                                // + obj1.region_id.replace(/,/g, ',<br>')  +
+                                `</div>
                                     <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">NRT:</p>
                                         <p class="">` + obj1.nrt + `</p>
@@ -1786,14 +1818,14 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                        $.each(json_data['data'][1]['country_id'][obj1.vessel_sale_id], function(i, country_obj) {
-                                            post_str += country_obj;
-                                            if(json_data['data'][1]['country_id'][obj1.vessel_sale_id][json_data['data'][1]['country_id'][obj1.vessel_sale_id].length-1]!=country_obj)
-                                                post_str +=`,<br>`;
-                                            });
-                                    post_str +=
-                                        // + obj1.country_id.replace(/,/g, ',<br>')  +
-                                    `</div>
+                            $.each(json_data['data'][1]['country_id'][obj1.vessel_sale_id], function (i, country_obj) {
+                                post_str += country_obj;
+                                if (json_data['data'][1]['country_id'][obj1.vessel_sale_id][json_data['data'][1]['country_id'][obj1.vessel_sale_id].length - 1] != country_obj)
+                                    post_str += `,<br>`;
+                            });
+                            post_str +=
+                                // + obj1.country_id.replace(/,/g, ',<br>')  +
+                                `</div>
                                     <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Consumption:</p>
                                         <p class="">` + obj1.consumption + `</p>
@@ -1807,14 +1839,14 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <div class="td_h">`;
-                                        $.each(json_data['data'][1]['port_id'][obj1.vessel_sale_id], function(i, port_obj) {
-                                            post_str += port_obj;
-                                            if(json_data['data'][1]['port_id'][obj1.vessel_sale_id][json_data['data'][1]['port_id'][obj1.vessel_sale_id].length-1]!=port_obj)
-                                                post_str +=`,<br>`;
-                                            });
-                                    post_str +=
-                                        // + obj1.port_id.replace(/,/g, ',<br>')  + 
-                                    `</div>
+                            $.each(json_data['data'][1]['port_id'][obj1.vessel_sale_id], function (i, port_obj) {
+                                post_str += port_obj;
+                                if (json_data['data'][1]['port_id'][obj1.vessel_sale_id][json_data['data'][1]['port_id'][obj1.vessel_sale_id].length - 1] != port_obj)
+                                    post_str += `,<br>`;
+                            });
+                            post_str +=
+                                // + obj1.port_id.replace(/,/g, ',<br>')  + 
+                                `</div>
                                     <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                         <p class="b7 mb-0">Fresh Water Draft:</p>
                                         <p class="">` + obj1.fw_draft + `</p>
@@ -1898,7 +1930,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // AJAX Request for delete a record of search history 
     //////////////////////////////////////
-    $(document).on('click', '#vsale_delete_rec', function(e) {
+    $(document).on('click', '#vsale_delete_rec', function (e) {
         // $(".delete_rec").click(function(e){
         e.preventDefault();
         let el = e.target;
@@ -1912,12 +1944,12 @@ $(document).ready(function() {
                 url: route('vessel_sale.del_ser_hist_rec'),
                 data: "id=" + deleteid,
                 type: "get",
-                success: function(response) {
+                success: function (response) {
                     // alert(response);
                     if (response == "1") {
                         // Remove row from HTML Table
                         table_row.css('background', 'red');
-                        table_row.fadeOut(800, function() {
+                        table_row.fadeOut(800, function () {
                             table_row.remove();
                         });
                     } else {
@@ -1936,7 +1968,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // Show Update search history form when user click on Edit
     //////////////////////////////////////
-    $(document).on('click', '#vsale_show_update_ser_hist_form_each', function(e) {
+    $(document).on('click', '#vsale_show_update_ser_hist_form_each', function (e) {
         e.preventDefault();
         let el = e.target;
         let uid = el.getAttribute('href');
@@ -1953,7 +1985,7 @@ $(document).ready(function() {
             url: route('vessel_sale.get_update_hist_data'),
             data: "id=" + uid,
             type: "get",
-            success: function(response) {
+            success: function (response) {
 
                 let json_data = $.parseJSON(response);
                 var len = json_data.length;
@@ -1963,14 +1995,14 @@ $(document).ready(function() {
 
                 let arr = ["vessel_type_id", "region_id", "country_id", "port_id"];
 
-                $.each(arr, function(i, obj1) {
+                $.each(arr, function (i, obj1) {
 
                     let dd_id = "#" + obj1 + "_" + uid;
 
                     let dd_data_ids = json_data['data'][1][obj1];
                     // let dd_data_arr = dd_data.split(",");
 
-                    $.each(dd_data_ids, function(i, obj2) {
+                    $.each(dd_data_ids, function (i, obj2) {
                         $(dd_id + " option[value='" + obj2 + "']").attr("selected", "selected");
                     });
 
@@ -1980,8 +2012,8 @@ $(document).ready(function() {
                         $(dd_id).siblings(".btn").attr("title", dd_data_ids.length + " items selected");
                         $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(dd_data_ids.length + " items selected");
                     } else {
-                        $(dd_id).siblings(".btn").attr("title",  json_data['data'][2][obj1]);
-                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html( json_data['data'][2][obj1]);
+                        $(dd_id).siblings(".btn").attr("title", json_data['data'][2][obj1]);
+                        $(dd_id).siblings(".btn").find(".filter-option-inner-inner").html(json_data['data'][2][obj1]);
                     }
                 });
 
@@ -1996,7 +2028,7 @@ $(document).ready(function() {
     //////////////////////////////////////
     // AJAX Request for updating search history recod
     //////////////////////////////////////
-    $(document).on('click', '.vsale_req_update_ser_hist_each', function(e) {
+    $(document).on('click', '.vsale_req_update_ser_hist_each', function (e) {
         e.preventDefault();
         let el = e.target;
         let uid = el.getAttribute('id').split("_")[1];
@@ -2016,20 +2048,20 @@ $(document).ready(function() {
         // let dd_str = new Array(4);
         let count = 0;
 
-        $.each(arr, function(i, obj1) {
+        $.each(arr, function (i, obj1) {
             let dd_id = "#" + obj1 + "_" + uid;
 
-            var dd_data_ids = $(dd_id).map(function() { return $(this).val(); }).get();
+            var dd_data_ids = $(dd_id).map(function () { return $(this).val(); }).get();
             dd_str_ids[count] = "";
-            $.each(dd_data_ids, function(i, obj1) {
+            $.each(dd_data_ids, function (i, obj1) {
                 dd_str_ids[count] += obj1 + ",";
             });
             dd_str_ids[count] = dd_str_ids[count].replace(/,+$/, '');
 
 
-            var dd_data_names = $(dd_id + " :selected").map(function() { return $(this).html(); }).get();
+            var dd_data_names = $(dd_id + " :selected").map(function () { return $(this).html(); }).get();
             dd_str_names[count] = "";
-            $.each(dd_data_names, function(i, obj1) {
+            $.each(dd_data_names, function (i, obj1) {
                 dd_str_names[count] += obj1 + ",";
             });
             dd_str_names[count] = dd_str_names[count].replace(/,+$/, '');
@@ -2048,13 +2080,13 @@ $(document).ready(function() {
                     "&operations_date=" + date_to + "&region_id=" + dd_str_ids[1] + "&country_id=" + dd_str_ids[2] +
                     "&port_id=" + dd_str_ids[3],
                 type: "get",
-                success: function(response) {
+                success: function (response) {
                     if (response == false) {
                         alert("something went wrong. Please try again");
                     } else {
                         $("#vesseltype-" + uid).html(dd_str_names[0].replace(/,/g, ',<br>'));
                         $("#date_available-" + uid).html(date_from);
-                        $("#operations_date-" + uid).html(date_to);   
+                        $("#operations_date-" + uid).html(date_to);
                         $("#region-" + uid).html(dd_str_names[1].replace(/,/g, ',<br>'));
                         $("#country-" + uid).html(dd_str_names[2].replace(/,/g, ',<br>'));
                         $("#port-" + uid).html(dd_str_names[3].replace(/,/g, ',<br>'));
@@ -2068,8 +2100,8 @@ $(document).ready(function() {
                             post_str +=
                                 '<tr class=""><td colspan="11"><i>No exact results. Try expanding your filters</i></td></tr>';
                         } else {
-                            $.each(json_data, function(i, obj) {
-                                $.each(obj[0], function(i, obj1) {
+                            $.each(json_data, function (i, obj) {
+                                $.each(obj[0], function (i, obj1) {
                                     // console.log(obj1);
                                     // console.log(i + "  " + obj1);
                                     post_str +=
@@ -2083,28 +2115,28 @@ $(document).ready(function() {
                                             <div class="td_h">
                                                 <img src="http://www.eqan.net/shipsearch/public/storage/vessel_sale_images/` + obj1.vessel_img.split(',')[0] + `" width="80" id="show_img31" 
                                                 class="img-thumbnail img-fluid" alt="vessel img" style="cursor: zoom-in;">`;
-                                                // http://www.eqan.net/shipsearch/public/storage/vessel_sale_images/
-                                                let count_img=0;
-                                                    $.each(obj1.vessel_img.split(','), function(i, vessel_img21) {
-                                                        if(count_img!=0){
-                                                            post_str += `<img src="http://www.eqan.net/shipsearch/public/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
-                                                        }
-                                                        count_img++;
-                                                    });
-                                                post_str +=
-                                                `
+                                    // http://www.eqan.net/shipsearch/public/storage/vessel_sale_images/
+                                    let count_img = 0;
+                                    $.each(obj1.vessel_img.split(','), function (i, vessel_img21) {
+                                        if (count_img != 0) {
+                                            post_str += `<img src="http://www.eqan.net/shipsearch/public/storage/vessel_sale_images/` + vessel_img21 + `" class="img-thumbnail img-fluid d_n">`;
+                                        }
+                                        count_img++;
+                                    });
+                                    post_str +=
+                                        `
                                             </div> 
                                         </td>
                                         <td>
                                             <div class="td_h">`;
-                                                    $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id], function(i, vesseltype_obj) {
-                                                        post_str += vesseltype_obj;
-                                                        if(json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id][json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id].length-1]!=vesseltype_obj)
-                                                            post_str +=`,<br>`;
-                                                        });
-                                                post_str +=
-                                                // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
-                                            `</div>
+                                    $.each(json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id], function (i, vesseltype_obj) {
+                                        post_str += vesseltype_obj;
+                                        if (json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id][json_data['data'][1]['vessel_type_id'][obj1.vessel_sale_id].length - 1] != vesseltype_obj)
+                                            post_str += `,<br>`;
+                                    });
+                                    post_str +=
+                                        // + obj1.vessel_type_id.replace(/,/g, ',<br>') +
+                                        `</div>
                                             <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Last Dry Docked:</p>
                                                 <p class="">` + obj1.last_dry_docked + `</p>
@@ -2118,14 +2150,14 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">`;
-                                                $.each(json_data['data'][1]['region_id'][obj1.vessel_sale_id], function(i, region_obj) {
-                                                    post_str += region_obj;
-                                                    if(json_data['data'][1]['region_id'][obj1.vessel_sale_id][json_data['data'][1]['region_id'][obj1.vessel_sale_id].length-1]!=region_obj)
-                                                        post_str +=`,<br>`;
-                                                    });
-                                            post_str +=
-                                                // + obj1.region_id.replace(/,/g, ',<br>')  +
-                                            `</div>
+                                    $.each(json_data['data'][1]['region_id'][obj1.vessel_sale_id], function (i, region_obj) {
+                                        post_str += region_obj;
+                                        if (json_data['data'][1]['region_id'][obj1.vessel_sale_id][json_data['data'][1]['region_id'][obj1.vessel_sale_id].length - 1] != region_obj)
+                                            post_str += `,<br>`;
+                                    });
+                                    post_str +=
+                                        // + obj1.region_id.replace(/,/g, ',<br>')  +
+                                        `</div>
                                             <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">NRT:</p>
                                                 <p class="">` + obj1.nrt + `</p>
@@ -2139,14 +2171,14 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">`;
-                                                $.each(json_data['data'][1]['country_id'][obj1.vessel_sale_id], function(i, country_obj) {
-                                                    post_str += country_obj;
-                                                    if(json_data['data'][1]['country_id'][obj1.vessel_sale_id][json_data['data'][1]['country_id'][obj1.vessel_sale_id].length-1]!=country_obj)
-                                                        post_str +=`,<br>`;
-                                                    });
-                                            post_str +=
-                                                // + obj1.country_id.replace(/,/g, ',<br>')  +
-                                            `</div>
+                                    $.each(json_data['data'][1]['country_id'][obj1.vessel_sale_id], function (i, country_obj) {
+                                        post_str += country_obj;
+                                        if (json_data['data'][1]['country_id'][obj1.vessel_sale_id][json_data['data'][1]['country_id'][obj1.vessel_sale_id].length - 1] != country_obj)
+                                            post_str += `,<br>`;
+                                    });
+                                    post_str +=
+                                        // + obj1.country_id.replace(/,/g, ',<br>')  +
+                                        `</div>
                                             <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Consumption:</p>
                                                 <p class="">` + obj1.consumption + `</p>
@@ -2160,14 +2192,14 @@ $(document).ready(function() {
                                         </td>
                                         <td>
                                             <div class="td_h">`;
-                                                $.each(json_data['data'][1]['port_id'][obj1.vessel_sale_id], function(i, port_obj) {
-                                                    post_str += port_obj;
-                                                    if(json_data['data'][1]['port_id'][obj1.vessel_sale_id][json_data['data'][1]['port_id'][obj1.vessel_sale_id].length-1]!=port_obj)
-                                                        post_str +=`,<br>`;
-                                                    });
-                                            post_str +=
-                                                // + obj1.port_id.replace(/,/g, ',<br>')  + 
-                                            `</div>
+                                    $.each(json_data['data'][1]['port_id'][obj1.vessel_sale_id], function (i, port_obj) {
+                                        post_str += port_obj;
+                                        if (json_data['data'][1]['port_id'][obj1.vessel_sale_id][json_data['data'][1]['port_id'][obj1.vessel_sale_id].length - 1] != port_obj)
+                                            post_str += `,<br>`;
+                                    });
+                                    post_str +=
+                                        // + obj1.port_id.replace(/,/g, ',<br>')  + 
+                                        `</div>
                                             <div class="show_details show_details_` + obj1.vessel_sale_id + ` tr_bg_cl d_n">
                                                 <p class="b7 mb-0">Fresh Water Draft:</p>
                                                 <p class="">` + obj1.fw_draft + `</p>
@@ -2286,6 +2318,10 @@ $(document).ready(function() {
         paging: false,
         info: false,
         "order": [],
+        // 'columnDefs': [ {
+        //     'targets': [7,8], // column index (start from 0)
+        //     'orderable': false, // set orderable false for selected columns
+        //  }]
         // "pagingType":"full_numbers",
         //   "lengthMenu":[[5,10,25],[5,10,25]],
         // "lengthMenu": [

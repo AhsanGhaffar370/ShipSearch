@@ -38,7 +38,6 @@ class FrontCargoController extends Controller
 {
     function view(){
 
-
         // $data = ss_cargo::with(['Lregion'])->active()->get();
         // dd($data[0]->Lregion->id);
         // dd($data[0]->Loadregion[0]->region_id->region_name);
@@ -58,6 +57,7 @@ class FrontCargoController extends Controller
                         ->active()
                         ->orderBy('cargo_id', 'DESC')
                         ->get();//working
+        
         // $data = ss_cargo::active()->orderBy('cargo_id', 'DESC')->get();//present
         
         // dd($data[4]->Lregion[0]->CAregion->region_name);

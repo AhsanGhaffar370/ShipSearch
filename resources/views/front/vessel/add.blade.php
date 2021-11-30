@@ -160,7 +160,7 @@
                             <div class="form-group col-8 col-lg-9 col-md-9 col-sm-8 pr-0">
                                 <label for="">DWT</label>
                                 {{-- <label for="">Dead Weight</label> --}}
-                                <input type="number" required name="dwt" class="left_round form-control ">
+                                <input type="number" step="5000" required name="dwt" class="left_round form-control ">
                             </div>
                             <div class="form-group col-4 col-lg-3 col-md-3 col-sm-4 pl-0 pt-2">
                                 <select name="dwt_unit" id="dwt_unit"

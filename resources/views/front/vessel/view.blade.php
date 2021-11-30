@@ -30,13 +30,15 @@
                     class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
                     <thead class="pos_rel">
                         <tr>
-                            <th width="2%"></th>
+                            <th width='1%'><input type="checkbox" name="check_all" id="check_all"></th>
                             <th width="2%">#</th>
-                            <th width="15%">Vessel Type</th>
+                            <th width="10%">Vessel Type</th>
+                            <th width="7%">DWT From</th>
+                            <th width="7%">DWT To</th>
                             <th width="15%">Charter Type</th>
                             <th width="10%">Laycan Date From</th>
                             <th width="10%">Laycan Date To</th>
-                            <th width="15%">Region</th>
+                            <th width="10%">Region</th>
                             <th width="13%">Country</th>
                             <th width="20%">Port</th>
                         </tr>
@@ -72,6 +74,16 @@
                                                 </option>
                                             @endforeach
                                         </select>
+                                    </section>
+                                </td>
+                                <td class="">
+                                    <section class="vessel_type_id_par">
+                                        <input type="number" required="" step="5000" name="dwt_from" class="ser_inp_fields left_round ">
+                                    </section>
+                                </td>
+                                <td class="">
+                                    <section class="vessel_type_id_par">
+                                        <input type="number" required="" step="5000" name="dwt_to" class="ser_inp_fields left_round ">
                                     </section>
                                 </td>
                                 <!-- -->
@@ -195,6 +207,12 @@
                                         @endif
                                     @endforeach
                                 </td>
+                                <td class="" id="dwtfrom-{{ $row->id }}">
+                                   {{$row->dwt_from}}
+                                </td>
+                                <td class="" id="dwtto-{{ $row->id }}">
+                                    {{$row->dwt_to}}
+                                </td>
                                 {{-- <td id="chartertype-{{ $row->id }}">
                                     <?php //echo str_replace(',', ',<br>', $row->charter_type_id); ?>
                                 </td> --}}
@@ -287,6 +305,19 @@
                                                         {{ $row1->vessel_type_name }}</option>
                                                 @endforeach
                                             </select>
+                                        </section>
+                                    </td>
+                                    <td class="">
+                                        asd
+                                        <section class="dwt_from_{{ $row->id }}">
+                                            <input type="number" value="{{ $row->dwt_from }}" step="500" id="dwt_from_{{ $row->id }}" name="dwt_from" class="ser_inp_fields left_round ">
+                                        </section>
+                                    </td>
+                                    <td class="">
+                                        <section class="dwt_to_{{ $row->id }}">
+                                            <section class="dwt_to_{{ $row->id }}">
+                                                <input type="number" value="{{ $row->dwt_to }}" step="500" id="dwt_to_{{ $row->id }}"  name="dwt_to" class="ser_inp_fields left_round ">
+                                            </section>
                                         </section>
                                     </td>
                                     <!-- -->
@@ -384,19 +415,22 @@
             </div>
             <div class="pt-2 pb-2 pr-3 d-flex justify-content-end">
                 <a href="#" id="delete_popup" class="btn_style size13 btn_xxxs">
-                    Delete All
+                    Delete
                 </a>
             </div>
 
             <div id="show_delete_popup" class="text-right rounded" style="display: none;">
-                <a href="#" id="close_delete_popup" style="font-size:20px; position: inherit;">&times;</a>
-                <p class="size20 cl_gd text-center" style="margin-top: -30px">Choose</p>
+                {{-- <a href="#" id="close_delete_popup" style="font-size:20px; position: inherit;">&times;</a> --}}
+                <p class="size20 cl_gd text-center" style="margin-top: 5px">Are you sure want to delete selected search</p>
                 <div class="pt-3 pb-2 text-center">
-                    <a href="#" id="ves_delete_all" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
+                    {{-- <a href="#" id="car_delete_all" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
                         Delete All Searches
+                    </a> --}}
+                    <a href="#" id="car_delete_selected" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
+                        Yes
                     </a>
-                    <a href="#" id="ves_delete_selected" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
-                        DELETE Selected Searches
+                    <a href="#" id="car_delete_selected_no" class="btn_style size13 btn_xxxs text-white mt-1">
+                        No
                     </a>
                 </div>
             </div>

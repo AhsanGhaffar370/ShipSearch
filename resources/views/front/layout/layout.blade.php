@@ -185,16 +185,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
-                            <a class="nav-link check_login nav_link_cargo" href="{{ route('cargo.view') }}">Cargo</a>
+                            <a class="nav-link  nav_link_cargo" href="{{ route('cargo.view') }}">Cargo</a>
                         </li>
                         <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
-                            <a class="nav-link check_login nav_link_vessel" href="{{ route('vessel.view') }}">Vessel Charter</a>
+                            <a class="nav-link  nav_link_vessel" href="{{ route('vessel.view') }}">Vessel Charter</a>
                         </li>
                         <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
-                            <a class="nav-link check_login nav_link_vessel_sale" href="{{ route('vessel_sale.view') }}">Sale & Purchase</a>
+                            <a class="nav-link  nav_link_vessel_sale" href="{{ route('vessel_sale.view') }}">Sale & Purchase</a>
                         </li>
                         <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
                             <a class="nav-link nav_link_directory" href="{{ route('directory.view') }}">Directory</a>
+                        </li>
+                        <li class="nav-item pb-4 pl-3 pr-3 pb-lg-0">
+                            <a class="nav-link nav_link_messenger" href="http://www.eqan.net/shipsearch/chatify">Messenger</a>
                         </li>
                     </ul>
                     @if (session('front_uid') != '')

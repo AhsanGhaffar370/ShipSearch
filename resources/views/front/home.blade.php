@@ -307,7 +307,7 @@
                                                     <label class="size13 cl_gll">Select Region:</label>
                                                     <section class="loading_region_id_par">
                                                         <select name="loading_region_id[]" id="loading_region_id" form="search_cargo_form"
-                                                            class="loading_region_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
+                                                            class="loading_region_id add_cvs_inp_fields ser_inp_fields21  mb-2 all_region_id" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             {{-- <option value="26">Any</option>
                                                             @foreach ($region as $row)
@@ -323,7 +323,7 @@
                                                     <label class="size13 cl_gll">Select Country:</label>
                                                     <section class="loading_country_id_par">
                                                         <select name="loading_country_id[]" id="loading_country_id" form="search_cargo_form"
-                                                            class="loading_country_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
+                                                            class="loading_country_id add_cvs_inp_fields ser_inp_fields21  mb-2 all_country_id" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             {{-- <option value="197">Any</option>
                                                             @foreach ($country as $row)
@@ -339,7 +339,7 @@
                                                     <label class="size13 cl_gll">Select Port:</label>
                                                     <section class="loading_port_id_par">
                                                         <select name="loading_port_id[]" id="loading_port_id" form="search_cargo_form"
-                                                            class="loading_port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
+                                                            class="loading_port_id add_cvs_inp_fields ser_inp_fields21  mb-2 all_port_id" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             {{-- <option value="5638">Any</option>
                                                             @foreach ($port as $row)
@@ -365,7 +365,7 @@
                                                     <label class="size13 cl_gll">Select Region:</label>
                                                     <section class="discharge_region_id_par">
                                                         <select name="discharge_region_id[]" id="discharge_region_id"
-                                                            form="search_cargo_form" class="discharge_region_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple
+                                                            form="search_cargo_form" class="discharge_region_id add_cvs_inp_fields ser_inp_fields21  mb-2 all_region_id" multiple
                                                             title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                             data-live-search="true">
                                                             {{-- <option value="26">Any</option>
@@ -382,7 +382,7 @@
                                                     <label class="size13 cl_gll">Select Country:</label>
                                                     <section class="discharge_country_id_par">
                                                         <select name="discharge_country_id[]" id="discharge_country_id"
-                                                            form="search_cargo_form" class="discharge_country_id add_cvs_inp_fields ser_inp_fields21  mb-2"
+                                                            form="search_cargo_form" class="discharge_country_id add_cvs_inp_fields ser_inp_fields21  mb-2 all_country_id"
                                                             multiple title="Choose" data-size="5" data-selected-text-format="count > 2"
                                                             data-live-search="true">
                                                             {{-- <option value="197">Any</option>
@@ -397,7 +397,7 @@
                                                 <div>
                                                     <label class="size13 cl_gll">Select Port:</label>
                                                     <section class="discharge_port_id_par">
-                                                        <select name="discharge_port_id[]" id="discharge_port_id" form="search_cargo_form"
+                                                        <select name="discharge_port_id[]" id="discharge_port_id" form="search_cargo_form all_port_id"
                                                             class="discharge_port_id add_cvs_inp_fields ser_inp_fields21  mb-2" multiple title="Choose"
                                                             data-size="5" data-selected-text-format="count > 2" data-live-search="true">
                                                             {{-- <option value="5638">Any</option>
@@ -416,7 +416,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="size13 btn_style ser_hover btn_bg cl_gdd b6 btn_xxs check_login" >
+                                        <button type="submit" class="size13 btn_style ser_hover btn_bg cl_gdd b6 btn_xxs check_login_search" >
                                             Search
                                         </button>
                                         <button type="button" value="reset" class="size13 btn_style b6 ser_hover cl_gdd btn_bg reset_btn btn_xxs">
@@ -630,7 +630,7 @@
                                         <div class="col-12 col-lg-6 col-md-6 p-0">
                                             <div class="text-white sec_right">
                                                 <!-- -->
-                                                <label for="operations_date" class="size13 mt-4 cl_gll">Operations Date:</label>
+                                                <label for="operations_date" class="size13 mt-4 cl_gll">Last Operations Date:</label>
                                                 <input type="date" required form="search_vsale_form" class=" to_date"
                                                     id="operations_date" name="operations_date" placeholder="" />
                                             </div>

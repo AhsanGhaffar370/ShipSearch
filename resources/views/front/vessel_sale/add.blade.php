@@ -127,7 +127,7 @@
                     </div>
                     <!-- -->
                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                        <label for="">Operations Date:</label>
+                        <label for="">Last Operations Date:</label>
                         <input type="date" required name="operations_date" class="form-control">
                     </div>
                     <!-- -->

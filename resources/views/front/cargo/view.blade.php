@@ -11,15 +11,15 @@
 
 <div class="container-fluid bg-color pt-5 pb-5">
 
-
-    @if (session('front_uid') != '')
+    
+    
         <div class="bg-white">
             <div class="pt-2 pb-2 pl-3">
                 <a id="new_ser_req" class="btn_style size13 btn_xxxs" href="#">
                     <i class="fas fa-search"></i> New  Cargo Search
                 </a>
-                <a href={{ route('cargo.add') }} class="btn_style size13 btn_xxxs ml-3 add_new_cvs_val">
-                    <i class="fas fa-plus"></i> Add New Cargo
+                <a href={{ route('cargo.add') }} class="btn_style size13 btn_xxxs ml-3 add_new_cvs_val check_login">
+                    <i class="fas fa-plus "></i> Add New Cargo
                 </a>
             </div>
 
@@ -32,7 +32,7 @@
                     class="table tableFixHead table-condensed table-hover table-responsive-md m-0 ">
                     <thead class="pos_rel">
                         <tr>
-                            <th width='1%'></th>
+                            <th width='1%'><input type="checkbox" name="check_all" id="check_all"></th>
                             <th width="3%">#</th>
                             <th width="10%">Cargo Type</th>
                             <th width="10%">Laycan Date From</th>
@@ -484,24 +484,27 @@
             </div>
             <div class="pt-2 pb-2 pr-3 d-flex justify-content-end">
                 <a href="#" id="delete_popup" class="btn_style size13 btn_xxxs">
-                    Delete All
+                    Delete
                 </a>
             </div>
 
             <div id="show_delete_popup" class="text-right rounded" style="display: none;">
-                <a href="#" id="close_delete_popup" style="font-size:20px; position: inherit;">&times;</a>
-                <p class="size20 cl_gd text-center" style="margin-top: -30px">Choose</p>
+                <a href="#" id="close_delete_popup" style="font-size:20px; position: inherit;"></a>
+                <p class="size20 cl_gd text-center" style="margin-top: 5px">Are you sure want to delete selected search</p>
                 <div class="pt-3 pb-2 text-center">
-                    <a href="#" id="car_delete_all" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
+                    {{-- <a href="#" id="car_delete_all" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
                         Delete All Searches
-                    </a>
+                    </a> --}}
                     <a href="#" id="car_delete_selected" class="del_sel_all_ser_hist btn_style size13 btn_xxxs text-white mt-1">
-                        DELETE Selected Searches
+                        Yes
+                    </a>
+                    <a href="#" id="car_delete_selected_no" class="btn_style size13 btn_xxxs text-white mt-1">
+                        No
                     </a>
                 </div>
             </div>
         </div>
-    @endif
+    
 
 
 
@@ -726,6 +729,7 @@
                                                 '>  
                                                 {{ optional($row->user_info)->company_name }}
                                             </a>
+                                            <a href="/chatify/{{$row->user_info->id}}" class="btn btn_style size13 my-2 font-italic font-bold" style="letter-spacing:0" >If Interested Message Directly </a>
                                             {{-- <a href={{route('directory.view.user', ['id' => $row->created_by])}} target="_blank" class="">{{ optional($row->user_info)->company_name }}</a> --}}
                                         </div>
                                     </td>
